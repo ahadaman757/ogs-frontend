@@ -1,10 +1,13 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 .ogsfonts {
   font-family: "Public Sans", sans-serif;
 }
+
 .ogsfonts16Nav {
   font-family: "Public Sans";
   font-style: normal;
@@ -14,6 +17,7 @@
   color: black;
   text-decoration: none;
 }
+
 .ogsfonts16 {
   font-family: "Public Sans";
   font-style: normal;
@@ -21,9 +25,11 @@
   font-size: 16px;
   line-height: 19px;
 }
+
 .navhie {
   height: 130px;
 }
+
 .ogsfonts18 {
   font-family: "Public Sans";
   font-style: normal;
@@ -31,14 +37,17 @@
   font-size: 18px;
   line-height: 21px;
 }
+
 .logoOgs {
   width: 172px;
   height: 64px;
 }
+
 .Loginbtn {
   border: none;
   color: #5200ff;
 }
+
 /* .Loginbtn:hover {
   background: #5200ff;
   color: white;
@@ -52,4 +61,12 @@
   background: #5200ff;
   border-radius: 3px;
   color: white;
+}
+
+.primary-color {
+  color: #343434
+}
+
+.primary-bg {
+  background-color: #2F23A1;
 }
