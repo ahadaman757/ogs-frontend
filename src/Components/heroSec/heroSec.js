@@ -1,4 +1,5 @@
 import "./hero.css";
+
 import Hri from "../../Assets/Images/Vector 177.png";
 const HeroSec = () => {
   return (
@@ -9,7 +10,7 @@ const HeroSec = () => {
           <p className="ogsfonts16 my-5">Easiest way to find a perfect job</p>
         </div>
         <div className="row justify-content-center">
-          <div class="col-md-4">
+          <div class="col-md-4 my-2">
             <div className="input-group flex-row align-items-center inp">
               <input
                 type="text"
@@ -18,12 +19,12 @@ const HeroSec = () => {
               />
               <div className="hrwe"></div>
               <button
-                class="btn btn-outline-secondary dropdown-toggle btmxo"
+                class="btn btn-outline-secondary dropdown-toggle btmxo ogsfonts15"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                City
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
@@ -52,51 +53,58 @@ const HeroSec = () => {
               </ul>
             </div>
           </div>
-          <div class="col-md-2  btn-group" role="group">
-            <button
-              type="button"
-              class="btn btn-primary dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Dropdown
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-              </li>
-            </ul>
+          <div class="col-md-2 my-2">
+            <div class="btn-group gpbte" role="group">
+              <button
+                type="button"
+                class="btn btn-primary dropbtns ogsfonts15  dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Search Job
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Dropdown link
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Dropdown link
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <button className="col-2">Search</button>
+          <div className="col-md-2 my-2 d-flex justify-content-center">
+            {" "}
+            <button className=" btnxds">Search</button>
+          </div>
+        </div>
+        <div className="row my-2">
+          <div className="col-10 d-flex justify-content-end px-5">
+            <a className="ogsfonts15 advance34">Advance Search</a>
+          </div>
         </div>
         <div>
-          <a>Advance Search</a>
-        </div>
-        <div>
-          <ul>
-            <li>
+          <ul className="uljob flex-wrap my-5 d-flex justify-content-center ogsfonts16">
+            <li className="mx-2">
               <p>Populer Search:</p>
             </li>
-            <li>
+            <li className="mx-2">
               <a> Register Onlice CV</a>
             </li>
-            <li>
+            <li className="mx-2">
               <a>Register Empoyer</a>
             </li>
-            <li>
+            <li className="mx-2">
               <a>Post Job</a>
             </li>
-            <li>
+            <li className="mx-2">
               <a>Post Ad</a>
             </li>
-            <li>
+            <li className="mx-2">
               <a>OGS institue</a>
             </li>
           </ul>
