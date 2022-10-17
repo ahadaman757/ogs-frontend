@@ -1,11 +1,11 @@
+import ogsLogo from "../../Assets/Images/ogs_logo 1.svg";
 const Navbar = () => {
   return (
     <>
-      <nav className="container navbar d-flex justify-content-between navbar-expand-lg bg-light">
-        <div className="container-fluid ">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
+      <nav className="container  navbar d-flex justify-content-between navbar-expand-lg bg-light">
+        <div className="container-fluid navhie">
+          <img className="navbar-brand logoOgs" src={ogsLogo} />
+
           <button
             className="navbar-toggler"
             type="button"
@@ -41,12 +41,12 @@ const Navbar = () => {
                 <a className=" ogsfonts16Nav">About Us</a>
               </li>
             </ul>
-            <ul className="navbar-nav">
-              <li>
-                <button>login</button>
+            <ul className="navbar-nav d-flex align-items-center">
+              <li className="nav-item mx-4">
+                <button className="Loginbtn ogsfonts18">login</button>
               </li>
-              <li>
-                <button>login</button>
+              <li className="nav-item mx-4">
+                <button className="Registerbtn ogsfonts18">Register</button>
               </li>
             </ul>
           </div>

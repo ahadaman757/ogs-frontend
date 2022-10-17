@@ -21,3 +21,35 @@
   font-size: 16px;
   line-height: 19px;
 }
+.navhie {
+  height: 130px;
+}
+.ogsfonts18 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+}
+.logoOgs {
+  width: 172px;
+  height: 64px;
+}
+.Loginbtn {
+  border: none;
+  color: #5200ff;
+}
+/* .Loginbtn:hover {
+  background: #5200ff;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+} */
+.Registerbtn {
+  border: none;
+  width: 105px;
+  height: 38px;
+  background: #5200ff;
+  border-radius: 3px;
+  color: white;
+}
