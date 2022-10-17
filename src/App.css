@@ -5,6 +5,14 @@
 .ogsfonts {
   font-family: "Public Sans", sans-serif;
 }
+.ogsfonts14 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}
+
 .ogsfonts15 {
   font-family: "Public Sans";
   font-style: normal;
@@ -18,7 +26,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 159.5%;
 }
 
 .ogsfonts18 {
@@ -27,6 +35,13 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 21px;
+}
+.ogsfonts20 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .ogsfonts48 {
