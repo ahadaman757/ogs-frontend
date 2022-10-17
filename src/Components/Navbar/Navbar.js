@@ -1,13 +1,13 @@
 const Navbar = () => {
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+      <nav className="container navbar d-flex justify-content-between navbar-expand-lg bg-light">
+        <div className="container-fluid ">
+          <a className="navbar-brand" href="#">
             Navbar
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavDropdown"
@@ -15,10 +15,40 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav"></ul>
+          <div
+            className="collapse navbar-collapse justify-content-evenly"
+            id="navbarNavDropdown"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item mx-4">
+                <a className=" ogsfonts16Nav">Home</a>
+              </li>
+              <li className="nav-item mx-4">
+                <a className=" ogsfonts16Nav">Features</a>
+              </li>
+              <li className="nav-item mx-4">
+                <a className=" ogsfonts16Nav">Interships</a>
+              </li>
+              <li className="nav-item mx-4">
+                <a className=" ogsfonts16Nav">Members</a>
+              </li>
+              <li className="nav-item mx-4">
+                <a className=" ogsfonts16Nav">OGS Courses</a>
+              </li>
+              <li className="nav-item mx-4">
+                <a className=" ogsfonts16Nav">About Us</a>
+              </li>
+            </ul>
+            <ul className="navbar-nav">
+              <li>
+                <button>login</button>
+              </li>
+              <li>
+                <button>login</button>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
