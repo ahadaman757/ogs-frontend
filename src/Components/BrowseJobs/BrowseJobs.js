@@ -4,6 +4,7 @@ import styles from "./BrowseJobs.module.css";
 const JobCards = ({ active }) => {
   let posts = [
     {
+      key: 1,
       id: 1,
       logo: "https://clovine.com/images/icon/main_logo.png",
       heading: "Caing Technician, OGS Manpower",
@@ -13,6 +14,7 @@ const JobCards = ({ active }) => {
       type: "Contract",
     },
     {
+      key: 2,
       id: 1,
       logo: "https://clovine.com/images/icon/main_logo.png",
       heading: "Caing Technician, OGS Manpower",
@@ -22,6 +24,7 @@ const JobCards = ({ active }) => {
       type: "Contract",
     },
     {
+      key: 3,
       id: 1,
       logo: "https://clovine.com/images/icon/main_logo.png",
       heading: "Caing Technician, OGS Manpower",
@@ -31,6 +34,7 @@ const JobCards = ({ active }) => {
       type: "Contract",
     },
     {
+      key: 4,
       id: 2,
       logo: "https://clovine.com/images/icon/main_logo.png",
       heading: "Caing Technician, OGS Manpower",
@@ -40,6 +44,7 @@ const JobCards = ({ active }) => {
       type: "Contract",
     },
     {
+      key: 5,
       id: 2,
       logo: "https://clovine.com/images/icon/main_logo.png",
       heading: "Caing Technician, OGS Manpower",
@@ -49,6 +54,7 @@ const JobCards = ({ active }) => {
       type: "Contract",
     },
     {
+      key: 6,
       id: 2,
       logo: "https://clovine.com/images/icon/main_logo.png",
       heading: "Caing Technician, OGS Manpower",
@@ -63,21 +69,21 @@ const JobCards = ({ active }) => {
   const [showJobs, setShowJobs] = useState([]);
 
   useEffect(() => {
-    posts
-      .filter((post) => post.id == active)
-      .map((inner, index, arr) => {
-        setShowJobs(arr);
-      });
-  }, [active]);
+    const filtered = posts.filter(post => post.id == active)
+    setShowJobs([...filtered])
+  });
 
   return (
     <>
-      {posts
-        .filter((post) => post.id == active)
-        .map((inner, index, arr) => {
+      <h1>
+        You Selected {active}
+      </h1>
+      {
+        showJobs.map((inner, index, arr) => {
           console.log(arr);
           return (
-            <div key={inner.id} className={`${styles.JobCards__Container}`}>
+
+            <div key={inner.key} className={`${styles.JobCards__Container}`}>
               <div className={`${styles.JobCards__logo}`}>
                 <img src="https://clovine.com/images/icon/main_logo.png" />
               </div>
