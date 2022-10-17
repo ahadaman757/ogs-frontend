@@ -1,0 +1,15 @@
+.introPara {
+    max-width: 60%;
+}
+.BrowseJobsHeading {
+    margin-top: 80px;
+    font-size: 48px;
+}
+.JobsFilters {
+    display: flex;
+    justify-content: space-around;
+    font-size: 19px;
+}
+.JobsFilters > span:hover {
+    cursor: pointer;
+}
