@@ -1,0 +1,22 @@
+.heroSec {
+  background: #2f23a1;
+  height: 80vh;
+}
+.inp {
+  /* width: auto; */
+  height: 52px;
+  background-color: white;
+}
+.inp1 {
+  border-radius: none;
+  border: none;
+}
+.btmxo {
+  background: white;
+  border: none;
+  /* border-left: 1px solid black; */
+}
+.hrwe {
+  border-left: 4px black solid;
+  height: 28px;
+}

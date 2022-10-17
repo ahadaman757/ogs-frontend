@@ -1,4 +1,5 @@
 import ogsLogo from "../../Assets/Images/ogs_logo 1.svg";
+import "./navbar.css";
 const Navbar = () => {
   return (
     <>
