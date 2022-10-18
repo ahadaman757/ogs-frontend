@@ -43,6 +43,7 @@
 }
 
 .form_input {
+    padding: 10px 15px 10px 5px;
     width: 100%;
     background: #FFFFFF;
     border: 1px solid #BBBBBB;
@@ -51,7 +52,7 @@
 }
 
 .form_input__lable {
-    margin-bottom: .4rem;
+    margin-bottom: .8rem;
     font-family: 'Public Sans';
     font-style: normal;
     font-weight: 500;
@@ -65,12 +66,17 @@
 }
 
 .upload_btn_wrapper {
+    height: 300px;
+    box-shadow: 0px 0px 4px 8px rgba(243, 240, 240, 0.37);
+
     position: relative;
     overflow: hidden;
     display: inline-block;
+    width: 80%;
 }
 
 .btn {
+    height: 300px;
     border: 2px solid gray;
     color: gray;
     background-color: white;
@@ -87,3 +93,30 @@
     top: 0;
     opacity: 0;
 }
+
+.file_upload_icon {
+    width: 80px;
+}
+
+.file_upload_hide {
+    visibility: hidden;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.datalist::after {
+    visibility: visible;
+    content: "hello";
+    display: block;
+}
+
+.form_heading_bg {
+    padding: 10px 10px 10px 5px;
+    color: #343434;
+    font-size: 20px;
+    background-color: rgba(162, 162, 230, 0.466);
+}
+
+.inline_form_lable {}

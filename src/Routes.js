@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from './Pages/Homepage/Home'
-import Signin from './Pages/authpages/Signin';
+import Registeration from './Pages/authpages/Registeration';
+import CV from './Pages/Forms/CV';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -12,8 +13,12 @@ const router = createBrowserRouter([
         element: <Home />,
     },
     {
-        path: "signin",
-        element: <Signin />,
+        path: "register",
+        element: <Registeration />,
+    },
+    {
+        path: "cv",
+        element: <CV />,
     },
 ]);
 function Routes() {

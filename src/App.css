@@ -75,7 +75,7 @@
 }
 
 .primary-bg {
-  color: #ffffff;
+
   background-color: #2F23A1;
 }
 
@@ -176,4 +176,26 @@ button {
   color: white;
   background: #5200ff;
   transition: background 0.3s;
+}
+
+.datalist-icon {
+  position: absolute;
+  right: 0%;
+  top: 20%
+}
+
+.browsers option {
+  width: 100%;
+}
+
+.text__note {
+  color: #FF2F54;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.text__note_green {
+  color: #209b20;
+  font-weight: 500;
+  font-size: 14px;
 }
