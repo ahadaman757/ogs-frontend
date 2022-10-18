@@ -31,3 +31,15 @@
   border-radius: 3px;
   color: white;
 }
+@media only screen and (max-width: 767px) {
+  .heroSec {
+    background: #2f23a1;
+    height: 100vh;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .heroSec {
+    background: #2f23a1;
+    height: 115vh;
+  }
+}

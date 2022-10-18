@@ -2,8 +2,8 @@ import "./hero.css";
 import Hri from "../../Assets/Images/Vector 177.png";
 const HeroSec = () => {
   return (
-    <div className="heroSec">
-      <div className=" d-flex align-items-center justify-content-center">
+    <div className="">
+      <div className=" heroSec d-flex align-items-center justify-content-center">
         <div className="container ">
           <div className="text-center text-white">
             <h1 className="ogsfonts48 my-5">Find Your Next Dream Job</h1>
