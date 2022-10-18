@@ -72,19 +72,31 @@
   background-color: #2F23A1;
 }
 
+.unset_button {
+  border: unset
+}
+
+.form_action_button {
+  background-color: #5200FF;
+}
+
 button {
   background-color: #2F23A1;
 }
 
-.slide-button {
-  position: relative;
-}
-
-.slide-button button {
+.disable_slide_button button {
   visibility: hidden;
 }
 
-/* .slide-button button:after {
+.slide_button {
+  position: relative;
+}
+
+.slide_button button {
+  visibility: hidden;
+}
+
+/* .slide_button button:after {
   content: 'Previous';
   visibility: visible;
   display: block;
@@ -92,17 +104,15 @@ button {
   padding: 5px;
   top: 2px;
 } */
-.slide-button button:nth-child(2) {
+.slide_button button:nth-child(2) {
   width: 100%;
   text-align: center;
 }
 
-.slide-button button:nth-child(2)::after {
+.slide_button button:nth-child(2)::after {
   content: 'Continue';
   visibility: visible;
   display: block;
-
-
   padding: 5px;
   width: 100%;
   background: #5200FF;
@@ -111,6 +121,13 @@ button {
   /* position: absolute; */
   /* top: 100%; */
   /* left: 0% */
+}
+
+.form_step ol li::before {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 5px;
 }
 
 .slideInRight {

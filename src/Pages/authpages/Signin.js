@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import styles from './main.module.css'
 import MultiStep from 'react-multistep'
 import $ from 'jquery';
 
-$('.slide-button button').addClass('nextbutton')
-const LoginInformation = () => {
+
+const UploadImageSide = () => {
+    return (
+        <div className="col-md-6">
+            <h1>sdfsd</h1>
+            <div className='d-flex'>
+                <div class={`${styles.upload_btn_wrapper}`}>
+                    <button class={`${styles.btn}`}>Upload a file</button>
+                    <input type="file" name="myfile" />
+                </div>
+            </div>
+        </div>
+    )
+
+}
+const LoginInformation = ({ sel }) => {
+    sel(1)
     return <>
         <div className='slideInRight'>
             <h3 className='text-dark'>
@@ -31,8 +47,10 @@ const LoginInformation = () => {
 
     </>
 }
-const Businessinformation = () => {
+const Businessinformation = ({ sel }) => {
+    sel(3)
     return <>
+
         <div className='slideInRight'>
             <h3 className='text-dark'>
                 Business Information
@@ -58,9 +76,10 @@ const Businessinformation = () => {
 
     </>
 }
-const AddressDetails = () => {
+const AddressDetails = ({ sel }) => {
+    sel(4)
     return <>
-        <div className='slideInRight'>
+        <div className='slideInRight row'>
             <h3 className='text-dark'>
                 Address Details
             </h3>
@@ -77,7 +96,7 @@ const AddressDetails = () => {
                 <label htmlFor="position" className={`${styles.form_input__lable}`}>city</label>
                 <input type="text" class={`${styles.form_input}`} placeholder="First name" aria-label="First name" />
             </div>
-            <h3 className={`${styles.form_heading_1}`}>
+            <h3 className={`${styles.form_heading_2}`}>
                 CEO/Head/GM/HR/Admin For conformation
             </h3>
             <div class="col-12">
@@ -97,11 +116,15 @@ const AddressDetails = () => {
     </>
 }
 function Signin() {
+    const [formStep, setformStep] = useState(1)
+    const selected = (index) => {
+
+        setformStep(index)
+    }
     const steps = [
-        { name: 'StepOne', component: <div ><LoginInformation /></div> },
-        { name: 'StepTwo', component: <div ><Businessinformation /></div> },
-        { name: 'StepThree', component: <div ><LoginInformation2 /></div> },
-        { name: 'StepFour', component: <div><LoginInformation /></div> }
+        { name: 'StepOne', component: <div ><LoginInformation sel={selected} /></div> },
+        { name: 'StepTwo', component: <div ><Businessinformation sel={selected} /></div> },
+        { name: 'StepThree', component: <div ><AddressDetails sel={selected} /></div> },
     ];
     return (
         <div className={`${styles.auth_page} py-5   container-fluid px-5 primary-bg`}>
@@ -123,11 +146,12 @@ function Signin() {
 
                             <div class="row gy-3">
                                 {<>
-                                    <div className='slide-button'>
+                                    <div className={` form_step ${(formStep != 4) ? 'slide_button' : "disable_slide_button"} `}>
                                         <MultiStep prevStyle={{ backgroundColor: 'red' }} activeStep={1} showNavigation={true} steps={steps} />
-
                                     </div>
-
+                                    {
+                                        (formStep == 4) ? <button className='primary-bg form_action_button unset_button py-2'> Register</button> : null
+                                    }
                                 </>
 
                                 }
@@ -135,8 +159,12 @@ function Signin() {
                             </div>
                         </div>
                     </div>
-                    <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
+                    <div className="col-md-6">
+                        <UploadImageSide />
+
                     </div>
+                    {/* <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
+                    </div> */}
                 </div>
             </div>
         </div >
