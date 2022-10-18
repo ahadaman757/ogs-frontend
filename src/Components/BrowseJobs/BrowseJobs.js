@@ -1,5 +1,124 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./BrowseJobs.module.css";
+
+const JobCards = ({ active }) => {
+  let posts = [
+    {
+      key: 1,
+      id: 1,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Abu Dhabi",
+      type: "Contract",
+    },
+    {
+      key: 2,
+      id: 1,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Abu Dhabi",
+      type: "Contract",
+    },
+    {
+      key: 3,
+      id: 1,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Abu Dhabi",
+      type: "Contract",
+    },
+    {
+      key: 4,
+      id: 2,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Middle East",
+      type: "Contract",
+    },
+    {
+      key: 5,
+      id: 2,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Middle East",
+      type: "Contract",
+    },
+    {
+      key: 6,
+      id: 2,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Middle East",
+      type: "Contract",
+    },
+    {
+      key: 7,
+      id: 2,
+      logo: "https://clovine.com/images/icon/main_logo.png",
+      heading: "Caing Technician, OGS Manpower",
+      description:
+        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
+      location: "Middle East",
+      type: "Contract",
+    },
+  ];
+
+  const [jobs, setJobs] = useState(posts);
+  const [showJobs, setShowJobs] = useState([]);
+
+  useEffect(() => {
+    const filtered = posts.filter((post) => post.id == active);
+    setShowJobs([...filtered]);
+  }, [active]);
+
+  return (
+    <>
+      {showJobs.map((inner, index, arr) => {
+        console.log(arr);
+        return (
+          <div key={inner.key} className={`${styles.JobCards__Container}`}>
+            <div className={`${styles.JobCards__logo}`}>
+              <img src="https://clovine.com/images/icon/main_logo.png" />
+            </div>
+            <div className={``}>
+              <h2>
+                <br />
+                <b className="ogsfonts">Caing Technician, OGS Manpower</b>
+              </h2>
+              <p>
+                We are looking for 3 or 4 personnel who have experience in
+                running, dressing and maintaining a Volant CRTi casing running
+                tool.
+              </p>
+              <p className="ogsfonts">
+                <b>Job Location:</b> {inner.location}
+              </p>
+            </div>
+            <div className={`${styles.applyDiv}`}>
+              <p className="ogsfonts">
+                <b>Job Location:</b> Abu Dhabi
+              </p>
+              <button className={`${styles.aboutBtn}`}>Apply Now</button>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
 const BrowseJobs = () => {
   let f = [
     {
@@ -58,6 +177,9 @@ const BrowseJobs = () => {
           );
         })}
       </div>
+      <br />
+      <JobCards active={active} />
+      <br />
     </div>
   );
 };

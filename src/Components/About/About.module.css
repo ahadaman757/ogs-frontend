@@ -1,58 +1,60 @@
 .aboutHeading {
-    font-size: 37px;
-    letter-spacing: 2px;
-    margin-bottom: -20px;
-    margin-top: 20px;
+  font-size: 37px;
+  letter-spacing: 2px;
+  margin-bottom: -20px;
+  margin-top: 20px;
 }
 .aboutPara {
-    font-size: 19px;
-    letter-spacing: .5px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  font-weight: lighter;
+  line-height: 30px;
 }
 .aboutBtn {
-    border: none;
-    color: white;
-    background-color: #5200FF;
-    padding: 14px 50px;
-    border-radius: 3px;
+  border: none;
+  color: white;
+  background-color: #5200ff;
+  padding: 14px 50px;
+  border-radius: 3px;
 }
 @media (max-width: 989px) {
-    .aboutHeading {
-        font-size: 30px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    .aboutPara {
-        font-size: 15px;
-        letter-spacing: .5px;
-        text-align: center;
-    }
-    .aboutImg {
-        max-width: 90%;
-    }
-    .aboutBtnContainer {
-        display: flex;
-        justify-content: center;
-    }
-    .aboutBtn {
-        border: none;
-        color: white;
-        background-color: #5200FF;
-        padding: 10px 40px;
-        border-radius: 3px;
-    }
+  .aboutHeading {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .aboutPara {
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .aboutImg {
+    max-width: 90%;
+  }
+  .aboutBtnContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .aboutBtn {
+    border: none;
+    color: white;
+    background-color: #5200ff;
+    padding: 10px 40px;
+    border-radius: 3px;
+  }
 }
 @media (max-width: 350px) {
-    .aboutHeading {
-        font-size: 20px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    .aboutPara {
-        font-size: 12px;
-        letter-spacing: .5px;
-        text-align: center;
-    }
-    .aboutImg {
-        max-width: 90%;
-    }
+  .aboutHeading {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .aboutPara {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  .aboutImg {
+    max-width: 90%;
+  }
 }

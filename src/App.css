@@ -8,26 +8,33 @@
   font-family: "Public Sans", sans-serif;
 }
 
-.ogsfonts16Nav {
+.ogsfonts14 {
   font-family: "Public Sans";
   font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 19px;
-  color: black;
-  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.ogsfonts15 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
 }
 
 .ogsfonts16 {
   font-family: "Public Sans";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   line-height: 19px;
 }
 
 .navhie {
   height: 130px;
+  line-height: 159.5%;
 }
 
 .ogsfonts18 {
@@ -38,29 +45,29 @@
   line-height: 21px;
 }
 
-.logoOgs {
-  width: 172px;
-  height: 64px;
+.ogsfonts20 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
 }
 
-.Loginbtn {
-  border: none;
-  color: #5200ff;
+.ogsfonts48 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
 }
 
-/* .Loginbtn:hover {
-  background: #5200ff;
-  color: white;
-  padding: 8px 20px;
-  border-radius: 20px;
-} */
-.Registerbtn {
-  border: none;
-  width: 105px;
-  height: 38px;
-  background: #5200ff;
+/* BUTTONS */
+.primaryButtonOutline {
+  border: 1px solid #5200FF;
+  color: #5200FF;
+  background: transparent;
+  padding: 13px 25px;
   border-radius: 3px;
-  color: white;
 }
 
 .primary-color {
@@ -163,4 +170,10 @@ button {
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
+}
+
+.primaryButtonOutline:hover {
+  color: white;
+  background: #5200FF;
+  transition: background .3s;
 }
