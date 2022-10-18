@@ -9,7 +9,7 @@
 .applyingcard {
   background: #ffffff;
   border: 1px solid #ebebeb;
-  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.1);
+
   border-radius: 3px;
 }
 .parttimebtn {
@@ -42,4 +42,12 @@
     background: #2f23a1;
     height: 115vh;
   }
+}
+.hdw {
+  color: #5200ff;
+}
+.applyingcard:hover {
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+  transition: transform 0.25s ease-in-out 0s, box-shadow 0.3s ease-in-out 0s;
 }
