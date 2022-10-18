@@ -50,7 +50,9 @@ const BrowseOver = () => {
           </div>
         </div>
         <div className="row my-5  text-center d-flex justify-content-center">
-          <h1 className="col-12 ogsfonts48">Browse From Over 2000+ Jobs</h1>
+          <h1 className="col-12 ogsfonts48">
+            Browse From Over <span className="hdw">2000+</span> Jobs
+          </h1>
           <p className="col-md-5 ogsfonts16">
             The automated process starts as soon as your clothes go into the
             machine. The outcome is gleaming clothes. Placeholder text commonly
@@ -58,10 +60,10 @@ const BrowseOver = () => {
           </p>
         </div>
         <div className="container">
-          <div className="row">
+          <div className="row ">
             {jobs.map(({ title, info }) => {
               return (
-                <div className="col-md-4 p-2  applyingcard">
+                <div className="col-md-4 p-4  applyingcard">
                   <div className="d-flex justify-content-between my-2">
                     <img src={Combo} />
                     <button className=" parttimebtn">Part Time</button>
