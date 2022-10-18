@@ -71,24 +71,24 @@
 }
 
 .primary-color {
-  color: #343434
+  color: #343434;
 }
 
 .primary-bg {
   color: #ffffff;
-  background-color: #2F23A1;
+  background-color: #2f23a1;
 }
 
 .unset_button {
-  border: unset
+  border: unset;
 }
 
 .form_action_button {
-  background-color: #5200FF;
+  background-color: #5200ff;
 }
 
 button {
-  background-color: #2F23A1;
+  background-color: #2f23a1;
 }
 
 .disable_slide_button button {
@@ -117,12 +117,12 @@ button {
 }
 
 .slide_button button:nth-child(2)::after {
-  content: 'Continue';
+  content: "Continue";
   visibility: visible;
   display: block;
   padding: 5px;
   width: 100%;
-  background: #5200FF;
+  background: #5200ff;
   border-radius: 3px;
   color: white;
   /* position: absolute; */

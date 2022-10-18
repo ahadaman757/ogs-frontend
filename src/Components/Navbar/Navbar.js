@@ -1,4 +1,5 @@
 import ogsLogo from "../../Assets/Images/ogs_logo 1.svg";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 const Navbar = () => {
   return (
@@ -24,7 +25,9 @@ const Navbar = () => {
           >
             <ul className="navbar-nav align-items-center sdweqw">
               <li className="nav-item mx-xxl-4">
-                <a className=" ogsfonts16Nav">Home</a>
+                <Link to="/" className=" ogsfonts16Nav">
+                  Home
+                </Link>
               </li>
               <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">Features</a>
@@ -39,7 +42,9 @@ const Navbar = () => {
                 <a className=" ogsfonts16Nav">OGS Courses</a>
               </li>
               <li className="nav-item mx-xxl-4">
-                <a className=" ogsfonts16Nav">About Us</a>
+                <Link to="/aboutus" className=" ogsfonts16Nav">
+                  About Us
+                </Link>
               </li>
             </ul>
             <ul className="navbar-nav d-flex align-items-center">
@@ -47,7 +52,9 @@ const Navbar = () => {
                 <button className="Loginbtn ogsfonts18">login</button>
               </li>
               <li className="nav-item mx-4">
-                <button className="Registerbtn ogsfonts18">Register</button>
+                <Link to="/signin">
+                  <button className="Registerbtn ogsfonts18">Register</button>
+                </Link>
               </li>
             </ul>
           </div>
