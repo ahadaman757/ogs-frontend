@@ -5,6 +5,7 @@ import BrowseJobs from "../../Components/BrowseJobs/BrowseJobs";
 import HeroSec from "../../Components/heroSec/heroSec";
 import Reviews from "../../Components/Reviews/Reviews";
 import BrowseOver from "../../Components/BrowseOver/BrowseOver";
+import Newsletter from "../../Components/Newsletter/Newsletter";
 const Home = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
       <About />
       <BrowseJobs />
       <Reviews />
+      <Newsletter />
     </>
   );
 };

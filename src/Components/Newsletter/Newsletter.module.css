@@ -1,0 +1,33 @@
+.newsLetterContainer {
+    width: 100%;
+    height: 350px;
+    background-image: url('https://images.unsplash.com/photo-1666061757185-4baea2297664?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newsLetterContent {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:  white;
+}
+.newsLetterContent > p {
+    text-align: center;
+    max-width: 80%;
+}
+.newsLetterForm {
+    display: flex;
+}
+.newsLetterForm > button {
+    padding: 10px 30px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+.newsLetterForm > input {
+    width: 400px;
+    border-radius: 3px;
+}

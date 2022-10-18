@@ -85,7 +85,6 @@ const JobCards = ({ active }) => {
 
   return (
     <>
-      <h1>You Selected {active}</h1>
       {showJobs.map((inner, index, arr) => {
         console.log(arr);
         return (
