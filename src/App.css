@@ -1,10 +1,13 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 .ogsfonts {
   font-family: "Public Sans", sans-serif;
 }
+
 .ogsfonts14 {
   font-family: "Public Sans";
   font-style: normal;
@@ -26,6 +29,11 @@
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
+  line-height: 19px;
+}
+
+.navhie {
+  height: 130px;
   line-height: 159.5%;
 }
 
@@ -36,6 +44,7 @@
   font-size: 18px;
   line-height: 21px;
 }
+
 .ogsfonts20 {
   font-family: "Public Sans";
   font-style: normal;
@@ -60,6 +69,109 @@
   padding: 13px 25px;
   border-radius: 3px;
 }
+
+.primary-color {
+  color: #343434
+}
+
+.primary-bg {
+  color: #ffffff;
+  background-color: #2F23A1;
+}
+
+.unset_button {
+  border: unset
+}
+
+.form_action_button {
+  background-color: #5200FF;
+}
+
+button {
+  background-color: #2F23A1;
+}
+
+.disable_slide_button button {
+  visibility: hidden;
+}
+
+.slide_button {
+  position: relative;
+}
+
+.slide_button button {
+  visibility: hidden;
+}
+
+/* .slide_button button:after {
+  content: 'Previous';
+  visibility: visible;
+  display: block;
+  border: 1px solid green;
+  padding: 5px;
+  top: 2px;
+} */
+.slide_button button:nth-child(2) {
+  width: 100%;
+  text-align: center;
+}
+
+.slide_button button:nth-child(2)::after {
+  content: 'Continue';
+  visibility: visible;
+  display: block;
+  padding: 5px;
+  width: 100%;
+  background: #5200FF;
+  border-radius: 3px;
+  color: white;
+  /* position: absolute; */
+  /* top: 100%; */
+  /* left: 0% */
+}
+
+.form_step ol li::before {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.slideInRight {
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes slideInRight {
+  0% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
 .primaryButtonOutline:hover {
   color: white;
   background: #5200ff;
