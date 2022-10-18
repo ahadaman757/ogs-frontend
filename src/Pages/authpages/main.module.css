@@ -10,9 +10,11 @@
     flex-grow: 1;
     background-color: #ffffff;
     border-radius: unset;
+    /* flex-direction: column; */
 }
 
 .auth_img {
+    z-index: 1000000;
     background-position-x: right;
     background-position-y: top;
     background-size: cover;
@@ -29,15 +31,37 @@
     font-size: 24px;
 }
 
+.form_heading_2 {
+    color: #343434;
+    font-size: 20px;
+}
+
 .form_description {
     font-size: 14px;
     color: #8B8B8B;
     font-weight: 500;
 }
 
+
 .form_input {
+    padding: 10px 15px 10px 5px;
     width: 100%;
     background: #FFFFFF;
     border: 1px solid #BBBBBB;
     border-radius: 3px;
+    margin-bottom: .5rem;
+}
+
+.form_input__lable {
+    margin-bottom: .4rem;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.next_button {
+    border: none;
 }

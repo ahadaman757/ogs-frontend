@@ -68,5 +68,82 @@
 }
 
 .primary-bg {
+  color: #ffffff;
   background-color: #2F23A1;
+}
+
+button {
+  background-color: #2F23A1;
+}
+
+.slide-button {
+  position: relative;
+}
+
+.slide-button button {
+  visibility: hidden;
+}
+
+/* .slide-button button:after {
+  content: 'Previous';
+  visibility: visible;
+  display: block;
+  border: 1px solid green;
+  padding: 5px;
+  top: 2px;
+} */
+.slide-button button:nth-child(2) {
+  width: 100%;
+  text-align: center;
+}
+
+.slide-button button:nth-child(2)::after {
+  content: 'Continue';
+  visibility: visible;
+  display: block;
+
+
+  padding: 5px;
+  width: 100%;
+  background: #5200FF;
+  border-radius: 3px;
+  color: white;
+  /* position: absolute; */
+  /* top: 100%; */
+  /* left: 0% */
+}
+
+.slideInRight {
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes slideInRight {
+  0% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
 }
