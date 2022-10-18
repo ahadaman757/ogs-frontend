@@ -4,6 +4,8 @@ import teammam from "../../Assets/Images/Ellipse 1200.png";
 import teammam2 from "../../Assets/Images/Ellipse 1201.png";
 import teammam3 from "../../Assets/Images/Ellipse 1202.png";
 import teammam4 from "../../Assets/Images/Ellipse 1203.png";
+import Newsletter from "../../Components/Newsletter/Newsletter";
+import Footer from "../../Components/Footer/Footer";
 import "./aboutus.css";
 const AboutUs = () => {
   return (
@@ -258,6 +260,8 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      <Newsletter />
+      <Footer />
     </div>
   );
 };
