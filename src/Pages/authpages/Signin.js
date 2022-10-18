@@ -48,7 +48,7 @@ const LoginInformation = ({ sel }) => {
     </>
 }
 const Businessinformation = ({ sel }) => {
-    sel(3)
+    sel(2)
     return <>
 
         <div className='slideInRight'>
@@ -159,12 +159,16 @@ function Signin() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
-                        <UploadImageSide />
 
-                    </div>
-                    {/* <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
-                    </div> */}
+
+                    {
+                        (formStep == 2 ? <div className="col-md-6">
+                            <UploadImageSide />
+
+                        </div> : <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
+                        </div>)
+                    }
+
                 </div>
             </div>
         </div >
