@@ -3,7 +3,7 @@ import "./navbar.css";
 const Navbar = () => {
   return (
     <>
-      <nav className="container  navbar d-flex justify-content-between navbar-expand-lg bg-light">
+      <nav className="container  navbar d-flex justify-content-between navbar-expand-lg ">
         <div className="container-fluid navhie">
           <img className="navbar-brand logoOgs" src={ogsLogo} />
 
@@ -22,23 +22,23 @@ const Navbar = () => {
             className="collapse navbar-collapse justify-content-evenly"
             id="navbarNavDropdown"
           >
-            <ul className="navbar-nav">
-              <li className="nav-item mx-4">
+            <ul className="navbar-nav align-items-center sdweqw">
+              <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">Home</a>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">Features</a>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">Interships</a>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">Members</a>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">OGS Courses</a>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-xxl-4">
                 <a className=" ogsfonts16Nav">About Us</a>
               </li>
             </ul>
