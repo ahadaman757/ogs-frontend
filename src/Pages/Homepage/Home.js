@@ -6,6 +6,7 @@ import HeroSec from "../../Components/heroSec/heroSec";
 import Reviews from "../../Components/Reviews/Reviews";
 import BrowseOver from "../../Components/BrowseOver/BrowseOver";
 import Newsletter from "../../Components/Newsletter/Newsletter";
+import Footer from "../../Components/Footer/Footer";
 const Home = () => {
   return (
     <>
@@ -16,6 +17,7 @@ const Home = () => {
       <BrowseJobs />
       <Reviews />
       <Newsletter />
+      <Footer />
     </>
   );
 };

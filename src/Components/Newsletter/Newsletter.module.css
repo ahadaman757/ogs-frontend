@@ -1,11 +1,12 @@
 .newsLetterContainer {
     width: 100%;
-    height: 350px;
+    height: 380px;
     background-image: url('https://images.unsplash.com/photo-1666061757185-4baea2297664?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80');
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: -50px;
 }
 .newsLetterContent {
     text-align: center;
@@ -30,4 +31,52 @@
 .newsLetterForm > input {
     width: 400px;
     border-radius: 3px;
+}
+.newsLetterBox {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+.newsLetterBox > div {
+    width: 80%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 3px;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.17);
+    margin-bottom: 40px;
+}
+.newsLetterBox > div > h3 {
+    color: #5200FF;
+}
+
+@media (max-width: 1000px) {
+    .newsLetterBox > div > h3 {
+        font-size: 19px;
+    }
+}
+@media (max-width: 720px) {
+    .newsLetterBox > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .newsLetterBox > div > h3 {
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    .newsLetterForm > input {
+        width: 80%;
+        border-radius: 3px;
+    }
+}
+@media (max-width: 450px) {
+    .newsLetterBox > div > h3 {
+        font-size: 15px;
+    }
 }

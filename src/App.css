@@ -56,7 +56,9 @@
 .primaryButtonOutline {
   border: 1px solid #5200FF;
   color: #5200FF;
+  background: transparent;
   padding: 13px 25px;
+  border-radius: 3px;
 }
 .primaryButtonOutline:hover {
   color: white;
