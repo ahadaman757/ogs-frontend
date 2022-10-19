@@ -29,7 +29,6 @@
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 19px;
 }
 
 .navhie {
@@ -60,7 +59,21 @@
   font-size: 24px;
   line-height: 192%;
 }
+.ogsfonts28 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+}
 
+.ogsfonts32 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 192%;
+}
 .ogsfonts48 {
   font-family: "Public Sans";
   font-style: normal;
