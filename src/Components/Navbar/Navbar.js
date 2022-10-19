@@ -39,7 +39,9 @@ const Navbar = () => {
                 <a className=" ogsfonts16Nav">Members</a>
               </li>
               <li className="nav-item mx-xxl-4">
-                <a className=" ogsfonts16Nav">OGS Courses</a>
+                <Link className=" ogsfonts16Nav" to="ogscourses">
+                  OGS Courses
+                </Link>
               </li>
               <li className="nav-item mx-xxl-4">
                 <Link to="/aboutus" className=" ogsfonts16Nav">
