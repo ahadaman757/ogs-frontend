@@ -99,7 +99,7 @@ button {
   position: relative;
 }
 
-.slide_button button {
+.slide_button button:not(.submit) {
   visibility: hidden;
 }
 

@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from './main.module.css'
 import MultiStep from 'react-multistep'
 import $ from 'jquery';
+import CV from '../Forms/CV'
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+
+
 
 
 const UploadImageSide = () => {
@@ -21,54 +27,84 @@ const UploadImageSide = () => {
                     Logo Upload
                 </h4>
             </div>
-
-
-
         </div>
     )
 
 }
 const LoginInformation = ({ sel }) => {
+    // Register Validation start
+    const formik = useFormik({
+
+        initialValues: {
+            position: '',
+        },
+        validationSchema: Yup.object({
+            position: Yup.string().required('Required'),
+        }),
+        onSubmit: values => {
+            $(document).ready(function () {
+
+                const name = $(".slide_button button")
+                console.log(name[2])
+                name[2].click()
+            });
+
+
+        },
+    });
+    // Register Validation end
+
+
     sel(1)
     return <>
         <div className='slideInRight'>
             <h3 className='text-dark'>
                 Login Information
             </h3>
-            <div class="col-12">
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                formik.handleSubmit()
+            }}>
+                <div class="col-12">
+                    <label htmlFor="position" className={`${styles.form_input__lable}`}>Position</label>
 
-                <label htmlFor="browser" className={`${styles.form_input__lable}`}> Position</label>
-                <br />
-                <div className='position-relative'>
-                    <label htmlFor='browser'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down-short datalist-icon" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
-                        </svg>
-                    </label>
+                    <br />
+                    <div className='position-relative'>
+                        <label htmlFor='position'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down-short datalist-icon" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
+                            </svg>
+                        </label>
 
-                    <input class={`${styles.form_input}`} list="browsers" name="browser" id="browser" />
+                        <input {...formik.getFieldProps('position')} class={`${styles.form_input}`} list="positions" name="position" id="position" />
+                    </div>
+
+                    <datalist
+                        id="positions">
+                        <option value="HR" />
+                        <option value="Developer" />
+                        <option value="CEO" />
+                        <option value="Manager" />
+                        <option value="Owner" />
+                    </datalist>
+                    {formik.touched.position && formik.errors.position ? (
+                        <div>{formik.errors.position}</div>
+                    ) : null}
                 </div>
-
-                <datalist id="browsers">
-                    <option value="Edge" />
-                    <option value="Firefox" />
-                    <option value="Chrome" />
-                    <option value="Opera" />
-                    <option value="Safari" />
-                </datalist>
-            </div>
-            <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}> First Name</label>
-                <input type="text" class={`${styles.form_input} ${styles.datalist}`} aria-label="First name" />
-            </div>
-            <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}> Last Name</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
-            </div>
-            <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Email</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
-            </div>
+                <div class="col-12">
+                    <label htmlFor="position" className={`${styles.form_input__lable}`}> First Name</label>
+                    <input type="text" class={`${styles.form_input} ${styles.datalist}`} aria-label="First name" />
+                </div>
+                <div class="col-12">
+                    <label htmlFor="position" className={`${styles.form_input__lable}`}> Last Name</label>
+                    <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                </div>
+                <div class="col-12">
+                    <label htmlFor="position" className={`${styles.form_input__lable}`}>Email</label>
+                    <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                </div>
+                <button className='submit' type='submit'>Continue</button>
+            </form>
         </div>
 
     </>
@@ -103,7 +139,7 @@ const Businessinformation = ({ sel }) => {
     </>
 }
 const AddressDetails = ({ sel }) => {
-    sel(4)
+    sel(3)
     return <>
         <div className='slideInRight row'>
             <h3 className='text-dark'>
@@ -151,12 +187,13 @@ function Register() {
         { name: 'StepOne', component: <div ><LoginInformation sel={selected} /></div> },
         { name: 'StepTwo', component: <div ><Businessinformation sel={selected} /></div> },
         { name: 'StepThree', component: <div ><AddressDetails sel={selected} /></div> },
+        { name: 'StepThree', component: <div ><CV sel={selected} /></div> },
     ];
     return (
         <div className={`${styles.auth_page} py-5   container-fluid px-5 primary-bg`}>
             <div className="container">
                 <div className={` ${styles.auth_page__model} row `}>
-                    <div className="col-md-6 d-flex justify-content-center align-items-center py-md-4 py-2 px-md-5 px-2 " style={{ overflow: 'hidden' }}>
+                    <div className={`${formStep == 4 ? ' col-md-12' : 'col-md-6'}  d-flex justify-content-center align-items-center py-md-4 py-2 px-md-5 px-2`} style={{ overflow: 'hidden' }}>
                         <div className="container-fluid">
                             <h1>
                                 Logo
@@ -168,12 +205,10 @@ function Register() {
                                 Registration with OGS (Pvt) Ltd is 100% free <br />
                                 Please fill up this form to register free at OGS
                             </p>
-
-
                             <div class="row gy-3">
                                 {<>
                                     <div className={` form_step ${(formStep != 4) ? 'slide_button' : "disable_slide_button"} `}>
-                                        <MultiStep prevStyle={{ backgroundColor: 'red' }} activeStep={1} showNavigation={true} steps={steps} />
+                                        <MultiStep prevStyle={{ backgroundColor: 'red' }} activeStep={0} showNavigation={true} steps={steps} />
                                     </div>
                                     {
                                         (formStep == 4) ? <button className='primary-bg form_action_button text-white unset_button ogsfonts15 py-2'> Register</button> : null
@@ -191,7 +226,7 @@ function Register() {
                         (formStep == 2 ?
                             <UploadImageSide />
 
-                            : <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
+                            : formStep == 4 ? null : <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
                             </div>)
                     }
 
