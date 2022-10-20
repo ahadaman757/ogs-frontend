@@ -4,6 +4,7 @@ import Signin from "./Pages/authpages/Signin";
 import AboutUs from "./Pages/about us/Aboutus";
 import Ogscourses from "./Pages/Ogscourses/ogscourses";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "ogscourses",
     element: <Ogscourses />,
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
   },
 ]);
 function Routes() {
