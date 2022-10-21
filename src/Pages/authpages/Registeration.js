@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import styles from './main.module.css'
 import MultiStep from 'react-multistep'
-import $ from 'jquery';
 import CV from '../Forms/CV'
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-
+import { LoginInformationValidation, BusinessInformationValidation, AddressInformationValidation } from '../../formsValidations/Registeration'
+import { List, TextInput } from '../Forms/InputFields'
+import { useFormik } from 'formik'
 
 
 
@@ -33,28 +32,8 @@ const UploadImageSide = () => {
 }
 const LoginInformation = ({ sel }) => {
     // Register Validation start
-    const formik = useFormik({
-
-        initialValues: {
-            position: '',
-        },
-        validationSchema: Yup.object({
-            position: Yup.string().required('Required'),
-        }),
-        onSubmit: values => {
-            $(document).ready(function () {
-
-                const name = $(".slide_button button")
-                console.log(name[2])
-                name[2].click()
-            });
-
-
-        },
-    });
+    const logininformationFormik = useFormik(LoginInformationValidation)
     // Register Validation end
-
-
     sel(1)
     return <>
         <div className='slideInRight'>
@@ -63,53 +42,28 @@ const LoginInformation = ({ sel }) => {
             </h3>
             <form onSubmit={(e) => {
                 e.preventDefault()
-                formik.handleSubmit()
+                logininformationFormik.handleSubmit()
             }}>
                 <div class="col-12">
-                    <label htmlFor="position" className={`${styles.form_input__lable}`}>Position</label>
-
-                    <br />
-                    <div className='position-relative'>
-                        <label htmlFor='position'>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-down-short datalist-icon" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z" />
-                            </svg>
-                        </label>
-
-                        <input {...formik.getFieldProps('position')} class={`${styles.form_input}`} list="positions" name="position" id="position" />
-                    </div>
-
-                    <datalist
-                        id="positions">
-                        <option value="HR" />
-                        <option value="Developer" />
-                        <option value="CEO" />
-                        <option value="Manager" />
-                        <option value="Owner" />
-                    </datalist>
-                    {formik.touched.position && formik.errors.position ? (
-                        <div>{formik.errors.position}</div>
-                    ) : null}
+                    <List id='position' list_id="positions" formik={logininformationFormik} label="Position" />
                 </div>
                 <div class="col-12">
-                    <label htmlFor="position" className={`${styles.form_input__lable}`}> First Name</label>
-                    <input type="text" class={`${styles.form_input} ${styles.datalist}`} aria-label="First name" />
+                    <TextInput id='firstName' formik={logininformationFormik} label="First Name" />
                 </div>
                 <div class="col-12">
-                    <label htmlFor="position" className={`${styles.form_input__lable}`}> Last Name</label>
-                    <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                    <TextInput id='lastName' formik={logininformationFormik} label="Last Name" />
                 </div>
                 <div class="col-12">
-                    <label htmlFor="position" className={`${styles.form_input__lable}`}>Email</label>
-                    <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                    <TextInput id='email' formik={logininformationFormik} label="Email" />
                 </div>
-                <button className='submit' type='submit'>Continue</button>
+                <button className='unset_button w-100 text-white py-2 form_action_button  submit' type='submit'>Continue</button>
             </form>
         </div>
 
     </>
 }
 const Businessinformation = ({ sel }) => {
+    const BusinessinformationFormik = useFormik(BusinessInformationValidation)
     sel(2)
     return <>
 
@@ -117,77 +71,79 @@ const Businessinformation = ({ sel }) => {
             <h3 className='text-dark'>
                 Business Information
             </h3>
-            <div class="col-12">
-
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Business Name</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
-            </div>
-            <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Business Type</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
-            </div>
-            <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Business Webpage</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
-            </div>
-            <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Mobile Number</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
-            </div>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                BusinessinformationFormik.handleSubmit()
+            }}>
+                <div class="col-12">
+                    <TextInput id='businessName' formik={BusinessinformationFormik} label="Business Name" />
+                </div>
+                <div class="col-12">
+                    <List id='businessType' list_id="businessTypes" formik={BusinessinformationFormik} label="Business type" />
+                </div>
+                <div class="col-12">
+                    <TextInput id='businessWebpage' formik={BusinessinformationFormik} label="Business Webpage" />
+                </div>
+                <div class="col-12">
+                    <TextInput type='phone' id='mobileNumber' formik={BusinessinformationFormik} label="Mobile Number" />
+                </div>
+                <button className='unset_button w-100 text-white py-2 form_action_button  submit' type='submit'>Continue</button>
+            </form>
         </div>
 
     </>
 }
 const AddressDetails = ({ sel }) => {
+    const AddressinformationFormik = useFormik(AddressInformationValidation)
     sel(3)
     return <>
-        <div className='slideInRight row'>
+        <form className='slideInRight row' onSubmit={(e) => {
+            e.preventDefault()
+            AddressinformationFormik.handleSubmit()
+        }}>
             <h3 className='text-dark'>
                 Address Details
             </h3>
-            <div class="col-12 ">
 
-                <label htmlFor="position" className={`${styles.form_input__lable}`}> Business Address</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+            <div class="col-12 ">
+                <TextInput id='address' formik={AddressinformationFormik} label="Business Address" />
             </div>
             <div class="col-6">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Country</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                <TextInput id='country' formik={AddressinformationFormik} label="Country" />
+
             </div>
             <div class="col-6">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>city</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                <TextInput id='city' formik={AddressinformationFormik} label="City" />
             </div>
             <h3 className={`${styles.form_heading_2}`}>
                 CEO/Head/GM/HR/Admin For conformation
             </h3>
             <div class="col-12">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Email</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+
+                <TextInput id='employerName' formik={AddressinformationFormik} label="Name Contact Person" />
             </div>
             <div class="col-6">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Contact Number</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                <TextInput id='employerNumber' formik={AddressinformationFormik} label="Contact Number" />
             </div>
             <div class="col-6">
-                <label htmlFor="position" className={`${styles.form_input__lable}`}>Email</label>
-                <input type="text" class={`${styles.form_input}`} aria-label="First name" />
+                <TextInput id='employerEmail' formik={AddressinformationFormik} label="Email" />
             </div>
-        </div>
+            <button className='unset_button w-100 text-white py-2 form_action_button  submit' type='submit'>Register</button>
+
+        </form>
 
     </>
 }
 function Register() {
     const [formStep, setformStep] = useState(1)
     const selected = (index) => {
-
         setformStep(index)
     }
     const steps = [
         { name: 'StepOne', component: <div ><LoginInformation sel={selected} /></div> },
         { name: 'StepTwo', component: <div ><Businessinformation sel={selected} /></div> },
         { name: 'StepThree', component: <div ><AddressDetails sel={selected} /></div> },
-        { name: 'StepThree', component: <div ><CV sel={selected} /></div> },
+
     ];
     return (
         <div className={`${styles.auth_page} py-5   container-fluid px-5 primary-bg`}>

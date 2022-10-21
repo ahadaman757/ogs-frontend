@@ -1,8 +1,9 @@
-const List = () => {
-    const { id, label, list_id } = props
+import styles from '../authpages/main.module.css'
+const List = (props) => {
+    const { id, label, list_id, formik } = props
     return (
         <div>
-            <label htmlFor="Position" className={`${styles.form_input__lable}`}> Position</label>
+            <label htmlFor={id} className={`${styles.form_input__lable}`}>{label}</label>
             <br />
             <div className='position-relative'>
                 <label htmlFor='position'>
@@ -11,18 +12,33 @@ const List = () => {
                     </svg>
                 </label>
 
-                <input class={`${styles.form_input}`} list="positions" name="position" id="position" />
+                <input {...formik.getFieldProps(`'${id}'`)} class={`${styles.form_input}`} list={list_id} name={id} id={id} />
             </div>
 
-            <datalist id="positions">
+            <datalist id={list_id}>
                 <option value="HR" />
                 <option value="Developer" />
                 <option value="CEO" />
                 <option value="Manager" />
                 <option value="Owner" />
             </datalist>
+            {formik.touched[id] && formik.errors[id] ? (
+                <div className='text__note'>{formik.errors[id]}</div>
+            ) : null}
         </div>
 
     )
 }
-export { List }
+const TextInput = (props) => {
+    const { id, label, formik, type = 'text' } = props
+    return (
+        <>
+            <label htmlFor={id} className={`${styles.form_input__lable}`}>{label}</label>
+            <input {...formik.getFieldProps(`'${id}'`)} type={type} class={`${styles.form_input}`} name={id} id={id} aria-label={label} />
+            {formik.touched[id] && formik.errors[id] ? (
+                <div className='text__note'>{formik.errors[id]}</div>
+            ) : null}
+        </>
+    )
+}
+export { List, TextInput }
