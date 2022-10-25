@@ -30,9 +30,13 @@ const UploadImageSide = () => {
     )
 
 }
-const LoginInformation = ({ sel }) => {
+const LoginInformation = ({ sel, setformData }) => {
+    const [loginInfo, setloginInfo] = useState(null)
     // Register Validation start
-    const logininformationFormik = useFormik(LoginInformationValidation)
+    const logininformationFormik = useFormik(LoginInformationValidation(setformData))
+
+
+
     // Register Validation end
     sel(1)
     return <>
@@ -62,8 +66,9 @@ const LoginInformation = ({ sel }) => {
 
     </>
 }
-const Businessinformation = ({ sel }) => {
-    const BusinessinformationFormik = useFormik(BusinessInformationValidation)
+const Businessinformation = ({ sel, setformData }) => {
+    const BusinessinformationFormik = useFormik(BusinessInformationValidation(setformData))
+
     sel(2)
     return <>
 
@@ -93,8 +98,18 @@ const Businessinformation = ({ sel }) => {
 
     </>
 }
-const AddressDetails = ({ sel }) => {
-    const AddressinformationFormik = useFormik(AddressInformationValidation)
+const AddressDetails = ({ sel, setformData, data }) => {
+    const [RegisterResponse, setRegisterResponse] = useState(null)
+    const [RegisterError, setRegisterError] = useState(null)
+    console.log(RegisterResponse)
+    console.log(RegisterError)
+    setTimeout(() => {
+        setRegisterResponse(null)
+        setRegisterError(null)
+    }, 5000);
+
+    const AddressinformationFormik = useFormik(AddressInformationValidation(setformData, data, setRegisterResponse, setRegisterError))
+
     sel(3)
     return <>
         <form className='slideInRight row' onSubmit={(e) => {
@@ -129,20 +144,33 @@ const AddressDetails = ({ sel }) => {
                 <TextInput id='employerEmail' formik={AddressinformationFormik} label="Email" />
             </div>
             <button className='unset_button w-100 text-white py-2 form_action_button  submit' type='submit'>Register</button>
+            {
+                RegisterResponse && <div className='text-success'>
+                    {RegisterResponse.data.message}
+                </div>
 
+            }
+            {
+                RegisterError && <div className='text-danger'>
+                    {RegisterError.message}
+                </div>
+            }
         </form>
 
     </>
 }
 function Register() {
+    const [formData, setformData] = useState([])
     const [formStep, setformStep] = useState(1)
+    console.log("formdata")
+    console.log(formData)
     const selected = (index) => {
         setformStep(index)
     }
     const steps = [
-        { name: 'StepOne', component: <div ><LoginInformation sel={selected} /></div> },
-        { name: 'StepTwo', component: <div ><Businessinformation sel={selected} /></div> },
-        { name: 'StepThree', component: <div ><AddressDetails sel={selected} /></div> },
+        { name: 'StepOne', component: <div ><LoginInformation sel={selected} setformData={setformData} /></div> },
+        { name: 'StepTwo', component: <div ><Businessinformation sel={selected} setformData={setformData} /></div> },
+        { name: 'StepThree', component: <div ><AddressDetails sel={selected} setformData={setformData} data={formData} /></div> },
 
     ];
     return (
