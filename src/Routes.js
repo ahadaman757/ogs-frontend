@@ -2,6 +2,7 @@ import React from 'react'
 import Home from './Pages/Homepage/Home'
 import Registeration from './Pages/authpages/Registeration';
 import CV from './Pages/Forms/CV';
+import TestForm from './Pages/authpages/TestForm';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -10,7 +11,7 @@ import {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
+        element: <TestForm />,
     },
     {
         path: "register",

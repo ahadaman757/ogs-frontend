@@ -10,7 +10,13 @@ import { useFormik } from 'formik'
 
 
 
-const UploadImageSide = () => {
+const UploadImageSide = ({ setLogoData }) => {
+    const [photoSelected, setphotoSelected] = useState()
+    const handleInputChange = (event) => {
+        setLogoData(event.target.files[0])
+    };
+    console.log(photoSelected)
+
     return (
         <div className="col-md-6 my-md-5 my-4">
             <div className="container d-flex align-items-center justify-content-center flex-column">
@@ -19,7 +25,7 @@ const UploadImageSide = () => {
                         <img className={`img-fluid ${styles.file_upload_icon} `} src={require("../../Assets/Images/file upload.png")} alt="" />
                     </label>
 
-                    <input className={`${styles.file_upload_hide}`} type="file" name="logo" id="logo" />
+                    <input className={`${styles.file_upload_hide}`} onChange={handleInputChange} type="file" name="logo" id="logo" />
                     <h4 className='text-dark mt-2'>Choose file to upload</h4>
                 </div>
                 <h4 className='mt-2'>
@@ -98,7 +104,7 @@ const Businessinformation = ({ sel, setformData }) => {
 
     </>
 }
-const AddressDetails = ({ sel, setformData, data }) => {
+const AddressDetails = ({ sel, setformData, data, LogoData }) => {
     const [RegisterResponse, setRegisterResponse] = useState(null)
     const [RegisterError, setRegisterError] = useState(null)
     console.log(RegisterResponse)
@@ -108,7 +114,7 @@ const AddressDetails = ({ sel, setformData, data }) => {
         setRegisterError(null)
     }, 5000);
 
-    const AddressinformationFormik = useFormik(AddressInformationValidation(setformData, data, setRegisterResponse, setRegisterError))
+    const AddressinformationFormik = useFormik(AddressInformationValidation(setformData, data, setRegisterResponse, setRegisterError, LogoData))
 
     sel(3)
     return <>
@@ -160,17 +166,19 @@ const AddressDetails = ({ sel, setformData, data }) => {
     </>
 }
 function Register() {
+
+    const [LogoData, setLogoData] = useState()
+
     const [formData, setformData] = useState([])
     const [formStep, setformStep] = useState(1)
-    console.log("formdata")
-    console.log(formData)
+
     const selected = (index) => {
         setformStep(index)
     }
     const steps = [
         { name: 'StepOne', component: <div ><LoginInformation sel={selected} setformData={setformData} /></div> },
         { name: 'StepTwo', component: <div ><Businessinformation sel={selected} setformData={setformData} /></div> },
-        { name: 'StepThree', component: <div ><AddressDetails sel={selected} setformData={setformData} data={formData} /></div> },
+        { name: 'StepThree', component: <div ><AddressDetails sel={selected} setformData={setformData} LogoData={LogoData} data={formData} /></div> },
 
     ];
     return (
@@ -208,7 +216,7 @@ function Register() {
 
                     {
                         (formStep == 2 ?
-                            <UploadImageSide />
+                            <UploadImageSide setLogoData={setLogoData} />
 
                             : formStep == 4 ? null : <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
                             </div>)

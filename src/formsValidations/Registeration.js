@@ -60,7 +60,7 @@ const BusinessInformationValidation = (setformData) => {
     }
 
 };
-const AddressInformationValidation = (setformData, data, setRegisterResponse, setRegisterError) => {
+const AddressInformationValidation = (setformData, data, setRegisterResponse, setRegisterError, LogoData) => {
     return {
         initialValues: {
             registerType: 'recruiter',
@@ -79,15 +79,27 @@ const AddressInformationValidation = (setformData, data, setRegisterResponse, se
             employerEmail: Yup.string().required('Required'),
         }),
         onSubmit: values => {
+            console.log("logodata")
+            console.log(LogoData)
             $(document).ready(function () {
                 const name = $(".slide_button button")
                 name[2].click()
-                const formData = { ...data, ...values }
-                axios.post(`http://localhost:3002/users`, formData).then(res => {
+                const fullFormData = { ...data, ...values }
+                const formdata = new FormData()
+                // formdata.append('image', logo)
+                for (var key in fullFormData) {
+                    formdata.append(key, fullFormData[key]);
+                }
+                axios.post(`http://localhost:3002/users`, formdata, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        "Access-Control-Allow-Origin": "*"
+                    }
+
+                }).then(res => {
                     console.log(res)
-                    setRegisterResponse(res)
                 }).catch(error => {
-                    setRegisterError(error.response.data)
+                    console.log(error)
                 })
             });
 
