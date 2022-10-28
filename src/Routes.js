@@ -2,16 +2,17 @@ import React from 'react'
 import Home from './Pages/Homepage/Home'
 import Registeration from './Pages/authpages/Registeration';
 import CV from './Pages/Forms/CV';
-import TestForm from './Pages/authpages/TestForm';
+
 import {
     createBrowserRouter,
     RouterProvider,
     Route,
 } from "react-router-dom";
+import SeekerRegisteration from './Pages/authpages/SeekerRegsiteration';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <TestForm />,
+        element: <Home />,
     },
     {
         path: "register",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: "cv",
         element: <CV />,
+    },
+    {
+        path: "seeker",
+        element: <SeekerRegisteration />,
     },
 ]);
 function Routes() {

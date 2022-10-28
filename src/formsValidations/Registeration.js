@@ -4,19 +4,25 @@ import * as Yup from 'yup';
 import $, { data } from 'jquery';
 import axios from 'axios';
 import API from '../config'
-const LoginInformationValidation = (setformdata) => {
+const LoginInformationValidation = (setformdata, formData) => {
+    console.log(formData)
     return {
         initialValues: {
-            position: '',
-            firstName: '',
-            lastName: '',
-            email: '',
+            position: formData.position,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+            repeatPassword: formData.repeatPassword
         },
+
         validationSchema: Yup.object({
             position: Yup.string().required('Required'),
             firstName: Yup.string().required('Required'),
             lastName: Yup.string().required('Required'),
             email: Yup.string().required('Required'),
+            password: Yup.string().required('Password is Required'),
+            repeatPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
         }),
         onSubmit: values => {
             $(document).ready(function () {
@@ -31,13 +37,14 @@ const LoginInformationValidation = (setformdata) => {
     }
 
 };
-const BusinessInformationValidation = (setformData) => {
+const BusinessInformationValidation = (setformData, formData) => {
+    console.log(formData)
     return {
         initialValues: {
-            businessName: '',
-            businessType: '',
-            businessWebpage: '',
-            mobileNumber: '',
+            businessName: formData.businessName,
+            businessType: formData.businessType,
+            businessWebpage: formData.businessWebpage,
+            mobileNumber: formData.mobileNumber,
         },
         validationSchema: Yup.object({
             businessName: Yup.string().required('Required'),
@@ -60,15 +67,15 @@ const BusinessInformationValidation = (setformData) => {
     }
 
 };
-const AddressInformationValidation = (setformData, data, setRegisterResponse, setRegisterError, LogoData) => {
+const AddressInformationValidation = (setformData, formData, data, setRegisterResponse, setRegisterError, LogoData) => {
     return {
         initialValues: {
             registerType: 'recruiter',
-            address: '',
-            country: '',
-            employerName: '',
-            employerNumber: '',
-            employerEmail: '',
+            address: formData.address,
+            country: formData.country,
+            employerName: formData.employerName,
+            employerNumber: formData.employerNumber,
+            employerEmail: formData.employerEmail,
         },
         validationSchema: Yup.object({
             address: Yup.string().required('Required'),
@@ -98,8 +105,9 @@ const AddressInformationValidation = (setformData, data, setRegisterResponse, se
 
                 }).then(res => {
                     console.log(res)
+                    setRegisterResponse(res)
                 }).catch(error => {
-                    console.log(error)
+                    setRegisterError(error.response.data)
                 })
             });
 
