@@ -7,10 +7,11 @@ import Reviews from "../../Components/Reviews/Reviews";
 import BrowseOver from "../../Components/BrowseOver/BrowseOver";
 import Newsletter from "../../Components/Newsletter/Newsletter";
 import Footer from "../../Components/Footer/Footer";
+import Newnavbar from "../../Components/New navbar/Newnavber";
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <Newnavbar />
       <HeroSec />
       <BrowseOver />
       <About />

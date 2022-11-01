@@ -8,6 +8,13 @@
   font-family: "Public Sans", sans-serif;
 }
 
+.ogsfonts12 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+}
 .ogsfonts14 {
   font-family: "Public Sans";
   font-style: normal;
@@ -59,6 +66,13 @@
   font-size: 24px;
   line-height: 192%;
 }
+.ogsfonts25 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 25px;
+}
 .ogsfonts28 {
   font-family: "Public Sans";
   font-style: normal;
@@ -72,6 +86,13 @@
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
+  line-height: 192%;
+}
+.ogsfonts38 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 38px;
   line-height: 192%;
 }
 .ogsfonts48 {
@@ -197,4 +218,7 @@ button {
   color: white;
   background: #5200ff;
   transition: background 0.3s;
+}
+.apexcharts-toolbar {
+  z-index: 0 !important;
 }

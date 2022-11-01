@@ -1,26 +1,56 @@
+.DashboardNavbarmain {
+  /* overflow: hidden; */
+}
+.navbarsrcon {
+  background: #ffffff;
+  border: 1px solid #1e1e1e;
+  border-radius: 50px;
+  height: 42px;
+}
+.navbarsrinput {
+  border: none;
+  border-radius: 50px;
+  outline: unset;
+  padding: 0px 0px 0px 10px;
+}
+.navbarsrinput:active {
+  border: none;
+}
+.navbarsrinput:focus {
+  border: none;
+}
+.navbarsrinput {
+}
+.navbarsrbtn {
+  border: none;
+  background: transparent;
+  border-radius: 50px;
+}
 .sidebar {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background: #ffffff;
   position: fixed;
   height: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
 
-  align-items: center;
+  align-items: flex-start;
 }
 
 .navbar {
+  top: 0px;
   margin: 0;
   padding: 0;
-  width: 100%;
-  background-color: orange;
+  /* width: 86%; */
+  background-color: #ffffff;
   position: fixed;
   height: 56px;
-  overflow: auto;
-  margin-left: 200px;
+  overflow: none;
+  /* margin-left: 200px; */
+  z-index: 1;
 }
 .sidebar > h2 {
   padding-top: 20px;
@@ -51,4 +81,40 @@ div.content {
   margin-left: 200px;
   padding: 1px 16px;
   height: 1000px;
+}
+.sidedasbtn {
+  border: none !important;
+  background: transparent !important;
+  padding: 16px 29px;
+}
+.dashbordimg {
+  margin-right: 15px;
+}
+.sidedasbtn:hover {
+  background: blue !important;
+}
+.dasgbordops {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dasgbordopssas {
+  border: none;
+  background: transparent;
+}
+.togglebtn {
+  border: none;
+  background: none;
+}
+.navbarnotibtn {
+  border: none;
+  background: none;
+}
+.navbarprofbtn {
+  border: none;
+  background: none;
+}
+.navbartogglebtn {
+  border: none;
+  background: none;
 }

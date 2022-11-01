@@ -1,4 +1,56 @@
 .content {
-  margin-left: 213px;
-  padding-top: 81px;
+  background: #f4f4f4;
+  min-height: 100vh;
+}
+.postjobslimit {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.postjobslimit {
+  width: 199px;
+  height: 162px;
+}
+.profimg {
+  width: 80%;
+  height: 80%;
+}
+.jobsstac {
+  color: #5200ff;
+}
+.profcard {
+  background: #5200ff;
+  border-radius: 5px;
+  color: white;
+}
+.Managejobsmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Chartsecmain {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.revicon1 {
+  background: #5200ff;
+  border-radius: 5px;
+  width: 245px;
+  height: 171px;
+  color: white;
+}
+.revicon2 {
+  background: #6821ff;
+  border-radius: 5px;
+  width: 245px;
+  height: 171px;
+  color: white;
+}
+.revicon3 {
+  background: #864dff;
+  border-radius: 5px;
+  width: 245px;
+  height: 171px;
+  color: white;
 }

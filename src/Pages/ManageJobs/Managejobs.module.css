@@ -1,0 +1,44 @@
+.Managejobsmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Managejobschild1 {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.inputmj {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.btnsearch {
+  border: none;
+  background-color: black;
+  background: #252525;
+  border-radius: 3px;
+  padding: 10px 30px;
+}
+.profcard {
+  background: #5200ff;
+  border-radius: 5px;
+  color: white;
+}
+.profimg {
+  width: 80%;
+  height: 80%;
+}
+.tabsadd {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.tablinks {
+  color: #757575;
+}
+.tablinks:hover {
+  background: #a08dfb;
+  border-radius: 2px;
+  color: white;
+}
