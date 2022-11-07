@@ -1,0 +1,40 @@
+.Postajobmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Postajobchild {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.SRm2 {
+  width: 100%;
+}
+.radioer {
+  border-radius: 10px !important;
+  border: none;
+  background: #d9d9d9;
+}
+
+.btndraft {
+  background: none;
+  border: none;
+  color: #757575;
+}
+.btnPreview {
+  background: #252525;
+  border: none;
+  border-radius: 3px;
+  width: 115px;
+  height: 52px;
+  color: white;
+}
+.btnPost {
+  background: #2f23a1;
+  border: none;
+  border-radius: 3px;
+  width: 173px;
+  height: 52px;
+  color: white;
+}

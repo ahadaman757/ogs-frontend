@@ -6,6 +6,7 @@ import Ogscourses from "./Pages/Ogscourses/ogscourses";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import Managejobs from "./Pages/ManageJobs/Managejobs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Postajob from "./Pages/post a job/postAjob";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "managejobs",
     element: <Managejobs />,
+  },
+  {
+    path: "postajob",
+    element: <Postajob />,
   },
 ]);
 function Routes() {
