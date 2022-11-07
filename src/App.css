@@ -117,7 +117,6 @@
 }
 
 .primary-bg {
-  color: #ffffff;
   background-color: #2f23a1;
 }
 
@@ -141,7 +140,7 @@ button {
   position: relative;
 }
 
-.slide_button button {
+.slide_button button:not(.submit) {
   visibility: hidden;
 }
 
@@ -153,7 +152,7 @@ button {
   padding: 5px;
   top: 2px;
 } */
-.slide_button button:nth-child(2) {
+/* .slide_button button:nth-child(2) {
   width: 100%;
   text-align: center;
 }
@@ -167,10 +166,8 @@ button {
   background: #5200ff;
   border-radius: 3px;
   color: white;
-  /* position: absolute; */
-  /* top: 100%; */
-  /* left: 0% */
-}
+
+} */
 
 .form_step ol li::before {
   width: 30px;
@@ -221,4 +218,26 @@ button {
 }
 .apexcharts-toolbar {
   z-index: 0 !important;
+}
+
+.datalist-icon {
+  position: absolute;
+  right: 0%;
+  top: 20%;
+}
+
+.browsers option {
+  width: 100%;
+}
+
+.text__note {
+  color: #ff2f54;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.text__note_green {
+  color: #209b20;
+  font-weight: 500;
+  font-size: 14px;
 }
