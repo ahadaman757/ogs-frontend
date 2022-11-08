@@ -8,8 +8,9 @@ import Managejobs from "./Pages/ManageJobs/Managejobs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Postajob from "./Pages/post a job/postAjob";
 
-
 import CV from "./Pages/Forms/CV";
+
+const UserContext = React.createContext(null);
 
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 const router = createBrowserRouter([
