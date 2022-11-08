@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from "react";
+import React, { useContext, createContext, useState } from "react";
 import Home from "./Pages/Homepage/Home";
 import Registeration from "./Pages/authpages/Registeration";
 import AboutUs from "./Pages/about us/Aboutus";
@@ -10,7 +10,16 @@ import Postajob from "./Pages/post a job/postAjob";
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 import CV from "./Pages/Forms/CV";
 
-const UserContext = createContext(null);
+const getContextValue = () => {
+  let token = localStorage.getItem("accessToken");
+  if (token === null || token == "") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const UserContext = createContext(getContextValue);
 
 const router = createBrowserRouter([
   {
