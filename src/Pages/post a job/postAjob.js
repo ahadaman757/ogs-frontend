@@ -1,11 +1,13 @@
 import Styles from "./postajob.module.css";
 import { useState } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
-import { TextInput } from '../Forms/InputFields'
+import { TextInput, List } from '../Forms/InputFields'
 import InputField from "../../Components/inputfield/inputfield";
+import TagInput from '../Forms/TagInput'
 import InputSelect from "../../Components/inputselect/inputfselect";
 import TextEditer from "../../Components/textediter/textediter"
 import { Formik, useFormik } from 'formik';
+import styles from '../authpages/main.module.css'
 import * as Yup from 'yup';
 const Postajob = () => {
   const [data, Setdata] = useState("");
@@ -17,12 +19,28 @@ const Postajob = () => {
   const jobPostFormIk = useFormik(
     {
       initialValues: {
-        jobTitle: "",
+        job_title: "",
         job_description: "",
+        country: "",
+        city: "",
+        area: "",
+        career_level: "",
         start_salary: "",
         end_salary: "",
-        start_time: "",
-        end_time: ""
+        functional_area: "",
+        gender: "",
+        job_shift: "",
+        required_qualification: "",
+        degree_title: "",
+        min_experience: "",
+        max_experience: "",
+        experience_info: "",
+        min_age_requirement: "",
+        max_age_requirement: "",
+        supervisor_gender: "",
+        co_worker_percentage: "",
+        valid_upto: "",
+
       },
 
       validationSchema: Yup.object({
@@ -32,7 +50,6 @@ const Postajob = () => {
         end_salary: Yup.string().required('Required'),
       }),
       onSubmit: values => {
-
         alert("submmitted")
 
       },
@@ -56,16 +73,24 @@ const Postajob = () => {
               <div className="row">
                 <div className="col-6 pe-5">
                   <div>
-                    <TextInput label="Enter Job title" />
-                    <InputField
-                      title={"Enter Skills*"}
-                      requre={"Minimum 3 skills required"}
-                    />
-                    <InputField
-                      title={"Job Location*"}
-                      requre={"Not in Pakistan"}
-                    />
-                    <InputSelect title={"Required Career Level*"} />
+                    <TextInput id="job_title" label="Enter Job title" formik={jobPostFormIk} />
+                    <label className={`${styles.form_input__lable}`}>
+                      Enter Skills
+                    </label>
+                    <div className={`${Styles.taginputContainer} py-2`}>
+                      <TagInput />
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <List id='country' label="Select Country" formik={jobPostFormIk} />
+
+                      </div>
+                      <div className="col-md-6">
+                        <List id='city' label="Select city" formik={jobPostFormIk} />
+                      </div>
+                    </div>
+                    <List id='country' label="Select city" formik={jobPostFormIk} />
+                    <List id='qualification' label="Required Career Level*" formik={jobPostFormIk} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>

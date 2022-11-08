@@ -3,14 +3,17 @@
   background: rgb(244, 244, 244);
   overflow-x: hidden;
 }
+
 .Postajobchild {
   background: #ffffff;
   border: 1px solid #ced4da;
   border-radius: 5px;
 }
+
 .SRm2 {
   width: 100%;
 }
+
 .radioer {
   border-radius: 10px !important;
   border: none;
@@ -22,6 +25,7 @@
   border: none;
   color: #757575;
 }
+
 .btnPreview {
   background: #252525;
   border: none;
@@ -30,6 +34,7 @@
   height: 52px;
   color: white;
 }
+
 .btnPost {
   background: #2f23a1;
   border: none;
@@ -37,4 +42,13 @@
   width: 173px;
   height: 52px;
   color: white;
+}
+
+.taginputContainer {
+  padding: 10px 15px 10px 5px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #BBBBBB;
+  border-radius: 3px;
+  margin-bottom: .5rem;
 }
