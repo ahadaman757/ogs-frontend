@@ -11,8 +11,12 @@ import { useEffect } from "react";
 const Dashboard = ({ parentToChild }) => {
   const [data, setData] = useState();
   const [userData, setUserData] = useState();
+  const [userDataLoading, setUserDataLoading] = useState(true);
+  const [jobs, setJobs] = useState();
+  const [jobsLoading, setJobsLoading] = useState(true);
   console.log(data);
   useEffect(() => {
+    // GET USER DATA
     axios
       .get("http://localhost:3002/users/me", {
         headers: {
@@ -21,6 +25,19 @@ const Dashboard = ({ parentToChild }) => {
       })
       .then((res) => {
         setUserData(res.data);
+        setUserDataLoading(false);
+      });
+
+    // GET JOBS
+    axios
+      .get(`http://localhost:3002/jobs/myjobs`, {
+        headers: {
+          accesstoken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        setJobs(res.data);
+        setJobsLoading(false);
       });
   }, []);
 
@@ -160,9 +177,7 @@ const Dashboard = ({ parentToChild }) => {
                   {" "}
                   <h1 className="ogsfonts24">Post Jobs</h1>
                 </div>
-                <div>
-                  <Active />
-                </div>
+                <div>{jobsLoading ? "Loading..." : <Active jobs={jobs} />}</div>
               </div>
             </div>
             <div className="col-3">
@@ -171,12 +186,20 @@ const Dashboard = ({ parentToChild }) => {
               >
                 <img className={`${Styles.profimg}`} src={proimg} />
                 <h1 className="ogsfonts24">
-                  {userData.first_name + " " + userData.last_name}
+                  {userDataLoading
+                    ? "Loading..."
+                    : userData.first_name + " " + userData.last_name}
                 </h1>
-                <p className="ogsfonts16">{userData.position}</p>
-                <p className="ogsfonts14">{userData.email} </p>
+                <p className="ogsfonts16">
+                  {userDataLoading ? "Loading..." : userData.position}
+                </p>
                 <p className="ogsfonts14">
-                  {userData.company.business_mobile_number}
+                  {userDataLoading ? "Loading..." : userData.email}{" "}
+                </p>
+                <p className="ogsfonts14">
+                  {userDataLoading
+                    ? "Loading..."
+                    : userData.company.business_mobile_number}
                 </p>
               </div>
             </div>

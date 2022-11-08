@@ -65,15 +65,14 @@ const JobMyCompaniesController = async (req, res, next) => {
   try {
     const AllJobs = await Job.findAll({
       where: {
-        posted_by_id: req.user.id
-      }
-    })
-    res.json(AllJobs)
+        posted_by_id: req.user.id,
+      },
+      limit: 10,
+    });
+    res.json(AllJobs);
+  } catch (error) {
+    next(error);
   }
-  catch (error) {
-    next(error)
-  }
-
 };
 
 export { JobPostController, JobMyCompaniesController };

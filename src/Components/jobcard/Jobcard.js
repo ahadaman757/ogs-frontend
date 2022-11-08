@@ -4,12 +4,37 @@ import filtericon from "../../Assets/Images/Vector 309.png";
 import copyicon from "../../Assets/Images/files.png";
 import shareicon from "../../Assets/Images/share.png";
 import deleticon from "../../Assets/Images/Trash.png";
+function kFormatter(num) {
+  return Math.abs(num) > 999
+    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+    : Math.sign(num) * Math.abs(num);
+}
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 const Jobcard = (props) => {
+  let date = new Date(props.data.createdAt);
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
   return (
-    <div className={`p-3 my-2 ${Styles.Jobcardmain}`}>
+    <div className={`p-3 my-2 ${Styles.Jobcardmain}`} key={props.data.id}>
       <div className=" d-flex align-items-center">
         <div className="d-flex">
-          <p className="ogsfonts14 m-1">May 26, 2022</p>
+          <p className="ogsfonts14 m-1">
+            {monthNames[month] + " " + day + "," + year}
+          </p>
           <p className="m-1 ogsfonts14"> Posted date</p>
         </div>
         <p className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}>
@@ -19,7 +44,8 @@ const Jobcard = (props) => {
       <div className={`d-flex justify-content-between align-items-center`}>
         <div className={`d-flex`}>
           <h1 className="ogsfonts24 m-0">
-            1269898 / Receptionist - Rawalpindi{" "}
+            {props.data.id} / {props.data.job_title} -{" "}
+            {props.data.location == null ? "Not defined" : props.data.location}{" "}
           </h1>
           <button className={`mx-2 ${Styles.filaneyebtn}`}>
             <span>
@@ -35,8 +61,10 @@ const Jobcard = (props) => {
       </div>
 
       <div className="d-flex">
-        <p>Offered salary: 25K - 30K</p>
-        <p className="mx-5">Posted by: Basit Malik</p>
+        <p>
+          Offered salary: {kFormatter(props.data.start_salary)} -{" "}
+          {kFormatter(props.data.end_salary)}
+        </p>
       </div>
       <div
         className={`d-flex justify-content-evenly my-4 ${Styles.jobcardinfo}`}
@@ -80,12 +108,6 @@ const Jobcard = (props) => {
           <p className="my-0 mx-3 ogsfonts14">Expiry Date: Jun 26, 2022</p>
         </div>
         <div>
-          <button className={`mx-2 ${Styles.csdbtn}`}>
-            <span className="mx-2">
-              <img src={copyicon} />
-            </span>
-            Copy
-          </button>
           <button className={`mx-2 ${Styles.csdbtn}`}>
             <span className="mx-2">
               <img src={shareicon} />
