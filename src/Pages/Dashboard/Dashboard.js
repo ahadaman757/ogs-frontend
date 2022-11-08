@@ -100,9 +100,7 @@ const Dashboard = ({ parentToChild }) => {
                 <div className={` p-3  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Shortlisted</h1>
-                    <p className={`ogsfonts12`}>
-                      Candidates you have shortlisted
-                    </p>
+                    <p className={`ogsfonts12`}>Shorlisted candidates</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
