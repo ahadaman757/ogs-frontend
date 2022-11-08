@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, createContext } from "react";
 import Home from "./Pages/Homepage/Home";
 import Registeration from "./Pages/authpages/Registeration";
 import AboutUs from "./Pages/about us/Aboutus";
@@ -7,12 +7,11 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import Managejobs from "./Pages/ManageJobs/Managejobs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Postajob from "./Pages/post a job/postAjob";
-
+import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 import CV from "./Pages/Forms/CV";
 
-const UserContext = React.createContext(null);
+const UserContext = createContext(null);
 
-import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 const router = createBrowserRouter([
   {
     path: "/",
