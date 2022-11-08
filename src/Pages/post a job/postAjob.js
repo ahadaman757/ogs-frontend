@@ -1,9 +1,12 @@
 import Styles from "./postajob.module.css";
 import { useState } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import { TextInput } from '../Forms/InputFields'
 import InputField from "../../Components/inputfield/inputfield";
 import InputSelect from "../../Components/inputselect/inputfselect";
-import TextEditer from "../../Components/textediter/textediter";
+import TextEditer from "../../Components/textediter/textediter"
+import { Formik, useFormik } from 'formik';
+import * as Yup from 'yup';
 const Postajob = () => {
   const [data, Setdata] = useState("");
   const display = (d) => {
@@ -11,6 +14,30 @@ const Postajob = () => {
     console.log(d);
     Setdata(d);
   };
+  const jobPostFormIk = useFormik(
+    {
+      initialValues: {
+        jobTitle: "",
+        job_description: "",
+        start_salary: "",
+        end_salary: "",
+        start_time: "",
+        end_time: ""
+      },
+
+      validationSchema: Yup.object({
+        job_title: Yup.string().required('Required'),
+        job_description: Yup.string().required('Required'),
+        start_salary: Yup.string().required('Required'),
+        end_salary: Yup.string().required('Required'),
+      }),
+      onSubmit: values => {
+
+        alert("submmitted")
+
+      },
+    }
+  )
   return (
     <div>
       <DashboardNavbar side={display} />
@@ -29,7 +56,7 @@ const Postajob = () => {
               <div className="row">
                 <div className="col-6 pe-5">
                   <div>
-                    <InputField title={"Job Title *"} requre={""} />
+                    <TextInput label="Enter Job title" />
                     <InputField
                       title={"Enter Skills*"}
                       requre={"Minimum 3 skills required"}
