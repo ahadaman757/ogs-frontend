@@ -61,8 +61,19 @@ const JobPostController = async (req, res, next) => {
     });
 };
 
-const JobGetController = async (req, res, next) => {
-  res.send("Job Get Controller");
+const JobMyCompaniesController = async (req, res, next) => {
+  try {
+    const AllJobs = await Job.findAll({
+      where: {
+        posted_by_id: req.user.id
+      }
+    })
+    res.json(AllJobs)
+  }
+  catch (error) {
+    next(error)
+  }
+
 };
 
-export { JobPostController, JobGetController };
+export { JobPostController, JobMyCompaniesController };
