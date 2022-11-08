@@ -5,8 +5,25 @@ import proimg from "../../Assets/Images/Rectangle 1143.png";
 import Chart from "react-apexcharts";
 import userslogo from "../../Assets/Images/users 02.svg";
 import Active from "../../Components/Active/Active";
+import axios from "axios";
+import { useEffect } from "react";
+
 const Dashboard = ({ parentToChild }) => {
-  const [data, Setdata] = useState("");
+  const [data, setData] = useState();
+  const [userData, setUserData] = useState();
+  console.log(data);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3002/users/me", {
+        headers: {
+          accesstoken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        setUserData(res.data);
+      });
+  }, []);
+
   const [options, setoptions] = useState({
     fill: {
       colors: ["#532efe"],
@@ -32,7 +49,7 @@ const Dashboard = ({ parentToChild }) => {
   const display = (d) => {
     console.log("value");
     console.log(d);
-    Setdata(d);
+    setData(d);
   };
   return (
     <div>
@@ -47,8 +64,8 @@ const Dashboard = ({ parentToChild }) => {
               <div className={`d-flex justify-content-between`}>
                 <div className={` p-3  ${Styles.postjobslimit}`}>
                   <div className={``}>
-                    <h1 className={`ogsfonts18`}>Post Jobs</h1>
-                    <p className={`ogsfonts12`}>to find talent</p>
+                    <h1 className={`ogsfonts18`}>Posted Jobs</h1>
+                    <p className={`ogsfonts12`}>No. of jobs you posted</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
@@ -57,7 +74,7 @@ const Dashboard = ({ parentToChild }) => {
                 <div className={` p-3  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Reviewed</h1>
-                    <p className={`ogsfonts12`}>CVs against opportunities</p>
+                    <p className={`ogsfonts12`}>CVs you have reviewed</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
@@ -66,7 +83,9 @@ const Dashboard = ({ parentToChild }) => {
                 <div className={` p-3  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Shortlisted</h1>
-                    <p className={`ogsfonts12`}>candidates against jobs</p>
+                    <p className={`ogsfonts12`}>
+                      Candidates you have shortlisted
+                    </p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
@@ -74,8 +93,8 @@ const Dashboard = ({ parentToChild }) => {
                 </div>
                 <div className={` p-3  ${Styles.postjobslimit}`}>
                   <div className={``}>
-                    <h1 className={`ogsfonts18`}>Inerviews</h1>
-                    <p className={`ogsfonts12`}>candidates</p>
+                    <h1 className={`ogsfonts18`}>Interviews</h1>
+                    <p className={`ogsfonts12`}>Interviews taken</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38 ${Styles.jobsstac}`}>85</h1>
@@ -139,7 +158,7 @@ const Dashboard = ({ parentToChild }) => {
                   className={`d-flex justify-content-between align-items-center`}
                 >
                   {" "}
-                  <h1 className="ogsfonts24">Post Jobs</h1> <a>View all Jobs</a>
+                  <h1 className="ogsfonts24">Post Jobs</h1>
                 </div>
                 <div>
                   <Active />
@@ -151,10 +170,14 @@ const Dashboard = ({ parentToChild }) => {
                 className={`d-flex p-4 text-center flex-column justify-content-center align-items-center ${Styles.profcard}`}
               >
                 <img className={`${Styles.profimg}`} src={proimg} />
-                <h1 className="ogsfonts24">Jasmine</h1>
-                <p className="ogsfonts16">CEO</p>
-                <p className="ogsfonts14">ceoogs@gmail.com</p>
-                <p className="ogsfonts14">+92.300.5352636</p>
+                <h1 className="ogsfonts24">
+                  {userData.first_name + " " + userData.last_name}
+                </h1>
+                <p className="ogsfonts16">{userData.position}</p>
+                <p className="ogsfonts14">{userData.email} </p>
+                <p className="ogsfonts14">
+                  {userData.company.business_mobile_number}
+                </p>
               </div>
             </div>
           </div>

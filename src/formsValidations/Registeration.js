@@ -112,7 +112,9 @@ const AddressInformationValidation = (
             },
           })
           .then((res) => {
-            setRegisterResponse(res);
+            setRegisterResponse(res.data.message);
+            localStorage.setItem("accessToken", res.data.accesstoken);
+            localStorage.setItem("refreshToken", res.data.refresh_token);
             navigate("/dashboard");
           })
           .catch((error) => {
