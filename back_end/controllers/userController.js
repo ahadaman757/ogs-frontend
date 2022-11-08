@@ -71,12 +71,22 @@ const registercontroller = async (req, res, next) => {
                         response.createCompany({ ...orderedData.orderedData, UserId: response.id })
                         // insertion for employer end
                     }
-                    res.json({ message: "account created successfully" })
+                    console.log(response.id)
+                    const accesstoken = jwt_service.sign({ id: response.id }, '1y', JWT_SECRET)
+                    const refresh_token = jwt_service.sign({ id: response.id }, '1y', REFRESH_SECRET);
+                    RefreshToken.create({ token: refresh_token }).then(resp => {
+                        console.log("token created")
+                    }).catch(error => {
+                        return next(new Error("Problem occured in database"))
+                    })
+                    res.json({ accesstoken, refresh_token, message: "Account Created successfully" })
+
+
                 }).catch(error => {
                     return next(error)
                 })
             } else {
-                return next(CustomErrorHandler.alreadyExist("Email already Exists"))
+                return next(CustomErrorHandler.alreadyExist("Email already Existss"))
             }
         }
     }
