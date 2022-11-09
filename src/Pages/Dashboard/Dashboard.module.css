@@ -54,3 +54,10 @@
   height: 171px;
   color: white;
 }
+.chart {
+}
+@media only screen and (max-width: 1200px) {
+  .chart {
+    width: 100% !important;
+  }
+}

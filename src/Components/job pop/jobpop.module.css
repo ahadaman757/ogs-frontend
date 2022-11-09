@@ -1,0 +1,16 @@
+.jobpopmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Jobpopchild {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.skillset {
+  background: #f1f1f1;
+  border-radius: 50px;
+  width: 187px;
+  height: 47px;
+}

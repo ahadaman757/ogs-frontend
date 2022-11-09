@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./Pages/Homepage/Home";
-import Signin from "./Pages/authpages/Signin";
+
 import AboutUs from "./Pages/about us/Aboutus";
 import Ogscourses from "./Pages/Ogscourses/ogscourses";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
@@ -10,6 +10,7 @@ import Postajob from "./Pages/post a job/postAjob";
 
 import Registeration from "./Pages/authpages/Registeration";
 import CV from "./Pages/Forms/CV";
+import Jobpop from "./Components/job pop/jobpop";
 
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 const router = createBrowserRouter([
@@ -29,10 +30,7 @@ const router = createBrowserRouter([
     path: "seeker",
     element: <SeekerRegisteration />,
   },
-  {
-    path: "signin",
-    element: <Signin />,
-  },
+
   {
     path: "aboutus",
     element: <AboutUs />,
@@ -53,6 +51,7 @@ const router = createBrowserRouter([
     path: "postajob",
     element: <Postajob />,
   },
+  { path: "jobpop", element: <Jobpop /> },
 ]);
 function Routes() {
   return <RouterProvider router={router} />;

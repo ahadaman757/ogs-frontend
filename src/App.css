@@ -143,7 +143,9 @@ button {
 .slide_button button:not(.submit) {
   visibility: hidden;
 }
-
+.color404040 {
+  color: #404040;
+}
 /* .slide_button button:after {
   content: 'Previous';
   visibility: visible;

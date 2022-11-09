@@ -41,11 +41,11 @@ const Dashboard = ({ parentToChild }) => {
         className={`${Styles.Managejobsmain}`}
         style={{ marginLeft: data ? "55px" : "200px" }}
       >
-        <div className="container">
-          <div className="row p-4 mt-5">
-            <div className="col-9">
-              <div className={`d-flex justify-content-between`}>
-                <div className={` p-3  ${Styles.postjobslimit}`}>
+        <div className="container-md">
+          <div className="row py-4 px-md-4 mt-5">
+            <div className="col-lg-9">
+              <div className={`d-flex flex-wrap justify-content-between`}>
+                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Post Jobs</h1>
                     <p className={`ogsfonts12`}>to find talent</p>
@@ -54,7 +54,7 @@ const Dashboard = ({ parentToChild }) => {
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
                   </div>
                 </div>
-                <div className={` p-3  ${Styles.postjobslimit}`}>
+                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Reviewed</h1>
                     <p className={`ogsfonts12`}>CVs against opportunities</p>
@@ -63,7 +63,7 @@ const Dashboard = ({ parentToChild }) => {
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
                   </div>
                 </div>
-                <div className={` p-3  ${Styles.postjobslimit}`}>
+                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Shortlisted</h1>
                     <p className={`ogsfonts12`}>candidates against jobs</p>
@@ -72,7 +72,7 @@ const Dashboard = ({ parentToChild }) => {
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
                   </div>
                 </div>
-                <div className={` p-3  ${Styles.postjobslimit}`}>
+                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Inerviews</h1>
                     <p className={`ogsfonts12`}>candidates</p>
@@ -83,13 +83,15 @@ const Dashboard = ({ parentToChild }) => {
                 </div>
               </div>
               <div className={`my-3 p-3 ${Styles.Chartsecmain}`}>
-                <div className={`d-flex`}>
+                <div className={`d-flex flex-wrap`}>
                   <h1 className="ogsfonts18">Applications statistics</h1>
                   <p className="ogsfonts14 mx-3">
                     (who have applied to my jobs)
                   </p>
                 </div>
-                <div className={` d-flex justify-content-between my-3 `}>
+                <div
+                  className={` d-flex flex-wrap justify-content-between my-3 `}
+                >
                   <div className={` d-flex align-items-start`}>
                     <img style={{ width: "62px" }} src={userslogo} />
                     <div>
@@ -102,7 +104,7 @@ const Dashboard = ({ parentToChild }) => {
                   <div className="">
                     {" "}
                     <Chart
-                      className=""
+                      className={`${Styles.chart}`}
                       options={options}
                       series={series}
                       type="bar"
@@ -111,7 +113,7 @@ const Dashboard = ({ parentToChild }) => {
                     />
                   </div>
                 </div>
-                <div className={`d-flex`}>
+                <div className={`d-flex flex-wrap`}>
                   {" "}
                   <h1 className={`ogsfonts18`}>HOW INSTAMATCH</h1>
                   <p className="ogsfonts14 mx-3">
@@ -119,16 +121,16 @@ const Dashboard = ({ parentToChild }) => {
                     assisted me in finding talent?
                   </p>
                 </div>
-                <div className={`d-flex justify-content-evenly my-3`}>
-                  <div className={`text-center p-3 ${Styles.revicon1}`}>
+                <div className={`d-flex flex-wrap justify-content-evenly my-3`}>
+                  <div className={`text-center p-3 my-2 ${Styles.revicon1}`}>
                     <h1 className={`ogsfonts38`}>0%</h1>
                     <h1 className={` ogsfonts24`}>Reviewed</h1>
                   </div>
-                  <div className={`text-center p-3 ${Styles.revicon2}`}>
+                  <div className={`text-center p-3 my-2 ${Styles.revicon2}`}>
                     <h1 className={`ogsfonts38`}>0%</h1>
                     <h1 className={` ogsfonts24`}>Reviewed</h1>
                   </div>
-                  <div className={`text-center p-3 ${Styles.revicon3}`}>
+                  <div className={`text-center p-3 my-2 ${Styles.revicon3}`}>
                     <h1 className={`ogsfonts38`}>0%</h1>
                     <h1 className={` ogsfonts24`}>Reviewed</h1>
                   </div>
@@ -146,7 +148,7 @@ const Dashboard = ({ parentToChild }) => {
                 </div>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-md-3">
               <div
                 className={`d-flex p-4 text-center flex-column justify-content-center align-items-center ${Styles.profcard}`}
               >
