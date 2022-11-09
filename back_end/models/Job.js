@@ -1,5 +1,6 @@
 import sequelize from "../config/db.js";
 import { DataTypes } from "sequelize";
+import JobPostOptions from "./Categories/JobPostOptions.js";
 const Job = sequelize.define('Job', {
     // Model attributes are defined here
     job_title: {
@@ -10,44 +11,7 @@ const Job = sequelize.define('Job', {
         type: DataTypes.STRING,
         // allowNull: false
     },
-    country: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-    city: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
     area: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-    career_level: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-
-    start_salary: {
-        type: DataTypes.INTEGER,
-        // allowNull: false
-    },
-    end_salary: {
-        type: DataTypes.INTEGER,
-        // allowNull: false
-    },
-    functional_area: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-    gender: {
-        type: DataTypes.ENUM,
-        values: ['male', 'female', 'both']
-    },
-    job_shift: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-    required_qualification: {
         type: DataTypes.STRING,
         // allowNull: false
     },
@@ -55,29 +19,9 @@ const Job = sequelize.define('Job', {
         type: DataTypes.STRING,
         // allowNull: false
     },
-    min_experience: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-    max_experience: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
     experience_info: {
         type: DataTypes.STRING,
         // allowNull: false
-    },
-    min_age_requirement: {
-        type: DataTypes.INTEGER,
-        // allowNull: false
-    },
-    max_age_requirement: {
-        type: DataTypes.INTEGER,
-        // allowNull: false
-    },
-    supervisor_gender: {
-        type: DataTypes.ENUM,
-        values: ['male', 'female', 'both']
     },
     co_worker_percentage: {
         type: DataTypes.INTEGER,
@@ -93,6 +37,21 @@ const Job = sequelize.define('Job', {
 
 }, {
 });
-export default Job
 
+// Relations
+JobPostOptions.CareerLevel.hasOne(Job)
+JobPostOptions.Degree.hasOne(Job)
+JobPostOptions.EducationQualification.hasOne(Job)
+JobPostOptions.FunctionalArea.hasOne(Job)
+JobPostOptions.Gender.hasOne(Job)
+JobPostOptions.JobShift.hasOne(Job)
+JobPostOptions.JobType.hasOne(Job)
+JobPostOptions.MaxAgeRequirement.hasOne(Job)
+JobPostOptions.MaxExperience.hasOne(Job)
+JobPostOptions.MaxSalary.hasOne(Job)
+JobPostOptions.MinAgeRequirement.hasOne(Job)
+JobPostOptions.MinExperience.hasOne(Job)
+JobPostOptions.MinSalary.hasOne(Job)
+
+export default Job
 // `sequelize.define` also returns the model

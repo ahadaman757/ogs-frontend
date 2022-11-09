@@ -1,20 +1,17 @@
 import express from 'express'
 const app = express()
 const port = 3000
-
+import sequelize from './config/db.js'
 import UserType from './models/UserType.js'
 import User from './models/User.js'
 import BusinessType from './models/CompanyProfile/BusinessType.js'
 import Company from './models/CompanyProfile/Company.js'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import Degree from './models/Degree.js'
+
 import Job from './models/Job.js'
-import { FunctionalArea } from './models/Index.js'
-FunctionalArea.sync()
-FunctionalArea.create({
-    name: "Accountin"
-})
+
+import * as JobPostOptions from './models/Categories/JobPostOptions.js'
 
 // Environment Variables
 import { DEV_PORT } from './config/index.js'
@@ -44,9 +41,7 @@ User.hasMany(Job, {
     foreignKey: 'posted_by_id'
 })
 
-Degree.hasMany(Job, {
-    foreignKey: 'degree_level_id'
-})
+
 // Skill Table Relation
 // Job.belongsToMany(Skill, { through: JobSkill });
 // Skill.belongsToMany(Job, { through: JobSkill });
@@ -71,11 +66,11 @@ app.use('/jobs', jobRouter)
 // consume routes end
 app.get('/', (req, res) => res.send('Welcome to OGS server'))
 app.use(errorhandler)
-// sequelize.sync({
-//     alter: true,
-// }).then(res => {
-//     app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
-// }).catch(error => {
-//     console.log(error)
-// })
-app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
+sequelize.sync({
+    alter: true,
+}).then(res => {
+    app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
+}).catch(error => {
+    console.log(error)
+})
+// app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))

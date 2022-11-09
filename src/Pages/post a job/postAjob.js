@@ -24,30 +24,47 @@ const Postajob = () => {
         country: "",
         city: "",
         area: "",
-        career_level: "",
-        start_salary: "",
-        end_salary: "",
+        career_title: "",
+        min_salary: "",
+        max_salary: "",
         functional_area: "",
-        gender: "",
+        gender_title: "",
         job_shift: "",
         required_qualification: "",
         degree_title: "",
         min_experience: "",
         max_experience: "",
         experience_info: "",
-        min_age_requirement: "",
-        max_age_requirement: "",
-        supervisor_gender: "",
+        min_age: "",
+        max_age: "",
+        supervisor_gender_title: "",
         co_worker_percentage: "",
         valid_upto: "",
 
       },
 
       validationSchema: Yup.object({
-        job_title: Yup.string().required('Required'),
-        job_description: Yup.string().required('Required'),
-        start_salary: Yup.string().required('Required'),
-        end_salary: Yup.string().required('Required'),
+        // job_title: Yup.required('Required'),
+        // job_description: Yup.required('Required'),
+        // country: Yup.required('Required'),
+        // city: Yup.required('Required'),
+        // area: Yup.required('Required'),
+        // career_level: Yup.required('Required'),
+        // start_salary: Yup.required('Required'),
+        // max_salary: Yup.required('Required'),
+        // functional_area: Yup.required('Required'),
+        // gender_title: Yup.required('Required'),
+        // job_type_title: Yup.required('Required'),
+        // job_shift: Yup.required('Required'),
+        // qualification: Yup.required('Required'),
+        // min_experience: Yup.required('Required'),
+        // max_experience: Yup.required('Required'),
+        // experience_info: Yup.required('Required'),
+        // min_age: Yup.required('Required'),
+        // man_age: Yup.required('Required'),
+
+
+
       }),
       onSubmit: values => {
         alert("submmitted")
@@ -62,7 +79,10 @@ const Postajob = () => {
         className={`pt-5 ${Styles.Postajobmain}`}
         style={{ marginLeft: data ? "55px" : "200px" }}
       >
-        <div className="mt-5">
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          return jobPostFormIk.handleSubmit
+        }} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
             <div className="p-3">
               <h1 className="py-3 ogsfonts24">Post a Job</h1>
@@ -97,13 +117,13 @@ const Postajob = () => {
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <List id='end_salary' label="end salary" formik={jobPostFormIk} />
+                      <List id='max_salary' label="end salary" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div>
                     {" "}
                     <List id='functional_area' label="Functional Area" formik={jobPostFormIk} />
-                    <List id='gender' label="Gender Requirement" formik={jobPostFormIk} />
+                    <List id='gender_title' label="gender_title Requirement" formik={jobPostFormIk} />
                   </div>
                   <div>
                     {" "}
@@ -145,11 +165,12 @@ const Postajob = () => {
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <InputSelect title={"Job Shift"} />
+                      <List id='job_type_title' label="Job Type" formik={jobPostFormIk} />
+
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <InputSelect title={""} />
+                      <List id='job_shift' label="Job Shift" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <h1 className="ogsfonts16 my-3">Publish This Post</h1>
@@ -193,41 +214,31 @@ const Postajob = () => {
                 <div className={`col-6`}>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <InputSelect title={"Job Shift"} />
-                    </div>
-                    <div className={` ${Styles.SRm2}`}>
-                      {" "}
-                      <InputSelect title={""} />
+                      <List id='qualification' label="Qualification" formik={jobPostFormIk} />
                     </div>
                   </div>
-                  <div>
-                    <InputField
-                      title={"Job Location*"}
-                      requre={"Not in Pakistan"}
-                    />
+                  <div className={`pe-5 ${Styles.SRm2}`}>
+                    <TextInput id="degree_title" label="Specific Degree Title" formik={jobPostFormIk} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <InputSelect title={"Job Shift"} />
+                      <List id='min_experience' label="Min Experience" formik={jobPostFormIk} />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <InputSelect title={""} />
+                      <List id='max_experience' label="Max Experience" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div>
-                    <InputField
-                      title={"Job Location*"}
-                      requre={"Not in Pakistan"}
-                    />
+                    <TextInput id="experience_info" label="More Info About Experience" formik={jobPostFormIk} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <InputSelect title={"Job Shift"} />
+                      <List id="min_age" label="Min Age Requirement" formik={jobPostFormIk} />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <InputSelect title={""} />
+                      <List id="max_age" label="Max Age Requirement" formik={jobPostFormIk} />
                     </div>
                   </div>
                 </div>
@@ -279,7 +290,7 @@ const Postajob = () => {
                         class="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
-                        Gender
+                        gender_title
                       </label>
                     </div>
                     <div class="form-check mx-3">
@@ -376,11 +387,11 @@ const Postajob = () => {
                   Save as Draft
                 </button>
                 <button className={`mx-2 ${Styles.btnPreview}`}>Preview</button>
-                <button className={`mx-2 ${Styles.btnPost}`}>Post Job </button>
+                <button type="submit" className={`mx-2 ${Styles.btnPost}`}>Post Job </button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
