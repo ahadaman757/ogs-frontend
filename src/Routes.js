@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { createContext } from "react";
 import Home from "./Pages/Homepage/Home";
 import Registeration from "./Pages/authpages/Registeration";
 import AboutUs from "./Pages/about us/Aboutus";

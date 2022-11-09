@@ -79,9 +79,18 @@ const JobMyCompaniesController = async (req, res, next) => {
 };
 const GetJobOption = async (req, res, next) => {
   try {
-
+    const [results, metadata] = await sequelize.query("select * from countries");
+    const [cities, meta] = await sequelize.query("select * from cities");
+    const country = results
+    const city = cities
     const career_level = await JobOptions.CareerLevel.findAll()
     const degree = await JobOptions.Degree.findAll()
+    const start_salary = await JobOptions.MinSalary.findAll()
+    const end_salary = await JobOptions.MaxSalary.findAll()
+    const functional_area = await JobOptions.FunctionalArea.findAll()
+    const gender = await JobOptions.Gender.findAll()
+    const gender = await JobOptions.Gender.findAll()
+
 
 
 

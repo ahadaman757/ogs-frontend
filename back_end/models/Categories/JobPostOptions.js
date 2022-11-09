@@ -23,7 +23,7 @@ const MinSalary = sequelize.define('MinSalary', {
 });
 const MaxSalary = sequelize.define('MaxSalary', {
     // Model attributes are defined here
-    min_salary: {
+    max_salary: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -83,7 +83,7 @@ const EducationQualification = sequelize.define('EducationQualification', {
 });
 const Degree = sequelize.define('Degree', {
     // Model attributes are defined here
-    degree_title: {
+    job_shift: {
         type: DataTypes.STRING,
         allowNull: false
     },

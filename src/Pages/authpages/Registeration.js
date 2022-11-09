@@ -13,7 +13,6 @@ const UploadImageSide = ({ setLogoData }) => {
         setLogoData(event.target.files[0])
     };
     console.log(photoSelected)
-
     return (
         <div className="col-md-6 my-md-5 my-4">
             <div className="container d-flex align-items-center justify-content-center flex-column">
@@ -31,7 +30,6 @@ const UploadImageSide = ({ setLogoData }) => {
             </div>
         </div>
     )
-
 }
 const LoginInformation = ({ sel, setformData, formData }) => {
     const [loginInfo, setloginInfo] = useState(null)

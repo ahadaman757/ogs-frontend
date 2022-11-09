@@ -1,0 +1,41 @@
+<select class="s-14" id="minExperience" name="minExperience" onchange="return minimumExpValidate(1)">
+    <option value="" id="minExpLabel">Min</option>
+    <option value="713">Fresh</option>
+    <option value="715">Less than 1 Year</option>
+    <option value="717">1 Year</option>
+    <option value="719">2 Years</option>
+    <option value="721">3 Years</option>
+    <option value="723">4 Years</option>
+    <option value="725">5 Years</option>
+    <option value="727">6 Years</option>
+    <option value="729">7 Years</option>
+    <option value="731">8 Years</option>
+    <option value="733">9 Years</option>
+    <option value="735">10 Years</option>
+    <option value="737">11 Years</option>
+    <option value="739">12 Years</option>
+    <option value="741">13 Years</option>
+    <option value="743">14 Years</option>
+    <option value="745">15 Years</option>
+    <option value="747">16 Years</option>
+    <option value="749">17 Years</option>
+    <option value="751">18 Years</option>
+    <option value="753">19 Years</option>
+    <option value="755">20 Years</option>
+    <option value="757">21 Years</option>
+    <option value="759">22 Years</option>
+    <option value="761">23 Years</option>
+    <option value="763">24 Years</option>
+    <option value="765">25 Years</option>
+    <option value="767">26 Years</option>
+    <option value="769">27 Years</option>
+    <option value="771">28 Years</option>
+    <option value="773">29 Years</option>
+    <option value="775">30 Years</option>
+    <option value="777">31 Years</option>
+    <option value="779">32 Years</option>
+    <option value="781">33 Years</option>
+    <option value="783">34 Years</option>
+    <option value="785">35 Years</option>
+    <option value="787">More than 35 Years</option>
+</select>
