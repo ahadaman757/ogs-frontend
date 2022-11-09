@@ -59,26 +59,9 @@ import errorhandler from './middlewares/errorHandler.js'
 // import Routes end
 
 // /register
-import { request } from 'request'
 
 
-const options = {
-    method: 'POST',
-    url: 'https://auth.emsicloud.com/connect/token',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    form: {
-        client_id: 'CLIENT_ID',
-        client_secret: 'CLIENT_SECRET',
-        grant_type: 'client_credentials',
-        scope: 'emsi_open'
-    }
-};
 
-request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
-});
 app.use('/test', (req, res, next) => {
     console.log(req.body)
 })

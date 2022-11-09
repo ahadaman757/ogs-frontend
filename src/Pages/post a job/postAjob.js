@@ -83,28 +83,27 @@ const Postajob = () => {
                     <div className="row">
                       <div className="col-md-6">
                         <List id='country' label="Select Country" formik={jobPostFormIk} />
-
                       </div>
                       <div className="col-md-6">
                         <List id='city' label="Select city" formik={jobPostFormIk} />
                       </div>
                     </div>
-                    <List id='country' label="Select city" formik={jobPostFormIk} />
-                    <List id='qualification' label="Required Career Level*" formik={jobPostFormIk} />
+                    <List id='area' label="Select area" formik={jobPostFormIk} />
+                    <List id='career_level' label="Required Career Level*" formik={jobPostFormIk} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <InputSelect title={"Salary Range (Monthly) *"} />
+                      <List id='start_salary' label="start salary" formik={jobPostFormIk} />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <InputSelect title={""} />
+                      <List id='end_salary' label="end salary" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div>
                     {" "}
-                    <InputSelect title={"Functional Area"} />
-                    <InputSelect title={"Gender Requirement *"} />
+                    <List id='functional_area' label="Functional Area" formik={jobPostFormIk} />
+                    <List id='gender' label="Gender Requirement" formik={jobPostFormIk} />
                   </div>
                   <div>
                     {" "}

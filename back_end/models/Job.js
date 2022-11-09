@@ -4,40 +4,40 @@ const Job = sequelize.define('Job', {
     // Model attributes are defined here
     job_title: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     job_description: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     country: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     city: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     area: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     career_level: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
 
     start_salary: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     end_salary: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     functional_area: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     gender: {
         type: DataTypes.ENUM,
@@ -45,35 +45,35 @@ const Job = sequelize.define('Job', {
     },
     job_shift: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     required_qualification: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     degree_title: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     min_experience: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     max_experience: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     experience_info: {
         type: DataTypes.STRING,
-        allowNull: false
+        // allowNull: false
     },
     min_age_requirement: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     max_age_requirement: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     supervisor_gender: {
         type: DataTypes.ENUM,
@@ -81,7 +81,7 @@ const Job = sequelize.define('Job', {
     },
     co_worker_percentage: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     valid_upto: {
         type: DataTypes.DATE
