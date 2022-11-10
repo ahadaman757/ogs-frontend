@@ -10,7 +10,7 @@
   border-radius: 5px;
 }
 
-.SRm2 {
+.SRmsd2 {
   width: 100%;
 }
 
@@ -47,8 +47,8 @@
 .taginputContainer {
   padding: 10px 15px 10px 5px;
   width: 100%;
-  background: #FFFFFF;
-  border: 1px solid #BBBBBB;
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
   border-radius: 3px;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
