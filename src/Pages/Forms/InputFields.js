@@ -1,6 +1,7 @@
 import styles from '../authpages/main.module.css'
 const List = (props) => {
-    const { id, label, list_id, formik } = props
+    const { id, label, list_id, formik, options, } = props
+    console.log(options)
     return (
         <div>
             <label htmlFor={id} className={`${styles.form_input__lable}`}>{label}</label>
@@ -16,11 +17,14 @@ const List = (props) => {
             </div>
 
             <datalist id={list_id}>
-                <option value="HR" />
-                <option value="Developer" />
-                <option value="CEO" />
-                <option value="Manager" />
-                <option value="Owner" />
+                {
+                    options && options.map(option => {
+                        const keys = Object.keys(option);
+                        const value = option[keys[1]]
+                        return <option id={option.id} value={value} />
+                    })
+                }
+
             </datalist>
             {formik.touched[id] && formik.errors[id] ? (
                 <div className='text__note'>{formik.errors[id]}</div>

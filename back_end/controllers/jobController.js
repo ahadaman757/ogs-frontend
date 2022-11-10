@@ -4,6 +4,7 @@ import Job from "../models/Job.js";
 import JobSkill from "../models/JobSkill.js";
 import Skill from "../models/Skills.js";
 import JobOptions from '../models/Categories/JobPostOptions.js'
+import sequelize from "../config/db.js";
 const JobPostController = async (req, res, next) => {
   // get request body for job post
   const body = req.body;
@@ -85,20 +86,22 @@ const GetJobOption = async (req, res, next) => {
     const city = cities
     const career_level = await JobOptions.CareerLevel.findAll()
     const degree = await JobOptions.Degree.findAll()
-    const start_salary = await JobOptions.MinSalary.findAll()
-    const end_salary = await JobOptions.MaxSalary.findAll()
+    const min_salary = await JobOptions.MinSalary.findAll()
+    const max_salary = await JobOptions.MaxSalary.findAll()
     const functional_area = await JobOptions.FunctionalArea.findAll()
     const gender = await JobOptions.Gender.findAll()
-    const gender = await JobOptions.Gender.findAll()
-
-
-
-
-
+    const job_type = await JobOptions.JobType.findAll()
+    const job_shift = await JobOptions.JobShift.findAll()
+    const required_qualification = await JobOptions.EducationQualification.findAll()
+    const min_experience = await JobOptions.MinExperience.findAll()
+    const max_experience = await JobOptions.MaxExperience.findAll()
+    const min_age = await JobOptions.MinAgeRequirement.findAll()
+    const max_age = await JobOptions.MaxAgeRequirement.findAll()
+    res.json({ job_type, country, career_level, degree, min_salary, max_salary, functional_area, job_shift, gender, job_shift, required_qualification, max_experience, min_experience, min_age, max_age })
   }
   catch (error) {
     next(error)
   }
 
 };
-export { JobPostController, JobMyCompaniesController };
+export { JobPostController, JobMyCompaniesController, GetJobOption };

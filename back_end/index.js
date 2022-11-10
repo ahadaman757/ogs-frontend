@@ -66,11 +66,11 @@ app.use('/jobs', jobRouter)
 // consume routes end
 app.get('/', (req, res) => res.send('Welcome to OGS server'))
 app.use(errorhandler)
-sequelize.sync({
-    alter: true,
-}).then(res => {
-    app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
-}).catch(error => {
-    console.log(error)
-})
-// app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
+// sequelize.sync({
+//     alter: true,
+// }).then(res => {
+//     app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
+// }).catch(error => {
+//     console.log(error)
+// })
+app.listen(DEV_PORT, () => console.log(`OGS server started on port ${DEV_PORT}!`))
