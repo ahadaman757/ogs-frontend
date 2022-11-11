@@ -7,7 +7,7 @@ import JobOptions from '../models/Categories/JobPostOptions.js'
 import sequelize from "../config/db.js";
 import JobPostOptions from "../models/Categories/JobPostOptions.js";
 const JobPostController = async (req, res, next) => {
-  console.log("rec")
+  console.log("recsdsd")
 
   // get request body for job post
   const body = req.body;
@@ -17,7 +17,6 @@ const JobPostController = async (req, res, next) => {
   const OrderedData = Extractdata.JobPost(body);
   console.log(OrderedData.orderedData)
   // insert data in job table
-
   Job.create({
     ...OrderedData.orderedData,
     posted_by_id: req.user.id,

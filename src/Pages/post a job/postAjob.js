@@ -79,9 +79,20 @@ const Postajob = () => {
       onSubmit: values => {
         console.log(values)
         console.log(skills)
-        let result = skills.map(a => a.id);
-        const DataToBESend = { ...values, skill: result }
-
+        // let result = skills.map(a => a.id);
+        let result = [1, 2, "New Skill"]
+        const DataToBESend = { ...values, skill_id: result }
+        axios.post('http://localhost:3002/jobs', DataToBESend, {
+          headers: {
+            "Content-Type": "application/json",
+            "accesstoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY3NDk1MTgzLCJleHAiOjE2OTkwNTI3ODN9.GwmZhKxtavw0stZ4Fu58udeub6WyIbUOjbJt0YJ5SOM"
+          }
+        }).then(res => {
+          console.log(res)
+        }).catch(error => {
+          console.log("error occured")
+          console.log(error)
+        })
         console.log(DataToBESend)
       },
     }
