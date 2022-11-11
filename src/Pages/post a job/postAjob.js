@@ -1,5 +1,5 @@
 import Styles from "./postajob.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
 import { TextInput, List } from '../Forms/InputFields'
 import InputField from "../../Components/inputfield/inputfield";
@@ -9,13 +9,29 @@ import TextEditer from "../../Components/textediter/textediter"
 import { Formik, useFormik } from 'formik';
 import styles from '../authpages/main.module.css'
 import * as Yup from 'yup';
+import axios from "axios";
 const Postajob = () => {
   const [data, Setdata] = useState("");
+  const [skills, setSkills] = useState()
+
+  console.log(skills)
+  const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
     console.log("value");
     console.log(d);
     Setdata(d);
   };
+  const getjoboptions = () => {
+    axios.get("http://localhost:3002/jobs/jobsoptions").then(res => {
+      setdropDownOptions(res.data)
+    })
+  }
+  useEffect(() => {
+
+    getjoboptions()
+
+  }, [])
+
   const jobPostFormIk = useFormik(
     {
       initialValues: {
@@ -23,8 +39,7 @@ const Postajob = () => {
         job_description: "",
         country: "",
         city: "",
-        area: "",
-        career_title: "",
+        career_level: "",
         min_salary: "",
         max_salary: "",
         functional_area: "",
@@ -40,9 +55,7 @@ const Postajob = () => {
         supervisor_gender_title: "",
         co_worker_percentage: "",
         valid_upto: "",
-
       },
-
       validationSchema: Yup.object({
         // job_title: Yup.required('Required'),
         // job_description: Yup.required('Required'),
@@ -62,16 +75,40 @@ const Postajob = () => {
         // experience_info: Yup.required('Required'),
         // min_age: Yup.required('Required'),
         // man_age: Yup.required('Required'),
-
-
-
       }),
       onSubmit: values => {
-        alert("submmitted")
-
+        console.log(values)
+        console.log(skills)
+        // let result = skills.map(a => a.id);
+        let result = [33, 34, "New Skill"]
+        const DataToBESend = { ...values, skill_id: result }
+        axios.post('http://localhost:3002/jobs', DataToBESend, {
+          headers: {
+            "Content-Type": "application/json",
+            "accesstoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY3NDk1MTgzLCJleHAiOjE2OTkwNTI3ODN9.GwmZhKxtavw0stZ4Fu58udeub6WyIbUOjbJt0YJ5SOM"
+          }
+        }).then(res => {
+          console.log(res)
+        }).catch(error => {
+          console.log("error occured")
+          console.log(error)
+        })
+        console.log(DataToBESend)
       },
     }
   )
+  const [cities, setcities] = useState([])
+  useEffect(() => {
+    axios.post('http://localhost:3002/get_city_by_country_id', {
+      country_id: jobPostFormIk.values.country
+    }).then(res => {
+      console.log("cites response")
+      console.log(res)
+      setcities(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [jobPostFormIk.values.country])
   return (
     <div>
       <DashboardNavbar side={display} />
@@ -79,10 +116,7 @@ const Postajob = () => {
         className={`pt-5 ${Styles.Postajobmain}`}
         style={{ marginLeft: data ? "55px" : "200px" }}
       >
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          return jobPostFormIk.handleSubmit
-        }} className="mt-5">
+        <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
             <div className="p-3">
               <h1 className="py-3 ogsfonts24">Post a Job</h1>
@@ -98,32 +132,32 @@ const Postajob = () => {
                       Enter Skills
                     </label>
                     <div className={`${Styles.taginputContainer} py-2`}>
-                      <TagInput />
+                      <TagInput setSkills={setSkills} />
                     </div>
                     <div className="row">
                       <div className="col-md-6">
-                        <List id='country' label="Select Country" formik={jobPostFormIk} />
+                        <List options={dropDownOptions.country} id='country' list_id="countries" label="Select Country" formik={jobPostFormIk} />
                       </div>
                       <div className="col-md-6">
-                        <List id='city' label="Select city" formik={jobPostFormIk} />
+                        <List options={cities} id='city' label="Select city" formik={jobPostFormIk} />
                       </div>
                     </div>
-                    <List id='area' label="Select area" formik={jobPostFormIk} />
-                    <List id='career_level' label="Required Career Level*" formik={jobPostFormIk} />
+                    {/* <List id='area' label="Select area" formik={jobPostFormIk} /> */}
+                    <List options={dropDownOptions.career_level} id='career_level' list_id="career_levels" label="Required Career Level*" formik={jobPostFormIk} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List id='start_salary' label="start salary" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.min_salary} list_id="start_salaries" id='min_salary' label="start salary" formik={jobPostFormIk} />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <List id='max_salary' label="end salary" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.max_salary} list_id="end_salaries" id='max_salary' label="end salary" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div>
                     {" "}
-                    <List id='functional_area' label="Functional Area" formik={jobPostFormIk} />
-                    <List id='gender_title' label="gender_title Requirement" formik={jobPostFormIk} />
+                    <List options={dropDownOptions.functional_area} list_id="functional_areas" id='functional_area' label="Functional Area" formik={jobPostFormIk} />
+                    <List options={dropDownOptions.gender} list_id="genders" id='gender_title' label="Gender" formik={jobPostFormIk} />
                   </div>
                   <div>
                     {" "}
@@ -165,12 +199,12 @@ const Postajob = () => {
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List id='job_type_title' label="Job Type" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.job_type} list_id="job_types" id='job_type_title' label="Job Type" formik={jobPostFormIk} />
 
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <List id='job_shift' label="Job Shift" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.job_shift} list_id="job_shifts" id='job_shift' label="Job Shift" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <h1 className="ogsfonts16 my-3">Publish This Post</h1>
@@ -205,7 +239,7 @@ const Postajob = () => {
                     </div>
                   </div>
                   <div>
-                    <InputSelect title={"Apply By Date"} />
+                    <TextInput id="valid_upto" type="date" formik={jobPostFormIk} />
                   </div>
                 </div>
               </div>
@@ -214,7 +248,7 @@ const Postajob = () => {
                 <div className={`col-6`}>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List id='qualification' label="Qualification" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.required_qualification} list_id="qualifications" id='required_qualification' label="Qualification" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div className={`pe-5 ${Styles.SRm2}`}>
@@ -222,11 +256,11 @@ const Postajob = () => {
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List id='min_experience' label="Min Experience" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.min_experience} list_id="min_experiences" id='min_experience' label="Min Experience" formik={jobPostFormIk} />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <List id='max_experience' label="Max Experience" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.max_experience} list_id="max_experiences" id='max_experience' label="Max Experience" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div>
@@ -234,17 +268,17 @@ const Postajob = () => {
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List id="min_age" label="Min Age Requirement" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.min_age} list_id="min_ages" id="min_age" label="Min Age Requirement" formik={jobPostFormIk} />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
                       {" "}
-                      <List id="max_age" label="Max Age Requirement" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.max_age} list_id="max_ages" id="max_age" label="Max Age Requirement" formik={jobPostFormIk} />
                     </div>
                   </div>
                 </div>
               </div>
               <hr />
-              <div className={`row`}>
+              {/* <div className={`row`}>
                 <div className={`col-6`}>
                   <h1 className="ogsfonts18">Workplace Environment</h1>
                   <div>
@@ -252,9 +286,9 @@ const Postajob = () => {
                     <InputSelect title={"Job Shift"} />
                   </div>
                 </div>
-              </div>
-              <hr />
-              <div className={`row`}>
+              </div> */}
+              {/* <hr /> */}
+              {/* <div className={`row`}>
                 <div className={`col-6`}>
                   <h1 className="ogsfonts18">Workplace Environment</h1>
                   <p className="ogsfonts14">
@@ -269,7 +303,7 @@ const Postajob = () => {
                     <InputSelect title={"Job Shift"} />
                   </div>
                 </div>
-              </div>
+              </div> */}
               <hr />
               <div className={`row`}>
                 <div className={`col-6`}>
@@ -383,7 +417,7 @@ const Postajob = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-end">
-                <button className={`mx-2 ${Styles.btndraft}`}>
+                <button type="button" className={`mx-2 ${Styles.btndraft}`}>
                   Save as Draft
                 </button>
                 <button className={`mx-2 ${Styles.btnPreview}`}>Preview</button>

@@ -1,8 +1,7 @@
 import sequelize from "../config/db.js";
 import { DataTypes } from "sequelize";
-import JobPostOptions from "./Categories/JobPostOptions.js";
-const Job = sequelize.define('Job', {
-    // Model attributes are defined here
+const Jobs = sequelize.define('Job', {
+
     job_title: {
         type: DataTypes.STRING,
         // allowNull: false
@@ -11,47 +10,84 @@ const Job = sequelize.define('Job', {
         type: DataTypes.STRING,
         // allowNull: false
     },
-    area: {
+    experience_info: {
         type: DataTypes.STRING,
+        // allowNull: false
+    },
+    supervisor_gender_title: {
+        type: DataTypes.STRING,
+        // allowNull: false
+    },
+    co_worker_percentage: {
+        type: DataTypes.STRING,
+        // allowNull: false
+    },
+    valid_upto: {
+        type: DataTypes.DATE
         // allowNull: false
     },
     degree_title: {
         type: DataTypes.STRING,
         // allowNull: false
     },
-    experience_info: {
-        type: DataTypes.STRING,
-        // allowNull: false
-    },
-    co_worker_percentage: {
+    country_id: {
         type: DataTypes.INTEGER,
         // allowNull: false
     },
-    valid_upto: {
-        type: DataTypes.DATE
+    city_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
     },
-    is_active: {
-        type: DataTypes.BOOLEAN
+    career_level_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
     },
-
-
+    min_salary_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    max_salary_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    functional_area_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    gender_title_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    job_shift_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    required_qualification_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    min_experience_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    max_experience_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    min_age_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
+    max_age_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
 }, {
+    freezeTableName: true
 });
 
 // Relations
-JobPostOptions.CareerLevel.hasOne(Job)
-JobPostOptions.Degree.hasOne(Job)
-JobPostOptions.EducationQualification.hasOne(Job)
-JobPostOptions.FunctionalArea.hasOne(Job)
-JobPostOptions.Gender.hasOne(Job)
-JobPostOptions.JobShift.hasOne(Job)
-JobPostOptions.JobType.hasOne(Job)
-JobPostOptions.MaxAgeRequirement.hasOne(Job)
-JobPostOptions.MaxExperience.hasOne(Job)
-JobPostOptions.MaxSalary.hasOne(Job)
-JobPostOptions.MinAgeRequirement.hasOne(Job)
-JobPostOptions.MinExperience.hasOne(Job)
-JobPostOptions.MinSalary.hasOne(Job)
 
-export default Job
+
+export default Jobs
 // `sequelize.define` also returns the model

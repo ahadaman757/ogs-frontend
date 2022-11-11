@@ -6,18 +6,12 @@ import Skill from "./Skills.js";
 const JobSkill = sequelize.define('JobSkill', {
     JobId: {
         type: DataTypes.INTEGER,
-        references: {
-            model: Job,
-            foreignkey: 'id'
-        }
     },
     SkillId: {
         type: DataTypes.INTEGER,
-        references: {
-            model: Skill,
-            foreignkey: 'id'
-        }
-
     }
+
+}, {
+    freezeTableName: true
 });
 export default JobSkill
