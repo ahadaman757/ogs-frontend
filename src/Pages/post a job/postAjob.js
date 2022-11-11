@@ -13,6 +13,7 @@ import axios from "axios";
 const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState()
+  const [Description, setDescription] = useState('')
 
   console.log(skills)
   const [dropDownOptions, setdropDownOptions] = useState("");
@@ -56,27 +57,29 @@ const Postajob = () => {
         co_worker_percentage: "",
         valid_upto: "",
       },
+
       validationSchema: Yup.object({
-        // job_title: Yup.required('Required'),
-        // job_description: Yup.required('Required'),
-        // country: Yup.required('Required'),
-        // city: Yup.required('Required'),
-        // area: Yup.required('Required'),
-        // career_level: Yup.required('Required'),
-        // start_salary: Yup.required('Required'),
-        // max_salary: Yup.required('Required'),
-        // functional_area: Yup.required('Required'),
-        // gender_title: Yup.required('Required'),
-        // job_type_title: Yup.required('Required'),
-        // job_shift: Yup.required('Required'),
-        // qualification: Yup.required('Required'),
-        // min_experience: Yup.required('Required'),
-        // max_experience: Yup.required('Required'),
-        // experience_info: Yup.required('Required'),
-        // min_age: Yup.required('Required'),
-        // man_age: Yup.required('Required'),
+        job_title: Yup.string().required("Required"),
+        job_description: Yup.string().required("Required"),
+        country: Yup.number().required("Required"),
+        city: Yup.number().required('Required'),
+        area: Yup.number().required('Required'),
+        career_level: Yup.number().required('Required'),
+        start_salary: Yup.number().required('Required'),
+        max_salary: Yup.number().required('Required'),
+        functional_area: Yup.number().required('Required'),
+        gender_title: Yup.number().required('Required'),
+        job_type_title: Yup.number().required('Required'),
+        job_shift: Yup.number().required('Required'),
+        qualification: Yup.number().required('Required'),
+        min_experience: Yup.number().required('Required'),
+        max_experience: Yup.number().required('Required'),
+        experience_info: Yup.number().required('Required'),
+        min_age: Yup.number().required('Required'),
+        man_age: Yup.number().required('Required'),
       }),
       onSubmit: values => {
+        values.job_description = Description
         console.log(values)
         console.log(skills)
         // let result = skills.map(a => a.id);
@@ -195,7 +198,7 @@ const Postajob = () => {
                 </div>
                 <div className="col-6">
                   <div>
-                    <TextEditer />
+                    <TextEditer setDescription={setDescription} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>

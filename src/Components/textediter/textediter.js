@@ -3,12 +3,12 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState } from "draft-js";
 import { useState } from "react";
 import Styles from "./textediter.module.css";
-const TextEditer = () => {
+const TextEditer = ({ setDescription }) => {
   const [editorState, seteditorState] = useState(EditorState.createEmpty());
   const onEditorStateChange = (e) => {
     seteditorState(e);
-    e.getCurrentContent().getPlainText();
-    console.log(e)
+    const value = e.getCurrentContent().getPlainText();
+    setDescription(value)
   };
   return (
     <div>
