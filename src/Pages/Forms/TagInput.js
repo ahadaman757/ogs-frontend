@@ -23,7 +23,7 @@ const App = ({ setSkills }) => {
     const [tags, setTags] = React.useState([
     ]);
     setSkills(tags)
-    console.log(tags)
+
     const handleTagChange = (e) => {
         const formdata = {
             kw: e,
@@ -64,7 +64,7 @@ const App = ({ setSkills }) => {
     };
 
     const handleTagClick = index => {
-        console.log('The tag at index ' + index + ' was clicked');
+
     };
 
     return (

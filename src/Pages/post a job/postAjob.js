@@ -13,6 +13,7 @@ import axios from "axios";
 const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState()
+
   console.log(skills)
   const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
@@ -38,8 +39,7 @@ const Postajob = () => {
         job_description: "",
         country: "",
         city: "",
-        area: "",
-        career_title: "",
+        career_level: "",
         min_salary: "",
         max_salary: "",
         functional_area: "",
@@ -55,9 +55,7 @@ const Postajob = () => {
         supervisor_gender_title: "",
         co_worker_percentage: "",
         valid_upto: "",
-
       },
-
       validationSchema: Yup.object({
         // job_title: Yup.required('Required'),
         // job_description: Yup.required('Required'),
@@ -77,22 +75,29 @@ const Postajob = () => {
         // experience_info: Yup.required('Required'),
         // min_age: Yup.required('Required'),
         // man_age: Yup.required('Required'),
-
-
-
       }),
       onSubmit: values => {
-        console.log("submitting")
+        console.log(values)
+        console.log(skills)
         let result = skills.map(a => a.id);
         const DataToBESend = { ...values, skill: result }
-        console.log("to send")
+
         console.log(DataToBESend)
-
-
       },
     }
   )
-  console.log(jobPostFormIk.values)
+  const [cities, setcities] = useState([])
+  useEffect(() => {
+    axios.post('http://localhost:3002/get_city_by_country_id', {
+      country_id: jobPostFormIk.values.country
+    }).then(res => {
+      console.log("cites response")
+      console.log(res)
+      setcities(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [jobPostFormIk.values.country])
   return (
     <div>
       <DashboardNavbar side={display} />
@@ -123,10 +128,10 @@ const Postajob = () => {
                         <List options={dropDownOptions.country} id='country' list_id="countries" label="Select Country" formik={jobPostFormIk} />
                       </div>
                       <div className="col-md-6">
-                        <List id='city' label="Select city" formik={jobPostFormIk} />
+                        <List options={cities} id='city' label="Select city" formik={jobPostFormIk} />
                       </div>
                     </div>
-                    <List id='area' label="Select area" formik={jobPostFormIk} />
+                    {/* <List id='area' label="Select area" formik={jobPostFormIk} /> */}
                     <List options={dropDownOptions.career_level} id='career_level' list_id="career_levels" label="Required Career Level*" formik={jobPostFormIk} />
                   </div>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>

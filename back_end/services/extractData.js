@@ -37,15 +37,24 @@ class Extractdata {
         const data = {
             job_title: body.job_title,
             job_description: body.job_description,
-            last_name: body.job_location,
-            start_salary: body.start_salary,
-            end_salary: body.end_salary,
-            start_time: body.start_time,
-            end_time: body.end_time,
-            gender: body.gender,
+            supervisor_gender_title: body.supervisor_gender_title,
+            co_worker_percentage: body.co_worker_percentage,
             valid_upto: body.valid_upto,
-            is_active: body.is_active,
-
+            experience_info: body.experience_info,
+            degree_title: body.degree_title,
+            country_id: body.country,
+            city_id: body.city,
+            career_level_id: body.career_level,
+            min_salary_id: body.min_salary,
+            max_salary_id: body.max_salary,
+            functional_area_id: body.functional_area,
+            gender_title_id: body.gender_title,
+            job_shift_id: body.job_shift,
+            required_qualification_id: body.required_qualification,
+            min_experience_id: body.min_experience,
+            max_experience_id: body.max_experience,
+            min_age_id: body.min_age,
+            max_age_id: body.max_age,
         }
         return new Extractdata(data)
     }

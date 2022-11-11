@@ -5,22 +5,25 @@ import JobSkill from "../models/JobSkill.js";
 import Skill from "../models/Skills.js";
 import JobOptions from '../models/Categories/JobPostOptions.js'
 import sequelize from "../config/db.js";
+import JobPostOptions from "../models/Categories/JobPostOptions.js";
 const JobPostController = async (req, res, next) => {
+  console.log("rec")
+
   // get request body for job post
   const body = req.body;
   const { degree_level_id, skill_id } = body;
   // perform validations
   // const { error } = JoiValidation.JobPostValidation(body)
   const OrderedData = Extractdata.JobPost(body);
-
+  console.log(OrderedData.orderedData)
   // insert data in job table
 
   Job.create({
     ...OrderedData.orderedData,
     posted_by_id: req.user.id,
-    degree_level_id: degree_level_id,
   })
     .then((response) => {
+      console.log(response)
       const skillListStringify = JSON.stringify(skill_id);
       const skillsParsed = JSON.parse(skillListStringify);
 
@@ -59,6 +62,8 @@ const JobPostController = async (req, res, next) => {
       return res.json({ message: "added" });
     })
     .catch((error) => {
+      console.log("55555555555")
+      console.log(error)
       return next(error);
     });
 };
