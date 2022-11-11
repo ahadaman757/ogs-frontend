@@ -7,6 +7,8 @@ const TextEditer = () => {
   const [editorState, seteditorState] = useState(EditorState.createEmpty());
   const onEditorStateChange = (e) => {
     seteditorState(e);
+    e.getCurrentContent().getPlainText();
+    console.log(e)
   };
   return (
     <div>

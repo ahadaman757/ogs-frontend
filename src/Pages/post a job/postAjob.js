@@ -80,7 +80,7 @@ const Postajob = () => {
         console.log(values)
         console.log(skills)
         // let result = skills.map(a => a.id);
-        let result = [1, 2, "New Skill"]
+        let result = [33, 34, "New Skill"]
         const DataToBESend = { ...values, skill_id: result }
         axios.post('http://localhost:3002/jobs', DataToBESend, {
           headers: {
@@ -248,7 +248,7 @@ const Postajob = () => {
                 <div className={`col-6`}>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List options={dropDownOptions.required_qualification} list_id="qualifications" id='qualification' label="Qualification" formik={jobPostFormIk} />
+                      <List options={dropDownOptions.required_qualification} list_id="qualifications" id='required_qualification' label="Qualification" formik={jobPostFormIk} />
                     </div>
                   </div>
                   <div className={`pe-5 ${Styles.SRm2}`}>
