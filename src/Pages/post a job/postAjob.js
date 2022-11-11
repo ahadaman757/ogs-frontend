@@ -14,8 +14,8 @@ const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState()
   const [Description, setDescription] = useState('')
-
   console.log(skills)
+
   const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
     console.log("value");
@@ -60,31 +60,32 @@ const Postajob = () => {
 
       validationSchema: Yup.object({
         job_title: Yup.string().required("Required"),
-        job_description: Yup.string().required("Required"),
-        country: Yup.number().required("Required"),
-        city: Yup.number().required('Required'),
-        area: Yup.number().required('Required'),
-        career_level: Yup.number().required('Required'),
-        start_salary: Yup.number().required('Required'),
-        max_salary: Yup.number().required('Required'),
-        functional_area: Yup.number().required('Required'),
-        gender_title: Yup.number().required('Required'),
-        job_type_title: Yup.number().required('Required'),
-        job_shift: Yup.number().required('Required'),
-        qualification: Yup.number().required('Required'),
-        min_experience: Yup.number().required('Required'),
-        max_experience: Yup.number().required('Required'),
-        experience_info: Yup.number().required('Required'),
-        min_age: Yup.number().required('Required'),
-        man_age: Yup.number().required('Required'),
+        // job_description: Yup.string().required("Required"),
+        country: Yup.number("invalid type").required("Required"),
+        city: Yup.number("invalid type").required('Required'),
+        // area: Yup.number("invalid type").required('Required'),
+        career_level: Yup.number("invalid type").required('Required'),
+        min_salary: Yup.number("invalid type").required('Required'),
+        max_salary: Yup.number("invalid type").required('Required'),
+        functional_area: Yup.number("invalid type").required('Required'),
+        gender_title: Yup.number("invalid type").required('Required'),
+        job_type_title: Yup.number("invalid type").required('Required'),
+        job_shift: Yup.number("invalid type").required('Required'),
+        required_qualification: Yup.number("invalid type").required('Required'),
+        min_experience: Yup.number("invalid type").required('Required'),
+        max_experience: Yup.number("invalid type").required('Required'),
+        experience_info: Yup.string("invalid type").required('Required'),
+        min_age: Yup.number("invalid type").required('Required'),
+        max_age: Yup.number("invalid type").required('Required'),
       }),
       onSubmit: values => {
         values.job_description = Description
         console.log(values)
         console.log(skills)
-        // let result = skills.map(a => a.id);
-        let result = [33, 34, "New Skill"]
-        const DataToBESend = { ...values, skill_id: result }
+        alert("submitted")
+        let result = skills.map(a => a.id);
+        // let result = [33, 34, "New Skill"]
+        const DataToBESend = { ...values, skill_id: skills }
         axios.post('http://localhost:3002/jobs', DataToBESend, {
           headers: {
             "Content-Type": "application/json",
@@ -100,6 +101,7 @@ const Postajob = () => {
       },
     }
   )
+  console.log(jobPostFormIk)
   const [cities, setcities] = useState([])
   useEffect(() => {
     axios.post('http://localhost:3002/get_city_by_country_id', {
@@ -433,4 +435,6 @@ const Postajob = () => {
     </div>
   );
 };
+
+
 export default Postajob;

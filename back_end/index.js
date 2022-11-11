@@ -9,7 +9,11 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import Jobs from './models/Job.js'
 import JobSkill from './models/JobSkill.js'
-
+Skill.sync({ alter: true }).then(res => {
+    console.log('res')
+}).catch(error => {
+    console.log(error.message)
+})
 // Environment Variables
 import { DEV_PORT } from './config/index.js'
 // MiddleWares
@@ -52,6 +56,7 @@ import userRouter from './routes/user.js'
 import jobRouter from './routes/job.js'
 import errorhandler from './middlewares/errorHandler.js'
 import utilRouter from './routes/utils.js'
+import Skill from './models/Skills.js'
 
 // import Routes end
 
