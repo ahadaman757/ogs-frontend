@@ -6,8 +6,71 @@ import Skill from "../models/Skills.js";
 import JobOptions from '../models/Categories/JobPostOptions.js'
 import sequelize from "../config/db.js";
 import JobPostOptions from "../models/Categories/JobPostOptions.js";
+// const JobPostControllers = async (req, res, next) => {
+//   console.log("recsdsd")
+
+//   // get request body for job post
+//   const body = req.body;
+//   const { degree_level_id, skill_id } = body;
+//   // perform validations
+//   // const { error } = JoiValidation.JobPostValidation(body)
+//   const OrderedData = Extractdata.JobPost(body);
+//   console.log(OrderedData.orderedData)
+//   // insert data in job table
+//   Job.create({
+//     ...OrderedData.orderedData,
+//     posted_by_id: req.user.id,
+//   })
+//     .then((response) => {
+//       console.log(response)
+//       const skillListStringify = JSON.stringify(skill_id);
+//       const skillsParsed = JSON.parse(skillListStringify);
+
+//       skillsParsed.map((skill) => {
+//         if (typeof skill == "string") {
+//           Skill.findOrCreate({
+//             skill_title: skill,
+//             where: {
+//               skill_title: skill,
+//             },
+//           })
+//             .then(([skillRes, created]) => {
+//               JobSkill.create({
+//                 JobId: response.id,
+//                 SkillId: skillRes.id,
+//               });
+//             })
+//             .catch((error) => {
+//               return next(error);
+//             });
+//         } else {
+//           console.log(skill);
+//           JobSkill.create({
+//             JobId: response.id,
+//             SkillId: skill,
+//           })
+//             .then((reslocal) => {
+//               console.log("one job skill created");
+//             })
+//             .catch((error) => {
+//               console.log("error occured in map")
+//               console.log(error)
+//             });
+//         }
+//       });
+//       return res.json({ message: "added" });
+//     })
+//     .catch((error) => {
+//       console.log("55555555555")
+//       console.log(error)
+//       return next(error);
+//     });
+// };
+
+
+// /Temporary Job Controller start
 const JobPostController = async (req, res, next) => {
-  console.log("recsdsd")
+  console.log("resfsdf")
 
   // get request body for job post
   const body = req.body;
@@ -15,57 +78,51 @@ const JobPostController = async (req, res, next) => {
   // perform validations
   // const { error } = JoiValidation.JobPostValidation(body)
   const OrderedData = Extractdata.JobPost(body);
-  console.log(OrderedData.orderedData)
   // insert data in job table
   Job.create({
     ...OrderedData.orderedData,
     posted_by_id: req.user.id,
   })
     .then((response) => {
-      console.log(response)
       const skillListStringify = JSON.stringify(skill_id);
       const skillsParsed = JSON.parse(skillListStringify);
-
-      skillsParsed.map((skill) => {
-        if (typeof skill == "string") {
-          Skill.findOrCreate({
-            skill_title: skill,
-            where: {
-              skill_title: skill,
-            },
-          })
-            .then(([skillRes, created]) => {
-              JobSkill.create({
-                JobId: response.id,
-                SkillId: skillRes.id,
-              });
-            })
-            .catch((error) => {
-              return next(error);
-            });
-        } else {
-          console.log(skill);
+      skillsParsed.map(async (skill) => {
+        const skillentry = await Skill.findOne({
+          where: {
+            text: skill.text
+          }
+        })
+        if (skillentry !== null) {
+          // Skill Found
           JobSkill.create({
             JobId: response.id,
-            SkillId: skill,
+            SkillId: skillentry.id
           })
-            .then((reslocal) => {
-              console.log("one job skill created");
-            })
-            .catch((error) => {
-              console.log("error occured in map")
-              console.log(error)
-            });
         }
+        else {
+          Skill.create({
+            text: skill.text
+          }).then(res => {
+            JobSkill.create({
+              JobId: response.id,
+              SkillId: res.id
+            })
+          }).catch(error => {
+            console.log(error.message)
+            return next(error)
+          })
+          // Skill Not Found
+        }
+
       });
       return res.json({ message: "added" });
     })
     .catch((error) => {
-      console.log("55555555555")
-      console.log(error)
       return next(error);
     });
 };
+// /Temporary Job Controller end
+
 
 const JobMyCompaniesController = async (req, res, next) => {
   try {
