@@ -67,14 +67,9 @@ import JobPostOptions from "../models/Categories/JobPostOptions.js";
 //     });
 // };
 
-
 // /Temporary Job Controller start
 const JobPostController = async (req, res, next) => {
-<<<<<<< Updated upstream
-  console.log("resfsdf")
-=======
   console.log("recsdsd");
->>>>>>> Stashed changes
 
   // get request body for job post
   const body = req.body;
@@ -82,66 +77,50 @@ const JobPostController = async (req, res, next) => {
   // perform validations
   // const { error } = JoiValidation.JobPostValidation(body)
   const OrderedData = Extractdata.JobPost(body);
-<<<<<<< Updated upstream
-=======
   console.log(OrderedData.orderedData);
->>>>>>> Stashed changes
   // insert data in job table
   Job.create({
     ...OrderedData.orderedData,
     posted_by_id: req.user.id,
   })
     .then((response) => {
-<<<<<<< Updated upstream
-=======
       console.log(response);
->>>>>>> Stashed changes
       const skillListStringify = JSON.stringify(skill_id);
       const skillsParsed = JSON.parse(skillListStringify);
       skillsParsed.map(async (skill) => {
         const skillentry = await Skill.findOne({
           where: {
-            text: skill.text
-          }
-        })
+            text: skill.text,
+          },
+        });
         if (skillentry !== null) {
           // Skill Found
           JobSkill.create({
             JobId: response.id,
-            SkillId: skillentry.id
-          })
-        }
-        else {
+            SkillId: skillentry.id,
+          });
+        } else {
           Skill.create({
-            text: skill.text
-          }).then(res => {
-            JobSkill.create({
-              JobId: response.id,
-              SkillId: res.id
-            })
-<<<<<<< Updated upstream
-          }).catch(error => {
-            console.log(error.message)
-            return next(error)
+            text: skill.text,
           })
-          // Skill Not Found
-=======
+            .then((res) => {
+              JobSkill.create({
+                JobId: response.id,
+                SkillId: res.id,
+              });
+            })
             .catch((error) => {
-              console.log("error occured in map");
-              console.log(error);
+              console.log(error.message);
+              return next(error);
             });
->>>>>>> Stashed changes
+          // Skill Not Found
         }
-
       });
       return res.json({ message: "added" });
     })
     .catch((error) => {
-<<<<<<< Updated upstream
-=======
       console.log("55555555555");
       console.log(error);
->>>>>>> Stashed changes
       return next(error);
     });
 };
@@ -213,10 +192,15 @@ const GetJobOption = async (req, res, next) => {
   }
 };
 const JobByIdController = async (req, res, next) => {
-  const job_id = req.params.id
-  const job_record = Job.findByPk(job_id)
+  const job_id = req.params.id;
+  const job_record = Job.findByPk(job_id);
 
-  console.log(job_id)
-  res.send(job_record)
-}
-export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController };
+  console.log(job_id);
+  res.send(job_record);
+};
+export {
+  JobPostController,
+  JobMyCompaniesController,
+  GetJobOption,
+  JobByIdController,
+};
