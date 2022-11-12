@@ -26,6 +26,9 @@ const Jobs = sequelize.define('Job', {
         type: DataTypes.DATE
         // allowNull: false
     },
+    posted_by_id: {
+        type: DataTypes.INTEGER
+    },
     degree_title: {
         type: DataTypes.STRING,
         // allowNull: false

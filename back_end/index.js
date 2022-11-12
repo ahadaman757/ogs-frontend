@@ -24,9 +24,15 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.urlencoded({ extended: true }))
 app.use('/images', express.static('./images'))
 // Temporary start
-
+// Jobs.sync({
+//     force: true
+// }).then(res => {
+//     console.log("error")
+// }).catch(error => {
+//     console.log(error)
+// })
 // Temporary end
-console.log('sdsddsd')
+
 // Relations Start
 // one user type has many user accounts
 UserType.hasMany(User);

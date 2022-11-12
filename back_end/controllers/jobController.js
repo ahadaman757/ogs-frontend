@@ -123,7 +123,6 @@ const JobPostController = async (req, res, next) => {
 };
 // /Temporary Job Controller end
 
-
 const JobMyCompaniesController = async (req, res, next) => {
   try {
     const AllJobs = await Job.findAll({
@@ -165,4 +164,11 @@ const GetJobOption = async (req, res, next) => {
   }
 
 };
-export { JobPostController, JobMyCompaniesController, GetJobOption };
+const JobByIdController = async (req, res, next) => {
+  const job_id = req.params.id
+  const job_record = Job.findByPk(job_id)
+
+  console.log(job_id)
+  res.send(job_record)
+}
+export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController };

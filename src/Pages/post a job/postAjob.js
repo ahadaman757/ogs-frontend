@@ -105,7 +105,7 @@ const Postajob = () => {
   const [cities, setcities] = useState([])
   useEffect(() => {
     axios.post('http://localhost:3002/get_city_by_country_id', {
-      country_id: jobPostFormIk.values.country
+      country_id: jobPostFormIk.values.country || 1
     }).then(res => {
       console.log("cites response")
       console.log(res)
