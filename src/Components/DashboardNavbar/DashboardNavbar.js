@@ -17,6 +17,8 @@ import Searchicon from "../../Assets/Images/search 03.svg";
 import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
 
+import { useNavigate } from "react-router-dom";
+
 const DashboardNavbar = (props) => {
   const [displayside, setdisplay] = useState(true);
   const [icon1, seticon] = useState(dashbordicon);
@@ -25,6 +27,8 @@ const DashboardNavbar = (props) => {
   const [icon4, seticon4] = useState(dashbordiconb4);
   const [icon5, seticon5] = useState(dashbordiconb5);
   const [icon6, seticon6] = useState(dashbordiconw6);
+
+  const navigate = useNavigate();
 
   console.log(displayside);
   const handeler = (props) => {
@@ -54,24 +58,15 @@ const DashboardNavbar = (props) => {
           onMouseLeave={() => {
             seticon(dashbordicon);
           }}
+          onClick={() => {
+            navigate("/dashboard");
+          }}
         >
           <span>
             <img className={`${styles.dashbordimg}`} src={icon1} />
           </span>
           {displayside ? "" : "Dashboard"}
         </a>
-        <div class="collapse" id="collapseExample">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
-          </div>
-        </div>
         <a
           className={`btn btn-primary  ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
@@ -85,24 +80,15 @@ const DashboardNavbar = (props) => {
           onMouseLeave={() => {
             seticon2(dashbordiconb2);
           }}
+          onClick={() => {
+            navigate("/managejobs");
+          }}
         >
           <span>
             <img className={`${styles.dashbordimg}`} src={icon2} />
           </span>
-          {displayside ? "" : "CV Folders"}
+          {displayside ? "" : "Manage Jobs"}
         </a>
-        <div class="collapse" id="collapseExample1">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
-          </div>
-        </div>
         <a
           className={`btn btn-primary  ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
