@@ -130,7 +130,6 @@ const JobMyCompaniesController = async (req, res, next) => {
         posted_by_id: req.user.id
       }
     })
-
     res.json(AllJobs)
   }
   catch (error) {
@@ -166,9 +165,9 @@ const GetJobOption = async (req, res, next) => {
 };
 const JobByIdController = async (req, res, next) => {
   const job_id = req.params.id
-  const job_record = Job.findByPk(job_id)
+  const job_record = await sequelize.query(`select * from job where id='83'`)
 
   console.log(job_id)
-  res.send(job_record)
+  res.json(job_record[0])
 }
 export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController };
