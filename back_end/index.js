@@ -1,21 +1,3 @@
-<<<<<<< Updated upstream
-import express from 'express'
-const app = express()
-const port = 3000
-import UserType from './models/UserType.js'
-import User from './models/User.js'
-import BusinessType from './models/CompanyProfile/BusinessType.js'
-import Company from './models/CompanyProfile/Company.js'
-import cors from 'cors'
-import bodyParser from 'body-parser'
-import Jobs from './models/Job.js'
-import JobSkill from './models/JobSkill.js'
-Skill.sync({ alter: true }).then(res => {
-    console.log('res')
-}).catch(error => {
-    console.log(error.message)
-})
-=======
 import express from "express";
 const app = express();
 const port = 3000;
@@ -27,8 +9,13 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import Jobs from "./models/Job.js";
 import JobSkill from "./models/JobSkill.js";
-
->>>>>>> Stashed changes
+Skill.sync({ alter: true })
+  .then((res) => {
+    console.log("res");
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
 // Environment Variables
 import { DEV_PORT } from "./config/index.js";
 // MiddleWares
@@ -47,11 +34,6 @@ app.use("/images", express.static("./images"));
 //     console.log(error)
 // })
 // Temporary end
-<<<<<<< Updated upstream
-
-=======
-console.log("sdsddsd");
->>>>>>> Stashed changes
 // Relations Start
 // one user type has many user accounts
 UserType.hasMany(User);
@@ -76,19 +58,11 @@ User.belongsTo(Company);
 // Relations End
 
 // import Routes start
-<<<<<<< Updated upstream
-import userRouter from './routes/user.js'
-import jobRouter from './routes/job.js'
-import errorhandler from './middlewares/errorHandler.js'
-import utilRouter from './routes/utils.js'
-import Skill from './models/Skills.js'
-=======
 import userRouter from "./routes/user.js";
 import jobRouter from "./routes/job.js";
 import errorhandler from "./middlewares/errorHandler.js";
 import utilRouter from "./routes/utils.js";
-// import userLogin from "./routes/UserLogin.js";
->>>>>>> Stashed changes
+import Skill from "./models/Skills.js";
 
 // import Routes end
 

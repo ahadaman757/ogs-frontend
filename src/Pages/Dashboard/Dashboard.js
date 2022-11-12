@@ -27,7 +27,6 @@ const Dashboard = ({ parentToChild }) => {
         setUserData(res.data);
         setUserDataLoading(false);
       });
-    console.log("user data ==== " + userData);
     // GET JOBS
     axios
       .get(`http://localhost:3002/jobs/myjobs`, {
@@ -85,7 +84,9 @@ const Dashboard = ({ parentToChild }) => {
                     <p className={`ogsfonts12`}>No. of jobs you posted</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
-                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
+                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>
+                      {jobsLoading ? "-" : jobs.length}
+                    </h1>
                   </div>
                 </div>
                 <div className={` p-3  ${Styles.postjobslimit}`}>
