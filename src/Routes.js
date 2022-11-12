@@ -9,6 +9,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Postajob from "./Pages/post a job/postAjob";
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 import CV from "./Pages/Forms/CV";
+import DemoLogin from "./Pages/authpages/DemoLogin";
 
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "postajob",
     element: <Postajob />,
+  },
+  {
+    path: "demologin",
+    element: <DemoLogin />,
   },
 ]);
 function Routes() {

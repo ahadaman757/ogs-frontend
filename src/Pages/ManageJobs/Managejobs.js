@@ -1,5 +1,5 @@
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Styles from "./Managejobs.module.css";
 import Searchicon from "../../Assets/Images/search.png";
 import proimg from "../../Assets/Images/Rectangle 1143.png";
@@ -7,14 +7,44 @@ import Jobcard from "../../Components/jobcard/Jobcard";
 import Active from "../../Components/Active/Active";
 import Deactivated from "../../Components/Deactived/Deactived";
 import Draft from "../../Components/Draft/Draft";
+import axios from "axios";
 const Managejobs = () => {
   const [data, Setdata] = useState("");
   const [currntstac, setcurrntstac] = useState("");
+  const [jobs, setJobs] = useState();
+  const [jobsLoading, setJobsLoading] = useState(true);
+  const [userData, setUserData] = useState();
+  const [userDataLoading, setUserDataLoading] = useState();
   const display = (d) => {
     console.log("value");
     console.log(d);
     Setdata(d);
   };
+
+  useEffect(() => {
+    // GET USER DATA
+    axios
+      .get("http://localhost:3002/users/me", {
+        headers: {
+          accesstoken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        setUserData(res.data);
+        setUserDataLoading(false);
+        console.log(userData);
+      });
+    axios
+      .get(`http://localhost:3002/jobs/myjobs`, {
+        headers: {
+          accesstoken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        setJobs(res.data);
+        setJobsLoading(false);
+      });
+  }, []);
   return (
     <div>
       <DashboardNavbar side={display} />
@@ -26,7 +56,8 @@ const Managejobs = () => {
           <div className="col-9">
             <div className={` p-3 ${Styles.Managejobschild1}`}>
               <h1 className={`ogsfonts25`}>
-                Manage Jobs - OGS (PVt) Limited (89)
+                Manage Jobs -{" "}
+                {userData.company == null ? "Undefined" : userData.company_name}
               </h1>
               <p>to find talent</p>
               <div className="d-flex">
@@ -92,12 +123,18 @@ const Managejobs = () => {
               </div>
             </div>
             <div>
-              {currntstac == "active" ? (
-                <Active />
-              ) : currntstac == "draft" ? (
-                <Draft />
+              {jobsLoading ? (
+                "Loading..."
+              ) : jobs.length > 0 ? (
+                currntstac == "active" ? (
+                  <Active jobs={jobs} />
+                ) : currntstac == "draft" ? (
+                  <Draft jobs={jobs} />
+                ) : (
+                  <Deactivated jobs={jobs} />
+                )
               ) : (
-                <Deactivated />
+                "No posted jobs"
               )}
             </div>
           </div>
