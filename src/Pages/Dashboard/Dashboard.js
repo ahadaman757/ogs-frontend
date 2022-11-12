@@ -27,7 +27,7 @@ const Dashboard = ({ parentToChild }) => {
         setUserData(res.data);
         setUserDataLoading(false);
       });
-
+    console.log("user data ==== " + userData);
     // GET JOBS
     axios
       .get(`http://localhost:3002/jobs/myjobs`, {
@@ -194,11 +194,13 @@ const Dashboard = ({ parentToChild }) => {
                 <p className="ogsfonts14">
                   {userDataLoading ? "Loading..." : userData.email}{" "}
                 </p>
-                <p className="ogsfonts14">
+                {/* <p className="ogsfonts14">
                   {userDataLoading
                     ? "Loading..."
+                    : userData.company.business_mobile_number == null
+                    ? "Not set"
                     : userData.company.business_mobile_number}
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

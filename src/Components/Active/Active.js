@@ -4,9 +4,11 @@ const Active = (props) => {
   return (
     <div>
       <div>
-        {props.jobs.map((job) => {
-          return <Jobcard staus="active" data={job} />;
-        })}
+        {props.jobs.length > 0
+          ? props.jobs.map((job) => {
+              return <Jobcard staus="active" data={job} />;
+            })
+          : "No jobs found!"}
       </div>
     </div>
   );
