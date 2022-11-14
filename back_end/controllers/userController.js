@@ -12,6 +12,7 @@ import { REFRESH_SECRET, JWT_SECRET } from "../config/index.js";
 import RefreshToken from "../models/refreshToken.js";
 import { decryptPassword } from "../services/Main.js";
 import jwt_service from "../services/JwtService.js";
+import sequelize from "../config/db.js";
 // const User = require('../models/Users')
 const registercontroller = async (req, res, next) => {
   // extract error from validation schema
@@ -50,7 +51,7 @@ const registercontroller = async (req, res, next) => {
     if (error) {
       next(error);
     } else {
-      const { firstName, lastName, email, password, repeatPassword, position } =
+      const { first_name, last_name, email, password, repeat_password, position } =
         req.body;
       // first check whether a user is registered with this email
       const user = await User.findOne({ where: { email: email } });
@@ -58,11 +59,11 @@ const registercontroller = async (req, res, next) => {
         const hash = await decryptPassword(password);
         // insert into database
         User.create({
-          first_name: firstName,
-          last_name: lastName,
+          first_name: first_name,
+          last_name: last_name,
           email: email,
           password: hash,
-          repeat_password: repeatPassword,
+          repeat_password: repeat_password,
           position: position,
         })
           .then((response) => {
@@ -74,6 +75,16 @@ const registercontroller = async (req, res, next) => {
                 UserId: response.id,
               });
               // insertion for employer end
+            }
+            else {
+              if (registerType == "seeker") {
+                const { job_title, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, min_experience, max_experience, industry = 1, education_level, gender, interested_in } = body
+                sequelize.query(`insert INTO cv (job_title,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,valid_upto,degree_title,institution,first_name,last_name,min_experience,max_experience,industry,education_level,gender,interested_in) VALUES('${job_title}','${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${valid_upto}','${degree_title}','${institution}','${first_name}','${last_name}',${min_experience},${max_experience},${industry},${education_level},${gender},${interested_in})`).then(res => {
+                  console.log("cv addde")
+                }).catch(error => {
+                  console.log(error)
+                })
+              }
             }
             console.log(response.id);
             const accesstoken = jwt_service.sign(
@@ -167,7 +178,7 @@ const signincontroller = async (req, res, next) => {
               REFRESH_SECRET
             );
             RefreshToken.create({ token: refresh_token })
-              .then((res) => {})
+              .then((res) => { })
               .catch((error) => {
                 return next(new Error("Problem occured in database"));
               });

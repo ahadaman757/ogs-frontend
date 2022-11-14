@@ -15,8 +15,10 @@ import jwt_service from '../services/JwtService.js'
 import sequelize from '../config/db.js'
 
 const GetCityByCountry = async (req, res, next) => {
+
     try {
         const country_id = req.body.country_id
+        console.log("city")
         const [cities, metadata] = await sequelize.query(`select id,name from cities where country_id = ${country_id} `);
         res.json(cities)
     }

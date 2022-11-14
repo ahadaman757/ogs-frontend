@@ -10,20 +10,20 @@ const LoginInformationValidation = (setformdata, formData) => {
   return {
     initialValues: {
       position: formData.position,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
+      first_name: formData.first_name,
+      last_name: formData.last_name,
       email: formData.email,
       password: formData.password,
-      repeatPassword: formData.repeatPassword,
+      repeat_password: formData.repeat_password,
     },
 
     validationSchema: Yup.object({
       position: Yup.string().required("Required"),
-      firstName: Yup.string().required("Required"),
-      lastName: Yup.string().required("Required"),
+      first_name: Yup.string().required("Required"),
+      last_name: Yup.string().required("Required"),
       email: Yup.string().required("Required"),
       password: Yup.string().required("Password is Required"),
-      repeatPassword: Yup.string().oneOf(
+      repeat_password: Yup.string().oneOf(
         [Yup.ref("password"), null],
         "Passwords must match"
       ),

@@ -8,7 +8,7 @@ import Managejobs from "./Pages/ManageJobs/Managejobs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Postajob from "./Pages/post a job/postAjob";
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
-import CV from "./Pages/Forms/CV";
+import CV from "./Pages/FirstCv/FirstCv";
 import DemoLogin from "./Pages/authpages/DemoLogin";
 
 const getContextValue = () => {

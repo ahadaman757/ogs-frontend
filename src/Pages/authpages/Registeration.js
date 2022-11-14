@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react'
 
 import styles from './main.module.css'
 import MultiStep from 'react-multistep'
-import CV from '../Forms/CV'
+
 import { LoginInformationValidation, BusinessInformationValidation, AddressInformationValidation } from '../../formsValidations/Registeration'
 import { List, TextInput } from '../Forms/InputFields'
 import { useFormik } from 'formik'
 
-const UploadImageSide = ({ setLogoData }) => {
+const UploadImageSide = ({ setLogoData, title }) => {
     const [photoSelected, setphotoSelected] = useState()
     const handleInputChange = (event) => {
         setLogoData(event.target.files[0])
     };
-    console.log(photoSelected)
     return (
         <div className="col-md-6 my-md-5 my-4">
             <div className="container d-flex align-items-center justify-content-center flex-column">
@@ -25,7 +24,7 @@ const UploadImageSide = ({ setLogoData }) => {
                     <h4 className='text-dark mt-2'>Choose file to upload</h4>
                 </div>
                 <h4 className='mt-2'>
-                    Logo Upload
+                    {title}
                 </h4>
             </div>
         </div>
@@ -59,10 +58,10 @@ const LoginInformation = ({ sel, setformData, formData }) => {
                     <List id='position' list_id="positions" formik={logininformationFormik} label="Position" />
                 </div>
                 <div className="col-md-6">
-                    <TextInput id='firstName' formik={logininformationFormik} label="First Name" />
+                    <TextInput id='first_name' formik={logininformationFormik} label="First Name" />
                 </div>
                 <div className="col-md-6">
-                    <TextInput id='lastName' formik={logininformationFormik} label="Last Name" />
+                    <TextInput id='last_name' formik={logininformationFormik} label="Last Name" />
                 </div>
 
 
@@ -73,7 +72,7 @@ const LoginInformation = ({ sel, setformData, formData }) => {
                     <TextInput type="password" id='password' formik={logininformationFormik} label="Password" />
                 </div>
                 <div className="col-md-6">
-                    <TextInput type="password" id='repeatPassword' formik={logininformationFormik} label="Repeat Password" />
+                    <TextInput type="password" id='repeat_password' formik={logininformationFormik} label="Repeat Password" />
                 </div>
                 <button className='unset_button w-100 text-white py-2 form_action_button  submit' type='submit'>Continue</button>
             </form>
@@ -192,11 +191,11 @@ function Register() {
     const [LogoData, setLogoData] = useState()
     const [formData, setformData] = useState({
         position: '',
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
-        repeatPassword: '',
+        repeat_password: '',
         businessName: '',
         businessType: '',
         businessWebpage: '',
@@ -253,7 +252,7 @@ function Register() {
 
                     {
                         (formStep == 2 ?
-                            <UploadImageSide setLogoData={setLogoData} />
+                            <UploadImageSide setLogoData={setLogoData} title="Logo Upload" />
 
                             : formStep == 4 ? null : <div className={`col-md-6 bg-secondary ${styles.auth_img} `}>
                             </div>)
@@ -268,3 +267,4 @@ function Register() {
 
 // export default Test
 export default Register
+export { UploadImageSide }

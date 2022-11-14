@@ -4,8 +4,8 @@ class Extractdata {
     }
     static EmployerSignUp = (body) => {
         const data = {
-            first_name: body.firstName,
-            last_name: body.lastName,
+            first_name: body.first_name,
+            last_name: body.last_name,
             password: body.password,
             repeat_password: body.repeatPassword,
             position: body.position,
@@ -24,8 +24,8 @@ class Extractdata {
     }
     static SeekerSignUp = (body) => {
         const data = {
-            first_name: body.firstName,
-            last_name: body.lastName,
+            first_name: body.first_name,
+            last_name: body.last_name,
             email: body.email,
             password: body.password,
             repeat_password: body.repeatPassword,
