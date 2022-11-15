@@ -32,16 +32,16 @@ const Managejobs = () => {
       <div
         className={`${Styles.Managejobsmain}`}
         style={{
-          marginLeft:
-            mobileActive === true && data === true
-              ? "55px"
-              : mobileActive === true && data === false
-              ? "20px"
-              : mobileActive === false && data === true
-              ? "55px"
-              : mobileActive === false && data === false
-              ? "200px"
-              : "",
+          marginLeft: data ? "55px" : "200px",
+          // mobileActive === true && data === true
+          //   ? "55px"
+          //   : mobileActive === true && data === false
+          //   ? "20px"
+          //   : mobileActive === false && data === true
+          //   ? "55px"
+          //   : mobileActive === false && data === false
+          //   ? "200px"
+          //   : "",
         }}
       >
         <div className="row p-4 mt-5">

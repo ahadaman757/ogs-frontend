@@ -10,6 +10,9 @@ import Postajob from "./Pages/post a job/postAjob";
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
 import CV from "./Pages/Forms/CV";
 import Jobpop from "./Components/job pop/jobpop";
+import Setting from "./Pages/setting/setting";
+import Cvsearch from "./Pages/cvsearch/cvsearch";
+import Newapplicant from "./Pages/new applicant/newapplicant";
 
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
@@ -59,7 +62,22 @@ const router = createBrowserRouter([
     path: "postajob",
     element: <Postajob />,
   },
-  { path: "jobpop", element: <Jobpop /> },
+  {
+    path: "jobpop",
+    element: <Jobpop />,
+  },
+  {
+    path: "setting",
+    element: <Setting />,
+  },
+  {
+    path: "cvsearch",
+    element: <Cvsearch />,
+  },
+  {
+    path: "newapplicant",
+    element: <Newapplicant />,
+  },
 ]);
 function Routes() {
   return <RouterProvider router={router} />;

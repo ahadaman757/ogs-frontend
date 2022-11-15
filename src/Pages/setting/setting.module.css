@@ -1,0 +1,16 @@
+.settingmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.settheader {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.settingsider {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  height: 50%;
+}

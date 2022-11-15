@@ -1,0 +1,19 @@
+.Cvmain {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.cvheadicon {
+  border: none;
+  background: transparent;
+}
+.skills {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
+  background: #ffffff;
+  border: 1px solid #c8c8c8;
+  border-radius: 100px;
+}
