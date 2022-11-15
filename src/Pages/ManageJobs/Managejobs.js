@@ -82,7 +82,7 @@ const Managejobs = () => {
             <div className={` p-3 ${Styles.Managejobschild1}`}>
               <h1 className={`ogsfonts25`}>
                 Manage Jobs -{" "}
-                {userData.company == null ? "Undefined" : userData.company_name}
+                {userData?.company == null ? "Undefined" : userData.company_name}
               </h1>
               <p>to find talent</p>
               <div className="d-sm-flex">
