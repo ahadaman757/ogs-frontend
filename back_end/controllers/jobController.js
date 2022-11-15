@@ -78,6 +78,7 @@ const JobPostController = async (req, res, next) => {
   // const { error } = JoiValidation.JobPostValidation(body)
   const OrderedData = Extractdata.JobPost(body);
   console.log(OrderedData.orderedData);
+  console.log(req.user.id)
   // insert data in job table
   Job.create({
     ...OrderedData.orderedData,
@@ -127,6 +128,7 @@ const JobPostController = async (req, res, next) => {
 // /Temporary Job Controller end
 
 const JobMyCompaniesController = async (req, res, next) => {
+  console.log(req.user.id)
   try {
     const AllJobs = await Job.findAll({
       where: {

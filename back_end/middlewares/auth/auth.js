@@ -6,14 +6,15 @@ import Company from "../../models/CompanyProfile/Company.js"
 
 const auth = async (req, res, next) => {
     let authHeader = req.headers.accesstoken;
-    console.log("authheader:" + authHeader)
     if (!authHeader) {
         return next(CustomErrorHandler.unAuthorized("No Access Token"))
     }
     else {
         try {
             const { id } = jwt_service.verifytoken(authHeader, JWT_SECRET)
-
+            console.log("token id:")
+            console.log(id)
+            console.log("token id:")
             const user = await User.findOne({ where: { id: id }, attributes: { exclude: ['password'] }, include: Company });
             if (user === null) {
                 return next(CustomErrorHandler.notFound("User Not Found"))

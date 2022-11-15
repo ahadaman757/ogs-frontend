@@ -24,7 +24,8 @@ const monthNames = [
   "December",
 ];
 const Jobcard = (props) => {
-  let date = new Date(props.data.createdAt);
+  console.log(props)
+  let date = new Date(props.data?.createdAt);
   let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
