@@ -195,10 +195,24 @@ const GetJobOption = async (req, res, next) => {
 const JobByIdController = async (req, res, next) => {
 
   const job_id = req.params.id
-  const job_record = await sequelize.query(`select * from job where id='83'`)
+  const job_records = await sequelize.query(`SELECT job.id,job.job_title,countries.name as country,cities.name as city,careerlevels.career_title as required_career_level,minsalaries.min_salary as min_salary, maxsalaries.max_salary as max_salary, functionalareas.functional_area as functional_area, genders.gender_title as gender,jobshifts.job_shift as job_shift, educationqualifications.qualification as required_qualification,minexperiences.min_experience, maxexperiences.max_experience,minagerequirements.min_age,maxagerequirements.max_age
+  from job
+  JOIN countries on job.country_id=countries.id
+  JOIN cities on job.city_id=cities.id
+  JOIN careerlevels on job.career_level_id=careerlevels.id
+  JOIN minsalaries on job.min_salary_id=minsalaries.id
+  JOIN maxsalaries on job.max_salary_id=maxsalaries.id
+  JOIN functionalareas on job.functional_area_id=functionalareas.id
+  JOIN genders on job.gender_title_id=genders.id
+  JOIN jobshifts  on job.job_shift_id=jobshifts.id
+  JOIN  educationqualifications on job.required_qualification_id=educationqualifications.id
+  JOIN  minexperiences on job.min_experience_id=minexperiences.id
+  JOIN  maxexperiences on job.max_experience_id=maxexperiences.id
+  JOIN  minagerequirements on job.min_age_id=minagerequirements.id
+  JOIN  maxagerequirements on job.max_age_id=maxagerequirements.id`)
 
   console.log(job_id)
-  res.json(job_record[0])
+  res.json(job_records[0])
 }
 export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController };
 

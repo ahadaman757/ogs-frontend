@@ -7,8 +7,8 @@ import TagInput from '../Forms/TagInput'
 import InputSelect from "../../Components/inputselect/inputfselect";
 import TextEditer from "../../Components/textediter/textediter"
 import { Formik, useFormik } from 'formik';
-import styles from '../authpages/main.module.css'
 import * as Yup from 'yup';
+import styles from '../authpages/main.module.css'
 import axios from "axios";
 const Postajob = () => {
   const [data, Setdata] = useState("");
