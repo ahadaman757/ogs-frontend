@@ -9,12 +9,26 @@ import Deactivated from "../../Components/Deactived/Deactived";
 import Draft from "../../Components/Draft/Draft";
 import axios from "axios";
 const Managejobs = () => {
-  const [data, Setdata] = useState("");
+  const [data, Setdata] = useState(false);
   const [currntstac, setcurrntstac] = useState("");
+
+  const [mobileActive, setMobileActive] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 450) {
+        setMobileActive(true);
+      } else {
+        setMobileActive(false);
+      }
+    });
+  }, []);
+
   const [jobs, setJobs] = useState();
   const [jobsLoading, setJobsLoading] = useState(true);
   const [userData, setUserData] = useState();
   const [userDataLoading, setUserDataLoading] = useState();
+
   const display = (d) => {
     console.log("value");
     console.log(d);
@@ -50,19 +64,30 @@ const Managejobs = () => {
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain}`}
-        style={{ marginLeft: data ? "55px" : "200px" }}
+        style={{
+          marginLeft: data ? "55px" : "200px",
+          // mobileActive === true && data === true
+          //   ? "55px"
+          //   : mobileActive === true && data === false
+          //   ? "20px"
+          //   : mobileActive === false && data === true
+          //   ? "55px"
+          //   : mobileActive === false && data === false
+          //   ? "200px"
+          //   : "",
+        }}
       >
         <div className="row p-4 mt-5">
-          <div className="col-9">
+          <div className="col-md-9">
             <div className={` p-3 ${Styles.Managejobschild1}`}>
               <h1 className={`ogsfonts25`}>
                 Manage Jobs -{" "}
                 {userData.company == null ? "Undefined" : userData.company_name}
               </h1>
               <p>to find talent</p>
-              <div className="d-flex">
+              <div className="d-sm-flex">
                 <div
-                  className={`input-group flex-row align-items-center inp ${Styles.inputmj} `}
+                  className={` input-group flex-row align-items-center inp ${Styles.inputmj} `}
                 >
                   <input
                     type="text"
@@ -104,14 +129,14 @@ const Managejobs = () => {
                     </li>
                   </ul>
                 </div>
-                <button className={` mx-2 ${Styles.btnsearch}`}>
+                <button className={` mx-sm-2 ${Styles.btnsearch}`}>
                   <span>
                     <img src={Searchicon} />
                   </span>
                 </button>
               </div>
             </div>
-            <div className={`d-flex p-3  my-3 ${Styles.tabsadd}`}>
+            <div className={`d-flex flex-wrap p-3  my-3 ${Styles.tabsadd}`}>
               <div className={`mx-5 p-2 ogsfonts16  ${Styles.tablinks}`}>
                 <a onClick={() => setcurrntstac("active")}>Active</a>
               </div>

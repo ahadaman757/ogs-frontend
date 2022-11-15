@@ -1,0 +1,40 @@
+.Personalinfomain {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.upload_btn_wrapper {
+  height: 245px;
+  box-shadow: 0px 0px 4px 8px rgba(243, 240, 240, 0.37);
+  background: #f3f3f3;
+  border: 1px solid #c8c8c8;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 230px;
+}
+.pointer {
+  cursor: pointer;
+}
+.file_upload_icon {
+  height: 45.5px;
+}
+.file_upload_hide {
+  visibility: hidden;
+}
+.inputfileh1 {
+  width: 51%;
+}
+.profcbtn {
+  background-color: transparent;
+  border: none;
+}
+.profsbtn {
+  background: #252525;
+  border-radius: 3px;
+  width: 173px;
+  height: 52px;
+  color: white;
+  border: none;
+}

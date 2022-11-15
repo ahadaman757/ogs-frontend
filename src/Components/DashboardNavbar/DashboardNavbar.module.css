@@ -1,5 +1,6 @@
 .DashboardNavbarmain {
   /* overflow: hidden; */
+  /* z-index: 3; */
 }
 .navbarsrcon {
   background: #ffffff;
@@ -36,8 +37,8 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-
-  align-items: flex-start;
+  z-index: 3;
+  align-items: center;
 }
 
 .navbar {
@@ -85,7 +86,7 @@ div.content {
 .sidedasbtn {
   border: none !important;
   background: transparent !important;
-  padding: 16px 29px;
+  /* padding: 16px 29px; */
 }
 .dashbordimg {
   margin-right: 15px;

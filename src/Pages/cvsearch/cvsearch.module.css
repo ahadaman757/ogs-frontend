@@ -1,0 +1,22 @@
+.Cvsearchmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Cvsearchchild {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.Cvsearchstin {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.InputField {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  height: 36px;
+  width: 100%;
+}

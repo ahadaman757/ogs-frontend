@@ -58,3 +58,8 @@
 
   color: #8b8b8b;
 }
+@media only screen and (max-width: 555px) {
+  .jobcardinfo {
+    background-image: none;
+  }
+}

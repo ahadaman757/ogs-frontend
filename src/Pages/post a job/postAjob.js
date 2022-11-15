@@ -1,3 +1,15 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@Kashif-ali-khan10 
+ahadaman757
+
+
 import Styles from "./postajob.module.css";
 import { useState, useEffect } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
@@ -435,6 +447,3 @@ const Postajob = () => {
     </div>
   );
 };
-
-
-export default Postajob;

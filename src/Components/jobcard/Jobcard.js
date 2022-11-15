@@ -52,11 +52,6 @@ const Jobcard = (props) => {
               <img src={viewicon} />
             </span>
           </button>
-          <button className={`mx-2 ${Styles.filaneyebtn}`}>
-            <span>
-              <img src={filtericon} />
-            </span>
-          </button>
         </div>
       </div>
 
@@ -67,7 +62,7 @@ const Jobcard = (props) => {
         </p>
       </div>
       <div
-        className={`d-flex justify-content-evenly my-4 ${Styles.jobcardinfo}`}
+        className={`d-flex flex-wrap justify-content-evenly my-4 ${Styles.jobcardinfo}`}
       >
         <div>
           <div className={`${Styles.jobcarddetailsl}`}>
@@ -97,15 +92,15 @@ const Jobcard = (props) => {
           <p className="ogsfonts14 text-center">Interviews</p>
         </div>
       </div>
-      <div className="d-flex m-0 ">
+      <div className="d-flex flex-wrap m-0 ">
         <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>
         <p className="ogsfonts14">Average salary based on similar jobs</p>
       </div>
-      <div className="d-flex justify-content-between align-items-center">
-        <div className="d-flex">
+      <div className="d-flex flex-wrap justify-content-between align-items-center">
+        <div className="d-flex flex-wrap">
           <p className="my-0 ogsfonts14">63 Similar jobs</p>
-          <p className="my-0 mx-3 ogsfonts14">96 Total visits</p>
-          <p className="my-0 mx-3 ogsfonts14">Expiry Date: Jun 26, 2022</p>
+          <p className="my-0 mx-sm-3 ogsfonts14">96 Total visits</p>
+          <p className="my-0 mx-sm-3 ogsfonts14">Expiry Date: Jun 26, 2022</p>
         </div>
         <div>
           <button className={`mx-2 ${Styles.csdbtn}`}>

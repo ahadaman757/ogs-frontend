@@ -19,6 +19,9 @@
   background: #252525;
   border-radius: 3px;
   padding: 10px 30px;
+  /* width: 100%;s */
+  /* height: 50px; */
+  /* padding: 10px; */
 }
 .profcard {
   background: #5200ff;
@@ -41,4 +44,15 @@
   background: #a08dfb;
   border-radius: 2px;
   color: white;
+}
+@media only screen and (max-width: 576px) {
+  .btnsearch {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .profcard {
+    display: none !important;
+  }
 }
