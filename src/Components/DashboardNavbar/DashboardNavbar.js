@@ -17,6 +17,8 @@ import Searchicon from "../../Assets/Images/search 03.svg";
 import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
 
+import { useNavigate } from "react-router-dom";
+
 const DashboardNavbar = (props) => {
   const [displayside, setdisplay] = useState(true);
   const [icon1, seticon] = useState(dashbordicon);
@@ -25,6 +27,8 @@ const DashboardNavbar = (props) => {
   const [icon4, seticon4] = useState(dashbordiconb4);
   const [icon5, seticon5] = useState(dashbordiconb5);
   const [icon6, seticon6] = useState(dashbordiconw6);
+
+  const navigate = useNavigate();
 
   console.log(displayside);
   const handeler = (props) => {
@@ -46,88 +50,53 @@ const DashboardNavbar = (props) => {
             // paddingLeft: displayside ? "0px" : "9px",
             marginTop: displayside ? "15px" : "0px",
           }}
+          onClick={() => {
+            navigate("/dashboard");
+          }}
         >
-          <a
-            className={`btn btn-primary  ${styles.sidedasbtn}`}
-            // style={{ padding: displayside ? "10px" : "16px 29px" }}
-            data-bs-toggle="collapse"
-            href="#collapseExample"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-            onMouseEnter={() => {
-              seticon(dashbordicon1);
-            }}
-            onMouseLeave={() => {
-              seticon(dashbordicon);
-            }}
-          >
-            <span>
-              <img className={`${styles.dashbordimg}`} src={icon1} />
-            </span>
-            {displayside ? "" : "Dashboard"}
-          </a>
-        </div>
-        <div class="collapse" id="collapseExample">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          style={
-            {
-              // paddingLeft: displayside ? "0px" : "9px",
-              // paddingTop: displayside ? "15px" : "0px",
-            }
-          }
+
+
+          <span>
+            <img className={`${styles.dashbordimg}`} src={icon1} />
+          </span>
+          {displayside ? "" : "Dashboard"}
+        </a>
+        <a
+          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          data-bs-toggle="collapse"
+          href="#collapseExample1"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample1"
+          onMouseEnter={() => {
+            seticon2(dashbordiconw2);
+          }}
+          onMouseLeave={() => {
+            seticon2(dashbordiconb2);
+          }}
+          onClick={() => {
+            navigate("/managejobs");
+          }}
         >
-          <a
-            className={`btn btn-primary  ${styles.sidedasbtn}`}
-            // style={{ padding: displayside ? "10px" : "16px 29px" }}
-            data-bs-toggle="collapse"
-            href="#collapseExample1"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample1"
-            onMouseEnter={() => {
-              seticon2(dashbordiconw2);
-            }}
-            onMouseLeave={() => {
-              seticon2(dashbordiconb2);
-            }}
-          >
-            <span>
-              <img className={`${styles.dashbordimg}`} src={icon2} />
-            </span>
-            {displayside ? "" : "CV Folders"}
-          </a>
-        </div>
-        <div class="collapse" id="collapseExample1">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          style={
-            {
-              // paddingLeft: displayside ? "0px" : "9px",
-              // paddingTop: displayside ? "15px" : "0px",
-            }
-          }
+          <span>
+            <img className={`${styles.dashbordimg}`} src={icon2} />
+          </span>
+          {displayside ? "" : "Manage Jobs"}
+        </a>
+        <a
+          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          data-bs-toggle="collapse"
+          href="#collapseExample2"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample2"
+          onMouseEnter={() => {
+            seticon3(dashbordiconw3);
+          }}
+          onMouseLeave={() => {
+            seticon3(dashbordiconb3);
+          }}
+
         >
           <a
             className={`btn btn-primary  ${styles.sidedasbtn}`}

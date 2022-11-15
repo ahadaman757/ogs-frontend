@@ -2,7 +2,7 @@ import sequelize from "../config/db.js";
 import { DataTypes } from "sequelize";
 const Skill = sequelize.define('Skill', {
     // Model attributes are defined here
-    skill_title: {
+    text: {
         type: DataTypes.STRING,
         allowNull: false
     },

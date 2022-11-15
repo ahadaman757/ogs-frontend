@@ -15,5 +15,5 @@ create a user with name, eamil, password,type,position
 
 then create a company with this id
 user.createCompany
-then find  buisness_type
+then find  buisness_typee
 })

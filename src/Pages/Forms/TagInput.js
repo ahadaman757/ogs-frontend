@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { COUNTRIES } from './countries';
 import './style.css';
 import { WithContext as ReactTags } from 'react-tag-input';
+import axios from 'axios';
 
-const suggestions = COUNTRIES.map((country, index) => {
-    return {
-        id: country,
-        text: country
-    };
-});
+// const suggestions = COUNTRIES.map((country, index) => {
+//     return {
+//         id: country,
+//         text: country
+//     };
+// });
 
 const KeyCodes = {
     comma: 188,
@@ -17,35 +18,53 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-const App = () => {
+const App = ({ setSkills }) => {
+    const [suggestions, setsuggestions] = useState([])
     const [tags, setTags] = React.useState([
-        { id: 'Thailand', text: 'Thailand' },
-        { id: 'India', text: 'India' },
-        { id: 'Vietnam', text: 'Vietnam' },
-        { id: 'Turkey', text: 'Turkey' }
     ]);
-    console.log(tags)
+    setSkills(tags)
+
+    const handleTagChange = (e) => {
+        const formdata = {
+            kw: e,
+            act: 'loadSkillsByKW',
+            __exp: false
+        }
+        axios.post(`https://hiring.rozee.pk/services/job/loadSkillsByKW`, formdata, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Access-Control-Allow-Origin": "https://www.rozee.pk",
+            },
+        }).then(res => {
+            const suggestion = res.data.skills.map((skill, index) => {
+                return {
+                    id: skill.id,
+                    text: skill.name
+                };
+            });
+            setsuggestions(suggestion)
+        }).catch(error => {
+            console.log(error)
+        })
+
+    }
     const handleDelete = i => {
         setTags(tags.filter((tag, index) => index !== i));
     };
 
     const handleAddition = tag => {
-        console.log(tag)
         setTags([...tags, tag]);
     };
 
     const handleDrag = (tag, currPos, newPos) => {
         const newTags = tags.slice();
-
         newTags.splice(currPos, 1);
         newTags.splice(newPos, 0, tag);
-
-        // re-render
         setTags(newTags);
     };
 
     const handleTagClick = index => {
-        console.log('The tag at index ' + index + ' was clicked');
+
     };
 
     return (
@@ -62,6 +81,7 @@ const App = () => {
                     inputFieldPosition="bottom"
                     autocomplete
                     placeholder='Please Add A skill'
+                    handleInputChange={handleTagChange}
                 />
             </div>
         </div>
