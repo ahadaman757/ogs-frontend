@@ -1,0 +1,19 @@
+.Myjobsmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Myjobshead {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.asbtn {
+  border: none;
+  background-color: transparent;
+}
+.asbtn:hover {
+  background: #a08dfb;
+  border-radius: 2px;
+  color: white;
+}

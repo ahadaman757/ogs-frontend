@@ -8,17 +8,14 @@ import Managejobs from "./Pages/ManageJobs/Managejobs";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Postajob from "./Pages/post a job/postAjob";
 import SeekerRegisteration from "./Pages/authpages/SeekerRegsiteration";
-
-
 import Jobpop from "./Components/job pop/jobpop";
 import Setting from "./Pages/setting/setting";
 import Cvsearch from "./Pages/cvsearch/cvsearch";
 import Newapplicant from "./Pages/new applicant/newapplicant";
-
 import CV from "./Pages/FirstCv/FirstCv";
 import DemoLogin from "./Pages/authpages/DemoLogin";
-
-
+import Persanalinfo from "./Pages/seekerpages/persanalinfo/persanalinfo";
+import Myjobs from "./Pages/seekerpages/myjobs/myjobs";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -68,7 +65,6 @@ const router = createBrowserRouter([
     element: <Postajob />,
   },
   {
-
     path: "jobpop",
     element: <Jobpop />,
   },
@@ -83,10 +79,18 @@ const router = createBrowserRouter([
   {
     path: "newapplicant",
     element: <Newapplicant />,
-
+  },
+  {
     path: "demologin",
     element: <DemoLogin />,
-
+  },
+  {
+    path: "persanalinfo",
+    element: <Persanalinfo />,
+  },
+  {
+    path: "myjobs",
+    element: <Myjobs />,
   },
 ]);
 function Routes() {

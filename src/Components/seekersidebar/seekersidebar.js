@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./DashboardNavbar.module.css";
+import styles from "./seekersidebar.module.css";
 import dashbordicon from "./../../Assets/Images/menu-home.png";
 import dashbordicon1 from "./../../Assets/Images/menu-home.svg";
 import dashbordiconb2 from "./../../Assets/Images/briefcase.png";
@@ -19,7 +19,7 @@ import userlogo from "../../Assets/Images/user-circle.svg";
 
 import { useNavigate } from "react-router-dom";
 
-const DashboardNavbar = (props) => {
+const Seekersidebar = (props) => {
   const [displayside, setdisplay] = useState(true);
   const [icon1, seticon] = useState(dashbordicon);
   const [icon2, seticon2] = useState(dashbordiconb2);
@@ -291,4 +291,4 @@ const DashboardNavbar = (props) => {
   );
 };
 
-export default DashboardNavbar;
+export default Seekersidebar;
