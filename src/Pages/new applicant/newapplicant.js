@@ -1,5 +1,5 @@
 import Styles from "./newapplicant.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
 import filltericon from "../../Assets/Images/filter.svg";
 import usericon from "../../Assets/Images/New folder (3)/user.svg";
@@ -19,8 +19,28 @@ import selecticon from "../../Assets/Images/check mark-rectangle.svg";
 import diskicon from "../../Assets/Images/disk.svg";
 import piechart from "../../Assets/Images/chart-pie 01.svg";
 import Cv from "../../Components/cv view/cv";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Newapplicant = () => {
+  const { state } = useLocation()
+  console.log(state)
+  // get all applicants
+  const [appicantsList, setappicantsList] = useState()
+  const getAllApplicants = () => {
+    axios.post("http://localhost:3002/jobs/jobapplicants", { job_id: state.id }).then(res => {
+      console.log(res.data)
+      setappicantsList(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+  useEffect(() => {
+    getAllApplicants()
+
+
+  }, [])
+
   const [data, Setdata] = useState("");
   const [icon1, seticon] = useState(usericon);
   const [icon2, seticon2] = useState(smileicon);
@@ -206,10 +226,13 @@ const Newapplicant = () => {
                   </button>
                 </div>
               </div>
-              <Cv />
-              <Cv />
-              <Cv />
-              <Cv />
+              {
+                appicantsList ? appicantsList.map(applicant => {
+                  return <Cv applicant={applicant} />
+                }) : 'loading'
+              }
+
+
             </div>
             <div className={`col-md-3 `}>
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>

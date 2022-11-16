@@ -27,5 +27,17 @@ const GetCityByCountry = async (req, res, next) => {
     }
 
 }
+const GetEmployerOptions = async (req, res, next) => {
 
-export default { GetCityByCountry }
+    try {
+        const [industries, metadata] = await sequelize.query(`select * from business_types`);
+        const [countries, metaxountry] = await sequelize.query(`select * from countries`);
+        res.json({ industries, countries })
+    }
+    catch (error) {
+        return next(error)
+    }
+
+}
+
+export default { GetCityByCountry, GetEmployerOptions }

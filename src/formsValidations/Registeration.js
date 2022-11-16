@@ -100,7 +100,7 @@ const AddressInformationValidation = (
         name[2].click();
         const fullFormData = { ...data, ...values };
         const formdata = new FormData();
-        // formdata.append('image', logo)
+        formdata.append('image', LogoData)
         for (var key in fullFormData) {
           formdata.append(key, fullFormData[key]);
         }

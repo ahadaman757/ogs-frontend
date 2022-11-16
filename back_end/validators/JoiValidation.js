@@ -2,7 +2,10 @@ import joi from "joi";
 import { VALID_MODE } from "../config/index.js";
 class JoiValidation {
   constructor(error) {
-    if (VALID_MODE) this.error = error;
+    if (VALID_MODE == 'true') {
+      console.log("validating")
+      this.error = error;
+    }
     else this.error = null;
   }
   static signupRecruiter(body) {
@@ -22,8 +25,6 @@ class JoiValidation {
       business_mobile_number: joi.string().alphanum().min(3).max(30).required(),
       company_logo: joi.string().min(3).max(30),
       business_address: joi.string().min(3).max(30).required(),
-      country: joi.string().alphanum().min(3).max(30).required(),
-      city: joi.string().min(3).max(30).required(),
       contact_person_name: joi.string().min(3).max(30).required(),
       contact_person_number: joi.string().alphanum().min(3).max(30).required(),
       contact_person_email: joi.string().min(3).max(30).required(),

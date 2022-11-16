@@ -20,6 +20,8 @@ const registercontroller = async (req, res, next) => {
     let orderedData;
     const body = req.body;
     const { registerType = "seeker" } = req.body;
+    console.log("file")
+    console.log(req.file)
     if (registerType == "recruiter") {
       // order the requested data according to database
       orderedData = Extractdata.EmployerSignUp({
@@ -78,8 +80,9 @@ const registercontroller = async (req, res, next) => {
             }
             else {
               if (registerType == "seeker") {
-                const { job_title, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, min_experience, max_experience, industry = 1, education_level, gender, interested_in } = body
-                sequelize.query(`insert INTO cv (job_title,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,valid_upto,degree_title,institution,first_name,last_name,min_experience,max_experience,industry,education_level,gender,interested_in) VALUES('${job_title}','${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${valid_upto}','${degree_title}','${institution}','${first_name}','${last_name}',${min_experience},${max_experience},${industry},${education_level},${gender},${interested_in})`).then(res => {
+                console.log(req.file.path)
+                const { job_title, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, min_experience, max_experience, industry = 1, education_level, gender, interested_in, career_level } = body
+                sequelize.query(`insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,valid_upto,degree_title,institution,first_name,last_name,min_experience,max_experience,industry,education_level,gender,interested_in,user_id) VALUES('${req.file?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${valid_upto}','${degree_title}','${institution}','${first_name}','${last_name}',${min_experience},${max_experience},${industry},${education_level},${gender},${interested_in},${response.id})`).then(res => {
                   console.log("cv addde")
                 }).catch(error => {
                   console.log(error)
