@@ -82,4 +82,7 @@ app.use(errorhandler);
 
 app.listen(3002, () =>
   console.log(`OGS server started on port !`)
-);
+).on('error', function (err) {
+  console.log("server start error")
+  console.log(err)
+});

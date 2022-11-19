@@ -30,9 +30,10 @@ const GetCityByCountry = async (req, res, next) => {
 const GetEmployerOptions = async (req, res, next) => {
 
     try {
+        const [positions, metapositions] = await sequelize.query(`select * from positions`);
         const [industries, metadata] = await sequelize.query(`select * from business_types`);
-        const [countries, metaxountry] = await sequelize.query(`select * from countries`);
-        res.json({ industries, countries })
+        const [countries, metaxountry] = await sequelize.query(`select id,name from countries`);
+        res.json({ industries, countries, positions })
     }
     catch (error) {
         return next(error)

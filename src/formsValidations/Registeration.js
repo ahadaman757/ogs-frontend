@@ -93,8 +93,6 @@ const AddressInformationValidation = (
       employerEmail: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log("logodata");
-      console.log(LogoData);
       $(document).ready(function () {
         const name = $(".slide_button button");
         name[2].click();

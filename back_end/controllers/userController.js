@@ -10,7 +10,7 @@ import Company from "../models/CompanyProfile/Company.js";
 import bcrypt from "bcrypt";
 import { REFRESH_SECRET, JWT_SECRET } from "../config/index.js";
 import RefreshToken from "../models/refreshToken.js";
-import { decryptPassword } from "../services/Main.js";
+import { decryptPassword } from '../services/Main.js'
 import jwt_service from "../services/JwtService.js";
 import sequelize from "../config/db.js";
 // const User = require('../models/Users')
@@ -58,7 +58,7 @@ const registercontroller = async (req, res, next) => {
       // first check whether a user is registered with this email
       const user = await User.findOne({ where: { email: email } });
       if (user === null) {
-        const hash = await decryptPassword(password);
+        const hash = await await (password);
         // insert into database
         User.create({
           first_name: first_name,
@@ -202,7 +202,87 @@ const signincontroller = async (req, res, next) => {
     res.json({ error: 1, message: "All fields are required" });
   }
 };
-const ProfileController = (req, res, next) => {
-  res.json(req.user);
+const ProfileController = async (req, res, next) => {
+  console.log("user request")
+  console.log(req.user.id)
+  const [employer_record, metadata] = await sequelize.query(`select u.id,u.first_name,u.last_name,positions.position_title as position,u.email,countries.name as country,cities.name as city,c.business_mobile_number,c.company_name,c.company_logo,c.business_webpage,
+  c.business_address,c.contact_person_name,c.contact_person_number,c.contact_person_email,business_types.business_type_name,c.country as country_id,c.city as city_id
+  from users u 
+  JOIN  companies c on u.companyId=c.id
+  JOIN positions on u.position=positions.position_id
+  JOIN countries on c.country=countries.id
+  JOIN cities on c.city=cities.id
+  JOIN business_types on c.businessTypeId=business_types.id
+      where u.id =${req.user.id}`)
+
+  res.json(employer_record[0]);
 };
-export { registercontroller, imageUpload, signincontroller, ProfileController };
+const ResetPassword = async (req, res, next) => {
+  // get user id
+  try {
+    const user_id = req.user.id
+    const { old_password, new_password } = req.body
+    const req_old_password = old_password
+    const req_new_password = new_password
+    const [user_record, user_record_meta] = await sequelize.query(`SELECT * from users where id = ${user_id}`)
+    console.log(user_record[0])
+    bcrypt.compare(req_old_password, user_record[0].password, async function (err, result) {
+      console.log(result)
+      if (err || (!result)) {
+        if (err) {
+          return next(err)
+        }
+        return next(CustomErrorHandler.unAuthorized("old Password not matched"))
+      }
+      else if (result) {
+
+        const hash = await decryptPassword(req_new_password)
+
+        const update_password_record = await sequelize.query(`update users set password = '${hash}' where id= ${user_id} `)
+
+        res.json({ message: "password updated" })
+
+      }
+    })
+  }
+  catch (error) {
+    next(error)
+  }
+
+  // check req_old_password with database password
+
+  // update password field in users table
+
+  // const [reset_password, user_password_meta] = sequelize.query(`update password * from users where id = ${user_id}`)
+
+}
+const UpdateProfile = async (req, res, next) => {
+  // get user id
+  console.log("reb body")
+  console.log(req.body)
+
+  try {
+    const user_id = req.user.id
+    const { first_name, last_name, position, country, city, contact_number, address } = req.body
+
+    const [update_profile_record, update_profile_record_meta] = await sequelize.query(`update users set first_name='${first_name}' ,last_name ='${last_name}',position=${position} where id=${user_id}`)
+    const company_old_record = await sequelize.query(`select company_logo from companies where userId= ${user_id}`)
+    console.log(company_old_record)
+    // company_logo=${req.file.path}
+    const company_profile_record = sequelize.query(`update companies set country=${country}, city=${city},business_mobile_number='${contact_number}',business_address='${address}' where userId=${user_id}`)
+    res.json({ message: "Updated successfull" })
+  }
+
+
+  catch (error) {
+    next(error)
+  }
+
+  // check req_old_password with database password
+
+  // update password field in users table
+
+  // const [reset_password, user_password_meta] = sequelize.query(`update password * from users where id = ${user_id}`)
+
+}
+export { registercontroller, imageUpload, signincontroller, ProfileController, ResetPassword, UpdateProfile };

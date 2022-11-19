@@ -31,10 +31,15 @@ const UploadImageSide = ({ setLogoData, title }) => {
         </div>
     )
 }
-const LoginInformation = ({ sel, setformData, formData }) => {
+const LoginInformation = ({ sel, setformData, formData, employerRegsiterOptions }) => {
+    const [positions, setpostions] = useState()
     const [loginInfo, setloginInfo] = useState(null)
+    useEffect(() => {
+        setpostions(employerRegsiterOptions?.positions)
+    }, [employerRegsiterOptions])
+
     // Register Validation start
-    console.log(formData)
+
     const logininformationFormik = useFormik(LoginInformationValidation(setformData, formData))
     useEffect(() => {
 
@@ -56,7 +61,7 @@ const LoginInformation = ({ sel, setformData, formData }) => {
                 logininformationFormik.handleSubmit()
             }}>
                 <div className="col-12">
-                    <TextInput id='position' formik={logininformationFormik} label="Position" />
+                    <List id='position' options={positions} formik={logininformationFormik} label="Position" />
                 </div>
                 <div className="col-md-6">
                     <TextInput id='first_name' formik={logininformationFormik} label="First Name" />
@@ -229,7 +234,7 @@ function Register() {
         setformStep(index)
     }
     const steps = [
-        { name: 'StepOne', component: <div ><LoginInformation sel={selected} formData={formData} setformData={setformData} /></div> },
+        { name: 'StepOne', component: <div ><LoginInformation employerRegsiterOptions={employerRegsiterOptions} sel={selected} formData={formData} setformData={setformData} /></div> },
         { name: 'StepTwo', component: <div ><Businessinformation employerRegsiterOptions={employerRegsiterOptions} sel={selected} formData={formData} setformData={setformData} /></div> },
         { name: 'StepThree', component: <div ><AddressDetails employerRegsiterOptions={employerRegsiterOptions} sel={selected} formData={formData} setformData={setformData} LogoData={LogoData} data={formData} /></div> },
 
