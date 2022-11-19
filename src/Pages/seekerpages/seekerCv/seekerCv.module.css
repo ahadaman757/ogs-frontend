@@ -1,0 +1,18 @@
+.SeekerCvmain {
+  min-height: 100vh;
+  background: #f4f4f4;
+}
+.SeekerCvchaild {
+  background: #ffffff;
+  border: 1px solid #8b8b8b;
+  width: 1126px;
+  height: 1598px;
+}
+.apphead {
+  background: #fec750;
+  border: 1px solid #8b8b8b;
+}
+.appdetail {
+  background: #ffffff;
+  border: 1px solid #8b8b8b;
+}
