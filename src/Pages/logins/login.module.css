@@ -1,0 +1,16 @@
+.auth_page {
+  min-height: 100vh;
+}
+.auth_page__model {
+  background: white;
+}
+/* .auth_img {
+  z-index: 1000000;
+  background-position-x: right;
+  background-position-y: top;
+  background-size: cover;
+  background-image: url("../../Assets/Images/sign-in-right.png");
+} */
+.from {
+  height: 100% !important;
+}
