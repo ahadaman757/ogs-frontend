@@ -60,6 +60,7 @@ const SignUpCv = () => {
         institution: "",
         min_experience: "",
         max_experience: "",
+        career_level: ""
       },
       validationSchema: Yup.object({
         // job_title: Yup.string().required("Required"),
@@ -82,7 +83,18 @@ const SignUpCv = () => {
         // max_age: Yup.number("invalid type").required('Required'),
       }),
       onSubmit: values => {
-        axios.post('http://localhost:3002/users', values).then(res => {
+        const fullFormData = { ...values };
+        const formdata = new FormData();
+        formdata.append('image', LogoData)
+        for (var key in fullFormData) {
+          formdata.append(key, fullFormData[key]);
+        }
+        axios.post('http://localhost:3002/users', formdata, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }).then(res => {
           alert("account created")
         }).catch(error => {
           console.log(error)
@@ -96,7 +108,6 @@ const SignUpCv = () => {
     axios.post('http://localhost:3002/get_city_by_country_id', {
       country_id: CvFormIk.values.country || 1
     }).then(res => {
-
       console.log(res)
       setcities(res.data)
     }).catch(error => {
@@ -168,7 +179,7 @@ const SignUpCv = () => {
                   <List label="Gender" id="gender" options={dropDownOptions.gender} formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <List id="interested_in" options={dropDownOptions.job_type} label="Job Type" formik={CvFormIk} />
+                  <List id="career_level" options={dropDownOptions.career_level} label="career_level" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
                   <TextInput id="dob" type="date" label="DOB" formik={CvFormIk} />

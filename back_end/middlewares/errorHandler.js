@@ -10,7 +10,7 @@ import CustomErrorHandler from "../services/CustomErrorHandler.js";
 
 const errorhandler = (err, req, res, next) => {
 
-    console.log(ValidationError)
+    console.log(err)
     let statusCode = 500;
     let data = {
         message: err.message,

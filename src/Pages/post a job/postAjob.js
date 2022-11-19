@@ -536,4 +536,5 @@ const Postajob = () => {
     </div>
   );
 };
+
 export default Postajob;

@@ -93,14 +93,12 @@ const AddressInformationValidation = (
       employerEmail: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log("logodata");
-      console.log(LogoData);
       $(document).ready(function () {
         const name = $(".slide_button button");
         name[2].click();
         const fullFormData = { ...data, ...values };
         const formdata = new FormData();
-        // formdata.append('image', logo)
+        formdata.append('image', LogoData)
         for (var key in fullFormData) {
           formdata.append(key, fullFormData[key]);
         }

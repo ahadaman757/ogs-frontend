@@ -10,7 +10,7 @@ import likeicon from "../../Assets/Images/New folder (3)/like.svg";
 import dislikeicon from "../../Assets/Images/New folder (3)/dislike.svg";
 import { useState } from "react";
 
-const Cv = () => {
+const Cv = ({ applicant }) => {
   const [data, Setdata] = useState(true);
   return (
     <div className={` p-4 my-4 ${Styles.Cvmain}`}>
@@ -81,7 +81,7 @@ const Cv = () => {
       <hr />
       <div className="row">
         <div className="col-2">
-          <img src={profimg} />
+          <img className="img-fluid" src={`http://localhost:3002/${applicant.cv_image.replace("images", "images/")}`} />
           <div className=" mt-2 d-flex justify-content-evenly">
             <img src={likeicon} />
             <img src={dislikeicon} />
@@ -89,13 +89,13 @@ const Cv = () => {
         </div>
         <div className="col-9">
           <div className="d-flex">
-            <p className="me-3 ogsfonts20">Misha Ali Ali</p>
-            <p className="ogsfonts14">(Female, 30, Rawalpindi)</p>
+            <p className="me-3 ogsfonts20">{applicant.first_name + " " + applicant.last_name}</p>
+            <p className="ogsfonts14">{`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}   </p>
           </div>
           <div className="d-flex">
             {" "}
             <p className="me-3 ogsfonts16">CV Number:</p>
-            <p className="ogsfonts14"> 4485680 Apply Date: Jun 1, 2022</p>
+            <p className="ogsfonts14"> {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}</p>
           </div>
           <div className="d-flex">
             {" "}
@@ -108,16 +108,16 @@ const Cv = () => {
           <div className="d-flex">
             {" "}
             <p className="me-3 ogsfonts16">Education:</p>
-            <p className="ogsfonts14">BBA Hons.</p>
+            <p className="ogsfonts14">{`${applicant.qualification}`}</p>
           </div>
           <div className="d-flex">
             <p className="me-3 ogsfonts16">Career Level:</p>
-            <p className="ogsfonts14">Experienced Professional</p>
+            <p className="ogsfonts14">{applicant.career_title}</p>
           </div>
           <div className="d-flex">
             {" "}
             <p className="me-3 ogsfonts16">Industry:</p>
-            <p className="ogsfonts14">Banking/Financial Services</p>
+            <p className="ogsfonts14">{applicant.business_type_name}</p>
           </div>
           <div className="d-flex align-items-center">
             <p className="me-3 ogsfonts16">Skills:</p>
@@ -135,7 +135,7 @@ const Cv = () => {
       <div className="d-flex justify-content-between">
         <div>
           <p className="text-center ogsfonts14">Years of Experience</p>
-          <p className="text-center ogsfonts18 m-0">7 Years</p>
+          <p className="text-center ogsfonts18 m-0">{applicant.max_experience}</p>
         </div>
         <div>
           <p className="text-center ogsfonts14">Current Salary</p>
