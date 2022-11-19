@@ -21,25 +21,70 @@ import piechart from "../../Assets/Images/chart-pie 01.svg";
 import Cv from "../../Components/cv view/cv";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { List, TextInput } from "../Forms/InputFields";
+import { useFormik } from "formik";
 
 const Newapplicant = () => {
   const { state } = useLocation()
+  const [cities, setcities] = useState()
+  const [dropDownOptions, setdropDownOptions] = useState("");
+
+
+  const [applyFilters, setapplyFilters] = useState(false)
+  const filtersFormik = useFormik({
+    initialValues: {
+      start_date: "",
+      end_date: "",
+      country: "",
+      city: "",
+      education_level: "",
+      max_experience: "",
+      min_age: '',
+      max_age: '',
+      gender: ""
+    },
+    onSubmit: (values => {
+      console.log(values)
+    })
+  })
+  useEffect(() => {
+    axios.post('http://localhost:3002/get_city_by_country_id', {
+      country_id: filtersFormik.values.country || 1
+    }).then(res => {
+      setcities(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [filtersFormik.values.country])
   console.log(state)
   // get all applicants
   const [appicantsList, setappicantsList] = useState()
   const getAllApplicants = () => {
-    axios.post("http://localhost:3002/jobs/jobapplicants", { job_id: state.id }).then(res => {
-      console.log(res.data)
-      setappicantsList(res.data)
-    }).catch(error => {
-      console.log(error)
+    const v = filtersFormik.values
+    axios.post(`http://localhost:3002/jobs/jobapplicants?${(v.start_date ? ('start_date=' + v.start_date) : (''))
+      + "&" + (v.end_date ? ('end_date=' + v.end_date) : ('')) + "&" + (v.country ? ('country=' + v.country) : (''))
+      + "&" + (v.city ? ('city=' + v.city) : (''))
+      + "&" + (v.max_experience ? ('max_experience=' + v.max_experience) : (''))
+      + "&" + (v.min_age ? ('min_age=' + v.min_age) : (''))
+      + "&" + (v.max_age ? ('max_age=' + v.max_age) : (''))
+      + "&" + (v.gender ? ('gender=' + v.gender) : (''))
+      + "&" + (v.education_level ? ('education_level=' + v.education_level) : (''))}`, { job_id: state.id }).then(res => {
+        setappicantsList(res.data)
+      }).catch(error => {
+        console.log(error)
+      })
+  }
+  const getjoboptions = () => {
+    axios.get("http://localhost:3002/jobs/jobsoptions").then(res => {
+      setdropDownOptions(res.data)
     })
   }
   useEffect(() => {
     getAllApplicants()
+    getjoboptions()
 
 
-  }, [])
+  }, [applyFilters])
 
   const [data, Setdata] = useState("");
   const [icon1, seticon] = useState(usericon);
@@ -238,38 +283,9 @@ const Newapplicant = () => {
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>
                 {" "}
                 <h1 className="ogsfonts18">Applicant Filters</h1>
+                <button onClick={() => setapplyFilters(!applyFilters)} >Apply filters</button>
                 {/* /////////////////////////////////////toe////////////////// */}
                 <div class="accordion" id="accordionPanelsStayOpenExample">
-                  <div class="accordion-item accordion234">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                      <button
-                        class="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne"
-                        aria-expanded="true"
-                        aria-controls="panelsStayOpen-collapseOne"
-                      >
-                        Skills
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseOne"
-                      class="accordion-collapse collapse show"
-                      aria-labelledby="panelsStayOpen-headingOne"
-                    >
-                      <div class="accordion-body accordion234">
-                        <select
-                          id="Select"
-                          class={`form-select me-2 my-2 ${Styles.selectfrom3}`}
-                        >
-                          <option>select</option>
-                          <option>Disabled select</option>
-                          <option>Disabled select</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
                   <div class="accordion-item accordion234">
                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                       <button
@@ -289,15 +305,10 @@ const Newapplicant = () => {
                       aria-labelledby="panelsStayOpen-headingTwo"
                     >
                       <div class="accordion-body accordion234">
-                        <div className="d-flex my-2">
-                          <input
-                            placeholder="as"
-                            className={`p-1 me-1 ${Styles.inputfiledq}`}
-                          />
-                          <input
-                            placeholder="as"
-                            className={`p-1 me-1 ${Styles.inputfiledq}`}
-                          />
+                        <div className="d-flex flex-column my-2">
+                          <TextInput label="Start date" type="date" id="start_date" formik={filtersFormik} />
+                          <br />
+                          <TextInput label="End date" type="date" id="end_date" formik={filtersFormik} />
                         </div>
                       </div>
                     </div>
@@ -315,7 +326,7 @@ const Newapplicant = () => {
                         aria-expanded="false"
                         aria-controls="panelsStayOpen-collapseThree"
                       >
-                        Find Nearby
+                        Gender
                       </button>
                     </h2>
                     <div
@@ -324,14 +335,7 @@ const Newapplicant = () => {
                       aria-labelledby="panelsStayOpen-headingThree"
                     >
                       <div class="accordion-body accordion234">
-                        <select
-                          id="Select"
-                          class={`form-select me-2 my-2 ${Styles.selectfrom3}`}
-                        >
-                          <option>select</option>
-                          <option>Disabled select</option>
-                          <option>Disabled select</option>
-                        </select>
+                        <List options={dropDownOptions.gender} id="gender" formik={filtersFormik} />
                       </div>
                     </div>
                   </div>
@@ -798,14 +802,7 @@ const Newapplicant = () => {
                       aria-labelledby="panelsStayOpen-headingEight"
                     >
                       <div class={`accordion-body accordion234 `}>
-                        <select
-                          id="Select"
-                          class={`form-select me-2 my-2 ${Styles.selectfrom3}`}
-                        >
-                          <option>select</option>
-                          <option>Disabled select</option>
-                          <option>Disabled select</option>
-                        </select>
+                        <List id="country" options={dropDownOptions.country} formik={filtersFormik} />
                       </div>
                     </div>
                   </div>
@@ -831,14 +828,7 @@ const Newapplicant = () => {
                       aria-labelledby="panelsStayOpen-headingNine"
                     >
                       <div class={`accordion-body accordion234 `}>
-                        <select
-                          id="Select"
-                          class={`form-select me-2 my-2 ${Styles.selectfrom3}`}
-                        >
-                          <option>select</option>
-                          <option>Disabled select</option>
-                          <option>Disabled select</option>
-                        </select>
+                        <List id="city" options={cities} formik={filtersFormik} />
                       </div>
                     </div>
                   </div>
@@ -861,36 +851,7 @@ const Newapplicant = () => {
                       aria-labelledby="panelsStayOpen-headingTen"
                     >
                       <div class={`accordion-body accordion234 `}>
-                        <div class={`p-2 ${Styles.jobtradio}`}>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                        </div>
+                        <List id="education_level" options={dropDownOptions.required_qualification} formik={filtersFormik} />
                       </div>
                     </div>
                   </div>
@@ -916,174 +877,33 @@ const Newapplicant = () => {
                       aria-labelledby="panelsStayOpen-headingEleven"
                     >
                       <div class={`accordion-body accordion234 `}>
-                        <div class={`p-2 ${Styles.jobtradio}`}>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                        </div>
+                        <List id="max_experience" options={dropDownOptions.max_experience} formik={filtersFormik} />
                       </div>
                     </div>
                   </div>
                   <div class="accordion-item accordion234">
-                    <h2
-                      class="accordion-header"
-                      id="panelsStayOpen-headingTwelve"
-                    >
+                    <h2 class="accordion-header" id="panelsStayOpen-headingAge">
                       <button
                         class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwelve"
+                        data-bs-target="#panelsStayOpen-collapseAge"
                         aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwelve"
+                        aria-controls="panelsStayOpen-collapseAge"
                       >
-                        Age
+                        Applicants by Age(Years)
                       </button>
                     </h2>
                     <div
-                      id="panelsStayOpen-collapseTwelve"
+                      id="panelsStayOpen-collapseAge"
                       class="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingTwelve"
+                      aria-labelledby="panelsStayOpen-headingAge"
                     >
-                      <div class={`accordion-body accordion234 `}>
-                        <div class={`p-2 ${Styles.jobtradio}`}>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
+                      <div class="accordion-body accordion234">
+                        <div className="d-flex flex-column my-2">
+                          <TextInput type="number" label="Minimum Age" id="min_age" formik={filtersFormik} />
+                          <br />
+                          <TextInput type="number" label="Maximum Age" id="max_age" formik={filtersFormik} />
                         </div>
                       </div>
                     </div>

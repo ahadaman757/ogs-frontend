@@ -95,6 +95,10 @@ const GetJobOption = async (req, res, next) => {
       "select * from countries"
     );
     const [cities, meta] = await sequelize.query("select * from cities");
+    const [position, metapos] = await sequelize.query("select * from positions");
+    const [nationality, metanat] = await sequelize.query("select num_code,nationality from nationality");
+    const [religion, metareligion] = await sequelize.query("select * from religion");
+    const [marital_status, metamarital_status] = await sequelize.query("select * from marital_status");
     const country = results;
     const city = cities;
     const career_level = await JobOptions.CareerLevel.findAll();
@@ -110,7 +114,11 @@ const GetJobOption = async (req, res, next) => {
     const max_experience = await JobOptions.MaxExperience.findAll();
     const min_age = await JobOptions.MinAgeRequirement.findAll();
     const max_age = await JobOptions.MaxAgeRequirement.findAll();
+
     res.json({
+      marital_status,
+      religion,
+      nationality,
       job_type,
       country,
       career_level,
@@ -126,6 +134,7 @@ const GetJobOption = async (req, res, next) => {
       min_experience,
       min_age,
       max_age,
+      position
     });
   } catch (error) {
     next(error);
@@ -134,6 +143,7 @@ const GetJobOption = async (req, res, next) => {
 const JobByIdController = async (req, res, next) => {
 
   const job_id = req.params.id
+
   const job_records = await sequelize.query(`SELECT job.id,job.job_title,countries.name as country,cities.name as city,careerlevels.career_title as required_career_level,minsalaries.min_salary as min_salary, maxsalaries.max_salary as max_salary, functionalareas.functional_area as functional_area, genders.gender_title as gender,jobshifts.job_shift as job_shift, educationqualifications.qualification as required_qualification,minexperiences.min_experience, maxexperiences.max_experience,minagerequirements.min_age,maxagerequirements.max_age
   from job
   JOIN countries on job.country_id=countries.id
@@ -154,24 +164,40 @@ const JobByIdController = async (req, res, next) => {
   res.json(job_records[0])
 }
 const getApplicantsForJobById = async (req, res, next) => {
-
+  console.log("requesting")
   const { body } = req
   const { job_id } = body
-
+  console.log("query strings")
+  console.log(req.query)
   // search for cv in job_applicants_cv table for a given job id
   try {
-    const applicants_record = await sequelize.query(`select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,dob,NOW()) as age  from job_applicants_cv jc
-    JOIN cv USING(cv_id)
-    JOIN genders on gender=genders.id
+
+    const [d_start_date, meta] = await sequelize.query('select MIN(created_at) as start_date from job_applicants_cv')
+    const [d_end_date, meta_end] = await sequelize.query('select MAX(created_at) end_date from job_applicants_cv')
+    const { start_date = d_start_date[0].start_date, end_date = d_end_date[0].end_date, country = true, city = true, education_level = true, max_experience = true, max_age = 10000, min_age = 0, gender = true } = req.query
+    console.log(start_date, end_date)
+    console.log(min_age, max_age)
+
+    const query = `select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,dob,NOW()) as age  from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on gender=genders.id
     JOIN countries on country=countries.id
     JOIN cities on city=cities.id
     JOIN educationqualifications on education_level=educationqualifications.id
     JOIN careerlevels on career_level=careerlevels.id
     JOIN business_types on industry=business_types.id
     JOIN maxexperiences on cv.max_experience=maxexperiences.id
-    where job_id =${job_id}`)
-    const applicants_cv_record = applicants_record[0]
+    where job_id =${job_id}
+    AND jc.created_at BETWEEN '${start_date}' AND '${end_date}'
+    AND timestampdiff(YEAR,dob,NOW()) BETWEEN ${min_age} AND ${max_age}
+    AND  ( ${country}=true OR country=${country})
+    AND  ( ${city}=true OR city=${city})
+    AND  ( ${education_level}=true OR education_level=${education_level})
+    AND  ( ${gender}=true OR gender=${gender})
+    AND  ( ${max_experience}=true OR cv.max_experience=${max_experience})
+    `
 
+    const [applicants_record, record] = await sequelize.query(query)
+    console.log(applicants_record)
+    const applicants_cv_record = applicants_record
     res.json(applicants_cv_record)
   } catch (error) {
     return next(error)
