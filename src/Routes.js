@@ -83,7 +83,7 @@ const router = createBrowserRouter([
   {
     path: "newapplicant",
     element: <Newapplicant />,
-
+  }, {
     path: "demologin",
     element: <DemoLogin />,
 

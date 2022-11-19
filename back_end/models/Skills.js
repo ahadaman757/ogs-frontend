@@ -13,6 +13,7 @@ const Skill = sequelize.define('Skill', {
 }, {
     // Other model options go here
 });
+
 export default Skill
 
 // `sequelize.define` also returns the model

@@ -6,6 +6,7 @@ import MultiStep from 'react-multistep'
 import { LoginInformationValidation, BusinessInformationValidation, AddressInformationValidation } from '../../formsValidations/Registeration'
 import { List, TextInput } from '../Forms/InputFields'
 import { useFormik } from 'formik'
+import axios from 'axios'
 
 const UploadImageSide = ({ setLogoData, title }) => {
     const [photoSelected, setphotoSelected] = useState()
@@ -30,10 +31,15 @@ const UploadImageSide = ({ setLogoData, title }) => {
         </div>
     )
 }
-const LoginInformation = ({ sel, setformData, formData }) => {
+const LoginInformation = ({ sel, setformData, formData, employerRegsiterOptions }) => {
+    const [positions, setpostions] = useState()
     const [loginInfo, setloginInfo] = useState(null)
+    useEffect(() => {
+        setpostions(employerRegsiterOptions?.positions)
+    }, [employerRegsiterOptions])
+
     // Register Validation start
-    console.log(formData)
+
     const logininformationFormik = useFormik(LoginInformationValidation(setformData, formData))
     useEffect(() => {
 
@@ -55,7 +61,7 @@ const LoginInformation = ({ sel, setformData, formData }) => {
                 logininformationFormik.handleSubmit()
             }}>
                 <div className="col-12">
-                    <List id='position' list_id="positions" formik={logininformationFormik} label="Position" />
+                    <List id='position' options={positions} formik={logininformationFormik} label="Position" />
                 </div>
                 <div className="col-md-6">
                     <TextInput id='first_name' formik={logininformationFormik} label="First Name" />
@@ -80,7 +86,9 @@ const LoginInformation = ({ sel, setformData, formData }) => {
 
     </>
 }
-const Businessinformation = ({ sel, setformData, formData }) => {
+const Businessinformation = ({ sel, setformData, formData, employerRegsiterOptions }) => {
+
+
 
     const BusinessinformationFormik = useFormik(BusinessInformationValidation(setformData, formData))
 
@@ -106,7 +114,8 @@ const Businessinformation = ({ sel, setformData, formData }) => {
                     <TextInput id='businessName' formik={BusinessinformationFormik} label="Business Name" />
                 </div>
                 <div className="col-12">
-                    <List id='businessType' list_id="businessTypes" formik={BusinessinformationFormik} label="Business type" />
+                    <List id='businessType' options={employerRegsiterOptions.industries
+                    } list_id="businessTypes" formik={BusinessinformationFormik} label="Business type" />
                 </div>
                 <div className="col-12">
                     <TextInput id='businessWebpage' formik={BusinessinformationFormik} label="Business Webpage" />
@@ -120,25 +129,30 @@ const Businessinformation = ({ sel, setformData, formData }) => {
 
     </>
 }
-const AddressDetails = ({ sel, setformData, data, LogoData, formData }) => {
+const AddressDetails = ({ sel, setformData, data, LogoData, formData, employerRegsiterOptions }) => {
+    const [cities, setcities] = useState()
     const [RegisterResponse, setRegisterResponse] = useState(null)
     const [RegisterError, setRegisterError] = useState(null)
-    console.log(RegisterResponse)
-    console.log(RegisterError)
     setTimeout(() => {
         setRegisterResponse(null)
         setRegisterError(null)
     }, 5000);
-
     const AddressinformationFormik = useFormik(AddressInformationValidation(setformData, formData, data, setRegisterResponse, setRegisterError, LogoData))
-
     useEffect(() => {
-
-
         sel(3)
 
     }, [])
+    useEffect(() => {
+        axios.post('http://localhost:3002/get_city_by_country_id', {
+            country_id: AddressinformationFormik.values.country || 1
+        }).then(res => {
 
+            console.log(res)
+            setcities(res.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }, [AddressinformationFormik.values.country])
     return <>
         <form className='slideInRight row' onSubmit={(e) => {
             e.preventDefault()
@@ -152,11 +166,10 @@ const AddressDetails = ({ sel, setformData, data, LogoData, formData }) => {
                 <TextInput id='address' formik={AddressinformationFormik} label="Business Address" />
             </div>
             <div className="col-6">
-                <TextInput id='country' formik={AddressinformationFormik} label="Country" />
-
+                <List id='country' options={employerRegsiterOptions.countries} formik={AddressinformationFormik} label="Country" />
             </div>
             <div className="col-6">
-                <TextInput id='city' formik={AddressinformationFormik} label="City" />
+                <List id='city' options={cities} formik={AddressinformationFormik} label="City" />
             </div>
             <h3 className={`${styles.form_heading_2}`}>
                 CEO/Head/GM/HR/Admin For conformation
@@ -188,6 +201,15 @@ const AddressDetails = ({ sel, setformData, data, LogoData, formData }) => {
     </>
 }
 function Register() {
+    const [employerRegsiterOptions, setemployerRegsiterOptions] = useState()
+    useEffect(() => {
+        axios.get('http://localhost:3002/employer_register_options').then(res => {
+            setemployerRegsiterOptions(res.data)
+        }).catch(error => {
+            console.log(error)
+        })
+
+    }, [])
     const [LogoData, setLogoData] = useState()
     const [formData, setformData] = useState({
         position: '',
@@ -212,9 +234,9 @@ function Register() {
         setformStep(index)
     }
     const steps = [
-        { name: 'StepOne', component: <div ><LoginInformation sel={selected} formData={formData} setformData={setformData} /></div> },
-        { name: 'StepTwo', component: <div ><Businessinformation sel={selected} formData={formData} setformData={setformData} /></div> },
-        { name: 'StepThree', component: <div ><AddressDetails sel={selected} formData={formData} setformData={setformData} LogoData={LogoData} data={formData} /></div> },
+        { name: 'StepOne', component: <div ><LoginInformation employerRegsiterOptions={employerRegsiterOptions} sel={selected} formData={formData} setformData={setformData} /></div> },
+        { name: 'StepTwo', component: <div ><Businessinformation employerRegsiterOptions={employerRegsiterOptions} sel={selected} formData={formData} setformData={setformData} /></div> },
+        { name: 'StepThree', component: <div ><AddressDetails employerRegsiterOptions={employerRegsiterOptions} sel={selected} formData={formData} setformData={setformData} LogoData={LogoData} data={formData} /></div> },
 
     ];
     return (

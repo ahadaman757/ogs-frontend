@@ -9,13 +9,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import Jobs from "./models/Job.js";
 import JobSkill from "./models/JobSkill.js";
-Skill.sync({ alter: true })
-  .then((res) => {
-    console.log("res");
-  })
-  .catch((error) => {
-    console.log(error.message);
-  });
+
 // Environment Variables
 import { DEV_PORT } from "./config/index.js";
 // MiddleWares
@@ -77,10 +71,18 @@ app.use("/users", userRouter);
 app.use("/jobs", jobRouter);
 // app.use("/userlogin", userLogin);
 // consume routes end
-app.get("/", (req, res) => res.send("Welcome to OGS server"));
+app.get("/", (req, res) => {
+  console.log("one")
+  const a = 'anas'
+  console.log(a)
+  res.send("anas")
+});
 
 app.use(errorhandler);
 
-app.listen(DEV_PORT, () =>
-  console.log(`OGS server started on port ${DEV_PORT}!`)
-);
+app.listen(3002, () =>
+  console.log(`OGS server started on port !`)
+).on('error', function (err) {
+  console.log("server start error")
+  console.log(err)
+});

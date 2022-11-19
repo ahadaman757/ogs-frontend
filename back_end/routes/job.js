@@ -5,16 +5,19 @@ import {
   JobPostController,
   JobMyCompaniesController,
   GetJobOption,
-  JobByIdController
+  JobByIdController,
+  getApplicantsForJobById
 } from "../controllers/JobController.js";
 
 // const usermecontroller = require('../controllers/usermecontroller')
 
 // Register/Add Users to DataBase\
 jobRouter.post("/", auth, JobPostController);
-jobRouter.post("/:id", JobByIdController);
+
 jobRouter.get("/myjobs", auth, JobMyCompaniesController);
 jobRouter.get("/jobsoptions", GetJobOption);
+jobRouter.post("/jobapplicants", getApplicantsForJobById);
+jobRouter.post("/:id", JobByIdController);
 // jobRouter.get('/me', auth, usermecontroller)
 
 export default jobRouter;

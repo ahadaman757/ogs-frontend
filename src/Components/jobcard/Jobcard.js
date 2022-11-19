@@ -4,6 +4,8 @@ import filtericon from "../../Assets/Images/Vector 309.png";
 import copyicon from "../../Assets/Images/files.png";
 import shareicon from "../../Assets/Images/share.png";
 import deleticon from "../../Assets/Images/Trash.png";
+import { useNavigate } from "react-router-dom";
+
 function kFormatter(num) {
   return Math.abs(num) > 999
     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
@@ -24,13 +26,15 @@ const monthNames = [
   "December",
 ];
 const Jobcard = (props) => {
+
+  const navigate = useNavigate()
   console.log(props)
   let date = new Date(props.data?.createdAt);
   let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
   return (
-    <div className={`p-3 my-2 ${Styles.Jobcardmain}`} key={props.data.id}>
+    <div className={`p-3 my-2 ${Styles.Jobcardmain}`} key={props.data.id} onClick={() => navigate('/newapplicant', { state: { id: props.data.id } })}>
       <div className=" d-flex align-items-center">
         <div className="d-flex">
           <p className="ogsfonts14 m-1">

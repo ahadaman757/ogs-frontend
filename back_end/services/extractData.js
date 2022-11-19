@@ -7,7 +7,7 @@ class Extractdata {
             first_name: body.first_name,
             last_name: body.last_name,
             password: body.password,
-            repeat_password: body.repeatPassword,
+            repeat_password: body.repeat_password,
             position: body.position,
             company_name: body.businessName,
             company_logo: body.file,

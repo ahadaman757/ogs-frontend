@@ -6,6 +6,7 @@ import Company from "../../models/CompanyProfile/Company.js"
 
 const auth = async (req, res, next) => {
     let authHeader = req.headers.accesstoken;
+    console.log(req.first_name)
     if (!authHeader) {
         return next(CustomErrorHandler.unAuthorized("No Access Token"))
     }

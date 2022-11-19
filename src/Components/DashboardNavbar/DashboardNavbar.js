@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./DashboardNavbar.module.css";
 import dashbordicon from "./../../Assets/Images/menu-home.png";
 import dashbordicon1 from "./../../Assets/Images/menu-home.svg";
@@ -39,23 +39,29 @@ const DashboardNavbar = (props) => {
     <div className={` ${styles.DashboardNavbarmain}`}>
       <div
         style={{ width: displayside ? "50px" : "200px" }}
-        className={`d-flex align-item-center  ${styles.sidebar}`}
+        className={`d-flex align-item-center ${styles.sidebar}`}
       >
         <h2>
           <b>{displayside ? "" : "OGS"}</b>
           {displayside ? "" : "Power"}
         </h2>
-        <div
-          style={{
-            // paddingLeft: displayside ? "0px" : "9px",
-            marginTop: displayside ? "15px" : "0px",
+        <a
+          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          data-bs-toggle="collapse"
+          href="#collapseExample"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+          onMouseEnter={() => {
+            seticon(dashbordicon1);
+          }}
+          onMouseLeave={() => {
+            seticon(dashbordicon);
           }}
           onClick={() => {
             navigate("/dashboard");
           }}
         >
-
-
           <span>
             <img className={`${styles.dashbordimg}`} src={icon1} />
           </span>
@@ -96,29 +102,12 @@ const DashboardNavbar = (props) => {
           onMouseLeave={() => {
             seticon3(dashbordiconb3);
           }}
-
         >
-          <a
-            className={`btn btn-primary  ${styles.sidedasbtn}`}
-            // style={{ padding: displayside ? "10px" : "16px 29px" }}
-            data-bs-toggle="collapse"
-            href="#collapseExample2"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample2"
-            onMouseEnter={() => {
-              seticon3(dashbordiconw3);
-            }}
-            onMouseLeave={() => {
-              seticon3(dashbordiconb3);
-            }}
-          >
-            <span>
-              <img className={`${styles.dashbordimg}`} src={icon3} />
-            </span>
-            {displayside ? "" : "Mailbox"}
-          </a>
-        </div>
+          <span>
+            <img className={`${styles.dashbordimg}`} src={icon3} />
+          </span>
+          {displayside ? "" : "Mailbox"}
+        </a>
         <div class="collapse" id="collapseExample2">
           <div className={`card card-body ${styles.dasgbordopssas}`}>
             <ul className={`${styles.dasgbordops}`}>
@@ -131,35 +120,25 @@ const DashboardNavbar = (props) => {
             </ul>
           </div>
         </div>{" "}
-        <div
-          style={
-            {
-              // paddingLeft: displayside ? "0px" : "9px",
-              // paddingTop: displayside ? "15px" : "0px",
-            }
-          }
+        <a
+          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          data-bs-toggle="collapse"
+          href="#collapseExample3"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample3"
+          onMouseEnter={() => {
+            seticon4(dashbordiconw4);
+          }}
+          onMouseLeave={() => {
+            seticon4(dashbordiconb4);
+          }}
         >
-          <a
-            className={`btn btn-primary  ${styles.sidedasbtn}`}
-            // style={{ padding: displayside ? "10px" : "16px 29px" }}
-            data-bs-toggle="collapse"
-            href="#collapseExample3"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample3"
-            onMouseEnter={() => {
-              seticon4(dashbordiconw4);
-            }}
-            onMouseLeave={() => {
-              seticon4(dashbordiconb4);
-            }}
-          >
-            <span>
-              <img className={`${styles.dashbordimg}`} src={icon4} />
-            </span>
-            {displayside ? "" : "Setting"}
-          </a>
-        </div>
+          <span>
+            <img className={`${styles.dashbordimg}`} src={icon4} />
+          </span>
+          {displayside ? "" : "Setting"}
+        </a>
         <div class="collapse" id="collapseExample3">
           <div className={`card card-body ${styles.dasgbordopssas}`}>
             <ul className={`${styles.dasgbordops}`}>
@@ -172,35 +151,25 @@ const DashboardNavbar = (props) => {
             </ul>
           </div>
         </div>{" "}
-        <div
-          style={
-            {
-              // paddingLeft: displayside ? "0px" : "9px",
-              // marginTop: displayside ? "15px" : "0px",
-            }
-          }
+        <a
+          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          data-bs-toggle="collapse"
+          href="#collapseExample4"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample4"
+          onMouseEnter={() => {
+            seticon5(dashbordiconw5);
+          }}
+          onMouseLeave={() => {
+            seticon5(dashbordiconb5);
+          }}
         >
-          <a
-            className={`btn btn-primary  ${styles.sidedasbtn}`}
-            // style={{ padding: displayside ? "10px" : "16px 29px" }}
-            data-bs-toggle="collapse"
-            href="#collapseExample4"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample4"
-            onMouseEnter={() => {
-              seticon5(dashbordiconw5);
-            }}
-            onMouseLeave={() => {
-              seticon5(dashbordiconb5);
-            }}
-          >
-            <span>
-              <img className={`${styles.dashbordimg}`} src={icon5} />
-            </span>
-            {displayside ? "" : " Power Tools"}
-          </a>
-        </div>
+          <span>
+            <img className={`${styles.dashbordimg}`} src={icon5} />
+          </span>
+          {displayside ? "" : " Power Tools"}
+        </a>
         <div class="collapse" id="collapseExample4">
           <div className={`card card-body ${styles.dasgbordopssas}`}>
             <ul className={`${styles.dasgbordops}`}>
@@ -213,36 +182,26 @@ const DashboardNavbar = (props) => {
             </ul>
           </div>
         </div>
-        <div
-          style={
-            {
-              // paddingLeft: displayside ? "0px" : "9px",
-              // paddingTop: displayside ? "15px" : "0px",
-            }
-          }
+        <a
+          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          data-bs-toggle="collapse"
+          href="#collapseExample5"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample5"
+          onMouseEnter={() => {
+            seticon6(dashbordiconb6);
+          }}
+          onMouseLeave={() => {
+            seticon6(dashbordiconw6);
+          }}
         >
-          <a
-            className={`btn btn-primary  ${styles.sidedasbtn}`}
-            // style={{ padding: displayside ? "10px" : "16px 29px" }}
-            data-bs-toggle="collapse"
-            href="#collapseExample5"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample5"
-            onMouseEnter={() => {
-              seticon6(dashbordiconb6);
-            }}
-            onMouseLeave={() => {
-              seticon6(dashbordiconw6);
-            }}
-          >
-            <span>
-              <img className={`${styles.dashbordimg}`} src={icon6} />
-            </span>
+          <span>
+            <img className={`${styles.dashbordimg}`} src={icon6} />
+          </span>
 
-            {displayside ? "" : "CV Search"}
-          </a>
-        </div>
+          {displayside ? "" : "CV Search"}
+        </a>
         <div class="collapse" id="collapseExample5">
           <div className={`card card-body ${styles.dasgbordopssas}`}>
             <ul className={`${styles.dasgbordops}`}>
@@ -257,10 +216,10 @@ const DashboardNavbar = (props) => {
         </div>
       </div>
       <div
-        className={` d-flex justify-content-between align-items-center ps-5 ${styles.navbar}`}
+        className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          marginLeft: displayside ? "5%" : "13%",
-          width: displayside ? "97%" : "85%",
+          marginLeft: displayside ? "3%" : "13%",
+          width: displayside ? "97%" : "87%",
         }}
       >
         <div>
@@ -276,8 +235,7 @@ const DashboardNavbar = (props) => {
             </span>
           </button>
         </div>
-
-        <div className=" mx-5 d-flex align-items-center ">
+        <div className="mx-5 d-flex align-items-center ">
           <div
             className={`mx-2 d-flex align-items-center  ${styles.navbarsrcon}`}
           >
@@ -309,7 +267,6 @@ const DashboardNavbar = (props) => {
                 <img />
               </span>
             </button>
-
             <ul class="dropdown-menu">
               <li>
                 <a class="dropdown-item" href="#">
