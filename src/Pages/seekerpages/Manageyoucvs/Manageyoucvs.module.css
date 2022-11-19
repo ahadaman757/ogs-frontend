@@ -1,0 +1,42 @@
+.Manageyoucvsmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Myjobshead {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.modalbtn {
+  color: #5200ff;
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+}
+.jacon {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.ctebtn {
+  border: none;
+  background: transparent;
+}
+.radioer {
+  border-radius: 10px !important;
+  border: none;
+  background: #d9d9d9;
+}
+.modalbtnc {
+  border: none;
+  background: transparent;
+  color: #757575;
+}
+.modalbtns {
+  border: none;
+  background: transparent;
+  background: #2f23a1;
+  border-radius: 3px;
+  color: white;
+}

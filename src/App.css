@@ -50,6 +50,9 @@
   font-size: 18px;
   line-height: 21px;
 }
+.fontcolorred {
+  color: #b50202;
+}
 
 .ogsfonts20 {
   font-family: "Public Sans";
@@ -258,4 +261,15 @@ button {
 }
 .accordion-button::after {
   color: black;
+}
+.aselementstyle {
+}
+.w-75 {
+  width: 75% !important;
+}
+.progress-bar {
+  background: rgba(82, 0, 255, 0.78);
+  opacity: 0.3;
+
+  border-radius: 10px;
 }

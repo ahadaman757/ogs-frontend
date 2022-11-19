@@ -1,0 +1,52 @@
+.Persanalinfomain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.topheader {
+  background: #ff617d;
+  border: 1px solid #ff002e;
+  border-radius: 2px;
+  color: white;
+}
+.notibtn {
+  border: none;
+  background: transparent;
+}
+.profdetailscon {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.profimg {
+  width: 164px;
+  height: 164px;
+  border-radius: 82px;
+}
+.addcon {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.inputadd {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  height: 43px;
+  width: 300px;
+}
+.addibtn {
+  border: none;
+  color: white;
+  background: black;
+  border-radius: 3px;
+  width: 86px;
+}
+.innersidehead {
+  background: #ffffff;
+  border: 3px solid #fec750;
+}
+.innersidehead3 {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+}
