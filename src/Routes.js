@@ -20,6 +20,8 @@ import Jobalert from "./Pages/seekerpages/jobalert/jobalert";
 import Jobpreferences from "./Pages/seekerpages/JobPreferences/Jobpreferences";
 import Manageyoucvs from "./Pages/seekerpages/Manageyoucvs/Manageyoucvs";
 import SeekerCv from "./Pages/seekerpages/seekerCv/seekerCv";
+import EmployerLogin from "./Pages/logins/eplogin";
+import SeekerLogin from "./Pages/logins/seekerlogin";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -111,6 +113,14 @@ const router = createBrowserRouter([
   {
     path: "seekercv",
     element: <SeekerCv />,
+  },
+  {
+    path: "employerlogin",
+    element: <EmployerLogin />,
+  },
+  {
+    path: "seekerlogin",
+    element: <SeekerLogin />,
   },
 ]);
 function Routes() {
