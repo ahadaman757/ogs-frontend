@@ -31,7 +31,7 @@ const SignUpCv = () => {
   const CvFormIk = useFormik(
     {
       initialValues: {
-        position: 'developer',
+
         email: "",
         password: "",
         re_type_password: "",
@@ -59,8 +59,12 @@ const SignUpCv = () => {
         degree_title: "",
         institution: "",
         min_experience: "",
-        max_experience: "",
-        career_level: ""
+        career_level: "",
+        position: '',
+        nationality: "",
+        religion: "",
+        marital_status: ''
+
       },
       validationSchema: Yup.object({
         // job_title: Yup.string().required("Required"),
@@ -173,10 +177,19 @@ const SignUpCv = () => {
                   <TextInput label="Full Name" id='f_name' formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <TextInput label="Position" id='position' formik={CvFormIk} />
+                  <List label="Position" id='position' options={dropDownOptions.position} formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
                   <List label="Gender" id="gender" options={dropDownOptions.gender} formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List label="Nationality" id="nationality" options={dropDownOptions.nationality} formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List label="Religion" id="religion" options={dropDownOptions.religion} formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List label="Marital Status" id="marital_status" options={dropDownOptions.marital_status} formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
                   <List id="career_level" options={dropDownOptions.career_level} label="career_level" formik={CvFormIk} />
@@ -227,10 +240,14 @@ const SignUpCv = () => {
                   <TextInput id="institution" label="Institution" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <List id="min_experience" options={dropDownOptions.min_experience} label="Min Experience" formik={CvFormIk} />
+                  <List id="min_experience" options={dropDownOptions.min_experience} label="Experience" formik={CvFormIk} />
+                </div>
+
+                <div className="col-md-6">
+                  <List id="current_salary" label="Current Salary" options={dropDownOptions.min_salary} formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <List id="max_experience" label="Max Experience" options={dropDownOptions.max_experience} formik={CvFormIk} />
+                  <List id="expected_salary" label="Expected Salary" options={dropDownOptions.min_salary} formik={CvFormIk} />
                 </div>
 
               </div>
