@@ -62,7 +62,6 @@ const SignUpCv = () => {
         career_level: "",
         position: '',
         nationality: "",
-        nationality: "",
         religion: "",
         marital_status: ''
 
