@@ -7,8 +7,6 @@ import JobOptions from "../models/Categories/JobPostOptions.js";
 import sequelize from "../config/db.js";
 import JobPostOptions from "../models/Categories/JobPostOptions.js";
 const JobPostController = async (req, res, next) => {
-  console.log("recsdsd");
-
   // get request body for job post
   const body = req.body;
   const { degree_level_id, skill_id } = body;
@@ -66,14 +64,29 @@ const JobPostController = async (req, res, next) => {
 // /Temporary Job Controller end
 
 const JobMyCompaniesController = async (req, res, next) => {
-  console.log(req.user.id)
   try {
-    const AllJobs = await Job.findAll({
-      where: {
-        posted_by_id: req.user.id
-      }
-    })
-    res.json(AllJobs)
+    // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
+    const [company_jobs_record, meta] = await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
+    genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,educationqualifications.qualification,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,COUNT(*) as applicants
+    from job j 
+    JOIN job_applicants_cv on j.id =job_applicants_cv.job_id
+    JOIN countries on J.country_id=countries.id
+    JOIN cities on J.city_id=cities.id
+    JOIN careerlevels on career_level_id=careerlevels.id
+    JOIN  maxsalaries minSalary on	min_salary_id =minSalary.id
+    JOIN  maxsalaries maxSalary on	max_salary_id =maxSalary.id
+    JOIN business_types on functional_area_id = business_types.id
+    JOIN genders on gender_title_id  = genders.id
+    JOIN jobshifts on j.job_shift_id  = jobshifts.id
+    JOIN educationqualifications on j.required_qualification_id=educationqualifications.id
+    JOIN maxagerequirements maxAge on j.max_age_id=maxAge.id
+    JOIN maxagerequirements minAge on j.min_age_id=minAge.id
+    JOIN maxexperiences maxExperience on j.max_experience_id=maxExperience.id
+    JOIN maxexperiences minExperience on j.min_experience_id=minExperience.id
+    
+    
+    where posted_by_id = ${req.user.id}`)
+    res.json(company_jobs_record)
   }
   catch (error) {
     next(error)
@@ -103,16 +116,14 @@ const GetJobOption = async (req, res, next) => {
     const city = cities;
     const career_level = await JobOptions.CareerLevel.findAll();
     const degree = await JobOptions.Degree.findAll();
-    const min_salary = await JobOptions.MinSalary.findAll();
-    const max_salary = await JobOptions.MaxSalary.findAll();
+
     const [functional_area, metafunctional] = await sequelize.query('select * from business_types')
     const gender = await JobOptions.Gender.findAll();
     const job_type = await JobOptions.JobType.findAll();
     const job_shift = await JobOptions.JobShift.findAll();
     const required_qualification = await JobOptions.EducationQualification.findAll();
-    const min_experience = await JobOptions.MinExperience.findAll();
     const max_experience = await JobOptions.MaxExperience.findAll();
-    const min_age = await JobOptions.MinAgeRequirement.findAll();
+    const max_salary = await JobOptions.MaxSalary.findAll();
     const max_age = await JobOptions.MaxAgeRequirement.findAll();
 
     res.json({
@@ -123,7 +134,6 @@ const GetJobOption = async (req, res, next) => {
       country,
       career_level,
       degree,
-      min_salary,
       max_salary,
       functional_area,
       job_shift,
@@ -131,8 +141,6 @@ const GetJobOption = async (req, res, next) => {
       job_shift,
       required_qualification,
       max_experience,
-      min_experience,
-      min_age,
       max_age,
       position
     });

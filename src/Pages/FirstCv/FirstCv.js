@@ -69,7 +69,7 @@ const SignUpCv = () => {
       validationSchema: Yup.object({
         // job_title: Yup.string().required("Required"),
         // // job_description: Yup.string().required("Required"),
-        // country: Yup.number("invalid type").required("Required"),
+        country: Yup.number("invalid type").required("Required"),
         // city: Yup.number("invalid type").required('Required'),
         // // area: Yup.number("invalid type").required('Required'),
         // career_level: Yup.number("invalid type").required('Required'),
