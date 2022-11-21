@@ -10,6 +10,7 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../authpages/main.module.css";
 import axios from "axios";
+import Sidebar from "../test/sidebar";
 const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();
@@ -131,7 +132,7 @@ const Postajob = () => {
                 Asterisk (*) indicates required field
               </p>
               <div className="row">
-                <div className="col-6 pe-5">
+                <div className="col-md-6 pe-5">
                   <div>
                     <TextInput
                       id="job_title"
@@ -172,7 +173,7 @@ const Postajob = () => {
                       formik={jobPostFormIk}
                     />
                   </div>
-                  <div className={`d-flex align-items-end ${Styles.SRm}`}>
+                  <div className={`d-flex align-items-start ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
                         options={dropDownOptions.min_salary}
@@ -244,11 +245,13 @@ const Postajob = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-6">
+                <div className="col-md-6">
                   <div>
                     <TextEditer setDescription={setDescription} />
                   </div>
-                  <div className={`d-flex align-items-end ${Styles.SRm}`}>
+                  <div
+                    className={`d-flex flex-wrap align-items-start ${Styles.SRm}`}
+                  >
                     <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
                         options={dropDownOptions.job_type}
@@ -311,7 +314,7 @@ const Postajob = () => {
               </div>
               <hr />
               <div className={`row`}>
-                <div className={`col-6`}>
+                <div className={`col-md-6`}>
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
@@ -410,13 +413,13 @@ const Postajob = () => {
               </div> */}
               <hr />
               <div className={`row`}>
-                <div className={`col-6`}>
+                <div className={`col-md-6`}>
                   <h1 className="ogsfonts18">Refine Your Applicant Pool</h1>
                   <p>
                     Pre-filter Applicants Limit applications based on the
                     following filters -select all that apply.
                   </p>
-                  <div className="d-flex">
+                  <div className="d-flex flex-wrap">
                     <div class="form-check">
                       <input
                         class={`form-check-input ${Styles.radioer}`}
@@ -431,7 +434,7 @@ const Postajob = () => {
                         gender_title
                       </label>
                     </div>
-                    <div class="form-check mx-3">
+                    <div class="form-check me-3">
                       <input
                         class={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
@@ -445,7 +448,7 @@ const Postajob = () => {
                         Experience
                       </label>
                     </div>
-                    <div class="form-check mx-3">
+                    <div class="form-check me-3">
                       <input
                         class={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
@@ -459,7 +462,7 @@ const Postajob = () => {
                         Degree Level
                       </label>
                     </div>
-                    <div class="form-check mx-3">
+                    <div class="form-check me-3">
                       <input
                         class={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
@@ -473,7 +476,7 @@ const Postajob = () => {
                         Age
                       </label>
                     </div>
-                    <div class="form-check mx-3">
+                    <div class="form-check me-3">
                       <input
                         class={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
@@ -520,12 +523,17 @@ const Postajob = () => {
                   </div>
                 </div>
               </div>
-              <div className="d-flex justify-content-end">
-                <button type="button" className={`mx-2 ${Styles.btndraft}`}>
+              <div className="d-flex flex-wrap justify-content-end">
+                <button
+                  type="button"
+                  className={`mx-2 mt-3 ${Styles.btndraft}`}
+                >
                   Save as Draft
                 </button>
-                <button className={`mx-2 ${Styles.btnPreview}`}>Preview</button>
-                <button type="submit" className={`mx-2 ${Styles.btnPost}`}>
+                <button className={`mx-2 mt-3 ${Styles.btnPreview}`}>
+                  Preview
+                </button>
+                <button type="submit" className={`mx-2 mt-3 ${Styles.btnPost}`}>
                   Post Job{" "}
                 </button>
               </div>

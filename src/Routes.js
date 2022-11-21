@@ -22,6 +22,7 @@ import Manageyoucvs from "./Pages/seekerpages/Manageyoucvs/Manageyoucvs";
 import SeekerCv from "./Pages/seekerpages/seekerCv/seekerCv";
 import EmployerLogin from "./Pages/logins/eplogin";
 import SeekerLogin from "./Pages/logins/seekerlogin";
+import Test from "./Pages/test/test";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
   {
     path: "seekerlogin",
     element: <SeekerLogin />,
+  },
+  {
+    path: "test",
+    element: <Test />,
   },
 ]);
 function Routes() {

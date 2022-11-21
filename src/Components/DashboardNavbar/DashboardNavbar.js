@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./DashboardNavbar.module.css";
 import dashbordicon from "./../../Assets/Images/menu-home.png";
 import dashbordicon1 from "./../../Assets/Images/menu-home.svg";
@@ -27,8 +27,18 @@ const DashboardNavbar = (props) => {
   const [icon4, seticon4] = useState(dashbordiconb4);
   const [icon5, seticon5] = useState(dashbordiconb5);
   const [icon6, seticon6] = useState(dashbordiconw6);
+  const [mobileActive, setMobileActive] = useState(false);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 450) {
+        setMobileActive(true);
+      } else {
+        setMobileActive(false);
+      }
+    });
+  }, []);
 
   console.log(displayside);
   const handeler = (props) => {
@@ -38,15 +48,26 @@ const DashboardNavbar = (props) => {
   return (
     <div className={` ${styles.DashboardNavbarmain}`}>
       <div
-        style={{ width: displayside ? "50px" : "200px" }}
+        style={{ width: displayside ? "5%" : "200px" }}
         className={`d-flex align-item-center ${styles.sidebar}`}
       >
+        <button
+          className={` ${styles.togglebtn}`}
+          onClick={() => {
+            setdisplay(!displayside);
+            handeler();
+          }}
+        >
+          <span>
+            <img src={toggle} />
+          </span>
+        </button>
         <h2>
           <b>{displayside ? "" : "OGS"}</b>
           {displayside ? "" : "Power"}
         </h2>
         <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          className={`btn btn-primary    ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
           href="#collapseExample"
           role="button"
@@ -63,12 +84,12 @@ const DashboardNavbar = (props) => {
           }}
         >
           <span>
-            <img className={`${styles.dashbordimg}`} src={icon1} />
+            <img className={`me-md-2 ${styles.dashbordimg}`} src={icon1} />
           </span>
           {displayside ? "" : "Dashboard"}
         </a>
         <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          className={`btn btn-primary   py-3  ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
           href="#collapseExample1"
           role="button"
@@ -85,12 +106,12 @@ const DashboardNavbar = (props) => {
           }}
         >
           <span>
-            <img className={`${styles.dashbordimg}`} src={icon2} />
+            <img className={` me-md-2 ${styles.dashbordimg}`} src={icon2} />
           </span>
           {displayside ? "" : "Manage Jobs"}
         </a>
         <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          className={`btn btn-primary  px-md-3 py-3  ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
           href="#collapseExample2"
           role="button"
@@ -104,7 +125,7 @@ const DashboardNavbar = (props) => {
           }}
         >
           <span>
-            <img className={`${styles.dashbordimg}`} src={icon3} />
+            <img className={`me-md-2 ${styles.dashbordimg}`} src={icon3} />
           </span>
           {displayside ? "" : "Mailbox"}
         </a>
@@ -121,7 +142,7 @@ const DashboardNavbar = (props) => {
           </div>
         </div>{" "}
         <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          className={`btn btn-primary   py-3  ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
           href="#collapseExample3"
           role="button"
@@ -135,7 +156,7 @@ const DashboardNavbar = (props) => {
           }}
         >
           <span>
-            <img className={`${styles.dashbordimg}`} src={icon4} />
+            <img className={`me-md-2 ${styles.dashbordimg}`} src={icon4} />
           </span>
           {displayside ? "" : "Setting"}
         </a>
@@ -152,7 +173,7 @@ const DashboardNavbar = (props) => {
           </div>
         </div>{" "}
         <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          className={`btn btn-primary   py-3  ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
           href="#collapseExample4"
           role="button"
@@ -166,7 +187,7 @@ const DashboardNavbar = (props) => {
           }}
         >
           <span>
-            <img className={`${styles.dashbordimg}`} src={icon5} />
+            <img className={`me-md-2 ${styles.dashbordimg}`} src={icon5} />
           </span>
           {displayside ? "" : " Power Tools"}
         </a>
@@ -183,7 +204,7 @@ const DashboardNavbar = (props) => {
           </div>
         </div>
         <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
+          className={`btn btn-primary  py-3   ${styles.sidedasbtn}`}
           data-bs-toggle="collapse"
           href="#collapseExample5"
           role="button"
@@ -197,7 +218,7 @@ const DashboardNavbar = (props) => {
           }}
         >
           <span>
-            <img className={`${styles.dashbordimg}`} src={icon6} />
+            <img className={`me-md-2 ${styles.dashbordimg}`} src={icon6} />
           </span>
 
           {displayside ? "" : "CV Search"}
@@ -218,12 +239,12 @@ const DashboardNavbar = (props) => {
       <div
         className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          marginLeft: displayside ? "3%" : "13%",
+          marginLeft: displayside ? "5%" : "13%",
           width: displayside ? "97%" : "87%",
         }}
       >
         <div>
-          <button
+          {/* <button
             className={` ${styles.togglebtn}`}
             onClick={() => {
               setdisplay(!displayside);
@@ -233,19 +254,9 @@ const DashboardNavbar = (props) => {
             <span>
               <img src={toggle} />
             </span>
-          </button>
+          </button> */}
         </div>
         <div className="mx-5 d-flex align-items-center ">
-          <div
-            className={`mx-2 d-flex align-items-center  ${styles.navbarsrcon}`}
-          >
-            <input className={` ${styles.navbarsrinput}`} />
-            <button className={`px-2 ${styles.navbarsrbtn}`}>
-              <span>
-                <img src={Searchicon} />
-              </span>
-            </button>
-          </div>
           <button className={`px-2 ${styles.navbarnotibtn}`}>
             <span>
               <img src={notifilogo} />
