@@ -82,7 +82,9 @@ const Managejobs = () => {
             <div className={` p-3 ${Styles.Managejobschild1}`}>
               <h1 className={`ogsfonts25`}>
                 Manage Jobs -{" "}
-                {userData?.company == null ? "Undefined" : userData.company_name}
+                {userData?.company == null
+                  ? "Undefined"
+                  : userData.company_name}
               </h1>
               <p>to find talent</p>
               <div className="d-sm-flex">
@@ -91,12 +93,12 @@ const Managejobs = () => {
                 >
                   <input
                     type="text"
-                    class={`form-control inp1  `}
+                    class={`form-control ${Styles.inp1}  `}
                     aria-label="Text input with dropdown button"
                   />
                   <div className="hrwe"></div>
                   <button
-                    class="btn btn-outline-secondary dropdown-toggle btmxo ogsfonts15"
+                    class={`btn btn-outline-secondary dropdown-toggle btmxo ogsfonts15 ${Styles.inp1} `}
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
