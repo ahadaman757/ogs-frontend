@@ -186,7 +186,7 @@ const getApplicantsForJobById = async (req, res, next) => {
     console.log(start_date, end_date)
     console.log(min_age, max_age)
 
-    const query = `select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,dob,NOW()) as age  from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on gender=genders.id
+    const query = `select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,dob,NOW()) as age,jc.is_shortlisted, jc.is_rejected  from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on gender=genders.id
     JOIN countries on country=countries.id
     JOIN cities on city=cities.id
     JOIN educationqualifications on education_level=educationqualifications.id
@@ -211,5 +211,20 @@ const getApplicantsForJobById = async (req, res, next) => {
     return next(error)
   }
 }
-export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController, getApplicantsForJobById };
+const JobApplicantStatusUpdate = async (req, res, next) => {
+  console.log(req.body)
+  try {
+    const { status, job_id, cv_id, column } = req.body
+
+    const [update_status, meta] = await sequelize.query(`UPDATE job_applicants_cv SET ${column}=${status} WHERE cv_id=${cv_id} AND job_id=${job_id} `)
+    res.json({ message: "updated" })
+
+
+
+  }
+  catch (error) {
+    next(error)
+  }
+}
+export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController, getApplicantsForJobById, JobApplicantStatusUpdate };
 

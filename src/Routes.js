@@ -20,6 +20,7 @@ import Jobalert from "./Pages/seekerpages/jobalert/jobalert";
 import Jobpreferences from "./Pages/seekerpages/JobPreferences/Jobpreferences";
 import Manageyoucvs from "./Pages/seekerpages/Manageyoucvs/Manageyoucvs";
 import SeekerCv from "./Pages/seekerpages/seekerCv/seekerCv";
+import BasicDocument from "./Components/pdfDownload";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/pdf",
+    element: <BasicDocument />,
   },
   {
     path: "register",

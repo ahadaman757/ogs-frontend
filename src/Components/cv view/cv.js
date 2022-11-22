@@ -9,20 +9,58 @@ import profimg from "../../Assets/Images/Rectangle 1246.png";
 import likeicon from "../../Assets/Images/New folder (3)/like.svg";
 import dislikeicon from "../../Assets/Images/New folder (3)/dislike.svg";
 import { useState } from "react";
+import axios from "axios";
+import { BasicDocument } from '../pdfDownload'
+import {
 
-const Cv = ({ applicant }) => {
-  const [data, Setdata] = useState(true);
+  PDFDownloadLink,
+  Image
+} from "@react-pdf/renderer";
+const Cv = ({ applicant, job_id }) => {
+  const [shortlisted, setShortlisted] = useState(applicant.is_shortlisted);
+  const [rejected, setRejected] = useState(applicant.is_rejected);
+  console.log(applicant.cv_id)
+  console.log(applicant.is_shortlisted)
+  const updateCvView = (currentStatus) => {
+    axios.post("http://localhost:3002/jobs/job_applicants_status_update", {
+      status: !shortlisted,
+      column: "is_shortlisted",
+      cv_id: applicant.cv_id,
+      job_id: job_id
+    }).then(res => {
+      setShortlisted(!shortlisted)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+  const rejectCv = (currentStatus) => {
+    axios.post("http://localhost:3002/jobs/job_applicants_status_update", {
+      status: !rejected,
+      cv_id: applicant.cv_id,
+      job_id: job_id,
+      column: "is_rejected"
+    }).then(res => {
+      setRejected(!rejected)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+  const democv = {
+    contact_number: "0231567890"
+  }
   return (
     <div className={` p-4 my-4 ${Styles.Cvmain}`}>
       <div className="d-flex justify-content-between">
         <button
           onClick={() => {
-            Setdata(!data);
+            // update the viewed status
+            console.log()
+            updateCvView(!shortlisted)
           }}
           className={`${Styles.cvheadicon}`}
         >
           <span>
-            <img src={data ? check : selecticon} />
+            <img src={shortlisted ? selecticon : check} />
           </span>
         </button>
         <p className="m-0 ogsfonts16 ">Viewed</p>
@@ -36,19 +74,33 @@ const Cv = ({ applicant }) => {
           <span>
             <img className="me-3" src={downicon} />
           </span>
-          Download CV
+          <PDFDownloadLink document={<BasicDocument cv_data={democv} />} fileName="somename.pdf">
+            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+          </PDFDownloadLink>
         </button>
-        <button className={`ogsfonts16 ${Styles.cvheadicon}`}>
+        <button
+          onClick={() => {
+            return updateCvView()
+          }}
+          className={`ogsfonts16 ${Styles.cvheadicon}`}>
           <span>
             <img className="me-3" src={useradd} />
           </span>
-          ShortList
+          {
+            shortlisted ? "shortlisted" : "shortlist"
+          }
+
         </button>
-        <button className={`ogsfonts16 ${Styles.cvheadicon}`}>
+        <button onClick={() => {
+          return rejectCv()
+        }} className={`ogsfonts16 ${Styles.cvheadicon}`}>
           <span>
             <img className="me-3" src={userremove} />
           </span>
-          Reject
+          {
+            rejected ? "Rejected" : "Reject"
+          }
+
         </button>
         <div class="dropdown">
           <button
