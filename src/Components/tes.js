@@ -208,3 +208,16 @@
         </View>
     </View>
 </View>
+
+
+<View style={styles.profile_info_left}>
+                                    <View style={styles.profile_info_left}>
+                                       
+                                       
+                                       
+                                       
+                                       
+                                   
+                                     
+                                    </View>
+                                </View>
