@@ -14,8 +14,9 @@ const Jobpreferences = () => {
     <div>
       <Seekersidebar side={display} />
       <div
-        style={{ marginLeft: data ? "55px" : "200px" }}
-        className={`pt-5 ${Styles.Jobpreferencesmain}`}
+        className={`pt-5 ${Styles.Jobpreferencesmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="row mt-5">

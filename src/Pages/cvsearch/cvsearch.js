@@ -13,8 +13,9 @@ const Cvsearch = () => {
     <div>
       <DashboardNavbar side={display} />
       <div
-        className={` pt-5 ${Styles.Cvsearchmain}`}
-        style={{ marginLeft: data ? "55px" : "200px" }}
+        className={` pt-5 ${Styles.Cvsearchmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className={`container `}>
           <div className={` mt-5 p-4  ${Styles.Cvsearchchild}`}>

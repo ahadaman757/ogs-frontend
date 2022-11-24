@@ -120,8 +120,9 @@ const Postajob = () => {
     <div>
       <DashboardNavbar side={display} />
       <div
-        className={`pt-5 ${Styles.Postajobmain}`}
-        style={{ marginLeft: data ? "55px" : "200px" }}
+        className={`pt-5 ${Styles.Postajobmain}${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>

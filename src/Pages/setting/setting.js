@@ -16,8 +16,9 @@ const Setting = () => {
     <div>
       <DashboardNavbar side={display} />
       <div
-        style={{ marginLeft: data ? "55px" : "200px" }}
-        className={`pt-5 ${Styles.settingmain}`}
+        className={`pt-5 ${Styles.settingmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container ">
           <div className={`mt-5 row   ${Styles.settheader}`}>

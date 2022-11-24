@@ -38,180 +38,187 @@ const Seekersidebar = (props) => {
   return (
     <div className={` ${styles.DashboardNavbarmain}`}>
       <div
-        style={{ width: displayside ? "50px" : "200px" }}
-        className={`d-flex align-item-center ${styles.sidebar}`}
+        className={`d-flex align-item-center ${styles.sidebar} ${
+          displayside ? " sidebarwidthmin" : " sidebarwidthmax"
+        }`}
       >
         <h2>
           <b>{displayside ? "" : "OGS"}</b>
           {displayside ? "" : "Power"}
         </h2>
-        <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
-          data-bs-toggle="collapse"
-          href="#collapseExample"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-          onMouseEnter={() => {
-            seticon(dashbordicon1);
-          }}
-          onMouseLeave={() => {
-            seticon(dashbordicon);
-          }}
-          onClick={() => {
-            navigate("/dashboard");
-          }}
+        <div
+          className={`d-flex flex-column align-items-start ${
+            displayside ? " align-items-center" : " align-items-start"
+          } ${displayside ? " px-0" : "px-2 "}`}
         >
-          <span>
-            <img className={`${styles.dashbordimg}`} src={icon1} />
-          </span>
-          {displayside ? "" : "Dashboard"}
-        </a>
-        <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
-          data-bs-toggle="collapse"
-          href="#collapseExample1"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample1"
-          onMouseEnter={() => {
-            seticon2(dashbordiconw2);
-          }}
-          onMouseLeave={() => {
-            seticon2(dashbordiconb2);
-          }}
-          onClick={() => {
-            navigate("/managejobs");
-          }}
-        >
-          <span>
-            <img className={`${styles.dashbordimg}`} src={icon2} />
-          </span>
-          {displayside ? "" : "Manage Jobs"}
-        </a>
-        <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
-          data-bs-toggle="collapse"
-          href="#collapseExample2"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample2"
-          onMouseEnter={() => {
-            seticon3(dashbordiconw3);
-          }}
-          onMouseLeave={() => {
-            seticon3(dashbordiconb3);
-          }}
-        >
-          <span>
-            <img className={`${styles.dashbordimg}`} src={icon3} />
-          </span>
-          {displayside ? "" : "Mailbox"}
-        </a>
-        <div class="collapse" id="collapseExample2">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
+          <a
+            className={`btn btn-primary  my-3 ogsfonts16   ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+            onMouseEnter={() => {
+              seticon(dashbordicon1);
+            }}
+            onMouseLeave={() => {
+              seticon(dashbordicon);
+            }}
+            onClick={() => {
+              navigate("/dashboard");
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon1} />
+            </span>
+            {displayside ? "" : "Dashboard"}
+          </a>
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample1"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample1"
+            onMouseEnter={() => {
+              seticon2(dashbordiconw2);
+            }}
+            onMouseLeave={() => {
+              seticon2(dashbordiconb2);
+            }}
+            onClick={() => {
+              navigate("/managejobs");
+            }}
+          >
+            <span>
+              <img className={` me-2 ${styles.dashbordimg}`} src={icon2} />
+            </span>
+            {displayside ? "" : "Manage Jobs"}
+          </a>
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample2"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample2"
+            onMouseEnter={() => {
+              seticon3(dashbordiconw3);
+            }}
+            onMouseLeave={() => {
+              seticon3(dashbordiconb3);
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
+            </span>
+            {displayside ? "" : "Mailbox"}
+          </a>
+          <div class="collapse" id="collapseExample2">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+              </ul>
+            </div>
+          </div>{" "}
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample3"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample3"
+            onMouseEnter={() => {
+              seticon4(dashbordiconw4);
+            }}
+            onMouseLeave={() => {
+              seticon4(dashbordiconb4);
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon4} />
+            </span>
+            {displayside ? "" : "Setting"}
+          </a>
+          <div class="collapse" id="collapseExample3">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+              </ul>
+            </div>
+          </div>{" "}
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample4"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample4"
+            onMouseEnter={() => {
+              seticon5(dashbordiconw5);
+            }}
+            onMouseLeave={() => {
+              seticon5(dashbordiconb5);
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
+            </span>
+            {displayside ? "" : " Power Tools"}
+          </a>
+          <div class="collapse" id="collapseExample4">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>{" "}
-        <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
-          data-bs-toggle="collapse"
-          href="#collapseExample3"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample3"
-          onMouseEnter={() => {
-            seticon4(dashbordiconw4);
-          }}
-          onMouseLeave={() => {
-            seticon4(dashbordiconb4);
-          }}
-        >
-          <span>
-            <img className={`${styles.dashbordimg}`} src={icon4} />
-          </span>
-          {displayside ? "" : "Setting"}
-        </a>
-        <div class="collapse" id="collapseExample3">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
-          </div>
-        </div>{" "}
-        <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
-          data-bs-toggle="collapse"
-          href="#collapseExample4"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample4"
-          onMouseEnter={() => {
-            seticon5(dashbordiconw5);
-          }}
-          onMouseLeave={() => {
-            seticon5(dashbordiconb5);
-          }}
-        >
-          <span>
-            <img className={`${styles.dashbordimg}`} src={icon5} />
-          </span>
-          {displayside ? "" : " Power Tools"}
-        </a>
-        <div class="collapse" id="collapseExample4">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <a
-          className={`btn btn-primary  ${styles.sidedasbtn}`}
-          data-bs-toggle="collapse"
-          href="#collapseExample5"
-          role="button"
-          aria-expanded="false"
-          aria-controls="collapseExample5"
-          onMouseEnter={() => {
-            seticon6(dashbordiconb6);
-          }}
-          onMouseLeave={() => {
-            seticon6(dashbordiconw6);
-          }}
-        >
-          <span>
-            <img className={`${styles.dashbordimg}`} src={icon6} />
-          </span>
+          <a
+            className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample5"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample5"
+            onMouseEnter={() => {
+              seticon6(dashbordiconb6);
+            }}
+            onMouseLeave={() => {
+              seticon6(dashbordiconw6);
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon6} />
+            </span>
 
-          {displayside ? "" : "CV Search"}
-        </a>
-        <div class="collapse" id="collapseExample5">
-          <div className={`card card-body ${styles.dasgbordopssas}`}>
-            <ul className={`${styles.dasgbordops}`}>
-              <li>
-                <a>Sub title1</a>
-              </li>
-              <li>
-                <a>Sub title1</a>
-              </li>
-            </ul>
+            {displayside ? "" : "CV Search"}
+          </a>
+          <div class="collapse" id="collapseExample5">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+                <li>
+                  <a>Sub title1</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

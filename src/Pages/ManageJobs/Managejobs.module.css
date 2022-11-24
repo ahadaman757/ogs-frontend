@@ -57,5 +57,5 @@
   }
 }
 .inp1 {
-  border: none;
+  border: none !important;
 }
