@@ -23,7 +23,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { List, TextInput } from "../Forms/InputFields";
 import { useFormik } from "formik";
-
+import { BasicDocument } from "../../Components/pdfDownload";
 const Newapplicant = () => {
   const { state } = useLocation()
   const [cities, setcities] = useState()
@@ -41,7 +41,10 @@ const Newapplicant = () => {
       max_experience: "",
       min_age: '',
       max_age: '',
-      gender: ""
+      gender: "",
+      marital_status: "",
+      current_salary: "",
+      expected_salary: ""
     },
     onSubmit: (values => {
       console.log(values)
@@ -68,6 +71,7 @@ const Newapplicant = () => {
       + "&" + (v.min_age ? ('min_age=' + v.min_age) : (''))
       + "&" + (v.max_age ? ('max_age=' + v.max_age) : (''))
       + "&" + (v.gender ? ('gender=' + v.gender) : (''))
+      + "&" + (v.marital_status ? ('marital_status=' + v.marital_status) : (''))
       + "&" + (v.education_level ? ('education_level=' + v.education_level) : (''))}`, { job_id: state.id }).then(res => {
         setappicantsList(res.data)
       }).catch(error => {
@@ -273,7 +277,7 @@ const Newapplicant = () => {
               </div>
               {
                 appicantsList ? appicantsList.map(applicant => {
-                  return <Cv applicant={applicant} />
+                  return <Cv job_id={state.id} applicant={applicant} />
                 }) : 'loading'
               }
 
@@ -450,7 +454,7 @@ const Newapplicant = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-item accordion234">
+                  {/* <div class="accordion-item accordion234">
                     <h2
                       class="accordion-header"
                       id="panelsStayOpen-headingFive"
@@ -560,7 +564,7 @@ const Newapplicant = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div class="accordion-item accordion234">
                     <h2 class="accordion-header" id="panelsStayOpen-headingSix">
                       <button
@@ -579,94 +583,7 @@ const Newapplicant = () => {
                       class="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingSix"
                     >
-                      <div class={`accordion-body accordion234 `}>
-                        <div class={`p-3 ${Styles.jobtradio}`}>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              CSR
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Media
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Security
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                      <List options={dropDownOptions.max_salary} id="current_salary" formik={filtersFormik} />
                     </div>
                   </div>
                   <div class="accordion-item accordion234">
@@ -690,94 +607,7 @@ const Newapplicant = () => {
                       class="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingSeven"
                     >
-                      <div class={`accordion-body accordion234 `}>
-                        <div class={`p-3 ${Styles.jobtradio}`}>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk Manager
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              CSR
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Media
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Security
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                      <List options={dropDownOptions.max_salary} id="expected_salary" formik={filtersFormik} />
                     </div>
                   </div>
                   <div class="accordion-item accordion234">
@@ -908,7 +738,7 @@ const Newapplicant = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="accordion-item accordion234">
+                  {/* <div class="accordion-item accordion234">
                     <h2
                       class="accordion-header"
                       id="panelsStayOpen-headingThriteen"
@@ -1004,7 +834,7 @@ const Newapplicant = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div class="accordion-item accordion234">
                     <h2
                       class="accordion-header"
@@ -1026,38 +856,7 @@ const Newapplicant = () => {
                       class="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingfourteen"
                     >
-                      <div class={`accordion-body accordion234 `}>
-                        <div class={`p-2 ${Styles.jobtradio}`}>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Front Desk
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input
-                              class={`form-check-input ${Styles.radioer}`}
-                              type="checkbox"
-                              value=""
-                              id="flexCheckDefault"
-                            />
-                            <label
-                              class="form-check-label ogsfonts14"
-                              for="flexCheckDefault"
-                            >
-                              Manager
-                            </label>
-                          </div>
-                        </div>
-                      </div>
+                      <List options={dropDownOptions.marital_status} id="marital_status" formik={filtersFormik} />
                     </div>
                   </div>
                 </div>

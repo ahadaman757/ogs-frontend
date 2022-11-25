@@ -10,6 +10,9 @@ import bodyParser from "body-parser";
 import Jobs from "./models/Job.js";
 import JobSkill from "./models/JobSkill.js";
 
+// var html_to_pdf = require('html-pdf-node');
+
+
 // Environment Variables
 import { DEV_PORT } from "./config/index.js";
 // MiddleWares
@@ -71,12 +74,7 @@ app.use("/users", userRouter);
 app.use("/jobs", jobRouter);
 // app.use("/userlogin", userLogin);
 // consume routes end
-app.get("/", (req, res) => {
-  console.log("one")
-  const a = 'anas'
-  console.log(a)
-  res.send("anas")
-});
+
 
 app.use(errorhandler);
 

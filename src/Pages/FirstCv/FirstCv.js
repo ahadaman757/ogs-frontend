@@ -1,7 +1,7 @@
 import Styles from "./postajob.module.css";
 import { useState, useEffect } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
-import { TextInput, List } from '../Forms/InputFields'
+import { TextInput, List, FileUpload } from '../Forms/InputFields'
 import TagInput from '../Forms/TagInput'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -9,6 +9,7 @@ import axios from "axios";
 import { UploadImageSide } from "../authpages/Registeration";
 const SignUpCv = () => {
   const [LogoData, setLogoData] = useState()
+  const [PassportFile, setPassportFile] = useState()
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState()
   const [Description, setDescription] = useState('')
@@ -55,41 +56,72 @@ const SignUpCv = () => {
         id_card_no: "",
         passport_number: "",
         valid_upto: "",
+        passport_expiry_date: "",
         education_level: "",
         degree_title: "",
         institution: "",
-        min_experience: "",
+        max_experience: "",
         career_level: "",
         position: '',
         nationality: "",
         religion: "",
-        marital_status: ''
-
+        marital_status: '',
+        current_salary: "",
+        expected_salary: "",
+        skin_color: "",
+        weight: "",
+        height: "",
+        min_experience: ""
       },
       validationSchema: Yup.object({
-        // job_title: Yup.string().required("Required"),
-        // // job_description: Yup.string().required("Required"),
-        // country: Yup.number("invalid type").required("Required"),
-        // city: Yup.number("invalid type").required('Required'),
-        // // area: Yup.number("invalid type").required('Required'),
-        // career_level: Yup.number("invalid type").required('Required'),
-        // min_salary: Yup.number("invalid type").required('Required'),
-        // max_salary: Yup.number("invalid type").required('Required'),
-        // functional_area: Yup.number("invalid type").required('Required'),
-        // gender_title: Yup.number("invalid type").required('Required'),
-        // job_type_title: Yup.number("invalid type").required('Required'),
-        // job_shift: Yup.number("invalid type").required('Required'),
-        // required_qualification: Yup.number("invalid type").required('Required'),
-        // min_experience: Yup.number("invalid type").required('Required'),
-        // max_experience: Yup.number("invalid type").required('Required'),
-        // experience_info: Yup.string("invalid type").required('Required'),
-        // min_age: Yup.number("invalid type").required('Required'),
-        // max_age: Yup.number("invalid type").required('Required'),
+        //comment
+
+        email: Yup.string("invalid type").required('Required'),
+        first_name: Yup.string("invalid type").required('Required'),
+        last_name: Yup.string("invalid type").required('Required'),
+        interested_in: Yup.string("invalid type").required('Required'),
+        industry: Yup.string("invalid type").required('Required'),
+        job_title: Yup.string("invalid type").required('Required'),
+        f_name: Yup.string("invalid type").required('Required'),
+        gender: Yup.string("invalid type").required('Required'),
+        dob: Yup.string("invalid type").required('Required'),
+        domicile: Yup.string("invalid type").required('Required'),
+        postal_code: Yup.string("invalid type").required('Required'),
+        mobile_number: Yup.string("invalid type").required('Required'),
+        work_number: Yup.string("invalid type").required('Required'),
+        home_number: Yup.string("invalid type").required('Required'),
+        address: Yup.string("invalid type").required('Required'),
+        country: Yup.string("invalid type").required('Required'),
+        city: Yup.string("invalid type").required('Required'),
+        id_card_no: Yup.string("invalid type").required('Required'),
+        passport_number: Yup.string("invalid type").required('Required'),
+        valid_upto: Yup.string("invalid type").required('Required'),
+        education_level: Yup.string("invalid type").required('Required'),
+        degree_title: Yup.string("invalid type").required('Required'),
+        institution: Yup.string("invalid type").required('Required'),
+        max_experience: Yup.string("invalid type").required('Required'),
+        career_level: Yup.string("invalid type").required('Required'),
+        position: Yup.string("invalid type").required('Required'),
+        nationality: Yup.string("invalid type").required('Required'),
+        religion: Yup.string("invalid type").required('Required'),
+        marital_status: Yup.string("invalid type").required('Required'),
+        current_salary: Yup.string("invalid type").required('Required'),
+        expected_salary: Yup.string("invalid type").required('Required'),
+        skin_color: Yup.string("invalid type").required('Required'),
+        weight: Yup.string("invalid type").required('Required'),
+        height: Yup.string("invalid type").required('Required'),
+        min_experience: Yup.string("invalid type").required('Required'),
+        password: Yup.string().required("Password is Required"),
+        re_type_password: Yup.string().oneOf(
+          [Yup.ref("password"), null],
+          "Passwords must match"
+        ),
       }),
       onSubmit: values => {
         const fullFormData = { ...values };
         const formdata = new FormData();
         formdata.append('image', LogoData)
+        formdata.append('passport_photo', PassportFile)
         for (var key in fullFormData) {
           formdata.append(key, fullFormData[key]);
         }
@@ -106,7 +138,6 @@ const SignUpCv = () => {
       },
     }
   )
-  console.log(CvFormIk)
   const [cities, setcities] = useState([])
   useEffect(() => {
     axios.post('http://localhost:3002/get_city_by_country_id', {
@@ -228,7 +259,13 @@ const SignUpCv = () => {
                   <TextInput id="passport_number" label="Passport Number" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
+                  <FileUpload id="passport_id" name="passport_photo" setFileData={setPassportFile} label="Passport Photo" />
+                </div>
+                <div className="col-md-6">
                   <TextInput id="valid_upto" type='date' label="valid Upto" formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <TextInput id="passport_expiry_date" type='date' label="Passport expiry" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
                   <List id="education_level" options={dropDownOptions.required_qualification} label="Education" formik={CvFormIk} />
@@ -240,14 +277,25 @@ const SignUpCv = () => {
                   <TextInput id="institution" label="Institution" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <List id="min_experience" options={dropDownOptions.min_experience} label="Experience" formik={CvFormIk} />
-                </div>
-
-                <div className="col-md-6">
-                  <List id="current_salary" label="Current Salary" options={dropDownOptions.min_salary} formik={CvFormIk} />
+                  <TextInput id="skin_color" label="Skin Color" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <List id="expected_salary" label="Expected Salary" options={dropDownOptions.min_salary} formik={CvFormIk} />
+                  <TextInput id="weight" label="Weight (kg)" formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <TextInput id="height" label="Height (in)" formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List id="max_experience" options={dropDownOptions.max_experience} label="Min Experience" formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List id="min_experience" options={dropDownOptions.max_experience} label="Max Experience" formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List id="current_salary" label="Current Salary" options={dropDownOptions.max_salary} formik={CvFormIk} />
+                </div>
+                <div className="col-md-6">
+                  <List id="expected_salary" label="Expected Salary" options={dropDownOptions.max_salary} formik={CvFormIk} />
                 </div>
 
               </div>

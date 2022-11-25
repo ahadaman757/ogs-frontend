@@ -176,7 +176,7 @@ const Postajob = () => {
                   <div className={`d-flex align-items-start ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
-                        options={dropDownOptions.min_salary}
+                        options={dropDownOptions.max_salary}
                         list_id="start_salaries"
                         id="min_salary"
                         label="start salary"
@@ -336,7 +336,7 @@ const Postajob = () => {
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
-                        options={dropDownOptions.min_experience}
+                        options={dropDownOptions.max_experience}
                         list_id="min_experiences"
                         id="min_experience"
                         label="Min Experience"
@@ -364,7 +364,7 @@ const Postajob = () => {
                   <div className={`d-flex align-items-end ${Styles.SRm}`}>
                     <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
-                        options={dropDownOptions.min_age}
+                        options={dropDownOptions.max_age}
                         list_id="min_ages"
                         id="min_age"
                         label="Min Age Requirement"

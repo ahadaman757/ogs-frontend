@@ -37,10 +37,10 @@ const Jobcard = (props) => {
     <div className={`p-3 my-2 ${Styles.Jobcardmain}`} key={props.data.id} onClick={() => navigate('/newapplicant', { state: { id: props.data.id } })}>
       <div className=" d-flex align-items-center">
         <div className="d-flex">
-          <p className="ogsfonts14 m-1">
-            {monthNames[month] + " " + day + "," + year}
-          </p>
           <p className="m-1 ogsfonts14"> Posted date</p>
+          <p className="ogsfonts14 m-1">
+            {props.data.posted_at}
+          </p>
         </div>
         <p className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}>
           {props.staus}
@@ -50,7 +50,7 @@ const Jobcard = (props) => {
         <div className={`d-flex`}>
           <h1 className="ogsfonts24 m-0">
             {props.data.id} / {props.data.job_title} -{" "}
-            {props.data.location == null ? "Not defined" : props.data.location}{" "}
+            {props.data.city}, {props.data.country}
           </h1>
           <button className={`mx-2 ${Styles.filaneyebtn}`}>
             <span>
@@ -62,8 +62,8 @@ const Jobcard = (props) => {
 
       <div className="d-flex">
         <p>
-          Offered salary: {kFormatter(props.data.start_salary)} -{" "}
-          {kFormatter(props.data.end_salary)}
+          Offered salary: {kFormatter(props.data.min_salary)} -{" "}
+          {kFormatter(props.data.max_salary)}
         </p>
       </div>
       <div
@@ -71,7 +71,7 @@ const Jobcard = (props) => {
       >
         <div>
           <div className={`${Styles.jobcarddetailsl}`}>
-            <p className="ogsfonts24 text-center p-4">18</p>
+            <p className="ogsfonts24 text-center p-4">{props.data.applicants}</p>
           </div>
           <p className="ogsfonts14 text-center">Applied</p>
         </div>
@@ -105,7 +105,7 @@ const Jobcard = (props) => {
         <div className="d-flex flex-wrap">
           <p className="my-0 ogsfonts14">63 Similar jobs</p>
           <p className="my-0 mx-sm-3 ogsfonts14">96 Total visits</p>
-          <p className="my-0 mx-sm-3 ogsfonts14">Expiry Date: Jun 26, 2022</p>
+          <p className="my-0 mx-sm-3 ogsfonts14">Expiry Date: {props.data.last_date_apply}</p>
         </div>
         <div>
           <button className={`mx-2 ${Styles.csdbtn}`}>

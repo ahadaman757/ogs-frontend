@@ -13,8 +13,11 @@ import RefreshToken from "../models/refreshToken.js";
 import { decryptPassword } from '../services/Main.js'
 import jwt_service from "../services/JwtService.js";
 import sequelize from "../config/db.js";
+import bodyParser from "body-parser";
 // const User = require('../models/Users')
 const registercontroller = async (req, res, next) => {
+  console.log("regsiter controller")
+  console.log(req.files.image[0].path)
   // extract error from validation schema
   try {
     let orderedData;
@@ -58,7 +61,7 @@ const registercontroller = async (req, res, next) => {
       // first check whether a user is registered with this email
       const user = await User.findOne({ where: { email: email } });
       if (user === null) {
-        const hash = await await (password);
+        const hash = await decryptPassword(password);
         // insert into database
         User.create({
           first_name: first_name,
@@ -69,6 +72,7 @@ const registercontroller = async (req, res, next) => {
           position: position,
         })
           .then((response) => {
+            console.log("user created")
             if (registerType == "recruiter") {
               // insertion for employer start
               // Company.createUser(orderedData.orderedData)
@@ -80,9 +84,9 @@ const registercontroller = async (req, res, next) => {
             }
             else {
               if (registerType == "seeker") {
-                console.log(req.file.path)
-                const { job_title, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, min_experience, industry = 1, education_level, gender, interested_in, career_level, position, nationality, religion, marital_status } = body
-                sequelize.query(`insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,valid_upto,degree_title,institution,first_name,last_name,min_experience,max_experience,industry,education_level,gender,interested_in,user_id,position,nationality,religion,marital_status) VALUES('${req.file?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${valid_upto}','${degree_title}','${institution}','${first_name}','${last_name}',${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${response.id})`).then(res => {
+
+                const { job_title, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, max_experience, min_experience, industry = 1, education_level, gender, interested_in, career_level, position, nationality, religion, marital_status, current_salary, expected_salary, skin_color, weight, height, passport_expiry_date } = body
+                sequelize.query(`insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_expiry_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_expiry_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`).then(res => {
                   console.log("cv addde")
                 }).catch(error => {
                   console.log(error)
@@ -144,7 +148,28 @@ const imageUpload = multer({
     }
     cb("Give proper files formate to upload");
   },
-}).single("image");
+}).fields([
+  {
+    name: "image",
+    maxCount: 1
+  },
+  {
+    name: "passport_photo"
+  }
+]);
+const passportUpload = multer({
+  storage: storage,
+  limits: { fileSize: "1000000" },
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const mimeType = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+    if (mimeType && extname) {
+      return cb(null, true);
+    }
+    cb("Give proper files formate to upload");
+  },
+}).single('passport_photo');
 
 // SignIn Controller
 const signincontroller = async (req, res, next) => {
@@ -203,8 +228,6 @@ const signincontroller = async (req, res, next) => {
   }
 };
 const ProfileController = async (req, res, next) => {
-  console.log("user request")
-  console.log(req.user.id)
   const [employer_record, metadata] = await sequelize.query(`select u.id,u.first_name,u.last_name,positions.position_title as position,u.email,countries.name as country,cities.name as city,c.business_mobile_number,c.company_name,c.company_logo,c.business_webpage,
   c.business_address,c.contact_person_name,c.contact_person_number,c.contact_person_email,business_types.business_type_name,c.country as country_id,c.city as city_id
   from users u 
@@ -217,6 +240,15 @@ const ProfileController = async (req, res, next) => {
 
   res.json(employer_record[0]);
 };
+const SeekerProfileController = async (req, res, next) => {
+  const [seeker_record, metadata] = await sequelize.query(`select u.id,u.first_name,u.last_name,positions.position_title as position,u.email
+  from users u 
+  JOIN positions on u.position=positions.position_id
+      where u.id =${req.user.id}`)
+
+  res.json(seeker_record[0]);
+};
+
 const ResetPassword = async (req, res, next) => {
   // get user id
   try {
@@ -273,7 +305,6 @@ const UpdateProfile = async (req, res, next) => {
     res.json({ message: "Updated successfull" })
   }
 
-
   catch (error) {
     next(error)
   }
@@ -285,4 +316,4 @@ const UpdateProfile = async (req, res, next) => {
   // const [reset_password, user_password_meta] = sequelize.query(`update password * from users where id = ${user_id}`)
 
 }
-export { registercontroller, imageUpload, signincontroller, ProfileController, ResetPassword, UpdateProfile };
+export { registercontroller, imageUpload, signincontroller, ProfileController, ResetPassword, UpdateProfile, passportUpload, SeekerProfileController };

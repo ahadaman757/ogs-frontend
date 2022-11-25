@@ -42,13 +42,8 @@ const LoginInformation = ({ sel, setformData, formData, employerRegsiterOptions 
 
     const logininformationFormik = useFormik(LoginInformationValidation(setformData, formData))
     useEffect(() => {
-
-
         sel(1)
-
     }, [])
-
-
     // Register Validation end
 
     return <>

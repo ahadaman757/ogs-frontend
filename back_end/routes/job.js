@@ -6,7 +6,8 @@ import {
   JobMyCompaniesController,
   GetJobOption,
   JobByIdController,
-  getApplicantsForJobById
+  getApplicantsForJobById,
+  JobApplicantStatusUpdate
 } from "../controllers/JobController.js";
 
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -17,6 +18,8 @@ jobRouter.post("/", auth, JobPostController);
 jobRouter.get("/myjobs", auth, JobMyCompaniesController);
 jobRouter.get("/jobsoptions", GetJobOption);
 jobRouter.post("/jobapplicants", getApplicantsForJobById);
+jobRouter.post("/job_applicants_status_update", JobApplicantStatusUpdate);
+// jobRouter.post("/jobapply", JobApply);
 jobRouter.post("/:id", JobByIdController);
 // jobRouter.get('/me', auth, usermecontroller)
 

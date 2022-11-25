@@ -23,6 +23,8 @@ import SeekerCv from "./Pages/seekerpages/seekerCv/seekerCv";
 import EmployerLogin from "./Pages/logins/eplogin";
 import SeekerLogin from "./Pages/logins/seekerlogin";
 import Test from "./Pages/test/test";
+import BasicDocument from "./Components/pdfDownload";
+
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/pdf",
+    element: <BasicDocument />,
   },
   {
     path: "register",

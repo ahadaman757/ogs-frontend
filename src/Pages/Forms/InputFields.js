@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import styles from '../authpages/main.module.css'
+
 const List = (props) => {
     const { id, label, list_id, formik, options, onChangeValue } = props
-
     return (
         <div>
             <label htmlFor={id} className={`${styles.form_input__lable}`}>{label}</label>
@@ -10,11 +11,13 @@ const List = (props) => {
 
             <select onChange={(e) => onChangeValue(e)} value={formik.values[id]} {...formik.getFieldProps(`'${id}'`)} className={`${styles.form_input}`} name={id} id={list_id}>
                 {
-                    options && options.map(option => {
+                    options && options.map((option, index) => {
+
                         const keys = Object.keys(option);
                         const value = option[keys[0]]
                         const lable = option[keys[1]]
                         return <option id={option.id} value={value} > {lable}</option>
+
                     })
                 }
             </select>
@@ -38,6 +41,17 @@ const TextInput = (props) => {
                 <div className='text__note'>{formik.errors[id]}</div>
             ) : null}
         </>
+    )
+}
+const FileUpload = ({ setFileData, title, name, id, label }) => {
+    const handleInputChange = (event) => {
+        setFileData(event.target.files[0])
+    };
+    return (<>
+        <label htmlFor={id} className={`${styles.form_input__lable}`}>{label}</label>
+        <input className={`${styles.form_input}`} onChange={handleInputChange} type="file" name={name} id={id} />
+    </>
+
     )
 }
 // const FixedList = (props) => {
@@ -64,4 +78,4 @@ const TextInput = (props) => {
 
 //     )
 // }
-export { List, TextInput, }
+export { List, TextInput, FileUpload }
