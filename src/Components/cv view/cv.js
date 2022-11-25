@@ -17,8 +17,12 @@ import {
   Image
 } from "@react-pdf/renderer";
 const Cv = ({ applicant, job_id }) => {
+  const cv = {
+    contact_number: "03458914711"
+  }
   const [shortlisted, setShortlisted] = useState(applicant.is_shortlisted);
   const [rejected, setRejected] = useState(applicant.is_rejected);
+  const [download, setdownload] = useState(false)
   console.log(applicant.cv_id)
   console.log(applicant.is_shortlisted)
   const updateCvView = (currentStatus) => {
@@ -45,9 +49,7 @@ const Cv = ({ applicant, job_id }) => {
       console.log(error)
     })
   }
-  const democv = {
-    contact_number: "0231567890"
-  }
+
   return (
     <div className={` p-4 my-4 ${Styles.Cvmain}`}>
       <div className="d-flex justify-content-between">
@@ -70,12 +72,15 @@ const Cv = ({ applicant, job_id }) => {
           </span>
           Preview CV
         </button>
-        <button className={`ogsfonts16 ${Styles.cvheadicon}`}>
+        <button onClick={() => setdownload(true)} className={`ogsfonts16 ${Styles.cvheadicon}`}>
           <span>
             <img className="me-3" src={downicon} />
           </span>
-          <PDFDownloadLink document={<BasicDocument cv_data={democv} />} fileName="somename.pdf">
-            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+          <PDFDownloadLink document={<BasicDocument cv_data={applicant} />} fileName="somename.pdf">
+            {({ loading, error }) => {
+              console.log(error)
+              return (loading ? 'Loading document...' : 'Download now!')
+            }}
           </PDFDownloadLink>
         </button>
         <button
@@ -191,11 +196,11 @@ const Cv = ({ applicant, job_id }) => {
         </div>
         <div>
           <p className="text-center ogsfonts14">Current Salary</p>
-          <p className="text-center ogsfonts18 m-0">PKR 30K - 35K /Month</p>
+          <p className="text-center ogsfonts18 m-0">{applicant.current_salary} /Month</p>
         </div>
         <div>
           <p className="text-center ogsfonts14">Expected Salary</p>
-          <p className="text-center ogsfonts18 m-0">PKR 35K - 40K /Month</p>
+          <p className="text-center ogsfonts18 m-0">{applicant.expected_salary} /Month</p>
         </div>
       </div>
     </div>

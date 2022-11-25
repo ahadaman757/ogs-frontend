@@ -177,434 +177,443 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     }
     ,
-    profile_img: {
+    logo_img: {
         width: 50,
         height: 50
+    },
+    profile_img: {
+        width: 100,
+        height: 100
+    },
+    profile_image_container: {
+        paddingRight: 10,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     }
 });
 // Create Document Component
-
+Font.register({
+    family: 'Noto',
+    src: font
+});
 function BasicDocument({ cv_data }) {
-    Font.register({
-        family: 'Noto',
-        src: font
-    });
+    console.log(cv_data.cv_image)
     return (
         <>
-            <PDFViewer style={styles.viewer}>
-                <Document >
-                    {/*render a single page*/}
-                    <Page size={"A4"} style={styles.page}>
-                        {/* header_start */}
-                        <View style={{ ...styles.header, ...styles.main_padding, flexDirection: "row", alignItems: "center" }}>
-                            <View>
-                                <Image style={styles.profile_img} src={require('../Assets/Images/image 1.png')} />
-                            </View>
-                            <View style={styles.header_right_side}>
-                                <Text style={{ ...styles.text }}>
-                                    Email:alue6988@gmail.com
-                                </Text>
-                                <Text style={{ ...styles.text }}>
-                                    Whatsapp/Contact No:{cv_data.contact_number}
-                                </Text>
-                            </View>
+            {/* <PDFViewer style={styles.viewer}> */}
+            <Document >
+                {/*render a single page*/}
+                <Page size={"A4"} style={styles.page}>
+                    {/* header_start */}
+                    <View style={{ ...styles.header, ...styles.main_padding, flexDirection: "row", alignItems: "center" }}>
+                        <View>
+                            <Image style={styles.logo_img} src={require('../Assets/Images/image 1.png')} />
                         </View>
-                        {/* header_end */}
-                        <View style={styles.colored_title}>
-                            <Text style={{ ...styles.h1 }}>
-                                Application Form
+                        <View style={styles.header_right_side}>
+                            <Text style={{ ...styles.text }}>
+                                Email:{cv_data.email}
+                            </Text>
+                            <Text style={{ ...styles.text }}>
+                                Contact No:{cv_data.mobile_number}
                             </Text>
                         </View>
-                        {/* yellow div end */}
-                        <View style={styles.cv_content}>
-                            <View style={{ ...styles.profile }}>
-                                <View style={styles.profile_image_container}>
-                                    <Image style={styles.profile_img} src={require('../Assets/Images/image 1.png')} />
+                    </View>
+                    {/* header_end */}
+                    <View style={styles.colored_title}>
+                        <Text style={{ ...styles.h1 }}>
+                            Application Form
+                        </Text>
+                    </View>
+                    {/* yellow div end */}
+                    <View style={styles.cv_content}>
+                        <View style={{ ...styles.profile }}>
+                            <View style={styles.profile_image_container}>
+                                <Image style={styles.profile_img} src={`http://localhost:3002/${cv_data.cv_image.replace("images", "images/")}`} />
+                            </View>
+                            <View style={styles.profile_info_right}>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_title}>
+                                        Full Name
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        الاسم الكامل
+                                    </Text>
                                 </View>
-                                <View style={styles.profile_info_right}>
-                                    <View style={styles.right_col}>
-                                        <Text style={styles.info_title}>
-                                            Full Name
-                                        </Text>
-                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            الاسم الكامل
-                                        </Text>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_value}>
+                                        {cv_data.first_name + " " + cv_data.last_name}
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        أحمد خان
+                                    </Text>
+                                </View>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_title}>
+                                        Occupation
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        إشغال
+                                    </Text>
+                                </View>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_value}>
+                                        {cv_data.position_title}
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        مطور ويب
+                                    </Text>
+                                </View>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_title}>
+                                        Total Work Experience
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        خبرة عمل كاملة
+                                    </Text>
+                                </View>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_value}>
+                                        {cv_data.max_experience}
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        12 سنة
+                                    </Text>
+                                </View>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_title}>
+                                        Expected salary
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        الراتب المتوقع
+                                    </Text>
+                                </View>
+                                <View style={styles.right_col}>
+                                    <Text style={styles.info_value}>
+                                        {cv_data.expected_salary}
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        2000 ريال
+                                    </Text>
+                                </View>
+                            </View>
+
+
+                        </View>
+                        <View style={styles.info_grid}>
+                            <View style={styles.left_column}>
+                                <View style={styles.section_heading}>
+                                    <Text style={styles.section_heading_text}>
+                                        Application Details
+                                    </Text>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>NATIONALITY</Text>
                                     </View>
-                                    <View style={styles.right_col}>
+                                    <View style={styles.col_2}>
                                         <Text style={styles.info_value}>
-                                            Ahmad khan
+                                            {cv_data.country}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            أحمد خان
+                                            جنسية
                                         </Text>
                                     </View>
-                                    <View style={styles.right_col}>
-                                        <Text style={styles.info_title}>
-                                            Occupation
-                                        </Text>
-                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            إشغال
-                                        </Text>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>RELIGION</Text>
                                     </View>
-                                    <View style={styles.right_col}>
+                                    <View style={styles.col_2}>
                                         <Text style={styles.info_value}>
-                                            Web Developer
+                                            {cv_data.religion}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            مطور ويب
+                                            دين
                                         </Text>
                                     </View>
-                                    <View style={styles.right_col}>
-                                        <Text style={styles.info_title}>
-                                            Total Work Experience
-                                        </Text>
-                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            خبرة عمل كاملة
-                                        </Text>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>DATE OF BIRTH</Text>
                                     </View>
-                                    <View style={styles.right_col}>
+                                    <View style={styles.col_2}>
                                         <Text style={styles.info_value}>
-                                            2 years
+                                            {cv_data.Dob}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            12 سنة
+                                            تاريخ الولادة
                                         </Text>
                                     </View>
-                                    <View style={styles.right_col}>
-                                        <Text style={styles.info_title}>
-                                            Expected salary
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>BIRTH PLACE</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.domicile}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            مكان الولادة
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>AGE</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.age}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            سن
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>ADDRESS</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.address}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            تبوك
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>Marital Status</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.status}
+                                        </Text>
+                                        <Text s style={{ ...styles.info_title, ...styles.arabic }}>
+                                            الحالة الزوجية
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>WEIGHT</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.weight}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            وزن
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>HEIGHT</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.height}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
                                             الراتب المتوقع
                                         </Text>
                                     </View>
-                                    <View style={styles.right_col}>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>SKIN COLOR</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
                                         <Text style={styles.info_value}>
-                                            40000
+                                            {cv_data.skin_color}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            2000 ريال
+                                            لون البشرة
                                         </Text>
                                     </View>
                                 </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>EDUCATION</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.qualification}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            التعليم
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={{ ...styles.section_heading, justifyContent: "space-between", alignItems: "center" }}>
+                                    <Text style={styles.section_heading_text}>
+                                        LANGUAGE
+                                    </Text>
+                                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                        لغة
+                                    </Text>
+                                </View>
+                                <View style={styles.row}>
+                                    <Text style={styles.info_title}>
+                                        Language
+                                    </Text>
+                                    <Text style={styles.info_title}>
+                                        Weak
+                                    </Text>
+                                    <Text style={styles.info_title}>
+                                        Average
+                                    </Text>
+                                    <Text style={styles.info_title}>
+                                        Good
+                                    </Text>
+
+                                </View>
+                                <View style={styles.row}>
+                                    <Text style={styles.info_title}>
+                                        Arabic
+                                    </Text>
+                                    <Text style={styles.info_title}>No</Text>
 
 
+                                    <Text style={styles.info_title}>
+                                        No
+                                    </Text>
+                                    <Text style={styles.info_title}>
+                                        Yes
+                                    </Text>
+
+                                </View>
+                                <View style={styles.row}>
+                                    <Text style={styles.info_title}>
+                                        Engish
+                                    </Text>
+                                    <Text style={styles.info_title}>No</Text>
+
+
+                                    <Text style={styles.info_title}>
+                                        Yes
+                                    </Text>
+                                    <Text style={styles.info_title}>
+                                        No
+                                    </Text>
+
+                                </View>
+                                <View style={{ ...styles.section_heading, justifyContent: "space-between", alignItems: "center" }}>
+                                    <Text style={styles.section_heading_text}>
+                                        Experience Overseas
+                                    </Text>
+                                    <Text style={{ ...styles.section_heading_text, ...styles.arabic }}>
+                                        تجربة في الخارج
+                                    </Text>
+                                </View>
+                                <View style={styles.row}>
+                                    <Text style={styles.info_title}>
+                                        Country
+                                    </Text>
+                                    <Text style={styles.info_title}>Period</Text>
+
+                                    <Text style={styles.info_title}>
+                                        Occupation
+                                    </Text>
+
+
+                                </View>
+                                <View style={styles.row}>
+                                    <Text style={styles.info_value}>
+                                        Saudi Arabia
+                                    </Text>
+                                    <Text style={styles.info_value}>1-4 years</Text>
+
+                                    <Text style={styles.info_value}>
+                                        Driver
+                                    </Text>
+
+
+                                </View>
                             </View>
-                            <View style={styles.info_grid}>
-                                <View style={styles.left_column}>
-                                    <View style={styles.section_heading}>
-                                        <Text style={styles.section_heading_text}>
-                                            Application Details
-                                        </Text>
+                            <View style={styles.right_column}>
+                                <View style={styles.section_heading}>
+                                    <Text style={styles.section_heading_text}>
+                                        Passport Details
+                                    </Text>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>PASSPORT NO</Text>
                                     </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>NATIONALITY</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                PAKISTAN
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                جنسية
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>RELIGION</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                MUSLIM
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                دين
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>DATE OF BIRTH</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                19-20-2000
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                تاريخ الولادة
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>BIRTH PLACE</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                SAHIWAL
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                مكان الولادة
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>AGE</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                22
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                سن
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>ADDRESS</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                SAHIWAL
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                تبوك
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>ADDRESS</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                MARRIED
-                                            </Text>
-                                            <Text s style={{ ...styles.info_title, ...styles.arabic }}>
-                                                الحالة الزوجية
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>WEIGHT</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                55KG
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                وزن
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>HEIGHT</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                5.7
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                الراتب المتوقع
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>SKIN COLOR</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                FAIR
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                لون البشرة
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>EDUCATION</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                FA
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                التعليم
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ ...styles.section_heading, justifyContent: "space-between", alignItems: "center" }}>
-                                        <Text style={styles.section_heading_text}>
-                                            LANGUAGE
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.passport_number}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                            لغة
+                                            رقم جواز السفر
                                         </Text>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <Text style={styles.info_title}>
-                                            Language
-                                        </Text>
-                                        <Text style={styles.info_title}>
-                                            Weak
-                                        </Text>
-                                        <Text style={styles.info_title}>
-                                            Average
-                                        </Text>
-                                        <Text style={styles.info_title}>
-                                            Good
-                                        </Text>
-
-                                    </View>
-                                    <View style={styles.row}>
-                                        <Text style={styles.info_title}>
-                                            Arabic
-                                        </Text>
-                                        <Text style={styles.info_title}>No</Text>
-
-
-                                        <Text style={styles.info_title}>
-                                            No
-                                        </Text>
-                                        <Text style={styles.info_title}>
-                                            Yes
-                                        </Text>
-
-                                    </View>
-                                    <View style={styles.row}>
-                                        <Text style={styles.info_title}>
-                                            Engish
-                                        </Text>
-                                        <Text style={styles.info_title}>No</Text>
-
-
-                                        <Text style={styles.info_title}>
-                                            Yes
-                                        </Text>
-                                        <Text style={styles.info_title}>
-                                            No
-                                        </Text>
-
-                                    </View>
-                                    <View style={{ ...styles.section_heading, justifyContent: "space-between", alignItems: "center" }}>
-                                        <Text style={styles.section_heading_text}>
-                                            Experience Overseas
-                                        </Text>
-                                        <Text style={{ ...styles.section_heading_text, ...styles.arabic }}>
-                                            تجربة في الخارج
-                                        </Text>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <Text style={styles.info_title}>
-                                            Country
-                                        </Text>
-                                        <Text style={styles.info_title}>Period</Text>
-
-                                        <Text style={styles.info_title}>
-                                            Occupation
-                                        </Text>
-
-
-                                    </View>
-                                    <View style={styles.row}>
-                                        <Text style={styles.info_value}>
-                                            Saudi Arabia
-                                        </Text>
-                                        <Text style={styles.info_value}>1-4 years</Text>
-
-                                        <Text style={styles.info_value}>
-                                            Driver
-                                        </Text>
-
-
                                     </View>
                                 </View>
-                                <View style={styles.right_column}>
-                                    <View style={styles.section_heading}>
-                                        <Text style={styles.section_heading_text}>
-                                            Passport Details
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>DATE OF ISSUE</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.valid_upto}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            تاريخ المسألة
                                         </Text>
                                     </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>PASSPORT NO</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                HSK5525
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                رقم جواز السفر
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>DATE OF ISSUE</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                05-02-2000
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                تاريخ المسألة
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>DATE OF EXPIRY</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                05-02-2022
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                تاريخ الانتهاء
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.row}>
-                                        <View style={styles.col_1}>
-                                            <Text style={styles.info_title}>ERC/ECNR</Text>
-                                        </View>
-                                        <View style={styles.col_2}>
-                                            <Text style={styles.info_value}>
-                                                ECNR
-                                            </Text>
-                                            <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                                                الراتب المتوقع
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    {/* <Image src={require('../Assets/Images/image 1.png')} /> */}
                                 </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>DATE OF EXPIRY</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            {cv_data.valid_upto}
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            تاريخ الانتهاء
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.row}>
+                                    <View style={styles.col_1}>
+                                        <Text style={styles.info_title}>ERC/ECNR</Text>
+                                    </View>
+                                    <View style={styles.col_2}>
+                                        <Text style={styles.info_value}>
+                                            ECNR
+                                        </Text>
+                                        <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                                            الراتب المتوقع
+                                        </Text>
+                                    </View>
+                                </View>
+                                <Image src={`http://localhost:3002/${cv_data.passport_photo.replace("images", "images/")}`} />
                             </View>
                         </View>
-                    </Page>
-
-                </Document >
-            </PDFViewer>
+                    </View>
+                </Page>
+            </Document >
+            {/* </PDFViewer> */}
         </>
     );
 }
 const App = () => {
-    const cv = {
-        contact_number: "03458914711"
-    }
     return (
         <>
-            <BasicDocument cv_data={cv} />
-            {/* <PDFDownloadLink document={<BasicDocument />} fileName="somename.pdf">
-            {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-        </PDFDownloadLink> */}
+            {/* <BasicDocument cv_data={cv} /> */}
+            <PDFDownloadLink document={<BasicDocument />} fileName="somename.pdf">
+                {({ loading, error }) => {
+                    console.log(error)
+                    return (loading ? 'Loading document...' : 'Download now!')
+                }}
+            </PDFDownloadLink>
         </>
     )
 }

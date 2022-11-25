@@ -9,10 +9,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import Jobs from "./models/Job.js";
 import JobSkill from "./models/JobSkill.js";
-import * as html_to_pdf from 'html-pdf-node'
+
 // var html_to_pdf = require('html-pdf-node');
 
-let options = { format: 'A4' };
+
 // Environment Variables
 import { DEV_PORT } from "./config/index.js";
 // MiddleWares
@@ -75,10 +75,7 @@ app.use("/jobs", jobRouter);
 // app.use("/userlogin", userLogin);
 // consume routes end
 
-let file = [{ url: "http://localhost:3000/newapplicant", name: 'example.pdf' }];
-html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-  console.log("PDF Buffer:-", pdfBuffer);
-});
+
 app.use(errorhandler);
 
 app.listen(3002, () =>
