@@ -74,7 +74,7 @@ const SignUpCv = () => {
         min_experience: ""
       },
       validationSchema: Yup.object({
-
+        //comment
 
         email: Yup.string("invalid type").required('Required'),
         first_name: Yup.string("invalid type").required('Required'),
