@@ -22,7 +22,7 @@ import Manageyoucvs from "./Pages/seekerpages/Manageyoucvs/Manageyoucvs";
 import SeekerCv from "./Pages/seekerpages/seekerCv/seekerCv";
 import EmployerLogin from "./Pages/logins/eplogin";
 import SeekerLogin from "./Pages/logins/seekerlogin";
-import Test from "./Pages/test/test";
+// import Test from "./Pages/test/test";
 import BasicDocument from "./Components/pdfDownload";
 
 const getContextValue = () => {
@@ -129,10 +129,7 @@ const router = createBrowserRouter([
     path: "seekerlogin",
     element: <SeekerLogin />,
   },
-  {
-    path: "test",
-    element: <Test />,
-  },
+
 ]);
 function Routes() {
   return <RouterProvider router={router} />;
