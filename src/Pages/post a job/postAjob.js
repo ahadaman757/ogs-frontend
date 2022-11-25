@@ -10,7 +10,7 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../authpages/main.module.css";
 import axios from "axios";
-import Sidebar from "../test/sidebar";
+
 const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();

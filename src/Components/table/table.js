@@ -1,4 +1,7 @@
 import { map } from "jquery";
+import Tick from "../../Assets/Images/tick.svg";
+import removered from "../../Assets/Images/removered.svg";
+import Styles from "./table.module.css";
 
 const Table = (props) => {
   return (
@@ -33,7 +36,16 @@ const Table = (props) => {
                     <td className="ogsfonts14">{item.Date}</td>
                     <td className="ogsfonts14">{item.cv}</td>
                     <td className="ogsfonts14">
-                      <button></button>
+                      <button className={`${Styles.btn}`}>
+                        <span>
+                          <img src={Tick} />
+                        </span>
+                      </button>
+                      <button className={`${Styles.btn}`}>
+                        <span>
+                          <img src={removered} />
+                        </span>
+                      </button>
                     </td>
                   </tr>
                 );

@@ -1,4 +1,4 @@
-import Styles from "./usermanagement.module.css";
+import Styles from "./manageseeker.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
 import InputField from "../../../Components/inputfield/inputfield";
@@ -10,7 +10,7 @@ const detail = [
     Title: "qw",
   },
 ];
-const Usermanagement = () => {
+const Manageseeker = () => {
   const [data, setData] = useState();
 
   const display = (d) => {
@@ -32,7 +32,7 @@ const Usermanagement = () => {
             <h1 className="ogsfonts20">to OGS manpower Administration Panel</h1>
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Content Managment Section</h1>
-              <p className="ogsfonts16">Institute Contents</p>
+              <p className="ogsfonts16">Manage Seeker</p>
               <p className="ogsfonts16">
                 This pane provides an overview of your account settings, allows
                 you to change your password.
@@ -70,4 +70,4 @@ const Usermanagement = () => {
     </div>
   );
 };
-export default Usermanagement;
+export default Manageseeker;

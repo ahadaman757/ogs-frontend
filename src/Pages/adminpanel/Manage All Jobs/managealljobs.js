@@ -1,4 +1,4 @@
-import Styles from "./usermanagement.module.css";
+import Styles from "./managealljobs.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
 import InputField from "../../../Components/inputfield/inputfield";
@@ -10,7 +10,7 @@ const detail = [
     Title: "qw",
   },
 ];
-const Usermanagement = () => {
+const Managealljobs = () => {
   const [data, setData] = useState();
 
   const display = (d) => {
@@ -32,35 +32,11 @@ const Usermanagement = () => {
             <h1 className="ogsfonts20">to OGS manpower Administration Panel</h1>
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Content Managment Section</h1>
-              <p className="ogsfonts16">Institute Contents</p>
+              <p className="ogsfonts16">Manage All Jobs</p>
               <p className="ogsfonts16">
                 This pane provides an overview of your account settings, allows
                 you to change your password.
               </p>
-              <div className="row">
-                <div className="col-md-5 me-3">
-                  <InputField title={"Page Title"} />
-                  <InputField title={"Meta Title"} />
-                  <div className="d-flex justify-content-between">
-                    <InputField title={"Meta Title"} />
-                    <InputField title={"Meta Title"} />
-                  </div>
-                  <InputField title={"Meta Title"} />
-                  <InputField title={"Meta Title"} />
-                  <div className="d-flex justify-content-between">
-                    <InputField title={"Meta Title"} />
-                    <InputField title={"Meta Title"} />
-                  </div>
-                  <div className="d-flex justify-content-end">
-                    <button className={`me-3 ogsfonts14 ${Styles.btnt}`}>
-                      Cancel
-                    </button>
-                    <button className={`px-4 py-3 ogsfonts14  ${Styles.btnc}`}>
-                      Save
-                    </button>
-                  </div>
-                </div>
-              </div>
 
               <Table array={detail} Sr={"as"} Code={"asda"} Option={"werer"} />
             </div>
@@ -70,4 +46,4 @@ const Usermanagement = () => {
     </div>
   );
 };
-export default Usermanagement;
+export default Managealljobs;

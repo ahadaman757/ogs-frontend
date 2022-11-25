@@ -1,16 +1,10 @@
-import Styles from "./usermanagement.module.css";
+import Styles from "./managejobsdispaly.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
 import InputField from "../../../Components/inputfield/inputfield";
 import Table from "../../../Components/table/table";
 
-const detail = [
-  {
-    Code: "ewe",
-    Title: "qw",
-  },
-];
-const Usermanagement = () => {
+const Managejobsdispaly = () => {
   const [data, setData] = useState();
 
   const display = (d) => {
@@ -32,7 +26,7 @@ const Usermanagement = () => {
             <h1 className="ogsfonts20">to OGS manpower Administration Panel</h1>
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Content Managment Section</h1>
-              <p className="ogsfonts16">Institute Contents</p>
+              <p className="ogsfonts16">Jobs Display Limit</p>
               <p className="ogsfonts16">
                 This pane provides an overview of your account settings, allows
                 you to change your password.
@@ -61,8 +55,6 @@ const Usermanagement = () => {
                   </div>
                 </div>
               </div>
-
-              <Table array={detail} Sr={"as"} Code={"asda"} Option={"werer"} />
             </div>
           </div>
         </div>
@@ -70,4 +62,4 @@ const Usermanagement = () => {
     </div>
   );
 };
-export default Usermanagement;
+export default Managejobsdispaly;

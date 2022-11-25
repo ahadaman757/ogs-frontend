@@ -32,6 +32,10 @@ import ContactusSec from "./Pages/adminpanel/Contact Us/contactus";
 import Internship from "./Pages/adminpanel/Internship/internship";
 import Aboutussec from "./Pages/adminpanel/About Us/aboutus";
 import Faqs from "./Pages/adminpanel/Faq's/faqs";
+import Manageseeker from "./Pages/adminpanel/Manage Seeker/manageseeker";
+import Manageemployer from "./Pages/adminpanel/Manage Employer/manageemployer";
+import Managealljobs from "./Pages/adminpanel/Manage All Jobs/managealljobs";
+import Managejobsdispaly from "./Pages/adminpanel/Manage Jobs Dispaly Limits/managejobsdispaly";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -171,6 +175,22 @@ const router = createBrowserRouter([
   {
     path: "faqs",
     element: <Faqs />,
+  },
+  {
+    path: "manageseeker",
+    element: <Manageseeker />,
+  },
+  {
+    path: "manageemployer",
+    element: <Manageemployer />,
+  },
+  {
+    path: "managealljobs",
+    element: <Managealljobs />,
+  },
+  {
+    path: "managejobsdispaly",
+    element: <Managejobsdispaly />,
   },
 ]);
 function Routes() {
