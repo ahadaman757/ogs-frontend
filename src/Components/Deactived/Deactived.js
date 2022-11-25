@@ -3,7 +3,7 @@ const Deactivated = (props) => {
   return (
     <div>
       <div>
-        {props.jobs.length > 0
+        {props.jobs[0].id !== null
           ? props.jobs.map((job) => {
             return <Jobcard staus="Deactivated" data={job} />;
           })

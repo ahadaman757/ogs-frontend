@@ -64,6 +64,8 @@ const JobPostController = async (req, res, next) => {
 // /Temporary Job Controller end
 
 const JobMyCompaniesController = async (req, res, next) => {
+  console.log("id")
+  console.log(req.user.id)
   try {
     // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
     const [company_jobs_record, meta] = await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
@@ -71,7 +73,7 @@ const JobMyCompaniesController = async (req, res, next) => {
     from job j 
     JOIN job_applicants_cv on j.id =job_applicants_cv.job_id
     JOIN countries on J.country_id=countries.id
-    JOIN cities on J.city_id=cities.id
+    JOIN  cities on J.city_id=cities.id
     JOIN careerlevels on career_level_id=careerlevels.id
     JOIN  maxsalaries minSalary on	min_salary_id =minSalary.id
     JOIN  maxsalaries maxSalary on	max_salary_id =maxSalary.id
@@ -83,9 +85,9 @@ const JobMyCompaniesController = async (req, res, next) => {
     JOIN maxagerequirements minAge on j.min_age_id=minAge.id
     JOIN maxexperiences maxExperience on j.max_experience_id=maxExperience.id
     JOIN maxexperiences minExperience on j.min_experience_id=minExperience.id
-    
-    
-    where posted_by_id = ${req.user.id}`)
+    where posted_by_id = ${req.user.id}
+    `)
+    console.log(meta)
     res.json(company_jobs_record)
   }
   catch (error) {
