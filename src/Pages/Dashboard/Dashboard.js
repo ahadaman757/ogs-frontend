@@ -71,8 +71,9 @@ const Dashboard = ({ parentToChild }) => {
     <div>
       <DashboardNavbar side={display} />
       <div
-        className={`${Styles.Managejobsmain}`}
-        style={{ marginLeft: data ? "55px" : "200px" }}
+        className={`${Styles.Managejobsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container-md">
           <div className="row py-4 px-md-4 mt-5">

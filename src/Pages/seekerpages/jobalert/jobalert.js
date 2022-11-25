@@ -19,8 +19,9 @@ const Jobalert = () => {
     <div>
       <Seekersidebar side={display} />
       <div
-        style={{ marginLeft: data ? "55px" : "200px" }}
-        className={`pt-5 ${Styles.Myjobsmain}`}
+        className={`pt-5 ${Styles.Myjobsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

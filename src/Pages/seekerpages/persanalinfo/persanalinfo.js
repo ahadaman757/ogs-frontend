@@ -39,8 +39,9 @@ const Persanalinfo = () => {
     <div>
       <Seekersidebar side={display} />
       <div
-        style={{ marginLeft: data ? "55px" : "200px" }}
-        className={`pt-5 ${Styles.Persanalinfomain}`}
+        className={`pt-5 ${Styles.Persanalinfomain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div

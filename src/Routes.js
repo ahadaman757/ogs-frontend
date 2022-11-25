@@ -25,6 +25,20 @@ import SeekerLogin from "./Pages/logins/seekerlogin";
 // import Test from "./Pages/test/test";
 import BasicDocument from "./Components/pdfDownload";
 
+import Contentmanagment from "./Pages/adminpanel/contentmanagment/contentmanagment";
+import Usermanagement from "./Pages/adminpanel/usermanagement/usermanagement";
+import Ogsinstitute from "./Pages/adminpanel/ogsinstitute/ogsinstitute";
+import Privacypolicy from "./Pages/adminpanel/privacypolicy/privacypolicy";
+import Employment from "./Pages/adminpanel/Employment/employment";
+import Searchjobs from "./Pages/adminpanel/Search Jobs/searchjobs";
+import ContactusSec from "./Pages/adminpanel/Contact Us/contactus";
+import Internship from "./Pages/adminpanel/Internship/internship";
+import Aboutussec from "./Pages/adminpanel/About Us/aboutus";
+import Faqs from "./Pages/adminpanel/Faq's/faqs";
+import Manageseeker from "./Pages/adminpanel/Manage Seeker/manageseeker";
+import Manageemployer from "./Pages/adminpanel/Manage Employer/manageemployer";
+import Managealljobs from "./Pages/adminpanel/Manage All Jobs/managealljobs";
+import Managejobsdispaly from "./Pages/adminpanel/Manage Jobs Dispaly Limits/managejobsdispaly";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -98,7 +112,7 @@ const router = createBrowserRouter([
     element: <DemoLogin />,
   },
   {
-    path: "persanalinfo",
+    path: "personalinfo",
     element: <Persanalinfo />,
   },
   {
@@ -114,7 +128,7 @@ const router = createBrowserRouter([
     element: <Jobpreferences />,
   },
   {
-    path: "manageyoucvs",
+    path: "manageyourcvs",
     element: <Manageyoucvs />,
   },
   {
@@ -130,6 +144,62 @@ const router = createBrowserRouter([
     element: <SeekerLogin />,
   },
 
+  {
+    path: "contentmanagement",
+    element: <Contentmanagment />,
+  },
+  {
+    path: "usermanagement",
+    element: <Usermanagement />,
+  },
+  {
+    path: "ogsinstitute",
+    element: <Ogsinstitute />,
+  },
+  {
+    path: "privacypolicy",
+    element: <Privacypolicy />,
+  },
+  {
+    path: "employment",
+    element: <Employment />,
+  },
+  {
+    path: "searchjobs",
+    element: <Searchjobs />,
+  },
+  {
+    path: "contactussec",
+    element: <ContactusSec />,
+  },
+  {
+    path: "internship",
+    element: <Internship />,
+  },
+  {
+    path: "aboutussec",
+    element: <Aboutussec />,
+  },
+  {
+    path: "faqs",
+    element: <Faqs />,
+  },
+  {
+    path: "manageseeker",
+    element: <Manageseeker />,
+  },
+  {
+    path: "manageemployer",
+    element: <Manageemployer />,
+  },
+  {
+    path: "managealljobs",
+    element: <Managealljobs />,
+  },
+  {
+    path: "managejobsdispaly",
+    element: <Managejobsdispaly />,
+  },
 ]);
 function Routes() {
   return <RouterProvider router={router} />;

@@ -5,6 +5,9 @@ import copyicon from "../../Assets/Images/files.png";
 import shareicon from "../../Assets/Images/share.png";
 import deleticon from "../../Assets/Images/Trash.png";
 import { useNavigate } from "react-router-dom";
+import ShareLink from "react-facebook-share-link";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon } from "react-share";
 
 function kFormatter(num) {
   return Math.abs(num) > 999
@@ -26,15 +29,14 @@ const monthNames = [
   "December",
 ];
 const Jobcard = (props) => {
-
-  const navigate = useNavigate()
-  console.log(props)
+  const navigate = useNavigate();
+  console.log(props);
   let date = new Date(props.data?.createdAt);
   let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
   return (
-    <div className={`p-3 my-2 ${Styles.Jobcardmain}`} key={props.data.id} onClick={() => navigate('/newapplicant', { state: { id: props.data.id } })}>
+    <div className={`p-3 my-2 ${Styles.Jobcardmain}`}>
       <div className=" d-flex align-items-center">
         <div className="d-flex">
           <p className="m-1 ogsfonts14"> Posted date</p>
@@ -69,7 +71,12 @@ const Jobcard = (props) => {
       <div
         className={`d-flex flex-wrap justify-content-evenly my-4 ${Styles.jobcardinfo}`}
       >
-        <div>
+        <div
+          key={props.data.id}
+          onClick={() =>
+            navigate("/newapplicant", { state: { id: props.data.id } })
+          }
+        >
           <div className={`${Styles.jobcarddetailsl}`}>
             <p className="ogsfonts24 text-center p-4">{props.data.applicants}</p>
           </div>
@@ -108,12 +115,16 @@ const Jobcard = (props) => {
           <p className="my-0 mx-sm-3 ogsfonts14">Expiry Date: {props.data.last_date_apply}</p>
         </div>
         <div>
-          <button className={`mx-2 ${Styles.csdbtn}`}>
+          <FacebookShareButton
+            url={"http://localhost:3000/managejobs"}
+            className={`mx-2 Demo__some-network__share-button ${Styles.csdbtn}`}
+          >
             <span className="mx-2">
               <img src={shareicon} />
             </span>
             Share
-          </button>
+          </FacebookShareButton>
+
           <button className={`mx-2 ${Styles.csdbtn}`}>
             <span className="mx-2">
               <img src={deleticon} />
