@@ -1,0 +1,65 @@
+.Jobcardmain {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.Jobcardheading {
+  color: #b50222;
+}
+.filaneyebtn {
+  border: none;
+  background: none;
+}
+.jobcardinfo {
+  background-image: url(../../Assets/Images/Vector\ 2726.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.jobcarddetailsl {
+  background: #55fc3a;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  color: white;
+}
+.jobcarddetails {
+  background: #49de03;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  color: white;
+}
+.jobcarddetailsb {
+  background: #5200ff;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  color: white;
+}
+.jobcarddetailsbl {
+  width: 100px;
+  height: 100px;
+  color: white;
+  background: #6788ff;
+  border-radius: 5px;
+}
+.csdbtn {
+  border: none;
+  background: none;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143.5%;
+  /* identical to box height, or 20px */
+
+  color: #8b8b8b;
+}
+@media only screen and (max-width: 555px) {
+  .jobcardinfo {
+    background-image: none;
+  }
+}

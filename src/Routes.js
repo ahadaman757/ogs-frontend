@@ -39,6 +39,21 @@ import Manageseeker from "./Pages/adminpanel/Manage Seeker/manageseeker";
 import Manageemployer from "./Pages/adminpanel/Manage Employer/manageemployer";
 import Managealljobs from "./Pages/adminpanel/Manage All Jobs/managealljobs";
 import Managejobsdispaly from "./Pages/adminpanel/Manage Jobs Dispaly Limits/managejobsdispaly";
+import Managerestricted from "./Pages/adminpanel/Manage Restricted Cvs/managerestricted";
+import Managecategory from "./Pages/adminpanel/Manage Category/managecategory";
+import Managecources from "./Pages/adminpanel/Manage Cources/managecources";
+import Managenewslettersub from "./Pages/adminpanel/Manage Newsletter Subscriber/managenewslettersub";
+import Sentemail from "./Pages/adminpanel/Sent Email/sentemail";
+import Sendnewslettergen from "./Pages/adminpanel/Send Newsletter (General)/sendnewslettergen";
+import Sendnewsletterseekers from "./Pages/adminpanel/Send Newsletter (Seekers Only)/sendnewsletterseekers";
+import Sendnewsletteremployers from "./Pages/adminpanel/Send Newsletter (Employers Only)/sendnewsletteremployers";
+import Editemployerregistration from "./Pages/adminpanel/editemployerregistration/editemployerregistration";
+import Editseekerregistration from "./Pages/adminpanel/Edit New Seeker Registration Email/editseekerregistration";
+import Editforgotpassword from "./Pages/adminpanel/Edit Forgot Password Email/editforgotpassword";
+import Addfaq from "./Pages/adminpanel/Add FAQ's/addfaq";
+import Managefaqs from "./Pages/adminpanel/Manage FAQ's/managefaqs";
+import JobsSearch from "./Pages/seekerpages/search jobs/searchjobs";
+import Jobpopseeker from "./Components/job pop seeker/jobpopseeker";
 import CreateCv from "./Pages/CreateCv/createCv";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
@@ -200,6 +215,67 @@ const router = createBrowserRouter([
   {
     path: "managejobsdispaly",
     element: <Managejobsdispaly />,
+  },
+  {
+    path: "managerestricted",
+    element: <Managerestricted />,
+  },
+  {
+    path: "managecategory",
+    element: <Managecategory />,
+  },
+  {
+    path: "managecources",
+    element: <Managecources />,
+  },
+  {
+    path: "managenewslettersub",
+    element: <Managenewslettersub />,
+  },
+  {
+    path: "sentemail",
+    element: <Sentemail />,
+  },
+  {
+    path: "sendnewslettergen",
+    element: <Sendnewslettergen />,
+  },
+  {
+    path: "sendnewsletterseekers",
+    element: <Sendnewsletterseekers />,
+  },
+
+  {
+    path: "sendnewsletteremployers",
+    element: <Sendnewsletteremployers />,
+  },
+  {
+    path: "editemployerregistration",
+    element: <Editemployerregistration />,
+  },
+  {
+    path: "editseekerregistration",
+    element: <Editseekerregistration />,
+  },
+  {
+    path: "editforgotpassword",
+    element: <Editforgotpassword />,
+  },
+  {
+    path: "addfaq",
+    element: <Addfaq />,
+  },
+  {
+    path: "managefaqs",
+    element: <Managefaqs />,
+  },
+  {
+    path: "jobssearch",
+    element: <JobsSearch />,
+  },
+  {
+    path: "jobpopseeker",
+    element: <Jobpopseeker />,
   },
   {
     path: "createcv",

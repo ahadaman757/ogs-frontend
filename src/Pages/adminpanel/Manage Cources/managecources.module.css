@@ -1,0 +1,49 @@
+.Managejobsmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.back {
+  background: rgb(244, 244, 244);
+}
+.maincontainer {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.InputField {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  height: 112px;
+  width: 100%;
+}
+.InputField3 {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  height: 296px;
+  width: 100%;
+}
+.btnt {
+  border: none;
+  background: transparent;
+}
+.btnc {
+  border: none;
+  color: white;
+  background-color: black;
+  border-radius: 3px;
+}
+.btntick {
+  border: none;
+  background: transparent;
+}
+.btnplode {
+  border: none;
+  background: transparent;
+  color: white;
+
+  background: #49de03;
+  border-radius: 3px;
+}
