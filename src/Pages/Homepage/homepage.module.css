@@ -1,0 +1,138 @@
+.topNavbar__container {
+  width: 100%;
+  height: 50px;
+  background-color: #1a1a1a;
+}
+.topNavbar__container > .topNavar__inContainer {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-end;
+}
+.registerDropdown > .dropBtn {
+  background: white !important;
+  color: black;
+  font-size: 16px;
+  padding: 8px 30px;
+  margin-top: 5px;
+  border: none;
+  cursor: pointer;
+}
+.loginDropdown > .dropBtn {
+  background: transparent !important;
+  color: white;
+  font-size: 16px;
+  height: 50px;
+  margin-right: 20px;
+  border: none;
+  cursor: pointer;
+}
+.loginDropdown {
+  position: relative;
+}
+.registerDropdown > .dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: grey;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.loginDropdown > .dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: grey;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdownContent a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownContent a:hover {
+  background-color: orange;
+}
+
+.loginDropdown:hover .dropdownContent {
+  display: block;
+}
+.registerDropdown:hover .dropdownContent {
+  display: block;
+}
+.loginDropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+/* NAVBAR */
+.Navbar__container {
+  background: linear-gradient(180deg, #54b8ff 0%, #2089d5 100%);
+  box-shadow: 0px 40px 35px rgba(106, 184, 255, 0.67);
+}
+
+/* HERO SECTION */
+.heroSection__container {
+  background-color: #f5f5f5;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+.heroSection__heading {
+  font-size: 4rem;
+}
+.optionSelected {
+  background: white;
+}
+.optionNotSelected {
+  background: linear-gradient(180deg, #ffffff 0%, #eeeeee 100%);
+  border: 1px solid #c8c8c8;
+}
+.heroButtons > button {
+  padding: 10px 40px;
+  border: none;
+  margin-right: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.heroRightSide__contentContainer {
+  background-color: white;
+  border: 1px solid #c8c8c8;
+  margin-top: -1.9px;
+  z-index: 0;
+  position: relative;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-bottom: 40px;
+}
+.searchJobInput {
+  padding: 10px 20px;
+  width: 60%;
+  border: 1px solid #c8c8c8;
+  margin-right: 20px;
+}
+.heroCTABtn {
+  background: linear-gradient(180deg, #ffffff -90.38%, #a0a0a0 226.92%);
+  padding: 10px 35px;
+  border: 1px solid #c8c8c8;
+}
+/* COMPANIES CONTAINER */
+.companies__container {
+  background-color: #f5f5f5;
+}
+.companies__internalContainer {
+  background-color: #daeffc;
+  padding: 35px 70px;
+}
+.companies__headingContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.companies__sliderItem {
+  background-color: white;
+  padding: 20px 30px;
+}
+/* JOBS */
+.pakistanJobs__container {
+  overflow-x: auto;
+}

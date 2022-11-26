@@ -11,7 +11,7 @@ const Footer = () => {
       <br />
       <div>
         <h2>
-          <b className="ogsfonts">LOGO HERE</b>
+          <b className="ogsfonts">OGS Man Power</b>
         </h2>
       </div>
       <div className="row">
@@ -32,24 +32,20 @@ const Footer = () => {
         </div>
         <div className="col-12 col-md-3 col-lg-3" id={`${styles.footerCol}`}>
           <h3 className="ogsfonts20">Quick Links</h3>
-          <p className="ogsfonts14">Work</p>
-          <p className="ogsfonts14">Services</p>
-          <p className="ogsfonts14">Products</p>
-          <p className="ogsfonts14">Tips & Tricks</p>
+          <p className="ogsfonts14">Home</p>
+          <p className="ogsfonts14">About Us</p>
+          <p className="ogsfonts14">Contact</p>
+          <p className="ogsfonts14">Courses</p>
         </div>
         <div className="col-12 col-md-3 col-lg-3">
-          <h3 className="ogsfonts20">Quick Links</h3>
-          <p className="ogsfonts14">Work</p>
-          <p className="ogsfonts14">Services</p>
-          <p className="ogsfonts14">Products</p>
-          <p className="ogsfonts14">Tips & Tricks</p>
+          <h3 className="ogsfonts20">Sign Up</h3>
+          <p className="ogsfonts14">Employer Sign Up</p>
+          <p className="ogsfonts14">Seeker Sign Up</p>
         </div>
         <div className="col-12 col-md-3 col-lg-3">
-          <h3 className="ogsfonts20">Quick Links</h3>
-          <p className="ogsfonts14">Work</p>
-          <p className="ogsfonts14">Services</p>
-          <p className="ogsfonts14">Products</p>
-          <p className="ogsfonts14">Tips & Tricks</p>
+          <h3 className="ogsfonts20">Sign In</h3>
+          <p className="ogsfonts14">Employer Sign In</p>
+          <p className="ogsfonts14">Seeker Sign In</p>
         </div>
       </div>
       <br />
