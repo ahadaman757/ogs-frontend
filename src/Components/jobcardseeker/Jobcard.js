@@ -1,57 +1,24 @@
 import Styles from "./jobcard.module.css";
 import viewicon from "../../Assets/Images/eye.png";
-import filtericon from "../../Assets/Images/Vector 309.png";
-import copyicon from "../../Assets/Images/files.png";
+
 import shareicon from "../../Assets/Images/share.png";
 import deleticon from "../../Assets/Images/Trash.png";
-import { useNavigate } from "react-router-dom";
-import ShareLink from "react-facebook-share-link";
-import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FacebookIcon, TwitterIcon } from "react-share";
 
-function kFormatter(num) {
-  return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-    : Math.sign(num) * Math.abs(num);
-}
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-const Jobcard = (props) => {
-  const navigate = useNavigate();
-  console.log(props);
-  let date = new Date(props.data?.createdAt);
-  let day = date.getDate();
-  let month = date.getMonth();
-  let year = date.getFullYear();
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+
+const Jobcard = () => {
   return (
     <div className={`p-3 my-2 ${Styles.Jobcardmain}`}>
       <div className=" d-flex align-items-center">
         <div className="d-flex">
           <p className="m-1 ogsfonts14"> Posted date</p>
-          <p className="ogsfonts14 m-1">{props.data.posted_at}</p>
+          <p className="ogsfonts14 m-1"></p>
         </div>
-        <p className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}>
-          {props.staus}
-        </p>
+        <p className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}></p>
       </div>
       <div className={`d-flex justify-content-between align-items-center`}>
         <div className={`d-flex`}>
-          <h1 className="ogsfonts24 m-0">
-            {props.data.id} / {props.data.job_title} - {props.data.city},{" "}
-            {props.data.country}
-          </h1>
+          <h1 className="ogsfonts24 m-0">/ - ,</h1>
           <button className={`mx-2 ${Styles.filaneyebtn}`}>
             <span>
               <img src={viewicon} />
@@ -61,24 +28,14 @@ const Jobcard = (props) => {
       </div>
 
       <div className="d-flex">
-        <p>
-          Offered salary: {kFormatter(props.data.min_salary)} -{" "}
-          {kFormatter(props.data.max_salary)}
-        </p>
+        <p>Offered salary:</p>
       </div>
-      <div
+      {/* <div
         className={`d-flex flex-wrap justify-content-evenly my-4 ${Styles.jobcardinfo}`}
       >
-        <div
-          key={props.data.id}
-          onClick={() =>
-            navigate("/newapplicant", { state: { id: props.data.id } })
-          }
-        >
+        <div>
           <div className={`${Styles.jobcarddetailsl}`}>
-            <p className="ogsfonts24 text-center p-4">
-              {props.data.applicants}
-            </p>
+            <p className="ogsfonts24 text-center p-4"></p>
           </div>
           <p className="ogsfonts14 text-center">Applied</p>
         </div>
@@ -103,7 +60,7 @@ const Jobcard = (props) => {
           </div>
           <p className="ogsfonts14 text-center">Interviews</p>
         </div>
-      </div>
+      </div> */}
       <div className="d-flex flex-wrap m-0 ">
         <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>
         <p className="ogsfonts14">Average salary based on similar jobs</p>
@@ -112,9 +69,7 @@ const Jobcard = (props) => {
         <div className="d-flex flex-wrap">
           <p className="my-0 ogsfonts14">63 Similar jobs</p>
           <p className="my-0 mx-sm-3 ogsfonts14">96 Total visits</p>
-          <p className="my-0 mx-sm-3 ogsfonts14">
-            Expiry Date: {props.data.last_date_apply}
-          </p>
+          <p className="my-0 mx-sm-3 ogsfonts14">Expiry Date:</p>
         </div>
         <div>
           <FacebookShareButton
@@ -126,13 +81,6 @@ const Jobcard = (props) => {
             </span>
             Share
           </FacebookShareButton>
-
-          <button className={`mx-2 ${Styles.csdbtn}`}>
-            <span className="mx-2">
-              <img src={deleticon} />
-            </span>
-            Delete
-          </button>
         </div>
       </div>
     </div>
