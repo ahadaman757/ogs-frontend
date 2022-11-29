@@ -85,8 +85,8 @@ const registercontroller = async (req, res, next) => {
             else {
               if (registerType == "seeker") {
 
-                const { job_title, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, max_experience, min_experience, industry = 1, education_level, gender, interested_in, career_level, position, nationality, religion, marital_status, current_salary, expected_salary, skin_color, weight, height, passport_expiry_date } = body
-                sequelize.query(`insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_expiry_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_expiry_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`).then(res => {
+                const { job_title, email, dob, domicile, postal_code, mobile_number, work_number, home_number, address, country, city, id_card_no, passport_number, valid_upto, degree_title, institution, first_name, last_name, max_experience, min_experience, industry = 1, education_level, gender, interested_in, career_level, position, nationality, religion, marital_status, current_salary, expected_salary, skin_color, weight, height, passport_issue_date } = body
+                sequelize.query(`insert INTO cv (email,cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${email}','${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`).then(res => {
                   console.log("cv addde")
                 }).catch(error => {
                   console.log(error)
@@ -228,16 +228,18 @@ const signincontroller = async (req, res, next) => {
   }
 };
 const ProfileController = async (req, res, next) => {
+  console.log("me profile")
+  console.log(req.user.id)
   const [employer_record, metadata] = await sequelize.query(`select u.id,u.first_name,u.last_name,positions.position_title as position,u.email,countries.name as country,cities.name as city,c.business_mobile_number,c.company_name,c.company_logo,c.business_webpage,
   c.business_address,c.contact_person_name,c.contact_person_number,c.contact_person_email,business_types.business_type_name,c.country as country_id,c.city as city_id
   from users u 
-  JOIN  companies c on u.companyId=c.id
-  JOIN positions on u.position=positions.position_id
-  JOIN countries on c.country=countries.id
-  JOIN cities on c.city=cities.id
-  JOIN business_types on c.businessTypeId=business_types.id
-      where u.id =${req.user.id}`)
-
+ left outer JOIN  companies c on u.companyId=c.id
+ left outer JOIN positions on u.position=positions.position_id
+ left outer JOIN countries on c.country=countries.id
+ left outer JOIN cities on c.city=cities.id
+ left outer JOIN business_types on c.businessTypeId=business_types.id
+  where u.id =${req.user.id}`)
+  console.log(employer_record)
   res.json(employer_record[0]);
 };
 const SeekerProfileController = async (req, res, next) => {

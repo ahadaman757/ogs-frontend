@@ -23,7 +23,7 @@ const Manageyoucvs = () => {
         console.log(res.data);
         setUserCvs(res.data);
       });
-  }, []);
+  }, [])
 
   return (
     <div>
@@ -43,7 +43,7 @@ const Manageyoucvs = () => {
                 type="button"
                 className={`btn btn-primary ogsfonts16 ${Styles.modalbtn}`}
               >
-                Upload CV
+                create new cv
               </button>
             </div>
           </div>

@@ -3,18 +3,21 @@ import Styles from "./Manageyoucvs.module.css";
 
 import calender from "../../../Assets/Images/New folder (3)/calendar 01.svg";
 import trash from "../../../Assets/Images/New folder (3)/trash 3.svg";
-
+import { useNavigate } from 'react-router-dom'
 import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
 import Inputfield from "../../../Components/inputfield/inputfield";
 import InputSelect from "../../../Components/inputselect/inputfselect";
-import invoice from "../../../Assets/Images/New folder (3)/invoice.svg";
 import { BasicDocument } from '../../../Components/pdfDownload.js'
 import {
-
     PDFDownloadLink,
     Image
 } from "@react-pdf/renderer";
+
 function SeekercvCard({ cv_data }) {
+    const navigate = useNavigate()
+    function navigateEditCv() {
+        navigate("/editcv", { state: { cv_data: cv_data } })
+    }
     return (
         <div className={`p-3 my-3 ${Styles.jacon}`}>
             <div className="d-flex flex-wrap justify-content-between">
@@ -33,7 +36,7 @@ function SeekercvCard({ cv_data }) {
                     <p className='bold'>CV no: {cv_data.cv_id}</p>
                 </div>
                 <div>
-                    <button className={`me-3 ${Styles.ctebtn}`}>
+                    <button onClick={navigateEditCv} className={`me-3 ${Styles.ctebtn}`}>
                         <span>
                             <img src={check} />
                         </span>
