@@ -3,7 +3,10 @@ import { useState } from "react";
 import DashboardNavbar from "../DashboardNavbar/DashboardNavbar";
 import removeicon from "../../Assets/Images/remove.svg";
 import gasco from "../../Assets/Images/gasco.png";
+import { useLocation } from 'react-router-dom'
 const Jobpopseeker = () => {
+  const { state } = useLocation()
+  const { job_data } = state
   const [data, Setdata] = useState("");
   const display = (d) => {
     console.log("value");
@@ -27,37 +30,29 @@ const Jobpopseeker = () => {
               <img src={gasco} />
             </div>
             <div>
-              <h1 className="ogsfonts32">Receptionist</h1>
+              <h1 className="ogsfonts32">{job_data.job_title}</h1>
               <div className="d-flex">
                 <h1 className="ogsfonts18 my-3">OGS (PVt) Limited</h1>
                 <p className=" mx-2 ogsfonts16 color404040 my-3">
                   <span>
                     <img />
                   </span>
-                  Rawalpindi, Pakistan
+                  {job_data.city}, {job_data.country}
                 </p>
               </div>
-              <h1 className="ogsfonts18 my-3">PKR. 25,000 - 30,000/Month</h1>
+              <h1 className="ogsfonts18 my-3"> {job_data.min_salary ? job_data.min_salary + "-" : null} {job_data.max_salary} </h1>
               <p className="ogsfonts16 color404040 my-4">
                 <span>
                   <img />
                 </span>
-                Posted May 26, 2022
+                Posted {job_data.posted_at}
               </p>
             </div>
           </div>
           <div className="my-4">
             <h1 className="ogsfonts32">Job Description</h1>
             <p className="ogsfonts16 color404040">
-              Serve as the primary resource for day to day jobs and
-              administrative support Maintain and ensure a comfortable, clean,
-              and safe environment for patients Answering and screening
-              telephone calls and delivering messages promptly to the concerned
-              person Show courtesy and tact in communication with patients,
-              relatives and visitors and assisting them in their needs Ensure
-              effective front desk customer dealing Initiate problem solving &
-              patients guidance as per need Provide service that is respectful
-              of patients values and beliefs
+              {job_data.description ? job_data.description : "No Desscription"}
             </p>
           </div>
           <div>
