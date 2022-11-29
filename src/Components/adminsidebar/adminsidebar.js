@@ -16,6 +16,7 @@ import toggle from "./../../Assets/Images/indent-decrease.png";
 import Searchicon from "../../Assets/Images/search 03.svg";
 import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
+import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 
@@ -50,7 +51,7 @@ const Adminsidebar = (props) => {
       <div
         // style={{ width: displayside ? "5%" : "200px" }}
         className={`d-flex align-item-center ${styles.sidebar} ${
-          displayside ? " sidebarwidthmin" : " sidebarwidthmax"
+          displayside ? " sidebarwidthminadmin" : " sidebarwidthmax"
         }`}
       >
         <button
@@ -59,6 +60,7 @@ const Adminsidebar = (props) => {
             setdisplay(!displayside);
             handeler();
           }}
+          style={{ display: displayside ? "none" : " block" }}
         >
           <span>
             <img src={toggle} />
@@ -74,81 +76,6 @@ const Adminsidebar = (props) => {
           } ${displayside ? " px-0" : "px-2 "}`}
         >
           <a
-            className={`btn btn-primary  my-3 ogsfonts16   ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-            onMouseEnter={() => {
-              seticon(dashbordicon1);
-            }}
-            onMouseLeave={() => {
-              seticon(dashbordicon);
-            }}
-            onClick={() => {
-              navigate("/dashboard");
-            }}
-          >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon1} />
-            </span>
-            {displayside ? "" : "Dashboard"}
-          </a>
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample1"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample1"
-            onMouseEnter={() => {
-              seticon2(dashbordiconw2);
-            }}
-            onMouseLeave={() => {
-              seticon2(dashbordiconb2);
-            }}
-            onClick={() => {
-              navigate("/managejobs");
-            }}
-          >
-            <span>
-              <img className={` me-2 ${styles.dashbordimg}`} src={icon2} />
-            </span>
-            {displayside ? "" : "Manage Jobs"}
-          </a>
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample2"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample2"
-            onMouseEnter={() => {
-              seticon3(dashbordiconw3);
-            }}
-            onMouseLeave={() => {
-              seticon3(dashbordiconb3);
-            }}
-          >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
-            </span>
-            {displayside ? "" : "Mailbox"}
-          </a>
-          <div class="collapse" id="collapseExample2">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
-          <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample3"
@@ -162,19 +89,115 @@ const Adminsidebar = (props) => {
               seticon4(dashbordiconb4);
             }}
           >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon4} />
-            </span>
-            {displayside ? "" : "Setting"}
+            Content Management Section
           </a>
           <div class="collapse" id="collapseExample3">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/ogsinstitute" className="tere ogsfonts14">
+                    OGS Institute
+                  </Link>
                 </li>
-                <li>
-                  <a>Sub title1</a>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/privacypolicy" className="tere ogsfonts14">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/employment" className="tere ogsfonts14">
+                    Employment
+                  </Link>
+                </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/searchjobs" className="tere ogsfonts14">
+                    Search Jobs
+                  </Link>
+                </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/contactussec" className="tere ogsfonts14">
+                    Contact Us
+                  </Link>
+                </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/internship" className="tere ogsfonts14">
+                    Internship
+                  </Link>
+                </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/aboutussec" className="tere ogsfonts14">
+                    About Us
+                  </Link>
+                </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/faqs" className="tere ogsfonts14">
+                    Faq's
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>{" "}
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample2"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample2"
+            onMouseEnter={() => {
+              seticon4(dashbordiconw4);
+            }}
+            onMouseLeave={() => {
+              seticon4(dashbordiconb4);
+            }}
+          >
+            User Management Section
+          </a>
+          <div class="collapse" id="collapseExample2">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/manageseeker" className="tere ogsfonts14">
+                    {" "}
+                    Manage Seeker
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/manageemployer" className="tere ogsfonts14">
+                    {" "}
+                    Manage Employer
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managealljobs" className="tere ogsfonts14">
+                    {" "}
+                    Manage all Jobs
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managejobsdispaly" className="tere ogsfonts14">
+                    {" "}
+                    Manage Jobs Display Limits
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managerestricted" className="tere ogsfonts14">
+                    {" "}
+                    ManageRestricted Cvs
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -187,82 +210,223 @@ const Adminsidebar = (props) => {
             aria-expanded="false"
             aria-controls="collapseExample4"
             onMouseEnter={() => {
-              seticon5(dashbordiconw5);
+              seticon4(dashbordiconw4);
             }}
             onMouseLeave={() => {
-              seticon5(dashbordiconb5);
+              seticon4(dashbordiconb4);
             }}
           >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
-            </span>
-            {displayside ? "" : " Power Tools"}
+            Category Management Section
           </a>
           <div class="collapse" id="collapseExample4">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managecategory" className="tere ogsfonts14">
+                    {" "}
+                    Manage Category
+                  </Link>
                 </li>
               </ul>
             </div>
-          </div>
+          </div>{" "}
           <a
-            className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample5"
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample5"
             onMouseEnter={() => {
-              seticon6(dashbordiconb6);
+              seticon4(dashbordiconw4);
             }}
             onMouseLeave={() => {
-              seticon6(dashbordiconw6);
+              seticon4(dashbordiconb4);
             }}
           >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon6} />
-            </span>
-
-            {displayside ? "" : "CV Search"}
+            Cources Management Section
           </a>
           <div class="collapse" id="collapseExample5">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managecources" className="tere ogsfonts14">
+                    {" "}
+                    Manage Cources
+                  </Link>
                 </li>
               </ul>
             </div>
-          </div>
+          </div>{" "}
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample6"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample6"
+            onMouseEnter={() => {
+              seticon4(dashbordiconw4);
+            }}
+            onMouseLeave={() => {
+              seticon4(dashbordiconb4);
+            }}
+          >
+            NewsLetter Management Section
+          </a>
+          <div class="collapse" id="collapseExample6">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managenewslettersub" className="tere ogsfonts14">
+                    {" "}
+                    Manage Newsletter Subscriber
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/sentemail" className="tere ogsfonts14">
+                    {" "}
+                    Sent Email
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/sendnewslettergen" className="tere ogsfonts14">
+                    {" "}
+                    Send Newsletter (General)
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/sendnewsletterseekers" className="tere ogsfonts14">
+                    {" "}
+                    Send Newsletter (Seekers Only)
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link
+                    to="/sendnewsletteremployers"
+                    className="tere ogsfonts14"
+                  >
+                    {" "}
+                    Send Newsletter (Employers Only)
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>{" "}
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample7"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample7"
+            onMouseEnter={() => {
+              seticon4(dashbordiconw4);
+            }}
+            onMouseLeave={() => {
+              seticon4(dashbordiconb4);
+            }}
+          >
+            Email Management Section
+          </a>
+          <div class="collapse" id="collapseExample7">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link
+                    to="/editemployerregistration"
+                    className="tere ogsfonts14"
+                  >
+                    {" "}
+                    Edit Employer Registration Email
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link
+                    to="/editemployerregistration"
+                    className="tere ogsfonts14"
+                  >
+                    {" "}
+                    Edit Employer Registration Email
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/editforgotpassword" className="tere ogsfonts14">
+                    {" "}
+                    Edit Forgot Password Email
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>{" "}
+          <a
+            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample8"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample8"
+            onMouseEnter={() => {
+              seticon4(dashbordiconw4);
+            }}
+            onMouseLeave={() => {
+              seticon4(dashbordiconb4);
+            }}
+          >
+            FAQ's Management Section
+          </a>
+          <div class="collapse" id="collapseExample8">
+            <div className={`card card-body ${styles.dasgbordopssas}`}>
+              <ul className={`${styles.dasgbordops}`}>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/addfaq" className="tere ogsfonts14">
+                    {" "}
+                    Manage FAQ's
+                  </Link>
+                </li>
+                <li className="d-flex my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/managefaqs" className="tere ogsfonts14">
+                    {" "}
+                    Add FAQ's
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>{" "}
         </div>
       </div>
       <div
-        className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
+        className={`ps-md-5 d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          marginLeft: displayside ? "5%" : "13%",
-          width: displayside ? "97%" : "87%",
+          // marginLeft: displayside ? "0%" : "14%",
+          width: displayside ? "100%" : "100%",
         }}
       >
         <div>
-          {/* <button
+          <button
             className={` ${styles.togglebtn}`}
             onClick={() => {
               setdisplay(!displayside);
               handeler();
             }}
+            style={{ display: displayside ? "block" : " none" }}
           >
             <span>
               <img src={toggle} />
             </span>
-          </button> */}
+          </button>
         </div>
         <div className="mx-5 d-flex align-items-center ">
           <button className={`px-2 ${styles.navbarnotibtn}`}>
