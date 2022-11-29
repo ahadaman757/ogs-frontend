@@ -90,6 +90,7 @@ div.content {
 .sidedasbtn {
   border: none !important;
   background: transparent !important;
+  width: 100%;
   /* padding: 16px 29px; */
 }
 .dashbordimg {
@@ -122,4 +123,10 @@ div.content {
 .navbartogglebtn {
   border: none;
   background: none;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  background: #5200ff;
 }

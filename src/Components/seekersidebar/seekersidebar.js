@@ -42,6 +42,17 @@ const Seekersidebar = (props) => {
           displayside ? " sidebarwidthmin" : " sidebarwidthmax"
         }`}
       >
+        <button
+          className={` ${styles.togglebtn}`}
+          onClick={() => {
+            setdisplay(!displayside);
+            handeler();
+          }}
+        >
+          <span>
+            <img src={toggle} />
+          </span>
+        </button>
         <h2>
           <b>{displayside ? "" : "OGS"}</b>
           {displayside ? "" : "Power"}
@@ -52,7 +63,7 @@ const Seekersidebar = (props) => {
           } ${displayside ? " px-0" : "px-2 "}`}
         >
           <a
-            className={`btn btn-primary  my-3 ogsfonts16   ${styles.sidedasbtn}`}
+            className={`btn btn-primary   ogsfonts16   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample"
             role="button"
@@ -230,7 +241,7 @@ const Seekersidebar = (props) => {
         }}
       >
         <div>
-          <button
+          {/* <button
             className={` ${styles.togglebtn}`}
             onClick={() => {
               setdisplay(!displayside);
@@ -240,7 +251,7 @@ const Seekersidebar = (props) => {
             <span>
               <img src={toggle} />
             </span>
-          </button>
+          </button> */}
         </div>
         <div className="mx-5 d-flex align-items-center ">
           <div

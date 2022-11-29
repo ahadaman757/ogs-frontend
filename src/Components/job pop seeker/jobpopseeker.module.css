@@ -1,0 +1,36 @@
+.jobpopmain {
+  min-height: 100vh;
+  background: rgb(244, 244, 244);
+  overflow-x: hidden;
+}
+.Jobpopchild {
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.skillset {
+  background: #f1f1f1;
+  border-radius: 50px;
+  width: 187px;
+  height: 47px;
+}
+.btnsve {
+  border: none;
+  background: none;
+  background: #1e1e1e;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+  color: white;
+}
+.btnapp {
+  border: none;
+  background: none;
+  background: transparent;
+  border: 1px solid #1e1e1e;
+  border-radius: 3px;
+}
+.modalapply {
+  background: #ffffff;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+}

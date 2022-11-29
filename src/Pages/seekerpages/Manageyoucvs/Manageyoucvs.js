@@ -3,7 +3,7 @@ import Seekersidebar from "../../../Components/seekersidebar/seekersidebar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SeekercvCard from "./seekercvCard";
-
+import { PDFDownloadLink, Image } from "@react-pdf/renderer";
 const Manageyoucvs = () => {
   const [data, Setdata] = useState("");
   const [UserCvs, setUserCvs] = useState([]);
@@ -20,16 +20,18 @@ const Manageyoucvs = () => {
         },
       })
       .then((res) => {
-        console.log(res.data)
-        setUserCvs(res.data)
+        console.log(res.data);
+        setUserCvs(res.data);
       });
   }, [])
+
   return (
     <div>
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div
@@ -45,11 +47,10 @@ const Manageyoucvs = () => {
               </button>
             </div>
           </div>
-          {
-            UserCvs.length && UserCvs.map((cv, i) => {
-              return <SeekercvCard key={i} cv_data={cv} />
-            })
-          }
+          {UserCvs.length &&
+            UserCvs.map((cv, i) => {
+              return <SeekercvCard key={i} cv_data={cv} />;
+            })}
           <div className={`p-3 my-3 ${Styles.jacon}`}>
             <h1 className="ogsfonts18">A Quick Guide To Managing Your CVs:</h1>
             <div className="my-3">
