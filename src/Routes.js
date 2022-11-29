@@ -55,6 +55,7 @@ import Managefaqs from "./Pages/adminpanel/Manage FAQ's/managefaqs";
 import JobsSearch from "./Pages/seekerpages/search jobs/searchjobs";
 import Jobpopseeker from "./Components/job pop seeker/jobpopseeker";
 import CreateCv from "./Pages/CreateCv/createCv";
+import EditCv from "./Pages/seekerpages/Manageyoucvs/EditCv";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -280,6 +281,10 @@ const router = createBrowserRouter([
   {
     path: "createcv",
     element: <CreateCv />,
+  },
+  {
+    path: "editcv",
+    element: <EditCv />,
   },
 ]);
 function Routes() {

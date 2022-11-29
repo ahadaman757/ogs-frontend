@@ -25,6 +25,7 @@ const Personalinfo = ({ }) => {
         },
       })
       .then((res) => {
+        console.log(res.data)
         setUserData(res.data);
         const data = res.data
         ResetProfileFormik.values.first_name = data.first_name
@@ -34,6 +35,8 @@ const Personalinfo = ({ }) => {
         ResetProfileFormik.values.city = data.city_id
         ResetProfileFormik.values.contact_number = data.business_mobile_number
         ResetProfileFormik.values.address = data.business_address
+      }).catch(error => {
+        console.log(error)
       });
     axios.get('http://localhost:3002/employer_register_options').then(res => {
       setemployerRegsiterOptions(res.data)
@@ -57,7 +60,7 @@ const Personalinfo = ({ }) => {
       last_name: Yup.string().required('Required'),
       position: Yup.string().required('Required'),
       country: Yup.string().required('Required'),
-      city: Yup.string().required('Password is Required'),
+      city: Yup.string().required('city is Required'),
       contact_number: Yup.string().required('Required'),
       address: Yup.string().required('Required'),
     }),
