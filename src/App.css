@@ -275,6 +275,7 @@ button {
 }
 .sidebarwidthmax {
   width: 200px !important;
+  transform: scale(10px 100px);
 }
 .sidebarwidthmin {
   width: 50px !important;
@@ -292,4 +293,10 @@ button {
 }
 .srolll {
   overflow: scroll !important;
+}
+.sidebarwidthminadmin {
+  width: 0px !important;
+}
+.asdesas div:hover {
+  background: #a7a7a7 !important;
 }
