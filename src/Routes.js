@@ -40,6 +40,7 @@ import Manageemployer from "./Pages/adminpanel/Manage Employer/manageemployer";
 import Managealljobs from "./Pages/adminpanel/Manage All Jobs/managealljobs";
 import Managejobsdispaly from "./Pages/adminpanel/Manage Jobs Dispaly Limits/managejobsdispaly";
 import CreateCv from "./Pages/CreateCv/createCv";
+import EditCv from "./Pages/seekerpages/Manageyoucvs/EditCv";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -204,6 +205,10 @@ const router = createBrowserRouter([
   {
     path: "createcv",
     element: <CreateCv />,
+  },
+  {
+    path: "editcv",
+    element: <EditCv />,
   },
 ]);
 function Routes() {

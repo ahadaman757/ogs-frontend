@@ -8,6 +8,7 @@ import {
     PDFDownloadLink,
     Image, Font
 } from "@react-pdf/renderer";
+import { useLocation } from 'react-router-dom'
 
 import font from '../Assets/Noto_Sans_Arabic/NotoSansArabic-VariableFont_wdth,wght.ttf'
 // Create styles
@@ -198,7 +199,7 @@ Font.register({
     src: font
 });
 function BasicDocument({ cv_data }) {
-    console.log(cv_data.cv_image)
+
     return (
         <>
             {/* <PDFViewer style={styles.viewer}> */}
@@ -561,7 +562,7 @@ function BasicDocument({ cv_data }) {
                                     </View>
                                     <View style={styles.col_2}>
                                         <Text style={styles.info_value}>
-                                            {cv_data.valid_upto}
+                                            {cv_data.passport_issue_date}
                                         </Text>
                                         <Text style={{ ...styles.info_title, ...styles.arabic }}>
                                             تاريخ المسألة

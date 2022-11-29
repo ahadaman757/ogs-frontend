@@ -10,6 +10,7 @@ import { UploadImageSide } from "../authpages/Registeration";
 const CreateCv = () => {
     const [LogoData, setLogoData] = useState()
     const [PassportFile, setPassportFile] = useState()
+    const [ProfileFile, setProfileFile] = useState()
     const [data, Setdata] = useState("");
     const [skills, setSkills] = useState()
     const [Description, setDescription] = useState('')
@@ -32,7 +33,8 @@ const CreateCv = () => {
     const CvFormIk = useFormik(
         {
             initialValues: {
-
+                first_name: "",
+                last_name: "",
                 interested_in: "",
                 industry: "",
                 job_title: "",
@@ -50,7 +52,7 @@ const CreateCv = () => {
                 id_card_no: "",
                 passport_number: "",
                 valid_upto: "",
-                passport_expiry_date: "",
+                passport_issue_date: "",
                 education_level: "",
                 degree_title: "",
                 institution: "",
@@ -69,7 +71,6 @@ const CreateCv = () => {
             },
             validationSchema: Yup.object({
                 //comment
-
 
                 interested_in: Yup.string("invalid type").required('Required'),
                 industry: Yup.string("invalid type").required('Required'),
@@ -106,19 +107,22 @@ const CreateCv = () => {
 
             }),
             onSubmit: values => {
+                console.log(values)
                 const fullFormData = { ...values };
                 const formdata = new FormData();
-                formdata.append('image', LogoData)
+                formdata.append('image', ProfileFile)
                 formdata.append('passport_photo', PassportFile)
                 for (var key in fullFormData) {
                     formdata.append(key, fullFormData[key]);
                 }
                 axios.post('http://localhost:3002/createcv', formdata, {
                     headers: {
+                        accesstoken: localStorage.getItem("accessToken"),
                         "Content-Type": "multipart/form-data",
                         "Access-Control-Allow-Origin": "*",
                     },
                 }).then(res => {
+
                     alert("account created")
                 }).catch(error => {
                     console.log(error)
@@ -169,6 +173,10 @@ const CreateCv = () => {
                                 <div className="col-md-6">
                                     <List id="interested_in" options={dropDownOptions.job_type} label="Job Type" formik={CvFormIk} />
                                 </div>
+                                <div className="col-md-6">
+                                    <FileUpload required id="image" name="image" setFileData={setProfileFile} label="Profile Photo" />
+
+                                </div>
 
                             </div>
                             <hr />
@@ -178,7 +186,10 @@ const CreateCv = () => {
                                     Personal Information
                                 </h3>
                                 <div className="col-md-6">
-                                    <TextInput label="Full Name" id='f_name' formik={CvFormIk} />
+                                    <TextInput id="first_name" label="First Name" formik={CvFormIk} />
+                                </div>
+                                <div className="col-md-6">
+                                    <TextInput id="last_name" label="Last Name" formik={CvFormIk} />
                                 </div>
                                 <div className="col-md-6">
                                     <List label="Position" id='position' options={dropDownOptions.position} formik={CvFormIk} />
@@ -232,13 +243,13 @@ const CreateCv = () => {
                                     <TextInput id="passport_number" label="Passport Number" formik={CvFormIk} />
                                 </div>
                                 <div className="col-md-6">
-                                    <FileUpload id="passport_id" name="passport_photo" setFileData={setPassportFile} label="Passport Photo" />
+                                    <FileUpload required id="passport_id" name="passport_photo" setFileData={setPassportFile} label="Passport Photo" />
                                 </div>
                                 <div className="col-md-6">
                                     <TextInput id="valid_upto" type='date' label="valid Upto" formik={CvFormIk} />
                                 </div>
                                 <div className="col-md-6">
-                                    <TextInput id="passport_expiry_date" type='date' label="Passport expiry" formik={CvFormIk} />
+                                    <TextInput id="passport_issue_date" type='date' label="Passport expiry" formik={CvFormIk} />
                                 </div>
                                 <div className="col-md-6">
                                     <List id="education_level" options={dropDownOptions.required_qualification} label="Education" formik={CvFormIk} />

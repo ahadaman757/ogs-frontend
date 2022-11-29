@@ -56,7 +56,7 @@ const SignUpCv = () => {
         id_card_no: "",
         passport_number: "",
         valid_upto: "",
-        passport_expiry_date: "",
+        passport_issue_date: "",
         education_level: "",
         degree_title: "",
         institution: "",
@@ -153,10 +153,9 @@ const SignUpCv = () => {
     <div>
       <DashboardNavbar side={display} />
       <div
-        className={`pt-5 ${Styles.Postajobmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
-       
+        className={`pt-5 ${Styles.Postajobmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
+
       >
         <form onSubmit={CvFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
@@ -267,7 +266,7 @@ const SignUpCv = () => {
                   <TextInput id="valid_upto" type='date' label="valid Upto" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
-                  <TextInput id="passport_expiry_date" type='date' label="Passport expiry" formik={CvFormIk} />
+                  <TextInput id="passport_issue_date" type='date' label="Passport expiry" formik={CvFormIk} />
                 </div>
                 <div className="col-md-6">
                   <List id="education_level" options={dropDownOptions.required_qualification} label="Education" formik={CvFormIk} />

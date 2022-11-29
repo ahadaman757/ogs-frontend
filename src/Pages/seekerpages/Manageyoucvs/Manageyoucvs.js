@@ -3,11 +3,7 @@ import Seekersidebar from "../../../Components/seekersidebar/seekersidebar";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SeekercvCard from "./seekercvCard";
-import {
 
-  PDFDownloadLink,
-  Image
-} from "@react-pdf/renderer";
 const Manageyoucvs = () => {
   const [data, Setdata] = useState("");
   const [UserCvs, setUserCvs] = useState([]);
@@ -28,7 +24,6 @@ const Manageyoucvs = () => {
         setUserCvs(res.data)
       });
   }, [])
-
   return (
     <div>
       <Seekersidebar side={display} />
@@ -46,7 +41,7 @@ const Manageyoucvs = () => {
                 type="button"
                 className={`btn btn-primary ogsfonts16 ${Styles.modalbtn}`}
               >
-                Upload CV
+                create new cv
               </button>
             </div>
           </div>

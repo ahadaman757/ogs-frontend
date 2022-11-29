@@ -11,7 +11,7 @@ userRouter.post('/signin', signincontroller)
 userRouter.get('/me', auth, ProfileController)
 userRouter.get('/seeker_me', auth, SeekerProfileController)
 userRouter.get('/my_cvs', auth, getSeekerCvs)
-userRouter.get('/createcv', auth, CreateCv)
+
 userRouter.post('/resetpassword', auth, ResetPassword)
 userRouter.post('/employer_update_profile', auth, imageUpload, UpdateProfile)
 
