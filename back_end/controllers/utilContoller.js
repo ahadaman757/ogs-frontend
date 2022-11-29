@@ -40,5 +40,23 @@ const GetEmployerOptions = async (req, res, next) => {
     }
 
 }
+const SkillsForJobByid = async (req, res, next) => {
+    console.log(req.params)
+    const job_id = req.params.id
+    try {
+        const [skills, meta] = await sequelize.query(`SELECT j.id,jobskill.SkillId as skill_id,skills.text as skill FROM job j
+                    left outer JOIN jobskill on j.id=jobskill.JobId
+                    left outer JOIN skills on jobskill.SkillId=skills.id
+                    WHERE j.id=${job_id}`)
+        console.log(skills)
+        res.json({
+            skills
+        })
+    }
+    catch (error) {
+        return next(error)
+    }
 
-export default { GetCityByCountry, GetEmployerOptions }
+}
+
+export default { GetCityByCountry, GetEmployerOptions, SkillsForJobByid }

@@ -1,18 +1,66 @@
 import Styles from "./jobpopseeker.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashboardNavbar from "../DashboardNavbar/DashboardNavbar";
 import removeicon from "../../Assets/Images/remove.svg";
 import gasco from "../../Assets/Images/gasco.png";
 import { useLocation } from 'react-router-dom'
+import axios from "axios";
 const Jobpopseeker = () => {
   const { state } = useLocation()
-  const { job_data } = state
+  const { job_data, AppliedCvs } = state
+  const [skills, setskills] = useState()
+  const [UserCvs, setUserCvs] = useState([]);
   const [data, Setdata] = useState("");
+  console.log("applied cvs")
+  console.log(AppliedCvs)
+  console.log("having")
+  console.log(UserCvs)
+  const ApplyJob = (cv_id) => {
+    axios.post(`http://localhost:3002/jobs/jobapply`, {
+      job_id: job_data.id,
+      cv_id: cv_id
+    }, {
+      headers: {
+        accesstoken: localStorage.getItem("accessToken")
+      }
+    }).then(res => {
+
+      console.log(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+
   const display = (d) => {
     console.log("value");
     console.log(d);
     Setdata(d);
   };
+  useEffect(() => {
+    const job_id = job_data.id
+    axios.get(`http://localhost:3002/skills_for_job_by_id/${job_id}`).then(res => {
+      setskills(res.data.skills)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [])
+  useEffect(() => {
+    axios
+      .get("http://localhost:3002/users/my_cvs", {
+        headers: {
+          accesstoken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        //  const filteredArray= res.data.map(cv => {
+        //         AppliedCvs.f
+        //   })
+        console.log(filteredArray)
+        setUserCvs(res.data);
+      });
+  }, [])
   return (
     <div>
       <DashboardNavbar side={display} />
@@ -58,26 +106,16 @@ const Jobpopseeker = () => {
           <div>
             <h1 className="ogsfonts32">Skills</h1>
             <div className="d-flex flex-wrap">
-              <h2
-                className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
-              >
-                tyqw
-              </h2>
-              <h2
-                className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
-              >
-                tyqw
-              </h2>
-              <h2
-                className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
-              >
-                tyqw
-              </h2>
-              <h2
-                className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
-              >
-                tyqw
-              </h2>
+              {
+                skills?.length && skills[0].skill_id ? skills.map(skill => {
+                  return <h2
+                    className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
+                  >
+                    {skill.skill}
+                  </h2>
+                }) : "No Skills"
+              }
+
             </div>
           </div>
           <div className="my-5">
@@ -85,7 +123,7 @@ const Jobpopseeker = () => {
             <div className="d-flex">
               <div className="me-3">
                 <h1 className="ogsfonts18 my-3">Job Channel:</h1>
-                <h1 className="ogsfonts18 my-3">Industry:</h1>
+                <h1 className="ogsfonts18 my-3">Industry: </h1>
                 <h1 className="ogsfonts18 my-3">Functional Area:</h1>
                 <h1 className="ogsfonts18 my-3">Total Positions:</h1>
                 <h1 className="ogsfonts18 my-3">Job Type:</h1>
@@ -101,26 +139,27 @@ const Jobpopseeker = () => {
               <div>
                 <h1 className="ogsfonts18 my-3">Women Jobs</h1>
                 <h1 className="ogsfonts18 my-3">
-                  Recruitment / Employment Firms
+                  {job_data.industry}
                 </h1>
                 <h1 className="ogsfonts18 my-3">
                   Secretarial, Clerical & Front Office
                 </h1>
                 <h1 className="ogsfonts18 my-3">2 Posts</h1>
-                <h1 className="ogsfonts18 my-3">Full Time/Permanent</h1>
-                <h1 className="ogsfonts18 my-3">First Shift (Day)</h1>
-                <h1 className="ogsfonts18 my-3">Rawalpindi, Pakistan</h1>
-                <h1 className="ogsfonts18 my-3">Gender:Female</h1>
-                <h1 className="ogsfonts18 my-3">Intermediate/A-Level</h1>
-                <h1 className="ogsfonts18 my-3">Entry Level</h1>
-                <h1 className="ogsfonts18 my-3">Doesn't Matter</h1>
-                <h1 className="ogsfonts18 my-3">Jun 27, 2022</h1>
-                <h1 className="ogsfonts18 my-3">May 26, 2022</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.job_type}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.job_shift}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.country} , {job_data.city} </h1>
+                <h1 className="ogsfonts18 my-3">{job_data.gender_title}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.qualification}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.career_title}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.max_experience}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.last_date_apply}</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.posted_at}</h1>
               </div>
             </div>
           </div>
           <div className="d-flex justify-content-end">
             <button
+              onClick={ApplyJob}
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
@@ -148,24 +187,36 @@ const Jobpopseeker = () => {
                       ></button>
                     </div>
                     <div
-                      className={`p-2 d-flex justify-content-between ${Styles.modalapply}`}
+                      className={`p-2 container-fluid justify-content-between  ${Styles.modalapply}`}
                     >
-                      <div className="">
-                        <p className="ogsfonts18">Wasim Baig</p>
-                        <p className="ogsfonts14 m-0">ceoogs@gmail.com</p>
-                        <p className="ogsfonts14 m-0">034-164-21256</p>
-                        <p className="ogsfonts14 m-0">Rawalpindi</p>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModal"
-                          className={`px-4 py-3 me-3 ${Styles.btnsve}`}
-                        >
-                          Apply
-                        </button>
-                      </div>
+                      {
+                        UserCvs?.length && UserCvs.map(cv => {
+                          console.log(cv)
+                          return <div className="d-flex align-items-center py-2 row">
+                            <div className="col-9">
+                              <p className="ogsfonts18">{cv.first_name + " " + cv.last_name + ":" + cv.cv_id}</p>
+                              <p className="ogsfonts14 m-0">{cv.position_title}</p>
+                              {/* <p className="ogsfonts14 m-0">034-164-21256</p>
+                              <p className="ogsfonts14 m-0">Rawalpindi</p> */}
+                            </div>
+                            <div className="col-3">
+
+                              <button
+                                onClick={() => ApplyJob(cv.cv_id)}
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                className={`px-4 py-3 me-3 ${Styles.btnsve}`}
+                              >
+                                Apply
+                              </button>
+                            </div>
+                            <hr />
+                          </div>
+                        })
+                      }
+
+
                     </div>
                   </div>
                 </div>

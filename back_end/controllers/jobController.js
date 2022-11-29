@@ -21,7 +21,7 @@ const JobPostController = async (req, res, next) => {
     posted_by_id: req.user.id,
   })
     .then((response) => {
-      console.log(response);
+
       const skillListStringify = JSON.stringify(skill_id);
       const skillsParsed = JSON.parse(skillListStringify);
       skillsParsed.map(async (skill) => {
@@ -69,7 +69,7 @@ const JobMyCompaniesController = async (req, res, next) => {
   try {
     // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
     const [company_jobs_record, meta] = await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
-    genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at
+    genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,jobtypes.job_type_title
     from job j 
    left outer JOIN job_applicants_cv on j.id =job_applicants_cv.job_id
    left outer JOIN countries on J.country_id=countries.id
@@ -80,6 +80,7 @@ const JobMyCompaniesController = async (req, res, next) => {
    left outer JOIN business_types on functional_area_id = business_types.id
    left outer JOIN genders on gender_title_id  = genders.id
    left outer JOIN jobshifts on j.job_shift_id  = jobshifts.id
+   left outer JOIN jobtypes on j.job_type_id  = jobtypes.id
    left outer JOIN educationqualifications on j.required_qualification_id=educationqualifications.id
    left outer JOIN maxagerequirements maxAge on j.max_age_id=maxAge.id
    left outer JOIN maxagerequirements minAge on j.min_age_id=minAge.id
@@ -234,9 +235,8 @@ const ViewAllJobs = async (req, res, next) => {
   console.log("view all jobs")
   try {
     const [company_jobs_record, meta] = await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
-    genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at
+    genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,jobtypes.job_type_title as job_type
     from job j 
- 
    left outer JOIN countries on J.country_id=countries.id
    left outer JOIN  cities on J.city_id=cities.id
    left outer JOIN careerlevels on career_level_id=careerlevels.id
@@ -245,6 +245,7 @@ const ViewAllJobs = async (req, res, next) => {
    left outer JOIN business_types on functional_area_id = business_types.id
    left outer JOIN genders on gender_title_id  = genders.id
    left outer JOIN jobshifts on j.job_shift_id  = jobshifts.id
+   left outer JOIN jobtypes on j.job_type_id  = jobtypes.id
    left outer JOIN educationqualifications on j.required_qualification_id=educationqualifications.id
    left outer JOIN maxagerequirements maxAge on j.max_age_id=maxAge.id
    left outer JOIN maxagerequirements minAge on j.min_age_id=minAge.id
@@ -261,7 +262,38 @@ const ViewAllJobs = async (req, res, next) => {
 };
 
 const JobApply = async (req, res, next) => {
+  try {
+    const { job_id, cv_id } = req.body
+    const { id } = req.user
+    console.log(job_id)
+    console.log(id)
+    console.log(cv_id)
+
+    const insert_job_apply = await sequelize.query(`INSERT INTO job_applicants_cv( job_id,cv_id,applicant_id) VALUES (${job_id},${cv_id},${id})`)
+    res.json({
+      message: "Applied to job"
+    })
+  }
+  catch (error) {
+    next(error)
+  }
 
 }
-export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController, getApplicantsForJobById, JobApplicantStatusUpdate, ViewAllJobs };
+const CheckJobApply = async (req, res, next) => {
+  try {
+    const { job_id, cv_id } = req.body
+    const { id } = req.user
+
+
+    const [check_job_apply, meta] = await sequelize.query(`select cv_id from job_applicants_cv where applicant_id=${id} AND job_id=${job_id}`)
+    res.json({
+      check_job_apply
+    })
+  }
+  catch (error) {
+    next(error)
+  }
+
+}
+export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController, getApplicantsForJobById, JobApplicantStatusUpdate, ViewAllJobs, JobApply, CheckJobApply };
 

@@ -68,6 +68,7 @@ import Skill from "./models/Skills.js";
 app.use("/test", (req, res, next) => {
   console.log(req.body);
 });
+
 app.use("/", utilRouter);
 // consume routes start
 app.use("/users", userRouter);
