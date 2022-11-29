@@ -254,16 +254,6 @@ const Seekersidebar = (props) => {
           </button> */}
         </div>
         <div className="mx-5 d-flex align-items-center ">
-          <div
-            className={`mx-2 d-flex align-items-center  ${styles.navbarsrcon}`}
-          >
-            <input className={` ${styles.navbarsrinput}`} />
-            <button className={`px-2 ${styles.navbarsrbtn}`}>
-              <span>
-                <img src={Searchicon} />
-              </span>
-            </button>
-          </div>
           <button className={`px-2 ${styles.navbarnotibtn}`}>
             <span>
               <img src={notifilogo} />

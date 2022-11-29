@@ -36,7 +36,7 @@ const Persanalinfo = () => {
     Setdata(d);
   };
   return (
-    <div>
+    <div className="backdad">
       <Seekersidebar side={display} />
       <div
         className={`pt-5 ${Styles.Persanalinfomain} ${

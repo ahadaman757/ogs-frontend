@@ -61,7 +61,7 @@ const Managejobs = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="backdad">
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${

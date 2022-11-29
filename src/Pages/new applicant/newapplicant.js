@@ -121,7 +121,7 @@ const Newapplicant = () => {
     Setdata(d);
   };
   return (
-    <div>
+    <div className="backdad">
       <DashboardNavbar side={display} />
       <div
         style={{ marginLeft: data ? "55px" : "200px" }}

@@ -13,7 +13,7 @@ const Setting = () => {
     Setdata(d);
   };
   return (
-    <div>
+    <div className="backdad">
       <DashboardNavbar side={display} />
       <div
         className={`pt-5 ${Styles.settingmain} ${

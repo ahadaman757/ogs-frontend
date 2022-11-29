@@ -31,20 +31,25 @@ const Searchjobs = () => {
                 you to change your password.
               </p>
               <div className="row">
-                <div className="col-md-6 me-3">
-                  <InputField title={"Page Title"} />
-                  <InputField title={"Meta Title"} />
-                  <div className="my-3">
-                    <div className="d-flex justify-content-between">
-                      <p className="ogsfonts16">Meta Keywords</p>
-                    </div>
-                    <textarea className={` ${Styles.InputField}`}></textarea>
+                <div className="col-md-5 me-3">
+                  <InputField title={"Keyword"} />
+                  <InputField title={"Country"} />
+                  <div className=" ">
+                    <InputField title={"City"} />
                   </div>
-                  <div className="my-3">
-                    <div className="d-flex justify-content-between">
-                      <p className="ogsfonts16">Meta Description</p>
-                    </div>
-                    <textarea className={` ${Styles.InputField}`}></textarea>
+                  <InputField title={"Category "} />
+                  <InputField title={"Sub Category"} />
+                  <div className="d-flex justify-content-between">
+                    <InputField title={"Date Added From"} />
+                    <InputField title={"Date Added To"} />
+                  </div>
+                  <div className="d-flex justify-content-end">
+                    <button className={`me-3 ogsfonts14 ${Styles.btnt}`}>
+                      Cancel
+                    </button>
+                    <button className={`px-4 py-3 ogsfonts14  ${Styles.btnc}`}>
+                      Save
+                    </button>
                   </div>
                 </div>
                 <div className="col-md-5">

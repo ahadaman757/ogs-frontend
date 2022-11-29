@@ -35,18 +35,19 @@ const Sendnewsletterseekers = () => {
               <p className="ogsfonts16">Send Newsletter (Seekers Only)</p>
               <div className="row">
                 <div className="col-md-5 me-3">
-                  <InputField title={"Page Title"} />
-                  <InputField title={"Meta Title"} />
-                  <div className="d-flex justify-content-between">
-                    <InputField title={"Meta Title"} />
-                    <InputField title={"Meta Title"} />
+                  <InputField title={"Select Newsletter"} />
+                  <InputField title={"Subject"} />
+                  <div className="">
+                    <div className="my-3">
+                      <div className="d-flex justify-content-between">
+                        <p className="ogsfonts16">Email Description</p>
+                      </div>
+                      <textarea className={` ${Styles.InputField}`}></textarea>
+                    </div>
                   </div>
-                  <InputField title={"Meta Title"} />
-                  <InputField title={"Meta Title"} />
-                  <div className="d-flex justify-content-between">
-                    <InputField title={"Meta Title"} />
-                    <InputField title={"Meta Title"} />
-                  </div>
+                  <InputField title={"Set Time Period"} />
+                  <InputField title={"Verify code"} />
+
                   <div className="d-flex justify-content-end">
                     <button className={`me-3 ogsfonts14 ${Styles.btnt}`}>
                       Cancel

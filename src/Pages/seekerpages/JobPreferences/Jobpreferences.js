@@ -11,7 +11,7 @@ const Jobpreferences = () => {
     Setdata(d);
   };
   return (
-    <div>
+    <div className="backdad">
       <Seekersidebar side={display} />
       <div
         className={`pt-5 ${Styles.Jobpreferencesmain} ${

@@ -275,7 +275,6 @@ button {
 }
 .sidebarwidthmax {
   width: 200px !important;
-  transform: scale(10px 100px);
 }
 .sidebarwidthmin {
   width: 50px !important;
@@ -299,4 +298,7 @@ button {
 }
 .asdesas div:hover {
   background: #a7a7a7 !important;
+}
+.backdad {
+  background: #f4f4f4;
 }

@@ -74,7 +74,7 @@ const DashboardNavbar = (props) => {
           } ${displayside ? " px-0" : "px-2 "}`}
         >
           <a
-            className={`btn btn-primary  my-3 ogsfonts16   ${styles.sidedasbtn}`}
+            className={`btn btn-primary p-2  my-2 ogsfonts16   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample"
             role="button"
@@ -91,12 +91,17 @@ const DashboardNavbar = (props) => {
             }}
           >
             <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon1} />
+              <img
+                className={` ${displayside ? "me-0 " : "me-2"} ${
+                  styles.dashbordimg
+                }`}
+                src={icon1}
+              />
             </span>
             {displayside ? "" : "Dashboard"}
           </a>
           <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16 my-2   p-2 ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample1"
             role="button"
@@ -113,12 +118,17 @@ const DashboardNavbar = (props) => {
             }}
           >
             <span>
-              <img className={` me-2 ${styles.dashbordimg}`} src={icon2} />
+              <img
+                className={` ${displayside ? "me-0 " : "me-2"} ${
+                  styles.dashbordimg
+                }`}
+                src={icon2}
+              />
             </span>
             {displayside ? "" : "Manage Jobs"}
           </a>
           <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16 my-2   p-2  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample2"
             role="button"
@@ -132,7 +142,12 @@ const DashboardNavbar = (props) => {
             }}
           >
             <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
+              <img
+                className={` ${displayside ? "me-0 " : "me-2"} ${
+                  styles.dashbordimg
+                }`}
+                src={icon3}
+              />
             </span>
             {displayside ? "" : "Mailbox"}
           </a>
@@ -149,7 +164,7 @@ const DashboardNavbar = (props) => {
             </div>
           </div>{" "}
           <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16 my-2  p-2  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample3"
             role="button"
@@ -163,7 +178,12 @@ const DashboardNavbar = (props) => {
             }}
           >
             <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon4} />
+              <img
+                className={` ${displayside ? "me-0 " : "me-2"} ${
+                  styles.dashbordimg
+                }`}
+                src={icon4}
+              />
             </span>
             {displayside ? "" : "Setting"}
           </a>
@@ -180,7 +200,7 @@ const DashboardNavbar = (props) => {
             </div>
           </div>{" "}
           <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16 my-2  p-2  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample4"
             role="button"
@@ -194,7 +214,12 @@ const DashboardNavbar = (props) => {
             }}
           >
             <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
+              <img
+                className={` ${displayside ? "me-0 " : "me-2"}  ${
+                  styles.dashbordimg
+                }`}
+                src={icon5}
+              />
             </span>
             {displayside ? "" : " Power Tools"}
           </a>
@@ -211,7 +236,7 @@ const DashboardNavbar = (props) => {
             </div>
           </div>
           <a
-            className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16 my-2 p-2   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample5"
             role="button"
@@ -225,7 +250,12 @@ const DashboardNavbar = (props) => {
             }}
           >
             <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon6} />
+              <img
+                className={` ${displayside ? "me-0 " : "me-2"}  ${
+                  styles.dashbordimg
+                }`}
+                src={icon6}
+              />
             </span>
 
             {displayside ? "" : "CV Search"}
@@ -247,8 +277,8 @@ const DashboardNavbar = (props) => {
       <div
         className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          marginLeft: displayside ? "5%" : "13%",
-          width: displayside ? "97%" : "87%",
+          marginLeft: displayside ? "0%" : "0%",
+          width: displayside ? "100%" : "100%",
         }}
       >
         <div>

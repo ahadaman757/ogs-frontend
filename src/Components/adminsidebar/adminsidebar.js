@@ -185,13 +185,7 @@ const Adminsidebar = (props) => {
                     Manage all Jobs
                   </Link>
                 </li>
-                <li className="d-flex my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/managejobsdispaly" className="tere ogsfonts14">
-                    {" "}
-                    Manage Jobs Display Limits
-                  </Link>
-                </li>
+
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managerestricted" className="tere ogsfonts14">

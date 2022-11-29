@@ -39,17 +39,16 @@ const Manageseeker = () => {
               </p>
               <div className="row">
                 <div className="col-md-5 me-3">
-                  <InputField title={"Page Title"} />
-                  <InputField title={"Meta Title"} />
-                  <div className="d-flex justify-content-between">
-                    <InputField title={"Meta Title"} />
-                    <InputField title={"Meta Title"} />
+                  <InputField title={"Keyword"} />
+                  <InputField title={"Country"} />
+                  <div className=" ">
+                    <InputField title={"City"} />
                   </div>
-                  <InputField title={"Meta Title"} />
-                  <InputField title={"Meta Title"} />
+                  <InputField title={"Category "} />
+                  <InputField title={"Sub Category"} />
                   <div className="d-flex justify-content-between">
-                    <InputField title={"Meta Title"} />
-                    <InputField title={"Meta Title"} />
+                    <InputField title={"Date Added From"} />
+                    <InputField title={"Date Added To"} />
                   </div>
                   <div className="d-flex justify-content-end">
                     <button className={`me-3 ogsfonts14 ${Styles.btnt}`}>
