@@ -58,9 +58,8 @@ const Seekersidebar = (props) => {
           {displayside ? "" : "Power"}
         </h2>
         <div
-          className={`d-flex flex-column align-items-start ${
-            displayside ? " align-items-center" : " align-items-start"
-          } ${displayside ? " px-0" : "px-2 "}`}
+          className={`d-flex flex-column 
+            ${displayside ? " px-0" : "px-2 "}`}
         >
           <a
             className={`btn btn-primary   ogsfonts16   ${styles.sidedasbtn}`}

@@ -14,3 +14,8 @@
 .from {
   height: 100% !important;
 }
+@media only screen and (max-width: 768px) {
+  .auth_img {
+    display: none;
+  }
+}

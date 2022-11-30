@@ -28,20 +28,15 @@ const Editseekerregistration = () => {
 
               <div className="row">
                 <div className="col-md-6 me-3">
-                  <InputField title={"Page Title"} />
-                  <InputField title={"Meta Title"} />
+                  <InputField title={"From Name"} />
+                  <InputField title={"Subject"} />
                   <div className="my-3">
                     <div className="d-flex justify-content-between">
-                      <p className="ogsfonts16">Meta Keywords</p>
+                      <p className="ogsfonts16">Body</p>
                     </div>
                     <textarea className={` ${Styles.InputField}`}></textarea>
                   </div>
-                  <div className="my-3">
-                    <div className="d-flex justify-content-between">
-                      <p className="ogsfonts16">Meta Description</p>
-                    </div>
-                    <textarea className={` ${Styles.InputField}`}></textarea>
-                  </div>
+
                   <div className="d-flex justify-content-between">
                     <button className={`ogsfonts14 ${Styles.btnt}`}>
                       Back

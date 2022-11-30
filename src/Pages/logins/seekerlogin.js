@@ -30,7 +30,7 @@ const SeekerLogin = () => {
           </div>
 
           <div className={`col-md-6 p-0  ${Styles.auth_img} `}>
-            <img src={bggside} />
+            <img style={{ width: "100%", height: "100%" }} src={bggside} />
           </div>
         </div>
       </div>
