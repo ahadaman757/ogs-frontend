@@ -1,12 +1,12 @@
 const Newnavbar = () => {
   return (
-    <nav class="navbar d-flex flex-row navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+    <nav className="navbar d-flex flex-row navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
           Navbar
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavDropdown"
@@ -14,9 +14,9 @@ const Newnavbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+        <div className="collapse navbar-collapse" id="navbarNavDropdown"></div>
       </div>
     </nav>
   );

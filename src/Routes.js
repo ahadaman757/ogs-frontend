@@ -56,6 +56,8 @@ import JobsSearch from "./Pages/seekerpages/search jobs/searchjobs";
 import Jobpopseeker from "./Components/job pop seeker/jobpopseeker";
 import CreateCv from "./Pages/CreateCv/createCv";
 import EditCv from "./Pages/seekerpages/Manageyoucvs/EditCv";
+import AdminLogin from "./Pages/logins/adminlogin";
+import EditJob from "./Pages/adminpanel/Manage All Jobs/EditJob";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -218,6 +220,10 @@ const router = createBrowserRouter([
     element: <Managejobsdispaly />,
   },
   {
+    path: "admineditjob/:jobId",
+    element: <EditJob />,
+  },
+  {
     path: "managerestricted",
     element: <Managerestricted />,
   },
@@ -285,6 +291,10 @@ const router = createBrowserRouter([
   {
     path: "editcv",
     element: <EditCv />,
+  },
+  {
+    path: "adminlogin",
+    element: <AdminLogin />,
   },
 ]);
 function Routes() {

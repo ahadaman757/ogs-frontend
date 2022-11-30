@@ -50,6 +50,7 @@ class Extractdata {
             functional_area_id: body.functional_area,
             gender_title_id: body.gender_title,
             job_shift_id: body.job_shift,
+            job_type_id: body.job_type_title,
             required_qualification_id: body.required_qualification,
             min_experience_id: body.min_experience,
             max_experience_id: body.max_experience,

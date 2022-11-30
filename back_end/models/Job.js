@@ -65,6 +65,10 @@ const Jobs = sequelize.define('Job', {
         type: DataTypes.INTEGER,
         // allowNull: false
     },
+    job_type_id: {
+        type: DataTypes.INTEGER,
+        // allowNull: false
+    },
     required_qualification_id: {
         type: DataTypes.INTEGER,
         // allowNull: false

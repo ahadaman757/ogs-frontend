@@ -7,11 +7,11 @@ const Company = () => {
   return (
     <div className={` mb-5 my-2 ms-md-2 p-3 ${Styles.Companymain}`}>
       <div>
-        <h1 class=" ogsfonts20 ">Company</h1>
+        <h1 className=" ogsfonts20 ">Company</h1>
       </div>
 
-      <table class="table">
-        <thead class="heading">
+      <table className="table">
+        <thead className="heading">
           <tr>
             {/* <!-- <th scope="col">#</th> --> */}
             <th scope="col">Company Name</th>
@@ -20,7 +20,7 @@ const Company = () => {
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody class="inner-section">
+        <tbody className="inner-section">
           <tr>
             {/* <!-- <th scope="row">1</th> --> */}
             <td>OGS Manpower</td>

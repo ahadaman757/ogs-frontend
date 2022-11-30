@@ -13,8 +13,8 @@ const Newsletter = () => {
             vulputate libero et velit interdum, ac aliquet odio mattis.
           </p>
           <div className={`${styles.newsLetterForm}`}>
-            <input class="form-control" placeholder="Email" />
-            <button class="btn btn-primary">Subscribe</button>
+            <input className="form-control" placeholder="Email" />
+            <button className="btn btn-primary">Subscribe</button>
           </div>
         </div>
       </div>

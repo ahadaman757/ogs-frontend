@@ -60,6 +60,7 @@ import jobRouter from "./routes/job.js";
 import errorhandler from "./middlewares/errorHandler.js";
 import utilRouter from "./routes/utils.js";
 import Skill from "./models/Skills.js";
+import AdminRouter from "./routes/adminroutes.js";
 
 // import Routes end
 
@@ -68,9 +69,11 @@ import Skill from "./models/Skills.js";
 app.use("/test", (req, res, next) => {
   console.log(req.body);
 });
+
 app.use("/", utilRouter);
 // consume routes start
 app.use("/users", userRouter);
+app.use("/admin", AdminRouter);
 app.use("/jobs", jobRouter);
 // app.use("/userlogin", userLogin);
 // consume routes end

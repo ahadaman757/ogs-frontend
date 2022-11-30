@@ -34,37 +34,37 @@ const Cvsearch = () => {
                 >
                   <input
                     type="text"
-                    class="form-control inp1"
+                    className="form-control inp1"
                     aria-label="Text input with dropdown button"
                   />
 
                   <button
-                    class="btn btn-outline-secondary dropdown-toggle btmxo ogsfonts15"
+                    className="btn btn-outline-secondary dropdown-toggle btmxo ogsfonts15"
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   ></button>
-                  <ul class="dropdown-menu dropdown-menu-end">
+                  <ul className="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         Action
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         Another action
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         Something else here
                       </a>
                     </li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a className="dropdown-item" href="#">
                         Separated link
                       </a>
                     </li>

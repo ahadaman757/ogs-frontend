@@ -19,7 +19,7 @@ const InputSelect = (props) => {
         <option>...</option>
         <option>1</option>
       </select>
-      <div id="validationServer04Feedback" class="invalid-feedback">
+      <div id="validationServer04Feedback" className="invalid-feedback">
         Please select a valid state.
       </div>
     </div>

@@ -40,12 +40,10 @@ const Adminsidebar = (props) => {
       }
     });
   }, []);
-
-  console.log(displayside);
   const handeler = (props) => {
     setdisplay(!displayside);
   };
-  props.side(displayside);
+  // props.side(displayside);
   return (
     <div className={`p-2 ${styles.DashboardNavbarmain}`}>
       <div

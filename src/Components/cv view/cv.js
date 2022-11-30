@@ -10,45 +10,47 @@ import likeicon from "../../Assets/Images/New folder (3)/like.svg";
 import dislikeicon from "../../Assets/Images/New folder (3)/dislike.svg";
 import { useState } from "react";
 import axios from "axios";
-import { BasicDocument } from '../pdfDownload'
-import {
-
-  PDFDownloadLink,
-  Image
-} from "@react-pdf/renderer";
+import { BasicDocument } from "../pdfDownload";
+import { PDFDownloadLink, Image } from "@react-pdf/renderer";
 const Cv = ({ applicant, job_id }) => {
   const cv = {
-    contact_number: "03458914711"
-  }
+    contact_number: "03458914711",
+  };
   const [shortlisted, setShortlisted] = useState(applicant.is_shortlisted);
   const [rejected, setRejected] = useState(applicant.is_rejected);
-  const [download, setdownload] = useState(false)
-  console.log(applicant.cv_id)
-  console.log(applicant.is_shortlisted)
+  const [download, setdownload] = useState(false);
+  console.log(applicant.cv_id);
+  console.log(applicant.is_shortlisted);
   const updateCvView = (currentStatus) => {
-    axios.post("http://localhost:3002/jobs/job_applicants_status_update", {
-      status: !shortlisted,
-      column: "is_shortlisted",
-      cv_id: applicant.cv_id,
-      job_id: job_id
-    }).then(res => {
-      setShortlisted(!shortlisted)
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+    axios
+      .post("http://localhost:3002/jobs/job_applicants_status_update", {
+        status: !shortlisted,
+        column: "is_shortlisted",
+        cv_id: applicant.cv_id,
+        job_id: job_id,
+      })
+      .then((res) => {
+        setShortlisted(!shortlisted);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const rejectCv = (currentStatus) => {
-    axios.post("http://localhost:3002/jobs/job_applicants_status_update", {
-      status: !rejected,
-      cv_id: applicant.cv_id,
-      job_id: job_id,
-      column: "is_rejected"
-    }).then(res => {
-      setRejected(!rejected)
-    }).catch(error => {
-      console.log(error)
-    })
-  }
+    axios
+      .post("http://localhost:3002/jobs/job_applicants_status_update", {
+        status: !rejected,
+        cv_id: applicant.cv_id,
+        job_id: job_id,
+        column: "is_rejected",
+      })
+      .then((res) => {
+        setRejected(!rejected);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className={` p-4 my-4 ${Styles.Cvmain}`}>
@@ -56,8 +58,8 @@ const Cv = ({ applicant, job_id }) => {
         <button
           onClick={() => {
             // update the viewed status
-            console.log()
-            updateCvView(!shortlisted)
+            console.log();
+            updateCvView(!shortlisted);
           }}
           className={`${Styles.cvheadicon}`}
         >
@@ -72,42 +74,46 @@ const Cv = ({ applicant, job_id }) => {
           </span>
           Preview CV
         </button>
-        <button onClick={() => setdownload(true)} className={`ogsfonts16 ${Styles.cvheadicon}`}>
+        <button
+          onClick={() => setdownload(true)}
+          className={`ogsfonts16 ${Styles.cvheadicon}`}
+        >
           <span>
             <img className="me-3" src={downicon} />
           </span>
-          <PDFDownloadLink document={<BasicDocument cv_data={applicant} />} fileName="somename.pdf">
+          <PDFDownloadLink
+            document={<BasicDocument cv_data={applicant} />}
+            fileName="somename.pdf"
+          >
             {({ loading, error }) => {
-              console.log(error)
-              return (loading ? 'Loading document...' : 'Download now!')
+              console.log(error);
+              return loading ? "Loading document..." : "Download now!";
             }}
           </PDFDownloadLink>
         </button>
         <button
           onClick={() => {
-            return updateCvView()
+            return updateCvView();
           }}
-          className={`ogsfonts16 ${Styles.cvheadicon}`}>
+          className={`ogsfonts16 ${Styles.cvheadicon}`}
+        >
           <span>
             <img className="me-3" src={useradd} />
           </span>
-          {
-            shortlisted ? "shortlisted" : "shortlist"
-          }
-
+          {shortlisted ? "shortlisted" : "shortlist"}
         </button>
-        <button onClick={() => {
-          return rejectCv()
-        }} className={`ogsfonts16 ${Styles.cvheadicon}`}>
+        <button
+          onClick={() => {
+            return rejectCv();
+          }}
+          className={`ogsfonts16 ${Styles.cvheadicon}`}
+        >
           <span>
             <img className="me-3" src={userremove} />
           </span>
-          {
-            rejected ? "Rejected" : "Reject"
-          }
-
+          {rejected ? "Rejected" : "Reject"}
         </button>
-        <div class="dropdown">
+        <div className="dropdown">
           <button
             className={`ogsfonts16 ${Styles.cvheadicon}`}
             type="button"
@@ -116,19 +122,19 @@ const Cv = ({ applicant, job_id }) => {
           >
             More Actions
           </button>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="#">
+              <a className="dropdown-item" href="#">
                 Action
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a className="dropdown-item" href="#">
                 Another action
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">
+              <a className="dropdown-item" href="#">
                 Something else here
               </a>
             </li>
@@ -138,7 +144,13 @@ const Cv = ({ applicant, job_id }) => {
       <hr />
       <div className="row">
         <div className="col-2">
-          <img className="img-fluid" src={`http://localhost:3002/${applicant.cv_image.replace("images", "images/")}`} />
+          <img
+            className="img-fluid"
+            src={`http://localhost:3002/${applicant.cv_image.replace(
+              "images",
+              "images/"
+            )}`}
+          />
           <div className=" mt-2 d-flex justify-content-evenly">
             <img src={likeicon} />
             <img src={dislikeicon} />
@@ -146,13 +158,20 @@ const Cv = ({ applicant, job_id }) => {
         </div>
         <div className="col-9">
           <div className="d-flex">
-            <p className="me-3 ogsfonts20">{applicant.first_name + " " + applicant.last_name}</p>
-            <p className="ogsfonts14">{`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}   </p>
+            <p className="me-3 ogsfonts20">
+              {applicant.first_name + " " + applicant.last_name}
+            </p>
+            <p className="ogsfonts14">
+              {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
+            </p>
           </div>
           <div className="d-flex">
             {" "}
             <p className="me-3 ogsfonts16">CV Number:</p>
-            <p className="ogsfonts14"> {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}</p>
+            <p className="ogsfonts14">
+              {" "}
+              {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}
+            </p>
           </div>
           <div className="d-flex">
             {" "}
@@ -192,15 +211,21 @@ const Cv = ({ applicant, job_id }) => {
       <div className="d-flex justify-content-between">
         <div>
           <p className="text-center ogsfonts14">Years of Experience</p>
-          <p className="text-center ogsfonts18 m-0">{applicant.max_experience}</p>
+          <p className="text-center ogsfonts18 m-0">
+            {applicant.max_experience}
+          </p>
         </div>
         <div>
           <p className="text-center ogsfonts14">Current Salary</p>
-          <p className="text-center ogsfonts18 m-0">{applicant.current_salary} /Month</p>
+          <p className="text-center ogsfonts18 m-0">
+            {applicant.current_salary} /Month
+          </p>
         </div>
         <div>
           <p className="text-center ogsfonts14">Expected Salary</p>
-          <p className="text-center ogsfonts18 m-0">{applicant.expected_salary} /Month</p>
+          <p className="text-center ogsfonts18 m-0">
+            {applicant.expected_salary} /Month
+          </p>
         </div>
       </div>
     </div>
