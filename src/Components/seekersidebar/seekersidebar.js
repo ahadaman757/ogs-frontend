@@ -125,7 +125,7 @@ const Seekersidebar = (props) => {
             </span>
             {displayside ? "" : "Mailbox"}
           </a>
-          <div class="collapse" id="collapseExample2">
+          <div className="collapse" id="collapseExample2">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
                 <li>
@@ -156,7 +156,7 @@ const Seekersidebar = (props) => {
             </span>
             {displayside ? "" : "Setting"}
           </a>
-          <div class="collapse" id="collapseExample3">
+          <div className="collapse" id="collapseExample3">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
                 <li>
@@ -187,7 +187,7 @@ const Seekersidebar = (props) => {
             </span>
             {displayside ? "" : " Power Tools"}
           </a>
-          <div class="collapse" id="collapseExample4">
+          <div className="collapse" id="collapseExample4">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
                 <li>
@@ -219,7 +219,7 @@ const Seekersidebar = (props) => {
 
             {displayside ? "" : "CV Search"}
           </a>
-          <div class="collapse" id="collapseExample5">
+          <div className="collapse" id="collapseExample5">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
                 <li>
@@ -285,19 +285,19 @@ const Seekersidebar = (props) => {
                 <img />
               </span>
             </button>
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Action
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Another action
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Something else here
                 </a>
               </li>

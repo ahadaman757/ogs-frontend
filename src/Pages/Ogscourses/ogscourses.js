@@ -45,7 +45,7 @@ const Ogscourses = () => {
       <Navbar />
       <div className=" ogsas">
         <div className=" coursesogs">
-          <h1 class="text-center py-5">OGS INSTITUTE OF TECHNOLOGIES</h1>
+          <h1 className="text-center py-5">OGS INSTITUTE OF TECHNOLOGIES</h1>
           <div className=" row justify-content-center m-0">
             <div className="row col-md-8 ogscorfis">
               <div className="col-md-6 py-5 px-5 ">
@@ -87,10 +87,10 @@ const Ogscourses = () => {
         </div>
         <div className="ogsas">
           <div className=" my-5 py-5 container">
-            <h1 class="text-center py-5 my-5">
+            <h1 className="text-center py-5 my-5">
               OGS Skill Development and Trade Testing
             </h1>
-            <p class="text-center my-5 ogsfonts16 sdweqw">
+            <p className="text-center my-5 ogsfonts16 sdweqw">
               Our CEO has Good relations with different Oil and Gas
               companies’Human Resources Managers and Ownersr, he also knows
               un-employment factor in Pakistan. He knows that a lot of
@@ -105,7 +105,7 @@ const Ogscourses = () => {
               and further attraction 28 work 28 leave with ticket and other o
               lot of benefits
             </p>
-            <p class="text-center my-5 ogsfonts16 sdweqw">
+            <p className="text-center my-5 ogsfonts16 sdweqw">
               So our short courses in the field drilling and safety may more
               benefited then 1 year’s petroleum engineering or long study and
               further our professional courses on International Level are

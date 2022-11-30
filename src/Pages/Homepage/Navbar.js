@@ -11,9 +11,9 @@ const Navbar = () => {
       </div>
       <div className={`${styles.Navbar__container}`}>
         <div className="container">
-          <nav class="navbar navbar-expand-lg">
+          <nav className="navbar navbar-expand-lg">
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarNav"
@@ -21,43 +21,43 @@ const Navbar = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav mx-auto" style={{ color: "white" }}>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#" style={{ color: "white" }}>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav mx-auto" style={{ color: "white" }}>
+                <li className="nav-item active">
+                  <a className="nav-link" href="#" style={{ color: "white" }}>
                     Home
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" style={{ color: "white" }}>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" style={{ color: "white" }}>
                     Features
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" style={{ color: "white" }}>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" style={{ color: "white" }}>
                     Internships
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" style={{ color: "white" }}>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" style={{ color: "white" }}>
                     Members
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" style={{ color: "white" }}>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" style={{ color: "white" }}>
                     OGS Courses
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" style={{ color: "white" }}>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" style={{ color: "white" }}>
                     About Us
                   </a>
                 </li>
-                {/* <li class="nav-item">
+                {/* <li className="nav-item">
                   <a
-                    class="nav-link disabled"
+                    className="nav-link disabled"
                     href="#"
                     style={{ color: "white" }}
                   >

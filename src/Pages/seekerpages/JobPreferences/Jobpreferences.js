@@ -30,44 +30,44 @@ const Jobpreferences = () => {
                 </div>
                 <div>
                   <h1 className="ogsfonts16">Relocation</h1>
-                  <div class="form-check me-3   my-3">
+                  <div className="form-check me-3   my-3">
                     <input
-                      class={`form-check-input ${Styles.radioer}`}
+                      className={`form-check-input ${Styles.radioer}`}
                       type="checkbox"
                       value=""
                       id="flexCheckDefault"
                     />
                     <label
-                      class="form-check-label ogsfonts12"
+                      className="form-check-label ogsfonts12"
                       for="flexCheckDefault"
                     >
                       i m willing to relocate
                     </label>
                   </div>
                   <div className="d-flex">
-                    <div class="form-check me-3   my-3">
+                    <div className="form-check me-3   my-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts12"
+                        className="form-check-label ogsfonts12"
                         for="flexCheckDefault"
                       >
                         anywheree
                       </label>
                     </div>{" "}
-                    <div class="form-check me-3   my-3">
+                    <div className="form-check me-3   my-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts12"
+                        className="form-check-label ogsfonts12"
                         for="flexCheckDefault"
                       >
                         Onlynear
@@ -85,14 +85,14 @@ const Jobpreferences = () => {
                     {" "}
                     <button
                       type="button"
-                      class={`me-3 ${Styles.modalbtnc} `}
+                      className={`me-3 ${Styles.modalbtnc} `}
                       data-bs-dismiss="modal"
                     >
                       Draft
                     </button>
                     <button
                       type="button"
-                      class={`py-2 px-3 ${Styles.modalbtns} `}
+                      className={`py-2 px-3 ${Styles.modalbtns} `}
                     >
                       Save
                     </button>

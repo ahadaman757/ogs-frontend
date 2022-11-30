@@ -10,7 +10,10 @@ import {
   JobApplicantStatusUpdate,
   ViewAllJobs,
   JobApply,
-  CheckJobApply
+  CheckJobApply,
+  AdminGetAllJobsController,
+  AdminDeleteJob,
+  AdminGetJobDetails,
 } from "../controllers/JobController.js";
 // /main route =/jobs
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -25,7 +28,10 @@ jobRouter.get("/view_all_jobs", ViewAllJobs);
 jobRouter.post("/jobapply", auth, JobApply);
 jobRouter.post("/checkjobapply", auth, CheckJobApply);
 // jobRouter.post("/jobapply", JobApply);
-jobRouter.post("/:id", JobByIdController);
+// jobRouter.post("/:id", JobByIdController);
+jobRouter.get("/admingetjobs", AdminGetAllJobsController);
+jobRouter.post("/admindeletejob", AdminDeleteJob);
+jobRouter.post("/admingetjobdetail", AdminGetJobDetails);
 // jobRouter.get('/me', auth, usermecontroller)
 
 export default jobRouter;

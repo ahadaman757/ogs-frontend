@@ -265,15 +265,15 @@ const Persanalinfo = () => {
                   </button>{" "}
                 </div>
                 <div className="my-3">
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="flexRadioDefault"
                       id="flexRadioDefault1"
                     />
                     <label
-                      class="form-check-label ogsfonts18"
+                      className="form-check-label ogsfonts18"
                       for="flexRadioDefault1"
                     >
                       Public
@@ -282,16 +282,16 @@ const Persanalinfo = () => {
                   <p className="ogsfonts16">
                     Your CV will be visible to every registered Rozee employer.
                   </p>
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="flexRadioDefault"
                       id="flexRadioDefault2"
                       checked
                     />
                     <label
-                      class="form-check-label ogsfonts18"
+                      className="form-check-label ogsfonts18"
                       for="flexRadioDefault2"
                     >
                       Private
@@ -344,9 +344,9 @@ const Persanalinfo = () => {
                 <h1 className="ogsfonts18 mb-3">
                   Update your profile for better job recommendations
                 </h1>
-                <div class="progress my-3">
+                <div className="progress my-3">
                   <div
-                    class="progress-bar w-75"
+                    className="progress-bar w-75"
                     role="progressbar"
                     aria-label="Basic example"
                     aria-valuenow="75"

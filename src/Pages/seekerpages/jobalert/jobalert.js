@@ -41,20 +41,20 @@ const Jobalert = () => {
                 </button>
 
                 <div
-                  class="modal fade"
+                  className="modal fade"
                   id="exampleModal"
                   tabindex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
                 >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body p-4">
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-body p-4">
                         <div className="d-flex justify-content-between">
                           <h1 className="ogsfonts18">Create Alert</h1>
                           <button
                             type="button"
-                            class="btn-close"
+                            className="btn-close"
                             data-bs-dismiss="modal"
                             aria-label="Close"
                           ></button>
@@ -68,44 +68,44 @@ const Jobalert = () => {
                             Additional Conditions
                           </h1>
                           <div className="d-flex flex-wrap">
-                            <div class="form-check me-3  my-3">
+                            <div className="form-check me-3  my-3">
                               <input
-                                class={`form-check-input ${Styles.radioer}`}
+                                className={`form-check-input ${Styles.radioer}`}
                                 type="checkbox"
                                 value=""
                                 id="flexCheckDefault"
                               />
                               <label
-                                class="form-check-label ogsfonts12"
+                                className="form-check-label ogsfonts12"
                                 for="flexCheckDefault"
                               >
                                 Job Title
                               </label>
                             </div>
 
-                            <div class="form-check me-3   my-3">
+                            <div className="form-check me-3   my-3">
                               <input
-                                class={`form-check-input ${Styles.radioer}`}
+                                className={`form-check-input ${Styles.radioer}`}
                                 type="checkbox"
                                 value=""
                                 id="flexCheckDefault"
                               />
                               <label
-                                class="form-check-label ogsfonts12"
+                                className="form-check-label ogsfonts12"
                                 for="flexCheckDefault"
                               >
                                 Skills
                               </label>
                             </div>
-                            <div class="form-check   my-3">
+                            <div className="form-check   my-3">
                               <input
-                                class={`form-check-input ${Styles.radioer}`}
+                                className={`form-check-input ${Styles.radioer}`}
                                 type="checkbox"
                                 value=""
                                 id="flexCheckDefault"
                               />
                               <label
-                                class="form-check-label ogsfonts12"
+                                className="form-check-label ogsfonts12"
                                 for="flexCheckDefault"
                               >
                                 Company
@@ -122,14 +122,14 @@ const Jobalert = () => {
                           {" "}
                           <button
                             type="button"
-                            class={`me-3 ${Styles.modalbtnc} `}
+                            className={`me-3 ${Styles.modalbtnc} `}
                             data-bs-dismiss="modal"
                           >
                             Close
                           </button>
                           <button
                             type="button"
-                            class={`py-2 px-3 ${Styles.modalbtns} `}
+                            className={`py-2 px-3 ${Styles.modalbtns} `}
                           >
                             Save
                           </button>
@@ -178,21 +178,21 @@ const Jobalert = () => {
                     </span>
                   </button>
                   <div
-                    class="modal fade"
+                    className="modal fade"
                     id="exampleModal1"
                     tabindex="-1"
                     aria-labelledby="exampleModalLabel1"
                     aria-hidden="true"
                   >
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-content">
-                          <div class="modal-body p-4">
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-content">
+                          <div className="modal-body p-4">
                             <div className="d-flex justify-content-between">
                               <h1 className="ogsfonts18">Create Alert</h1>
                               <button
                                 type="button"
-                                class="btn-close"
+                                className="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                               ></button>
@@ -206,44 +206,44 @@ const Jobalert = () => {
                                 Additional Conditions
                               </h1>
                               <div className="d-flex flex-wrap">
-                                <div class="form-check me-3  my-3">
+                                <div className="form-check me-3  my-3">
                                   <input
-                                    class={`form-check-input ${Styles.radioer}`}
+                                    className={`form-check-input ${Styles.radioer}`}
                                     type="checkbox"
                                     value=""
                                     id="flexCheckDefault"
                                   />
                                   <label
-                                    class="form-check-label ogsfonts12"
+                                    className="form-check-label ogsfonts12"
                                     for="flexCheckDefault"
                                   >
                                     Job Title
                                   </label>
                                 </div>
 
-                                <div class="form-check me-3   my-3">
+                                <div className="form-check me-3   my-3">
                                   <input
-                                    class={`form-check-input ${Styles.radioer}`}
+                                    className={`form-check-input ${Styles.radioer}`}
                                     type="checkbox"
                                     value=""
                                     id="flexCheckDefault"
                                   />
                                   <label
-                                    class="form-check-label ogsfonts12"
+                                    className="form-check-label ogsfonts12"
                                     for="flexCheckDefault"
                                   >
                                     Skills
                                   </label>
                                 </div>
-                                <div class="form-check   my-3">
+                                <div className="form-check   my-3">
                                   <input
-                                    class={`form-check-input ${Styles.radioer}`}
+                                    className={`form-check-input ${Styles.radioer}`}
                                     type="checkbox"
                                     value=""
                                     id="flexCheckDefault"
                                   />
                                   <label
-                                    class="form-check-label ogsfonts12"
+                                    className="form-check-label ogsfonts12"
                                     for="flexCheckDefault"
                                   >
                                     Company
@@ -262,14 +262,14 @@ const Jobalert = () => {
                               {" "}
                               <button
                                 type="button"
-                                class={`me-3 ${Styles.modalbtnc} `}
+                                className={`me-3 ${Styles.modalbtnc} `}
                                 data-bs-dismiss="modal"
                               >
                                 Close
                               </button>
                               <button
                                 type="button"
-                                class={`py-2 px-3 ${Styles.modalbtns} `}
+                                className={`py-2 px-3 ${Styles.modalbtns} `}
                               >
                                 Save
                               </button>

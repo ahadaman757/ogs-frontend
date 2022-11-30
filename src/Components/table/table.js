@@ -5,8 +5,8 @@ import Styles from "./table.module.css";
 
 const Table = (props) => {
   return (
-    <div class="container py-4">
-      <table class="table srolll">
+    <div className="container py-4">
+      <table className="table srolll">
         <thead>
           <tr>
             <th className="ogsfonts14"> {props.Sr}</th>
@@ -56,4 +56,5 @@ const Table = (props) => {
     </div>
   );
 };
+
 export default Table;

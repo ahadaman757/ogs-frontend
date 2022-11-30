@@ -7,7 +7,10 @@ const InputField = (props) => {
         <p className={`ogsfonts16 ${Styles.InputFieldRe}`}>{props.requre}</p>
       </div>
 
-      <input className={` ${Styles.InputField}`} />
+      <input
+        className={`${Styles.InputField}`}
+        onChange={(e) => props.onChange(e)}
+      />
     </div>
   );
 };

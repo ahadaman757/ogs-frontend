@@ -215,30 +215,30 @@ const Postajob = () => {
                   <div>
                     {" "}
                     <h1 className="ogsfonts16 my-3">Additional Conditions</h1>
-                    <div class="form-check">
+                    <div className="form-check">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Receive resumes of applicants to this job through your
                         email
                       </label>
                     </div>
-                    <div class="form-check ">
+                    <div className="form-check ">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Deactivate this job after the Apply By Date
@@ -275,29 +275,29 @@ const Postajob = () => {
                   </div>
                   <h1 className="ogsfonts16 my-3">Publish This Post</h1>
                   <div className={` my-3 d-flex`}>
-                    <div class="form-check">
+                    <div className="form-check">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         immediately
                       </label>
                     </div>
-                    <div class="form-check mx-5">
+                    <div className="form-check mx-5">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Future Date
@@ -421,71 +421,71 @@ const Postajob = () => {
                     following filters -select all that apply.
                   </p>
                   <div className="d-flex flex-wrap">
-                    <div class="form-check">
+                    <div className="form-check">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         gender_title
                       </label>
                     </div>
-                    <div class="form-check me-3">
+                    <div className="form-check me-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Experience
                       </label>
                     </div>
-                    <div class="form-check me-3">
+                    <div className="form-check me-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Degree Level
                       </label>
                     </div>
-                    <div class="form-check me-3">
+                    <div className="form-check me-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Age
                       </label>
                     </div>
-                    <div class="form-check me-3">
+                    <div className="form-check me-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         City
@@ -493,29 +493,29 @@ const Postajob = () => {
                     </div>
                   </div>
                   <div>
-                    <div class="form-check my-3">
+                    <div className="form-check my-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Screen your applicants further with custom questions
                       </label>
                     </div>
-                    <div class="form-check  my-3">
+                    <div className="form-check  my-3">
                       <input
-                        class={`form-check-input ${Styles.radioer}`}
+                        className={`form-check-input ${Styles.radioer}`}
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
                       <label
-                        class="form-check-label ogsfonts14"
+                        className="form-check-label ogsfonts14"
                         for="flexCheckDefault"
                       >
                         Attach A Test

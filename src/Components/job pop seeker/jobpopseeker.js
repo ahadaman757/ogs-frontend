@@ -178,20 +178,20 @@ const Jobpopseeker = () => {
               Apply
             </button>
             <div
-              class="modal fade"
+              className="modal fade"
               id="exampleModal"
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-body">
                     <div className="d-flex justify-content-between">
                       <h1 className="ogsfonts18">Select your CV</h1>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
