@@ -54,13 +54,23 @@ const Jobpopseeker = () => {
       })
       .then((res) => {
         console.log(res.data);
-        //  const filteredArray= res.data.map(cv => {
-        //         AppliedCvs.f
-        //   })
-        console.log(filteredArray)
-        setUserCvs(res.data);
+        const filteredArray = res.data.map(cv => {
+
+          const isApplied = AppliedCvs.filter(applied_cv => {
+            return applied_cv.cv_id == cv.cv_id
+          })
+          if (isApplied.length) {
+            return { ...cv, is_applied: true }
+          }
+          else {
+            return { ...cv, is_applied: false }
+          }
+
+        })
+        setUserCvs(filteredArray);
       });
   }, [])
+  console.log(UserCvs)
   return (
     <div>
       <DashboardNavbar side={display} />
@@ -201,15 +211,26 @@ const Jobpopseeker = () => {
                             </div>
                             <div className="col-3">
 
-                              <button
-                                onClick={() => ApplyJob(cv.cv_id)}
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                className={`px-4 py-3 me-3 ${Styles.btnsve}`}
-                              >
-                                Apply
-                              </button>
+                              {
+                                cv.is_applied ? <button
+                                  disabled
+                                  type="button"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  className={`px-4  me-3 w-100 unset-btn text-white`}
+                                >
+                                  Appied
+                                </button> : <button
+                                  onClick={() => ApplyJob(cv.cv_id)}
+                                  type="button"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal"
+                                  className={`px-4 py- w-100 me-3 ${Styles.btnsve}`}
+                                >
+                                  Apply
+                                </button>
+                              }
+
                             </div>
                             <hr />
                           </div>

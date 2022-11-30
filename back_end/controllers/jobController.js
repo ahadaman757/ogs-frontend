@@ -295,5 +295,23 @@ const CheckJobApply = async (req, res, next) => {
   }
 
 }
-export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController, getApplicantsForJobById, JobApplicantStatusUpdate, ViewAllJobs, JobApply, CheckJobApply };
+
+
+
+
+
+//Admin Controller
+const ManageJobs = async (req, res, next) => {
+  try {
+    res.json({
+      message: "request received"
+    })
+  }
+  catch (error) {
+    next(error)
+  }
+
+
+}
+export { JobPostController, JobMyCompaniesController, GetJobOption, JobByIdController, getApplicantsForJobById, JobApplicantStatusUpdate, ViewAllJobs, JobApply, CheckJobApply, ManageJobs };
 
