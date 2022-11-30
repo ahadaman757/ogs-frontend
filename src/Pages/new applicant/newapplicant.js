@@ -334,17 +334,12 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingThree"
                     >
-<<<<<<< Updated upstream
-                      <div class="accordion-body accordion234">
-                        <List options={dropDownOptions.gender} id="gender" formik={filtersFormik} />
-=======
                       <div className="accordion-body accordion234">
                         <List
                           options={dropDownOptions.gender}
                           id="gender"
                           formik={filtersFormik}
                         />
->>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
@@ -639,17 +634,12 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingEight"
                     >
-<<<<<<< Updated upstream
-                      <div class={`accordion-body accordion234 `}>
-                        <List id="country" options={dropDownOptions.country} formik={filtersFormik} />
-=======
                       <div className={`accordion-body accordion234 `}>
                         <List
                           id="country"
                           options={dropDownOptions.country}
                           formik={filtersFormik}
                         />
->>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
@@ -674,17 +664,12 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingNine"
                     >
-<<<<<<< Updated upstream
-                      <div class={`accordion-body accordion234 `}>
-                        <List id="city" options={cities} formik={filtersFormik} />
-=======
                       <div className={`accordion-body accordion234 `}>
                         <List
                           id="city"
                           options={cities}
                           formik={filtersFormik}
                         />
->>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
@@ -709,17 +694,12 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingTen"
                     >
-<<<<<<< Updated upstream
-                      <div class={`accordion-body accordion234 `}>
-                        <List id="education_level" options={dropDownOptions.required_qualification} formik={filtersFormik} />
-=======
                       <div className={`accordion-body accordion234 `}>
                         <List
                           id="education_level"
                           options={dropDownOptions.required_qualification}
                           formik={filtersFormik}
                         />
->>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
@@ -744,17 +724,12 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingEleven"
                     >
-<<<<<<< Updated upstream
-                      <div class={`accordion-body accordion234 `}>
-                        <List id="max_experience" options={dropDownOptions.max_experience} formik={filtersFormik} />
-=======
                       <div className={`accordion-body accordion234 `}>
                         <List
                           id="max_experience"
                           options={dropDownOptions.max_experience}
                           formik={filtersFormik}
                         />
->>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
