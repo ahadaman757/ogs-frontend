@@ -10,7 +10,7 @@ const Table = ({ seeker_data, deletedId }) => {
         setcurrentSeekers(filtered)
     }
     useEffect(() => {
-
+        setcurrentSeekers(seeker_data)
         console.log(seeker_data)
 
     }, [seeker_data])

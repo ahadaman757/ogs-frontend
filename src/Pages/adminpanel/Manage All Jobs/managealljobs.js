@@ -27,7 +27,7 @@ const columns = [
   },
   {
     id: 5,
-    title: "",
+    title: "Approved Status",
   },
   {
     id: 6,
@@ -66,9 +66,8 @@ const Managealljobs = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">

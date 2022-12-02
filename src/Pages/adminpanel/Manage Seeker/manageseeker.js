@@ -23,7 +23,6 @@ const Manageseeker = () => {
     setData(d);
   };
   useEffect(() => {
-
     axios.get("http://localhost:3002/admin/seekers", {
       headers: {
         accessToken: localStorage.getItem("accessToken")
