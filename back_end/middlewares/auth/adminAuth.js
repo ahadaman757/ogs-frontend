@@ -19,7 +19,7 @@ const AdminAuth = async (req, res, next) => {
             if (user === null) {
                 return next(CustomErrorHandler.notFound("User Not Found"))
             } else {
-                if (user.userTypeId !== 2) {
+                if (user.userTypeId !== 3) {
                     return next(CustomErrorHandler.notFound("Only Admin are allowed"))
                 }
                 else {

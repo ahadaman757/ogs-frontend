@@ -342,6 +342,7 @@ const CheckJobApply = async (req, res, next) => {
 };
 
 const AdminGetJobDetails = async (req, res, next) => {
+
   try {
     const { jobId } = req.body;
     // const jobDetails = await sequelize.query(

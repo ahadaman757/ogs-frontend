@@ -367,7 +367,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingThree"
                     >
-                      <div className="accordion-body accordion234">
+                      <div class="accordion-body accordion234">
                         <List
                           options={dropDownOptions.gender}
                           id="gender"
@@ -675,7 +675,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingEight"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="country"
                           options={dropDownOptions.country}
@@ -705,7 +705,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingNine"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="city"
                           options={cities}
@@ -735,7 +735,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingTen"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="education_level"
                           options={dropDownOptions.required_qualification}
@@ -765,7 +765,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingEleven"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="max_experience"
                           options={dropDownOptions.max_experience}

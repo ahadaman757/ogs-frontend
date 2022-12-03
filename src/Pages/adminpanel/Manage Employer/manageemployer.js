@@ -2,15 +2,12 @@ import Styles from "./manageemployer.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
 import InputField from "../../../Components/inputfield/inputfield";
-import Table from "../../../Components/table/table";
+import Table from "./Table";
+import axios from "axios";
 
-const detail = [
-  {
-    Code: "ewe",
-    Title: "qw",
-  },
-];
+
 const Manageemployer = () => {
+  const [Employers, setEmployers] = useState([])
   const [data, setData] = useState();
 
   const display = (d) => {
@@ -18,13 +15,25 @@ const Manageemployer = () => {
     console.log(d);
     setData(d);
   };
+  useEffect(() => {
+    axios.get("http://localhost:3002/admin/employers", {
+      headers: {
+        accessToken: localStorage.getItem("accessToken")
+      }
+    }).then(res => {
+      console.log(res.data)
+      setEmployers(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+
+  }, [])
   return (
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">
@@ -61,8 +70,7 @@ const Manageemployer = () => {
                   </div>
                 </div>
               </div>
-
-              <Table array={detail} Sr={"as"} Code={"asda"} Option={"werer"} />
+              <Table employer_data={Employers} />
             </div>
           </div>
         </div>

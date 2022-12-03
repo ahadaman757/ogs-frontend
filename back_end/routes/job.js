@@ -1,6 +1,7 @@
 import express from "express";
 const jobRouter = express.Router();
 import auth from "../middlewares/auth/auth.js";
+import AdminAuth from "../middlewares/auth/adminAuth.js";
 import {
   JobPostController,
   JobMyCompaniesController,
@@ -29,9 +30,9 @@ jobRouter.post("/jobapply", auth, JobApply);
 jobRouter.post("/checkjobapply", auth, CheckJobApply);
 // jobRouter.post("/jobapply", JobApply);
 // jobRouter.post("/:id", JobByIdController);
-jobRouter.get("/admingetjobs", AdminGetAllJobsController);
-jobRouter.post("/admindeletejob", AdminDeleteJob);
-jobRouter.post("/admingetjobdetail", AdminGetJobDetails);
+jobRouter.get("/admingetjobs", AdminAuth, AdminGetAllJobsController);
+jobRouter.post("/admindeletejob", AdminAuth, AdminDeleteJob);
+jobRouter.post("/admingetjobdetail", AdminAuth, AdminGetJobDetails);
 // jobRouter.get('/me', auth, usermecontroller)
 
 export default jobRouter;
