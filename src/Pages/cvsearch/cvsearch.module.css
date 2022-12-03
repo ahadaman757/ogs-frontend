@@ -20,3 +20,9 @@
   height: 36px;
   width: 100%;
 }
+.srbtn {
+  border: none;
+  background: none;
+  color: white;
+  background: black;
+}

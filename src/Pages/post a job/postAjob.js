@@ -117,7 +117,7 @@ const Postajob = () => {
       });
   }, [jobPostFormIk.values.country]);
   return (
-    <div>
+    <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
         className={`pt-5 ${Styles.Postajobmain}${
@@ -525,15 +525,6 @@ const Postajob = () => {
                 </div>
               </div>
               <div className="d-flex flex-wrap justify-content-end">
-                <button
-                  type="button"
-                  className={`mx-2 mt-3 ${Styles.btndraft}`}
-                >
-                  Save as Draft
-                </button>
-                <button className={`mx-2 mt-3 ${Styles.btnPreview}`}>
-                  Preview
-                </button>
                 <button type="submit" className={`mx-2 mt-3 ${Styles.btnPost}`}>
                   Post Job{" "}
                 </button>

@@ -7,7 +7,7 @@ const Company = () => {
   return (
     <div className={` mb-5 my-2 ms-md-2 p-3 ${Styles.Companymain}`}>
       <div>
-        <h1 className=" ogsfonts20 ">Company</h1>
+        <h1 className=" ogsfonts20 ">Auto Emails</h1>
       </div>
 
       <table className="table">

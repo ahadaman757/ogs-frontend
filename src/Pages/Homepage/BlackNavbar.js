@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./homepage.module.css";
+import { Link } from "react-router-dom";
 const BlackNavbar = () => {
   return (
     <div className={`${styles.topNavbar__container}`}>
@@ -7,15 +8,15 @@ const BlackNavbar = () => {
         <div className={`${styles.loginDropdown}`}>
           <button className={`${styles.dropBtn}`}>Log In</button>
           <div className={`${styles.dropdownContent}`}>
-            <a href="#">Employer Login</a>
-            <a href="#">Seeker Login</a>
+            <Link to="/employerlogin">Employer login</Link>
+            <Link to="/seekerlogin">Employer login</Link>
           </div>
         </div>
         <div className={`${styles.registerDropdown}`}>
           <button className={`${styles.dropBtn}`}>Register</button>
           <div className={`${styles.dropdownContent}`}>
-            <a href="#">Employer Register</a>
-            <a href="#">Seeker Register</a>
+            <Link to="/register">Employer Register</Link>
+            <Link to="/seeker">Seeker Register</Link>
           </div>
         </div>
       </div>

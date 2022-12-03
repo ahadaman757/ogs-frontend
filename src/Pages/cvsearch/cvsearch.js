@@ -10,7 +10,7 @@ const Cvsearch = () => {
     Setdata(d);
   };
   return (
-    <div>
+    <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
         className={` pt-5 ${Styles.Cvsearchmain} ${
@@ -20,7 +20,7 @@ const Cvsearch = () => {
         <div className={`container `}>
           <div className={` mt-5 p-4  ${Styles.Cvsearchchild}`}>
             <h1 className={`ogsfonts20`}>CV Search</h1>
-            <p>
+            <p className={`ogsfonts14`}>
               Please enter one or more keywords that will help us fetch relevant
               CVs.
             </p>
@@ -28,9 +28,9 @@ const Cvsearch = () => {
               <div className="col-6">
                 <input className={` ${Styles.InputField}`} />
               </div>
-              <div className="col-6">
+              <div className="col-6 d-flex">
                 <div
-                  className={` input-group flex-row align-items-center  ${Styles.Cvsearchstin}`}
+                  className={` input-group flex-row align-items-center me-2  ${Styles.Cvsearchstin}`}
                 >
                   <input
                     type="text"
@@ -70,11 +70,14 @@ const Cvsearch = () => {
                     </li>
                   </ul>
                 </div>
+                <button className={`px-3 py-2 ${Styles.srbtn}`}>search</button>
               </div>
             </div>
-            <div>
-              <p>Get 8,082,046 Registered Professional CVs</p>
-              <p>Not in Pakistan?</p>
+            <div className="">
+              <p className={`ogsfonts14`}>
+                Get 8,082,046 Registered Professional CVs
+              </p>
+              <p className={`ogsfonts14`}>Not in Pakistan?</p>
             </div>
           </div>
         </div>

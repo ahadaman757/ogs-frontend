@@ -23,10 +23,10 @@ const Manageyoucvs = () => {
         console.log(res.data);
         setUserCvs(res.data);
       });
-  }, [])
+  }, []);
 
   return (
-    <div>
+    <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
         className={`pt-5 ${Styles.Manageyoucvsmain} ${

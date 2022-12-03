@@ -1,7 +1,15 @@
 import Styles from "./login.module.css";
 import bggside from "../../Assets/Images/sign-in-right.png";
 import InputField from "../../Components/inputfield/inputfield";
+import axios from "axios";
+import React, { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 const EmployerLogin = () => {
+  const [userEmail, setUserEmail] = useState();
+  const [userPassword, setUserPassword] = useState();
+  const [loginResponse, setLoginResponse] = useState();
+  const navigate = useNavigate();
   return (
     <div
       className={`${Styles.auth_page} py-5   container-fluid px-5 primary-bg`}
@@ -17,9 +25,56 @@ const EmployerLogin = () => {
                 Please fill up this form to register free at OGS
               </p>
               <div className={`pt-5 ${Styles.from}`}>
-                <InputField title={"Email"} />
-                <InputField title={"password"} />
+                {/* <InputField title={"Email"} onChange={setUserEmail} /> */}
+                <div className="my-3">
+                  <div className="d-flex justify-content-between">
+                    <p className="ogsfonts16">Email</p>
+                    <p className={`ogsfonts16 ${Styles.InputFieldRe}`}></p>
+                  </div>
+
+                  <input
+                    className={`${Styles.InputField}`}
+                    onChange={(e) => {
+                      setUserEmail(e.target.value);
+                      console.log(userEmail);
+                    }}
+                  />
+                </div>
+                <div className="my-3">
+                  <div className="d-flex justify-content-between">
+                    <p className="ogsfonts16">password</p>
+                    <p className={`ogsfonts16 ${Styles.InputFieldRe}`}></p>
+                  </div>
+
+                  <input
+                    className={`${Styles.InputField}`}
+                    onChange={(e) => setUserPassword(e.target.value)}
+                    type="password"
+                  />
+                </div>
+                {/* <InputField title={"password"} onChange={setUserPassword} /> */}
+                {loginResponse}
                 <button
+                  onClick={() => {
+                    axios
+                      .post(`http://localhost:3002/users/signin`, {
+                        email: userEmail,
+                        password: userPassword,
+                      })
+                      .then((response) => {
+                        console.log(response);
+                        if (response.data.error == 1) {
+                          setLoginResponse(response.data.message);
+                        } else {
+                          localStorage.setItem(
+                            "accessToken",
+                            response.data.accesstoken
+                          );
+                          navigate("/dashboard");
+                          setLoginResponse(response.data.message);
+                        }
+                      });
+                  }}
                   className="unset_button w-100 text-white py-2 form_action_button  submit"
                   type="submit"
                 >

@@ -61,7 +61,7 @@ const Managejobs = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
@@ -135,9 +135,7 @@ const Managejobs = () => {
                   <div className={`mx-5 p-2 ogsfonts16  ${Styles.tablinks}`}>
                     <a onClick={() => setcurrntstac("active")}>Active</a>
                   </div>
-                  <div className={`mx-5 p-2 ogsfonts16  ${Styles.tablinks}`}>
-                    <a onClick={() => setcurrntstac("draft")}>Draft</a>
-                  </div>
+
                   <div className={`mx-5 p-2 ogsfonts16  ${Styles.tablinks}`}>
                     <a onClick={() => setcurrntstac("deactive")}>Deavtivated</a>
                   </div>
@@ -148,8 +146,6 @@ const Managejobs = () => {
                   ) : jobs.length > 0 ? (
                     currntstac == "active" ? (
                       <Active jobs={jobs} />
-                    ) : currntstac == "draft" ? (
-                      <Draft jobs={jobs} />
                     ) : (
                       <Deactivated jobs={jobs} />
                     )

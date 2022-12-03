@@ -54,21 +54,21 @@ const Cv = ({ applicant, job_id }) => {
 
   return (
     <div className={` p-4 my-4 ${Styles.Cvmain}`}>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex flex-wrap justify-content-between">
         <button
           onClick={() => {
             // update the viewed status
             console.log();
             updateCvView(!shortlisted);
           }}
-          className={`${Styles.cvheadicon}`}
+          className={`my-2 ${Styles.cvheadicon}`}
         >
           <span>
             <img src={shortlisted ? selecticon : check} />
           </span>
         </button>
-        <p className="m-0 ogsfonts16 ">Viewed</p>
-        <button className={`ogsfonts16 ${Styles.cvheadicon}`}>
+        <p className="m-0 my-2 ogsfonts16 ">Viewed</p>
+        <button className={` my-2ogsfonts16 ${Styles.cvheadicon}`}>
           <span>
             <img className="me-3" src={eyeicon} />
           </span>
@@ -76,12 +76,13 @@ const Cv = ({ applicant, job_id }) => {
         </button>
         <button
           onClick={() => setdownload(true)}
-          className={`ogsfonts16 ${Styles.cvheadicon}`}
+          className={`my-2 ogsfonts16 ${Styles.cvheadicon}`}
         >
           <span>
             <img className="me-3" src={downicon} />
           </span>
           <PDFDownloadLink
+            className="my-2"
             document={<BasicDocument cv_data={applicant} />}
             fileName="somename.pdf"
           >
@@ -95,7 +96,7 @@ const Cv = ({ applicant, job_id }) => {
           onClick={() => {
             return updateCvView();
           }}
-          className={`ogsfonts16 ${Styles.cvheadicon}`}
+          className={`my-2 ogsfonts16 ${Styles.cvheadicon}`}
         >
           <span>
             <img className="me-3" src={useradd} />
@@ -106,7 +107,7 @@ const Cv = ({ applicant, job_id }) => {
           onClick={() => {
             return rejectCv();
           }}
-          className={`ogsfonts16 ${Styles.cvheadicon}`}
+          className={`my-2 ogsfonts16 ${Styles.cvheadicon}`}
         >
           <span>
             <img className="me-3" src={userremove} />
@@ -115,7 +116,7 @@ const Cv = ({ applicant, job_id }) => {
         </button>
         <div className="dropdown">
           <button
-            className={`ogsfonts16 ${Styles.cvheadicon}`}
+            className={`ogsfonts16 my-2 ${Styles.cvheadicon}`}
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
@@ -143,21 +144,18 @@ const Cv = ({ applicant, job_id }) => {
       </div>
       <hr />
       <div className="row">
-        <div className="col-2">
+        <div className="col-md-2">
           <img
+            style={{ width: "124px", height: "140px" }}
             className="img-fluid"
             src={`http://localhost:3002/${applicant.cv_image.replace(
               "images",
               "images/"
             )}`}
           />
-          <div className=" mt-2 d-flex justify-content-evenly">
-            <img src={likeicon} />
-            <img src={dislikeicon} />
-          </div>
         </div>
-        <div className="col-9">
-          <div className="d-flex">
+        <div className="col-md-9">
+          <div className="d-flex flex-wrap">
             <p className="me-3 ogsfonts20">
               {applicant.first_name + " " + applicant.last_name}
             </p>
@@ -165,7 +163,7 @@ const Cv = ({ applicant, job_id }) => {
               {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
             </p>
           </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {" "}
             <p className="me-3 ogsfonts16">CV Number:</p>
             <p className="ogsfonts14">
@@ -173,7 +171,7 @@ const Cv = ({ applicant, job_id }) => {
               {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}
             </p>
           </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {" "}
             <p className="me-3 ogsfonts16">Experience:</p>
             <p className="ogsfonts14">
@@ -181,7 +179,7 @@ const Cv = ({ applicant, job_id }) => {
               2018)
             </p>
           </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {" "}
             <p className="me-3 ogsfonts16">Education:</p>
             <p className="ogsfonts14">{`${applicant.qualification}`}</p>
@@ -190,7 +188,7 @@ const Cv = ({ applicant, job_id }) => {
             <p className="me-3 ogsfonts16">Career Level:</p>
             <p className="ogsfonts14">{applicant.career_title}</p>
           </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {" "}
             <p className="me-3 ogsfonts16">Industry:</p>
             <p className="ogsfonts14">{applicant.business_type_name}</p>
@@ -208,7 +206,7 @@ const Cv = ({ applicant, job_id }) => {
         </div>
       </div>
       <hr />
-      <div className="d-flex justify-content-between">
+      <div className="d-flex flex-wrap justify-content-between">
         <div>
           <p className="text-center ogsfonts14">Years of Experience</p>
           <p className="text-center ogsfonts18 m-0">

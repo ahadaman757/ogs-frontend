@@ -16,6 +16,7 @@ import toggle from "./../../Assets/Images/indent-decrease.png";
 import Searchicon from "../../Assets/Images/search 03.svg";
 import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
+import Posticon from "../../Assets/Images/postajob.svg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -74,7 +75,7 @@ const DashboardNavbar = (props) => {
              ${displayside ? " px-0" : "px-2 "}`}
         >
           <a
-            className={`btn btn-primary  my-3 ogsfonts16   ${styles.sidedasbtn}`}
+            className={`btn btn-primary  p-3 ogsfonts16   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample"
             role="button"
@@ -96,7 +97,7 @@ const DashboardNavbar = (props) => {
             {displayside ? "" : "Dashboard"}
           </a>
           <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16   p-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample1"
             role="button"
@@ -117,70 +118,9 @@ const DashboardNavbar = (props) => {
             </span>
             {displayside ? "" : "Manage Jobs"}
           </a>
+
           <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample2"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample2"
-            onMouseEnter={() => {
-              seticon3(dashbordiconw3);
-            }}
-            onMouseLeave={() => {
-              seticon3(dashbordiconb3);
-            }}
-          >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
-            </span>
-            {displayside ? "" : "Mailbox"}
-          </a>
-          <div className="collapse" id="collapseExample2">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample3"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample3"
-            onMouseEnter={() => {
-              seticon4(dashbordiconw4);
-            }}
-            onMouseLeave={() => {
-              seticon4(dashbordiconb4);
-            }}
-          >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon4} />
-            </span>
-            {displayside ? "" : "Setting"}
-          </a>
-          <div className="collapse" id="collapseExample3">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16   p-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample4"
             role="button"
@@ -192,26 +132,18 @@ const DashboardNavbar = (props) => {
             onMouseLeave={() => {
               seticon5(dashbordiconb5);
             }}
+            onClick={() => {
+              navigate("/setting");
+            }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
             </span>
-            {displayside ? "" : " Power Tools"}
+            {displayside ? "" : " Setting"}
           </a>
-          <div className="collapse" id="collapseExample4">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+
           <a
-            className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
+            className={`btn btn-primary ogsfonts16  p-3   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample5"
             role="button"
@@ -223,6 +155,9 @@ const DashboardNavbar = (props) => {
             onMouseLeave={() => {
               seticon6(dashbordiconw6);
             }}
+            onClick={() => {
+              navigate("/cvsearch");
+            }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon6} />
@@ -230,25 +165,12 @@ const DashboardNavbar = (props) => {
 
             {displayside ? "" : "CV Search"}
           </a>
-          <div className="collapse" id="collapseExample5">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
       <div
         className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          marginLeft: displayside ? "5%" : "13%",
-          width: displayside ? "97%" : "87%",
+          width: displayside ? "100%" : "100%",
         }}
       >
         <div>
@@ -264,20 +186,26 @@ const DashboardNavbar = (props) => {
             </span>
           </button> */}
         </div>
-        <div className="mx-5 d-flex align-items-center ">
-          <button className={`px-2 ${styles.navbarnotibtn}`}>
+        <div className="mx-5 d-flex ogsfonts14 align-items-center ">
+          <button
+            onClick={() => {
+              navigate("/postajob");
+            }}
+            className={`px-2 ${styles.navbarnotibtn}`}
+          >
             <span>
-              <img src={notifilogo} />
+              <img src={Posticon} />
             </span>
+            Post a Job
           </button>
-          <button className={`px-2 ${styles.navbarprofbtn}`}>
+          <button className={`px-1 ${styles.navbarprofbtn}`}>
             <span>
               <img style={{ width: "43px" }} src={userlogo} />
             </span>
           </button>
           <div className="dropdown">
             <button
-              className={`px-2 dropdown-toggle ${styles.navbartogglebtn}`}
+              className={`px-1 m-0 dropdown-toggle ${styles.navbartogglebtn}`}
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -288,18 +216,15 @@ const DashboardNavbar = (props) => {
             </button>
             <ul className="dropdown-menu">
               <li>
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
+                <a
+                  onClick={() => {
+                    localStorage.setItem("accessToken", "");
+                    navigate("/");
+                  }}
+                  className="dropdown-item"
+                  href="#"
+                >
+                  logout
                 </a>
               </li>
             </ul>

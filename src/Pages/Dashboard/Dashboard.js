@@ -68,7 +68,7 @@ const Dashboard = ({ parentToChild }) => {
     setData(d);
   };
   return (
-    <div>
+    <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
@@ -185,15 +185,15 @@ const Dashboard = ({ parentToChild }) => {
                 className={`d-flex p-4 text-center flex-column justify-content-center align-items-center ${Styles.profcard}`}
               >
                 <img className={`${Styles.profimg}`} src={proimg} />
-                <h1 className="ogsfonts24">
+                <h1 className="ogsfonts24 cblack">
                   {userDataLoading
                     ? "Loading..."
                     : userData.first_name + " " + userData.last_name}
                 </h1>
-                <p className="ogsfonts16">
+                <p className="ogsfonts16 cblack">
                   {userDataLoading ? "Loading..." : userData.position}
                 </p>
-                <p className="ogsfonts14">
+                <p className="ogsfonts14 cblack">
                   {userDataLoading ? "Loading..." : userData.email}{" "}
                 </p>
                 {/* <p className="ogsfonts14">

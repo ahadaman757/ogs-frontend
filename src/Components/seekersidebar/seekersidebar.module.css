@@ -39,6 +39,9 @@
   flex-direction: column;
   z-index: 3;
   align-items: center;
+  box-shadow: 5px 4px 25px rgba(0, 0, 0, 0.15);
+  top: 0px;
+  left: 0px;
 }
 
 .navbar {

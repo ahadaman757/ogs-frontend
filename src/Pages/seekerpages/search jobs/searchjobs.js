@@ -1,4 +1,3 @@
-
 import Styles from "./searchjobs.module.css";
 import Seekersidebar from "../../../Components/seekersidebar/seekersidebar";
 import filltericon from "../../../Assets/Images/filter.svg";
@@ -18,8 +17,8 @@ import Jobcardseeker from "../../../Components/jobcardseeker/Jobcard";
 
 const JobsSearch = () => {
   const { state } = useLocation();
-  const [AllJobs, setAllJobs] = useState([])
-  const [jobsLoading, setjobsLoading] = useState(false)
+  const [AllJobs, setAllJobs] = useState([]);
+  const [jobsLoading, setjobsLoading] = useState(false);
   const [cities, setcities] = useState();
   const [dropDownOptions, setdropDownOptions] = useState("");
 
@@ -50,25 +49,27 @@ const JobsSearch = () => {
     Setdata(d);
   };
   useEffect(() => {
-    setjobsLoading(true)
-    axios.get('http://localhost:3002/jobs/view_all_jobs').then(res => {
-      console.log(res.data)
-      setAllJobs(res.data)
-      setjobsLoading(false)
-    }).catch(error => {
-      console.log(error)
-      setjobsLoading(false)
-    })
-
-
-  }, [])
+    setjobsLoading(true);
+    axios
+      .get("http://localhost:3002/jobs/view_all_jobs")
+      .then((res) => {
+        console.log(res.data);
+        setAllJobs(res.data);
+        setjobsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setjobsLoading(false);
+      });
+  }, []);
 
   return (
-    <div>
+    <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="row mt-5">
@@ -79,12 +80,15 @@ const JobsSearch = () => {
                   Find
                 </button>
               </div>
-              {
-                jobsLoading ? <span>Jobs Loading</span> : (AllJobs.length == 0) ? <p>No Jobs Found</p> : AllJobs.map(job_data => {
-                  return <Jobcardseeker job_data={job_data} />
-
+              {jobsLoading ? (
+                <span>Jobs Loading</span>
+              ) : AllJobs.length == 0 ? (
+                <p>No Jobs Found</p>
+              ) : (
+                AllJobs.map((job_data) => {
+                  return <Jobcardseeker job_data={job_data} />;
                 })
-              }
+              )}
             </div>
             <div className="col-md-4">
               <div className={` ${Styles.searchfillter}`}>
