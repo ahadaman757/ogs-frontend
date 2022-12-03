@@ -25,10 +25,10 @@ import { List, TextInput } from "../Forms/InputFields";
 import { useFormik } from "formik";
 import { BasicDocument } from "../../Components/pdfDownload";
 const Newapplicant = () => {
-  const { state } = useLocation()
-  const [cities, setcities] = useState()
+  const { state } = useLocation();
+  const [cities, setcities] = useState();
   const [dropDownOptions, setdropDownOptions] = useState("");
-  const [applyFilters, setapplyFilters] = useState(false)
+  const [applyFilters, setapplyFilters] = useState(false);
   const filtersFormik = useFormik({
     initialValues: {
       start_date: "",
@@ -37,54 +37,75 @@ const Newapplicant = () => {
       city: "",
       education_level: "",
       max_experience: "",
-      min_age: '',
-      max_age: '',
+      min_age: "",
+      max_age: "",
       gender: "",
       marital_status: "",
       current_salary: "",
-      expected_salary: ""
+      expected_salary: "",
     },
-    onSubmit: (values => {
-      console.log(values)
-    })
-  })
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   useEffect(() => {
-    axios.post('http://localhost:3002/get_city_by_country_id', {
-      country_id: filtersFormik.values.country || 1
-    }).then(res => {
-      setcities(res.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [filtersFormik.values.country])
-  console.log(state)
-  // get all applicants
-  const [appicantsList, setappicantsList] = useState()
-  const getAllApplicants = () => {
-    const v = filtersFormik.values
-    axios.post(`http://localhost:3002/jobs/jobapplicants?${(v.start_date ? ('start_date=' + v.start_date) : (''))
-      + "&" + (v.end_date ? ('end_date=' + v.end_date) : ('')) + "&" + (v.country ? ('country=' + v.country) : (''))
-      + "&" + (v.city ? ('city=' + v.city) : (''))
-      + "&" + (v.max_experience ? ('max_experience=' + v.max_experience) : (''))
-      + "&" + (v.min_age ? ('min_age=' + v.min_age) : (''))
-      + "&" + (v.max_age ? ('max_age=' + v.max_age) : (''))
-      + "&" + (v.gender ? ('gender=' + v.gender) : (''))
-      + "&" + (v.marital_status ? ('marital_status=' + v.marital_status) : (''))
-      + "&" + (v.education_level ? ('education_level=' + v.education_level) : (''))}`, { job_id: state.id }).then(res => {
-        setappicantsList(res.data)
-      }).catch(error => {
-        console.log(error)
+    axios
+      .post("http://localhost:3002/get_city_by_country_id", {
+        country_id: filtersFormik.values.country || 1,
       })
-  }
+      .then((res) => {
+        setcities(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [filtersFormik.values.country]);
+  console.log(state);
+  // get all applicants
+  const [appicantsList, setappicantsList] = useState();
+  const getAllApplicants = () => {
+    const v = filtersFormik.values;
+    axios
+      .post(
+        `http://localhost:3002/jobs/jobapplicants?${
+          (v.start_date ? "start_date=" + v.start_date : "") +
+          "&" +
+          (v.end_date ? "end_date=" + v.end_date : "") +
+          "&" +
+          (v.country ? "country=" + v.country : "") +
+          "&" +
+          (v.city ? "city=" + v.city : "") +
+          "&" +
+          (v.max_experience ? "max_experience=" + v.max_experience : "") +
+          "&" +
+          (v.min_age ? "min_age=" + v.min_age : "") +
+          "&" +
+          (v.max_age ? "max_age=" + v.max_age : "") +
+          "&" +
+          (v.gender ? "gender=" + v.gender : "") +
+          "&" +
+          (v.marital_status ? "marital_status=" + v.marital_status : "") +
+          "&" +
+          (v.education_level ? "education_level=" + v.education_level : "")
+        }`,
+        { job_id: state.id }
+      )
+      .then((res) => {
+        setappicantsList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const getjoboptions = () => {
-    axios.get("http://localhost:3002/jobs/jobsoptions").then(res => {
-      setdropDownOptions(res.data)
-    })
-  }
+    axios.get("http://localhost:3002/jobs/jobsoptions").then((res) => {
+      setdropDownOptions(res.data);
+    });
+  };
   useEffect(() => {
-    getAllApplicants()
-    getjoboptions()
-  }, [applyFilters])
+    getAllApplicants();
+    getjoboptions();
+  }, [applyFilters]);
   const [data, Setdata] = useState("");
   const [icon1, seticon] = useState(usericon);
   const [icon2, seticon2] = useState(smileicon);
@@ -270,17 +291,19 @@ const Newapplicant = () => {
                   </button>
                 </div>
               </div>
-              {
-                appicantsList ? appicantsList.map(applicant => {
-                  return <Cv job_id={state.id} applicant={applicant} />
-                }) : 'loading'
-              }
+              {appicantsList
+                ? appicantsList.map((applicant) => {
+                    return <Cv job_id={state.id} applicant={applicant} />;
+                  })
+                : "loading"}
             </div>
             <div className={`col-md-3 `}>
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>
                 {" "}
                 <h1 className="ogsfonts18">Applicant Filters</h1>
-                <button onClick={() => setapplyFilters(!applyFilters)} >Apply filters</button>
+                <button onClick={() => setapplyFilters(!applyFilters)}>
+                  Apply filters
+                </button>
                 {/* /////////////////////////////////////toe////////////////// */}
                 <div className="accordion" id="accordionPanelsStayOpenExample">
                   <div className="accordion-item accordion234">
@@ -306,9 +329,19 @@ const Newapplicant = () => {
                     >
                       <div className="accordion-body accordion234">
                         <div className="d-flex flex-column my-2">
-                          <TextInput label="Start date" type="date" id="start_date" formik={filtersFormik} />
+                          <TextInput
+                            label="Start date"
+                            type="date"
+                            id="start_date"
+                            formik={filtersFormik}
+                          />
                           <br />
-                          <TextInput label="End date" type="date" id="end_date" formik={filtersFormik} />
+                          <TextInput
+                            label="End date"
+                            type="date"
+                            id="end_date"
+                            formik={filtersFormik}
+                          />
                         </div>
                       </div>
                     </div>
@@ -334,7 +367,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingThree"
                     >
-                      <div className="accordion-body accordion234">
+                      <div class="accordion-body accordion234">
                         <List
                           options={dropDownOptions.gender}
                           id="gender"
@@ -586,7 +619,11 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingSix"
                     >
-                      <List options={dropDownOptions.max_salary} id="current_salary" formik={filtersFormik} />
+                      <List
+                        options={dropDownOptions.max_salary}
+                        id="current_salary"
+                        formik={filtersFormik}
+                      />
                     </div>
                   </div>
                   <div className="accordion-item accordion234">
@@ -610,7 +647,11 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingSeven"
                     >
-                      <List options={dropDownOptions.max_salary} id="expected_salary" formik={filtersFormik} />
+                      <List
+                        options={dropDownOptions.max_salary}
+                        id="expected_salary"
+                        formik={filtersFormik}
+                      />
                     </div>
                   </div>
                   <div className="accordion-item accordion234">
@@ -634,7 +675,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingEight"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="country"
                           options={dropDownOptions.country}
@@ -664,7 +705,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingNine"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="city"
                           options={cities}
@@ -694,7 +735,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingTen"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="education_level"
                           options={dropDownOptions.required_qualification}
@@ -724,7 +765,7 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingEleven"
                     >
-                      <div className={`accordion-body accordion234 `}>
+                      <div class={`accordion-body accordion234 `}>
                         <List
                           id="max_experience"
                           options={dropDownOptions.max_experience}
@@ -756,9 +797,19 @@ const Newapplicant = () => {
                     >
                       <div className="accordion-body accordion234">
                         <div className="d-flex flex-column my-2">
-                          <TextInput type="number" label="Minimum Age" id="min_age" formik={filtersFormik} />
+                          <TextInput
+                            type="number"
+                            label="Minimum Age"
+                            id="min_age"
+                            formik={filtersFormik}
+                          />
                           <br />
-                          <TextInput type="number" label="Maximum Age" id="max_age" formik={filtersFormik} />
+                          <TextInput
+                            type="number"
+                            label="Maximum Age"
+                            id="max_age"
+                            formik={filtersFormik}
+                          />
                         </div>
                       </div>
                     </div>
@@ -881,7 +932,11 @@ const Newapplicant = () => {
                       className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingfourteen"
                     >
-                      <List options={dropDownOptions.marital_status} id="marital_status" formik={filtersFormik} />
+                      <List
+                        options={dropDownOptions.marital_status}
+                        id="marital_status"
+                        formik={filtersFormik}
+                      />
                     </div>
                   </div>
                 </div>
