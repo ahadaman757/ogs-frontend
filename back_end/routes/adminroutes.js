@@ -14,6 +14,7 @@ import {
   GetAllEmployers,
 } from "../controllers/AdminControllers/UserController.js";
 import {
+  addNewsGeneral,
   addNewsletterSubscriber,
   getNewsLetterSubscribers,
 } from "../controllers/AdminControllers/NewsletterController.js";
@@ -41,6 +42,7 @@ AdminRouter.post(
   AdminAuth,
   getNewsLetterSubscribers
 );
+AdminRouter.post("/addNewsGeneral", AdminAuth, addNewsGeneral);
 
 // userRouter.get('/me', auth, usermecontroller)
 
