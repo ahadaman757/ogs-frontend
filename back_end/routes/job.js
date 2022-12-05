@@ -15,7 +15,7 @@ import {
   AdminGetAllJobsController,
   AdminDeleteJob,
   AdminGetJobDetails,
-} from "../controllers/JobController.js";
+} from "../controllers/jobController.js";
 // /main route =/jobs
 // const usermecontroller = require('../controllers/usermecontroller')
 
