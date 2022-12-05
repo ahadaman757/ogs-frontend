@@ -12,7 +12,6 @@ import JobSkill from "./models/JobSkill.js";
 
 // var html_to_pdf = require('html-pdf-node');
 
-
 // Environment Variables
 import { DEV_PORT } from "./config/index.js";
 // MiddleWares
@@ -62,6 +61,7 @@ import utilRouter from "./routes/utils.js";
 import Skill from "./models/Skills.js";
 import AdminRouter from "./routes/adminroutes.js";
 import AdminAuth from "./middlewares/auth/adminAuth.js";
+import GeneralRouter from "./routes/general.js";
 
 // import Routes end
 
@@ -76,15 +76,15 @@ app.use("/", utilRouter);
 app.use("/users", userRouter);
 app.use("/admin", AdminAuth, AdminRouter);
 app.use("/jobs", jobRouter);
+app.use("/general", GeneralRouter);
 // app.use("/userlogin", userLogin);
 // consume routes end
 
-
 app.use(errorhandler);
 
-app.listen(3002, () =>
-  console.log(`OGS server started on port !`)
-).on('error', function (err) {
-  console.log("server start error")
-  console.log(err)
-});
+app
+  .listen(3002, () => console.log(`OGS server started on port !`))
+  .on("error", function (err) {
+    console.log("server start error");
+    console.log(err);
+  });

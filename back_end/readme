@@ -15,5 +15,15 @@ create a user with name, eamil, password,type,position
 
 then create a company with this id
 user.createCompany
-then find  buisness_typee
+then find buisness_typee
 })
+
+## HomePage API
+
+====> Pakistani Job
+URL: http://localhost:3002/general/homePageJobsPK
+Type: Get
+Example:
+axios
+.get("http://localhost:3002/general/homePageJobsPK")
+.then((res) => console.log(res));

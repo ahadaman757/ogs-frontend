@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "./homepage.module.css";
 import axios from "axios";
 export const Jobs = () => {
-  const [JobData, setJobData] = useState();
+  const [JobData, setJobData] = useState("");
+  const [jobsLoading, setJobsLoading] = useState(true);
   const jobs = [
     {
       id: 1,
@@ -26,7 +27,8 @@ export const Jobs = () => {
   useEffect(() => {
     // GET USER DATA
     axios.get("http://localhost:3002/general/homePageJobsPK").then((res) => {
-      setJobData(res);
+      setJobData(res.data.response[0]);
+      setJobsLoading(false);
     });
   }, []);
   console.log("asasas", JobData);
@@ -65,22 +67,29 @@ export const Jobs = () => {
               </tr>
             </thead>
             <tbody>
-              {jobs.map((item) => (
-                <tr key={item.id} style={{ borderBottom: "1px solid #CED4DA" }}>
-                  <td
-                    style={{
-                      width: "300px",
-                      paddingLeft: "40px",
-                      paddingTop: "15px",
-                      paddingBottom: "15px",
-                    }}
+              {!jobsLoading ? (
+                JobData.map((item) => (
+                  <tr
+                    key={item.id}
+                    style={{ borderBottom: "1px solid #CED4DA" }}
                   >
-                    {item.title}
-                  </td>
-                  <td style={{ width: "400px" }}>{item.company}</td>
-                  <td>{item.apply}</td>
-                </tr>
-              ))}
+                    <td
+                      style={{
+                        width: "300px",
+                        paddingLeft: "40px",
+                        paddingTop: "15px",
+                        paddingBottom: "15px",
+                      }}
+                    >
+                      {item.job_title}
+                    </td>
+                    <td style={{ width: "400px" }}>pakistan</td>
+                    <td>{item.job_description}</td>
+                  </tr>
+                ))
+              ) : (
+                <div>location</div>
+              )}
             </tbody>
           </table>
         </div>

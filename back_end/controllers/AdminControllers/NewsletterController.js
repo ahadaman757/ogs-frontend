@@ -125,5 +125,104 @@ const addNewsGeneral = async (req, res, next) => {
     next(error);
   }
 };
+const addNewsSeeker = async (req, res, next) => {
+  const { data } = req.body;
+  try {
+    const insertEmail = await sequelize.query(
+      `INSERT INTO newsletter_general (data) VALUES('${data}')`
+    );
+    const userRegEmails = await sequelize.query(
+      `SELECT email FROM users WHERE userTypeId = '1'`
+    );
+    const finalArray = userRegEmails[0];
 
-export { addNewsletterSubscriber, getNewsLetterSubscribers, addNewsGeneral };
+    console.log("Received");
+
+    for (let i = 0; i < finalArray.length; i++) {
+      console.log("Email Sent to => " + finalArray[i].email);
+    }
+
+    // const handlebarOptions = {
+    //   viewEngine: {
+    //     partialsDir: path.resolve("./controllers/AdminControllers/template"),
+    //     defaultLayout: false,
+    //   },
+    //   viewPath: path.resolve("./controllers/AdminControllers/template"),
+    // };
+    // transporter.use("compile", hbs(handlebarOptions));
+
+    // const mailOptions = {
+    //   from: "Contact Form <dr.irfananwarspinesurgeon@gmail.com>",
+    //   to: "ahadaman757@gmail.com",
+    //   subject: "New contact form",
+    //   template: "email",
+    //   context: {
+    //     para: data,
+    //   },
+    // };
+
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     res.json("done");
+    //   }
+    // });
+  } catch (error) {
+    next(error);
+  }
+};
+const addNewsEmployers = async (req, res, next) => {
+  const { data } = req.body;
+  try {
+    const insertEmail = await sequelize.query(
+      `INSERT INTO newsletter_general (data) VALUES('${data}')`
+    );
+    const userRegEmails = await sequelize.query(
+      `SELECT email FROM users WHERE userTypeId = '2'`
+    );
+    const finalArray = userRegEmails[0];
+
+    console.log("Received");
+
+    for (let i = 0; i < finalArray.length; i++) {
+      console.log("Email Sent to => " + finalArray[i].email);
+    }
+
+    // const handlebarOptions = {
+    //   viewEngine: {
+    //     partialsDir: path.resolve("./controllers/AdminControllers/template"),
+    //     defaultLayout: false,
+    //   },
+    //   viewPath: path.resolve("./controllers/AdminControllers/template"),
+    // };
+    // transporter.use("compile", hbs(handlebarOptions));
+
+    // const mailOptions = {
+    //   from: "Contact Form <dr.irfananwarspinesurgeon@gmail.com>",
+    //   to: "ahadaman757@gmail.com",
+    //   subject: "New contact form",
+    //   template: "email",
+    //   context: {
+    //     para: data,
+    //   },
+    // };
+
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     res.json("done");
+    //   }
+    // });
+  } catch (error) {
+    next(error);
+  }
+};
+export {
+  addNewsletterSubscriber,
+  getNewsLetterSubscribers,
+  addNewsGeneral,
+  addNewsSeeker,
+  addNewsEmployers,
+};
