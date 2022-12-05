@@ -2,7 +2,7 @@ import CustomErrorHandler from "../services/CustomErrorHandler.js";
 import { JoiValidation } from "../validators/JoiValidation.js";
 import { VALID_MODE } from "../config/index.js";
 import User from "../models/User.js";
-import Extractdata from "../services/ExtractData.js";
+import Extractdata from "../services/extractData.js";
 import errorHandler from "../middlewares/errorHandler.js";
 import multer from "multer";
 import path from "path";

@@ -1,5 +1,5 @@
 // import { JoiValidation } from "../validators/JoiValidation.js";
-// import Extractdata from "../services/ExtractData.js";
+// import Extractdata from "../services/extractData.js";
 // import Job from "../models/Job.js";
 // import JobSkill from "../models/JobSkill.js";
 // import Skill from "../models/Skills.js";
