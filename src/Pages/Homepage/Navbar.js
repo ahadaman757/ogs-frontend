@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../../Assets/Images/image 1.png";
 import styles from "./homepage.module.css";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
@@ -46,14 +47,24 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" style={{ color: "white" }}>
+                  <Link
+                    to="./ogscourses"
+                    className="nav-link"
+                    href="#"
+                    style={{ color: "white" }}
+                  >
                     OGS Courses
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" style={{ color: "white" }}>
+                  <Link
+                    to="./aboutus"
+                    className="nav-link"
+                    href="#"
+                    style={{ color: "white" }}
+                  >
                     About Us
-                  </a>
+                  </Link>
                 </li>
                 {/* <li className="nav-item">
                   <a

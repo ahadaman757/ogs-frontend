@@ -1,6 +1,8 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import styles from "./homepage.module.css";
+import axios from "axios";
 export const Jobs = () => {
+  const [JobData, setJobData] = useState();
   const jobs = [
     {
       id: 1,
@@ -21,6 +23,13 @@ export const Jobs = () => {
       apply: "We are looking for 3 or 4 personnel who have experience",
     },
   ];
+  useEffect(() => {
+    // GET USER DATA
+    axios.get("http://localhost:3002/general/homePageJobsPK").then((res) => {
+      setJobData(res);
+    });
+  }, []);
+  console.log("asasas", JobData);
   return (
     <div style={{ backgroundColor: "#f5f5f5" }}>
       <div className="container">
