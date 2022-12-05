@@ -43,6 +43,7 @@ const Adminsidebar = (props) => {
   const handeler = (props) => {
     setdisplay(!displayside);
   };
+  props.side(displayside);
   // props.side(displayside);
   return (
     <div className={`p-2 ${styles.DashboardNavbarmain}`}>
