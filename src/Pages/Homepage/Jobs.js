@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import styles from "./homepage.module.css";
 export const Jobs = () => {
@@ -21,6 +22,7 @@ export const Jobs = () => {
       apply: "We are looking for 3 or 4 personnel who have experience",
     },
   ];
+
   return (
     <div style={{ backgroundColor: "#f5f5f5" }}>
       <div className="container">

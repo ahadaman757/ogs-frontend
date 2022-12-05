@@ -14,8 +14,10 @@ import {
   GetAllEmployers,
 } from "../controllers/AdminControllers/UserController.js";
 import {
+  addNewsEmployers,
   addNewsGeneral,
   addNewsletterSubscriber,
+  addNewsSeeker,
   getNewsLetterSubscribers,
 } from "../controllers/AdminControllers/NewsletterController.js";
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -43,6 +45,8 @@ AdminRouter.post(
   getNewsLetterSubscribers
 );
 AdminRouter.post("/addNewsGeneral", AdminAuth, addNewsGeneral);
+AdminRouter.post("/addNewsSeeker", AdminAuth, addNewsSeeker);
+AdminRouter.post("/addNewsEmployers", AdminAuth, addNewsEmployers);
 
 // userRouter.get('/me', auth, usermecontroller)
 
