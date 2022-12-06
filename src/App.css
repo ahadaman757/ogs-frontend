@@ -283,6 +283,10 @@ button {
 .sidebarmarginmin {
   margin-left: 55px !important;
 }
+.adminsider {
+  margin-left: 0px !important;
+}
+
 .sidebarmarginmax {
   margin-left: 200px !important;
 }
@@ -312,4 +316,7 @@ button {
 }
 .cblack {
   color: black;
+}
+.ck-rounded-corners {
+  width: 100% !important;
 }

@@ -12,9 +12,8 @@ const detail = [
   },
 ];
 
-
 const Manageseeker = () => {
-  const [Seekers, setSeekers] = useState([])
+  const [Seekers, setSeekers] = useState([]);
   const [data, setData] = useState();
 
   const display = (d) => {
@@ -23,24 +22,27 @@ const Manageseeker = () => {
     setData(d);
   };
   useEffect(() => {
-    axios.get("http://localhost:3002/admin/seekers", {
-      headers: {
-        accessToken: localStorage.getItem("accessToken")
-      }
-    }).then(res => {
-      console.log(res.data)
-      setSeekers(res.data)
-    }).catch(error => {
-      console.log(error)
-    })
-
-  }, [])
+    axios
+      .get("http://localhost:3002/admin/seekers", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setSeekers(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

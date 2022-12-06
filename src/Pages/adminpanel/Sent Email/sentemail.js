@@ -24,7 +24,7 @@ const Sentemail = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
+          data ? "adminsider" : "sidebarmarginmax"
         }`}
       >
         <div className="container">
