@@ -30,7 +30,7 @@ const Aboutus = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
+          data ? "sidebarmarginmin" : "adminsider"
         }`}
       >
         <div className="container">

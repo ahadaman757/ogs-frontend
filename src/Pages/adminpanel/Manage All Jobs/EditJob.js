@@ -1,18 +1,17 @@
 import Styles from "./managealljobs.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import TagInput from '../../Forms/TagInput'
+import TagInput from "../../Forms/TagInput";
 
 import jwtCheck from "../../../system/jwtChecker";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Formik, useFormik } from "formik";
-import * as Yup from 'yup'
+import * as Yup from "yup";
 import { TextInput, List } from "../../Forms/InputFields";
 import TextEditer from "../../../Components/textediter/textediter";
-import styles from '../../post a job/postajob.module.css'
+import styles from "../../post a job/postajob.module.css";
 const EditJob = () => {
-
   const [data, setData] = useState();
   const [jobData, setJobData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,13 +25,17 @@ const EditJob = () => {
     }
 
     axios
-      .post(`http://localhost:3002/jobs/admingetjobdetail`, {
-        jobId: params.jobId,
-      }, {
-        headers: {
-          accesstoken: localStorage.getItem("accessToken"),
+      .post(
+        `http://localhost:3002/jobs/admingetjobdetail`,
+        {
+          jobId: params.jobId,
         },
-      })
+        {
+          headers: {
+            accesstoken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
       .then((response) => {
         setJobData(response.data[0][0]);
         setLoading(false);
@@ -42,7 +45,6 @@ const EditJob = () => {
 
   const params = useParams();
 
-
   // Edit Job Formik
 
   // get record
@@ -51,8 +53,9 @@ const EditJob = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">
@@ -75,7 +78,7 @@ const EditJob = () => {
 };
 
 const EditJobForm = ({ params }) => {
-  const [dropDownOptions, setdropDownOptions] = useState([])
+  const [dropDownOptions, setdropDownOptions] = useState([]);
   const [skills, setSkills] = useState();
   const [Description, setDescription] = useState("");
   const [cities, setcities] = useState([]);
@@ -103,7 +106,7 @@ const EditJobForm = ({ params }) => {
       supervisor_gender_title: "",
       co_worker_percentage: "",
       valid_upto: "",
-      job_id: ""
+      job_id: "",
     },
 
     validationSchema: Yup.object({
@@ -115,66 +118,77 @@ const EditJobForm = ({ params }) => {
       // contact_number: Yup.string().required('Required'),
       // address: Yup.string().required('Required'),
     }),
-    onSubmit: (values => {
-      axios.put("http://localhost:3002/admin/jobs", {
-        values,
-
-      }, {
-        headers: {
-          accesstoken: localStorage.getItem("accessToken")
-        }
-      }).then(res => {
-        console.log()
-      }).catch(error => {
-        console.log(error)
-      })
-
-    })
-  })
+    onSubmit: (values) => {
+      axios
+        .put(
+          "http://localhost:3002/admin/jobs",
+          {
+            values,
+          },
+          {
+            headers: {
+              accesstoken: localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  });
   useEffect(() => {
     axios
-      .post(`http://localhost:3002/jobs/admingetjobdetail`, {
-
-        jobId: params.jobId,
-      }, {
-        headers: {
-          accesstoken: localStorage.getItem("accessToken"),
+      .post(
+        `http://localhost:3002/jobs/admingetjobdetail`,
+        {
+          jobId: params.jobId,
         },
-      })
+        {
+          headers: {
+            accesstoken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
       .then((res) => {
-        const data = res.data[0][0]
-        EditJobFormIk.values.job_id = data.id
-        EditJobFormIk.values.job_title = data.job_title
+        const data = res.data[0][0];
+        EditJobFormIk.values.job_id = data.id;
+        EditJobFormIk.values.job_title = data.job_title;
         // EditJobFormIk.values.job_description = data.job_description
-        EditJobFormIk.values.country = data.country_id
-        EditJobFormIk.values.city = data.city_id
-        EditJobFormIk.values.career_level = data.career_level_id
-        EditJobFormIk.values.min_salary = data.min_salary_id
-        EditJobFormIk.values.max_salary = data.max_salary_id
-        EditJobFormIk.values.functional_area = data.functional_area_id
-        EditJobFormIk.values.gender_title = data.gender_title_id
-        EditJobFormIk.values.job_shift = data.job_shift_id
-        EditJobFormIk.values.job_type_title = data.job_shift_id
-        EditJobFormIk.values.required_qualification = data.required_qualification_id
-        EditJobFormIk.values.degree_title = data.degree_title
-        EditJobFormIk.values.min_experience = data.min_experience_id
-        EditJobFormIk.values.max_experience = data.max_experience_id
-        EditJobFormIk.values.experience_info = data.experience_info
-        EditJobFormIk.values.min_age = data.min_age_id
-        EditJobFormIk.values.max_age = data.max_age_id
-        EditJobFormIk.values.supervisor_gender_title = data.supervisor_gender_title
-        EditJobFormIk.values.co_worker_percentage = data.co_worker_percentage
-        EditJobFormIk.values.valid_upto = data.valid_upto
-      }).catch(error => {
-        console.log(error)
+        EditJobFormIk.values.country = data.country_id;
+        EditJobFormIk.values.city = data.city_id;
+        EditJobFormIk.values.career_level = data.career_level_id;
+        EditJobFormIk.values.min_salary = data.min_salary_id;
+        EditJobFormIk.values.max_salary = data.max_salary_id;
+        EditJobFormIk.values.functional_area = data.functional_area_id;
+        EditJobFormIk.values.gender_title = data.gender_title_id;
+        EditJobFormIk.values.job_shift = data.job_shift_id;
+        EditJobFormIk.values.job_type_title = data.job_shift_id;
+        EditJobFormIk.values.required_qualification =
+          data.required_qualification_id;
+        EditJobFormIk.values.degree_title = data.degree_title;
+        EditJobFormIk.values.min_experience = data.min_experience_id;
+        EditJobFormIk.values.max_experience = data.max_experience_id;
+        EditJobFormIk.values.experience_info = data.experience_info;
+        EditJobFormIk.values.min_age = data.min_age_id;
+        EditJobFormIk.values.max_age = data.max_age_id;
+        EditJobFormIk.values.supervisor_gender_title =
+          data.supervisor_gender_title;
+        EditJobFormIk.values.co_worker_percentage = data.co_worker_percentage;
+        EditJobFormIk.values.valid_upto = data.valid_upto;
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  }, [])
+  }, []);
   const getjoboptions = () => {
     axios.get("http://localhost:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
-  console.log(EditJobFormIk)
+  console.log(EditJobFormIk);
   useEffect(() => {
     getjoboptions();
   }, []);
@@ -483,9 +497,11 @@ const EditJobForm = ({ params }) => {
           </div>
         </div> */}
 
-
           <div className="d-flex flex-wrap justify-content-end">
-            <button type="submit" className={`mx-2 text-white unset-btn p-2 mt-3 ${Styles.btnPost}`}>
+            <button
+              type="submit"
+              className={`mx-2 text-white unset-btn p-2 mt-3 ${Styles.btnPost}`}
+            >
               Update Job{" "}
             </button>
           </div>
