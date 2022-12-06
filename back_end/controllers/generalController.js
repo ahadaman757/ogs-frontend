@@ -33,8 +33,19 @@ const getPrivacyPolicy = async (req, res, next) => {
     res.json({ code: 1, content: getData });
   } catch (error) {
     console.log(error);
-    res.json({ code: 0, message: "Error updating privacy policy" });
+    res.json({ code: 0, message: "Error getting privacy policy" });
+  }
+};
+const getAboutUs = async (req, res, next) => {
+  try {
+    const getData = await sequelize.query(
+      `SELECT content FROM about_us WHERE id = 1`
+    );
+    res.json({ code: 1, content: getData });
+  } catch (error) {
+    console.log(error);
+    res.json({ code: 0, message: "Error getting About Us" });
   }
 };
 
-export { homePageJobsPK, getPrivacyPolicy };
+export { homePageJobsPK, getPrivacyPolicy, getAboutUs };

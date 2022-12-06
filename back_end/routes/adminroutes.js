@@ -25,6 +25,7 @@ import {
   changePrivacyPolicy,
   getPrivacyPolicy,
 } from "../controllers/AdminControllers/PrivacyPolicyController.js";
+import { changeAboutUs } from "../controllers/AdminControllers/AboutUsController.js";
 // const usermecontroller = require('../controllers/usermecontroller')
 
 // Register/Add Users to DataBase\
@@ -56,6 +57,9 @@ AdminRouter.post("/addNewsEmployers", AdminAuth, addNewsEmployers);
 //Privacy Policy
 AdminRouter.post("/changePrivacyPolicy", AdminAuth, changePrivacyPolicy);
 AdminRouter.post("/gePrivacyPolicy", AdminAuth, getPrivacyPolicy);
+
+// About Us
+AdminRouter.post("/changeAboutUs", AdminAuth, changeAboutUs);
 
 // userRouter.get('/me', auth, usermecontroller)
 

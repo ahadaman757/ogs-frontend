@@ -107,26 +107,8 @@ const Adminsidebar = (props) => {
                 </li>
                 <li className="d-flex  my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/employment" className="tere ogsfonts14">
-                    Employment
-                  </Link>
-                </li>
-                <li className="d-flex  my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/searchjobs" className="tere ogsfonts14">
-                    Search Jobs
-                  </Link>
-                </li>
-                <li className="d-flex  my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/contactussec" className="tere ogsfonts14">
                     Contact Us
-                  </Link>
-                </li>
-                <li className="d-flex  my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/internship" className="tere ogsfonts14">
-                    Internship
                   </Link>
                 </li>
                 <li className="d-flex  my-2 align-items-center asdesas">
@@ -356,42 +338,6 @@ const Adminsidebar = (props) => {
                   <Link to="/editforgotpassword" className="tere ogsfonts14">
                     {" "}
                     Edit Forgot Password Email
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample8"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample8"
-            onMouseEnter={() => {
-              seticon4(dashbordiconw4);
-            }}
-            onMouseLeave={() => {
-              seticon4(dashbordiconb4);
-            }}
-          >
-            FAQ's Management Section
-          </a>
-          <div class="collapse" id="collapseExample8">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li className="d-flex my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/addfaq" className="tere ogsfonts14">
-                    {" "}
-                    Manage FAQ's
-                  </Link>
-                </li>
-                <li className="d-flex my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/managefaqs" className="tere ogsfonts14">
-                    {" "}
-                    Add FAQ's
                   </Link>
                 </li>
               </ul>

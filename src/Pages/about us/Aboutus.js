@@ -6,8 +6,20 @@ import teammam3 from "../../Assets/Images/Ellipse 1202.png";
 import teammam4 from "../../Assets/Images/Ellipse 1203.png";
 import Newsletter from "../../Components/Newsletter/Newsletter";
 import Footer from "../../Components/Footer/Footer";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import "./aboutus.css";
+import { Markup } from "interweave";
 const AboutUs = () => {
+  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    axios.get("http://localhost:3002/general/getAboutUs").then((res) => {
+      setContent(res.data.content[0][0].content);
+      setLoading(false);
+    });
+  }, []);
   return (
     <div>
       <Navbar />
@@ -15,34 +27,15 @@ const AboutUs = () => {
       <div className="container">
         <div className="row justify-content-center">
           <h1 className="px-5 col-md-11 my-5">ABOUT US</h1>
-          <p className="ogsfonts18 col-md-11 my-5 aboutusp2 px-5">
-            OGS MANPOWER is an authorized international Recruitment, employment
-            organization having headquartered in Rawalpindi-Islamabad Pakistan.
-            It is a legal Entity under the License No. MPD/2978/RWP registered
-            with Ministry of Human Resources Pakistan. It is a subsidiary
-            Employment organization of OGS (Pvt.) Limited, which is registered
-            under the Government of Pakistan Act 1984, having Corporate
-            Universal Identification No.0072054 and further Registered from
-            United Kingdom accreditation system ISO 9001:2008 having
-            specialization in Oil and Gas Industry, Construction, IT, Medical,
-            Transport, Advertising, Hospitality, Hotel, Security and Defense
-            Forces. It provides pioneering end, effective extensive services in
-            Human Resource,
-          </p>
-          <p className="ogsfonts18 col-md-11 my-3 aboutusp2 px-5">
-            {" "}
-            Management services like interviewing and recruitment, training and
-            development and also provide the trade testing and other facilities.
-            The motive of OGS is to provide deployment of manpower within the
-            boundaries and globally as well with an objective to adopt
-            professional ethics nationally and internationally in a
-            sophisticated environment to empower the personal skills. While
-            considering the IT growth OGS also provides the world’s one of the
-            best web based Jobs portal facility for the solution of Human
-            Resource Management. OGS assures bright and enhanced future for its
-            seekers and Employers. For bright future assurance please visit us
-            once. - See more at: http://www.ogsmanpower.com
-          </p>
+          <div className="ogsfonts18 col-md-11 my-5 aboutusp2 px-5">
+            {loading ? (
+              "Loading... Please wait..."
+            ) : (
+              <div className="container">
+                <Markup content={content} />
+              </div>
+            )}
+          </div>
         </div>
         <div className="row justify-content-center">
           <div className="col-md-11 ogsfonts18 my-5 px-5">
@@ -233,34 +226,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="px-5">
-          <h1 className="px-5">TEAM</h1>
-          <div className="row justify-content-center my-5">
-            <div className="col-md-3 my-5  d-flex flex-column align-items-center text-center justify-content-center">
-              <img src={teammam} />
-              <h1 className="ogsfonts24">David</h1>
-              <p className="ogsfonts16">ceo</p>
-            </div>
-            <div className="col-md-3 my-5  d-flex flex-column align-items-center text-center justify-content-center">
-              <img src={teammam2} />
-              <h1 className="ogsfonts24">David</h1>
-              <p className="ogsfonts16">ceo</p>
-            </div>
-            <div className="col-md-3  my-5  d-flex flex-column align-items-center text-center justify-content-center">
-              <img src={teammam3} />
-              <h1 className="ogsfonts24">David</h1>
-              <p className="ogsfonts16">ceo</p>
-            </div>
-            <div className="col-md-3 my-5  d-flex flex-column align-items-center text-center justify-content-center">
-              <img src={teammam4} />
-              <h1 className="ogsfonts24">David</h1>
-              <p className="ogsfonts16">ceo</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Newsletter />
       <Footer />
     </div>
   );
