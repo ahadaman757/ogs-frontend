@@ -58,6 +58,7 @@ import CreateCv from "./Pages/CreateCv/createCv";
 import EditCv from "./Pages/seekerpages/Manageyoucvs/EditCv";
 import AdminLogin from "./Pages/logins/adminlogin";
 import EditJob from "./Pages/adminpanel/Manage All Jobs/EditJob";
+import PrivacyPolicy from "./Pages/privacypolicy/PrivacyPolicy";
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -295,6 +296,10 @@ const router = createBrowserRouter([
   {
     path: "adminlogin",
     element: <AdminLogin />,
+  },
+  {
+    path: "/privacy",
+    element: <PrivacyPolicy />,
   },
 ]);
 function Routes() {

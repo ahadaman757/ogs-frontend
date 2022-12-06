@@ -67,29 +67,27 @@ export const Jobs = () => {
               </tr>
             </thead>
             <tbody>
-              {!jobsLoading ? (
-                JobData.map((item) => (
-                  <tr
-                    key={item.id}
-                    style={{ borderBottom: "1px solid #CED4DA" }}
-                  >
-                    <td
-                      style={{
-                        width: "300px",
-                        paddingLeft: "40px",
-                        paddingTop: "15px",
-                        paddingBottom: "15px",
-                      }}
+              {!jobsLoading
+                ? JobData.map((item) => (
+                    <tr
+                      key={item.id}
+                      style={{ borderBottom: "1px solid #CED4DA" }}
                     >
-                      {item.job_title}
-                    </td>
-                    <td style={{ width: "400px" }}>pakistan</td>
-                    <td>{item.job_description}</td>
-                  </tr>
-                ))
-              ) : (
-                <div>location</div>
-              )}
+                      <td
+                        style={{
+                          width: "300px",
+                          paddingLeft: "40px",
+                          paddingTop: "15px",
+                          paddingBottom: "15px",
+                        }}
+                      >
+                        {item.job_title}
+                      </td>
+                      <td style={{ width: "400px" }}>Pakistan</td>
+                      <td>{item.job_description}</td>
+                    </tr>
+                  ))
+                : "Loading... Please wait"}
             </tbody>
           </table>
         </div>

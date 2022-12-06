@@ -25,5 +25,16 @@ const homePageJobsPK = async (req, res, next) => {
     next(error);
   }
 };
+const getPrivacyPolicy = async (req, res, next) => {
+  try {
+    const getData = await sequelize.query(
+      `SELECT content FROM privacypolicy WHERE id = 1`
+    );
+    res.json({ code: 1, content: getData });
+  } catch (error) {
+    console.log(error);
+    res.json({ code: 0, message: "Error updating privacy policy" });
+  }
+};
 
-export { homePageJobsPK };
+export { homePageJobsPK, getPrivacyPolicy };

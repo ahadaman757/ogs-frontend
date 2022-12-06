@@ -244,16 +244,16 @@ const Adminsidebar = (props) => {
               seticon4(dashbordiconb4);
             }}
           >
-            Cources Management Section
+            Courses Management Section
           </a>
           <div class="collapse" id="collapseExample5">
             <div className={`card card-body ${styles.dasgbordopssas}`}>
               <ul className={`${styles.dasgbordops}`}>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/managecources" className="tere ogsfonts14">
+                  <Link to="/manageCourses" className="tere ogsfonts14">
                     {" "}
-                    Manage Cources
+                    Manage Courses
                   </Link>
                 </li>
               </ul>
@@ -283,13 +283,6 @@ const Adminsidebar = (props) => {
                   <Link to="/managenewslettersub" className="tere ogsfonts14">
                     {" "}
                     Manage Newsletter Subscriber
-                  </Link>
-                </li>
-                <li className="d-flex my-2 align-items-center asdesas">
-                  <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/sentemail" className="tere ogsfonts14">
-                    {" "}
-                    Sent Email
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">

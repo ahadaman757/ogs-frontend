@@ -20,6 +20,11 @@ import {
   addNewsSeeker,
   getNewsLetterSubscribers,
 } from "../controllers/AdminControllers/NewsletterController.js";
+
+import {
+  changePrivacyPolicy,
+  getPrivacyPolicy,
+} from "../controllers/AdminControllers/PrivacyPolicyController.js";
 // const usermecontroller = require('../controllers/usermecontroller')
 
 // Register/Add Users to DataBase\
@@ -47,6 +52,10 @@ AdminRouter.post(
 AdminRouter.post("/addNewsGeneral", AdminAuth, addNewsGeneral);
 AdminRouter.post("/addNewsSeeker", AdminAuth, addNewsSeeker);
 AdminRouter.post("/addNewsEmployers", AdminAuth, addNewsEmployers);
+
+//Privacy Policy
+AdminRouter.post("/changePrivacyPolicy", AdminAuth, changePrivacyPolicy);
+AdminRouter.post("/gePrivacyPolicy", AdminAuth, getPrivacyPolicy);
 
 // userRouter.get('/me', auth, usermecontroller)
 
