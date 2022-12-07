@@ -26,7 +26,7 @@ const Table = (props) => {
                 return (
                   <tr>
                     <th className="ogsfonts14" scope="row">
-                      {item.id}
+                      {props.array.indexOf(item)}
                     </th>
                     <td className="ogsfonts14">{item.Code}</td>
                     <td className="ogsfonts14">{item.Title}</td>

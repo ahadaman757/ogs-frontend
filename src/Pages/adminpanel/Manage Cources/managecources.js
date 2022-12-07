@@ -2,7 +2,7 @@ import Styles from "./managecources.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
 import InputField from "../../../Components/inputfield/inputfield";
-import Table from "../../../Components/table/table";
+import Table from "../../../Components/table/managecousestable";
 import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
 import { Formik, useFormik } from "formik";
 import axios from "axios";
@@ -17,6 +17,7 @@ const Managecources = () => {
   const [data, setData] = useState();
   const [addCourseThumbnail, setAddCourseThumbnail] = useState();
   const [loading, setLoading] = useState(false);
+  const [tableloading, settableLoading] = useState(true);
   const [returnMessage, setReturnMessage] = useState();
   const [uploadStatus, setUploadStatus] = useState("");
   const [tabledata, settabledata] = useState();
@@ -33,7 +34,8 @@ const Managecources = () => {
         },
       })
       .then((res) => {
-        settabledata(res);
+        settabledata(res.data.getAllCourses[0]);
+        settableLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -143,7 +145,18 @@ const Managecources = () => {
                 </div>
               </div>
 
-              <Table array={detail} Sr={"as"} Code={"asda"} Option={"werer"} />
+              {tableloading ? (
+                "loading"
+              ) : (
+                <Table
+                  array={tabledata}
+                  Sr={"no."}
+                  Option={"werer"}
+                  title={"Title"}
+                  description={"description"}
+                  institute_name={"Institute Name"}
+                />
+              )}
             </div>
           </div>
         </div>
