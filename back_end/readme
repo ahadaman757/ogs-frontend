@@ -27,3 +27,30 @@ Example:
 axios
 .get("http://3.110.201.2:3002/general/homePageJobsPK")
 .then((res) => console.log(res));
+
+## Get Courses API
+
+URL: http://localhost:3002/admin/getCourses
+Type: Get
+Example:
+axios
+.get("http://localhost:3002/admin/getCourses")
+.then((res) => console.log(res));
+
+Display All Data In Table
+
+## DELETE COURSE API
+
+URL: http://localhost:3002/admin/deleteCourse
+Type: POST
+Parameters: id
+Example:
+axios
+.post("http://localhost:3002/admin/deleteCourse", {
+id: courseId
+}, {
+headers: {
+'acessToken': localStorage.getItem('accessToken')
+}
+})
+.then((res) => console.log(res));
