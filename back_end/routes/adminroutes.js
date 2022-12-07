@@ -29,6 +29,7 @@ import { changeAboutUs } from '../controllers/AdminControllers/AboutUsController
 import {
   addCourse,
   addCourseThumbnail,
+  deleteCourse,
   getCourses,
   updateCourse,
 } from '../controllers/AdminControllers/OgsCoursesComtroller.js';
@@ -72,6 +73,7 @@ AdminRouter.post('/addCourse', AdminAuth, addCourse);
 AdminRouter.post('/addCourseThumbnail', AdminAuth, addCourseThumbnail);
 AdminRouter.post('/updateCourse', AdminAuth, updateCourse);
 AdminRouter.get('/getCourses', AdminAuth, getCourses);
+AdminRouter.post('/deleteCourse', AdminAuth, deleteCourse);
 
 // userRouter.get('/me', auth, usermecontroller)
 

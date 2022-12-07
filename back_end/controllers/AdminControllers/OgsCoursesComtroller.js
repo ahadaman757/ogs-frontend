@@ -65,4 +65,22 @@ const getCourses = async (req, res, next) => {
   }
 };
 
-export { addCourse, addCourseThumbnail, updateCourse, getCourses };
+const deleteCourse = async (req, res, next) => {
+  try {
+    const { id } = req.body;
+    const delCourse = await sequelize.query(
+      `DELETE FROM ogs_courses WHERE id = '${id}'`
+    );
+    res.json({ code: 1, message: 'Course deleted' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export {
+  addCourse,
+  addCourseThumbnail,
+  updateCourse,
+  getCourses,
+  deleteCourse,
+};
