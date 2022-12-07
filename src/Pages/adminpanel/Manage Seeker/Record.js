@@ -11,7 +11,7 @@ function Record({ seeker, index, deletedId }) {
     const [deleted, setdeleted] = useState(false)
     // Delete A User
     const Deleteuser = (id) => {
-        axios.delete("http://localhost:3002/admin/users", {
+        axios.delete("http://3.110.201.2:3002/admin/users", {
             headers: {
                 accesstoken: localStorage.getItem("accessToken")
             },
@@ -27,7 +27,7 @@ function Record({ seeker, index, deletedId }) {
         })
     }
     useEffect(() => {
-        axios.get(`http://localhost:3002/getcvforuser/${seeker.id}`, {
+        axios.get(`http://3.110.201.2:3002/getcvforuser/${seeker.id}`, {
             headers: {
                 accesstoken: localStorage.getItem("accessToken")
             }

@@ -16,7 +16,7 @@ const Manageemployer = () => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3002/admin/employers", {
+      .get("http://3.110.201.2:3002/admin/employers", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -33,9 +33,8 @@ const Manageemployer = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">

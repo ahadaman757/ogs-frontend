@@ -51,7 +51,7 @@ const JobsSearch = () => {
   useEffect(() => {
     setjobsLoading(true);
     axios
-      .get("http://localhost:3002/jobs/view_all_jobs")
+      .get("http://3.110.201.2:3002/jobs/view_all_jobs")
       .then((res) => {
         console.log(res.data);
         setAllJobs(res.data);
@@ -67,9 +67,8 @@ const JobsSearch = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="row mt-5">

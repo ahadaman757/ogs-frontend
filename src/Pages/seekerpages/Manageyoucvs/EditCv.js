@@ -30,7 +30,7 @@ const EditCv = () => {
         Setdata(d);
     };
     const getjoboptions = () => {
-        axios.get("http://localhost:3002/jobs/jobsoptions").then(res => {
+        axios.get("http://3.110.201.2:3002/jobs/jobsoptions").then(res => {
             setdropDownOptions(res.data)
         })
     }
@@ -121,7 +121,7 @@ const EditCv = () => {
                 for (var key in fullFormData) {
                     formdata.append(key, fullFormData[key]);
                 }
-                axios.post('http://localhost:3002/update_cv', formdata, {
+                axios.post('http://3.110.201.2:3002/update_cv', formdata, {
                     headers: {
                         accesstoken: localStorage.getItem("accessToken"),
                         "Content-Type": "multipart/form-data",
@@ -138,7 +138,7 @@ const EditCv = () => {
     console.log(CvFormIk.values)
     const [cities, setcities] = useState([])
     useEffect(() => {
-        axios.post('http://localhost:3002/get_city_by_country_id', {
+        axios.post('http://3.110.201.2:3002/get_city_by_country_id', {
             country_id: CvFormIk.values.country || 1
         }).then(res => {
             console.log(res)
@@ -191,7 +191,7 @@ const EditCv = () => {
                                         CvImage && <img className={`border-round ${styles.cv_update_img} `} src={CvImage} />
                                     }
                                     {
-                                        !CvImage && <img className={`border-round ${styles.cv_update_img} `} src={`http://localhost:3002/${cv_data.cv_image.replace("images", "images/")}`} />
+                                        !CvImage && <img className={`border-round ${styles.cv_update_img} `} src={`http://3.110.201.2:3002/${cv_data.cv_image.replace("images", "images/")}`} />
                                     }
                                     <FileUpload setImage={setCvImage} id="image" name="image" setFileData={setProfileFile} label="Profile Photo" />
                                 </div>
@@ -200,7 +200,7 @@ const EditCv = () => {
                                         CvPassportImage && <img className={`border-round ${styles.cv_update_img} `} src={CvPassportImage} />
                                     }
                                     {
-                                        !CvPassportImage && <img className={`border-round ${styles.cv_update_img} `} src={`http://localhost:3002/${cv_data.passport_photo.replace("images", "images/")}`} />
+                                        !CvPassportImage && <img className={`border-round ${styles.cv_update_img} `} src={`http://3.110.201.2:3002/${cv_data.passport_photo.replace("images", "images/")}`} />
                                     }
                                     <FileUpload setImage={setCvPassportImage} id="passport_id" name="passport_photo" setFileData={setPassportFile} label="Passport Photo" />
                                 </div>

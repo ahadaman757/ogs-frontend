@@ -26,7 +26,7 @@ export const Jobs = () => {
   ];
   useEffect(() => {
     // GET USER DATA
-    axios.get("http://localhost:3002/general/homePageJobsPK").then((res) => {
+    axios.get("http://3.110.201.2:3002/general/homePageJobsPK").then((res) => {
       setJobData(res.data.response[0]);
       setJobsLoading(false);
     });
@@ -69,24 +69,24 @@ export const Jobs = () => {
             <tbody>
               {!jobsLoading
                 ? JobData.map((item) => (
-                    <tr
-                      key={item.id}
-                      style={{ borderBottom: "1px solid #CED4DA" }}
+                  <tr
+                    key={item.id}
+                    style={{ borderBottom: "1px solid #CED4DA" }}
+                  >
+                    <td
+                      style={{
+                        width: "300px",
+                        paddingLeft: "40px",
+                        paddingTop: "15px",
+                        paddingBottom: "15px",
+                      }}
                     >
-                      <td
-                        style={{
-                          width: "300px",
-                          paddingLeft: "40px",
-                          paddingTop: "15px",
-                          paddingBottom: "15px",
-                        }}
-                      >
-                        {item.job_title}
-                      </td>
-                      <td style={{ width: "400px" }}>Pakistan</td>
-                      <td>{item.job_description}</td>
-                    </tr>
-                  ))
+                      {item.job_title}
+                    </td>
+                    <td style={{ width: "400px" }}>Pakistan</td>
+                    <td>{item.job_description}</td>
+                  </tr>
+                ))
                 : "Loading... Please wait"}
             </tbody>
           </table>

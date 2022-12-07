@@ -21,7 +21,7 @@ const Privacypolicy = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/general/getPrivacyPolicy")
+      .get("http://3.110.201.2:3002/general/getPrivacyPolicy")
       .then((res) => setOldData(res.data.content[0][0].content));
     setLoading(false);
   }, [loading]);
@@ -30,9 +30,8 @@ const Privacypolicy = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">
@@ -76,7 +75,7 @@ const Privacypolicy = () => {
                       onClick={() => {
                         axios
                           .post(
-                            "http://localhost:3002/admin/changePrivacyPolicy",
+                            "http://3.110.201.2:3002/admin/changePrivacyPolicy",
                             {
                               content: editorData,
                             },
