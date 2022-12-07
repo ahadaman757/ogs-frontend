@@ -96,13 +96,6 @@ const Jobcard = (props) => {
           </div>
           <p className="ogsfonts14 text-center">shortlisted</p>
         </div>
-        <div>
-          <div className={`${Styles.jobcarddetailsbl}`}>
-            {" "}
-            <p className="ogsfonts24 text-center p-4">18</p>
-          </div>
-          <p className="ogsfonts14 text-center">Interviews</p>
-        </div>
       </div>
       <div className="d-flex flex-wrap m-0 ">
         <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>

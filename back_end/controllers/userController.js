@@ -17,7 +17,7 @@ import bodyParser from "body-parser";
 // const User = require('../models/Users')
 const registercontroller = async (req, res, next) => {
   console.log("regsiter controller");
-  console.log(req.files.image[0].path);
+  // console.log(req.files.image[0].path);
   // extract error from validation schema
   try {
     let orderedData;
@@ -233,9 +233,11 @@ const signincontroller = async (req, res, next) => {
       //   check in database
       const user = await User.findOne({ where: { email: email } });
       if (user === null) {
-        return next(
-          CustomErrorHandler.notExist("Account Not Found by This Email")
-        );
+        // next(CustomErrorHandler.notExist("Account Not Found by This Email"));
+        return res.json({
+          code: 0,
+          message: "Account Not Found by This Email",
+        });
       } else {
         bcrypt.compare(password, user.password, function (err, result) {
           if (result) {
@@ -257,6 +259,7 @@ const signincontroller = async (req, res, next) => {
               });
             res.json({
               error: 0,
+              code: 1,
               message: "Access token assigned!",
               accesstoken,
               refresh_token,

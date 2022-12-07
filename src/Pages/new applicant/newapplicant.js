@@ -160,7 +160,10 @@ const Newapplicant = () => {
                 </div>
               </div>
               <div className={`p-4 ${Styles.iocon}`}>
-                <div className="d-flex flex-wrap justify-content-between align-items-center">
+                <div
+                  className="d-flex flex-wrap justify-content-evenly
+                 align-items-center"
+                >
                   <div
                     className={`d-flex mt-2  flex-column align-items-center ${Styles.neuserggcon}`}
                     onMouseEnter={() => {
@@ -176,19 +179,7 @@ const Newapplicant = () => {
                     <p className="py-1 ogsfonts16 m-0">Applicants</p>
                     <p className="py-1 ogsfonts16 m-0">31</p>
                   </div>
-                  <div
-                    className={`d-flex mt-2   p-1 flex-column align-items-center ${Styles.neuserggcon1}`}
-                    onMouseEnter={() => {
-                      seticon2(smileiconb);
-                    }}
-                    onMouseLeave={() => {
-                      seticon2(smileicon);
-                    }}
-                  >
-                    <img className={`${Styles.neusergg}`} src={icon2} />
-                    <p className="py-1 ogsfonts16 m-0">InstaMatch</p>
-                    <p className="py-1 ogsfonts16 m-0">75</p>
-                  </div>
+
                   <div
                     className={`d-flex mt-2  p-1  flex-column align-items-center ${Styles.neuserggcon2}`}
                     onMouseEnter={() => {
@@ -202,95 +193,9 @@ const Newapplicant = () => {
                     <p className="py-1 ogsfonts16 m-0">Shortlisted</p>
                     <p className="py-1 ogsfonts16 m-0">0</p>
                   </div>
-                  <div
-                    className={`d-flex p-1 mt-2   flex-column align-items-center ${Styles.neuserggcon3}`}
-                    onMouseEnter={() => {
-                      seticon4(invoiceiconb);
-                    }}
-                    onMouseLeave={() => {
-                      seticon4(invoiceicon);
-                    }}
-                  >
-                    <img className={`${Styles.neusergg}`} src={icon4} />
-                    <p className="py-1 ogsfonts16 m-0">Interview</p>
-                    <p className="py-1 ogsfonts16 m-0">0</p>
-                  </div>
-                  <div
-                    className={`d-flex p-1 mt-2   flex-column align-items-center ${Styles.neuserggcon4}`}
-                    onMouseEnter={() => {
-                      seticon5(userremoveiconb);
-                    }}
-                    onMouseLeave={() => {
-                      seticon5(userremoveicon);
-                    }}
-                  >
-                    <img className={`${Styles.neusergg}`} src={icon5} />
-                    <p className="py-1 ogsfonts16 m-0">Spam</p>
-                    <p className="py-1 ogsfonts16 m-0">31</p>
-                  </div>
-                  <div
-                    className={`d-flex p-1 mt-2   flex-column align-items-center ${Styles.neuserggcon5}`}
-                    onMouseEnter={() => {
-                      seticon6(erroriconb);
-                    }}
-                    onMouseLeave={() => {
-                      seticon6(erroricon);
-                    }}
-                  >
-                    <img className={`${Styles.neusergg}`} src={icon6} />
-                    <p className="py-1 p-1 ogsfonts16 m-0">Rejected</p>
-                    <p className="py-1 ogsfonts16 m-0">0</p>
-                  </div>
-                </div>
-                <div className={`mt-4 row`}>
-                  <div className="col-md-8 mb-2">
-                    <input className={`${Styles.inputfiled}`} />
-                  </div>
-                  <div className="col-md-4 d-flex">
-                    {" "}
-                    <button className={`me-3 ${Styles.btnnpb}`}>
-                      <span>
-                        <img src={Searchicon} />
-                      </span>
-                    </button>
-                    <button className={`${Styles.btnnp}`}>
-                      Advance Search
-                    </button>
-                  </div>
                 </div>
               </div>
-              <div
-                className={`p-4 my-4 d-flex flex-wrap justify-content-between align-items-center ${Styles.fillterbar}`}
-              >
-                <div className="d-flex flex-wrap">
-                  <button className={`me-2 ${Styles.btnicons}`}>
-                    <span>
-                      <img src={selecticon} />
-                    </span>
-                  </button>
-                  <p className="m-0 p-2 me-2">Select all</p>
-                  <select
-                    id="Select"
-                    className={`form-select me-2 ${Styles.selectfrom}`}
-                  >
-                    <option>Sort By: Revelance</option>
-                    <option>Disabled select</option>
-                    <option>Disabled select</option>
-                  </select>
-                </div>
-                <div>
-                  <button className={`me-2 ${Styles.btnicons}`}>
-                    <span>
-                      <img src={diskicon} />
-                    </span>
-                  </button>
-                  <button className={`me-2 ${Styles.btnicons}`}>
-                    <span>
-                      <img src={piechart} />
-                    </span>
-                  </button>
-                </div>
-              </div>
+
               {appicantsList
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
@@ -301,7 +206,10 @@ const Newapplicant = () => {
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>
                 {" "}
                 <h1 className="ogsfonts18">Applicant Filters</h1>
-                <button onClick={() => setapplyFilters(!applyFilters)}>
+                <button
+                  className={` px-3 py-2 ${Styles.btnUpload}`}
+                  onClick={() => setapplyFilters(!applyFilters)}
+                >
                   Apply filters
                 </button>
                 {/* /////////////////////////////////////toe////////////////// */}

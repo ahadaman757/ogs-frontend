@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import Instagram from "../../Assets/Images/instagram.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -32,10 +33,20 @@ const Footer = () => {
         </div>
         <div className="col-12 col-md-3 col-lg-3" id={`${styles.footerCol}`}>
           <h3 className="ogsfonts20">Quick Links</h3>
-          <p className="ogsfonts14">Home</p>
-          <p className="ogsfonts14">About Us</p>
-          <p className="ogsfonts14">Contact</p>
-          <p className="ogsfonts14">Courses</p>
+          <div className="d-flex flex-column">
+            <Link to="/" className="ogsfonts14">
+              Home
+            </Link>
+            <Link to="/aboutus" className="ogsfonts14">
+              About Us
+            </Link>
+            <Link to="/aboutus" className="ogsfonts14">
+              Contact
+            </Link>
+            <Link to="ogscourses" className="ogsfonts14">
+              Courses
+            </Link>
+          </div>
         </div>
         <div className="col-12 col-md-3 col-lg-3">
           <h3 className="ogsfonts20">Sign Up</h3>

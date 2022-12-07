@@ -155,20 +155,6 @@ const Dashboard = ({ parentToChild }) => {
                     assisted me in finding talent?
                   </p>
                 </div>
-                <div className={`d-flex flex-wrap justify-content-evenly my-3`}>
-                  <div className={`text-center p-3 my-2 ${Styles.revicon1}`}>
-                    <h1 className={`ogsfonts38`}>0%</h1>
-                    <h1 className={` ogsfonts24`}>Reviewed</h1>
-                  </div>
-                  <div className={`text-center p-3 my-2 ${Styles.revicon2}`}>
-                    <h1 className={`ogsfonts38`}>0%</h1>
-                    <h1 className={` ogsfonts24`}>Reviewed</h1>
-                  </div>
-                  <div className={`text-center p-3 my-2 ${Styles.revicon3}`}>
-                    <h1 className={`ogsfonts38`}>0%</h1>
-                    <h1 className={` ogsfonts24`}>Reviewed</h1>
-                  </div>
-                </div>
               </div>
               <div>
                 <div

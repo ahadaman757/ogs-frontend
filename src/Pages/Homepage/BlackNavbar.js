@@ -9,7 +9,7 @@ const BlackNavbar = () => {
           <button className={`${styles.dropBtn}`}>Log In</button>
           <div className={`${styles.dropdownContent}`}>
             <Link to="/employerlogin">Employer login</Link>
-            <Link to="/seekerlogin">Employer login</Link>
+            <Link to="/seekerlogin">Seeker login</Link>
           </div>
         </div>
         <div className={`${styles.registerDropdown}`}>
