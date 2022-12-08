@@ -16,7 +16,7 @@ const BlackNavbar = () => {
           <button className={`${styles.dropBtn}`}>Register</button>
           <div className={`${styles.dropdownContent}`}>
             <Link to="/register">Employer Register</Link>
-            <Link to="/seeker">Seeker Register</Link>
+            <Link to="/cv">Seeker Register</Link>
           </div>
         </div>
       </div>
