@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./homepage.module.css";
 import Carousel from "react-elastic-carousel";
 import ClovineLogo from "../../Assets/Images/clovine.png";
+import axios from "axios";
 export const Companies = () => {
+  const [Companidata, setCompanidata] = useState();
+  useEffect(() => {
+    axios
+      .get("http://localhost:3002/general/getCompanies")
+      .then((res) => setCompanidata(res.data.getCompanies[0]));
+  }, []);
+  console.log(Companidata, "sas");
   const companies = [
     {
       id: 1,
@@ -58,11 +66,14 @@ export const Companies = () => {
         </div>
         <br />
         <Carousel itemsToShow={5} breakPoints={breakpoints}>
-          {companies.map((item) => (
+          {Companidata.map((item) => (
             <div key={item.id} className={`${styles.companies__sliderItem}`}>
-              <img src={item.logo} />
+              <img
+                style={{ width: "100px" }}
+                src={`http://localhost:3002/` + item.company_logo}
+              />
               <h6>{item.company_name}</h6>
-              <span>{item.description}</span>
+              <span>{item.business_webpage}</span>
             </div>
           ))}
         </Carousel>
