@@ -69,10 +69,10 @@ const getCompanies = async (req, res, next) => {
 
 const getCourses = async (req, res, next) => {
   try {
-    const courses = await sequelize.query(
+    const getAllCourses = await sequelize.query(
       'SELECT * FROM ogs_courses ORDER BY id DESC'
     );
-    res.json({ code: 1, courses });
+    res.json({ code: 1, getAllCourses });
   } catch (err) {
     next(err);
   }
