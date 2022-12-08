@@ -21,6 +21,8 @@ const Managecources = () => {
   const [returnMessage, setReturnMessage] = useState();
   const [uploadStatus, setUploadStatus] = useState("");
   const [tabledata, settabledata] = useState();
+  const [updateTable, setUpdateTabe] = useState();
+
   const display = (d) => {
     console.log("value");
     console.log(d);
@@ -40,7 +42,7 @@ const Managecources = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [updateTable]);
   console.log(tabledata);
 
   const addCourseFormik = useFormik({
@@ -106,11 +108,16 @@ const Managecources = () => {
       )
       .then((res) => {
         setReturnMessage("Uploaded");
+        setUpdateTabe(!updateTable);
         setTimeout(() => {
           setReturnMessage("");
         }, 3000);
         setUploadStatus("");
       });
+  };
+
+  const updateHandler = (e) => {
+    setUpdateTabe(e);
   };
 
   return (
@@ -155,6 +162,7 @@ const Managecources = () => {
                   title={"Title"}
                   description={"description"}
                   institute_name={"Institute Name"}
+                  updateHandler={updateHandler}
                 />
               )}
             </div>
@@ -186,39 +194,51 @@ const Managecources = () => {
               >
                 <form onSubmit={addCourseFormik.handleSubmit}>
                   {returnMessage == "" ? "" : returnMessage}
-                  <label>Course Name</label>
-                  <input
-                    id="course_name"
-                    name="course_name"
-                    type="text"
-                    onChange={addCourseFormik.handleChange}
-                    value={addCourseFormik.values.course_name}
-                    required
-                  />
-                  <br />
-                  <br />
-                  <label>Course Description</label>
-                  <input
-                    id="course_description"
-                    name="course_description"
-                    type="text"
-                    onChange={addCourseFormik.handleChange}
-                    value={addCourseFormik.values.course_description}
-                    required
-                  />
-                  <br />
-                  <br />
-                  <label>Institute Name</label>
-                  <input
-                    id="institute_name"
-                    name="institute_name"
-                    type="text"
-                    onChange={addCourseFormik.handleChange}
-                    value={addCourseFormik.values.institute_name}
-                    required
-                  />
-                  <br />
-                  <br />
+                  <div className="my-3">
+                    <div className="d-flex justify-content-between">
+                      <p className="ogsfonts16">Course Name</p>
+                    </div>
+
+                    <input
+                      id="course_name"
+                      className={`${Styles.InputField}`}
+                      name="course_name"
+                      type="text"
+                      onChange={addCourseFormik.handleChange}
+                      value={addCourseFormik.values.course_name}
+                      requiredclassName={`${Styles.InputField}`}
+                    />
+                  </div>
+                  <div className="my-3">
+                    <div className="d-flex justify-content-between">
+                      <p className="ogsfonts16">Course Description</p>
+                    </div>
+
+                    <input
+                      id="course_description"
+                      name="course_description"
+                      type="text"
+                      onChange={addCourseFormik.handleChange}
+                      value={addCourseFormik.values.course_description}
+                      required
+                      className={`${Styles.InputField}`}
+                    />
+                  </div>
+                  <div className="my-3">
+                    <div className="d-flex justify-content-between">
+                      <p className="ogsfonts16">Institute Name</p>
+                    </div>
+
+                    <input
+                      id="institute_name"
+                      name="institute_name"
+                      type="text"
+                      onChange={addCourseFormik.handleChange}
+                      value={addCourseFormik.values.institute_name}
+                      required
+                      className={`${Styles.InputField}`}
+                    />
+                  </div>
 
                   <input
                     type="file"
@@ -239,7 +259,10 @@ const Managecources = () => {
                   />
                   <br />
                   <br />
-                  <button type="submit">
+                  <button
+                    className={` ogsfonts16 px-3 py-2 ${Styles.btnplode}`}
+                    type="submit"
+                  >
                     {uploadStatus == "" ? "Add Course" : uploadStatus}
                   </button>
                 </form>

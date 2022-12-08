@@ -2,8 +2,11 @@ import { map } from "jquery";
 import Tick from "../../Assets/Images/tick.svg";
 import removered from "../../Assets/Images/removered.svg";
 import Styles from "./table.module.css";
+import axios from "axios";
+import { useState } from "react";
 
 const Table = (props) => {
+  const [update, setupdate] = useState(false);
   return (
     <div className="container py-4">
       <table className="table srolll">
@@ -31,13 +34,31 @@ const Table = (props) => {
                   <img src={`http://localhost:3002/public/` + item.thumbnail} />
                 </td>
 
-                {/* <td className="ogsfonts14">
-                      <button className={`${Styles.btn}`}>
-                        <span>
-                          <img src={removered} />
-                        </span>
-                      </button>
-                    </td> */}
+                <td className="ogsfonts14">
+                  <button
+                    onClick={() => {
+                      axios
+                        .post(
+                          "http://localhost:3002/admin/deleteCourse",
+                          {
+                            id: item.id,
+                          },
+                          {
+                            headers: {
+                              accessToken: localStorage.getItem("accessToken"),
+                            },
+                          }
+                        )
+                        .then((res) => setupdate(!update));
+                      props.updateHandler(update);
+                    }}
+                    className={`${Styles.btn}`}
+                  >
+                    <span>
+                      <img src={removered} />
+                    </span>
+                  </button>
+                </td>
               </tr>
             );
           })}
