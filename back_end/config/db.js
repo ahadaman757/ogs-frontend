@@ -6,7 +6,6 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, 'Hunzai1122$$', {
     host: DB_HOST,
     logging: false,
     password: 'Hunzai1122$$',
-    freeze
 
 });
 
