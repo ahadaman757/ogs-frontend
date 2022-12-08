@@ -1,17 +1,19 @@
-import express from "express";
+import express from 'express';
 const GeneralRouter = express.Router();
-import auth from "../middlewares/auth/auth.js";
+import auth from '../middlewares/auth/auth.js';
 import {
   getPrivacyPolicy,
   homePageJobsPK,
   getAboutUs,
-} from "../controllers/generalController.js";
+  getCompanies,
+} from '../controllers/generalController.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
 // Register/Add Users to DataBase\
-GeneralRouter.get("/homePageJobsPK", homePageJobsPK);
-GeneralRouter.get("/getPrivacyPolicy", getPrivacyPolicy);
-GeneralRouter.get("/getAboutUs", getAboutUs);
+GeneralRouter.get('/homePageJobsPK', homePageJobsPK);
+GeneralRouter.get('/getPrivacyPolicy', getPrivacyPolicy);
+GeneralRouter.get('/getAboutUs', getAboutUs);
+GeneralRouter.get('/getCompanies', getCompanies);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;

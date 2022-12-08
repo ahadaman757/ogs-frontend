@@ -54,3 +54,12 @@ headers: {
 }
 })
 .then((res) => console.log(res));
+
+## Get Companies API
+
+URL: http://localhost:3002/getCompanies
+Type: Get
+Example:
+axios
+.get("http://localhost:3002/getCompanies")
+.then((res) => console.log(res));
