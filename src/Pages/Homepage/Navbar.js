@@ -27,28 +27,19 @@ const Navbar = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav mx-auto" style={{ color: "white" }}>
                 <li className="nav-item active">
-                  <a className="nav-link" href="#" style={{ color: "white" }}>
+                  <Link
+                    to="/"
+                    className="nav-link"
+                    href="#"
+                    style={{ color: "white" }}
+                  >
                     Home
-                  </a>
+                  </Link>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" style={{ color: "white" }}>
-                    Features
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" style={{ color: "white" }}>
-                    Internships
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#" style={{ color: "white" }}>
-                    Members
-                  </a>
-                </li>
+
                 <li className="nav-item">
                   <Link
-                    to="./ogscourses"
+                    to="/ogscourses"
                     className="nav-link"
                     href="#"
                     style={{ color: "white" }}
@@ -58,7 +49,7 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to="./aboutus"
+                    to="/aboutus"
                     className="nav-link"
                     href="#"
                     style={{ color: "white" }}

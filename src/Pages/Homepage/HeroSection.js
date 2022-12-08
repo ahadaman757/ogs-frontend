@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import styles from "./homepage.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const HeroSection = () => {
   const [options, setOptions] = useState(1);
+  const navigate = useNavigate();
   return (
     <div className={`${styles.heroSection__container}`}>
       <div className="container">
@@ -23,24 +25,9 @@ export const HeroSection = () => {
                       ? styles.optionSelected
                       : styles.optionNotSelected
                   }`}
-                >
-                  Search
-                </button>
-                <button
-                  className={`${
-                    options == 2
-                      ? styles.optionSelected
-                      : styles.optionNotSelected
-                  }`}
-                >
-                  Search
-                </button>
-                <button
-                  className={`${
-                    options == 3
-                      ? styles.optionSelected
-                      : styles.optionNotSelected
-                  }`}
+                  onClick={() => {
+                    navigate("/seekerlogin");
+                  }}
                 >
                   Search
                 </button>
@@ -56,25 +43,38 @@ export const HeroSection = () => {
                 <br />
                 <br />
                 <div className="row">
-                  <div className="col-4 col-md-3">
-                    <button className={`${styles.heroCTABtn}`}> Search </button>
+                  <div className=" col-md-4">
+                    <button
+                      onClick={() => {
+                        navigate("/aboutus");
+                      }}
+                      className={`${styles.heroCTABtn}`}
+                    >
+                      {" "}
+                      About Us{" "}
+                    </button>
                   </div>
-                  <div className="col-4 col-md-3">
-                    <button className={`${styles.heroCTABtn}`}> Search </button>
+                  <div className="col-md-4">
+                    <button
+                      onClick={() => {
+                        navigate("/ogscourses");
+                      }}
+                      className={`${styles.heroCTABtn}`}
+                    >
+                      {" "}
+                      OGS Courses{" "}
+                    </button>
                   </div>
-                  <div className="col-4 col-md-3">
-                    <button className={`${styles.heroCTABtn}`}> Search </button>
-                  </div>
-                </div>
-                <div className="row" style={{ marginTop: "10px" }}>
-                  <div className="col-4 col-md-3">
-                    <button className={`${styles.heroCTABtn}`}> Search </button>
-                  </div>
-                  <div className="col-4 col-md-3">
-                    <button className={`${styles.heroCTABtn}`}> Search </button>
-                  </div>
-                  <div className="col-4 col-md-3">
-                    <button className={`${styles.heroCTABtn}`}> Search </button>
+                  <div className=" col-md-4">
+                    <button
+                      onClick={() => {
+                        navigate("/employerlogin");
+                      }}
+                      className={`${styles.heroCTABtn}`}
+                    >
+                      {" "}
+                      Post A Job{" "}
+                    </button>
                   </div>
                 </div>
               </div>

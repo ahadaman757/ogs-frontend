@@ -4,37 +4,34 @@ const Courses = () => {
   return (
     <div style={{ backgroundColor: "#f5f5f5" }}>
       <div className="container">
-        <div className="row">
-          <div className="col-6 col-md-4">
+        <div className="d-flex justify-content-evenly flex-wrap">
+          <div className=" ">
             <br />
             <img src={CourseImg} />
           </div>
-          <div className="col-6 col-md-4">
+          <div className=" ">
             <br />
             <img src={CourseImg} />
           </div>
-          <div className="col-6 col-md-4">
+          <div className="">
             <br />
             <img src={CourseImg} />
           </div>
-          <div className="col-6 col-md-4">
+          <div className="">
             <br />
             <img src={CourseImg} />
           </div>
-          <div className="col-6 col-md-4">
+          <div className="">
             <br />
             <img src={CourseImg} />
           </div>
-          <div className="col-6 col-md-4">
+          <div className="">
             <br />
             <img src={CourseImg} />
             <br />
           </div>
-          <br />
-          <br />
         </div>
       </div>
-      <br />
     </div>
   );
 };

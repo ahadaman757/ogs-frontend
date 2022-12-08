@@ -50,9 +50,9 @@ export const Companies = () => {
     { width: 1750, itemsToShow: 5 },
   ];
   return (
-    <div className={`${styles.companies__container}`}>
-      <div className={`container ${styles.companies__internalContainer}`}>
-        <div className={`${styles.companies__headingContainer}`}>
+    <div className={`container ${styles.companies__container}`}>
+      <div className={`p-md-5 ${styles.companies__internalContainer}`}>
+        <div className={` ${styles.companies__headingContainer}`}>
           <h3>Promo Companies / Jobs</h3>
           <a href="#">View all</a>
         </div>

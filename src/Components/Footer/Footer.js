@@ -29,7 +29,9 @@ const Footer = () => {
           </span>
           <br />
           <br />
-          <button className="primaryButtonOutline">Post a job</button>
+          <Link to="/employerlogin" className="primaryButtonOutline">
+            Post a job
+          </Link>
         </div>
         <div className="col-12 col-md-3 col-lg-3" id={`${styles.footerCol}`}>
           <h3 className="ogsfonts20">Quick Links</h3>
@@ -43,20 +45,28 @@ const Footer = () => {
             <Link to="/aboutus" className="ogsfonts14">
               Contact
             </Link>
-            <Link to="ogscourses" className="ogsfonts14">
+            <Link to="/ogscourses" className="ogsfonts14">
               Courses
             </Link>
           </div>
         </div>
-        <div className="col-12 col-md-3 col-lg-3">
+        <div className="col-12 d-flex flex-column col-md-3 col-lg-3">
           <h3 className="ogsfonts20">Sign Up</h3>
-          <p className="ogsfonts14">Employer Sign Up</p>
-          <p className="ogsfonts14">Seeker Sign Up</p>
+          <Link to="/register" className="ogsfonts14">
+            Employer Sign Up
+          </Link>
+          <Link to="/seeker" className="ogsfonts14">
+            Seeker Sign Up
+          </Link>
         </div>
-        <div className="col-12 col-md-3 col-lg-3">
+        <div className="col-12 d-flex flex-column col-md-3 col-lg-3">
           <h3 className="ogsfonts20">Sign In</h3>
-          <p className="ogsfonts14">Employer Sign In</p>
-          <p className="ogsfonts14">Seeker Sign In</p>
+          <Link to="/employerlogin" className="ogsfonts14">
+            Employer Sign In
+          </Link>
+          <Link to="/seekerlogin" className="ogsfonts14">
+            Seeker Sign In
+          </Link>
         </div>
       </div>
       <br />

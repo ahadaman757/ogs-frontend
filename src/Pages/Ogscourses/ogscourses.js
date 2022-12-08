@@ -1,4 +1,5 @@
-import Navbar from "../../Components/Navbar/Navbar";
+import Navbar from "../Homepage/BlackNavbar";
+import TNavbar from "../Homepage/Navbar";
 import "./Ogscourses.css";
 import bulid from "../../Assets/Images/Rectangle 1078.png";
 import bulid2 from "../../Assets/Images/Rectangle 1102.png";
@@ -43,6 +44,7 @@ const Ogscourses = () => {
   return (
     <div>
       <Navbar />
+      <TNavbar />
       <div className=" ogsas">
         <div className="py-5 ogscardcon">
           <div className="container my-5">
