@@ -58,7 +58,7 @@ const GeneralSettings = () => {
                         image.append('file', logoSelected);
                         axios
                           .post(
-                            'http://3.110.201.21:3002/admin/uploadLogo',
+                            'http://localhost:3002/admin/uploadLogo',
                             image,
                             {
                               headers: {
