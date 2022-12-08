@@ -1,36 +1,41 @@
 import Styles from "./jobpopseeker.module.css";
 import { useState, useEffect } from "react";
-import DashboardNavbar from "../DashboardNavbar/DashboardNavbar";
+import Seekersidebar from "../seekersidebar/seekersidebar";
 import removeicon from "../../Assets/Images/remove.svg";
 import gasco from "../../Assets/Images/gasco.png";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 const Jobpopseeker = () => {
-  const { state } = useLocation()
-  const { job_data, AppliedCvs } = state
-  const [skills, setskills] = useState()
+  const { state } = useLocation();
+  const { job_data, AppliedCvs } = state;
+  const [skills, setskills] = useState();
   const [UserCvs, setUserCvs] = useState([]);
   const [data, Setdata] = useState("");
-  console.log("applied cvs")
-  console.log(AppliedCvs)
-  console.log("having")
-  console.log(UserCvs)
+  console.log("applied cvs");
+  console.log(AppliedCvs);
+  console.log("having");
+  console.log(UserCvs);
   const ApplyJob = (cv_id) => {
-    axios.post(`http://3.110.201.21:3002/jobs/jobapply`, {
-      job_id: job_data.id,
-      cv_id: cv_id
-    }, {
-      headers: {
-        accesstoken: localStorage.getItem("accessToken")
-      }
-    }).then(res => {
-
-      console.log(res.data)
-    }).catch(error => {
-      console.log(error)
-    })
-  }
-
+    axios
+      .post(
+        `http://3.110.201.21:3002/jobs/jobapply`,
+        {
+          job_id: job_data.id,
+          cv_id: cv_id,
+        },
+        {
+          headers: {
+            accesstoken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const display = (d) => {
     console.log("value");
@@ -38,13 +43,16 @@ const Jobpopseeker = () => {
     Setdata(d);
   };
   useEffect(() => {
-    const job_id = job_data.id
-    axios.get(`http://3.110.201.21:3002/skills_for_job_by_id/${job_id}`).then(res => {
-      setskills(res.data.skills)
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [])
+    const job_id = job_data.id;
+    axios
+      .get(`http://3.110.201.21:3002/skills_for_job_by_id/${job_id}`)
+      .then((res) => {
+        setskills(res.data.skills);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   useEffect(() => {
     axios
       .get("http://3.110.201.21:3002/users/my_cvs", {
@@ -54,26 +62,23 @@ const Jobpopseeker = () => {
       })
       .then((res) => {
         console.log(res.data);
-        const filteredArray = res.data.map(cv => {
-
-          const isApplied = AppliedCvs.filter(applied_cv => {
-            return applied_cv.cv_id == cv.cv_id
-          })
+        const filteredArray = res.data.map((cv) => {
+          const isApplied = AppliedCvs.filter((applied_cv) => {
+            return applied_cv.cv_id == cv.cv_id;
+          });
           if (isApplied.length) {
-            return { ...cv, is_applied: true }
+            return { ...cv, is_applied: true };
+          } else {
+            return { ...cv, is_applied: false };
           }
-          else {
-            return { ...cv, is_applied: false }
-          }
-
-        })
+        });
         setUserCvs(filteredArray);
       });
-  }, [])
-  console.log(UserCvs)
+  }, []);
+  console.log(UserCvs);
   return (
     <div>
-      <DashboardNavbar side={display} />
+      <Seekersidebar side={display} />
       <div
         className={`pt-5  ${Styles.jobpopmain}`}
         style={{ marginLeft: data ? "55px" : "200px" }}
@@ -98,7 +103,11 @@ const Jobpopseeker = () => {
                   {job_data.city}, {job_data.country}
                 </p>
               </div>
-              <h1 className="ogsfonts18 my-3"> {job_data.min_salary ? job_data.min_salary + "-" : null} {job_data.max_salary} </h1>
+              <h1 className="ogsfonts18 my-3">
+                {" "}
+                {job_data.min_salary ? job_data.min_salary + "-" : null}{" "}
+                {job_data.max_salary}{" "}
+              </h1>
               <p className="ogsfonts16 color404040 my-4">
                 <span>
                   <img />
@@ -116,16 +125,17 @@ const Jobpopseeker = () => {
           <div>
             <h1 className="ogsfonts32">Skills</h1>
             <div className="d-flex flex-wrap">
-              {
-                skills?.length && skills[0].skill_id ? skills.map(skill => {
-                  return <h2
-                    className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
-                  >
-                    {skill.skill}
-                  </h2>
-                }) : "No Skills"
-              }
-
+              {skills?.length && skills[0].skill_id
+                ? skills.map((skill) => {
+                    return (
+                      <h2
+                        className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
+                      >
+                        {skill.skill}
+                      </h2>
+                    );
+                  })
+                : "No Skills"}
             </div>
           </div>
           <div className="my-5">
@@ -148,16 +158,16 @@ const Jobpopseeker = () => {
               </div>
               <div>
                 <h1 className="ogsfonts18 my-3">Women Jobs</h1>
-                <h1 className="ogsfonts18 my-3">
-                  {job_data.industry}
-                </h1>
+                <h1 className="ogsfonts18 my-3">{job_data.industry}</h1>
                 <h1 className="ogsfonts18 my-3">
                   Secretarial, Clerical & Front Office
                 </h1>
                 <h1 className="ogsfonts18 my-3">2 Posts</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.job_type}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.job_shift}</h1>
-                <h1 className="ogsfonts18 my-3">{job_data.country} , {job_data.city} </h1>
+                <h1 className="ogsfonts18 my-3">
+                  {job_data.country} , {job_data.city}{" "}
+                </h1>
                 <h1 className="ogsfonts18 my-3">{job_data.gender_title}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.qualification}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.career_title}</h1>
@@ -199,45 +209,52 @@ const Jobpopseeker = () => {
                     <div
                       className={`p-2 container-fluid justify-content-between  ${Styles.modalapply}`}
                     >
-                      {
-                        UserCvs?.length && UserCvs.map(cv => {
-                          console.log(cv)
-                          return <div className="d-flex align-items-center py-2 row">
-                            <div className="col-9">
-                              <p className="ogsfonts18">{cv.first_name + " " + cv.last_name + ":" + cv.cv_id}</p>
-                              <p className="ogsfonts14 m-0">{cv.position_title}</p>
-                              {/* <p className="ogsfonts14 m-0">034-164-21256</p>
+                      {UserCvs?.length &&
+                        UserCvs.map((cv) => {
+                          console.log(cv);
+                          return (
+                            <div className="d-flex align-items-center py-2 row">
+                              <div className="col-9">
+                                <p className="ogsfonts18">
+                                  {cv.first_name +
+                                    " " +
+                                    cv.last_name +
+                                    ":" +
+                                    cv.cv_id}
+                                </p>
+                                <p className="ogsfonts14 m-0">
+                                  {cv.position_title}
+                                </p>
+                                {/* <p className="ogsfonts14 m-0">034-164-21256</p>
                               <p className="ogsfonts14 m-0">Rawalpindi</p> */}
+                              </div>
+                              <div className="col-3">
+                                {cv.is_applied ? (
+                                  <button
+                                    disabled
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    className={`px-4  me-3 w-100 unset-btn text-white`}
+                                  >
+                                    Appied
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => ApplyJob(cv.cv_id)}
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    className={`px-4 py- w-100 me-3 ${Styles.btnsve}`}
+                                  >
+                                    Apply
+                                  </button>
+                                )}
+                              </div>
+                              <hr />
                             </div>
-                            <div className="col-3">
-
-                              {
-                                cv.is_applied ? <button
-                                  disabled
-                                  type="button"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#exampleModal"
-                                  className={`px-4  me-3 w-100 unset-btn text-white`}
-                                >
-                                  Appied
-                                </button> : <button
-                                  onClick={() => ApplyJob(cv.cv_id)}
-                                  type="button"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#exampleModal"
-                                  className={`px-4 py- w-100 me-3 ${Styles.btnsve}`}
-                                >
-                                  Apply
-                                </button>
-                              }
-
-                            </div>
-                            <hr />
-                          </div>
-                        })
-                      }
-
-
+                          );
+                        })}
                     </div>
                   </div>
                 </div>

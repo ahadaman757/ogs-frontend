@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SeekercvCard from "./seekercvCard";
 import { PDFDownloadLink, Image } from "@react-pdf/renderer";
+import { useNavigate } from "react-router-dom";
 const Manageyoucvs = () => {
   const [data, Setdata] = useState("");
   const [UserCvs, setUserCvs] = useState([]);
+  const navigate = useNavigate();
   const display = (d) => {
     console.log("value");
     console.log(d);
@@ -29,8 +31,9 @@ const Manageyoucvs = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div
@@ -39,6 +42,9 @@ const Manageyoucvs = () => {
             <h1 className="ogsfonts18 m-11">Manage Your CVs</h1>
             <div className="">
               <button
+                onClick={() => {
+                  navigate("/createcv");
+                }}
                 type="button"
                 className={`btn btn-primary ogsfonts16 ${Styles.modalbtn}`}
               >
