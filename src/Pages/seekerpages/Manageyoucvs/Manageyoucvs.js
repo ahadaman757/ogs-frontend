@@ -14,7 +14,7 @@ const Manageyoucvs = () => {
   };
   useEffect(() => {
     axios
-      .get("http://3.110.201.21:3002/users/my_cvs", {
+      .get("http://localhost:3002/users/my_cvs", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },

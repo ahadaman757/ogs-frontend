@@ -16,7 +16,7 @@ const Accountsetting = () => {
       new_repeat_password: ''
     },
     onSubmit: (values => {
-      axios.post('http://3.110.201.21:3002/users/resetpassword', values, {
+      axios.post('http://localhost:3002/users/resetpassword', values, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },

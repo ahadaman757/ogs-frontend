@@ -8,17 +8,24 @@ import { List, TextInput } from '../Forms/InputFields'
 import { useFormik } from 'formik'
 import axios from 'axios'
 
-const UploadImageSide = ({ setLogoData, title }) => {
+const UploadImageSide = ({ setLogoData, title, formik, id }) => {
+
     const [photoSelected, setphotoSelected] = useState()
     const handleInputChange = (event) => {
-        setLogoData(event.target.files[0])
+        setLogoData && setLogoData(event.target.files[0])
+        formik && formik.setFieldValue(id, event.currentTarget.files[0]);
+        if (event.target.files && event.target.files[0]) {
+            setphotoSelected(URL.createObjectURL(event.target.files[0]));
+        }
     };
     return (
-        <div className="col-md-6 my-md-5 my-4">
+        <div className="col my-md-5 my-4">
             <div className="container d-flex align-items-center justify-content-center flex-column">
                 <div className={`${styles.upload_btn_wrapper} card d-flex mx-auto align-items-center justify-content-center flex-column px-md-5 px-3`}>
                     <label htmlFor="logo" className={`${styles.pointer}`}>
-                        <img className={`img-fluid ${styles.file_upload_icon} `} src={require("../../Assets/Images/file upload.png")} alt="" />
+                        {
+                            ((photoSelected == null) ? <img className={`img-fluid ${styles.file_upload_icon} `} src={require("../../Assets/Images/file upload.png")} alt="" /> : <img className={`img-fluid ${styles.profile_photo} `} src={photoSelected} alt="" />)
+                        }
                     </label>
 
                     <input className={`${styles.file_upload_hide}`} onChange={handleInputChange} type="file" name="logo" id="logo" />
@@ -138,7 +145,7 @@ const AddressDetails = ({ sel, setformData, data, LogoData, formData, employerRe
 
     }, [])
     useEffect(() => {
-        axios.post('http://3.110.201.21:3002/get_city_by_country_id', {
+        axios.post('http://localhost:3002/get_city_by_country_id', {
             country_id: AddressinformationFormik.values.country || 1
         }).then(res => {
 
@@ -198,7 +205,7 @@ const AddressDetails = ({ sel, setformData, data, LogoData, formData, employerRe
 function Register() {
     const [employerRegsiterOptions, setemployerRegsiterOptions] = useState()
     useEffect(() => {
-        axios.get('http://3.110.201.21:3002/employer_register_options').then(res => {
+        axios.get('http://localhost:3002/employer_register_options').then(res => {
             setemployerRegsiterOptions(res.data)
         }).catch(error => {
             console.log(error)

@@ -21,7 +21,7 @@ const Privacypolicy = () => {
 
   useEffect(() => {
     axios
-      .get("http://3.110.201.21:3002/general/getPrivacyPolicy")
+      .get("http://localhost:3002/general/getPrivacyPolicy")
       .then((res) => setOldData(res.data.content[0][0].content));
     setLoading(false);
   }, [loading]);
@@ -75,7 +75,7 @@ const Privacypolicy = () => {
                       onClick={() => {
                         axios
                           .post(
-                            "http://3.110.201.21:3002/admin/changePrivacyPolicy",
+                            "http://localhost:3002/admin/changePrivacyPolicy",
                             {
                               content: editorData,
                             },

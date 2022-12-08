@@ -18,7 +18,7 @@ const Dashboard = ({ parentToChild }) => {
   useEffect(() => {
     // GET USER DATA
     axios
-      .get("http://3.110.201.21:3002/users/me", {
+      .get("http://localhost:3002/users/me", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -29,7 +29,7 @@ const Dashboard = ({ parentToChild }) => {
       });
     // GET JOBS
     axios
-      .get(`http://3.110.201.21:3002/jobs/myjobs`, {
+      .get(`http://localhost:3002/jobs/myjobs`, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
