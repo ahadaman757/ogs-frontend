@@ -16,7 +16,7 @@ const AboutUs = () => {
   const [content, setContent] = useState();
 
   useEffect(() => {
-    axios.get("http://3.110.201.2:3002/general/getAboutUs").then((res) => {
+    axios.get("http://3.110.201.21:3002/general/getAboutUs").then((res) => {
       setContent(res.data.content[0][0].content);
       setLoading(false);
     });

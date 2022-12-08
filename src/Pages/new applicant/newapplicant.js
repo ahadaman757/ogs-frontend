@@ -50,7 +50,7 @@ const Newapplicant = () => {
   });
   useEffect(() => {
     axios
-      .post("http://3.110.201.2:3002/get_city_by_country_id", {
+      .post("http://3.110.201.21:3002/get_city_by_country_id", {
         country_id: filtersFormik.values.country || 1,
       })
       .then((res) => {
@@ -67,7 +67,7 @@ const Newapplicant = () => {
     const v = filtersFormik.values;
     axios
       .post(
-        `http://3.110.201.2:3002/jobs/jobapplicants?${(v.start_date ? "start_date=" + v.start_date : "") +
+        `http://3.110.201.21:3002/jobs/jobapplicants?${(v.start_date ? "start_date=" + v.start_date : "") +
         "&" +
         (v.end_date ? "end_date=" + v.end_date : "") +
         "&" +
@@ -97,7 +97,7 @@ const Newapplicant = () => {
       });
   };
   const getjoboptions = () => {
-    axios.get("http://3.110.201.2:3002/jobs/jobsoptions").then((res) => {
+    axios.get("http://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };

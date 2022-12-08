@@ -77,7 +77,7 @@ const Sendnewsletteremployers = () => {
                       className={`px-4 py-3 ogsfonts14 mt-5  ${Styles.btnc}`}
                       onClick={() => {
                         axios.post(
-                          "http://3.110.201.2:3002/admin/addNewsEmployers",
+                          "http://3.110.201.21:3002/admin/addNewsEmployers",
                           {
                             data: editorData,
                           },

@@ -20,7 +20,7 @@ const Aboutus = () => {
 
   useEffect(() => {
     axios
-      .get("http://3.110.201.2:3002/general/getAboutUs")
+      .get("http://3.110.201.21:3002/general/getAboutUs")
       .then((res) => setOldData(res.data.content[0][0].content));
     setLoading(false);
   }, [loading]);
@@ -74,7 +74,7 @@ const Aboutus = () => {
                       onClick={() => {
                         axios
                           .post(
-                            "http://3.110.201.2:3002/admin/changeAboutUs",
+                            "http://3.110.201.21:3002/admin/changeAboutUs",
                             {
                               content: editorData,
                             },

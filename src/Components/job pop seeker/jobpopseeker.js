@@ -16,7 +16,7 @@ const Jobpopseeker = () => {
   console.log("having")
   console.log(UserCvs)
   const ApplyJob = (cv_id) => {
-    axios.post(`http://3.110.201.2:3002/jobs/jobapply`, {
+    axios.post(`http://3.110.201.21:3002/jobs/jobapply`, {
       job_id: job_data.id,
       cv_id: cv_id
     }, {
@@ -39,7 +39,7 @@ const Jobpopseeker = () => {
   };
   useEffect(() => {
     const job_id = job_data.id
-    axios.get(`http://3.110.201.2:3002/skills_for_job_by_id/${job_id}`).then(res => {
+    axios.get(`http://3.110.201.21:3002/skills_for_job_by_id/${job_id}`).then(res => {
       setskills(res.data.skills)
     }).catch(error => {
       console.log(error)
@@ -47,7 +47,7 @@ const Jobpopseeker = () => {
   }, [])
   useEffect(() => {
     axios
-      .get("http://3.110.201.2:3002/users/my_cvs", {
+      .get("http://3.110.201.21:3002/users/my_cvs", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },

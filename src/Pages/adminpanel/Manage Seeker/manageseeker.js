@@ -23,7 +23,7 @@ const Manageseeker = () => {
   };
   useEffect(() => {
     axios
-      .get("http://3.110.201.2:3002/admin/seekers", {
+      .get("http://3.110.201.21:3002/admin/seekers", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },

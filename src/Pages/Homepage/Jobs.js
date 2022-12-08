@@ -26,7 +26,7 @@ export const Jobs = () => {
   ];
   useEffect(() => {
     // GET USER DATA
-    axios.get("http://3.110.201.2:3002/general/homePageJobsPK").then((res) => {
+    axios.get("http://3.110.201.21:3002/general/homePageJobsPK").then((res) => {
       setJobData(res.data.response[0]);
       setJobsLoading(false);
     });

@@ -25,6 +25,14 @@ const homePageJobsPK = async (req, res, next) => {
     next(error);
   }
 };
+const homePageJobsIN = async (req, res, next) => {
+  try {
+    const jobs = await sequelize.query('SELECT * FROM job ORDER BY id DESC');
+    res.json({ response: jobs });
+  } catch (error) {
+    next(error);
+  }
+};
 const getPrivacyPolicy = async (req, res, next) => {
   try {
     const getData = await sequelize.query(
@@ -59,4 +67,10 @@ const getCompanies = async (req, res, next) => {
   }
 };
 
-export { homePageJobsPK, getPrivacyPolicy, getAboutUs, getCompanies };
+export {
+  homePageJobsPK,
+  getPrivacyPolicy,
+  getAboutUs,
+  getCompanies,
+  homePageJobsIN,
+};

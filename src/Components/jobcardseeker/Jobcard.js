@@ -12,7 +12,7 @@ const Jobcard = ({ job_data }) => {
   const [AppliedCvs, setAppliedCvs] = useState(false)
   const CheckApplied = () => {
     const job_id = job_data.id
-    axios.post("http://3.110.201.2:3002/jobs/checkjobapply", {
+    axios.post("http://3.110.201.21:3002/jobs/checkjobapply", {
       job_id: job_id
     }, {
       headers: {
@@ -114,7 +114,7 @@ const Jobcard = ({ job_data }) => {
         </div>
         <div>
           <FacebookShareButton
-            url={"http://3.110.201.2:3000/managejobs"}
+            url={"http://3.110.201.21:3000/managejobs"}
             className={`mx-2 Demo__some-network__share-button ${Styles.csdbtn}`}
           >
             <span className="mx-2">

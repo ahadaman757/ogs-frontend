@@ -19,7 +19,7 @@ const Personalinfo = ({ }) => {
   console.log(userData)
   useEffect(() => {
     axios
-      .get("http://3.110.201.2:3002/users/me", {
+      .get("http://3.110.201.21:3002/users/me", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -38,7 +38,7 @@ const Personalinfo = ({ }) => {
       }).catch(error => {
         console.log(error)
       });
-    axios.get('http://3.110.201.2:3002/employer_register_options').then(res => {
+    axios.get('http://3.110.201.21:3002/employer_register_options').then(res => {
       setemployerRegsiterOptions(res.data)
     }).catch(error => {
       console.log(error)
@@ -76,7 +76,7 @@ const Personalinfo = ({ }) => {
       const accesstoken = localStorage.getItem("accessToken")
       console.log("accesstoken")
       console.log(accesstoken)
-      axios.post('http://3.110.201.2:3002/users/employer_update_profile', formdata, {
+      axios.post('http://3.110.201.21:3002/users/employer_update_profile', formdata, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
           "Content-Type": "multipart/form-data",
@@ -92,7 +92,7 @@ const Personalinfo = ({ }) => {
   })
   const [cities, setcities] = useState()
   useEffect(() => {
-    axios.post('http://3.110.201.2:3002/get_city_by_country_id', {
+    axios.post('http://3.110.201.21:3002/get_city_by_country_id', {
       country_id: ResetProfileFormik.values.country || 1
     }).then(res => {
 
