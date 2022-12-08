@@ -5,7 +5,8 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, 'Hunzai1122$$', {
     dialect: 'mysql',
     host: DB_HOST,
     logging: false,
-    password: 'Hunzai1122$$'
+    password: 'Hunzai1122$$',
+
 });
 
 export default sequelize
