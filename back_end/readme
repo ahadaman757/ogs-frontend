@@ -63,3 +63,12 @@ Example:
 axios
 .get("http://localhost:3002/getCompanies")
 .then((res) => console.log(res));
+
+## Get Internation Jobs API
+
+URL: http://localhost:3002/general/homePageJobsIN
+Type: Get
+Example:
+axios
+.get("http://localhost:3002/general/getCompanies")
+.then((res) => console.log(res));

@@ -6,6 +6,7 @@ import {
   homePageJobsPK,
   getAboutUs,
   getCompanies,
+  homePageJobsIN,
 } from '../controllers/generalController.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
@@ -14,6 +15,7 @@ GeneralRouter.get('/homePageJobsPK', homePageJobsPK);
 GeneralRouter.get('/getPrivacyPolicy', getPrivacyPolicy);
 GeneralRouter.get('/getAboutUs', getAboutUs);
 GeneralRouter.get('/getCompanies', getCompanies);
+GeneralRouter.get('/homePageJobsIN', homePageJobsIN);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;
