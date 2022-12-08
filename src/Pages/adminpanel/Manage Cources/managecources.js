@@ -1,16 +1,16 @@
-import Styles from "./managecources.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import InputField from "../../../Components/inputfield/inputfield";
-import Table from "../../../Components/table/managecousestable";
-import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
-import { Formik, useFormik } from "formik";
-import axios from "axios";
+import Styles from './managecources.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import InputField from '../../../Components/inputfield/inputfield';
+import Table from '../../../Components/table/managecousestable';
+import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
+import { Formik, useFormik } from 'formik';
+import axios from 'axios';
 
 const detail = [
   {
-    Code: "ewe",
-    Title: "qw",
+    Code: 'ewe',
+    Title: 'qw',
   },
 ];
 const Managecources = () => {
@@ -19,20 +19,20 @@ const Managecources = () => {
   const [loading, setLoading] = useState(false);
   const [tableloading, settableLoading] = useState(true);
   const [returnMessage, setReturnMessage] = useState();
-  const [uploadStatus, setUploadStatus] = useState("");
+  const [uploadStatus, setUploadStatus] = useState('');
   const [tabledata, settabledata] = useState();
   const [updateTable, setUpdateTabe] = useState();
 
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     setData(d);
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3002/admin/getCourses", {
+      .get('http://localhost:3002/admin/getCourses', {
         headers: {
-          accessToken: localStorage.getItem("accessToken"),
+          accessToken: localStorage.getItem('accessToken'),
         },
       })
       .then((res) => {
@@ -47,16 +47,16 @@ const Managecources = () => {
 
   const addCourseFormik = useFormik({
     initialValues: {
-      course_name: "",
-      course_description: "",
-      institute_name: "",
+      course_name: '',
+      course_description: '',
+      institute_name: '',
     },
     onSubmit: (values) => {
       setLoading(true);
-      setUploadStatus("Adding information to database");
+      setUploadStatus('Adding information to database');
       axios
         .post(
-          "http://localhost:3002/admin/addCourse",
+          'http://localhost:3002/admin/addCourse',
           {
             course_name: values.course_name,
             course_description: values.course_description,
@@ -64,7 +64,7 @@ const Managecources = () => {
           },
           {
             headers: {
-              accessToken: localStorage.getItem("accessToken"),
+              accessToken: localStorage.getItem('accessToken'),
             },
           }
         )
@@ -77,16 +77,16 @@ const Managecources = () => {
 
   const uploadThumbnail = (id, offset) => {
     const image = new FormData();
-    image.append("file", addCourseThumbnail);
-    image.append("id", id);
-    image.append("fileName", addCourseThumbnail.name);
-    image.append("offset", offset);
+    image.append('file', addCourseThumbnail);
+    image.append('id', id);
+    image.append('fileName', addCourseThumbnail.name);
+    image.append('offset', offset);
     let cid = id;
-    setUploadStatus("Uploading Image");
+    setUploadStatus('Uploading Image');
     axios
-      .post("http://localhost:3002/admin/addCourseThumbnail", image, {
+      .post('http://localhost:3002/admin/addCourseThumbnail', image, {
         headers: {
-          accessToken: localStorage.getItem("accessToken"),
+          accessToken: localStorage.getItem('accessToken'),
         },
       })
       .then((res) => updateCourse(cid, addCourseThumbnail.name));
@@ -95,24 +95,24 @@ const Managecources = () => {
   const updateCourse = (cid, fName) => {
     axios
       .post(
-        "http://localhost:3002/admin/updateCourse",
+        'http://localhost:3002/admin/updateCourse',
         {
           offset: cid,
           fName: fName,
         },
         {
           headers: {
-            accessToken: localStorage.getItem("accessToken"),
+            accessToken: localStorage.getItem('accessToken'),
           },
         }
       )
       .then((res) => {
-        setReturnMessage("Uploaded");
+        setReturnMessage('Uploaded');
         setUpdateTabe(!updateTable);
         setTimeout(() => {
-          setReturnMessage("");
+          setReturnMessage('');
         }, 3000);
-        setUploadStatus("");
+        setUploadStatus('');
       });
   };
 
@@ -125,7 +125,7 @@ const Managecources = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -134,14 +134,14 @@ const Managecources = () => {
             <h1 className="ogsfonts20">to OGS manpower Administration Panel</h1>
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Cources Management Section</h1>
-              <p className="ogsfonts16">Manage Cources</p>
+              <p className="ogsfonts16">Manage Courses</p>
               <div className="d-flex flex-wrap justify-content-between">
                 <div className="d-flex align-items-center"></div>
                 <div className="d-flex align-items-center">
-                  {" "}
+                  {' '}
                   <p className="ogsfonts16 m-0 me-3 ">
                     Total Courses Found: 50
-                  </p>{" "}
+                  </p>{' '}
                   <button
                     className={` ogsfonts16 px-4 py-3 ${Styles.btnplode}`}
                     data-bs-toggle="modal"
@@ -153,15 +153,15 @@ const Managecources = () => {
               </div>
 
               {tableloading ? (
-                "loading"
+                'loading'
               ) : (
                 <Table
                   array={tabledata}
-                  Sr={"no."}
-                  Option={"werer"}
-                  title={"Title"}
-                  description={"description"}
-                  institute_name={"Institute Name"}
+                  Sr={'no.'}
+                  Option={'werer'}
+                  title={'Title'}
+                  description={'description'}
+                  institute_name={'Institute Name'}
                   updateHandler={updateHandler}
                 />
               )}
@@ -193,7 +193,7 @@ const Managecources = () => {
                 className={`p-2 container-fluid justify-content-between  ${Styles.modalapply}`}
               >
                 <form onSubmit={addCourseFormik.handleSubmit}>
-                  {returnMessage == "" ? "" : returnMessage}
+                  {returnMessage == '' ? '' : returnMessage}
                   <div className="my-3">
                     <div className="d-flex justify-content-between">
                       <p className="ogsfonts16">Course Name</p>
@@ -244,16 +244,16 @@ const Managecources = () => {
                     type="file"
                     required
                     onChange={(e) => {
-                      let fileExt = e.target.files[0].name.split(".").pop();
+                      let fileExt = e.target.files[0].name.split('.').pop();
                       if (
-                        fileExt == "png" ||
-                        fileExt == "jpg" ||
-                        fileExt == "jpeg"
+                        fileExt == 'png' ||
+                        fileExt == 'jpg' ||
+                        fileExt == 'jpeg'
                       ) {
                         setAddCourseThumbnail(e.target.files[0]);
                       } else {
                         console.log(fileExt);
-                        alert("Only images are supported");
+                        alert('Only images are supported');
                       }
                     }}
                   />
@@ -263,7 +263,7 @@ const Managecources = () => {
                     className={` ogsfonts16 px-3 py-2 ${Styles.btnplode}`}
                     type="submit"
                   >
-                    {uploadStatus == "" ? "Add Course" : uploadStatus}
+                    {uploadStatus == '' ? 'Add Course' : uploadStatus}
                   </button>
                 </form>
               </div>
