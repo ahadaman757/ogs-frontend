@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./homepage.module.css";
 import Carousel from "react-elastic-carousel";
 import ClovineLogo from "../../Assets/Images/clovine.png";
 import axios from "axios";
 export const Companies = () => {
-  const [Companidata, setCompanidata] = useState();
+  const [tableloading, settableLoading] = useState(true);
+  const [tabledata, settabledata] = useState();
   useEffect(() => {
     axios
       .get("http://localhost:3002/general/getCompanies")
-      .then((res) => setCompanidata(res.data.getCompanies[0]));
+      .then((res) => {
+        settabledata(res.data.getCompanies[1]);
+        settableLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
-  console.log(Companidata, "sas");
+  console.log(tabledata);
   const companies = [
     {
       id: 1,
@@ -59,24 +66,28 @@ export const Companies = () => {
   ];
   return (
     <div className={`container ${styles.companies__container}`}>
-      <div className={`p-md-5 ${styles.companies__internalContainer}`}>
-        <div className={` ${styles.companies__headingContainer}`}>
+      <div className={`p-5 ${styles.companies__internalContainer}`}>
+        <div className={`${styles.companies__headingContainer}`}>
           <h3>Promo Companies / Jobs</h3>
           <a href="#">View all</a>
         </div>
         <br />
-        <Carousel itemsToShow={5} breakPoints={breakpoints}>
-          {Companidata.map((item) => (
-            <div key={item.id} className={`${styles.companies__sliderItem}`}>
-              <img
-                style={{ width: "100px" }}
-                src={`http://localhost:3002/` + item.company_logo}
-              />
-              <h6>{item.company_name}</h6>
-              <span>{item.business_webpage}</span>
-            </div>
-          ))}
-        </Carousel>
+        {tableloading ? (
+          "loading"
+        ) : (
+          <Carousel itemsToShow={5} breakPoints={breakpoints}>
+            {tabledata.map((item) => (
+              <div key={item.id} className={`${styles.companies__sliderItem}`}>
+                <img
+                  style={{ width: "100px", height: "100px" }}
+                  src={"http://localhost:3002/" + item.company_logo}
+                />
+                <h6>{item.company_name}</h6>
+                <span>{item.business_webpage}</span>
+              </div>
+            ))}
+          </Carousel>
+        )}
       </div>
     </div>
   );
