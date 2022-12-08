@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const ManageJobsTable = (props) => {
   const [approve_status, setapprove_status] = useState()
   const changeApproveStatus = (current_status, id) => {
-    axios.put("http://localhost:3002/admin/update_job_column", {
+    axios.put("http://3.110.201.2:3002/admin/update_job_column", {
       status: !current_status,
       column: "is_approved",
       job_id: id,
@@ -25,7 +25,7 @@ const ManageJobsTable = (props) => {
   const navigate = useNavigate();
   const deleteJob = (e) => {
     axios
-      .post("http://localhost:3002/jobs/admindeletejob", {
+      .post("http://3.110.201.2:3002/jobs/admindeletejob", {
         jobId: e,
         headers: {
           accesstoken: localStorage.getItem("accessToken"),

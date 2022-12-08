@@ -26,7 +26,7 @@ const EditJob = () => {
 
     axios
       .post(
-        `http://localhost:3002/jobs/admingetjobdetail`,
+        `http://3.110.201.2:3002/jobs/admingetjobdetail`,
         {
           jobId: params.jobId,
         },
@@ -53,9 +53,8 @@ const EditJob = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">
@@ -121,7 +120,7 @@ const EditJobForm = ({ params }) => {
     onSubmit: (values) => {
       axios
         .put(
-          "http://localhost:3002/admin/jobs",
+          "http://3.110.201.2:3002/admin/jobs",
           {
             values,
           },
@@ -142,7 +141,7 @@ const EditJobForm = ({ params }) => {
   useEffect(() => {
     axios
       .post(
-        `http://localhost:3002/jobs/admingetjobdetail`,
+        `http://3.110.201.2:3002/jobs/admingetjobdetail`,
         {
           jobId: params.jobId,
         },
@@ -184,7 +183,7 @@ const EditJobForm = ({ params }) => {
       });
   }, []);
   const getjoboptions = () => {
-    axios.get("http://localhost:3002/jobs/jobsoptions").then((res) => {
+    axios.get("http://3.110.201.2:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -194,7 +193,7 @@ const EditJobForm = ({ params }) => {
   }, []);
   useEffect(() => {
     axios
-      .post("http://localhost:3002/get_city_by_country_id", {
+      .post("http://3.110.201.2:3002/get_city_by_country_id", {
         country_id: EditJobFormIk.values.country || 1,
       })
       .then((res) => {

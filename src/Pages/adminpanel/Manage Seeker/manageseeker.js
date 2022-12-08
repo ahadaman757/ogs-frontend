@@ -23,7 +23,7 @@ const Manageseeker = () => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3002/admin/seekers", {
+      .get("http://3.110.201.2:3002/admin/seekers", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
@@ -40,9 +40,8 @@ const Manageseeker = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">

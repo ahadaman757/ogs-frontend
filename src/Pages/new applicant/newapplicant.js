@@ -50,7 +50,7 @@ const Newapplicant = () => {
   });
   useEffect(() => {
     axios
-      .post("http://localhost:3002/get_city_by_country_id", {
+      .post("http://3.110.201.2:3002/get_city_by_country_id", {
         country_id: filtersFormik.values.country || 1,
       })
       .then((res) => {
@@ -67,26 +67,25 @@ const Newapplicant = () => {
     const v = filtersFormik.values;
     axios
       .post(
-        `http://localhost:3002/jobs/jobapplicants?${
-          (v.start_date ? "start_date=" + v.start_date : "") +
-          "&" +
-          (v.end_date ? "end_date=" + v.end_date : "") +
-          "&" +
-          (v.country ? "country=" + v.country : "") +
-          "&" +
-          (v.city ? "city=" + v.city : "") +
-          "&" +
-          (v.max_experience ? "max_experience=" + v.max_experience : "") +
-          "&" +
-          (v.min_age ? "min_age=" + v.min_age : "") +
-          "&" +
-          (v.max_age ? "max_age=" + v.max_age : "") +
-          "&" +
-          (v.gender ? "gender=" + v.gender : "") +
-          "&" +
-          (v.marital_status ? "marital_status=" + v.marital_status : "") +
-          "&" +
-          (v.education_level ? "education_level=" + v.education_level : "")
+        `http://3.110.201.2:3002/jobs/jobapplicants?${(v.start_date ? "start_date=" + v.start_date : "") +
+        "&" +
+        (v.end_date ? "end_date=" + v.end_date : "") +
+        "&" +
+        (v.country ? "country=" + v.country : "") +
+        "&" +
+        (v.city ? "city=" + v.city : "") +
+        "&" +
+        (v.max_experience ? "max_experience=" + v.max_experience : "") +
+        "&" +
+        (v.min_age ? "min_age=" + v.min_age : "") +
+        "&" +
+        (v.max_age ? "max_age=" + v.max_age : "") +
+        "&" +
+        (v.gender ? "gender=" + v.gender : "") +
+        "&" +
+        (v.marital_status ? "marital_status=" + v.marital_status : "") +
+        "&" +
+        (v.education_level ? "education_level=" + v.education_level : "")
         }`,
         { job_id: state.id }
       )
@@ -98,7 +97,7 @@ const Newapplicant = () => {
       });
   };
   const getjoboptions = () => {
-    axios.get("http://localhost:3002/jobs/jobsoptions").then((res) => {
+    axios.get("http://3.110.201.2:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -198,8 +197,8 @@ const Newapplicant = () => {
 
               {appicantsList
                 ? appicantsList.map((applicant) => {
-                    return <Cv job_id={state.id} applicant={applicant} />;
-                  })
+                  return <Cv job_id={state.id} applicant={applicant} />;
+                })
                 : "loading"}
             </div>
             <div className={`col-md-3 `}>

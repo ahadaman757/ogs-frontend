@@ -103,7 +103,7 @@ const AddressInformationValidation = (
           formdata.append(key, fullFormData[key]);
         }
         axios
-          .post(`http://localhost:3002/users`, formdata, {
+          .post(`http://3.110.201.2:3002/users`, formdata, {
             headers: {
               "Content-Type": "multipart/form-data",
               "Access-Control-Allow-Origin": "*",

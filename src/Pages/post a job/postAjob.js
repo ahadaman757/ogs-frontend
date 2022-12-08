@@ -24,7 +24,7 @@ const Postajob = () => {
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get("http://localhost:3002/jobs/jobsoptions").then((res) => {
+    axios.get("http://3.110.201.2:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -85,7 +85,7 @@ const Postajob = () => {
       // let result = [33, 34, "New Skill"]
       const DataToBESend = { ...values, skill_id: skills };
       axios
-        .post("http://localhost:3002/jobs", DataToBESend, {
+        .post("http://3.110.201.2:3002/jobs", DataToBESend, {
           headers: {
             "Content-Type": "application/json",
             accesstoken: localStorage.getItem("accessToken"),
@@ -104,7 +104,7 @@ const Postajob = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post("http://localhost:3002/get_city_by_country_id", {
+      .post("http://3.110.201.2:3002/get_city_by_country_id", {
         country_id: jobPostFormIk.values.country || 1,
       })
       .then((res) => {
@@ -120,9 +120,8 @@ const Postajob = () => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        className={`pt-5 ${Styles.Postajobmain}${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`pt-5 ${Styles.Postajobmain}${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>

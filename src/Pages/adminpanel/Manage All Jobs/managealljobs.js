@@ -48,7 +48,7 @@ const Managealljobs = () => {
       navigate("/adminlogin");
     }
     axios
-      .get(`http://localhost:3002/jobs/admingetjobs`, {
+      .get(`http://3.110.201.2:3002/jobs/admingetjobs`, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -66,9 +66,8 @@ const Managealljobs = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div className="mt-5">

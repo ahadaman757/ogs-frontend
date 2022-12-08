@@ -18,7 +18,7 @@ const Dashboard = ({ parentToChild }) => {
   useEffect(() => {
     // GET USER DATA
     axios
-      .get("http://localhost:3002/users/me", {
+      .get("http://3.110.201.2:3002/users/me", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -29,7 +29,7 @@ const Dashboard = ({ parentToChild }) => {
       });
     // GET JOBS
     axios
-      .get(`http://localhost:3002/jobs/myjobs`, {
+      .get(`http://3.110.201.2:3002/jobs/myjobs`, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -71,9 +71,8 @@ const Dashboard = ({ parentToChild }) => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <div className="container-md">
           <div className="row py-4 px-md-4 mt-5">
