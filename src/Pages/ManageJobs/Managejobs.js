@@ -39,7 +39,7 @@ const Managejobs = () => {
   useEffect(() => {
     // GET USER DATA
     axios
-      .get("http://3.110.201.2:3002/users/me", {
+      .get("http://3.110.201.21:3002/users/me", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -50,7 +50,7 @@ const Managejobs = () => {
         console.log(userData);
       });
     axios
-      .get(`http://3.110.201.2:3002/jobs/myjobs`, {
+      .get(`http://3.110.201.21:3002/jobs/myjobs`, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },

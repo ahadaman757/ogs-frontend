@@ -28,7 +28,7 @@ function TestForm() {
       console.log(logo);
       console.log(formdata);
       axios
-        .post(`http://3.110.201.2:3002/users`, formdata, {
+        .post(`http://3.110.201.21:3002/users`, formdata, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Access-Control-Allow-Origin": "*",

@@ -48,7 +48,7 @@ const Managealljobs = () => {
       navigate("/adminlogin");
     }
     axios
-      .get(`http://3.110.201.2:3002/jobs/admingetjobs`, {
+      .get(`http://3.110.201.21:3002/jobs/admingetjobs`, {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },

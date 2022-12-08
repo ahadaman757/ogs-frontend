@@ -11,7 +11,7 @@ function Record({ employer, index, deletedId }) {
     const [deleted, setdeleted] = useState(false)
     // Delete A User
     const Deleteuser = (id) => {
-        axios.delete("http://3.110.201.2:3002/admin/users", {
+        axios.delete("http://3.110.201.21:3002/admin/users", {
             headers: {
                 accesstoken: localStorage.getItem("accessToken")
             },
@@ -27,7 +27,7 @@ function Record({ employer, index, deletedId }) {
         })
     }
     useEffect(() => {
-        axios.get(`http://3.110.201.2:3002/admin/jobs/${employer.id}`, {
+        axios.get(`http://3.110.201.21:3002/admin/jobs/${employer.id}`, {
             headers: {
                 accesstoken: localStorage.getItem("accessToken"),
             },
@@ -44,7 +44,7 @@ function Record({ employer, index, deletedId }) {
     }, [])
 
     // useEffect(() => {
-    //     axios.get(`http://3.110.201.2:3002/getcvforuser/${seeker.id}`, {
+    //     axios.get(`http://3.110.201.21:3002/getcvforuser/${seeker.id}`, {
     //         headers: {
     //             accesstoken: localStorage.getItem("accessToken")
     //         }

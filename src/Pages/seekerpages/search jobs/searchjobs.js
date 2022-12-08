@@ -51,7 +51,7 @@ const JobsSearch = () => {
   useEffect(() => {
     setjobsLoading(true);
     axios
-      .get("http://3.110.201.2:3002/jobs/view_all_jobs")
+      .get("http://3.110.201.21:3002/jobs/view_all_jobs")
       .then((res) => {
         console.log(res.data);
         setAllJobs(res.data);

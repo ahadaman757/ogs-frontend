@@ -22,7 +22,7 @@ const CreateCv = () => {
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get("http://3.110.201.2:3002/jobs/jobsoptions").then((res) => {
+    axios.get("http://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -114,7 +114,7 @@ const CreateCv = () => {
         formdata.append(key, fullFormData[key]);
       }
       axios
-        .post("http://3.110.201.2:3002/createcv", formdata, {
+        .post("http://3.110.201.21:3002/createcv", formdata, {
           headers: {
             accesstoken: localStorage.getItem("accessToken"),
             "Content-Type": "multipart/form-data",
@@ -132,7 +132,7 @@ const CreateCv = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post("http://3.110.201.2:3002/get_city_by_country_id", {
+      .post("http://3.110.201.21:3002/get_city_by_country_id", {
         country_id: CvFormIk.values.country || 1,
       })
       .then((res) => {
