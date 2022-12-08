@@ -5,10 +5,12 @@ import ClovineLogo from "../../Assets/Images/clovine.png";
 import axios from "axios";
 export const Companies = () => {
   const [Companidata, setCompanidata] = useState();
+  const [tableloading, settableLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get("http://localhost:3002/general/getCompanies")
-      .then((res) => setCompanidata(res.data.getCompanies[0]));
+    axios.get("http://localhost:3002/general/getCompanies").then((res) => {
+      setCompanidata(res.data.getCompanies[0]);
+      settableLoading(false);
+    });
   }, []);
   console.log(Companidata, "sas");
   const companies = [
@@ -65,18 +67,22 @@ export const Companies = () => {
           <a href="#">View all</a>
         </div>
         <br />
-        <Carousel itemsToShow={5} breakPoints={breakpoints}>
-          {Companidata.map((item) => (
-            <div key={item.id} className={`${styles.companies__sliderItem}`}>
-              <img
-                style={{ width: "100px" }}
-                src={`http://localhost:3002/` + item.company_logo}
-              />
-              <h6>{item.company_name}</h6>
-              <span>{item.business_webpage}</span>
-            </div>
-          ))}
-        </Carousel>
+        {tableloading ? (
+          "loading"
+        ) : (
+          <Carousel itemsToShow={5} breakPoints={breakpoints}>
+            {Companidata.map((item) => (
+              <div key={item.id} className={`${styles.companies__sliderItem}`}>
+                <img
+                  style={{ width: "100px" }}
+                  src={`http://localhost:3002/` + item.company_logo}
+                />
+                <h6>{item.company_name}</h6>
+                <span>{item.business_webpage}</span>
+              </div>
+            ))}
+          </Carousel>
+        )}
       </div>
     </div>
   );
