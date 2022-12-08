@@ -67,10 +67,22 @@ const getCompanies = async (req, res, next) => {
   }
 };
 
+const getCourses = async (req, res, next) => {
+  try {
+    const courses = await sequelize.query(
+      'SELECT * FROM ogs_courses ORDER BY id DESC'
+    );
+    res.json({ code: 1, courses });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export {
   homePageJobsPK,
   getPrivacyPolicy,
   getAboutUs,
   getCompanies,
   homePageJobsIN,
+  getCourses,
 };

@@ -7,6 +7,7 @@ import {
   getAboutUs,
   getCompanies,
   homePageJobsIN,
+  getCourses,
 } from '../controllers/generalController.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
@@ -16,6 +17,7 @@ GeneralRouter.get('/getPrivacyPolicy', getPrivacyPolicy);
 GeneralRouter.get('/getAboutUs', getAboutUs);
 GeneralRouter.get('/getCompanies', getCompanies);
 GeneralRouter.get('/homePageJobsIN', homePageJobsIN);
+GeneralRouter.get('/getCourses', getCourses);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;
