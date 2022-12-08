@@ -1,11 +1,11 @@
-import { JoiValidation } from "../validators/JoiValidation.js";
-import Extractdata from "../services/extractData.js";
-import Job from "../models/Job.js";
-import JobSkill from "../models/JobSkill.js";
-import Skill from "../models/Skills.js";
-import JobOptions from "../models/Categories/JobPostOptions.js";
-import sequelize from "../config/db.js";
-import JobPostOptions from "../models/Categories/JobPostOptions.js";
+import { JoiValidation } from '../validators/JoiValidation.js';
+import Extractdata from '../services/extractData.js';
+import Job from '../models/Job.js';
+import JobSkill from '../models/JobSkill.js';
+import Skill from '../models/Skills.js';
+import JobOptions from '../models/Categories/JobPostOptions.js';
+import sequelize from '../config/db.js';
+import JobPostOptions from '../models/Categories/JobPostOptions.js';
 const JobPostController = async (req, res, next) => {
   // get request body for job post
   const body = req.body;
@@ -52,10 +52,10 @@ const JobPostController = async (req, res, next) => {
           // Skill Not Found
         }
       });
-      return res.json({ message: "added" });
+      return res.json({ message: 'added' });
     })
     .catch((error) => {
-      console.log("55555555555");
+      console.log('55555555555');
       console.log(error);
       return next(error);
     });
@@ -63,7 +63,7 @@ const JobPostController = async (req, res, next) => {
 // /Temporary Job Controller end
 
 const JobMyCompaniesController = async (req, res, next) => {
-  console.log("id");
+  console.log('id');
   console.log(req.user.id);
   try {
     // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
@@ -72,8 +72,8 @@ const JobMyCompaniesController = async (req, res, next) => {
     genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,jobtypes.job_type_title
     from job j 
    left outer JOIN job_applicants_cv on j.id =job_applicants_cv.job_id
-   left outer JOIN countries on J.country_id=countries.id
-   left outer JOIN  cities on J.city_id=cities.id
+   left outer JOIN countries on j.country_id=countries.id
+   left outer JOIN  cities on j.city_id=cities.id
    left outer JOIN careerlevels on career_level_id=careerlevels.id
    left outer JOIN  maxsalaries minSalary on	min_salary_id =minSalary.id
    left outer JOIN  maxsalaries maxSalary on	max_salary_id =maxSalary.id
@@ -106,20 +106,20 @@ const getJobsCount = (req, res, next) => {
 const GetJobOption = async (req, res, next) => {
   try {
     const [results, metadata] = await sequelize.query(
-      "select * from countries"
+      'select * from countries'
     );
-    const [cities, meta] = await sequelize.query("select * from cities");
+    const [cities, meta] = await sequelize.query('select * from cities');
     const [position, metapos] = await sequelize.query(
-      "select * from positions"
+      'select * from positions'
     );
     const [nationality, metanat] = await sequelize.query(
-      "select num_code,nationality from nationality"
+      'select num_code,nationality from nationality'
     );
     const [religion, metareligion] = await sequelize.query(
-      "select * from religion"
+      'select * from religion'
     );
     const [marital_status, metamarital_status] = await sequelize.query(
-      "select * from marital_status"
+      'select * from marital_status'
     );
     const country = results;
     const city = cities;
@@ -127,7 +127,7 @@ const GetJobOption = async (req, res, next) => {
     const degree = await JobOptions.Degree.findAll();
 
     const [functional_area, metafunctional] = await sequelize.query(
-      "select * from business_types"
+      'select * from business_types'
     );
     const gender = await JobOptions.Gender.findAll();
     const job_type = await JobOptions.JobType.findAll();
@@ -180,22 +180,22 @@ const JobByIdController = async (req, res, next) => {
   JOIN  minagerequirements on job.min_age_id=minagerequirements.id
   JOIN  maxagerequirements on job.max_age_id=maxagerequirements.id`);
 
-  console.log("JobByIdController");
+  console.log('JobByIdController');
   res.json(job_records[0]);
 };
 const getApplicantsForJobById = async (req, res, next) => {
-  console.log("requesting");
+  console.log('requesting');
   const { body } = req;
   const { job_id } = body;
-  console.log("query strings");
+  console.log('query strings');
   console.log(req.query);
   // search for cv in job_applicants_cv table for a given job id
   try {
     const [d_start_date, meta] = await sequelize.query(
-      "select MIN(created_at) as start_date from job_applicants_cv"
+      'select MIN(created_at) as start_date from job_applicants_cv'
     );
     const [d_end_date, meta_end] = await sequelize.query(
-      "select MAX(created_at) end_date from job_applicants_cv"
+      'select MAX(created_at) end_date from job_applicants_cv'
     );
     const {
       start_date = d_start_date[0].start_date,
@@ -249,7 +249,7 @@ const JobApplicantStatusUpdate = async (req, res, next) => {
     const [update_status, meta] = await sequelize.query(
       `UPDATE job_applicants_cv SET ${column}=${status} WHERE cv_id=${cv_id} AND job_id=${job_id} `
     );
-    res.json({ message: "updated" });
+    res.json({ message: 'updated' });
   } catch (error) {
     next(error);
   }
@@ -258,7 +258,7 @@ const JobApplicantStatusUpdate = async (req, res, next) => {
 const AdminGetAllJobsController = async (req, res, next) => {
   try {
     const allJobs = await sequelize.query(
-      "SELECT job.*, users.first_name, users.last_name FROM job INNER JOIN users ON job.posted_by_id=users.id"
+      'SELECT job.*, users.first_name, users.last_name FROM job INNER JOIN users ON job.posted_by_id=users.id'
     );
     res.json(allJobs);
   } catch (error) {
@@ -279,14 +279,14 @@ const AdminDeleteJob = async (req, res, next) => {
 };
 
 const ViewAllJobs = async (req, res, next) => {
-  console.log("view all jobs");
+  console.log('view all jobs');
   try {
     const [company_jobs_record, meta] =
       await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
     genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,jobtypes.job_type_title as job_type
     from job j 
-   left outer JOIN countries on J.country_id=countries.id
-   left outer JOIN  cities on J.city_id=cities.id
+   left outer JOIN countries on j.country_id=countries.id
+   left outer JOIN  cities on j.city_id=cities.id
    left outer JOIN careerlevels on career_level_id=careerlevels.id
    left outer JOIN  maxsalaries minSalary on	min_salary_id =minSalary.id
    left outer JOIN  maxsalaries maxSalary on	max_salary_id =maxSalary.id
@@ -319,7 +319,7 @@ const JobApply = async (req, res, next) => {
       `INSERT INTO job_applicants_cv( job_id,cv_id,applicant_id) VALUES (${job_id},${cv_id},${id})`
     );
     res.json({
-      message: "Applied to job",
+      message: 'Applied to job',
     });
   } catch (error) {
     next(error);
@@ -367,7 +367,7 @@ const AdminGetJobDetails = async (req, res, next) => {
 const ManageJobs = async (req, res, next) => {
   try {
     res.json({
-      message: "request received",
+      message: 'request received',
     });
   } catch (error) {
     next(error);
