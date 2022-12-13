@@ -10,7 +10,8 @@ const List = (props) => {
             <br />
 
 
-            <select defaultChecked={17} onChange={(e) => onChangeValue(e)} value={formik.values[id]} {...formik.getFieldProps(`'${id}'`)} className={`${styles.form_input}`} name={id} id={list_id}>
+            <select onChange={(e) => onChangeValue(e)} value={formik.values[id]} {...formik.getFieldProps(`'${id}'`)} className={`${styles.form_input}`} name={id} id={list_id}>
+                <option value="" disabled selected hidden>select one</option>
                 {
                     options && options.map((option, index) => {
                         const keys = Object.keys(option);
@@ -80,16 +81,16 @@ const TextInput = (props) => {
         </>
     )
 }
-const FileUpload = ({ setFileData, title, name, id, label, setImage }) => {
+const FileUpload = ({ title, name, id, label, setImage, formik }) => {
     const handleInputChange = (event) => {
-        setFileData(event.target.files[0])
+        formik && formik.setFieldValue(id, event.target.files[0])
         if (event.target.files && event.target.files[0]) {
             setImage(URL.createObjectURL(event.target.files[0]));
         }
     };
     return (<>
         <label htmlFor={id} className={`${styles.form_input__lable}`}>{label}</label>
-        <input className={`${styles.form_input}`} onChange={handleInputChange} type="file" name={name} id={id} />
+        <input required className={`${styles.form_input}`} onChange={handleInputChange} type="file" name={name} id={id} />
     </>
 
     )

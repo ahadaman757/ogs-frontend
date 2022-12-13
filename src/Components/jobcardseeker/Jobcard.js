@@ -11,29 +11,26 @@ const Jobcard = ({ job_data }) => {
   const [Applied, setApplied] = useState(false);
   const [AppliedCvs, setAppliedCvs] = useState(false);
   const CheckApplied = () => {
-    const job_id = job_data.id;
-    axios
-      .post(
-        "http://3.110.201.21:3002/jobs/checkjobapply",
-        {
-          job_id: job_id,
-        },
-        {
-          headers: {
-            accesstoken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((res) => {
-        if (res.data.check_job_apply.length) {
-          setAppliedCvs(res.data.check_job_apply);
-          setApplied(true);
-        } else setApplied(false);
-      })
-      .catch((error) => {
-        setApplied(false);
-      });
-  };
+    const job_id = job_data.id
+    axios.post("http://localhost:3002/jobs/checkjobapply", {
+      job_id: job_id
+    }, {
+      headers: {
+        accesstoken: localStorage.getItem("accessToken")
+      }
+    }).then(res => {
+      if (res.data.check_job_apply.length) {
+        setAppliedCvs(res.data.check_job_apply)
+        setApplied(true)
+      }
+      else
+        setApplied(false)
+
+
+    }).catch(error => {
+      setApplied(false)
+    })
+  }
   useEffect(() => {
     CheckApplied();
   }, []);

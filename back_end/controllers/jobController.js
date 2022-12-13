@@ -127,7 +127,7 @@ const GetJobOption = async (req, res, next) => {
     const degree = await JobOptions.Degree.findAll();
 
     const [functional_area, metafunctional] = await sequelize.query(
-      'select * from business_types'
+      "select * from category"
     );
     const gender = await JobOptions.Gender.findAll();
     const job_type = await JobOptions.JobType.findAll();

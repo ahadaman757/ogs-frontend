@@ -16,26 +16,21 @@ const Jobpopseeker = () => {
   console.log("having");
   console.log(UserCvs);
   const ApplyJob = (cv_id) => {
-    axios
-      .post(
-        `http://3.110.201.21:3002/jobs/jobapply`,
-        {
-          job_id: job_data.id,
-          cv_id: cv_id,
-        },
-        {
-          headers: {
-            accesstoken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    axios.post(`http://localhost:3002/jobs/jobapply`, {
+      job_id: job_data.id,
+      cv_id: cv_id
+    }, {
+      headers: {
+        accesstoken: localStorage.getItem("accessToken")
+      }
+    }).then(res => {
+
+      console.log(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
 
   const display = (d) => {
     console.log("value");
@@ -43,19 +38,16 @@ const Jobpopseeker = () => {
     Setdata(d);
   };
   useEffect(() => {
-    const job_id = job_data.id;
-    axios
-      .get(`http://3.110.201.21:3002/skills_for_job_by_id/${job_id}`)
-      .then((res) => {
-        setskills(res.data.skills);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    const job_id = job_data.id
+    axios.get(`http://localhost:3002/skills_for_job_by_id/${job_id}`).then(res => {
+      setskills(res.data.skills)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [])
   useEffect(() => {
     axios
-      .get("http://3.110.201.21:3002/users/my_cvs", {
+      .get("http://localhost:3002/users/my_cvs", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -127,14 +119,14 @@ const Jobpopseeker = () => {
             <div className="d-flex flex-wrap">
               {skills?.length && skills[0].skill_id
                 ? skills.map((skill) => {
-                    return (
-                      <h2
-                        className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
-                      >
-                        {skill.skill}
-                      </h2>
-                    );
-                  })
+                  return (
+                    <h2
+                      className={`text-center p-3 me-4 my-3 ogsfonts16 ${Styles.skillset}`}
+                    >
+                      {skill.skill}
+                    </h2>
+                  );
+                })
                 : "No Skills"}
             </div>
           </div>

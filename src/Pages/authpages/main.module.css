@@ -119,4 +119,9 @@
     background-color: rgba(162, 162, 230, 0.466);
 }
 
+.profile_photo {
+    max-width: 200px;
+    max-height: 200px;
+}
+
 .inline_form_lable {}

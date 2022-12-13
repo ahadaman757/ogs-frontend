@@ -128,7 +128,7 @@ const registercontroller = async (req, res, next) => {
                 } = body;
                 sequelize
                   .query(
-                    `insert INTO cv (email,cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${email}','${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`
+                    `insert INTO cv (email,cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${email}','${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`
                   )
                   .then((res) => {
                     console.log("cv addde");
@@ -253,7 +253,7 @@ const signincontroller = async (req, res, next) => {
               REFRESH_SECRET
             );
             RefreshToken.create({ token: refresh_token })
-              .then((res) => {})
+              .then((res) => { })
               .catch((error) => {
                 return next(new Error("Problem occured in database"));
               });
