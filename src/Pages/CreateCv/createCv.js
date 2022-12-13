@@ -1,13 +1,15 @@
 import Styles from "../post a job/postajob.module.css";
 import { useState, useEffect } from "react";
-import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import Seekersidebar from "../../Components/seekersidebar/seekersidebar";
 import { TextInput, List, FileUpload } from "../Forms/InputFields";
 import TagInput from "../Forms/TagInput";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { UploadImageSide } from "../authpages/Registeration";
+import { useNavigate } from "react-router-dom";
 const CreateCv = () => {
+  const navigate = useNavigate();
   const [LogoData, setLogoData] = useState();
   const [PassportFile, setPassportFile] = useState();
   const [ProfileFile, setProfileFile] = useState();
@@ -145,10 +147,11 @@ const CreateCv = () => {
   }, [CvFormIk.values.country]);
   return (
     <div className="asdesaser">
-      <DashboardNavbar side={display} />
+      <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Postajobmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Postajobmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <form onSubmit={CvFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>

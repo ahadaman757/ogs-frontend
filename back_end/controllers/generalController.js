@@ -15,6 +15,19 @@ import jwt_service from '../services/JwtService.js';
 import sequelize from '../config/db.js';
 import bodyParser from 'body-parser';
 // const User = require('../models/Users')
+import { application } from 'express';
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+var upload = multer({ storage: storage }).any();
+
 const homePageJobsPK = async (req, res, next) => {
   try {
     const jobs = await sequelize.query(

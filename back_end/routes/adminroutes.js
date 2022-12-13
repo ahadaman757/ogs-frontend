@@ -32,6 +32,7 @@ import {
   deleteCourse,
   getCourses,
   updateCourse,
+  uploadLogo,
 } from '../controllers/AdminControllers/OgsCoursesComtroller.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
@@ -74,6 +75,8 @@ AdminRouter.post('/addCourseThumbnail', AdminAuth, addCourseThumbnail);
 AdminRouter.post('/updateCourse', AdminAuth, updateCourse);
 AdminRouter.get('/getCourses', AdminAuth, getCourses);
 AdminRouter.post('/deleteCourse', AdminAuth, deleteCourse);
+
+AdminRouter.post('/uploadLogo', AdminAuth, uploadLogo);
 
 // userRouter.get('/me', auth, usermecontroller)
 

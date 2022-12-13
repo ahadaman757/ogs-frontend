@@ -30,7 +30,7 @@ const Managecources = () => {
   };
   useEffect(() => {
     axios
-      .get('http://localhost:3002/admin/getCourses', {
+      .get('http://3.110.201.21:3002/admin/getCourses', {
         headers: {
           accessToken: localStorage.getItem('accessToken'),
         },
@@ -56,7 +56,7 @@ const Managecources = () => {
       setUploadStatus('Adding information to database');
       axios
         .post(
-          'http://localhost:3002/admin/addCourse',
+          'http://3.110.201.21:3002/admin/addCourse',
           {
             course_name: values.course_name,
             course_description: values.course_description,
@@ -84,7 +84,7 @@ const Managecources = () => {
     let cid = id;
     setUploadStatus('Uploading Image');
     axios
-      .post('http://localhost:3002/admin/addCourseThumbnail', image, {
+      .post('http://3.110.201.21:3002/admin/addCourseThumbnail', image, {
         headers: {
           accessToken: localStorage.getItem('accessToken'),
         },
@@ -95,7 +95,7 @@ const Managecources = () => {
   const updateCourse = (cid, fName) => {
     axios
       .post(
-        'http://localhost:3002/admin/updateCourse',
+        'http://3.110.201.21:3002/admin/updateCourse',
         {
           offset: cid,
           fName: fName,

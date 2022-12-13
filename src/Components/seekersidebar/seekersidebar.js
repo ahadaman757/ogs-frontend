@@ -75,7 +75,7 @@ const Seekersidebar = (props) => {
               seticon(dashbordicon);
             }}
             onClick={() => {
-              navigate("/dashboard");
+              navigate("/jobssearch");
             }}
           >
             <span>
@@ -97,7 +97,7 @@ const Seekersidebar = (props) => {
               seticon2(dashbordiconb2);
             }}
             onClick={() => {
-              navigate("/managejobs");
+              navigate("/manageyourcvs");
             }}
           >
             <span>
@@ -118,55 +118,16 @@ const Seekersidebar = (props) => {
             onMouseLeave={() => {
               seticon3(dashbordiconb3);
             }}
+            onClick={() => {
+              navigate("/myjobs");
+            }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
             </span>
             {displayside ? "" : "Mailbox"}
           </a>
-          <div className="collapse" id="collapseExample2">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample3"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample3"
-            onMouseEnter={() => {
-              seticon4(dashbordiconw4);
-            }}
-            onMouseLeave={() => {
-              seticon4(dashbordiconb4);
-            }}
-          >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon4} />
-            </span>
-            {displayside ? "" : "Setting"}
-          </a>
-          <div className="collapse" id="collapseExample3">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>{" "}
+
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -180,24 +141,15 @@ const Seekersidebar = (props) => {
             onMouseLeave={() => {
               seticon5(dashbordiconb5);
             }}
+            onClick={() => {
+              navigate("/jobalert");
+            }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
             </span>
             {displayside ? "" : " Power Tools"}
           </a>
-          <div className="collapse" id="collapseExample4">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>
           <a
             className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -211,6 +163,9 @@ const Seekersidebar = (props) => {
             onMouseLeave={() => {
               seticon6(dashbordiconw6);
             }}
+            onClick={() => {
+              navigate("/createcv");
+            }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon6} />
@@ -218,25 +173,13 @@ const Seekersidebar = (props) => {
 
             {displayside ? "" : "CV Search"}
           </a>
-          <div className="collapse" id="collapseExample5">
-            <div className={`card card-body ${styles.dasgbordopssas}`}>
-              <ul className={`${styles.dasgbordops}`}>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-                <li>
-                  <a>Sub title1</a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
       <div
         className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          marginLeft: displayside ? "3%" : "13%",
-          width: displayside ? "97%" : "87%",
+          marginLeft: displayside ? "0%" : "0%",
+          width: displayside ? "100%" : "100%",
         }}
       >
         <div>
@@ -253,21 +196,6 @@ const Seekersidebar = (props) => {
           </button> */}
         </div>
         <div className="mx-5 d-flex align-items-center ">
-          <div
-            className={`mx-2 d-flex align-items-center  ${styles.navbarsrcon}`}
-          >
-            <input className={` ${styles.navbarsrinput}`} />
-            <button className={`px-2 ${styles.navbarsrbtn}`}>
-              <span>
-                <img src={Searchicon} />
-              </span>
-            </button>
-          </div>
-          <button className={`px-2 ${styles.navbarnotibtn}`}>
-            <span>
-              <img src={notifilogo} />
-            </span>
-          </button>
           <button className={`px-2 ${styles.navbarprofbtn}`}>
             <span>
               <img style={{ width: "43px" }} src={userlogo} />
@@ -287,17 +215,7 @@ const Seekersidebar = (props) => {
             <ul className="dropdown-menu">
               <li>
                 <a className="dropdown-item" href="#">
-                  Action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
+                  Logout
                 </a>
               </li>
             </ul>

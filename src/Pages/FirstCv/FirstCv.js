@@ -187,11 +187,7 @@ const SignUpCv = () => {
 
   return (
     <div className="asdesaser">
-      <DashboardNavbar side={display} />
-      <div
-        className={`pt-5 ${Styles.Postajobmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
-      >
+      <div className={`pt-5 ${Styles.Postajobmain} `}>
         <form onSubmit={CvFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
             <div className="p-3">
@@ -204,7 +200,7 @@ const SignUpCv = () => {
                 Asterisk (*) indicates required field
               </p> */}
               <div className="row">
-                <div className="col-6">
+                <div className="col-md-6">
                   <div>
                     <TextInput
                       id="first_name"
@@ -231,7 +227,7 @@ const SignUpCv = () => {
                     />
                   </div>
                 </div>
-                <div className="col-6 d-flex justify-content-center align-items-center  ">
+                <div className="col-md-6 d-flex justify-content-center align-items-center  ">
                   <UploadImageSide
                     id="image"
                     formik={CvFormIk}

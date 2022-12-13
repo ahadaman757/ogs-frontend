@@ -55,7 +55,7 @@ const Footer = () => {
           <Link to="/register" className="ogsfonts14">
             Employer Sign Up
           </Link>
-          <Link to="/seeker" className="ogsfonts14">
+          <Link to="/cv" className="ogsfonts14">
             Seeker Sign Up
           </Link>
         </div>

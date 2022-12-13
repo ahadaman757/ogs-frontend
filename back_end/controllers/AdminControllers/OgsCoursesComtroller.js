@@ -11,8 +11,17 @@ var storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
+var storageTwo = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'logo');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
 var upload = multer({ storage: storage }).any();
+var uploadTwo = multer({ storage: storageTwo }).any();
 
 const addCourse = async (req, res, next) => {
   try {
@@ -77,10 +86,22 @@ const deleteCourse = async (req, res, next) => {
   }
 };
 
+const uploadLogo = async (req, res, next) => {
+  uploadTwo(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+    return res.json({ code: 1, message: 'File Uploaded' });
+  });
+};
+
 export {
   addCourse,
   addCourseThumbnail,
   updateCourse,
+  uploadLogo,
   getCourses,
   deleteCourse,
 };
