@@ -21,11 +21,11 @@ then find buisness_typee
 ## HomePage API
 
 ====> Pakistani Job
-URL: http://localhost:3002/general/homePageJobsPK
+URL: http://3.110.201.21:3002/general/homePageJobsPK
 Type: Get
 Example:
 axios
-.get("http://localhost:3002/general/homePageJobsPK")
+.get("http://3.110.201.21:3002/general/homePageJobsPK")
 .then((res) => console.log(res));
 
 ## Get Courses API

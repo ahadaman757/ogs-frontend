@@ -27,9 +27,8 @@ const GeneralSettings = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${
-          data ? 'adminsider' : 'sidebarmarginmax'
-        }`}
+        className={`${Styles.Managejobsmain} ${data ? 'adminsider' : 'sidebarmarginmax'
+          }`}
       >
         <div className="container">
           <div className="mt-5">
@@ -58,7 +57,7 @@ const GeneralSettings = () => {
                         image.append('file', logoSelected);
                         axios
                           .post(
-                            'http://localhost:3002/admin/uploadLogo',
+                            'http://3.110.201.21:3002/admin/uploadLogo',
                             image,
                             {
                               headers: {

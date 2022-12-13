@@ -16,7 +16,7 @@ const Manageemployer = () => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3002/admin/employers", {
+      .get("http://3.110.201.21:3002/admin/employers", {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },

@@ -12,7 +12,7 @@ const Jobcard = ({ job_data }) => {
   const [AppliedCvs, setAppliedCvs] = useState(false);
   const CheckApplied = () => {
     const job_id = job_data.id
-    axios.post("http://localhost:3002/jobs/checkjobapply", {
+    axios.post("http://3.110.201.21:3002/jobs/checkjobapply", {
       job_id: job_id
     }, {
       headers: {

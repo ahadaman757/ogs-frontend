@@ -24,7 +24,7 @@ const Managenewslettersub = () => {
     if (emailValue != "") {
       axios
         .post(
-          "http://localhost:3002/admin/addNewsLetterSubscriber",
+          "http://3.110.201.21:3002/admin/addNewsLetterSubscriber",
           {
             value: emailValue,
           },
@@ -53,7 +53,7 @@ const Managenewslettersub = () => {
     if (page !== pager.currentPage) {
       axios
         .post(
-          `http://localhost:3002/admin/getNewsLetterSubscribers`,
+          `http://3.110.201.21:3002/admin/getNewsLetterSubscribers`,
           { page: page },
           {
             headers: {

@@ -145,7 +145,7 @@ const AddressDetails = ({ sel, setformData, data, LogoData, formData, employerRe
 
     }, [])
     useEffect(() => {
-        axios.post('http://localhost:3002/get_city_by_country_id', {
+        axios.post('http://3.110.201.21:3002/get_city_by_country_id', {
             country_id: AddressinformationFormik.values.country || 1
         }).then(res => {
 
@@ -205,7 +205,7 @@ const AddressDetails = ({ sel, setformData, data, LogoData, formData, employerRe
 function Register() {
     const [employerRegsiterOptions, setemployerRegsiterOptions] = useState()
     useEffect(() => {
-        axios.get('http://localhost:3002/employer_register_options').then(res => {
+        axios.get('http://3.110.201.21:3002/employer_register_options').then(res => {
             setemployerRegsiterOptions(res.data)
         }).catch(error => {
             console.log(error)

@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
   const [content, setContent] = useState();
 
   useEffect(() => {
-    axios.get("http://localhost:3002/general/getPrivacyPolicy").then((res) => {
+    axios.get("http://3.110.201.21:3002/general/getPrivacyPolicy").then((res) => {
       setContent(res.data.content[0][0].content);
       setLoading(false);
     });

@@ -16,7 +16,7 @@ const Manageyoucvs = () => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:3002/users/my_cvs", {
+      .get("http://3.110.201.21:3002/users/my_cvs", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
@@ -31,9 +31,8 @@ const Manageyoucvs = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div

@@ -77,7 +77,7 @@ const Sendnewslettergen = () => {
                       className={`px-4 py-3 ogsfonts14 mt-5  ${Styles.btnc}`}
                       onClick={() => {
                         axios.post(
-                          "http://localhost:3002/admin/addNewsGeneral",
+                          "http://3.110.201.21:3002/admin/addNewsGeneral",
                           {
                             data: editorData,
                           },
