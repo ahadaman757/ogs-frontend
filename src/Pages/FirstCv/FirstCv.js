@@ -8,13 +8,16 @@ import * as Yup from "yup";
 import axios from "axios";
 import { UploadImageSide } from "../authpages/Registeration";
 const SignUpCv = () => {
-  const [LogoData, setLogoData] = useState();
-  const [PassportFile, setPassportFile] = useState();
+  const [cvResponse, setcvResponse] = useState("")
+  const [FormikError, setFormikError] = useState(null)
+  const [ProfileImage, setProfileImage] = useState(null)
+  const [cvError, setcvError] = useState("")
+  const [JobTitles, setJobTitles] = useState([]);
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();
   const [Description, setDescription] = useState("");
-
   const [dropDownOptions, setdropDownOptions] = useState("");
+  console.log(ProfileImage)
   const display = (d) => {
     console.log("value");
     console.log(d);
@@ -31,11 +34,14 @@ const SignUpCv = () => {
   console.log(dropDownOptions);
   const CvFormIk = useFormik({
     initialValues: {
+
+      passport_photo: "",
+      image: '',
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
       re_type_password: "",
-      first_name: "",
-      last_name: "",
       // cv Info
       interested_in: "",
       industry: "",
@@ -60,7 +66,6 @@ const SignUpCv = () => {
       institution: "",
       max_experience: "",
       career_level: "",
-      position: "",
       nationality: "",
       religion: "",
       marital_status: "",
@@ -72,14 +77,26 @@ const SignUpCv = () => {
       min_experience: "",
     },
     validationSchema: Yup.object({
-      //comment
 
-      email: Yup.string("invalid type").required("Required"),
-      first_name: Yup.string("invalid type").required("Required"),
+      passport_photo: Yup
+        .mixed()
+        .required("You need to provide a file")
+      ,
+      image: Yup
+        .mixed()
+        .required("You need to provide a file"),
+
+      first_name: Yup.string("invalid type").required("First Name is Required"),
       last_name: Yup.string("invalid type").required("Required"),
+      email: Yup.string("invalid type").required("Required"),
+      password: Yup.string().required("Password is Required"),
+      re_type_password: Yup.string().oneOf(
+        [Yup.ref("password"), null],
+        "Passwords must match"
+      ),
       interested_in: Yup.string("invalid type").required("Required"),
-      industry: Yup.string("invalid type").required("Required"),
-      job_title: Yup.string("invalid type").required("Required"),
+      industry: Yup.number("invalid type").required("Required"),
+      job_title: Yup.number("invalid type").required("Required"),
       f_name: Yup.string("invalid type").required("Required"),
       gender: Yup.string("invalid type").required("Required"),
       dob: Yup.string("invalid type").required("Required"),
@@ -99,7 +116,6 @@ const SignUpCv = () => {
       institution: Yup.string("invalid type").required("Required"),
       max_experience: Yup.string("invalid type").required("Required"),
       career_level: Yup.string("invalid type").required("Required"),
-      position: Yup.string("invalid type").required("Required"),
       nationality: Yup.string("invalid type").required("Required"),
       religion: Yup.string("invalid type").required("Required"),
       marital_status: Yup.string("invalid type").required("Required"),
@@ -109,17 +125,10 @@ const SignUpCv = () => {
       weight: Yup.string("invalid type").required("Required"),
       height: Yup.string("invalid type").required("Required"),
       min_experience: Yup.string("invalid type").required("Required"),
-      password: Yup.string().required("Password is Required"),
-      re_type_password: Yup.string().oneOf(
-        [Yup.ref("password"), null],
-        "Passwords must match"
-      ),
     }),
     onSubmit: (values) => {
       const fullFormData = { ...values };
       const formdata = new FormData();
-      formdata.append("image", LogoData);
-      formdata.append("passport_photo", PassportFile);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
@@ -131,10 +140,18 @@ const SignUpCv = () => {
           },
         })
         .then((res) => {
-          alert("account created");
+
+          setcvResponse("Account Created")
         })
         .catch((error) => {
           console.log(error);
+          setcvError(error.response.data.message)
+          // setcvError("error occured while creating CV")
+        }).finally(() => {
+          setTimeout(() => {
+            setcvResponse("")
+            setcvError("")
+          }, 5000)
         });
     },
   });
@@ -152,6 +169,22 @@ const SignUpCv = () => {
         console.log(error);
       });
   }, [CvFormIk.values.country]);
+  useEffect(() => {
+
+    axios
+      .post("http://3.110.201.21:3002/get_job_titles_by_industry_id", {
+        industry_id: CvFormIk.values.industry || 1,
+      })
+      .then((res) => {
+        console.log(res);
+        setJobTitles(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [CvFormIk.values.industry]);
+  console.log(CvFormIk)
+
   return (
     <div className="asdesaser">
       <div className={`pt-5 ${Styles.Postajobmain} `}>
@@ -181,11 +214,13 @@ const SignUpCv = () => {
                     />
                     <TextInput id="email" label="Email" formik={CvFormIk} />
                     <TextInput
+                      type="password"
                       id="password"
                       label="Password"
                       formik={CvFormIk}
                     />
                     <TextInput
+                      type="password"
                       id="repeat_password"
                       label="Repeat Password"
                       formik={CvFormIk}
@@ -194,9 +229,13 @@ const SignUpCv = () => {
                 </div>
                 <div className="col-md-6 d-flex justify-content-center align-items-center  ">
                   <UploadImageSide
-                    setLogoData={setLogoData}
+                    id="image"
+                    formik={CvFormIk}
                     title="Upload Profile Photo"
                   />
+                  {/* {
+                    ProfileImage && <img className={`border-round ${Styles.profile_img} `} src={ProfileImage} />
+                  } */}
                 </div>
               </div>
               <hr />
@@ -204,14 +243,7 @@ const SignUpCv = () => {
                 <h3 className={`${Styles.formSectionHeading}`}>
                   Job / Internship Requirement
                 </h3>
-                <div className="col-md-6">
-                  <TextInput
-                    id="job_title"
-                    label="Job Title"
-                    formik={CvFormIk}
-                  />
-                </div>
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <List
                     id="industry"
                     options={dropDownOptions.functional_area}
@@ -219,6 +251,23 @@ const SignUpCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
+                <div className="col-md-6">
+                  <List
+                    id="job_title"
+                    options={JobTitles}
+                    label="Job Title"
+                    formik={CvFormIk}
+                  />
+                </div>
+
+                {/* <div className="col-md-6">
+                  <TextInput
+                    id="job_title"
+                    label="Job Title"
+                    formik={CvFormIk}
+                  />
+                </div> */}
+
                 <div className="col-md-6">
                   <List
                     id="interested_in"
@@ -236,14 +285,14 @@ const SignUpCv = () => {
                 <div className="col-md-6">
                   <TextInput label="Full Name" id="f_name" formik={CvFormIk} />
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <List
                     label="Position"
                     id="position"
                     options={dropDownOptions.position}
                     formik={CvFormIk}
                   />
-                </div>
+                </div> */}
                 <div className="col-md-6">
                   <List
                     label="Gender"
@@ -361,9 +410,9 @@ const SignUpCv = () => {
                 </div>
                 <div className="col-md-6">
                   <FileUpload
-                    id="passport_id"
+                    formik={CvFormIk}
+                    id="passport_photo"
                     name="passport_photo"
-                    setFileData={setPassportFile}
                     label="Passport Photo"
                   />
                 </div>
@@ -379,7 +428,7 @@ const SignUpCv = () => {
                   <TextInput
                     id="passport_issue_date"
                     type="date"
-                    label="Passport expiry"
+                    label="Passport Issue Date"
                     formik={CvFormIk}
                   />
                 </div>
@@ -458,6 +507,25 @@ const SignUpCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
+                <div className="col-md-6">
+                  {/* {
+                    CvFormIk.errors && <p className="text-danger">
+                      {
+                        Object.values(CvFormIk.errors)[0]
+                      }
+                    </p>
+                  } */}
+                  {
+                    cvResponse && <p className="text-success">
+                      Account Created with Cv
+                    </p>
+                  }
+                  {
+                    cvError && <p className="text-danger fw-bold">
+                      {cvError}
+                    </p>
+                  }
+                </div>
               </div>
               <hr />
               <div className="d-flex justify-content-end">
@@ -465,6 +533,7 @@ const SignUpCv = () => {
                   Register{" "}
                 </button>
               </div>
+
             </div>
           </div>
         </form>

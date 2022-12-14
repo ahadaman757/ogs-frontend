@@ -57,3 +57,8 @@
   font-size: 24px;
   font-weight: 500;
 }
+
+.profile_img {
+  width: 150px;
+  height: 150px;
+}

@@ -31,9 +31,8 @@ const Manageyoucvs = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
-        }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
+          }`}
       >
         <div className="container">
           <div

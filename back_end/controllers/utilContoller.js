@@ -26,6 +26,18 @@ const GetCityByCountry = async (req, res, next) => {
     return next(error);
   }
 };
+const GetJobTitlesByIndustry = async (req, res, next) => {
+  try {
+    const industry_id = req.body.industry_id;
+    console.log("city");
+    const [job_titles, metadata] = await sequelize.query(
+      `select id,name from sub_category where cat_id = ${industry_id} `
+    );
+    res.json(job_titles);
+  } catch (error) {
+    return next(error);
+  }
+};
 const GetEmployerOptions = async (req, res, next) => {
   try {
     const [positions, metapositions] = await sequelize.query(
@@ -60,4 +72,4 @@ const SkillsForJobByid = async (req, res, next) => {
   }
 };
 
-export default { GetCityByCountry, GetEmployerOptions, SkillsForJobByid };
+export default { GetCityByCountry, GetEmployerOptions, SkillsForJobByid, GetJobTitlesByIndustry };
