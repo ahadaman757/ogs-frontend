@@ -25,10 +25,10 @@ const Cvsearch = () => {
               CVs.
             </p>
             <div className={`row`}>
-              <div className="col-6">
+              <div className="col-md-6 my-2">
                 <input className={` ${Styles.InputField}`} />
               </div>
-              <div className="col-6 d-flex">
+              <div className="col-md-6 my-2 d-flex">
                 <div
                   className={` input-group flex-row align-items-center me-2  ${Styles.Cvsearchstin}`}
                 >
