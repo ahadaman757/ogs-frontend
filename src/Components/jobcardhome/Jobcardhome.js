@@ -43,7 +43,7 @@ const Jobcardhome = ({ job_data }) => {
     navigate("/jobpopseeker", { state: { job_data: job_data, AppliedCvs } });
   };
   return (
-    <div className={`p-3 my-2 ${Styles.Jobcardmain}`}>
+    <div className={`p-3 me-2 ${Styles.Jobcardmain}`}>
       <div className=" d-flex align-items-center">
         <div className="d-flex">
           <p className="m-1 ogsfonts14"> Posted Date: {job_data.posted_at} </p>

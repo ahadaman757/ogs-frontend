@@ -70,7 +70,7 @@ const BrowseOver = () => {
             ) : (
               AllJobs.map((job_data) => {
                 return (
-                  <div className="col-md-4 p-4  ">
+                  <div className="col-md-4 my-2  ">
                     <Jobcardseeker job_data={job_data} />
                   </div>
                 );

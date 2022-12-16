@@ -63,23 +63,14 @@ export const Jobs = () => {
               <p>No Jobs Found</p>
             ) : (
               AllJobs.map((job_data) => {
-                return <Jobcardhome job_data={job_data} />;
+                return (
+                  <div className="my-2">
+                    {" "}
+                    <Jobcardhome job_data={job_data} />
+                  </div>
+                );
               })
             )}
-          </div>
-        </div>
-        <br />
-        <br />
-        <div className={`${styles.pakistanJobs__container}`}>
-          <div>
-            <h2>Middle East Jobs</h2>
-          </div>
-        </div>
-        <br />
-        <br />
-        <div className={`${styles.pakistanJobs__container}`}>
-          <div>
-            <h2>International Jobs</h2>
           </div>
         </div>
       </div>

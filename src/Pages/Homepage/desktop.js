@@ -18,10 +18,9 @@ const Desktop = () => {
       <Navbar />
       <HeroSec />
       <BrowseOver />
-      <About />
+
       <BrowseJobs />
-      <Reviews />
-      <Newsletter />
+
       <Footer />
     </div>
   );
