@@ -1,101 +1,72 @@
-import { useEffect, useState } from 'react';
-import styles from './homepage.module.css';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import styles from "./homepage.module.css";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import Jobcardhome from "../../Components/jobcardhome/Jobcardhome";
+import { useFormik } from "formik";
 export const Jobs = () => {
-  const [JobData, setJobData] = useState('');
+  const [JobData, setJobData] = useState("");
   const [inJobData, setinJobData] = useState([]);
-  const [jobsLoading, setJobsLoading] = useState(true);
-  const jobs = [
-    {
-      id: 1,
-      title: 'Casing Technician',
-      company: 'OGS ManPower',
-      apply: 'We are looking for 3 or 4 personnel who have experience',
+
+  const { state } = useLocation();
+  const [AllJobs, setAllJobs] = useState([]);
+  const [jobsLoading, setjobsLoading] = useState(false);
+  const [cities, setcities] = useState();
+  const [dropDownOptions, setdropDownOptions] = useState("");
+  const filtersFormik = useFormik({
+    initialValues: {
+      start_date: "",
+      end_date: "",
+      country: "",
+      city: "",
+      education_level: "",
+      max_experience: "",
+      min_age: "",
+      max_age: "",
+      gender: "",
+      marital_status: "",
+      current_salary: "",
+      expected_salary: "",
     },
-    {
-      id: 2,
-      title: 'Casing Technician',
-      company: 'OGS ManPower',
-      apply: 'We are looking for 3 or 4 personnel who have experience',
+    onSubmit: (values) => {
+      console.log(values);
     },
-    {
-      id: 3,
-      title: 'Casing Technician',
-      company: 'OGS ManPower',
-      apply: 'We are looking for 3 or 4 personnel who have experience',
-    },
-  ];
+  });
+
   useEffect(() => {
-    // GET USER DATA
-    axios.get('http://3.110.201.21:3002/general/homePageJobsPK').then((res) => {
-      setJobData(res.data.response[0]);
-      setJobsLoading(false);
-    });
-    axios.get('http://3.110.201.21:3002/general/homePageJobsPK').then((res) => {
-      setinJobData(res.data.response[0]);
-      setJobsLoading(false);
-    });
+    setjobsLoading(true);
+    axios
+      .get("http://3.110.201.21:3002/jobs/view_all_jobs")
+      .then((res) => {
+        console.log(res.data);
+        setAllJobs(res.data);
+        setjobsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setjobsLoading(false);
+      });
   }, []);
 
-  console.log('asasas', JobData);
+  console.log("asasas", JobData);
   return (
-    <div style={{ backgroundColor: '#f5f5f5' }}>
+    <div style={{ backgroundColor: "#f5f5f5" }}>
       <div className="container">
         <br />
         <br />
         <div className={`${styles.pakistanJobs__container}`}>
           <div>
             <h2>Pakistan Jobs</h2>
+            {jobsLoading ? (
+              <span>Jobs Loading</span>
+            ) : AllJobs.length == 0 ? (
+              <p>No Jobs Found</p>
+            ) : (
+              AllJobs.map((job_data) => {
+                return <Jobcardhome job_data={job_data} />;
+              })
+            )}
           </div>
-          <table style={{ width: '100%', backgroundColor: 'white' }}>
-            <thead
-              style={{
-                backgroundColor: '#DAEFFC',
-                borderTop: '1px solid #2089D4',
-              }}
-            >
-              <tr style={{ paddingTop: '10px' }}>
-                <th
-                  style={{
-                    paddingTop: '10px',
-                    paddingBottom: '10px',
-                    paddingLeft: '40px',
-                  }}
-                >
-                  Job Title
-                </th>
-                <th style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                  Company
-                </th>
-                <th style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                  Apply
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {!jobsLoading
-                ? JobData.map((item) => (
-                  <tr
-                    key={item.id}
-                    style={{ borderBottom: '1px solid #CED4DA' }}
-                  >
-                    <td
-                      style={{
-                        width: '300px',
-                        paddingLeft: '40px',
-                        paddingTop: '15px',
-                        paddingBottom: '15px',
-                      }}
-                    >
-                      {item.job_title}
-                    </td>
-                    <td style={{ width: '400px' }}>Pakistan</td>
-                    <td>{item.job_description}</td>
-                  </tr>
-                ))
-                : 'Loading... Please wait'}
-            </tbody>
-          </table>
         </div>
         <br />
         <br />
@@ -103,50 +74,6 @@ export const Jobs = () => {
           <div>
             <h2>Middle East Jobs</h2>
           </div>
-          <table style={{ width: '100%', backgroundColor: 'white' }}>
-            <thead
-              style={{
-                backgroundColor: '#DAEFFC',
-                borderTop: '1px solid #2089D4',
-              }}
-            >
-              <tr style={{ paddingTop: '10px' }}>
-                <th
-                  style={{
-                    paddingTop: '10px',
-                    paddingBottom: '10px',
-                    paddingLeft: '40px',
-                  }}
-                >
-                  Job Title
-                </th>
-                <th style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                  Company
-                </th>
-                <th style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                  Apply
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {jobs.map((item) => (
-                <tr key={item.id} style={{ borderBottom: '1px solid #CED4DA' }}>
-                  <td
-                    style={{
-                      width: '300px',
-                      paddingLeft: '40px',
-                      paddingTop: '15px',
-                      paddingBottom: '15px',
-                    }}
-                  >
-                    {item.title}
-                  </td>
-                  <td style={{ width: '400px' }}>{item.company}</td>
-                  <td>{item.apply}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
         <br />
         <br />
@@ -154,55 +81,6 @@ export const Jobs = () => {
           <div>
             <h2>International Jobs</h2>
           </div>
-          <table style={{ width: '100%', backgroundColor: 'white' }}>
-            <thead
-              style={{
-                backgroundColor: '#DAEFFC',
-                borderTop: '1px solid #2089D4',
-              }}
-            >
-              <tr style={{ paddingTop: '10px' }}>
-                <th
-                  style={{
-                    paddingTop: '10px',
-                    paddingBottom: '10px',
-                    paddingLeft: '40px',
-                  }}
-                >
-                  Job Title
-                </th>
-                <th style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                  Company
-                </th>
-                <th style={{ paddingTop: '10px', paddingBottom: '10px' }}>
-                  Apply
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {!jobsLoading
-                ? inJobData.map((item) => (
-                  <tr
-                    key={item.id}
-                    style={{ borderBottom: '1px solid #CED4DA' }}
-                  >
-                    <td
-                      style={{
-                        width: '300px',
-                        paddingLeft: '40px',
-                        paddingTop: '15px',
-                        paddingBottom: '15px',
-                      }}
-                    >
-                      {item.job_title}
-                    </td>
-                    <td style={{ width: '400px' }}>Pakistan</td>
-                    <td>{item.job_description}</td>
-                  </tr>
-                ))
-                : 'Loading... Please wait'}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>

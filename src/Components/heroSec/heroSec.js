@@ -1,113 +1,80 @@
 import "./hero.css";
 import Hri from "../../Assets/Images/Vector 177.png";
+import Styles from "./hero.module.css";
 const HeroSec = () => {
   return (
     <div className="">
-      <div className=" heroSec d-flex align-items-center justify-content-center">
+      <div className=" heroSec py-5 d-flex align-items-center justify-content-center">
         <div className="container ">
-          <div className="text-center text-white">
-            <h1 className="ogsfonts48 my-5">Find Your Next Dream Job</h1>
-            <p className="ogsfonts16 my-5">Easiest way to find a perfect job</p>
+          <div className="text-center ">
+            <h1 className="ogsfonts48 my-2">Find Your Next Dream Job</h1>
+            <p className="ogsfonts16 my-2">Easiest way to find a perfect job</p>
           </div>
           <div className="row justify-content-center">
             <div className="col-md-4 my-2">
-              <div className="input-group flex-row align-items-center inp">
-                <input
-                  type="text"
-                  className="form-control inp1"
-                  aria-label="Text input with dropdown button"
-                />
-                <div className="hrwe"></div>
-                <button
-                  className="btn btn-outline-secondary dropdown-toggle btmxo ogsfonts15"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  City
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Separated link
-                    </a>
-                  </li>
-                </ul>
+              <div className="input-group d-flex row  ">
+                <div className={`d-flex  my-2 ${Styles.inputcon}`}>
+                  <div
+                    className={`d-flex align-items-center ps-3 ${Styles.inputixon}`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-search"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                  </div>
+                  <input
+                    placeholder="Enter Job Title, Skills, Company or CV "
+                    className={`p-2 ${Styles.inputixont}`}
+                    type="text"
+                  />
+                </div>
               </div>
             </div>
-            <div className="col-md-2 my-2">
-              <div className="btn-group gpbte" role="group">
-                <button
-                  type="button"
-                  className="btn btn-primary dropbtns ogsfonts15  dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Search Job
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Dropdown link
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Dropdown link
-                    </a>
-                  </li>
-                </ul>
+            <div className="col-md-3 my-2">
+              <div className="input-group d-flex row  ">
+                <div className={`d-flex  my-2 ${Styles.inputcon}`}>
+                  <div
+                    className={`d-flex align-items-center ps-3 ${Styles.inputixon}`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-geo-alt-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                    </svg>
+                  </div>
+                  <input
+                    placeholder="All Countries"
+                    className={`p-2 ${Styles.inputixont}`}
+                    type="text"
+                  />
+                </div>
               </div>
             </div>
-            <div className="col-md-2 my-2 d-flex justify-content-center">
-              {" "}
-              <button className=" btnxds">Search</button>
+            <div className="col-md-2 my-2 d-flex align-items-center">
+              <div className="input-group align-items-center  ">
+                <button className={` me-3 ${Styles.btnsearchtxt}`}>
+                  Search by CV
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="row my-2">
-            <div className="col-10 d-flex justify-content-end px-5">
-              <a className="ogsfonts15 advance34">Advance Search</a>
+            <div className="col-md-2 my-2 d-flex align-items-center">
+              <div className="input-group align-items-center  ">
+                <button className={` me-3 ${Styles.btnsearchtxt}`}>
+                  Search by CV
+                </button>
+              </div>
             </div>
-          </div>
-          <div>
-            <ul className="uljob flex-wrap my-5 d-flex justify-content-center ogsfonts16">
-              <li className="mx-2">
-                <p>Populer Search:</p>
-              </li>
-              <li className="mx-2">
-                <a> Register Onlice CV</a>
-              </li>
-              <li className="mx-2">
-                <a>Register Empoyer</a>
-              </li>
-              <li className="mx-2">
-                <a>Post Job</a>
-              </li>
-              <li className="mx-2">
-                <a>Post Ad</a>
-              </li>
-              <li className="mx-2">
-                <a>OGS institue</a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

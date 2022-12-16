@@ -1,6 +1,8 @@
 .heroSec {
-  background: #2f23a1;
-  height: 80vh;
+  background: url(../../Assets/Images/header.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .inp {
   /* width: auto; */
@@ -48,7 +50,7 @@
   border-radius: 3px;
   color: white;
   width: 173px;
-  height: 52px;
+  height: 60px;
 }
 .advance34 {
   text-decoration: none;

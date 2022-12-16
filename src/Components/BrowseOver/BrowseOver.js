@@ -4,80 +4,78 @@ import MicroSoftlogo from "../../Assets/Images/microsoft 1.png";
 import Facebook from "../../Assets/Images/Vector (5).png";
 import Ibm from "../../Assets/Images/Vector (4).png";
 import Combo from "../../Assets/Images/combo shape.png";
-const jobs = [
-  {
-    title: "Acounting & Managment",
-    info: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis.",
-  },
-  {
-    title: "Acounting & Managment",
-    info: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis.",
-  },
-  {
-    title: "Acounting & Managment",
-    info: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis.",
-  },
-  {
-    title: "Acounting & Managment",
-    info: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis.",
-  },
-  {
-    title: "Acounting & Managment",
-    info: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis.",
-  },
-  {
-    title: "Acounting & Managment",
-    info: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nuncvulputate libero et velit interdum, ac aliquet odio mattis.",
-  },
-];
+import { useEffect, useState } from "react";
+
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import Jobcardseeker from "./../jobcardhome/Jobcardhome";
+import { useFormik } from "formik";
+
 const BrowseOver = () => {
+  const [JobData, setJobData] = useState("");
+  const [inJobData, setinJobData] = useState([]);
+
+  const { state } = useLocation();
+  const [AllJobs, setAllJobs] = useState([]);
+  const [jobsLoading, setjobsLoading] = useState(false);
+  const [cities, setcities] = useState();
+  const [dropDownOptions, setdropDownOptions] = useState("");
+  const filtersFormik = useFormik({
+    initialValues: {
+      start_date: "",
+      end_date: "",
+      country: "",
+      city: "",
+      education_level: "",
+      max_experience: "",
+      min_age: "",
+      max_age: "",
+      gender: "",
+      marital_status: "",
+      current_salary: "",
+      expected_salary: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
+  useEffect(() => {
+    setjobsLoading(true);
+    axios
+      .get("http://3.110.201.21:3002/jobs/view_all_jobs")
+      .then((res) => {
+        console.log(res.data);
+        setAllJobs(res.data);
+        setjobsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setjobsLoading(false);
+      });
+  }, []);
   return (
     <div className="container my-5">
       <div>
-        <div className="container">
-          <div className="d-flex flex-wrap justify-content-around align-items-center locont">
-            <img
-              className=""
-              style={{ height: "44px", width: "120px" }}
-              src={Googlelogo}
-            />
-            <img
-              src={MicroSoftlogo}
-              style={{ height: "26px", width: "120px" }}
-            />
-            <img style={{ height: "26px", width: "97px" }} src={Facebook} />
-            <img style={{ height: "48px", width: "120px" }} src={Ibm} />
-          </div>
-        </div>
-        <div className="row my-5  text-center d-flex justify-content-center">
-          <h1 className="col-12 ogsfonts48">
-            Browse From Over <span className="hdw">2000+</span> Jobs
-          </h1>
-          <p className="col-md-5 ogsfonts16">
-            The automated process starts as soon as your clothes go into the
-            machine. The outcome is gleaming clothes. Placeholder text commonly
-            used.
-          </p>
+        <div className="container"></div>
+        <div className="row my-5   d-flex justify-content-center">
+          <h1 className="col-12 ogsfonts48">Browse</h1>
         </div>
         <div className="container">
           <div className="row ">
-            {jobs.map(({ title, info }) => {
-              return (
-                <div className="col-md-4 p-4  applyingcard">
-                  <div className="d-flex justify-content-between my-2">
-                    <img src={Combo} />
-                    <button className=" parttimebtn">Part Time</button>
+            {jobsLoading ? (
+              <span>Jobs Loading</span>
+            ) : AllJobs.length == 0 ? (
+              <p>No Jobs Found</p>
+            ) : (
+              AllJobs.map((job_data) => {
+                return (
+                  <div className="col-md-4 p-4  ">
+                    <Jobcardseeker job_data={job_data} />
                   </div>
-                  <div>
-                    <h1 className="ogsfonts20 my-3">{title} </h1>
-                    <p className="ogsfonts14 my-3">{info}</p>
-                  </div>
-                  <div className="d-flex justify-content-end my-3">
-                    <button className="ogsfonts14 applybtn">Apply</button>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </div>

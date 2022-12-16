@@ -1,4 +1,4 @@
-import Styles from "./jobcard.module.css";
+import Styles from "./jobcardhome.module.css";
 import viewicon from "../../Assets/Images/eye.png";
 import React, { useState, useEffect } from "react";
 import shareicon from "../../Assets/Images/share.png";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import axios from "axios";
 
-const Jobcard = ({ job_data }) => {
+const Jobcardhome = ({ job_data }) => {
   const [Applied, setApplied] = useState(false);
   const [AppliedCvs, setAppliedCvs] = useState(false);
   const CheckApplied = () => {
@@ -57,15 +57,10 @@ const Jobcard = ({ job_data }) => {
         }}
       >
         <div className={`d-flex`}>
-          <h1 className="ogsfontstx m-0">
+          <h1 className={` m-0 ${Styles.ogsfont14}`}>
             {" "}
             {job_data.job_title} - {job_data.country} , {job_data.city}
           </h1>
-          <button className={`mx-2 ${Styles.filaneyebtn}`}>
-            <span>
-              <img src={viewicon} />
-            </span>
-          </button>
         </div>
       </div>
 
@@ -78,7 +73,7 @@ const Jobcard = ({ job_data }) => {
       <div className="d-flex flex-wrap m-0 my-2 ">
         {/* <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>
         <p className="ogsfonts14">Average salary based on similar jobs</p> */}
-        <b>Industry: </b> {job_data.industry}
+        <b>Industry : </b> {job_data.industry}
       </div>
       <div className="d-flex flex-wrap justify-content-between align-items-center">
         <div className="d-flex flex-wrap">
@@ -88,18 +83,14 @@ const Jobcard = ({ job_data }) => {
         </div>
       </div>
       <div>
-        {Applied ? (
-          <p className="ogsfonts14 m-1 text-bold text-success">Applied </p>
-        ) : (
-          <button
-            onClick={() => navigateToJobDetails(AppliedCvs)}
-            className={` mt-2 ogsfonts18 px-md-2 m-0 ${Styles.btnaply}`}
-          >
-            Apply for Job
-          </button>
-        )}
+        <button
+          onClick={() => navigate("/cv")}
+          className={` mt-2 ogsfonts18 px-md-2 m-0 ${Styles.btnaply}`}
+        >
+          Apply for Job
+        </button>
       </div>
     </div>
   );
 };
-export default Jobcard;
+export default Jobcardhome;

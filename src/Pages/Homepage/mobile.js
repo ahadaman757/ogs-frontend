@@ -10,19 +10,23 @@ import Footer from "../../Components/Footer/Footer";
 import Newnavbar from "../../Components/New navbar/Newnavber";
 import BlackNavbar from "./BlackNavbar";
 import HeroSection from "./HeroSection";
+import styles from "./homepage.module.css";
 import Companies from "./Companies";
 import Jobs from "./Jobs";
 import Courses from "./Courses";
-import Mobile from "./mobile";
-import Desktop from "./desktop";
-
-const Home = () => {
+const Mobile = () => {
   return (
-    <>
-      <Mobile />
-      <Desktop />
-    </>
+    <div className={`${styles.mobilesize}`}>
+      <BlackNavbar />
+
+      <HeroSection />
+
+      <Jobs />
+
+      <Courses />
+      <Footer />
+    </div>
   );
 };
 
-export default Home;
+export default Mobile;

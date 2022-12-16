@@ -1,0 +1,32 @@
+.inputixon {
+  background: #ffffff;
+  border-top: 1px solid #b5b5b5;
+  border-bottom: 1px solid #b5b5b5;
+  border-left: 1px solid #b5b5b5;
+  height: 58px;
+
+  border-radius: 3px 1px 1px 1px;
+}
+.inputixont {
+  border: none;
+  height: 58px;
+  width: 100%;
+
+  background: #ffffff;
+  border-top: 1px solid #b5b5b5;
+  border-bottom: 1px solid #b5b5b5;
+  border-right: 1px solid #b5b5b5;
+
+  border-radius: 1px 3px 3px 0px;
+}
+.inputcon {
+  width: 100%;
+}
+.btnsearchtxt {
+  border: none;
+  background: #00a4e5;
+  border-radius: 3px;
+  color: white;
+  height: 58px;
+  width: 100%;
+}

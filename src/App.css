@@ -73,7 +73,7 @@
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 21px;
+  font-size: 25px;
   line-height: 25px;
 }
 .ogsfonts28 {
@@ -84,6 +84,13 @@
   line-height: 28px;
 }
 
+.ogsfonts30 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%;
+}
 .ogsfonts32 {
   font-family: "Public Sans";
   font-style: normal;
@@ -319,4 +326,9 @@ button {
 }
 .ck-rounded-corners {
   width: 100% !important;
+}
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -110px;
+  margin-top: var(--bs-dropdown-spacer);
 }

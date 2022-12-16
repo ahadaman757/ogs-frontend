@@ -2,6 +2,8 @@
   background: #ffffff;
   border: 1px solid #ced4da;
   border-radius: 10px;
+  width: 350px;
+  height: 100%;
 }
 .Jobcardheading {
   color: #b50222;
@@ -82,4 +84,11 @@
   border-radius: 3px;
   color: white;
   height: 59px;
+  width: 100%;
+}
+.ogsfont14 {
+  font-size: 24px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
 }
