@@ -29,7 +29,7 @@ export const HeroSection = () => {
                   class="dropdown-item"
                   href="#"
                 >
-                  Action
+                  Employer login
                 </a>
               </li>
               <li>
@@ -40,7 +40,7 @@ export const HeroSection = () => {
                   class="dropdown-item"
                   href="#"
                 >
-                  Another action
+                  Seeker login
                 </a>
               </li>
             </ul>
@@ -64,7 +64,7 @@ export const HeroSection = () => {
                   class="dropdown-item"
                   href="#"
                 >
-                  Action
+                  Register as Employer
                 </a>
               </li>
               <li>
@@ -75,7 +75,7 @@ export const HeroSection = () => {
                   class="dropdown-item"
                   href="#"
                 >
-                  Another action
+                  Register as Seeker
                 </a>
               </li>
             </ul>

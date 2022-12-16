@@ -3,6 +3,8 @@ import styles from "./homepage.module.css";
 import { Link } from "react-router-dom";
 import Logo from "../../Assets/Images/image 1.png";
 import menuicon from "../../Assets/Images/menu-line-horizontal.svg";
+import flag from "../../Assets/Images/flagpack_gb-ukm.svg";
+import arrow from "../../Assets/Images/aroow.svg";
 const BlackNavbar = () => {
   return (
     <nav class="navbar container navbar-expand-lg bg-light">
@@ -17,9 +19,15 @@ const BlackNavbar = () => {
             <button
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              className={`p-2 me-3 ${styles.btnmenu1}`}
+              className={`p-2 me-3 ogsfonts16 ${styles.btnmenu1}`}
             >
+              <span className="me-1">
+                <img src={flag} />
+              </span>
               ENG
+              <span className="ms-1">
+                <img src={arrow} />
+              </span>
             </button>
             <ul class="dropdown-menu">
               <li>
@@ -66,34 +74,6 @@ const BlackNavbar = () => {
               <a class="nav-link" href="#">
                 Pricing
               </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
         </div>

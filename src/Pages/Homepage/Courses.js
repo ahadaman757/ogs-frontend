@@ -5,7 +5,7 @@ import Logo from "../../Assets/Images/image 1.png";
 const Courses = () => {
   return (
     <div style={{ backgroundColor: "#f5f5f5" }}>
-      <div className="my-3 container">
+      <div className="py-3 container">
         <h1 className="ogsfonts25">Courses</h1>
         <div className="d-flex justify-content-evenly flex-wrap">
           <div className={`p-3 my-3 ${Styles.coursecard}`}>
