@@ -81,7 +81,7 @@ AdminRouter.post('/deleteCourse', AdminAuth, deleteCourse);
 
 AdminRouter.post('/uploadLogo', AdminAuth, uploadLogo);
 
-AdminRouter.get('/getCategories', AdminAuth, getCategories);
+AdminRouter.post('/getCategories', AdminAuth, getCategories);
 
 // userRouter.get('/me', auth, usermecontroller)
 

@@ -27,7 +27,7 @@ const Managecategory = () => {
     const page = parseInt(params.get('page')) || 1;
     if (page !== pager.currentPage) {
       axios
-        .get(
+        .post(
           `http://3.110.201.21:3002/admin/getCategories`,
           { page: page },
           {
