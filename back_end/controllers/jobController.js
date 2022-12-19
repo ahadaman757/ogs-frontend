@@ -370,7 +370,7 @@ const getSaudiJobs = async (req, res, next) => {
       await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
     genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,jobtypes.job_type_title as job_type
     from job j 
-   left outer JOIN countries on j.country_id=countries.id
+   left outer JOIN countries on j.country_id=194
    left outer JOIN  cities on j.city_id=cities.id
    left outer JOIN careerlevels on career_level_id=careerlevels.id
    left outer JOIN  maxsalaries minSalary on	min_salary_id =minSalary.id
