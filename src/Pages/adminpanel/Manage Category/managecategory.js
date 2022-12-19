@@ -5,6 +5,7 @@ import InputField from '../../../Components/inputfield/inputfield';
 import Table from '../../../Components/table/table';
 import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
 import ManageCategoriesTable from '../../../Components/table/ManageCategoriesTable';
+import axios from 'axios';
 
 const detail = [
   {
@@ -14,6 +15,7 @@ const detail = [
 ];
 const Managecategory = () => {
   const [data, setData] = useState();
+  const [pager, setPager] = useState(0);
   const [loading, setLoading] = useState(true);
   const display = (d) => {
     setData(d);
