@@ -287,8 +287,11 @@ button {
 .sidebarwidthmin {
   width: 50px !important;
 }
+.sidebarwidthminn {
+  width: 0px !important;
+}
 .sidebarmarginmin {
-  margin-left: 55px !important;
+  margin-left: 0px !important;
 }
 .adminsider {
   margin-left: 0px !important;
@@ -297,9 +300,9 @@ button {
 .sidebarmarginmax {
   margin-left: 200px !important;
 }
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 720px) {
   .sidebarmarginmax {
-    margin-left: 55px !important;
+    margin-left: 0px !important;
   }
 }
 .srolll {

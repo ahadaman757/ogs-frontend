@@ -49,22 +49,75 @@ const DashboardNavbar = (props) => {
   return (
     <div className={`p-2 ${styles.DashboardNavbarmain}`}>
       <div
+        className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
+        style={{
+          width: displayside ? "100%" : "100%",
+        }}
+      >
+        <div>
+          <button
+            className={` ${styles.togglebtn}`}
+            onClick={() => {
+              setdisplay(!displayside);
+              handeler();
+            }}
+          >
+            <span>
+              <img src={toggle} />
+            </span>
+          </button>
+        </div>
+        <div className="mx-5 d-flex ogsfonts14 align-items-center ">
+          <button
+            onClick={() => {
+              navigate("/postajob");
+            }}
+            className={`px-2 ${styles.navbarnotibtn}`}
+          >
+            <span>
+              <img src={Posticon} />
+            </span>
+            Post a Job
+          </button>
+          <button className={`px-1 ${styles.navbarprofbtn}`}>
+            <span>
+              <img style={{ width: "43px" }} src={userlogo} />
+            </span>
+          </button>
+          <div className="dropdown">
+            <button
+              className={`px-1 m-0 dropdown-toggle ${styles.navbartogglebtn}`}
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span>
+                <img />
+              </span>
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <a
+                  onClick={() => {
+                    localStorage.setItem("accessToken", "");
+                    navigate("/");
+                  }}
+                  className="dropdown-item"
+                  href="#"
+                >
+                  logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
         // style={{ width: displayside ? "5%" : "200px" }}
         className={`d-flex align-item-center ${styles.sidebar} ${
-          displayside ? " sidebarwidthmin" : " sidebarwidthmax"
+          displayside ? " sidebarwidthminn" : " sidebarwidthmax"
         }`}
       >
-        <button
-          className={` ${styles.togglebtn}`}
-          onClick={() => {
-            setdisplay(!displayside);
-            handeler();
-          }}
-        >
-          <span>
-            <img src={toggle} />
-          </span>
-        </button>
         <h2>
           <b>{displayside ? "" : "OGS"}</b>
           {displayside ? "" : "Power"}
@@ -165,70 +218,6 @@ const DashboardNavbar = (props) => {
 
             {displayside ? "" : "CV Search"}
           </a>
-        </div>
-      </div>
-      <div
-        className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
-        style={{
-          width: displayside ? "100%" : "100%",
-        }}
-      >
-        <div>
-          {/* <button
-            className={` ${styles.togglebtn}`}
-            onClick={() => {
-              setdisplay(!displayside);
-              handeler();
-            }}
-          >
-            <span>
-              <img src={toggle} />
-            </span>
-          </button> */}
-        </div>
-        <div className="mx-5 d-flex ogsfonts14 align-items-center ">
-          <button
-            onClick={() => {
-              navigate("/postajob");
-            }}
-            className={`px-2 ${styles.navbarnotibtn}`}
-          >
-            <span>
-              <img src={Posticon} />
-            </span>
-            Post a Job
-          </button>
-          <button className={`px-1 ${styles.navbarprofbtn}`}>
-            <span>
-              <img style={{ width: "43px" }} src={userlogo} />
-            </span>
-          </button>
-          <div className="dropdown">
-            <button
-              className={`px-1 m-0 dropdown-toggle ${styles.navbartogglebtn}`}
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>
-                <img />
-              </span>
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a
-                  onClick={() => {
-                    localStorage.setItem("accessToken", "");
-                    navigate("/");
-                  }}
-                  className="dropdown-item"
-                  href="#"
-                >
-                  logout
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
