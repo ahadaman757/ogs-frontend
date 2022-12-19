@@ -22,11 +22,12 @@ const Managecategory = () => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
     const params = new URLSearchParams(location.search);
     const page = parseInt(params.get('page')) || 1;
     if (page !== pager.currentPage) {
       axios
-        .post(
+        .get(
           `http://3.110.201.21:3002/admin/getCategories`,
           { page: page },
           {
