@@ -7,17 +7,17 @@
 // import sequelize from "../config/db.js";
 // import JobPostOptions from "../models/Categories/JobPostOptions.js";
 
-import sequelize from "../../config/db.js";
-import paginate from "jw-paginate";
-import nodemailer from "nodemailer";
-import hbs from "nodemailer-express-handlebars";
-import path from "path";
+import sequelize from '../../config/db.js';
+import paginate from 'jw-paginate';
+import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
+import path from 'path';
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: 'gmail',
   auth: {
-    user: "ahadaman@jataq.com",
-    pass: "vhdcqlmzsdwooykz",
+    user: 'ahadaman@jataq.com',
+    pass: 'vhdcqlmzsdwooykz',
   },
 });
 
@@ -31,7 +31,7 @@ const addNewsletterSubscriber = async (req, res, next) => {
     if (checkExsisting[0].length > 0) {
       res.json({
         code: 0,
-        message: "Email already exists",
+        message: 'Email already exists',
       });
     } else {
       // CHECK IF USER IS A REGISTERED USER
@@ -42,7 +42,7 @@ const addNewsletterSubscriber = async (req, res, next) => {
         res.json({
           code: 0,
           message:
-            "This email belongs to a registered user which means he is already subscribed to your emails.",
+            'This email belongs to a registered user which means he is already subscribed to your emails.',
         });
       } else {
         const insertData = await sequelize.query(
@@ -50,7 +50,7 @@ const addNewsletterSubscriber = async (req, res, next) => {
         );
         res.json({
           code: 1,
-          message: "User Added",
+          message: 'User Added',
         });
       }
     }
@@ -92,7 +92,7 @@ const addNewsGeneral = async (req, res, next) => {
     const finalArray = userRegEmails[0].concat(newsletterSubEmail[0]);
 
     for (let i = 0; i < finalArray.length; i++) {
-      console.log("Email Sent to => " + finalArray[i].email);
+      console.log('Email Sent to => ' + finalArray[i].email);
     }
 
     // const handlebarOptions = {
@@ -136,10 +136,10 @@ const addNewsSeeker = async (req, res, next) => {
     );
     const finalArray = userRegEmails[0];
 
-    console.log("Received");
+    console.log('Received');
 
     for (let i = 0; i < finalArray.length; i++) {
-      console.log("Email Sent to => " + finalArray[i].email);
+      console.log('Email Sent to => ' + finalArray[i].email);
     }
 
     // const handlebarOptions = {
@@ -183,10 +183,10 @@ const addNewsEmployers = async (req, res, next) => {
     );
     const finalArray = userRegEmails[0];
 
-    console.log("Received");
+    console.log('Received');
 
     for (let i = 0; i < finalArray.length; i++) {
-      console.log("Email Sent to => " + finalArray[i].email);
+      console.log('Email Sent to => ' + finalArray[i].email);
     }
 
     // const handlebarOptions = {

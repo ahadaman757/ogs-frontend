@@ -34,6 +34,9 @@ import {
   updateCourse,
   uploadLogo,
 } from '../controllers/AdminControllers/OgsCoursesComtroller.js';
+
+import { getCategories } from '../controllers/AdminControllers/Categories.js';
+
 // const usermecontroller = require('../controllers/usermecontroller')
 
 // Register/Add Users to DataBase\
@@ -77,6 +80,8 @@ AdminRouter.get('/getCourses', AdminAuth, getCourses);
 AdminRouter.post('/deleteCourse', AdminAuth, deleteCourse);
 
 AdminRouter.post('/uploadLogo', AdminAuth, uploadLogo);
+
+AdminRouter.post('/getCategories', AdminAuth, getCategories);
 
 // userRouter.get('/me', auth, usermecontroller)
 

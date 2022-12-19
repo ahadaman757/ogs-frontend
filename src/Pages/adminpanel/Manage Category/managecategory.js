@@ -1,30 +1,53 @@
-import Styles from "./managecategory.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import InputField from "../../../Components/inputfield/inputfield";
-import Table from "../../../Components/table/table";
-import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
+import Styles from './managecategory.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import InputField from '../../../Components/inputfield/inputfield';
+import Table from '../../../Components/table/table';
+import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
+import ManageCategoriesTable from '../../../Components/table/ManageCategoriesTable';
+import axios from 'axios';
 
 const detail = [
   {
-    Code: "ewe",
-    Title: "qw",
+    Code: 'ewe',
+    Title: 'qw',
   },
 ];
 const Managecategory = () => {
   const [data, setData] = useState();
-
+  const [pager, setPager] = useState(0);
+  const [loading, setLoading] = useState(true);
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     setData(d);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line no-restricted-globals
+    const params = new URLSearchParams(location.search);
+    const page = parseInt(params.get('page')) || 1;
+    if (page !== pager.currentPage) {
+      axios
+        .post(
+          `http://3.110.201.21:3002/admin/getCategories`,
+          { page: page },
+          {
+            headers: {
+              accessToken: localStorage.getItem('accessToken'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  }, []);
+
   return (
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -51,10 +74,10 @@ const Managecategory = () => {
                   </button>
                 </div>
                 <div className="d-flex align-items-center">
-                  {" "}
+                  {' '}
                   <p className="ogsfonts16 m-0 me-3 ">
                     Total Subscriber Found: 50
-                  </p>{" "}
+                  </p>{' '}
                   <button
                     className={` ogsfonts16 px-4 py-3 ${Styles.btnplode}`}
                   >
@@ -63,7 +86,7 @@ const Managecategory = () => {
                 </div>
               </div>
 
-              <Table array={detail} Sr={"as"} Code={"asda"} Option={"werer"} />
+              <ManageCategoriesTable />
             </div>
           </div>
         </div>
