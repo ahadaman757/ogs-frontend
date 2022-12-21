@@ -16,11 +16,14 @@ const detail = [
 const Managecategory = () => {
   const [data, setData] = useState();
   const [pager, setPager] = useState(0);
+  const [categories, setCategories] = useState();
   const [loading, setLoading] = useState(true);
   const display = (d) => {
     setData(d);
   };
-
+  const handleTableLoading = (e) => {
+    setLoading(!loading);
+  };
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
     const params = new URLSearchParams(location.search);
@@ -37,10 +40,11 @@ const Managecategory = () => {
           }
         )
         .then((res) => {
-          console.log(res);
+          setCategories(res.data.pageOfItems);
+          setLoading(false);
         });
     }
-  }, []);
+  }, [loading]);
 
   return (
     <div className={`${Styles.back}`}>
@@ -53,40 +57,21 @@ const Managecategory = () => {
         <div className="container">
           <div className="mt-5">
             <h1 className="ogsfonts38">Welcome</h1>
-            <h1 className="ogsfonts20">to OGS manpower Administration Panel</h1>
+            <h1 className="ogsfonts20">
+              to OGS Man Power Administration Panel
+            </h1>
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Category Management Section</h1>
               <p className="ogsfonts16">Manage Category</p>
-              <div className="d-flex flex-wrap justify-content-between">
-                <div className="d-flex align-items-center">
-                  <p className="ogsfonts16 m-0 me-3 ">Select:</p>
-                  <button className={`me-3 ogsfonts16 ${Styles.btntick}`}>
-                    <span>
-                      <img className="me-2 " src={check} />
-                    </span>
-                    All
-                  </button>
-                  <button className={` ogsfonts16 ${Styles.btntick}`}>
-                    <span>
-                      <img className="me-2" src={check} />
-                    </span>
-                    None
-                  </button>
-                </div>
-                <div className="d-flex align-items-center">
-                  {' '}
-                  <p className="ogsfonts16 m-0 me-3 ">
-                    Total Subscriber Found: 50
-                  </p>{' '}
-                  <button
-                    className={` ogsfonts16 px-4 py-3 ${Styles.btnplode}`}
-                  >
-                    Upload Csv
-                  </button>
-                </div>
-              </div>
 
-              <ManageCategoriesTable />
+              {loading ? (
+                'Loading... Please wait...'
+              ) : (
+                <ManageCategoriesTable
+                  items={categories}
+                  handleTableLoading={handleTableLoading}
+                />
+              )}
             </div>
           </div>
         </div>
