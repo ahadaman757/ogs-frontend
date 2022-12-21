@@ -11,6 +11,7 @@ const ManageCategoriesTable = (props) => {
   const [catName, setCatName] = useState();
   const [subCategoryName, setSubCategoryName] = useState();
   const [subCategories, setSubCategories] = useState();
+  const [subCategoryLoading, setSubCategoryLoading] = useState(true);
   useEffect(() => {
     axios
       .post(
@@ -39,7 +40,10 @@ const ManageCategoriesTable = (props) => {
           },
         }
       )
-      .then((response) => setSubCategories(response.data.code));
+      .then((response) => {
+        setSubCategories(response.data.code);
+        setSubCategoryLoading(false);
+      });
   }, [catEditing]);
   return (
     <div className="container py-4">
@@ -280,12 +284,12 @@ const ManageCategoriesTable = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {subCategories.map((item) => (
+                    {/* {subCategories.map((item) => (
                       <tr key={item.id}>
                         <td>{item.name}</td>
                         <td>Delete</td>
                       </tr>
-                    ))}
+                    ))} */}
                   </tbody>
                 </table>
                 <br />

@@ -8,7 +8,7 @@ import { useState } from 'react';
 const Table = (props) => {
   const [update, setupdate] = useState(false);
   return (
-    <div className="container py-4">
+    <div className="container py-4" style={{ overflowX: 'auto' }}>
       <table className="table srolll">
         <thead>
           <tr>
@@ -16,7 +16,8 @@ const Table = (props) => {
             <th className="ogsfonts14">{props.title}</th>
             <th className="ogsfonts14">{props.description}</th>
             <th className="ogsfonts14">{props.institute_name}</th>
-            <th className="ogsfonts14">{props.action}</th>
+            <th className="ogsfonts14">Course Image</th>
+            <th className="ogsfonts14">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -31,9 +32,12 @@ const Table = (props) => {
                 <td className="ogsfonts14">{item.description}</td>
                 <td className="ogsfonts14">{item.institute_name}</td>
                 <td className="ogsfonts14">
-                  <img
-                    src={`http://3.110.201.21:3002/public/` + item.thumbnail}
-                  />
+                  <a
+                    href={`http://3.110.201.21:3002/public/` + item.thumbnail}
+                    target="_blank"
+                  >
+                    See image
+                  </a>
                 </td>
 
                 <td className="ogsfonts14">
