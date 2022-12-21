@@ -27,8 +27,9 @@ const GeneralSettings = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? 'adminsider' : 'sidebarmarginmax'
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? 'adminsider' : 'sidebarmarginmax'
+        }`}
       >
         <div className="container">
           <div className="mt-5">
@@ -36,7 +37,7 @@ const GeneralSettings = () => {
             <h1 className="ogsfonts20">to OGS manpower Administration Panel</h1>
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Content Management Section</h1>
-              <p className="ogsfonts16">Edit General Settings</p>
+              <p className="ogsfonts16">Update your current website logo</p>
               <div className="row">
                 <div className="col-md-5 me-3">
                   <div className="d-flex flex-column">

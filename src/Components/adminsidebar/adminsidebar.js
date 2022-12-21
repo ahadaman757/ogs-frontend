@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import styles from "./adminsidebar.module.css";
-import dashbordicon from "./../../Assets/Images/menu-home.png";
-import dashbordicon1 from "./../../Assets/Images/menu-home.svg";
-import dashbordiconb2 from "./../../Assets/Images/briefcase.png";
-import dashbordiconw2 from "./../../Assets/Images/briefcase 01.png";
-import dashbordiconb3 from "./../../Assets/Images/archive.svg";
-import dashbordiconw3 from "./../../Assets/Images/archive.png";
-import dashbordiconb4 from "./../../Assets/Images/folder.png";
-import dashbordiconw4 from "./../../Assets/Images/folderw.png";
-import dashbordiconb5 from "./../../Assets/Images/filter.png";
-import dashbordiconw5 from "./../../Assets/Images/filter 01.png";
-import dashbordiconw6 from "./../../Assets/Images/open book.svg";
-import dashbordiconb6 from "./../../Assets/Images/open bookw.png";
-import toggle from "./../../Assets/Images/indent-decrease.png";
-import Searchicon from "../../Assets/Images/search 03.svg";
-import notifilogo from "../../Assets/Images/notification 01.svg";
-import userlogo from "../../Assets/Images/user-circle.svg";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import styles from './adminsidebar.module.css';
+import dashbordicon from './../../Assets/Images/menu-home.png';
+import dashbordicon1 from './../../Assets/Images/menu-home.svg';
+import dashbordiconb2 from './../../Assets/Images/briefcase.png';
+import dashbordiconw2 from './../../Assets/Images/briefcase 01.png';
+import dashbordiconb3 from './../../Assets/Images/archive.svg';
+import dashbordiconw3 from './../../Assets/Images/archive.png';
+import dashbordiconb4 from './../../Assets/Images/folder.png';
+import dashbordiconw4 from './../../Assets/Images/folderw.png';
+import dashbordiconb5 from './../../Assets/Images/filter.png';
+import dashbordiconw5 from './../../Assets/Images/filter 01.png';
+import dashbordiconw6 from './../../Assets/Images/open book.svg';
+import dashbordiconb6 from './../../Assets/Images/open bookw.png';
+import toggle from './../../Assets/Images/indent-decrease.png';
+import Searchicon from '../../Assets/Images/search 03.svg';
+import notifilogo from '../../Assets/Images/notification 01.svg';
+import userlogo from '../../Assets/Images/user-circle.svg';
+import { Link } from 'react-router-dom';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Adminsidebar = (props) => {
   const [displayside, setdisplay] = useState(true);
@@ -32,7 +32,7 @@ const Adminsidebar = (props) => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       if (window.innerWidth <= 450) {
         setMobileActive(true);
       } else {
@@ -50,7 +50,7 @@ const Adminsidebar = (props) => {
       <div
         // style={{ width: displayside ? "5%" : "200px" }}
         className={`d-flex align-item-center ${styles.sidebar} ${
-          displayside ? " sidebarwidthminadmin" : " sidebarwidthmax"
+          displayside ? ' sidebarwidthminadmin' : ' sidebarwidthmax'
         }`}
       >
         <button
@@ -59,20 +59,20 @@ const Adminsidebar = (props) => {
             setdisplay(!displayside);
             handeler();
           }}
-          style={{ display: displayside ? "none" : " block" }}
+          style={{ display: displayside ? 'none' : ' block' }}
         >
           <span>
             <img src={toggle} />
           </span>
         </button>
         <h2>
-          <b>{displayside ? "" : "OGS"}</b>
-          {displayside ? "" : "Power"}
+          <b>{displayside ? '' : 'OGS'}</b>
+          {displayside ? '' : 'Power'}
         </h2>
         <div
           className={`d-flex flex-column align-items-start ${
-            displayside ? " align-items-center" : " align-items-start"
-          } ${displayside ? " px-0" : "px-2 "}`}
+            displayside ? ' align-items-center' : ' align-items-start'
+          } ${displayside ? ' px-0' : 'px-2 '}`}
         >
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
@@ -95,8 +95,8 @@ const Adminsidebar = (props) => {
               <ul className={`${styles.dasgbordops}`}>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
-                  <Link to="/ogsinstitute" className="tere ogsfonts14">
-                    OGS Institute
+                  <Link to="/generalsettings" className="tere ogsfonts14">
+                    Site Logo
                   </Link>
                 </li>
                 <li className="d-flex  my-2 align-items-center asdesas">
@@ -125,7 +125,7 @@ const Adminsidebar = (props) => {
                 </li>
               </ul>
             </div>
-          </div>{" "}
+          </div>{' '}
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -148,41 +148,41 @@ const Adminsidebar = (props) => {
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/manageseeker" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage Seeker
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/manageemployer" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage Employer
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managealljobs" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage all Jobs
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managejobsdispaly" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage Jobs Display Limits
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managerestricted" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     ManageRestricted Cvs
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>{" "}
+          </div>{' '}
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -205,13 +205,13 @@ const Adminsidebar = (props) => {
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managecategory" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage Category
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>{" "}
+          </div>{' '}
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -234,13 +234,13 @@ const Adminsidebar = (props) => {
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/manageCourses" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage Courses
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>{" "}
+          </div>{' '}
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -263,21 +263,21 @@ const Adminsidebar = (props) => {
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managenewslettersub" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Manage Newsletter Subscriber
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/sendnewslettergen" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Send Newsletter (General)
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/sendnewsletterseekers" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Send Newsletter (Seekers Only)
                   </Link>
                 </li>
@@ -287,13 +287,13 @@ const Adminsidebar = (props) => {
                     to="/sendnewsletteremployers"
                     className="tere ogsfonts14"
                   >
-                    {" "}
+                    {' '}
                     Send Newsletter (Employers Only)
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>{" "}
+          </div>{' '}
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -319,7 +319,7 @@ const Adminsidebar = (props) => {
                     to="/editemployerregistration"
                     className="tere ogsfonts14"
                   >
-                    {" "}
+                    {' '}
                     Edit Employer Registration Email
                   </Link>
                 </li>
@@ -329,27 +329,27 @@ const Adminsidebar = (props) => {
                     to="/editemployerregistration"
                     className="tere ogsfonts14"
                   >
-                    {" "}
+                    {' '}
                     Edit Employer Registration Email
                   </Link>
                 </li>
                 <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/editforgotpassword" className="tere ogsfonts14">
-                    {" "}
+                    {' '}
                     Edit Forgot Password Email
                   </Link>
                 </li>
               </ul>
             </div>
-          </div>{" "}
+          </div>{' '}
         </div>
       </div>
       <div
         className={`ps-md-5 d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
           // marginLeft: displayside ? "0%" : "14%",
-          width: displayside ? "100%" : "100%",
+          width: displayside ? '100%' : '100%',
         }}
       >
         <div>
@@ -359,7 +359,7 @@ const Adminsidebar = (props) => {
               setdisplay(!displayside);
               handeler();
             }}
-            style={{ display: displayside ? "block" : " none" }}
+            style={{ display: displayside ? 'block' : ' none' }}
           >
             <span>
               <img src={toggle} />
@@ -374,7 +374,7 @@ const Adminsidebar = (props) => {
           </button>
           <button className={`px-2 ${styles.navbarprofbtn}`}>
             <span>
-              <img style={{ width: "43px" }} src={userlogo} />
+              <img style={{ width: '43px' }} src={userlogo} />
             </span>
           </button>
           <div className="dropdown">
