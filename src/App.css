@@ -61,6 +61,13 @@
   font-size: 20px;
   line-height: 24px;
 }
+.ogsfonts21 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 24px;
+}
 
 .ogsfonts24 {
   font-family: "Public Sans";
@@ -285,7 +292,7 @@ button {
   transform: scale(10px 100px);
 }
 .sidebarwidthmin {
-  width: 50px !important;
+  width: 0px !important;
 }
 .sidebarwidthminn {
   width: 0px !important;
@@ -334,4 +341,7 @@ button {
   top: 100%;
   left: -110px;
   margin-top: var(--bs-dropdown-spacer);
+}
+.footerfontcolor {
+  color: white;
 }

@@ -16,6 +16,8 @@ import toggle from "./../../Assets/Images/indent-decrease.png";
 import Searchicon from "../../Assets/Images/search 03.svg";
 import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
+import desktologo from "../../Assets/Images/desktoplogo.jpg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -42,21 +44,6 @@ const Seekersidebar = (props) => {
           displayside ? " sidebarwidthmin" : " sidebarwidthmax"
         }`}
       >
-        <button
-          className={` ${styles.togglebtn}`}
-          onClick={() => {
-            setdisplay(!displayside);
-            handeler();
-          }}
-        >
-          <span>
-            <img src={toggle} />
-          </span>
-        </button>
-        <h2>
-          <b>{displayside ? "" : "OGS"}</b>
-          {displayside ? "" : "Power"}
-        </h2>
         <div
           className={`d-flex flex-column 
             ${displayside ? " px-0" : "px-2 "}`}
@@ -81,7 +68,7 @@ const Seekersidebar = (props) => {
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon1} />
             </span>
-            {displayside ? "" : "Dashboard"}
+            {displayside ? "" : "Jobs"}
           </a>
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
@@ -103,7 +90,7 @@ const Seekersidebar = (props) => {
             <span>
               <img className={` me-2 ${styles.dashbordimg}`} src={icon2} />
             </span>
-            {displayside ? "" : "Manage Jobs"}
+            {displayside ? "" : "Manage  CV"}
           </a>
           <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
@@ -125,7 +112,7 @@ const Seekersidebar = (props) => {
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
             </span>
-            {displayside ? "" : "Mailbox"}
+            {displayside ? "" : "My Jobs"}
           </a>
 
           <a
@@ -148,7 +135,7 @@ const Seekersidebar = (props) => {
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
             </span>
-            {displayside ? "" : " Power Tools"}
+            {displayside ? "" : " Job Alerts"}
           </a>
           <a
             className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
@@ -171,19 +158,21 @@ const Seekersidebar = (props) => {
               <img className={`me-2 ${styles.dashbordimg}`} src={icon6} />
             </span>
 
-            {displayside ? "" : "CV Search"}
+            {displayside ? "" : "Create Cv"}
           </a>
         </div>
       </div>
       <div
-        className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
+        className={`px-2 d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
           marginLeft: displayside ? "0%" : "0%",
           width: displayside ? "100%" : "100%",
         }}
       >
-        <div>
-          {/* <button
+        <div className="d-flex py-1">
+          <img className={`me-2 ${styles.mobilelogo}`} src={mobilelogo} />
+          <img className={`me-2 ${styles.desktologo}`} src={desktologo} />
+          <button
             className={` ${styles.togglebtn}`}
             onClick={() => {
               setdisplay(!displayside);
@@ -193,33 +182,14 @@ const Seekersidebar = (props) => {
             <span>
               <img src={toggle} />
             </span>
-          </button> */}
+          </button>
         </div>
-        <div className="mx-5 d-flex align-items-center ">
+        <div className=" d-flex align-items-center ">
           <button className={`px-2 ${styles.navbarprofbtn}`}>
             <span>
               <img style={{ width: "43px" }} src={userlogo} />
             </span>
           </button>
-          <div className="dropdown">
-            <button
-              className={`px-2 dropdown-toggle ${styles.navbartogglebtn}`}
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span>
-                <img />
-              </span>
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <a className="dropdown-item" href="#">
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
