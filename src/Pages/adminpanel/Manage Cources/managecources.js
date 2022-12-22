@@ -139,9 +139,7 @@ const Managecources = () => {
                 <div className="d-flex align-items-center"></div>
                 <div className="d-flex align-items-center">
                   {' '}
-                  <p className="ogsfonts16 m-0 me-3 ">
-                    Total Courses Found: 50
-                  </p>{' '}
+                  <p className="ogsfonts16 m-0 me-3 "></p>{' '}
                   <button
                     className={` ogsfonts16 px-4 py-3 ${Styles.btnplode}`}
                     data-bs-toggle="modal"
@@ -157,10 +155,10 @@ const Managecources = () => {
               ) : (
                 <Table
                   array={tabledata}
-                  Sr={'no.'}
+                  Sr={'Sr No.'}
                   Option={'werer'}
                   title={'Title'}
-                  description={'description'}
+                  description={'Description'}
                   institute_name={'Institute Name'}
                   updateHandler={updateHandler}
                 />

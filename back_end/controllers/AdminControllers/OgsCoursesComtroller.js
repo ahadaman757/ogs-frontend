@@ -16,7 +16,7 @@ var storageTwo = multer.diskStorage({
     cb(null, 'logo');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, 'logo.png');
   },
 });
 
