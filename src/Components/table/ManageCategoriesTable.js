@@ -46,7 +46,7 @@ const ManageCategoriesTable = (props) => {
       });
   }, [catEditing]);
   return (
-    <div className="container py-4">
+    <div className="container py-4" style={{ overflowX: 'auto' }}>
       <table className="table srolll">
         <thead>
           <tr>

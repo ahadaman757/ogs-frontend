@@ -6,6 +6,7 @@ import Table from '../../../Components/table/table';
 import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
 import ManageCategoriesTable from '../../../Components/table/ManageCategoriesTable';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const detail = [
   {
@@ -44,7 +45,7 @@ const Managecategory = () => {
           setLoading(false);
         });
     }
-  }, [loading]);
+  }, [loading, pager]);
 
   return (
     <div className={`${Styles.back}`}>
@@ -72,6 +73,24 @@ const Managecategory = () => {
                   handleTableLoading={handleTableLoading}
                 />
               )}
+              <Link to={{ search: `?page=1` }} style={{ marginRight: '10px' }}>
+                First
+              </Link>
+
+              <Link
+                to={{ search: `?page=${pager + 1}` }}
+                onClick={() => setPager(pager + 1)}
+                style={{ marginRight: '10px' }}
+              >
+                Next
+              </Link>
+              <Link
+                to={{ search: `?page=${pager != 1 ? pager - 1 : ''}` }}
+                onClick={() => setPager(pager - 1)}
+                style={{ marginRight: '10px' }}
+              >
+                Previous
+              </Link>
             </div>
           </div>
         </div>
