@@ -1,10 +1,10 @@
-import Styles from "./login.module.css";
-import bggside from "../../Assets/Images/sign-in-right.png";
-import InputField from "../../Components/inputfield/inputfield";
-import axios from "axios";
-import React, { useState } from "react";
+import Styles from './login.module.css';
+import bggside from '../../Assets/Images/sign-in-right.png';
+import InputField from '../../Components/inputfield/inputfield';
+import axios from 'axios';
+import React, { useState } from 'react';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 const EmployerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
@@ -18,11 +18,11 @@ const EmployerLogin = () => {
         <div className={`  row d-flex justify-content-center `}>
           <div className={`col-md-6 p-4 ${Styles.auth_page__model}`}>
             <div className="">
-              <h1>Logo</h1>
+              <h1>OGS Man Power</h1>
               <h3 className={`${Styles.form_heading_1}`}>Employer Login</h3>
               <p className={`${Styles.form_description}`}>
                 Registration with OGS (Pvt) Ltd is 100% free <br />
-                Please fill up this form to register free at OGS
+                Please fill up this form to login at OGS Man Power
               </p>
               <div className={`pt-5 ${Styles.from}`}>
                 {/* <InputField title={"Email"} onChange={setUserEmail} /> */}
@@ -42,7 +42,7 @@ const EmployerLogin = () => {
                 </div>
                 <div className="my-3">
                   <div className="d-flex justify-content-between">
-                    <p className="ogsfonts16">password</p>
+                    <p className="ogsfonts16">Password</p>
                     <p className={`ogsfonts16 ${Styles.InputFieldRe}`}></p>
                   </div>
 
@@ -67,10 +67,10 @@ const EmployerLogin = () => {
                           setLoginResponse(response.data.message);
                         } else {
                           localStorage.setItem(
-                            "accessToken",
+                            'accessToken',
                             response.data.accesstoken
                           );
-                          navigate("/dashboard");
+                          navigate('/dashboard');
                           setLoginResponse(response.data.message);
                         }
                       });
@@ -85,7 +85,7 @@ const EmployerLogin = () => {
           </div>
 
           <div className={`col-md-6  p-0  ${Styles.auth_img} `}>
-            <img style={{ width: "100%", height: "100%" }} src={bggside} />
+            <img style={{ width: '100%', height: '100%' }} src={bggside} />
           </div>
         </div>
       </div>

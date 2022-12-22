@@ -20,7 +20,7 @@ const SeekerLogin = () => {
         <div className={`  row `}>
           <div className={`col-md-6 p-4 ${Styles.auth_page__model}`}>
             <div className="container-fluid">
-              <h1>Logo</h1>
+              <h1>OGS Man Power</h1>
               <h3 className={`${Styles.form_heading_1}`}>Seeker Login</h3>
               <p className={`${Styles.form_description}`}>
                 Registration with OGS (Pvt) Ltd is 100% free <br />
