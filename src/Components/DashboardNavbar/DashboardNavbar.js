@@ -13,10 +13,14 @@ import dashbordiconw5 from "./../../Assets/Images/filter 01.png";
 import dashbordiconw6 from "./../../Assets/Images/open book.svg";
 import dashbordiconb6 from "./../../Assets/Images/open bookw.png";
 import toggle from "./../../Assets/Images/indent-decrease.png";
+import logout from "../../Assets/Images/logout.svg";
+import logoutw from "../../Assets/Images/logoutwhite.svg";
 import Searchicon from "../../Assets/Images/search 03.svg";
 import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
 import Posticon from "../../Assets/Images/postajob.svg";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
+import desktologo from "../../Assets/Images/desktoplogo.jpg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +28,7 @@ const DashboardNavbar = (props) => {
   const [displayside, setdisplay] = useState(true);
   const [icon1, seticon] = useState(dashbordicon);
   const [icon2, seticon2] = useState(dashbordiconb2);
-  const [icon3, seticon3] = useState(dashbordiconb3);
+  const [icon3, seticon3] = useState(logout);
   const [icon4, seticon4] = useState(dashbordiconb4);
   const [icon5, seticon5] = useState(dashbordiconb5);
   const [icon6, seticon6] = useState(dashbordiconw6);
@@ -54,7 +58,9 @@ const DashboardNavbar = (props) => {
           width: displayside ? "100%" : "100%",
         }}
       >
-        <div>
+        <div className="d-flex py-1">
+          <img className={`me-2 ${styles.mobilelogo}`} src={mobilelogo} />
+          <img className={`me-2 ${styles.desktologo}`} src={desktologo} />
           <button
             className={` ${styles.togglebtn}`}
             onClick={() => {
@@ -74,9 +80,6 @@ const DashboardNavbar = (props) => {
             }}
             className={`px-2 ${styles.navbarnotibtn}`}
           >
-            <span>
-              <img src={Posticon} />
-            </span>
             Post a Job
           </button>
           <button className={`px-1 ${styles.navbarprofbtn}`}>
@@ -85,7 +88,7 @@ const DashboardNavbar = (props) => {
             </span>
           </button>
           <div className="dropdown">
-            <button
+            {/* <button
               className={`px-1 m-0 dropdown-toggle ${styles.navbartogglebtn}`}
               type="button"
               data-bs-toggle="dropdown"
@@ -94,8 +97,8 @@ const DashboardNavbar = (props) => {
               <span>
                 <img />
               </span>
-            </button>
-            <ul className="dropdown-menu">
+            </button> */}
+            {/* <ul className="dropdown-menu">
               <li>
                 <a
                   onClick={() => {
@@ -108,7 +111,7 @@ const DashboardNavbar = (props) => {
                   logout
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>
@@ -118,10 +121,6 @@ const DashboardNavbar = (props) => {
           displayside ? " sidebarwidthminn" : " sidebarwidthmax"
         }`}
       >
-        <h2>
-          <b>{displayside ? "" : "OGS"}</b>
-          {displayside ? "" : "Power"}
-        </h2>
         <div
           className={`d-flex flex-column 
           ${displayside ? " align-items-center" : " "}
@@ -217,6 +216,30 @@ const DashboardNavbar = (props) => {
             </span>
 
             {displayside ? "" : "CV Search"}
+          </a>
+          <a
+            className={`btn btn-primary ogsfonts16  p-3   ${styles.sidedasbtn}`}
+            data-bs-toggle="collapse"
+            href="#collapseExample5"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample5"
+            onMouseEnter={() => {
+              seticon3(logoutw);
+            }}
+            onMouseLeave={() => {
+              seticon3(logout);
+            }}
+            onClick={() => {
+              localStorage.setItem("accessToken", "");
+              navigate("/");
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
+            </span>
+
+            {displayside ? "" : "Logout"}
           </a>
         </div>
       </div>

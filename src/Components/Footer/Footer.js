@@ -1,82 +1,121 @@
 import React from "react";
-import styles from "./Footer.module.css";
+import Styles from "./Footer.module.css";
 import Instagram from "../../Assets/Images/instagram.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="container">
-      <br />
-      <br />
-      <br />
-      <br />
+    <div className={`container py-3 ${Styles.Footermain}`}>
       <div>
-        <h2>
-          <b className="ogsfonts">OGS Man Power</b>
-        </h2>
+        <h1 className="footerfontcolor ogsfonts24">About Us</h1>
+        <p className="footerfontcolor ogsfonts16 ">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+          vulputate libero et velit interdum, ac aliquet odio mattis.
+        </p>
       </div>
-      <div className="row">
-        <div className="col-12 col-md-3 col-lg-3 ml-5">
-          <p className="ogsfonts14">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            vulputate libero et velit interdum, ac aliquet odio mattis.
-          </p>
-          <span>
-            <img src={Instagram} style={{ marginRight: "10px" }} />
-            <img src={Instagram} style={{ marginRight: "10px" }} />
-            <img src={Instagram} style={{ marginRight: "10px" }} />
-            <img src={Instagram} style={{ marginRight: "10px" }} />
-          </span>
-          <br />
-          <br />
-          <Link to="/employerlogin" className="primaryButtonOutline">
-            Post a job
-          </Link>
-        </div>
-        <div className="col-12 col-md-3 col-lg-3" id={`${styles.footerCol}`}>
-          <h3 className="ogsfonts20">Quick Links</h3>
-          <div className="d-flex flex-column">
-            <Link to="/" className="ogsfonts14">
-              Home
-            </Link>
-            <Link to="/aboutus" className="ogsfonts14">
-              About Us
-            </Link>
-            <Link to="/aboutus" className="ogsfonts14">
-              Contact
-            </Link>
-            <Link to="/ogscourses" className="ogsfonts14">
-              Courses
-            </Link>
+      <div>
+        <h1 className="footerfontcolor ogsfonts24">Browse Jobs</h1>{" "}
+        <div id="accordionPanelsStayOpenExample" className={`accordion  `}>
+          <div className={` accordion-item my-3 accordion234  `}>
+            {" "}
+            <h2 className={`accordion-header `} id="panelsStayOpen-headingTwo">
+              <button
+                className={`accordion-button collapsed ${Styles.acodin} `}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo"
+              >
+                By Country
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              className="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingTwo"
+            >
+              <div className="accordion-body accordion234"> dsdfw</div>{" "}
+            </div>
           </div>
-        </div>
-        <div className="col-12 d-flex flex-column col-md-3 col-lg-3">
-          <h3 className="ogsfonts20">Sign Up</h3>
-          <Link to="/register" className="ogsfonts14">
-            Employer Sign Up
-          </Link>
-          <Link to="/cv" className="ogsfonts14">
-            Seeker Sign Up
-          </Link>
-        </div>
-        <div className="col-12 d-flex flex-column col-md-3 col-lg-3">
-          <h3 className="ogsfonts20">Sign In</h3>
-          <Link to="/employerlogin" className="ogsfonts14">
-            Employer Sign In
-          </Link>
-          <Link to="/seekerlogin" className="ogsfonts14">
-            Seeker Sign In
-          </Link>
-        </div>
+          <div className={` accordion-item my-3 accordion234  `}>
+            {" "}
+            <h2
+              className={`accordion-header `}
+              id="panelsStayOpen-headingthree"
+            >
+              <button
+                className={`accordion-button collapsed ${Styles.acodin} `}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapsethree"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapsethree"
+              >
+                By City
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapsethree"
+              className="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingthree"
+            >
+              <div className="accordion-body accordion234"> dsdfw</div>{" "}
+            </div>
+          </div>
+          <div className={` accordion-item my-3 accordion234  `}>
+            {" "}
+            <h2 className={`accordion-header `} id="panelsStayOpen-headingFour">
+              <button
+                className={`accordion-button collapsed ${Styles.acodin} `}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseFour"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseFour"
+              >
+                By Jobs Title Category
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseFour"
+              className="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingFour"
+            >
+              <div className="accordion-body accordion234"> dsdfw</div>{" "}
+            </div>
+          </div>
+          <div className={` accordion-item my-3 accordion234  `}>
+            {" "}
+            <h2 className={`accordion-header `} id="panelsStayOpen-headingFour">
+              <button
+                className={`accordion-button collapsed ${Styles.acodin} `}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapsefive"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapsefive"
+              >
+                By Industry
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapsefive"
+              className="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingfive"
+            >
+              <div className="accordion-body accordion234"> dsdfw</div>{" "}
+            </div>
+          </div>
+        </div>{" "}
       </div>
-      <br />
-      <br />
-      <br />
-      <hr />
-      <p className="ogsfonts14">
-        Copyright ©2022 All rights reserved | This template is made with by
-        Jataq
-      </p>
+      <div>
+        <a>Faq</a>
+        <a>Privacy</a>
+        <a>Downloads</a>
+        <a>Gallery</a>
+        <a>Contact Us</a>
+      </div>
     </div>
   );
 };

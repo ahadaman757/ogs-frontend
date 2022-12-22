@@ -6,6 +6,7 @@ import Chart from "react-apexcharts";
 import userslogo from "../../Assets/Images/users 02.svg";
 import Active from "../../Components/Active/Active";
 import axios from "axios";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
 import { useEffect } from "react";
 
 const Dashboard = ({ parentToChild }) => {
@@ -71,12 +72,22 @@ const Dashboard = ({ parentToChild }) => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container-md">
           <div className="row py-4 px-md-4 mt-5">
             <div className="col-lg-9">
+              <div className={`p-3 d-flex ${Styles.companyconn}`}>
+                <div className="me-4">
+                  <img src={mobilelogo} />
+                </div>
+                <div>
+                  <h1 className="ogsfonts18">OGS (PVt) Limited</h1>
+                  <p className="ogsfonts14">My Default Company</p>
+                </div>
+              </div>
               <div className={`d-flex flex-wrap justify-content-between`}>
                 <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
                   <div className={``}>
@@ -98,63 +109,8 @@ const Dashboard = ({ parentToChild }) => {
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
                   </div>
                 </div>
-                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
-                  <div className={``}>
-                    <h1 className={`ogsfonts18`}>Shortlisted</h1>
-                    <p className={`ogsfonts12`}>Shorlisted candidates</p>
-                  </div>
-                  <div className={`d-flex justify-content-end`}>
-                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
-                  </div>
-                </div>
-                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
-                  <div className={``}>
-                    <h1 className={`ogsfonts18`}>Interviews</h1>
-                    <p className={`ogsfonts12`}>Interviews taken</p>
-                  </div>
-                  <div className={`d-flex justify-content-end`}>
-                    <h1 className={`ogsfonts38 ${Styles.jobsstac}`}>85</h1>
-                  </div>
-                </div>
               </div>
-              <div className={`my-3 p-3 ${Styles.Chartsecmain}`}>
-                <div className={`d-flex flex-wrap`}>
-                  <h1 className="ogsfonts18">Applications statistics</h1>
-                  <p className="ogsfonts14 mx-3">
-                    (who have applied to my jobs)
-                  </p>
-                </div>
-                <div
-                  className={` d-flex flex-wrap justify-content-between my-3 `}
-                >
-                  <div className={` d-flex align-items-start`}>
-                    <img style={{ width: "62px" }} src={userslogo} />
-                    <div>
-                      <p className={`p-0 my-0 mx-3 ogsfonts16`}>
-                        Total Applicants
-                      </p>
-                      <p className={`p-0 my-0 mx-3 ogsfonts16`}>159</p>
-                    </div>
-                  </div>
-                  <div className="">
-                    {" "}
-                    <Chart
-                      className={`${Styles.chart}`}
-                      options={options}
-                      series={series}
-                      type="bar"
-                    />
-                  </div>
-                </div>
-                <div className={`d-flex flex-wrap`}>
-                  {" "}
-                  <h1 className={`ogsfonts18`}>HOW INSTAMATCH</h1>
-                  <p className="ogsfonts14 mx-3">
-                    {" "}
-                    assisted me in finding talent?
-                  </p>
-                </div>
-              </div>
+
               <div>
                 <div
                   className={`d-flex justify-content-between align-items-center`}

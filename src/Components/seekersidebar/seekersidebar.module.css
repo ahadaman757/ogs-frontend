@@ -40,7 +40,7 @@
   z-index: 3;
   align-items: center;
   box-shadow: 5px 4px 25px rgba(0, 0, 0, 0.15);
-  top: 0px;
+  top: 54px;
   left: 0px;
 }
 
@@ -121,4 +121,19 @@ div.content {
 .navbartogglebtn {
   border: none;
   background: none;
+}
+.mobilelogo {
+  display: none;
+}
+.desktologo {
+  width: 172px;
+  height: 64px;
+}
+@media only screen and (max-width: 600px) {
+  .desktologo {
+    display: none;
+  }
+  .mobilelogo {
+    display: inline;
+  }
 }

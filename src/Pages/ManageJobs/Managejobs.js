@@ -64,12 +64,13 @@ const Managejobs = () => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div>
           <div className="container">
-            <div className="row p-4 mt-5">
+            <div className="row pt-4 mt-5">
               <div className="col-md-9">
                 <div className={` p-3 ${Styles.Managejobschild1}`}>
                   <h1 className={`ogsfonts25`}>

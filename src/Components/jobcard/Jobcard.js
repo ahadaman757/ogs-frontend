@@ -105,11 +105,13 @@ const Jobcard = (props) => {
         <div className="d-flex flex-wrap">
           <p className="my-0 ogsfonts14">63 Similar jobs</p>
           <p className="my-0 mx-sm-3 ogsfonts14">96 Total visits</p>
-          <p className="my-0 mx-sm-3 ogsfonts14">
-            Expiry Date: {props.data.last_date_apply}
-          </p>
         </div>
-        <div>
+        <div className="d-flex">
+          <div>
+            <p className="my-0 mx-sm-3 ogsfonts14">
+              Expiry Date: {props.data.last_date_apply}
+            </p>
+          </div>
           <FacebookShareButton
             url={"http://3.110.201.21:3000/managejobs"}
             className={`mx-2 Demo__some-network__share-button ${Styles.csdbtn}`}

@@ -39,9 +39,11 @@
   flex-direction: column;
   z-index: 3;
   /* align-items: center; */
-  box-shadow: 5px 4px 25px rgba(0, 0, 0, 0.15);
-  top: 55px;
+  box-shadow: 5px 10px 25px rgba(0, 0, 0, 0.15);
+  top: 71px;
   left: 0px;
+  transition: width 0.3s;
+  /* transform: scale(); */
 }
 
 .navbar {
@@ -51,7 +53,7 @@
   /* width: 86%; */
   background-color: #ffffff;
   position: fixed;
-  height: 56px;
+
   overflow: none;
   /* margin-left: 200px; */
   z-index: 1;
@@ -95,7 +97,7 @@ div.content {
   /* margin-right: 15px; */
 }
 .sidedasbtn:hover {
-  background: blue !important;
+  background: #00a4e5 !important;
 }
 .dasgbordops {
   list-style: none;
@@ -113,6 +115,12 @@ div.content {
 .navbarnotibtn {
   border: none;
   background: none;
+  background: #00a4e5;
+  border: 1px solid #00a4e5;
+  border-radius: 5px;
+  width: 106px;
+  height: 48px;
+  color: white;
 }
 .navbarprofbtn {
   border: none;
@@ -121,4 +129,19 @@ div.content {
 .navbartogglebtn {
   border: none;
   background: none;
+}
+.mobilelogo {
+  display: none;
+}
+.desktologo {
+  width: 172px;
+  height: 64px;
+}
+@media only screen and (max-width: 600px) {
+  .desktologo {
+    display: none;
+  }
+  .mobilelogo {
+    display: inline;
+  }
 }
