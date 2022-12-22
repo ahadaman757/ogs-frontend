@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CourseImg from "../../Assets/Images/course.png";
 import Styles from "./homepage.module.css";
-import Logo from "../../Assets/Images/image 1.png";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
 import axios from "axios";
 
 const Courses = () => {
@@ -33,8 +33,15 @@ const Courses = () => {
                 <div className="my-2">
                   {" "}
                   <div className={`p-3 my-3 ${Styles.coursecard}`}>
-                    <img src={Logo} />
-                    <h1 className="ogsfonts25">{item.institute_name}</h1>
+                    <img src={mobilelogo} />
+                    <div className="d-flex">
+                      <h1 className="ogsfonts20 me-1">Institute name: </h1>{" "}
+                      <h1 className="ogsfonts20">{item.institute_name}</h1>
+                    </div>
+                    <div className="d-flex">
+                      <p className="ogsfonts16 me-1">Description: </p>{" "}
+                      <p className="ogsfonts16">{item.description}</p>
+                    </div>
                     <img
                       className={` ${Styles.coursecardimg}`}
                       src={`http://3.110.201.21:3002/public/` + item.thumbnail}
