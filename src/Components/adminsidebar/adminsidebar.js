@@ -105,24 +105,24 @@ const Adminsidebar = (props) => {
                     Privacy Policy
                   </Link>
                 </li>
-                <li className="d-flex  my-2 align-items-center asdesas">
+                {/* <li className="d-flex  my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/contactussec" className="tere ogsfonts14">
                     Contact Us
                   </Link>
-                </li>
+                </li> */}
                 <li className="d-flex  my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/aboutussec" className="tere ogsfonts14">
                     About Us
                   </Link>
                 </li>
-                <li className="d-flex  my-2 align-items-center asdesas">
+                {/* <li className="d-flex  my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/faqs" className="tere ogsfonts14">
                     Faq's
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>{' '}
@@ -166,7 +166,7 @@ const Adminsidebar = (props) => {
                     Manage all Jobs
                   </Link>
                 </li>
-                <li className="d-flex my-2 align-items-center asdesas">
+                {/* <li className="d-flex my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/managejobsdispaly" className="tere ogsfonts14">
                     {' '}
@@ -179,7 +179,7 @@ const Adminsidebar = (props) => {
                     {' '}
                     ManageRestricted Cvs
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>{' '}
@@ -294,7 +294,7 @@ const Adminsidebar = (props) => {
               </ul>
             </div>
           </div>{' '}
-          <a
+          {/* <a
             className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample7"
@@ -342,7 +342,7 @@ const Adminsidebar = (props) => {
                 </li>
               </ul>
             </div>
-          </div>{' '}
+          </div>{' '} */}
         </div>
       </div>
       <div
