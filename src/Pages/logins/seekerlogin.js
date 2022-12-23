@@ -1,15 +1,15 @@
-import Styles from './login.module.css';
-import bggside from '../../Assets/Images/sign-in-right.png';
-import InputField from '../../Components/inputfield/inputfield';
-import React, { useState } from 'react';
-import axios from 'axios';
+import Styles from "./login.module.css";
+import bggside from "../../Assets/Images/sign-in-right.png";
+import InputField from "../../Components/inputfield/inputfield";
+import React, { useState } from "react";
+import axios from "axios";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const SeekerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [loginResponse, setLoginResponse] = useState();
-  console.log('dsd', loginResponse);
+  console.log("dsd", loginResponse);
 
   const navigate = useNavigate();
   return (
@@ -68,10 +68,10 @@ const SeekerLogin = () => {
                           setLoginResponse(response.data.message);
                         } else {
                           localStorage.setItem(
-                            'accessToken',
+                            "accessToken",
                             response.data.accesstoken
                           );
-                          // navigate("/");
+                          navigate("/jobssearch");
                           setLoginResponse(response.data.message);
                         }
                       });
@@ -85,7 +85,7 @@ const SeekerLogin = () => {
           </div>
 
           <div className={`col-md-6 p-0  ${Styles.auth_img} `}>
-            <img style={{ width: '100%', height: '100%' }} src={bggside} />
+            <img style={{ width: "100%", height: "100%" }} src={bggside} />
           </div>
         </div>
       </div>
