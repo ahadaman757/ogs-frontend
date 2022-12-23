@@ -21,7 +21,12 @@ const JobsSearch = () => {
   const [jobsLoading, setjobsLoading] = useState(false);
   const [cities, setcities] = useState();
   const [dropDownOptions, setdropDownOptions] = useState("");
-
+  const [find, setfind] = useState();
+  const [query, setquery] = useState("");
+  const [submit, setsubmit] = useState("");
+  const handleChange = (e) => {
+    setsubmit(query);
+  };
   const [applyFilters, setapplyFilters] = useState(false);
   const filtersFormik = useFormik({
     initialValues: {
@@ -67,15 +72,26 @@ const JobsSearch = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="row mt-5">
             <div className="">
               <div className="d-flex">
-                <input className={`me-3 ${Styles.InputField}`} />
-                <button className={` py-2 px-4 ${Styles.btnserfind}`}>
+                <input
+                  type="search"
+                  onChange={(e) => {
+                    setquery(e.target.value);
+                  }}
+                  className={`me-3 p-2 ${Styles.InputField}`}
+                />
+                <button
+                  type="submit"
+                  onClick={handleChange}
+                  className={` py-2 px-4 ${Styles.btnserfind}`}
+                >
                   Find
                 </button>
               </div>
@@ -84,10 +100,31 @@ const JobsSearch = () => {
               ) : AllJobs.length == 0 ? (
                 <p>No Jobs Found</p>
               ) : (
-                AllJobs.map((job_data) => {
+                AllJobs.filter((job_data) => {
+                  if (AllJobs == "") {
+                    return job_data;
+                  } else if (
+                    job_data.job_title
+                      .toLowerCase()
+                      .includes(submit.toLowerCase())
+                  ) {
+                    return job_data;
+                  }
+                }).map((job_data) => {
                   return <Jobcardseeker job_data={job_data} />;
                 })
               )}
+              {/* {AllJobs.filter((job_data) => {
+                if (AllJobs == "") {
+                  return job_data;
+                } else if (
+                  job_data.job_title.toLowerCase().includes(query.toLowerCase())
+                ) {
+                  return job_data;
+                }
+              }).map((job_data) => {
+                return <Jobcardseeker job_data={job_data} />;
+              })} */}
             </div>
           </div>
         </div>

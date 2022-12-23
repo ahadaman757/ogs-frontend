@@ -169,9 +169,9 @@ const Seekersidebar = (props) => {
           width: displayside ? "100%" : "100%",
         }}
       >
-        <div className="d-flex py-1">
-          <img className={`me-2 ${styles.mobilelogo}`} src={mobilelogo} />
-          <img className={`me-2 ${styles.desktologo}`} src={desktologo} />
+        <div className="d-flex ">
+          <img className={`me-2 p-2  ${styles.mobilelogo}`} src={mobilelogo} />
+          <img className={`me-2 p-2 ${styles.desktologo}`} src={desktologo} />
           <button
             className={` ${styles.togglebtn}`}
             onClick={() => {
