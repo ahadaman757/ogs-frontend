@@ -1,130 +1,92 @@
-import Styles from "../post a job/postajob.module.css";
-import { useState, useEffect } from "react";
-import Seekersidebar from "../../Components/seekersidebar/seekersidebar";
-import { TextInput, List, FileUpload } from "../Forms/InputFields";
-import TagInput from "../Forms/TagInput";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
-import { UploadImageSide } from "../authpages/Registeration";
-import { useNavigate } from "react-router-dom";
+import Styles from '../post a job/postajob.module.css';
+import { useState, useEffect } from 'react';
+import Seekersidebar from '../../Components/seekersidebar/seekersidebar';
+import { TextInput, List, FileUpload, FileUpload2 } from '../Forms/InputFields';
+import TagInput from '../Forms/TagInput';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
+import { UploadImageSide } from '../authpages/Registeration';
+import { useNavigate } from 'react-router-dom';
 const CreateCv = () => {
   const navigate = useNavigate();
   const [LogoData, setLogoData] = useState();
   const [PassportFile, setPassportFile] = useState();
   const [ProfileFile, setProfileFile] = useState();
-  const [data, Setdata] = useState("");
+  const [data, Setdata] = useState('');
   const [skills, setSkills] = useState();
-  const [Description, setDescription] = useState("");
+  const [Description, setDescription] = useState('');
 
-  const [dropDownOptions, setdropDownOptions] = useState("");
+  const [dropDownOptions, setdropDownOptions] = useState('');
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get("http://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
+    axios.get('http://3.110.201.21:3002/jobs/jobsoptions').then((res) => {
       setdropDownOptions(res.data);
     });
   };
   useEffect(() => {
     getjoboptions();
   }, []);
-  console.log(dropDownOptions);
   const CvFormIk = useFormik({
     initialValues: {
-      first_name: "",
-      last_name: "",
-      interested_in: "",
-      industry: "",
-      job_title: "",
-      f_name: "",
-      gender: "",
-      dob: "",
-      domicile: "",
-      postal_code: "",
-      mobile_number: "",
-      work_number: "",
-      home_number: "",
-      address: "",
-      country: "",
-      city: "",
-      id_card_no: "",
-      passport_number: "",
-      valid_upto: "",
-      passport_issue_date: "",
-      education_level: "",
-      degree_title: "",
-      institution: "",
-      max_experience: "",
-      career_level: "",
-      position: "",
-      nationality: "",
-      religion: "",
-      marital_status: "",
-      current_salary: "",
-      expected_salary: "",
-      skin_color: "",
-      weight: "",
-      height: "",
-      min_experience: "",
+      first_name: '',
+      last_name: '',
+      interested_in: '',
+      industry: '',
+      job_title: '',
+      f_name: '',
+      gender: '',
+      dob: '',
+      domicile: '',
+      postal_code: '',
+      mobile_number: '',
+      work_number: '',
+      home_number: '',
+      address: '',
+      country: '',
+      city: '',
+      id_card_no: '',
+      passport_number: '',
+      valid_upto: '',
+      passport_issue_date: '',
+      education_level: '',
+      degree_title: '',
+      institution: '',
+      max_experience: '',
+      career_level: '',
+      position: '',
+      nationality: '',
+      religion: '',
+      marital_status: '',
+      current_salary: '',
+      expected_salary: '',
+      skin_color: '',
+      weight: '',
+      height: '',
+      min_experience: '',
     },
-    validationSchema: Yup.object({
-      //comment
-
-      interested_in: Yup.string("invalid type").required("Required"),
-      industry: Yup.string("invalid type").required("Required"),
-      job_title: Yup.string("invalid type").required("Required"),
-      f_name: Yup.string("invalid type").required("Required"),
-      gender: Yup.string("invalid type").required("Required"),
-      dob: Yup.string("invalid type").required("Required"),
-      domicile: Yup.string("invalid type").required("Required"),
-      postal_code: Yup.string("invalid type").required("Required"),
-      mobile_number: Yup.string("invalid type").required("Required"),
-      work_number: Yup.string("invalid type").required("Required"),
-      home_number: Yup.string("invalid type").required("Required"),
-      address: Yup.string("invalid type").required("Required"),
-      country: Yup.string("invalid type").required("Required"),
-      city: Yup.string("invalid type").required("Required"),
-      id_card_no: Yup.string("invalid type").required("Required"),
-      passport_number: Yup.string("invalid type").required("Required"),
-      valid_upto: Yup.string("invalid type").required("Required"),
-      education_level: Yup.string("invalid type").required("Required"),
-      degree_title: Yup.string("invalid type").required("Required"),
-      institution: Yup.string("invalid type").required("Required"),
-      max_experience: Yup.string("invalid type").required("Required"),
-      career_level: Yup.string("invalid type").required("Required"),
-      position: Yup.string("invalid type").required("Required"),
-      nationality: Yup.string("invalid type").required("Required"),
-      religion: Yup.string("invalid type").required("Required"),
-      marital_status: Yup.string("invalid type").required("Required"),
-      current_salary: Yup.string("invalid type").required("Required"),
-      expected_salary: Yup.string("invalid type").required("Required"),
-      skin_color: Yup.string("invalid type").required("Required"),
-      weight: Yup.string("invalid type").required("Required"),
-      height: Yup.string("invalid type").required("Required"),
-      min_experience: Yup.string("invalid type").required("Required"),
-    }),
     onSubmit: (values) => {
-      console.log(values);
       const fullFormData = { ...values };
       const formdata = new FormData();
-      formdata.append("image", ProfileFile);
-      formdata.append("passport_photo", PassportFile);
+      formdata.append('image', ProfileFile);
+      console.log(PassportFile);
+      formdata.append('passport_photo', PassportFile);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
+
       axios
-        .post("http://3.110.201.21:3002/createcv", formdata, {
+        .post('http://3.110.201.21:3002/createcv', formdata, {
           headers: {
-            accesstoken: localStorage.getItem("accessToken"),
-            "Content-Type": "multipart/form-data",
-            "Access-Control-Allow-Origin": "*",
+            accesstoken: localStorage.getItem('accessToken'),
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*',
           },
         })
         .then((res) => {
-          alert("account created");
+          alert('account created');
         })
         .catch((error) => {
           console.log(error);
@@ -134,11 +96,10 @@ const CreateCv = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post("http://3.110.201.21:3002/get_city_by_country_id", {
+      .post('http://3.110.201.21:3002/get_city_by_country_id', {
         country_id: CvFormIk.values.country || 1,
       })
       .then((res) => {
-        console.log(res);
         setcities(res.data);
       })
       .catch((error) => {
@@ -149,8 +110,9 @@ const CreateCv = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Postajobmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Postajobmain} ${
+          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+        }`}
       >
         <form onSubmit={CvFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
@@ -190,7 +152,7 @@ const CreateCv = () => {
                   />
                 </div>
                 <div className="col-md-6">
-                  <FileUpload
+                  <FileUpload2
                     required
                     id="image"
                     name="image"
@@ -342,7 +304,7 @@ const CreateCv = () => {
                   />
                 </div>
                 <div className="col-md-6">
-                  <FileUpload
+                  <FileUpload2
                     required
                     id="passport_id"
                     name="passport_photo"
@@ -445,7 +407,7 @@ const CreateCv = () => {
               <hr />
               <div className="d-flex justify-content-end">
                 <button type="submit" className={`mx-2 ${Styles.btnPost}`}>
-                  Create cv{" "}
+                  Create cv{' '}
                 </button>
               </div>
             </div>
