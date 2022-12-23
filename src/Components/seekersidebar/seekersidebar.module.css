@@ -42,6 +42,7 @@
   box-shadow: 5px 4px 25px rgba(0, 0, 0, 0.15);
   top: 54px;
   left: 0px;
+  transition: width 0.3s;
 }
 
 .navbar {

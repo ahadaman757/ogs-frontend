@@ -73,9 +73,10 @@ const Jobpopseeker = () => {
           }
         });
         setUserCvs(filteredArray);
+        // setUserCvs(res);
       });
   }, []);
-  console.log(UserCvs);
+  console.log(UserCvs, "344344");
   return (
     <div>
       <Seekersidebar side={display} />
@@ -85,10 +86,6 @@ const Jobpopseeker = () => {
         }`}
       >
         <div className={`container mt-5 p-4 ${Styles.Jobpopchild}`}>
-          <div className={`d-flex justify-content-end`}>
-            <img src={removeicon} />
-          </div>
-
           <div className={`d-flex  flex-md-row flex-column-reverse   `}>
             <div className="pe-5">
               <img src={gasco} />
