@@ -109,6 +109,16 @@ const JobsSearch = () => {
                       .includes(submit.toLowerCase())
                   ) {
                     return job_data;
+                  } else if (
+                    job_data.country
+                      .toLowerCase()
+                      .includes(submit.toLowerCase())
+                  ) {
+                    return job_data;
+                  } else if (
+                    job_data.city.toLowerCase().includes(submit.toLowerCase())
+                  ) {
+                    return job_data;
                   }
                 }).map((job_data) => {
                   return <Jobcardseeker job_data={job_data} />;

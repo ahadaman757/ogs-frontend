@@ -13,6 +13,7 @@ export const Jobs = () => {
   const [jobsLoading, setjobsLoading] = useState(false);
   const [cities, setcities] = useState();
   const [dropDownOptions, setdropDownOptions] = useState("");
+  const [submit, setsubmit] = useState("asas");
   const filtersFormik = useFormik({
     initialValues: {
       start_date: "",
@@ -55,6 +56,34 @@ export const Jobs = () => {
         <br />
         <br />
         <div className={`${styles.pakistanJobs__container}`}>
+          <div className="my-3">
+            <h2>Gulf countries</h2>
+            {jobsLoading ? (
+              <span>Jobs Loading</span>
+            ) : AllJobs.length == 0 ? (
+              <p>No Jobs Found</p>
+            ) : (
+              AllJobs.filter((job_data) => {
+                if (
+                  job_data.country.toLowerCase() == "bahrain" ||
+                  job_data.country.toLowerCase() == "kuwait" ||
+                  job_data.country.toLowerCase() == "oman" ||
+                  job_data.country.toLowerCase() == "qatar" ||
+                  job_data.country.toLowerCase() == "saudi arabia" ||
+                  job_data.country.toLowerCase() == "united arab emirates"
+                ) {
+                  return job_data;
+                }
+              }).map((job_data) => {
+                return (
+                  <div className="my-2">
+                    {" "}
+                    <Jobcardhome job_data={job_data} />
+                  </div>
+                );
+              })
+            )}
+          </div>
           <div>
             <h2>Pakistan Jobs</h2>
             {jobsLoading ? (
@@ -62,7 +91,11 @@ export const Jobs = () => {
             ) : AllJobs.length == 0 ? (
               <p>No Jobs Found</p>
             ) : (
-              AllJobs.map((job_data) => {
+              AllJobs.filter((job_data) => {
+                if (job_data.country.toLowerCase() == "pakistan") {
+                  return job_data;
+                }
+              }).map((job_data) => {
                 return (
                   <div className="my-2">
                     {" "}
