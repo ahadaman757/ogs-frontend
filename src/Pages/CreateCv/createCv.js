@@ -31,6 +31,8 @@ const CreateCv = () => {
   }, []);
   const CvFormIk = useFormik({
     initialValues: {
+      passport_photo: '',
+      image: '',
       first_name: '',
       last_name: '',
       interested_in: '',
@@ -67,12 +69,10 @@ const CreateCv = () => {
       height: '',
       min_experience: '',
     },
+
     onSubmit: (values) => {
       const fullFormData = { ...values };
       const formdata = new FormData();
-      formdata.append('image', ProfileFile);
-      console.log(PassportFile);
-      formdata.append('passport_photo', PassportFile);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
@@ -86,7 +86,7 @@ const CreateCv = () => {
           },
         })
         .then((res) => {
-          alert('account created');
+          alert('CV Created');
         })
         .catch((error) => {
           console.log(error);
@@ -152,12 +152,17 @@ const CreateCv = () => {
                   />
                 </div>
                 <div className="col-md-6">
-                  <FileUpload2
+                  {/* <FileUpload2
                     required
                     id="image"
                     name="image"
                     setFileData={setProfileFile}
                     label="Profile Photo"
+                  /> */}
+                  <UploadImageSide
+                    id="image"
+                    formik={CvFormIk}
+                    title="Upload Profile Photo"
                   />
                 </div>
               </div>
@@ -304,11 +309,17 @@ const CreateCv = () => {
                   />
                 </div>
                 <div className="col-md-6">
-                  <FileUpload2
+                  {/* <FileUpload2
                     required
                     id="passport_id"
                     name="passport_photo"
                     setFileData={setPassportFile}
+                    label="Passport Photo"
+                  /> */}
+                  <FileUpload
+                    formik={CvFormIk}
+                    id="passport_photo"
+                    name="passport_photo"
                     label="Passport Photo"
                   />
                 </div>
