@@ -337,11 +337,11 @@ button {
 .ck-rounded-corners {
   width: 100% !important;
 }
-.dropdown-menu[data-bs-popper] {
+/* .dropdown-menu[data-bs-popper] {
   top: 100%;
   left: -110px;
   margin-top: var(--bs-dropdown-spacer);
-}
+} */
 .footerfontcolor {
   color: white;
 }

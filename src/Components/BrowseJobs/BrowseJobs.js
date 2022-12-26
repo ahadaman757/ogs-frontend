@@ -1,185 +1,66 @@
-import React, { useEffect, useState } from "react";
-import styles from "./BrowseJobs.module.css";
-
-const JobCards = ({ active }) => {
-  let posts = [
-    {
-      key: 1,
-      id: 1,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Abu Dhabi",
-      type: "Contract",
-    },
-    {
-      key: 2,
-      id: 1,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Abu Dhabi",
-      type: "Contract",
-    },
-    {
-      key: 3,
-      id: 1,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Abu Dhabi",
-      type: "Contract",
-    },
-    {
-      key: 4,
-      id: 2,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Middle East",
-      type: "Contract",
-    },
-    {
-      key: 5,
-      id: 2,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Middle East",
-      type: "Contract",
-    },
-    {
-      key: 6,
-      id: 2,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Middle East",
-      type: "Contract",
-    },
-    {
-      key: 7,
-      id: 2,
-      logo: "https://clovine.com/images/icon/main_logo.png",
-      heading: "Caing Technician, OGS Manpower",
-      description:
-        "We are looking for 3 or 4 personnel who have experience in running, dressing and maintaining a Volant CRTi casing running tool.",
-      location: "Middle East",
-      type: "Contract",
-    },
-  ];
-
-  const [jobs, setJobs] = useState(posts);
-  const [showJobs, setShowJobs] = useState([]);
-
-  useEffect(() => {
-    const filtered = posts.filter((post) => post.id == active);
-    setShowJobs([...filtered]);
-  }, [active]);
-
-  return (
-    <>
-      {showJobs.map((inner, index, arr) => {
-        console.log(arr);
-        return (
-          <div key={inner.key} className={`${styles.JobCards__Container}`}>
-            <div className={`${styles.JobCards__logo}`}>
-              <img src="https://clovine.com/images/icon/main_logo.png" />
-            </div>
-            <div className={``}>
-              <h2>
-                <br />
-                <b className="ogsfonts">Caing Technician, OGS Manpower</b>
-              </h2>
-              <p>
-                We are looking for 3 or 4 personnel who have experience in
-                running, dressing and maintaining a Volant CRTi casing running
-                tool.
-              </p>
-              <p className="ogsfonts">
-                <b>Job Location:</b> {inner.location}
-              </p>
-            </div>
-            <div className={`${styles.applyDiv}`}>
-              <p className="ogsfonts">
-                <b>Job Location:</b> Abu Dhabi
-              </p>
-              <button className={`${styles.aboutBtn}`}>Apply Now</button>
-            </div>
-          </div>
-        );
-      })}
-    </>
-  );
-};
+import { useEffect, useState } from "react";
+import CourseImg from "../../Assets/Images/course.png";
+import Styles from "./BrowseJobs.module.css";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
+import axios from "axios";
 
 const BrowseJobs = () => {
-  let f = [
-    {
-      id: 1,
-      name: "Featured Jobs",
-    },
-    {
-      id: 2,
-      name: "Middle East Jobs",
-    },
-    {
-      id: 3,
-      name: "Pakistan Jobs",
-    },
-    {
-      id: 4,
-      name: "International Jobs",
-    },
-    {
-      id: 5,
-      name: "Recent Jobs",
-    },
-  ];
-  const [filters, setFilters] = useState(f);
-  const [active, setActive] = useState(1);
+  const [jobsLoading, setjobsLoading] = useState(false);
+  const [dataCourses, setdataCourses] = useState("");
+  useEffect(() => {
+    setjobsLoading(true);
+    axios
+      .get("http://3.110.201.21:3002/general/getCourses")
+      .then((res) => {
+        setdataCourses(res.data.getAllCourses[0]);
+        setjobsLoading(false);
+      })
+      .catch((error) => {});
+  }, []);
+  console.log(dataCourses, "hhhhhhhhhh");
   return (
-    <div className="container">
-      <center>
-        <h2 className={`ogsfonts ${styles.BrowseJobsHeading}`}>
-          <span style={{ color: "#5200FF" }}>
-            <b>Browse</b>
-          </span>{" "}
-          <b>Job</b>
-        </h2>
-      </center>
-      <center>
-        <p className={`ogsfonts ${styles.introPara}`}>
-          The automated process starts as soon as your clothes go into the
-          machine. The outcome is gleaming clothes. Placeholder text commonly
-          used.
-        </p>
-      </center>
-      <div className={`${styles.JobsFilters}`}>
-        {filters.map(({ id, name }) => {
-          return (
-            <>
-              <span
-                key={id}
-                className={`ogsfonts`}
-                style={{ color: active == id ? "#5200FF" : "#9F9F9F" }}
-                onClick={() => setActive(id)}
-              >
-                {name}
-              </span>
-            </>
-          );
-        })}
+    <div style={{ backgroundColor: "#f5f5f5" }}>
+      <div className="py-3 container">
+        <h1 className="ogsfonts25">Courses</h1>
+        <div className="d-flex justify-content-evenly flex-wrap">
+          {jobsLoading ? (
+            <span>Jobs Loading</span>
+          ) : dataCourses.length == 0 ? (
+            <p>No Courses Found</p>
+          ) : (
+            dataCourses.map((item) => {
+              return (
+                <div className="m-2">
+                  {" "}
+                  <div className={`p-3 my-3 ${Styles.coursecard}`}>
+                    <img src={mobilelogo} />
+                    <div className="d-flex">
+                      <h1 className="ogsfonts20 me-1">Institute name: </h1>{" "}
+                      <h1 className="ogsfonts20">{item.institute_name}</h1>
+                    </div>
+                    <div className="d-flex">
+                      <p className="ogsfonts16 me-1">Description: </p>{" "}
+                      <p className="ogsfonts16">{item.description}</p>
+                    </div>
+                    <img
+                      className={` ${Styles.coursecardimg}`}
+                      src={`http://3.110.201.21:3002/public/` + item.thumbnail}
+                    />
+                    <div className="d-flex justify-content-between align-items-center my-2">
+                      <p className="m-0 ogsfonts14">Posted On: 12-12-2022</p>{" "}
+                      {/* <button
+                        className={`ogsfonts18 py-3 px-3 ${Styles.coursecardbbttn}`}
+                      >
+                        Apply Now
+                      </button> */}
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
       </div>
-      <br />
-      <JobCards active={active} />
-      <br />
     </div>
   );
 };

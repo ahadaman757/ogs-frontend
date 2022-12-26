@@ -1,4 +1,4 @@
-import Navbar from "../Homepage/BlackNavbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import TNavbar from "../Homepage/Navbar";
 import aboutimg from "../../Assets/Images/Rectangle 1100.png";
 import teammam from "../../Assets/Images/Ellipse 1200.png";
@@ -24,7 +24,7 @@ const AboutUs = () => {
   return (
     <div>
       <Navbar />
-      <TNavbar />
+
       <div className="aboutusmain">{/* <img src={aboutimg} /> */}</div>
       <div className="container">
         <div className="row justify-content-center">
