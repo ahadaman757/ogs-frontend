@@ -1,9 +1,10 @@
 import jwtDecode from "jwt-decode";
 
-const jwtCheck = () => {
+const jwtCheck = (e) => {
   if (
     localStorage.getItem("accessToken") &&
-    jwtDecode(localStorage.getItem("accessToken"))
+    jwtDecode(localStorage.getItem("accessToken")) &&
+    jwtDecode(localStorage.getItem("accessToken")).userType == e
   ) {
     const expiry = jwtDecode(localStorage.getItem("accessToken")).exp;
     const now = new Date();

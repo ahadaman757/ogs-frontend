@@ -73,7 +73,7 @@ const Jobcardhome = ({ job_data }) => {
       <div className="d-flex flex-wrap m-0 my-2 ">
         {/* <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>
         <p className="ogsfonts14">Average salary based on similar jobs</p> */}
-        <b>Industry : </b> {job_data.industry}
+        <b className="me-2">Industry : </b> {job_data.industry}
       </div>
       <div className="d-flex flex-wrap justify-content-between align-items-center">
         <div className="d-flex flex-wrap">

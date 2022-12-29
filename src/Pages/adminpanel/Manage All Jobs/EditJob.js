@@ -20,7 +20,7 @@ const EditJob = () => {
     setData(d);
   };
   useEffect(() => {
-    if (jwtCheck() === false) {
+    if (jwtCheck(3) === false) {
       navigate("/adminlogin");
     }
 
@@ -53,8 +53,9 @@ const EditJob = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

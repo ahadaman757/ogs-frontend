@@ -1,9 +1,15 @@
 import Styles from "./addfaq.module.css";
 import { useEffect, useState } from "react";
 import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 import InputField from "../../../Components/inputfield/inputfield";
 const Addfaq = () => {
   const [data, setData] = useState();
+  const navigate = useNavigate();
+  if (jwtCheck(3) === false) {
+    navigate("/adminlogin");
+  }
 
   const display = (d) => {
     console.log("value");

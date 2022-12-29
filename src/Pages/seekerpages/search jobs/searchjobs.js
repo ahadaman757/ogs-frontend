@@ -14,6 +14,8 @@ import { useFormik } from "formik";
 import { BasicDocument } from "../../../Components/pdfDownload";
 import { useState, useEffect } from "react";
 import Jobcardseeker from "../../../Components/jobcardseeker/Jobcard";
+import { useNavigate } from "react-router-dom";
+import jwtCheck from "../../../system/jwtChecker";
 
 const JobsSearch = () => {
   const { state } = useLocation();
@@ -47,6 +49,10 @@ const JobsSearch = () => {
       console.log(values);
     },
   });
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   const [data, Setdata] = useState("");
   const display = (d) => {
     console.log("value");

@@ -1,14 +1,17 @@
-import Styles from './login.module.css';
-import bggside from '../../Assets/Images/sign-in-right.png';
-import InputField from '../../Components/inputfield/inputfield';
-import axios from 'axios';
-import React, { useState } from 'react';
+import Styles from "./login.module.css";
+import bggside from "../../Assets/Images/sign-in-right.png";
+import InputField from "../../Components/inputfield/inputfield";
+import axios from "axios";
+import React, { useState } from "react";
+import Redalert from "../../Components/redalert/redalert";
+import Greenalert from "../../Components/greenalert/greenalert";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const EmployerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [loginResponse, setLoginResponse] = useState();
+  const [erroralert, Seterroralert] = useState(null);
   const navigate = useNavigate();
   return (
     <div
@@ -25,6 +28,14 @@ const EmployerLogin = () => {
                 Please fill up this form to login at OGS Man Power
               </p>
               <div className={`pt-5 ${Styles.from}`}>
+                {erroralert == null ? (
+                  ""
+                ) : erroralert ? (
+                  <Redalert message={"Please check your email or password"} />
+                ) : (
+                  <Greenalert message={"Login successfully"} />
+                )}
+
                 {/* <InputField title={"Email"} onChange={setUserEmail} /> */}
                 <div className="my-3">
                   <div className="d-flex justify-content-between">
@@ -33,11 +44,12 @@ const EmployerLogin = () => {
                   </div>
 
                   <input
-                    className={`${Styles.InputField}`}
+                    className={`p-2 ${Styles.InputField}`}
                     onChange={(e) => {
                       setUserEmail(e.target.value);
                       console.log(userEmail);
                     }}
+                    required
                   />
                 </div>
                 <div className="my-3">
@@ -47,13 +59,14 @@ const EmployerLogin = () => {
                   </div>
 
                   <input
-                    className={`${Styles.InputField}`}
+                    className={`p-2 ${Styles.InputField}`}
                     onChange={(e) => setUserPassword(e.target.value)}
                     type="password"
+                    required
                   />
                 </div>
                 {/* <InputField title={"password"} onChange={setUserPassword} /> */}
-                {loginResponse}
+
                 <button
                   onClick={() => {
                     axios
@@ -65,12 +78,20 @@ const EmployerLogin = () => {
                         console.log(response);
                         if (response.data.error == 1) {
                           setLoginResponse(response.data.message);
+                          Seterroralert(true);
                         } else {
                           localStorage.setItem(
-                            'accessToken',
+                            "accessToken",
                             response.data.accesstoken
                           );
-                          navigate('/dashboard');
+                          if (
+                            localStorage.getItem("accessToken") == "undefined"
+                          ) {
+                            Seterroralert(true);
+                          } else {
+                            navigate("/dashboard");
+                            Seterroralert(false);
+                          }
                           setLoginResponse(response.data.message);
                         }
                       });
@@ -85,7 +106,7 @@ const EmployerLogin = () => {
           </div>
 
           <div className={`col-md-6  p-0  ${Styles.auth_img} `}>
-            <img style={{ width: '100%', height: '100%' }} src={bggside} />
+            <img style={{ width: "100%", height: "100%" }} src={bggside} />
           </div>
         </div>
       </div>

@@ -1,24 +1,30 @@
-import Styles from './manageemployer.module.css';
-import { useEffect, useState } from 'react';
-import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
-import InputField from '../../../Components/inputfield/inputfield';
-import Table from './Table';
-import axios from 'axios';
+import Styles from "./manageemployer.module.css";
+import { useEffect, useState } from "react";
+import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
+import InputField from "../../../Components/inputfield/inputfield";
+import Table from "./Table";
+import axios from "axios";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const Manageemployer = () => {
   const [Employers, setEmployers] = useState([]);
   const [data, setData] = useState();
+  const navigate = useNavigate();
+  if (jwtCheck(3) === false) {
+    navigate("/adminlogin");
+  }
 
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     setData(d);
   };
   useEffect(() => {
     axios
-      .get('http://3.110.201.21:3002/admin/employers', {
+      .get("http://3.110.201.21:3002/admin/employers", {
         headers: {
-          accessToken: localStorage.getItem('accessToken'),
+          accessToken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -34,7 +40,7 @@ const Manageemployer = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? 'adminsider' : 'sidebarmarginmax'
+          data ? "adminsider" : "sidebarmarginmax"
         }`}
       >
         <div className="container">
@@ -44,7 +50,7 @@ const Manageemployer = () => {
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Content Managment Section</h1>
               <p className="ogsfonts16">Manage Employers</p>
-              <div style={{ overflowX: 'auto' }}>
+              <div style={{ overflowX: "auto" }}>
                 <Table employer_data={Employers} />
               </div>
             </div>

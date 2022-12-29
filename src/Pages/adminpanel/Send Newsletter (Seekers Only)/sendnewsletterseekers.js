@@ -7,6 +7,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import axios from "axios";
 import { Markup } from "interweave";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const detail = [
   {
@@ -16,6 +18,10 @@ const detail = [
 ];
 const Sendnewsletterseekers = () => {
   const [data, setData] = useState();
+  const navigate = useNavigate();
+  if (jwtCheck(3) === false) {
+    navigate("/adminlogin");
+  }
 
   const display = (d) => {
     console.log("value");
@@ -28,8 +34,9 @@ const Sendnewsletterseekers = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

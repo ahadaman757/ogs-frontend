@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Jobcardseeker from "./../jobcardhome/Jobcardhome";
+import Jobcardhome from "./../jobcardhome/Jobcardhome";
 import { useFormik } from "formik";
 
 const BrowseOver = () => {
@@ -55,27 +55,65 @@ const BrowseOver = () => {
       });
   }, []);
   return (
-    <div className="container my-5">
+    <div style={{ backgroundColor: "#f5f5f5" }} className={` py-5 `}>
       <div>
-        <div className="container"></div>
-        <div className="row my-5   d-flex justify-content-center">
-          <h1 className="col-12 ogsfonts48">Browse</h1>
-        </div>
         <div className="container">
-          <div className="row ">
-            {jobsLoading ? (
-              <span>Jobs Loading</span>
-            ) : AllJobs.length == 0 ? (
-              <p>No Jobs Found</p>
-            ) : (
-              AllJobs.map((job_data) => {
-                return (
-                  <div className="col-md-4 my-2  ">
-                    <Jobcardseeker job_data={job_data} />
-                  </div>
-                );
-              })
-            )}
+          <div className="row my-5   d-flex justify-content-center">
+            <h1 className="col-12 ogsfonts2">Gulf Countries</h1>
+            <hr />
+          </div>
+          <div className="container">
+            <div className="row ">
+              {jobsLoading ? (
+                <span>Jobs Loading</span>
+              ) : AllJobs.length == 0 ? (
+                <p>No Jobs Found</p>
+              ) : (
+                AllJobs.filter((job_data) => {
+                  if (
+                    job_data.country.toLowerCase() == "bahrain" ||
+                    job_data.country.toLowerCase() == "kuwait" ||
+                    job_data.country.toLowerCase() == "oman" ||
+                    job_data.country.toLowerCase() == "qatar" ||
+                    job_data.country.toLowerCase() == "saudi arabia" ||
+                    job_data.country.toLowerCase() == "united arab emirates"
+                  ) {
+                    return job_data;
+                  }
+                }).map((job_data) => {
+                  return (
+                    <div className="col-md-4 my-2  ">
+                      {" "}
+                      <Jobcardhome job_data={job_data} />
+                    </div>
+                  );
+                })
+              )}
+            </div>
+            <div className="row my-5   d-flex justify-content-center">
+              <h1 className="col-12 ogsfonts2">Pakistan</h1>
+              <hr />
+            </div>
+            <div className="row ">
+              {jobsLoading ? (
+                <span>Jobs Loading</span>
+              ) : AllJobs.length == 0 ? (
+                <p>No Jobs Found</p>
+              ) : (
+                AllJobs.filter((job_data) => {
+                  if (job_data.country.toLowerCase() == "pakistan") {
+                    return job_data;
+                  }
+                }).map((job_data) => {
+                  return (
+                    <div className="col-md-4 my-2  ">
+                      {" "}
+                      <Jobcardhome job_data={job_data} />
+                    </div>
+                  );
+                })
+              )}
+            </div>
           </div>
         </div>
       </div>

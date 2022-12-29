@@ -5,12 +5,15 @@ import InputField from "../../../Components/inputfield/inputfield";
 import TextEditer from "../../../Components/textediter/textediter";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Markup } from "interweave";
 const Aboutus = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [oldData, setOldData] = useState("");
+  const navigate = useNavigate();
   const display = (d) => {
     console.log("value");
     console.log(d);
@@ -19,6 +22,9 @@ const Aboutus = () => {
   const [editorData, setEditorData] = useState();
 
   useEffect(() => {
+    if (jwtCheck(3) === false) {
+      navigate("/adminlogin");
+    }
     axios
       .get("http://3.110.201.21:3002/general/getAboutUs")
       .then((res) => setOldData(res.data.content[0][0].content));
@@ -29,8 +35,9 @@ const Aboutus = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

@@ -39,7 +39,7 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  login
+                  Login
                 </button>
                 <ul class="dropdown-menu ">
                   <li>
@@ -99,7 +99,7 @@ const Navbar = () => {
                   </li>
                 </ul>
                 <button className="postbtn px-3 py-2 ogsfonts18">
-                  post a job
+                  Post a Job
                 </button>
               </li>
             </ul>

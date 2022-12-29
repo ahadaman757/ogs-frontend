@@ -2,8 +2,14 @@ import Styles from "./myjobs.module.css";
 import Seekersidebar from "../../../Components/seekersidebar/seekersidebar";
 import { useState } from "react";
 import Jobcard from "../../../Components/jobcard/Jobcard";
+import { useNavigate } from "react-router-dom";
+import jwtCheck from "../../../system/jwtChecker";
 const Myjobs = () => {
   const [data, Setdata] = useState("");
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);
