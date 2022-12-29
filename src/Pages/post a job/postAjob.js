@@ -10,12 +10,18 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../authpages/main.module.css";
 import axios from "axios";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();
   const [Description, setDescription] = useState("");
   console.log(skills);
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/adminlogin");
+  }
 
   const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
@@ -120,8 +126,9 @@ const Postajob = () => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        className={`pt-5 ${Styles.Postajobmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Postajobmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>

@@ -7,6 +7,8 @@ import Jobcard from "../../Components/jobcard/Jobcard";
 import Active from "../../Components/Active/Active";
 import Deactivated from "../../Components/Deactived/Deactived";
 import Draft from "../../Components/Draft/Draft";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Managejobs = () => {
@@ -14,6 +16,10 @@ const Managejobs = () => {
   const [currntstac, setcurrntstac] = useState("");
 
   const [mobileActive, setMobileActive] = useState(false);
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/adminlogin");
+  }
 
   useEffect(() => {
     window.addEventListener("resize", () => {

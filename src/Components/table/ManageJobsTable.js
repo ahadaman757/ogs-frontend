@@ -5,8 +5,10 @@ import removered from "../../Assets/Images/removered.svg";
 import Styles from "./table.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const ManageJobsTable = (props) => {
   const [approve_status, setapprove_status] = useState();
+
   const changeApproveStatus = (current_status, id) => {
     axios
       .put(

@@ -24,11 +24,17 @@ import axios from "axios";
 import { List, TextInput } from "../Forms/InputFields";
 import { useFormik } from "formik";
 import { BasicDocument } from "../../Components/pdfDownload";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 const Newapplicant = () => {
   const { state } = useLocation();
   const [cities, setcities] = useState();
   const [dropDownOptions, setdropDownOptions] = useState("");
   const [applyFilters, setapplyFilters] = useState(false);
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/adminlogin");
+  }
   const filtersFormik = useFormik({
     initialValues: {
       start_date: "",

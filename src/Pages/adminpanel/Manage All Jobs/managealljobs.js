@@ -7,7 +7,32 @@ import ManageJobsTable from "../../../Components/table/ManageJobsTable";
 import jwtCheck from "../../../system/jwtChecker";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const columns = [
+  {
+    id: 1,
+    title: "Sr No.",
+  },
+  {
+    id: 2,
+    title: "Created By",
+  },
+  {
+    id: 3,
+    title: "Job Title",
+  },
+  {
+    id: 4,
+    title: "Posted Date (dd-mm-yyyy)",
+  },
+  {
+    id: 5,
+    title: "Approved Status",
+  },
+  {
+    id: 6,
+    title: "Actions",
+  },
+];
 const Managealljobs = () => {
   const [data, setData] = useState();
   const [jobs, setJobs] = useState([]);

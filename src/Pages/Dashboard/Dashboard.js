@@ -8,6 +8,8 @@ import Active from "../../Components/Active/Active";
 import axios from "axios";
 import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
 import { useEffect } from "react";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ parentToChild }) => {
   const [data, setData] = useState();
@@ -15,7 +17,12 @@ const Dashboard = ({ parentToChild }) => {
   const [userDataLoading, setUserDataLoading] = useState(true);
   const [jobs, setJobs] = useState();
   const [jobsLoading, setJobsLoading] = useState(true);
+
   console.log(data);
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/adminlogin");
+  }
   useEffect(() => {
     // GET USER DATA
     axios
