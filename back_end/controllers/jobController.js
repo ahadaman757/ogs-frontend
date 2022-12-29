@@ -226,7 +226,6 @@ const getApplicantsForJobById = async (req, res, next) => {
     left outer JOIN marital_status  on cv.marital_status=marital_status.id
     JOIN users u on cv.user_id=u.id
     where job_id =${job_id}
-  
     AND (timestampdiff(YEAR,cv.dob,NOW()) BETWEEN ${min_age} AND ${max_age})
     AND  ( (${country} is null) OR cv.country=${country})
     AND  ((${city} is null) OR cv.city=${city})

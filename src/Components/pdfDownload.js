@@ -230,7 +230,7 @@ function BasicDocument({ cv_data }) {
                     <View style={styles.cv_content}>
                         <View style={{ ...styles.profile }}>
                             <View style={styles.profile_image_container}>
-                                <Image style={styles.profile_img} src={`http://3.110.201.21:3002/${cv_data.cv_image.replace("images", "images/")}`} />
+                                <Image style={styles.profile_img} src={`http://3.110.201.21:3002/${cv_data?.cv_image?.replace("images", "images/")}`} />
                             </View>
                             <View style={styles.profile_info_right}>
                                 <View style={styles.right_col}>
@@ -595,7 +595,7 @@ function BasicDocument({ cv_data }) {
                                         </Text>
                                     </View>
                                 </View>
-                                <Image src={`http://3.110.201.21:3002/${cv_data.passport_photo.replace("images", "images/")}`} />
+                                <Image src={`http://3.110.201.21:3002/${cv_data?.passport_photo?.replace("images", "images/")}`} />
                             </View>
                         </View>
                     </View>
