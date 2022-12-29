@@ -235,7 +235,7 @@ const getApplicantsForJobById = async (req, res, next) => {
     AND  ((${marital_status} is null) OR cv.marital_status=${marital_status})
     AND  ((${max_experience} is null) OR cv.max_experience=${max_experience})
 `);
-    console.log('Applications ', applicants_record);
+    console.log('Applications ', job_id);
     const applicants_cv_record = applicants_record;
     res.json(applicants_cv_record);
   } catch (error) {
