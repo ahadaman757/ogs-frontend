@@ -226,7 +226,8 @@ const getApplicantsForJobById = async (req, res, next) => {
     left outer JOIN marital_status  on cv.marital_status=marital_status.id
     JOIN users u on cv.user_id=u.id
     where job_id =${job_id}
-    
+    AND jc.created_at BETWEEN '${start_date}' AND '${end_date}'
+   
 `);
     console.log('Applications ', job_id);
     const applicants_cv_record = applicants_record;
