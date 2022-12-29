@@ -5,10 +5,15 @@ import axios from "axios";
 import SeekercvCard from "./seekercvCard";
 import { PDFDownloadLink, Image } from "@react-pdf/renderer";
 import { useNavigate } from "react-router-dom";
+import jwtCheck from "../../../system/jwtChecker";
+
 const Manageyoucvs = () => {
   const [data, Setdata] = useState("");
   const [UserCvs, setUserCvs] = useState([]);
   const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);
@@ -31,8 +36,9 @@ const Manageyoucvs = () => {
     <div className="asdesaser">
       <Seekersidebar side={display} />
       <div
-        className={`pt-5 ${Styles.Manageyoucvsmain} ${data ? "sidebarmarginmin" : "sidebarmarginmax"
-          }`}
+        className={`pt-5 ${Styles.Manageyoucvsmain} ${
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div

@@ -2,7 +2,13 @@ import Styles from "./seekerCv.module.css";
 import logo from "../../../Assets/Images/image 1.png";
 import idcard from "../../../Assets/Images/images 1.png";
 import profomg from "../../../Assets/Images/Rectangle 1246.png";
+import { useNavigate } from "react-router-dom";
+import jwtCheck from "../../../system/jwtChecker";
 const SeekerCv = () => {
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   return (
     <div
       className={`d-flex justify-content-center py-5 ${Styles.SeekerCvmain}`}

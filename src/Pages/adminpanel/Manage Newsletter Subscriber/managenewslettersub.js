@@ -5,6 +5,8 @@ import InputField from "../../../Components/inputfield/inputfield";
 import Table from "../../../Components/table/table";
 import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
 import NewsLetterTable from "./NewsLetterTable";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -15,6 +17,10 @@ const Managenewslettersub = () => {
   const [emailList, setEmailList] = useState();
   const [listLoading, setListLoading] = useState(true);
   const [pager, setPager] = useState(0);
+  const navigate = useNavigate();
+  if (jwtCheck(3) === false) {
+    navigate("/adminlogin");
+  }
 
   const display = (d) => {
     setData(d);
@@ -73,8 +79,9 @@ const Managenewslettersub = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

@@ -4,6 +4,8 @@ import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
 import InputField from "../../../Components/inputfield/inputfield";
 import Table from "../../../Components/table/table";
 import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const detail = [
   {
@@ -13,6 +15,10 @@ const detail = [
 ];
 const Sentemail = () => {
   const [data, setData] = useState();
+  const navigate = useNavigate();
+  if (jwtCheck(3) === false) {
+    navigate("/adminlogin");
+  }
 
   const display = (d) => {
     console.log("value");

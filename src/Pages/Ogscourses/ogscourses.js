@@ -1,4 +1,4 @@
-import Navbar from "../Homepage/BlackNavbar";
+import Navbar from "../../Components/Navbar/Navbar";
 import TNavbar from "../Homepage/Navbar";
 import "./Ogscourses.css";
 import bulid from "../../Assets/Images/Rectangle 1078.png";
@@ -44,10 +44,10 @@ const Ogscourses = () => {
   return (
     <div>
       <Navbar />
-      <TNavbar />
+
       <div className=" ogsas">
-        <div className="py-5 ogscardcon">
-          <div className="container my-5">
+        <div className=" ogscardcon">
+          <div className="container my-3">
             <h1 className="text-center py-5">COURSES</h1>
             <div className="row justify-content-center">
               {data.map(

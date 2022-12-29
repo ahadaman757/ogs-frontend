@@ -8,8 +8,14 @@ import edit from "../../../Assets/Images/New folder (3)/edit.svg";
 import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
 import Inputfield from "../../../Components/inputfield/inputfield";
 import InputSelect from "../../../Components/inputselect/inputfselect";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 const Jobalert = () => {
   const [data, Setdata] = useState("");
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);

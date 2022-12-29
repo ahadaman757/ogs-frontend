@@ -1,43 +1,24 @@
 import ogsLogo from "../../Assets/Images/ogs_logo 1.svg";
 import { Link } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <nav className="container  navbar d-flex justify-content-between navbar-expand-lg ">
-        <div className="container-fluid navhie">
+      <nav class="navbar navbar-expand-lg ">
+        <div class="container">
           <img className="navbar-brand logoOgs" src={ogsLogo} />
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse justify-content-evenly"
-            id="navbarNavDropdown"
-          >
+          <div>
             <ul className="navbar-nav align-items-center sdweqw">
               <li className="nav-item mx-xxl-4">
                 <Link to="/" className=" ogsfonts16Nav">
                   Home
                 </Link>
               </li>
-              <li className="nav-item mx-xxl-4">
-                <a className=" ogsfonts16Nav">Features</a>
-              </li>
-              <li className="nav-item mx-xxl-4">
-                <a className=" ogsfonts16Nav">Interships</a>
-              </li>
-              <li className="nav-item mx-xxl-4">
-                <a className=" ogsfonts16Nav">Members</a>
-              </li>
+
               <li className="nav-item mx-xxl-4">
                 <Link className=" ogsfonts16Nav" to="/ogscourses">
                   OGS Courses
@@ -49,14 +30,77 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <ul className="navbar-nav d-flex align-items-center">
-              <li className="nav-item mx-4">
-                <button className="Loginbtn ogsfonts18">login</button>
+          </div>
+          <div>
+            <ul class="navbar-nav align-items-center">
+              <li className="nav-item dropdown mx-4">
+                <button
+                  className="Loginbtn ogsfonts18"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Login
+                </button>
+                <ul class="dropdown-menu ">
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/employerlogin");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Employer login
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/seekerlogin");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Seeker login
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li className="nav-item mx-4">
-                <Link to="/signin">
-                  <button className="Registerbtn ogsfonts18">Register</button>
-                </Link>
+              <li class="nav-item dropdown">
+                <button
+                  class="Registerbtn px-3 py-2 ogsfonts18"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Register
+                </button>
+                <ul class="dropdown-menu ">
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/register");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Register as Employer
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/cv");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Register as Seeker
+                    </a>
+                  </li>
+                </ul>
+                <button className="postbtn px-3 py-2 ogsfonts18">
+                  Post a Job
+                </button>
               </li>
             </ul>
           </div>

@@ -10,6 +10,8 @@ import camraicon from "../../../Assets/Images/camera video.svg";
 import tick from "../../../Assets/Images/tick.svg";
 import leftarrow from "../../../Assets/Images/arrow-left.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import jwtCheck from "../../../system/jwtChecker";
 const Persanalinfo = () => {
   const [data, Setdata] = useState("");
   const [displayon, Setdisplayon] = useState("");
@@ -29,7 +31,10 @@ const Persanalinfo = () => {
   const [progress5, setprogress5] = useState(true);
   const [progress6, setprogress6] = useState(false);
   const [progress7, setprogress7] = useState(false);
-
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);

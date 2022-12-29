@@ -2,9 +2,15 @@ import Styles from "./Jobpreferences.module.css";
 import Seekersidebar from "../../../Components/seekersidebar/seekersidebar";
 import InputField from "../../../Components/inputfield/inputfield";
 import InputSelect from "../../../Components/inputselect/inputfselect";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 const Jobpreferences = () => {
   const [data, Setdata] = useState("");
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/seekerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);

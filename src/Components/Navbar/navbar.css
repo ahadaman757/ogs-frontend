@@ -1,7 +1,7 @@
 .ogsfonts16Nav {
   font-family: "Public Sans";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: black;
@@ -16,7 +16,7 @@
 }
 .Loginbtn {
   border: none;
-  color: #5200ff;
+  color: #01aff3;
   background: white;
 }
 /* .Loginbtn:hover {
@@ -27,18 +27,34 @@
   } */
 .Registerbtn {
   border: none;
-  width: 105px;
-  height: 38px;
-  background: #5200ff;
-  border-radius: 3px;
+  /* width: 105px;
+  height: 38px; */
+  background: #01aff3;
+  border: 1px solid #01aff3;
+
   color: white;
+}
+.postbtn {
+  border: none;
+  /* width: 105px;
+  height: 38px; */
+  color: #01aff3;
+  background: #ffffff;
+  border: 1px solid #01aff3;
+  border-radius: 0px 3px 3px 0px;
 }
 @media only screen and (max-width: 991px) {
   .navhie {
     height: auto;
+  }
+  .dropdown-menu[data-bs-popper] {
   }
 }
 .sdweqw {
   display: flex;
   gap: 16px;
 }
+/* .dropdown-menu[data-bs-popper] {
+  top: 75px;
+  left: 814px;
+} */

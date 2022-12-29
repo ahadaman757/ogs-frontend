@@ -8,33 +8,6 @@ import jwtCheck from "../../../system/jwtChecker";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const columns = [
-  {
-    id: 1,
-    title: "Sr No.",
-  },
-  {
-    id: 2,
-    title: "Created By",
-  },
-  {
-    id: 3,
-    title: "Job Title",
-  },
-  {
-    id: 4,
-    title: "Posted Date (dd-mm-yyyy)",
-  },
-  {
-    id: 5,
-    title: "Approved Status",
-  },
-  {
-    id: 6,
-    title: "Actions",
-  },
-];
-
 const Managealljobs = () => {
   const [data, setData] = useState();
   const [jobs, setJobs] = useState([]);
@@ -44,7 +17,7 @@ const Managealljobs = () => {
     setData(d);
   };
   useEffect(() => {
-    if (jwtCheck() === false) {
+    if (jwtCheck(3) === false) {
       navigate("/adminlogin");
     }
     axios
@@ -66,8 +39,9 @@ const Managealljobs = () => {
     <div className={`${Styles.back}`}>
       <Adminsidebar side={display} />
       <div
-        className={`${Styles.Managejobsmain} ${data ? "adminsider" : "sidebarmarginmax"
-          }`}
+        className={`${Styles.Managejobsmain} ${
+          data ? "adminsider" : "sidebarmarginmax"
+        }`}
       >
         <div className="container">
           <div className="mt-5">

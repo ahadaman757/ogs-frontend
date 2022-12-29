@@ -1,17 +1,19 @@
-import Styles from './managecategory.module.css';
-import { useEffect, useState } from 'react';
-import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
-import InputField from '../../../Components/inputfield/inputfield';
-import Table from '../../../Components/table/table';
-import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
-import ManageCategoriesTable from '../../../Components/table/ManageCategoriesTable';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import Styles from "./managecategory.module.css";
+import { useEffect, useState } from "react";
+import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
+import InputField from "../../../Components/inputfield/inputfield";
+import Table from "../../../Components/table/table";
+import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
+import ManageCategoriesTable from "../../../Components/table/ManageCategoriesTable";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const detail = [
   {
-    Code: 'ewe',
-    Title: 'qw',
+    Code: "ewe",
+    Title: "qw",
   },
 ];
 const Managecategory = () => {
@@ -19,6 +21,10 @@ const Managecategory = () => {
   const [pager, setPager] = useState(0);
   const [categories, setCategories] = useState();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  if (jwtCheck(3) === false) {
+    navigate("/adminlogin");
+  }
   const display = (d) => {
     setData(d);
   };
@@ -28,7 +34,7 @@ const Managecategory = () => {
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
     const params = new URLSearchParams(location.search);
-    const page = parseInt(params.get('page')) || 1;
+    const page = parseInt(params.get("page")) || 1;
     if (page !== pager.currentPage) {
       axios
         .post(
@@ -36,7 +42,7 @@ const Managecategory = () => {
           { page: page },
           {
             headers: {
-              accessToken: localStorage.getItem('accessToken'),
+              accessToken: localStorage.getItem("accessToken"),
             },
           }
         )
@@ -52,7 +58,7 @@ const Managecategory = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? 'adminsider' : 'sidebarmarginmax'
+          data ? "adminsider" : "sidebarmarginmax"
         }`}
       >
         <div className="container">
@@ -66,28 +72,28 @@ const Managecategory = () => {
               <p className="ogsfonts16">Manage Category</p>
 
               {loading ? (
-                'Loading... Please wait...'
+                "Loading... Please wait..."
               ) : (
                 <ManageCategoriesTable
                   items={categories}
                   handleTableLoading={handleTableLoading}
                 />
               )}
-              <Link to={{ search: `?page=1` }} style={{ marginRight: '10px' }}>
+              <Link to={{ search: `?page=1` }} style={{ marginRight: "10px" }}>
                 First
               </Link>
 
               <Link
                 to={{ search: `?page=${pager + 1}` }}
                 onClick={() => setPager(pager + 1)}
-                style={{ marginRight: '10px' }}
+                style={{ marginRight: "10px" }}
               >
                 Next
               </Link>
               <Link
-                to={{ search: `?page=${pager != 1 ? pager - 1 : ''}` }}
+                to={{ search: `?page=${pager != 1 ? pager - 1 : ""}` }}
                 onClick={() => setPager(pager - 1)}
-                style={{ marginRight: '10px' }}
+                style={{ marginRight: "10px" }}
               >
                 Previous
               </Link>
