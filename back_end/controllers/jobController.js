@@ -211,7 +211,7 @@ const getApplicantsForJobById = async (req, res, next) => {
     } = req.query;
     console.log(start_date, end_date);
     console.log(req.query);
-    const [applicants_record, record] =
+    const applicants_record =
       await sequelize.query(`select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,cv.mobile_number, educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,cv.dob,NOW()) as age,jc.is_shortlisted,cv.skin_color,cv.height,cv.weight,current_Salary.max_salary  as current_salary, expected_Salary.max_salary as expected_salary,religion.religion,cv.dob as Dob,cv.domicile,cv.address, jc.is_rejected, positions.position_title,u.email,marital_status.status,cv.passport_number,cv.valid_upto,cv.country as country_id,cv.passport_photo from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on cv.gender=genders.id
     JOIN countries on cv.country=countries.id
     JOIN cities on cv.city=cities.id
@@ -235,7 +235,7 @@ const getApplicantsForJobById = async (req, res, next) => {
     AND  ((${marital_status} is null) OR cv.marital_status=${marital_status})
     AND  ((${max_experience} is null) OR cv.max_experience=${max_experience})
 `);
-    // console.log(applicants_record)
+    console.log('Applications ', job_id);
     const applicants_cv_record = applicants_record;
     res.json(applicants_cv_record);
   } catch (error) {
