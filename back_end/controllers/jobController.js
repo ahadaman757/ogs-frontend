@@ -237,6 +237,7 @@ const getApplicantsForJobById = async (req, res, next) => {
 `);
     console.log('Applications ', job_id);
     const applicants_cv_record = applicants_record;
+    console.log(applicants_cv_record)
     res.json(applicants_cv_record);
   } catch (error) {
     return next(error);
