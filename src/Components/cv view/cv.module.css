@@ -1,7 +1,10 @@
-.Cvmain {
+.Cvmainds {
   background: #ffffff;
   border: 1px solid #ced4da;
   border-radius: 5px;
+}
+.Cvmainmb {
+  display: none;
 }
 .cvheadicon {
   border: none;
@@ -16,4 +19,15 @@
   background: #ffffff;
   border: 1px solid #c8c8c8;
   border-radius: 100px;
+}
+@media only screen and (max-width: 768px) {
+  .Cvmainmb {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+  }
+  .Cvmainds {
+    display: none;
+  }
 }

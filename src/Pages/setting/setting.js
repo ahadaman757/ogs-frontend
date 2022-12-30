@@ -4,9 +4,15 @@ import { useState } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
 import Company from "../../Components/company/company";
 import Personalinfo from "../../Components/mypersonalinfo/mypersonalinfo";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 const Setting = () => {
   const [currntstac, setcurrntstac] = useState("Company");
   const [data, Setdata] = useState("");
+  const navigate = useNavigate();
+  if (jwtCheck(1) === false) {
+    navigate("/employerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);

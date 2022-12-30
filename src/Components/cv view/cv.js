@@ -53,180 +53,257 @@ const Cv = ({ applicant, job_id }) => {
   };
 
   return (
-    <div className={` p-4 my-4 ${Styles.Cvmain}`}>
-      <div className="d-flex flex-wrap justify-content-between">
-        <button
-          onClick={() => {
-            // update the viewed status
-            console.log();
-            updateCvView(!shortlisted);
-          }}
-          className={`my-2 ${Styles.cvheadicon}`}
-        >
-          <span>
-            <img src={shortlisted ? selecticon : check} />
-          </span>
-        </button>
-        <p className="m-0 my-2 ogsfonts16 ">Viewed</p>
-        <button className={` my-2ogsfonts16 ${Styles.cvheadicon}`}>
-          <span>
-            <img className="me-3" src={eyeicon} />
-          </span>
-          Preview CV
-        </button>
-        <button
-          onClick={() => setdownload(true)}
-          className={`my-2 ogsfonts16 ${Styles.cvheadicon}`}
-        >
-          <span>
-            <img className="me-3" src={downicon} />
-          </span>
-          <PDFDownloadLink
-            className="my-2"
-            document={<BasicDocument cv_data={applicant} />}
-            fileName="somename.pdf"
-          >
-            {({ loading, error }) => {
-              console.log(error);
-              return loading ? "Loading document..." : "Download now!";
-            }}
-          </PDFDownloadLink>
-        </button>
-        <button
-          onClick={() => {
-            return updateCvView();
-          }}
-          className={`my-2 ogsfonts16 ${Styles.cvheadicon}`}
-        >
-          <span>
-            <img className="me-3" src={useradd} />
-          </span>
-          {shortlisted ? "shortlisted" : "shortlist"}
-        </button>
-        <button
-          onClick={() => {
-            return rejectCv();
-          }}
-          className={`my-2 ogsfonts16 ${Styles.cvheadicon}`}
-        >
-          <span>
-            <img className="me-3" src={userremove} />
-          </span>
-          {rejected ? "Rejected" : "Reject"}
-        </button>
-        <div className="dropdown">
-          <button
-            className={`ogsfonts16 my-2 ${Styles.cvheadicon}`}
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            More Actions
+    <>
+      <div className={` p-4 my-4 ${Styles.Cvmainds}`}>
+        <div className="d-flex  justify-content-between">
+          <p className="m-0 my-2 ogsfonts14 ">Viewed</p>
+          <button className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}>
+            <span>
+              <img className="me-1" src={eyeicon} />
+            </span>
+            Preview CV
           </button>
-          <ul className="dropdown-menu">
-            <li>
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </li>
-          </ul>
+          <button
+            onClick={() => setdownload(true)}
+            className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
+          >
+            <span>
+              <img className="me-1" src={downicon} />
+            </span>
+            <PDFDownloadLink
+              className="my-2"
+              document={<BasicDocument cv_data={applicant} />}
+              fileName="somename.pdf"
+            >
+              {({ loading, error }) => {
+                console.log(error);
+                return loading ? "Loading document..." : "Download now!";
+              }}
+            </PDFDownloadLink>
+          </button>
         </div>
-      </div>
-      <hr />
-      <div className="row">
-        <div className="col-md-2">
-          <img
-            style={{ width: "124px", height: "140px" }}
-            className="img-fluid"
-            src={`http://3.110.201.21:3002/${applicant.cv_image.replace(
-              "images",
-              "images/"
-            )}`}
-          />
-        </div>
-        <div className="col-md-9">
-          <div className="d-flex flex-wrap">
-            <p className="me-3 ogsfonts20">
-              {applicant.first_name + " " + applicant.last_name}
-            </p>
-            <p className="ogsfonts14">
-              {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
-            </p>
+        <hr />
+        <div className="row">
+          <div className="col-md-3">
+            <img
+              style={{ width: "124px", height: "140px" }}
+              className="img-fluid"
+              src={`http://3.110.201.21:3002/${applicant.cv_image.replace(
+                "images",
+                "images/"
+              )}`}
+            />
           </div>
-          <div className="d-flex flex-wrap">
-            {" "}
-            <p className="me-3 ogsfonts16">CV Number:</p>
-            <p className="ogsfonts14">
-              {" "}
-              {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}
-            </p>
-          </div>
-          <div className="d-flex flex-wrap">
-            {" "}
-            <p className="me-3 ogsfonts16">Experience:</p>
-            <p className="ogsfonts14">
-              Content analyst at S&P Global Market Intelligence (Aug 2016 - Dec
-              2018)
-            </p>
-          </div>
-          <div className="d-flex flex-wrap">
-            {" "}
-            <p className="me-3 ogsfonts16">Education:</p>
-            <p className="ogsfonts14">{`${applicant.qualification}`}</p>
-          </div>
-          <div className="d-flex">
-            <p className="me-3 ogsfonts16">Career Level:</p>
-            <p className="ogsfonts14">{applicant.career_title}</p>
-          </div>
-          <div className="d-flex flex-wrap">
-            {" "}
-            <p className="me-3 ogsfonts16">Industry:</p>
-            <p className="ogsfonts14">{applicant.business_type_name}</p>
-          </div>
-          <div className="d-flex align-items-center">
-            <p className="me-3 ogsfonts16">Skills:</p>
+          <div className="col-md-9">
             <div className="d-flex flex-wrap">
-              <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-              <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-              <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-              <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-              <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+              <p className="me-3 ogsfonts20">
+                {applicant.first_name + " " + applicant.last_name}
+              </p>
+              <p className="ogsfonts14">
+                {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
+              </p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">CV Number:</p>
+              <p className="ogsfonts14">
+                {" "}
+                {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}
+              </p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">Experience:</p>
+              <p className="ogsfonts14">
+                Content analyst at S&P Global Market Intelligence (Aug 2016 -
+                Dec 2018)
+              </p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">Education:</p>
+              <p className="ogsfonts14">{`${applicant.qualification}`}</p>
+            </div>
+            <div className="d-flex">
+              <p className="me-3 ogsfonts16">Career Level:</p>
+              <p className="ogsfonts14">{applicant.career_title}</p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">Industry:</p>
+              <p className="ogsfonts14">{applicant.business_type_name}</p>
+            </div>
+            <div className="d-flex align-items-center">
+              <p className="me-3 ogsfonts16">Skills:</p>
+              <div className="d-flex flex-wrap">
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+              </div>
             </div>
           </div>
         </div>
+        <hr />
+        <div className="d-flex flex-wrap justify-content-between">
+          <div>
+            <p className="text-center ogsfonts14">Years of Experience</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.max_experience}
+            </p>
+          </div>
+          <div>
+            <p className="text-center ogsfonts14">Current Salary</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.current_salary} /Month
+            </p>
+          </div>
+          <div>
+            <p className="text-center ogsfonts14">Expected Salary</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.expected_salary} /Month
+            </p>
+          </div>
+        </div>
       </div>
-      <hr />
-      <div className="d-flex flex-wrap justify-content-between">
-        <div>
-          <p className="text-center ogsfonts14">Years of Experience</p>
-          <p className="text-center ogsfonts18 m-0">
-            {applicant.max_experience}
-          </p>
+
+      <div className={` p-4 my-4 ${Styles.Cvmainmb}`}>
+        <div className="d-flex  justify-content-between">
+          <p className="m-0 my-2 ogsfonts14 ">Viewed</p>
+          <button className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}>
+            <span>
+              <img className="me-1" src={eyeicon} />
+            </span>
+            Preview CV
+          </button>
+          <button
+            onClick={() => setdownload(true)}
+            className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
+          >
+            <span>
+              <img className="me-1" src={downicon} />
+            </span>
+            <PDFDownloadLink
+              className="my-2"
+              document={<BasicDocument cv_data={applicant} />}
+              fileName="somename.pdf"
+            >
+              {({ loading, error }) => {
+                console.log(error);
+                return loading ? "Loading document..." : "Download now!";
+              }}
+            </PDFDownloadLink>
+          </button>
         </div>
-        <div>
-          <p className="text-center ogsfonts14">Current Salary</p>
-          <p className="text-center ogsfonts18 m-0">
-            {applicant.current_salary} /Month
-          </p>
+        <hr />
+        <div className="">
+          <div className=" row">
+            <div className="col-6">
+              <img
+                style={{ width: "124px", height: "140px" }}
+                className="img-fluid"
+                src={`http://3.110.201.21:3002/${applicant.cv_image.replace(
+                  "images",
+                  "images/"
+                )}`}
+              />
+            </div>
+            <div className="col-6">
+              <div className="d-flex flex-wrap">
+                <p className="me-3 ogsfonts20">
+                  {applicant.first_name + " " + applicant.last_name}
+                </p>
+                <p className="ogsfonts14">
+                  {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
+                </p>
+              </div>
+              <div className="d-flex flex-wrap">
+                {" "}
+                <p className="me-3 ogsfonts16">CV Number:</p>
+                <p className="ogsfonts14"> {`${applicant.cv_id} `}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="">
+            <div className="row">
+              <div className="col-6">
+                <p className="ogsfonts14"> Apply Date:</p>
+              </div>
+              <div className="col-6">
+                <p className="ogsfonts14">{applicant.applied_at}</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                {" "}
+                <p className="me-3 ogsfonts16">Experience:</p>
+              </div>
+              <div className="col-6">
+                <p className="ogsfonts14">
+                  Content analyst at S&P Global Market Intelligence (Aug 2016 -
+                  Dec 2018)
+                </p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                {" "}
+                <p className="me-3 ogsfonts16">Education:</p>
+              </div>
+              <div className="col-6">
+                {" "}
+                <p className="ogsfonts14">{`${applicant.qualification}`}</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6"></div>
+              <div className="col-6"></div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <p className="me-3 ogsfonts16">Career Level:</p>
+              </div>
+              <div className="col-6">
+                {" "}
+                <p className="ogsfonts14">{applicant.career_title}</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-6">
+                <p className="me-3 ogsfonts16">Industry:</p>
+              </div>
+              <div className="col-6">
+                {" "}
+                <p className="ogsfonts14">{applicant.business_type_name}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="text-center ogsfonts14">Expected Salary</p>
-          <p className="text-center ogsfonts18 m-0">
-            {applicant.expected_salary} /Month
-          </p>
+        <hr />
+        <div className="d-flex flex-wrap justify-content-between">
+          <div>
+            <p className="text-center ogsfonts14">Years of Experience</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.max_experience}
+            </p>
+          </div>
+          <div>
+            <p className="text-center ogsfonts14">Current Salary</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.current_salary} /Month
+            </p>
+          </div>
+          <div>
+            <p className="text-center ogsfonts14">Expected Salary</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.expected_salary} /Month
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Cv;

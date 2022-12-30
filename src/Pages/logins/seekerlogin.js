@@ -2,6 +2,8 @@ import Styles from "./login.module.css";
 import bggside from "../../Assets/Images/sign-in-right.png";
 import InputField from "../../Components/inputfield/inputfield";
 import React, { useState } from "react";
+import Redalert from "../../Components/redalert/redalert";
+import Greenalert from "../../Components/greenalert/greenalert";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
@@ -9,6 +11,7 @@ const SeekerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [loginResponse, setLoginResponse] = useState();
+  const [erroralert, Seterroralert] = useState(null);
   console.log("dsd", loginResponse);
 
   const navigate = useNavigate();
@@ -22,12 +25,20 @@ const SeekerLogin = () => {
             <div className="container-fluid">
               <h1>OGS Man Power</h1>
               <h3 className={`${Styles.form_heading_1}`}>Seeker Login</h3>
+
               <p className={`${Styles.form_description}`}>
                 Registration with OGS (Pvt) Ltd is 100% free <br />
                 Please fill up this form to register free at OGS
               </p>
               <div className={`pt-5 ${Styles.from}`}>
                 <div className="my-3">
+                  {erroralert == null ? (
+                    ""
+                  ) : erroralert ? (
+                    <Redalert message={"Please check your email or password"} />
+                  ) : (
+                    <Greenalert message={"Login successfully"} />
+                  )}
                   <div className="d-flex justify-content-between">
                     <p className="ogsfonts16">Email</p>
                     <p className={`ogsfonts16 ${Styles.InputFieldRe}`}></p>
@@ -66,12 +77,21 @@ const SeekerLogin = () => {
                         console.log(response);
                         if (response.data.code == 0) {
                           setLoginResponse(response.data.message);
+                          Seterroralert(true);
                         } else {
                           localStorage.setItem(
                             "accessToken",
                             response.data.accesstoken
                           );
-                          navigate("/jobssearch");
+                          if (
+                            localStorage.getItem("accessToken") == "undefined"
+                          ) {
+                            Seterroralert(true);
+                          } else {
+                            navigate("/jobssearch");
+                            Seterroralert(false);
+                          }
+
                           setLoginResponse(response.data.message);
                         }
                       });
@@ -79,7 +99,6 @@ const SeekerLogin = () => {
                 >
                   Continue
                 </button>
-                <p>{loginResponse}</p>
               </div>
             </div>
           </div>

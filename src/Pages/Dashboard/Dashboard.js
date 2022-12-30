@@ -21,7 +21,7 @@ const Dashboard = ({ parentToChild }) => {
   console.log(data);
   const navigate = useNavigate();
   if (jwtCheck(1) === false) {
-    navigate("/adminlogin");
+    navigate("/employerlogin");
   }
   useEffect(() => {
     // GET USER DATA

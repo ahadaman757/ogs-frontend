@@ -18,7 +18,7 @@ const Managejobs = () => {
   const [mobileActive, setMobileActive] = useState(false);
   const navigate = useNavigate();
   if (jwtCheck(1) === false) {
-    navigate("/adminlogin");
+    navigate("/employerlogin");
   }
 
   useEffect(() => {

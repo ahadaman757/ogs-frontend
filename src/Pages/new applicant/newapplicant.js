@@ -33,7 +33,7 @@ const Newapplicant = () => {
   const [applyFilters, setapplyFilters] = useState(false);
   const navigate = useNavigate();
   if (jwtCheck(1) === false) {
-    navigate("/adminlogin");
+    navigate("/employerlogin");
   }
   const filtersFormik = useFormik({
     initialValues: {
@@ -159,9 +159,9 @@ const Newapplicant = () => {
                 <div className="d-flex flex-wrap justify-content-md-end">
                   <button className={`me-3 p-2 ${Styles.btnUpload}`}>
                     {" "}
-                    Upload Applican’s CV
+                    Edit
                   </button>
-                  <button className={`p-2 ${Styles.btnUpload}`}>
+                  <button className={`p-2 ${Styles.btnUploads}`}>
                     {" "}
                     Deactivate Job
                   </button>

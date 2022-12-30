@@ -20,7 +20,7 @@ const Postajob = () => {
   console.log(skills);
   const navigate = useNavigate();
   if (jwtCheck(1) === false) {
-    navigate("/adminlogin");
+    navigate("/employerlogin");
   }
 
   const [dropDownOptions, setdropDownOptions] = useState("");

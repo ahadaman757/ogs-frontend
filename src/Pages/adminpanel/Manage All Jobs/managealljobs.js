@@ -43,7 +43,7 @@ const Managealljobs = () => {
   };
   useEffect(() => {
     if (jwtCheck(3) === false) {
-      navigate("/adminlogin");
+      navigate("/employerlogin");
     }
     axios
       .get(`http://3.110.201.21:3002/jobs/admingetjobs`, {
