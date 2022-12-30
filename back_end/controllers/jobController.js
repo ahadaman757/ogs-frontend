@@ -226,6 +226,7 @@ const getApplicantsForJobById = async (req, res, next) => {
     left outer JOIN marital_status  on cv.marital_status=marital_status.id
     JOIN users u on cv.user_id=u.id
     where job_id =${job_id}
+    AND jc.created_at BETWEEN '${start_date}' AND '${end_date}'
     AND (timestampdiff(YEAR,cv.dob,NOW()) BETWEEN ${min_age} AND ${max_age})
     AND  ( (${country} is null) OR cv.country=${country})
     AND  ((${city} is null) OR cv.city=${city})
@@ -234,11 +235,9 @@ const getApplicantsForJobById = async (req, res, next) => {
     AND  ((${marital_status} is null) OR cv.marital_status=${marital_status})
     AND  ((${max_experience} is null) OR cv.max_experience=${max_experience})
 `);
-    console.log('job id ', job_id);
+    console.log('Applications ', job_id);
     const applicants_cv_record = applicants_record;
-    console.log(applicants_cv_record[0])
-    res.json(applicants_cv_record[0]);
-
+    res.json(applicants_cv_record);
   } catch (error) {
     return next(error);
   }

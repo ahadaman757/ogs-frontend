@@ -82,6 +82,90 @@ const Cv = ({ applicant, job_id }) => {
             </PDFDownloadLink>
           </button>
         </div>
+        <hr />
+        <div className="row">
+          <div className="col-md-3">
+            <img
+              style={{ width: "124px", height: "140px" }}
+              className="img-fluid"
+              src={`http://3.110.201.21:3002/${applicant.cv_image.replace(
+                "images",
+                "images/"
+              )}`}
+            />
+          </div>
+          <div className="col-md-9">
+            <div className="d-flex flex-wrap">
+              <p className="me-3 ogsfonts20">
+                {applicant.first_name + " " + applicant.last_name}
+              </p>
+              <p className="ogsfonts14">
+                {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
+              </p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">CV Number:</p>
+              <p className="ogsfonts14">
+                {" "}
+                {`${applicant.cv_id}, Apply Date: ${applicant.applied_at}`}
+              </p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">Experience:</p>
+              <p className="ogsfonts14">
+                Content analyst at S&P Global Market Intelligence (Aug 2016 -
+                Dec 2018)
+              </p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">Education:</p>
+              <p className="ogsfonts14">{`${applicant.qualification}`}</p>
+            </div>
+            <div className="d-flex">
+              <p className="me-3 ogsfonts16">Career Level:</p>
+              <p className="ogsfonts14">{applicant.career_title}</p>
+            </div>
+            <div className="d-flex flex-wrap">
+              {" "}
+              <p className="me-3 ogsfonts16">Industry:</p>
+              <p className="ogsfonts14">{applicant.business_type_name}</p>
+            </div>
+            <div className="d-flex align-items-center">
+              <p className="me-3 ogsfonts16">Skills:</p>
+              <div className="d-flex flex-wrap">
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="d-flex flex-wrap justify-content-between">
+          <div>
+            <p className="text-center ogsfonts14">Years of Experience</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.max_experience}
+            </p>
+          </div>
+          <div>
+            <p className="text-center ogsfonts14">Current Salary</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.current_salary} /Month
+            </p>
+          </div>
+          <div>
+            <p className="text-center ogsfonts14">Expected Salary</p>
+            <p className="text-center ogsfonts18 m-0">
+              {applicant.expected_salary} /Month
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className={` p-4 my-4 ${Styles.Cvmainmb}`}>
