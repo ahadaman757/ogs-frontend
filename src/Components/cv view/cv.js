@@ -82,17 +82,27 @@ const Cv = ({ applicant, job_id }) => {
             </PDFDownloadLink>
           </button>
         </div>
-        <hr />
-        <div className="row">
-          <div className="col-md-3">
-            <img
-              style={{ width: "124px", height: "140px" }}
-              className="img-fluid"
-              src={`http://3.110.201.21:3002/${applicant.cv_image.replace(
-                "images",
-                "images/"
-              )}`}
-            />
+      </div>
+      <hr />
+      <div className="row">
+        <div className="col-md-2">
+          <img
+            style={{ width: "124px", height: "140px" }}
+            className="img-fluid"
+            src={`http://3.110.201.21:3002/${applicant?.cv_image?.replace(
+              "images",
+              "images/"
+            )}`}
+          />
+        </div>
+        <div className="col-md-9">
+          <div className="d-flex flex-wrap">
+            <p className="me-3 ogsfonts20">
+              {applicant.first_name + " " + applicant.last_name}
+            </p>
+            <p className="ogsfonts14">
+              {`(${applicant.gender_title}, ${applicant.age}, ${applicant.country} ${applicant.city})`}{" "}
+            </p>
           </div>
           <div className="col-md-9">
             <div className="d-flex flex-wrap">
