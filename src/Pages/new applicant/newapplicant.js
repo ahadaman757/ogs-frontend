@@ -157,10 +157,10 @@ const Newapplicant = () => {
                   </div>
                 </div>
                 <div className="d-flex flex-wrap justify-content-md-end">
-                  <button className={`me-3 p-2 ${Styles.btnUpload}`}>
+                  {/* <button className={`me-3 p-2 ${Styles.btnUpload}`}>
                     {" "}
                     Edit
-                  </button>
+                  </button> */}
                   <button className={`p-2 ${Styles.btnUploads}`}>
                     {" "}
                     Deactivate Job
