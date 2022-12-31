@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <>
-      <nav class="navbar navbar-expand-lg ">
+      <nav class="navbar nabaasss navbar-expand-lg ">
         <div class="container">
           <img className="navbar-brand logoOgs" src={ogsLogo} />
 

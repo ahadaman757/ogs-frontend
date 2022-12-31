@@ -7,7 +7,9 @@ import flag from "../../Assets/Images/flagpack_gb-ukm.svg";
 import arrow from "../../Assets/Images/aroow.svg";
 const BlackNavbar = () => {
   return (
-    <nav class="navbar container navbar-expand-lg bg-light">
+    <nav
+      class={`navbar container navbar-expand-lg bg-light ${styles.BlackNavbar}`}
+    >
       <div class="d-flex container-fluid justify-content-between">
         <div>
           {" "}

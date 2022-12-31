@@ -7,6 +7,7 @@ import teammam3 from "../../Assets/Images/Ellipse 1202.png";
 import teammam4 from "../../Assets/Images/Ellipse 1203.png";
 import Newsletter from "../../Components/Newsletter/Newsletter";
 import Footer from "../../Components/Footer/Footer";
+import BlackNavbar from "../Homepage/BlackNavbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "./aboutus.css";
@@ -24,6 +25,7 @@ const AboutUs = () => {
   return (
     <div>
       <Navbar />
+      <BlackNavbar />
 
       <div className="aboutusmain">{/* <img src={aboutimg} /> */}</div>
       <div className="container">

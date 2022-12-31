@@ -50,6 +50,11 @@
   .dropdown-menu[data-bs-popper] {
   }
 }
+@media only screen and (max-width: 768px) {
+  .nabaasss {
+    display: none;
+  }
+}
 .sdweqw {
   display: flex;
   gap: 16px;
@@ -58,3 +63,6 @@
   top: 75px;
   left: 814px;
 } */
+
+.nabaasss {
+}

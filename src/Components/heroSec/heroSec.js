@@ -10,9 +10,9 @@ const HeroSec = () => {
             <h1 className="ogsfonts48 my-2">Find Your Next Dream Job</h1>
             <p className="ogsfonts16 my-2">Easiest way to find a perfect job</p>
           </div>
-          <div className="row justify-content-center">
+          <div className="row m-0 justify-content-center">
             <div className="col-md-4 my-2">
-              <div className="input-group d-flex row  ">
+              <div className="input-group d-flex row m-0  ">
                 <div className={`d-flex  my-2 ${Styles.inputcon}`}>
                   <div
                     className={`d-flex align-items-center ps-3 ${Styles.inputixon}`}
@@ -37,7 +37,7 @@ const HeroSec = () => {
               </div>
             </div>
             <div className="col-md-3 my-2">
-              <div className="input-group d-flex row  ">
+              <div className="input-group d-flex row  m-0  ">
                 <div className={`d-flex  my-2 ${Styles.inputcon}`}>
                   <div
                     className={`d-flex align-items-center ps-3 ${Styles.inputixon}`}
@@ -63,14 +63,14 @@ const HeroSec = () => {
             </div>
             <div className="col-md-2 my-2 d-flex align-items-center">
               <div className="input-group align-items-center  ">
-                <button className={` me-3 ${Styles.btnsearchtxt}`}>
+                <button className={` me-2 ${Styles.btnsearchtxt}`}>
                   Search by CV
                 </button>
               </div>
             </div>
             <div className="col-md-2 my-2 d-flex align-items-center">
               <div className="input-group align-items-center  ">
-                <button className={` me-3 ${Styles.btnsearchtxt}`}>
+                <button className={` me-2 ${Styles.btnsearchtxt}`}>
                   Search by CV
                 </button>
               </div>

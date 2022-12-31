@@ -5,6 +5,7 @@ import bulid from "../../Assets/Images/Rectangle 1078.png";
 import bulid2 from "../../Assets/Images/Rectangle 1102.png";
 import btnlogo from "../../Assets/Images/Vector 190.png";
 import Footer from "../../Components/Footer/Footer";
+import BlackNavbar from "../Homepage/BlackNavbar";
 const data = [
   {
     title: "Well Control Course",
@@ -44,6 +45,7 @@ const Ogscourses = () => {
   return (
     <div>
       <Navbar />
+      <BlackNavbar />
 
       <div className=" ogsas">
         <div className=" ogscardcon">
