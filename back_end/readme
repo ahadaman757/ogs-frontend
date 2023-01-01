@@ -21,32 +21,32 @@ then find buisness_typee
 ## HomePage API
 
 ====> Pakistani Job
-URL: http://3.110.201.21:3002/general/homePageJobsPK
+URL: https://3.110.201.21:3002/general/homePageJobsPK
 Type: Get
 Example:
 axios
-.get("http://3.110.201.21:3002/general/homePageJobsPK")
+.get("https://3.110.201.21:3002/general/homePageJobsPK")
 .then((res) => console.log(res));
 
 ## Get Courses API
 
-URL: http://3.110.201.21:3002/admin/getCourses
+URL: https://3.110.201.21:3002/admin/getCourses
 Type: Get
 Example:
 axios
-.get("http://3.110.201.21:3002/admin/getCourses")
+.get("https://3.110.201.21:3002/admin/getCourses")
 .then((res) => console.log(res));
 
 Display All Data In Table
 
 ## DELETE COURSE API
 
-URL: http://3.110.201.21:3002/admin/deleteCourse
+URL: https://3.110.201.21:3002/admin/deleteCourse
 Type: POST
 Parameters: id
 Example:
 axios
-.post("http://3.110.201.21:3002/admin/deleteCourse", {
+.post("https://3.110.201.21:3002/admin/deleteCourse", {
 id: courseId
 }, {
 headers: {
@@ -57,18 +57,18 @@ headers: {
 
 ## Get Companies API
 
-URL: http://3.110.201.21:3002/getCompanies
+URL: https://3.110.201.21:3002/getCompanies
 Type: Get
 Example:
 axios
-.get("http://3.110.201.21:3002/getCompanies")
+.get("https://3.110.201.21:3002/getCompanies")
 .then((res) => console.log(res));
 
 ## Get Internation Jobs API
 
-URL: http://3.110.201.21:3002/general/homePageJobsIN
+URL: https://3.110.201.21:3002/general/homePageJobsIN
 Type: Get
 Example:
 axios
-.get("http://3.110.201.21:3002/general/getCompanies")
+.get("https://3.110.201.21:3002/general/getCompanies")
 .then((res) => console.log(res));

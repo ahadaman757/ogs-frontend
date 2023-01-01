@@ -1,14 +1,14 @@
-import Styles from "../privacypolicy/privacypolicy.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import InputField from "../../../Components/inputfield/inputfield";
-import TextEditer from "../../../Components/textediter/textediter";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from "axios";
-import { Markup } from "interweave";
-import jwtCheck from "../../../system/jwtChecker";
-import { useNavigate } from "react-router-dom";
+import Styles from '../privacypolicy/privacypolicy.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import InputField from '../../../Components/inputfield/inputfield';
+import TextEditer from '../../../Components/textediter/textediter';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios from 'axios';
+import { Markup } from 'interweave';
+import jwtCheck from '../../../system/jwtChecker';
+import { useNavigate } from 'react-router-dom';
 
 const GeneralSettings = () => {
   const [data, setData] = useState();
@@ -17,13 +17,13 @@ const GeneralSettings = () => {
   const [minAge, setMinAge] = useState();
   const [maxAge, setMaxAge] = useState();
   const [logoSelected, setLogoSelected] = useState();
-  const [oldData, setOldData] = useState("");
+  const [oldData, setOldData] = useState('');
   const navigate = useNavigate();
   if (jwtCheck(3) === false) {
-    navigate("/adminlogin");
+    navigate('/adminlogin');
   }
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     setData(d);
   };
@@ -34,7 +34,7 @@ const GeneralSettings = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -61,15 +61,15 @@ const GeneralSettings = () => {
                       className={`px-4 py-3 ogsfonts14 mt-5  ${Styles.btnc}`}
                       onClick={() => {
                         const image = new FormData();
-                        image.append("file", logoSelected);
+                        image.append('file', logoSelected);
                         axios
                           .post(
-                            "http://3.110.201.21:3002/admin/uploadLogo",
+                            'https://3.110.201.21:3002/admin/uploadLogo',
                             image,
                             {
                               headers: {
                                 accessToken:
-                                  localStorage.getItem("accessToken"),
+                                  localStorage.getItem('accessToken'),
                               },
                             }
                           )

@@ -33,7 +33,7 @@ const Table = (props) => {
                 <td className="ogsfonts14">{item.institute_name}</td>
                 <td className="ogsfonts14">
                   <a
-                    href={`http://3.110.201.21:3002/public/` + item.thumbnail}
+                    href={`https://3.110.201.21:3002/public/` + item.thumbnail}
                     target="_blank"
                   >
                     See image
@@ -45,7 +45,7 @@ const Table = (props) => {
                     onClick={() => {
                       axios
                         .post(
-                          'http://3.110.201.21:3002/admin/deleteCourse',
+                          'https://3.110.201.21:3002/admin/deleteCourse',
                           {
                             id: item.id,
                           },

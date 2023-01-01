@@ -1,21 +1,21 @@
-import Styles from "./aboutus.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import InputField from "../../../Components/inputfield/inputfield";
-import TextEditer from "../../../Components/textediter/textediter";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import jwtCheck from "../../../system/jwtChecker";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Markup } from "interweave";
+import Styles from './aboutus.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import InputField from '../../../Components/inputfield/inputfield';
+import TextEditer from '../../../Components/textediter/textediter';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import jwtCheck from '../../../system/jwtChecker';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Markup } from 'interweave';
 const Aboutus = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-  const [oldData, setOldData] = useState("");
+  const [oldData, setOldData] = useState('');
   const navigate = useNavigate();
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     setData(d);
   };
@@ -23,10 +23,10 @@ const Aboutus = () => {
 
   useEffect(() => {
     if (jwtCheck(3) === false) {
-      navigate("/adminlogin");
+      navigate('/adminlogin');
     }
     axios
-      .get("http://3.110.201.21:3002/general/getAboutUs")
+      .get('https://3.110.201.21:3002/general/getAboutUs')
       .then((res) => setOldData(res.data.content[0][0].content));
     setLoading(false);
   }, [loading]);
@@ -36,7 +36,7 @@ const Aboutus = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -54,12 +54,12 @@ const Aboutus = () => {
                       editor={ClassicEditor}
                       data={
                         loading
-                          ? "Loading previous data please wait..."
+                          ? 'Loading previous data please wait...'
                           : oldData
                       }
                       onReady={(editor) => {
                         // You can store the "editor" and use when it is needed.
-                        console.log("Editor is ready to use!", editor);
+                        console.log('Editor is ready to use!', editor);
                       }}
                       onChange={(event, editor) => {
                         const data = editor.getData();
@@ -67,10 +67,10 @@ const Aboutus = () => {
                         console.log({ event, editor, data });
                       }}
                       onBlur={(event, editor) => {
-                        console.log("Blur.", editor);
+                        console.log('Blur.', editor);
                       }}
                       onFocus={(event, editor) => {
-                        console.log("Focus.", editor);
+                        console.log('Focus.', editor);
                       }}
                     />
                   </div>
@@ -81,14 +81,14 @@ const Aboutus = () => {
                       onClick={() => {
                         axios
                           .post(
-                            "http://3.110.201.21:3002/admin/changeAboutUs",
+                            'https://3.110.201.21:3002/admin/changeAboutUs',
                             {
                               content: editorData,
                             },
                             {
                               headers: {
                                 accessToken:
-                                  localStorage.getItem("accessToken"),
+                                  localStorage.getItem('accessToken'),
                               },
                             }
                           )
@@ -106,21 +106,21 @@ const Aboutus = () => {
               <div style={{}}>
                 <div
                   style={{
-                    width: "100%",
-                    background: "#f5f5f5",
-                    fontSize: "12px",
-                    textAlign: "center",
+                    width: '100%',
+                    background: '#f5f5f5',
+                    fontSize: '12px',
+                    textAlign: 'center',
                   }}
                 >
-                  <h1 style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+                  <h1 style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                     About Us
                   </h1>
                   <div
                     style={{
-                      textAlign: "left",
-                      paddingLeft: "100px",
-                      paddingRight: "100px",
-                      paddingBottom: "50px",
+                      textAlign: 'left',
+                      paddingLeft: '100px',
+                      paddingRight: '100px',
+                      paddingBottom: '50px',
                     }}
                   >
                     <Markup content={editorData} />

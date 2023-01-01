@@ -1,36 +1,36 @@
-import Styles from "./postajob.module.css";
-import { useState, useEffect } from "react";
-import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
-import { TextInput, List } from "../Forms/InputFields";
-import InputField from "../../Components/inputfield/inputfield";
-import TagInput from "../Forms/TagInput";
-import InputSelect from "../../Components/inputselect/inputfselect";
-import TextEditer from "../../Components/textediter/textediter";
-import { Formik, useFormik } from "formik";
-import * as Yup from "yup";
-import styles from "../authpages/main.module.css";
-import axios from "axios";
-import jwtCheck from "../../system/jwtChecker";
-import { useNavigate } from "react-router-dom";
+import Styles from './postajob.module.css';
+import { useState, useEffect } from 'react';
+import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
+import { TextInput, List } from '../Forms/InputFields';
+import InputField from '../../Components/inputfield/inputfield';
+import TagInput from '../Forms/TagInput';
+import InputSelect from '../../Components/inputselect/inputfselect';
+import TextEditer from '../../Components/textediter/textediter';
+import { Formik, useFormik } from 'formik';
+import * as Yup from 'yup';
+import styles from '../authpages/main.module.css';
+import axios from 'axios';
+import jwtCheck from '../../system/jwtChecker';
+import { useNavigate } from 'react-router-dom';
 
 const Postajob = () => {
-  const [data, Setdata] = useState("");
+  const [data, Setdata] = useState('');
   const [skills, setSkills] = useState();
-  const [Description, setDescription] = useState("");
+  const [Description, setDescription] = useState('');
   console.log(skills);
   const navigate = useNavigate();
   if (jwtCheck(1) === false) {
-    navigate("/employerlogin");
+    navigate('/employerlogin');
   }
 
-  const [dropDownOptions, setdropDownOptions] = useState("");
+  const [dropDownOptions, setdropDownOptions] = useState('');
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get("http://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
+    axios.get('https://3.110.201.21:3002/jobs/jobsoptions').then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -40,68 +40,68 @@ const Postajob = () => {
 
   const jobPostFormIk = useFormik({
     initialValues: {
-      job_title: "",
-      job_description: "",
-      country: "",
-      city: "",
-      career_level: "",
-      min_salary: "",
-      max_salary: "",
-      functional_area: "",
-      gender_title: "",
-      job_shift: "",
-      required_qualification: "",
-      degree_title: "",
-      min_experience: "",
-      max_experience: "",
-      experience_info: "",
-      min_age: "",
-      max_age: "",
-      supervisor_gender_title: "",
-      co_worker_percentage: "",
-      valid_upto: "",
+      job_title: '',
+      job_description: '',
+      country: '',
+      city: '',
+      career_level: '',
+      min_salary: '',
+      max_salary: '',
+      functional_area: '',
+      gender_title: '',
+      job_shift: '',
+      required_qualification: '',
+      degree_title: '',
+      min_experience: '',
+      max_experience: '',
+      experience_info: '',
+      min_age: '',
+      max_age: '',
+      supervisor_gender_title: '',
+      co_worker_percentage: '',
+      valid_upto: '',
     },
 
     validationSchema: Yup.object({
-      job_title: Yup.string().required("Required"),
+      job_title: Yup.string().required('Required'),
       // job_description: Yup.string().required("Required"),
-      country: Yup.number("invalid type").required("Required"),
-      city: Yup.number("invalid type").required("Required"),
+      country: Yup.number('invalid type').required('Required'),
+      city: Yup.number('invalid type').required('Required'),
       // area: Yup.number("invalid type").required('Required'),
-      career_level: Yup.number("invalid type").required("Required"),
-      min_salary: Yup.number("invalid type").required("Required"),
-      max_salary: Yup.number("invalid type").required("Required"),
-      functional_area: Yup.number("invalid type").required("Required"),
-      gender_title: Yup.number("invalid type").required("Required"),
-      job_type_title: Yup.number("invalid type").required("Required"),
-      job_shift: Yup.number("invalid type").required("Required"),
-      required_qualification: Yup.number("invalid type").required("Required"),
-      min_experience: Yup.number("invalid type").required("Required"),
-      max_experience: Yup.number("invalid type").required("Required"),
-      experience_info: Yup.string("invalid type").required("Required"),
-      min_age: Yup.number("invalid type").required("Required"),
-      max_age: Yup.number("invalid type").required("Required"),
+      career_level: Yup.number('invalid type').required('Required'),
+      min_salary: Yup.number('invalid type').required('Required'),
+      max_salary: Yup.number('invalid type').required('Required'),
+      functional_area: Yup.number('invalid type').required('Required'),
+      gender_title: Yup.number('invalid type').required('Required'),
+      job_type_title: Yup.number('invalid type').required('Required'),
+      job_shift: Yup.number('invalid type').required('Required'),
+      required_qualification: Yup.number('invalid type').required('Required'),
+      min_experience: Yup.number('invalid type').required('Required'),
+      max_experience: Yup.number('invalid type').required('Required'),
+      experience_info: Yup.string('invalid type').required('Required'),
+      min_age: Yup.number('invalid type').required('Required'),
+      max_age: Yup.number('invalid type').required('Required'),
     }),
     onSubmit: (values) => {
       values.job_description = Description;
       console.log(values);
       console.log(skills);
-      alert("submitted");
+      alert('submitted');
       let result = skills.map((a) => a.id);
       // let result = [33, 34, "New Skill"]
       const DataToBESend = { ...values, skill_id: skills };
       axios
-        .post("http://3.110.201.21:3002/jobs", DataToBESend, {
+        .post('https://3.110.201.21:3002/jobs', DataToBESend, {
           headers: {
-            "Content-Type": "application/json",
-            accesstoken: localStorage.getItem("accessToken"),
+            'Content-Type': 'application/json',
+            accesstoken: localStorage.getItem('accessToken'),
           },
         })
         .then((res) => {
           console.log(res);
         })
         .catch((error) => {
-          console.log("error occured");
+          console.log('error occured');
           console.log(error);
         });
     },
@@ -110,11 +110,11 @@ const Postajob = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post("http://3.110.201.21:3002/get_city_by_country_id", {
+      .post('https://3.110.201.21:3002/get_city_by_country_id', {
         country_id: jobPostFormIk.values.country || 1,
       })
       .then((res) => {
-        console.log("cites response");
+        console.log('cites response');
         console.log(res);
         setcities(res.data);
       })
@@ -127,7 +127,7 @@ const Postajob = () => {
       <DashboardNavbar side={display} />
       <div
         className={`pt-5 ${Styles.Postajobmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
+          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
         }`}
       >
         <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
@@ -191,7 +191,7 @@ const Postajob = () => {
                       />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
-                      {" "}
+                      {' '}
                       <List
                         options={dropDownOptions.max_salary}
                         list_id="end_salaries"
@@ -202,7 +202,7 @@ const Postajob = () => {
                     </div>
                   </div>
                   <div>
-                    {" "}
+                    {' '}
                     <List
                       options={dropDownOptions.functional_area}
                       list_id="functional_areas"
@@ -219,7 +219,7 @@ const Postajob = () => {
                     />
                   </div>
                   <div>
-                    {" "}
+                    {' '}
                     <h1 className="ogsfonts16 my-3">Additional Conditions</h1>
                     <div className="form-check">
                       <input
@@ -269,7 +269,7 @@ const Postajob = () => {
                       />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
-                      {" "}
+                      {' '}
                       <List
                         options={dropDownOptions.job_shift}
                         list_id="job_shifts"
@@ -351,7 +351,7 @@ const Postajob = () => {
                       />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
-                      {" "}
+                      {' '}
                       <List
                         options={dropDownOptions.max_experience}
                         list_id="max_experiences"
@@ -379,7 +379,7 @@ const Postajob = () => {
                       />
                     </div>
                     <div className={` ${Styles.SRm2}`}>
-                      {" "}
+                      {' '}
                       <List
                         options={dropDownOptions.max_age}
                         list_id="max_ages"
@@ -532,7 +532,7 @@ const Postajob = () => {
               </div>
               <div className="d-flex flex-wrap justify-content-end">
                 <button type="submit" className={`mx-2 mt-3 ${Styles.btnPost}`}>
-                  Post Job{" "}
+                  Post Job{' '}
                 </button>
               </div>
             </div>

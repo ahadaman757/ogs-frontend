@@ -1,12 +1,12 @@
-import Styles from "./login.module.css";
-import bggside from "../../Assets/Images/sign-in-right.png";
-import InputField from "../../Components/inputfield/inputfield";
-import axios from "axios";
-import React, { useState } from "react";
-import Redalert from "../../Components/redalert/redalert";
-import Greenalert from "../../Components/greenalert/greenalert";
+import Styles from './login.module.css';
+import bggside from '../../Assets/Images/sign-in-right.png';
+import InputField from '../../Components/inputfield/inputfield';
+import axios from 'axios';
+import React, { useState } from 'react';
+import Redalert from '../../Components/redalert/redalert';
+import Greenalert from '../../Components/greenalert/greenalert';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 const EmployerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
@@ -29,11 +29,11 @@ const EmployerLogin = () => {
               </p>
               <div className={`pt-5 ${Styles.from}`}>
                 {erroralert == null ? (
-                  ""
+                  ''
                 ) : erroralert ? (
-                  <Redalert message={"Please check your email or password"} />
+                  <Redalert message={'Please check your email or password'} />
                 ) : (
-                  <Greenalert message={"Login successfully"} />
+                  <Greenalert message={'Login successfully'} />
                 )}
 
                 {/* <InputField title={"Email"} onChange={setUserEmail} /> */}
@@ -70,7 +70,7 @@ const EmployerLogin = () => {
                 <button
                   onClick={() => {
                     axios
-                      .post(`http://3.110.201.21:3002/users/signin`, {
+                      .post(`https://3.110.201.21:3002/users/signin`, {
                         email: userEmail,
                         password: userPassword,
                       })
@@ -81,15 +81,15 @@ const EmployerLogin = () => {
                           Seterroralert(true);
                         } else {
                           localStorage.setItem(
-                            "accessToken",
+                            'accessToken',
                             response.data.accesstoken
                           );
                           if (
-                            localStorage.getItem("accessToken") == "undefined"
+                            localStorage.getItem('accessToken') == 'undefined'
                           ) {
                             Seterroralert(true);
                           } else {
-                            navigate("/dashboard");
+                            navigate('/dashboard');
                             Seterroralert(false);
                           }
                           setLoginResponse(response.data.message);
@@ -106,7 +106,7 @@ const EmployerLogin = () => {
           </div>
 
           <div className={`col-md-6  p-0  ${Styles.auth_img} `}>
-            <img style={{ width: "100%", height: "100%" }} src={bggside} />
+            <img style={{ width: '100%', height: '100%' }} src={bggside} />
           </div>
         </div>
       </div>

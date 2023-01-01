@@ -1,10 +1,10 @@
-import { map } from "jquery";
-import React, { useState } from "react";
-import Tick from "../../Assets/Images/tick.svg";
-import removered from "../../Assets/Images/removered.svg";
-import Styles from "./table.module.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { map } from 'jquery';
+import React, { useState } from 'react';
+import Tick from '../../Assets/Images/tick.svg';
+import removered from '../../Assets/Images/removered.svg';
+import Styles from './table.module.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ManageJobsTable = (props) => {
   const [approve_status, setapprove_status] = useState();
@@ -12,15 +12,15 @@ const ManageJobsTable = (props) => {
   const changeApproveStatus = (current_status, id) => {
     axios
       .put(
-        "http://3.110.201.21:3002/admin/update_job_column",
+        'https://3.110.201.21:3002/admin/update_job_column',
         {
           status: !current_status,
-          column: "is_approved",
+          column: 'is_approved',
           job_id: id,
         },
         {
           headers: {
-            accesstoken: localStorage.getItem("accessToken"),
+            accesstoken: localStorage.getItem('accessToken'),
           },
         }
       )
@@ -34,10 +34,10 @@ const ManageJobsTable = (props) => {
   const navigate = useNavigate();
   const deleteJob = (e) => {
     axios
-      .post("http://3.110.201.21:3002/jobs/admindeletejob", {
+      .post('https://3.110.201.21:3002/jobs/admindeletejob', {
         jobId: e,
         headers: {
-          accesstoken: localStorage.getItem("accessToken"),
+          accesstoken: localStorage.getItem('accessToken'),
         },
       })
       .then((response) => {
@@ -54,7 +54,7 @@ const ManageJobsTable = (props) => {
             {props.columns.map((col) => {
               return (
                 <th key={col.id} className="ogsfonts14">
-                  {" "}
+                  {' '}
                   {col.title}
                 </th>
               );
@@ -69,19 +69,19 @@ const ManageJobsTable = (props) => {
                   {item.id}
                 </th>
                 <td className="ogsfonts14">
-                  {item.first_name + " " + item.last_name}
+                  {item.first_name + ' ' + item.last_name}
                 </td>
                 <td className="ogsfonts14">{item.job_title}</td>
 
                 <td className="ogsfonts14">
                   {new Date(item?.createdAt).getDay() +
-                    "/" +
+                    '/' +
                     new Date(item?.createdAt).getMonth() +
-                    "/" +
+                    '/' +
                     new Date(item?.createdAt).getFullYear()}
                 </td>
                 <td onClick={() => changeApproveStatus(item.id)}>
-                  {item.is_approved ? "true" : "False"}
+                  {item.is_approved ? 'true' : 'False'}
                 </td>
                 <td className="ogsfonts14">{item.Address}</td>
                 <td className="ogsfonts14">

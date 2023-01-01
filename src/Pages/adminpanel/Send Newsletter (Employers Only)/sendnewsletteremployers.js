@@ -1,30 +1,30 @@
-import Styles from "./sendnewsletteremployers.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import InputField from "../../../Components/inputfield/inputfield";
-import Table from "../../../Components/table/table";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from "axios";
-import { Markup } from "interweave";
-import jwtCheck from "../../../system/jwtChecker";
-import { useNavigate } from "react-router-dom";
+import Styles from './sendnewsletteremployers.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import InputField from '../../../Components/inputfield/inputfield';
+import Table from '../../../Components/table/table';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import axios from 'axios';
+import { Markup } from 'interweave';
+import jwtCheck from '../../../system/jwtChecker';
+import { useNavigate } from 'react-router-dom';
 
 const detail = [
   {
-    Code: "ewe",
-    Title: "qw",
+    Code: 'ewe',
+    Title: 'qw',
   },
 ];
 const Sendnewsletteremployers = () => {
   const [data, setData] = useState();
   const navigate = useNavigate();
   if (jwtCheck(3) === false) {
-    navigate("/adminlogin");
+    navigate('/adminlogin');
   }
 
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     setData(d);
   };
@@ -35,7 +35,7 @@ const Sendnewsletteremployers = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -63,7 +63,7 @@ const Sendnewsletteremployers = () => {
                       data="<p>Hello from CKEditor 5!</p>"
                       onReady={(editor) => {
                         // You can store the "editor" and use when it is needed.
-                        console.log("Editor is ready to use!", editor);
+                        console.log('Editor is ready to use!', editor);
                       }}
                       onChange={(event, editor) => {
                         const data = editor.getData();
@@ -71,10 +71,10 @@ const Sendnewsletteremployers = () => {
                         console.log({ event, editor, data });
                       }}
                       onBlur={(event, editor) => {
-                        console.log("Blur.", editor);
+                        console.log('Blur.', editor);
                       }}
                       onFocus={(event, editor) => {
-                        console.log("Focus.", editor);
+                        console.log('Focus.', editor);
                       }}
                     />
                   </div>
@@ -84,13 +84,13 @@ const Sendnewsletteremployers = () => {
                       className={`px-4 py-3 ogsfonts14 mt-5  ${Styles.btnc}`}
                       onClick={() => {
                         axios.post(
-                          "http://3.110.201.21:3002/admin/addNewsEmployers",
+                          'https://3.110.201.21:3002/admin/addNewsEmployers',
                           {
                             data: editorData,
                           },
                           {
                             headers: {
-                              accessToken: localStorage.getItem("accessToken"),
+                              accessToken: localStorage.getItem('accessToken'),
                             },
                           }
                         );
@@ -107,28 +107,28 @@ const Sendnewsletteremployers = () => {
               <div style={{}}>
                 <div
                   style={{
-                    width: "600px",
-                    background: "#f5f5f5",
-                    color: "#FE1CBD",
-                    fontSize: "12px",
-                    textAlign: "center",
+                    width: '600px',
+                    background: '#f5f5f5',
+                    color: '#FE1CBD',
+                    fontSize: '12px',
+                    textAlign: 'center',
                   }}
                 >
-                  <h1 style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+                  <h1 style={{ paddingTop: '20px', paddingBottom: '20px' }}>
                     {emailHeading}
                   </h1>
                 </div>
                 <div
                   style={{
-                    width: "600px",
-                    color: "black",
-                    fontSize: "15px",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    background: "#f5f5f5",
-                    marginTop: "-10px",
-                    paddingBottom: "20px",
-                    fontFamily: "Arial",
+                    width: '600px',
+                    color: 'black',
+                    fontSize: '15px',
+                    paddingLeft: '20px',
+                    paddingRight: '20px',
+                    background: '#f5f5f5',
+                    marginTop: '-10px',
+                    paddingBottom: '20px',
+                    fontFamily: 'Arial',
                   }}
                 >
                   <Markup content={editorData} />

@@ -15,7 +15,7 @@ const ManageCategoriesTable = (props) => {
   useEffect(() => {
     axios
       .post(
-        `http://3.110.201.21:3002/admin/manageCategories`,
+        `https://3.110.201.21:3002/admin/manageCategories`,
         {
           action: 'getcatbyid',
           jobId: catEditing,
@@ -29,7 +29,7 @@ const ManageCategoriesTable = (props) => {
       .then((response) => setCatName(response.data.code[0].name));
     axios
       .post(
-        `http://3.110.201.21:3002/admin/manageCategories`,
+        `https://3.110.201.21:3002/admin/manageCategories`,
         {
           action: 'getsubcategories',
           jobId: catEditing,
@@ -102,7 +102,7 @@ const ManageCategoriesTable = (props) => {
                   onClick={() => {
                     axios
                       .post(
-                        `http://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.110.201.21:3002/admin/manageCategories`,
                         {
                           action: 'delete',
                           jobId: item.id,
@@ -160,7 +160,7 @@ const ManageCategoriesTable = (props) => {
                   onClick={() => {
                     axios
                       .post(
-                        `http://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.110.201.21:3002/admin/manageCategories`,
                         {
                           action: 'updatecatname',
                           jobId: catEditing,
@@ -224,7 +224,7 @@ const ManageCategoriesTable = (props) => {
                   onClick={() => {
                     axios
                       .post(
-                        `http://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.110.201.21:3002/admin/manageCategories`,
                         {
                           action: 'addSubCategory',
                           jobId: catEditing,
@@ -300,7 +300,7 @@ const ManageCategoriesTable = (props) => {
                   onClick={() => {
                     axios
                       .post(
-                        `http://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.110.201.21:3002/admin/manageCategories`,
                         {
                           action: 'addSubCategory',
                           jobId: catEditing,

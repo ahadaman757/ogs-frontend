@@ -1,31 +1,31 @@
-import Styles from "./jobpopseeker.module.css";
-import { useState, useEffect } from "react";
-import Seekersidebar from "../seekersidebar/seekersidebar";
-import removeicon from "../../Assets/Images/remove.svg";
-import gasco from "../../Assets/Images/gasco.png";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
+import Styles from './jobpopseeker.module.css';
+import { useState, useEffect } from 'react';
+import Seekersidebar from '../seekersidebar/seekersidebar';
+import removeicon from '../../Assets/Images/remove.svg';
+import gasco from '../../Assets/Images/gasco.png';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 const Jobpopseeker = () => {
   const { state } = useLocation();
   const { job_data, AppliedCvs } = state;
   const [skills, setskills] = useState();
   const [UserCvs, setUserCvs] = useState([]);
-  const [data, Setdata] = useState("");
-  console.log("applied cvs");
+  const [data, Setdata] = useState('');
+  console.log('applied cvs');
   console.log(AppliedCvs);
-  console.log("having");
+  console.log('having');
   console.log(UserCvs);
   const ApplyJob = (cv_id) => {
     axios
       .post(
-        `http://3.110.201.21:3002/jobs/jobapply`,
+        `https://3.110.201.21:3002/jobs/jobapply`,
         {
           job_id: job_data.id,
           cv_id: cv_id,
         },
         {
           headers: {
-            accesstoken: localStorage.getItem("accessToken"),
+            accesstoken: localStorage.getItem('accessToken'),
           },
         }
       )
@@ -38,14 +38,14 @@ const Jobpopseeker = () => {
   };
 
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     Setdata(d);
   };
   useEffect(() => {
     const job_id = job_data.id;
     axios
-      .get(`http://3.110.201.21:3002/skills_for_job_by_id/${job_id}`)
+      .get(`https://3.110.201.21:3002/skills_for_job_by_id/${job_id}`)
       .then((res) => {
         setskills(res.data.skills);
       })
@@ -55,13 +55,13 @@ const Jobpopseeker = () => {
   }, []);
   useEffect(() => {
     axios
-      .get("http://3.110.201.21:3002/users/my_cvs", {
+      .get('https://3.110.201.21:3002/users/my_cvs', {
         headers: {
-          accesstoken: localStorage.getItem("accessToken"),
+          accesstoken: localStorage.getItem('accessToken'),
         },
       })
       .then((res) => {
-        console.log("cv_data", res.data);
+        console.log('cv_data', res.data);
         const filteredArray = res.data.map((cv) => {
           const isApplied = res.data.filter((applied_cv) => {
             return applied_cv.cv_id == cv.cv_id;
@@ -76,13 +76,13 @@ const Jobpopseeker = () => {
         // setUserCvs(res);
       });
   }, []);
-  console.log(UserCvs, "344344");
+  console.log(UserCvs, '344344');
   return (
     <div>
       <Seekersidebar side={display} />
       <div
         className={`pt-4 px-1 ${Styles.jobpopmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
+          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
         }`}
       >
         <div className={`container mt-5 p-4 ${Styles.Jobpopchild}`}>
@@ -102,9 +102,9 @@ const Jobpopseeker = () => {
                 </p>
               </div>
               <h1 className="ogsfonts18 my-3">
-                {" "}
-                {job_data.min_salary ? job_data.min_salary + "-" : null}{" "}
-                {job_data.max_salary}{" "}
+                {' '}
+                {job_data.min_salary ? job_data.min_salary + '-' : null}{' '}
+                {job_data.max_salary}{' '}
               </h1>
               <p className="ogsfonts16 color404040 my-4">
                 <span>
@@ -117,7 +117,7 @@ const Jobpopseeker = () => {
           <div className="my-4">
             <h1 className="ogsfonts32">Job Description</h1>
             <p className="ogsfonts16 color404040">
-              {job_data.description ? job_data.description : "No Desscription"}
+              {job_data.description ? job_data.description : 'No Desscription'}
             </p>
           </div>
           <div>
@@ -133,7 +133,7 @@ const Jobpopseeker = () => {
                       </h2>
                     );
                   })
-                : "No Skills"}
+                : 'No Skills'}
             </div>
           </div>
           <div className="my-5">
@@ -164,7 +164,7 @@ const Jobpopseeker = () => {
                 <h1 className="ogsfonts18 my-3">{job_data.job_type}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.job_shift}</h1>
                 <h1 className="ogsfonts18 my-3">
-                  {job_data.country} , {job_data.city}{" "}
+                  {job_data.country} , {job_data.city}{' '}
                 </h1>
                 <h1 className="ogsfonts18 my-3">{job_data.gender_title}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.qualification}</h1>
@@ -215,9 +215,9 @@ const Jobpopseeker = () => {
                               <div className="col-9">
                                 <p className="ogsfonts18">
                                   {cv.first_name +
-                                    " " +
+                                    ' ' +
                                     cv.last_name +
-                                    ":" +
+                                    ':' +
                                     cv.cv_id}
                                 </p>
                                 <p className="ogsfonts14 m-0">

@@ -1,16 +1,16 @@
-import Styles from "./managealljobs.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import TagInput from "../../Forms/TagInput";
+import Styles from './managealljobs.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import TagInput from '../../Forms/TagInput';
 
-import jwtCheck from "../../../system/jwtChecker";
-import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
-import { Formik, useFormik } from "formik";
-import * as Yup from "yup";
-import { TextInput, List } from "../../Forms/InputFields";
-import TextEditer from "../../../Components/textediter/textediter";
-import styles from "../../post a job/postajob.module.css";
+import jwtCheck from '../../../system/jwtChecker';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Formik, useFormik } from 'formik';
+import * as Yup from 'yup';
+import { TextInput, List } from '../../Forms/InputFields';
+import TextEditer from '../../../Components/textediter/textediter';
+import styles from '../../post a job/postajob.module.css';
 const EditJob = () => {
   const [data, setData] = useState();
   const [jobData, setJobData] = useState([]);
@@ -21,18 +21,18 @@ const EditJob = () => {
   };
   useEffect(() => {
     if (jwtCheck(3) === false) {
-      navigate("/adminlogin");
+      navigate('/adminlogin');
     }
 
     axios
       .post(
-        `http://3.110.201.21:3002/jobs/admingetjobdetail`,
+        `https://3.110.201.21:3002/jobs/admingetjobdetail`,
         {
           jobId: params.jobId,
         },
         {
           headers: {
-            accesstoken: localStorage.getItem("accessToken"),
+            accesstoken: localStorage.getItem('accessToken'),
           },
         }
       )
@@ -54,7 +54,7 @@ const EditJob = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -65,7 +65,7 @@ const EditJob = () => {
               <h1 className="ogsfonts20">Content Managment Section</h1>
               <p className="ogsfonts16">Edit Job {params.jobId}</p>
               {loading ? (
-                "Loading. Please wait..."
+                'Loading. Please wait...'
               ) : (
                 <EditJobForm params={params} />
               )}
@@ -80,33 +80,33 @@ const EditJob = () => {
 const EditJobForm = ({ params }) => {
   const [dropDownOptions, setdropDownOptions] = useState([]);
   const [skills, setSkills] = useState();
-  const [Description, setDescription] = useState("");
+  const [Description, setDescription] = useState('');
   const [cities, setcities] = useState([]);
 
   const EditJobFormIk = useFormik({
     initialValues: {
-      job_title: "",
+      job_title: '',
       // job_description: "",
-      country: "",
-      city: "",
-      career_level: "",
-      min_salary: "",
-      max_salary: "",
-      functional_area: "",
-      gender_title: "",
-      job_shift: "",
-      required_qualification: "",
-      job_type_title: "",
-      degree_title: "",
-      min_experience: "",
-      max_experience: "",
-      experience_info: "",
-      min_age: "",
-      max_age: "",
-      supervisor_gender_title: "",
-      co_worker_percentage: "",
-      valid_upto: "",
-      job_id: "",
+      country: '',
+      city: '',
+      career_level: '',
+      min_salary: '',
+      max_salary: '',
+      functional_area: '',
+      gender_title: '',
+      job_shift: '',
+      required_qualification: '',
+      job_type_title: '',
+      degree_title: '',
+      min_experience: '',
+      max_experience: '',
+      experience_info: '',
+      min_age: '',
+      max_age: '',
+      supervisor_gender_title: '',
+      co_worker_percentage: '',
+      valid_upto: '',
+      job_id: '',
     },
 
     validationSchema: Yup.object({
@@ -121,13 +121,13 @@ const EditJobForm = ({ params }) => {
     onSubmit: (values) => {
       axios
         .put(
-          "http://3.110.201.21:3002/admin/jobs",
+          'https://3.110.201.21:3002/admin/jobs',
           {
             values,
           },
           {
             headers: {
-              accesstoken: localStorage.getItem("accessToken"),
+              accesstoken: localStorage.getItem('accessToken'),
             },
           }
         )
@@ -142,13 +142,13 @@ const EditJobForm = ({ params }) => {
   useEffect(() => {
     axios
       .post(
-        `http://3.110.201.21:3002/jobs/admingetjobdetail`,
+        `https://3.110.201.21:3002/jobs/admingetjobdetail`,
         {
           jobId: params.jobId,
         },
         {
           headers: {
-            accesstoken: localStorage.getItem("accessToken"),
+            accesstoken: localStorage.getItem('accessToken'),
           },
         }
       )
@@ -184,7 +184,7 @@ const EditJobForm = ({ params }) => {
       });
   }, []);
   const getjoboptions = () => {
-    axios.get("http://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
+    axios.get('https://3.110.201.21:3002/jobs/jobsoptions').then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -194,11 +194,11 @@ const EditJobForm = ({ params }) => {
   }, []);
   useEffect(() => {
     axios
-      .post("http://3.110.201.21:3002/get_city_by_country_id", {
+      .post('https://3.110.201.21:3002/get_city_by_country_id', {
         country_id: EditJobFormIk.values.country || 1,
       })
       .then((res) => {
-        console.log("cites response");
+        console.log('cites response');
         console.log(res);
         setcities(res.data);
       })
@@ -268,7 +268,7 @@ const EditJobForm = ({ params }) => {
                   />
                 </div>
                 <div className={` ${Styles.SRm2}`}>
-                  {" "}
+                  {' '}
                   <List
                     options={dropDownOptions.max_salary}
                     list_id="end_salaries"
@@ -279,7 +279,7 @@ const EditJobForm = ({ params }) => {
                 </div>
               </div>
               <div>
-                {" "}
+                {' '}
                 <List
                   options={dropDownOptions.functional_area}
                   list_id="functional_areas"
@@ -346,7 +346,7 @@ const EditJobForm = ({ params }) => {
                   />
                 </div>
                 <div className={` ${Styles.SRm2}`}>
-                  {" "}
+                  {' '}
                   <List
                     options={dropDownOptions.job_shift}
                     list_id="job_shifts"
@@ -429,7 +429,7 @@ const EditJobForm = ({ params }) => {
                   />
                 </div>
                 <div className={` ${Styles.SRm2}`}>
-                  {" "}
+                  {' '}
                   <List
                     options={dropDownOptions.max_experience}
                     list_id="max_experiences"
@@ -457,7 +457,7 @@ const EditJobForm = ({ params }) => {
                   />
                 </div>
                 <div className={` ${Styles.SRm2}`}>
-                  {" "}
+                  {' '}
                   <List
                     options={dropDownOptions.max_age}
                     list_id="max_ages"
@@ -502,7 +502,7 @@ const EditJobForm = ({ params }) => {
               type="submit"
               className={`mx-2 text-white unset-btn p-2 mt-3 ${Styles.btnPost}`}
             >
-              Update Job{" "}
+              Update Job{' '}
             </button>
           </div>
         </div>

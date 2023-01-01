@@ -8,7 +8,7 @@ export const Companies = () => {
   const [tabledata, settabledata] = useState();
   useEffect(() => {
     axios
-      .get('http://3.110.201.21:3002/general/getCompanies')
+      .get('https://3.110.201.21:3002/general/getCompanies')
       .then((res) => {
         settabledata(res.data.getCompanies[1]);
         settableLoading(false);
@@ -80,7 +80,7 @@ export const Companies = () => {
               <div key={item.id} className={`${styles.companies__sliderItem}`}>
                 <img
                   style={{ width: '100px', height: '100px' }}
-                  src={'http://3.110.201.21:3002/' + item.company_logo}
+                  src={'https://3.110.201.21:3002/' + item.company_logo}
                 />
                 <h6>{item.company_name}</h6>
                 <span>{item.business_webpage}</span>

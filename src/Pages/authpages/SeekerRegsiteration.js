@@ -1,33 +1,33 @@
-import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
-import * as Yup from "yup";
-import styles from "./main.module.css";
-import { TextInput, List } from "../Forms/InputFields";
-import axios from "axios";
+import { useFormik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import * as Yup from 'yup';
+import styles from './main.module.css';
+import { TextInput, List } from '../Forms/InputFields';
+import axios from 'axios';
 const SeekerRegister = () => {
   const [signupResponse, setsignupResponse] = useState();
   const [signupError, setsignupError] = useState();
   const signupFormIk = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      repeatPassword: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required("Required"),
-      lastName: Yup.string().required("Required"),
-      email: Yup.string().required("Required"),
-      password: Yup.string().required("Password is Required"),
+      firstName: Yup.string().required('Required'),
+      lastName: Yup.string().required('Required'),
+      email: Yup.string().required('Required'),
+      password: Yup.string().required('Password is Required'),
       repeatPassword: Yup.string().oneOf(
-        [Yup.ref("password"), null],
-        "Passwords must match"
+        [Yup.ref('password'), null],
+        'Passwords must match'
       ),
     }),
     onSubmit: (values) => {
       axios
-        .post("http://3.110.201.21:3002/users", values)
+        .post('https://3.110.201.21:3002/users', values)
         .then((res) => {
           console.log(res);
           setsignupResponse(res.data.message);
@@ -94,8 +94,8 @@ function SeekerRegisteration() {
       <div className="container d-flex flex-grow-1 ">
         <div className={` ${styles.auth_page__model} row  `}>
           <div
-            className={`${"col-md-6"}  d-flex justify-content-center align-items-center py-md-4 py-2 px-md-5 px-2`}
-            style={{ overflow: "hidden" }}
+            className={`${'col-md-6'}  d-flex justify-content-center align-items-center py-md-4 py-2 px-md-5 px-2`}
+            style={{ overflow: 'hidden' }}
           >
             <div className="container-fluid">
               <h1>Logo</h1>

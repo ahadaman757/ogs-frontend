@@ -9,6 +9,13 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import Jobs from './models/Job.js';
 import JobSkill from './models/JobSkill.js';
+const https = require('https');
+const fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('/var/www/html/private.key'),
+  cert: fs.readFileSync('/var/www/html/mycert.pem'),
+};
 
 // var html_to_pdf = require('html-pdf-node');
 
@@ -90,3 +97,7 @@ app
     console.log('server start error');
     console.log(err);
   });
+https.createServer(options, app).listen(3002, function (err) {
+  console.log('server start error');
+  console.log(err);
+});

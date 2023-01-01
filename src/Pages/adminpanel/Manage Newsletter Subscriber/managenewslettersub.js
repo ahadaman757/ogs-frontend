@@ -1,25 +1,25 @@
-import Styles from "./managenewslettersub.module.css";
-import { useEffect, useState } from "react";
-import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
-import InputField from "../../../Components/inputfield/inputfield";
-import Table from "../../../Components/table/table";
-import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
-import NewsLetterTable from "./NewsLetterTable";
-import jwtCheck from "../../../system/jwtChecker";
-import { useNavigate } from "react-router-dom";
+import Styles from './managenewslettersub.module.css';
+import { useEffect, useState } from 'react';
+import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
+import InputField from '../../../Components/inputfield/inputfield';
+import Table from '../../../Components/table/table';
+import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
+import NewsLetterTable from './NewsLetterTable';
+import jwtCheck from '../../../system/jwtChecker';
+import { useNavigate } from 'react-router-dom';
 
-import axios from "axios";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 const Managenewslettersub = () => {
   const [data, setData] = useState();
-  const [emailValue, setEmailValue] = useState("");
+  const [emailValue, setEmailValue] = useState('');
   const [addNewsLetterResponse, setAddNewsLetterResponse] = useState([]);
   const [emailList, setEmailList] = useState();
   const [listLoading, setListLoading] = useState(true);
   const [pager, setPager] = useState(0);
   const navigate = useNavigate();
   if (jwtCheck(3) === false) {
-    navigate("/adminlogin");
+    navigate('/adminlogin');
   }
 
   const display = (d) => {
@@ -27,16 +27,16 @@ const Managenewslettersub = () => {
   };
 
   const addNewsletterSubscriber = () => {
-    if (emailValue != "") {
+    if (emailValue != '') {
       axios
         .post(
-          "http://3.110.201.21:3002/admin/addNewsLetterSubscriber",
+          'https://3.110.201.21:3002/admin/addNewsLetterSubscriber',
           {
             value: emailValue,
           },
           {
             headers: {
-              accessToken: localStorage.getItem("accessToken"),
+              accessToken: localStorage.getItem('accessToken'),
             },
           }
         )
@@ -47,7 +47,7 @@ const Managenewslettersub = () => {
           console.log(error);
         });
     } else {
-      alert("Please enter a valid value");
+      alert('Please enter a valid value');
     }
     console.log(addNewsLetterResponse);
   };
@@ -55,15 +55,15 @@ const Managenewslettersub = () => {
   useEffect(() => {
     // eslint-disable-next-line no-restricted-globals
     const params = new URLSearchParams(location.search);
-    const page = parseInt(params.get("page")) || 1;
+    const page = parseInt(params.get('page')) || 1;
     if (page !== pager.currentPage) {
       axios
         .post(
-          `http://3.110.201.21:3002/admin/getNewsLetterSubscribers`,
+          `https://3.110.201.21:3002/admin/getNewsLetterSubscribers`,
           { page: page },
           {
             headers: {
-              accessToken: localStorage.getItem("accessToken"),
+              accessToken: localStorage.getItem('accessToken'),
             },
           }
         )
@@ -80,7 +80,7 @@ const Managenewslettersub = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? "adminsider" : "sidebarmarginmax"
+          data ? 'adminsider' : 'sidebarmarginmax'
         }`}
       >
         <div className="container">
@@ -101,22 +101,22 @@ const Managenewslettersub = () => {
                   {addNewsLetterResponse.message}
                 </div>
               ) : (
-                ""
+                ''
               )}
               <div className="d-flex flex-wrap justify-content-between">
                 <div className="d-flex align-items-center">
-                  {" "}
+                  {' '}
                   <p className="ogsfonts16 m-0 me-3 ">
                     <input
                       style={{
-                        paddingTop: "12px",
-                        paddingBottom: "12px",
-                        paddingLeft: "10px",
+                        paddingTop: '12px',
+                        paddingBottom: '12px',
+                        paddingLeft: '10px',
                       }}
                       placeholder="Enter Email Address..."
                       onChange={(e) => setEmailValue(e.target.value)}
                     />
-                  </p>{" "}
+                  </p>{' '}
                   <button
                     className={` ogsfonts16 px-4 py-3 ${Styles.btnplode}`}
                     onClick={() => addNewsletterSubscriber()}
@@ -128,12 +128,12 @@ const Managenewslettersub = () => {
               {listLoading === false ? (
                 <NewsLetterTable emailList={emailList} />
               ) : (
-                "Loading Please Wait..."
+                'Loading Please Wait...'
               )}
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Link
                   to={{ search: `?page=1` }}
-                  style={{ marginRight: "10px" }}
+                  style={{ marginRight: '10px' }}
                 >
                   First
                 </Link>
@@ -141,14 +141,14 @@ const Managenewslettersub = () => {
                 <Link
                   to={{ search: `?page=${pager + 1}` }}
                   onClick={() => setPager(pager + 1)}
-                  style={{ marginRight: "10px" }}
+                  style={{ marginRight: '10px' }}
                 >
                   Next
                 </Link>
                 <Link
-                  to={{ search: `?page=${pager != 1 ? pager - 1 : ""}` }}
+                  to={{ search: `?page=${pager != 1 ? pager - 1 : ''}` }}
                   onClick={() => setPager(pager - 1)}
-                  style={{ marginRight: "10px" }}
+                  style={{ marginRight: '10px' }}
                 >
                   Previous
                 </Link>
