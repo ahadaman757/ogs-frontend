@@ -1,38 +1,38 @@
-import CustomErrorHandler from "../services/CustomErrorHandler.js";
-import { JoiValidation } from "../validators/JoiValidation.js";
-import { VALID_MODE } from "../config/index.js";
-import User from "../models/User.js";
-import Extractdata from "../services/extractData.js";
-import errorHandler from "../middlewares/errorHandler.js";
-import multer from "multer";
-import path from "path";
-import Company from "../models/CompanyProfile/Company.js";
-import bcrypt from "bcrypt";
-import { REFRESH_SECRET, JWT_SECRET } from "../config/index.js";
-import RefreshToken from "../models/refreshToken.js";
-import { decryptPassword } from "../services/Main.js";
-import jwt_service from "../services/JwtService.js";
-import sequelize from "../config/db.js";
-import bodyParser from "body-parser";
+import CustomErrorHandler from '../services/CustomErrorHandler.js';
+import { JoiValidation } from '../validators/JoiValidation.js';
+import { VALID_MODE } from '../config/index.js';
+import User from '../models/User.js';
+import Extractdata from '../services/extractData.js';
+import errorHandler from '../middlewares/errorHandler.js';
+import multer from 'multer';
+import path from 'path';
+import Company from '../models/CompanyProfile/Company.js';
+import bcrypt from 'bcrypt';
+import { REFRESH_SECRET, JWT_SECRET } from '../config/index.js';
+import RefreshToken from '../models/refreshToken.js';
+import { decryptPassword } from '../services/Main.js';
+import jwt_service from '../services/JwtService.js';
+import sequelize from '../config/db.js';
+import bodyParser from 'body-parser';
 // const User = require('../models/Users')
 const registercontroller = async (req, res, next) => {
-  console.log("regsiter controller");
+  console.log('regsiter controller');
   // console.log(req.files.image[0].path);
   // extract error from validation schema
   try {
     let orderedData;
     const body = req.body;
-    const { registerType = "seeker" } = req.body;
-    console.log("file");
+    const { registerType = 'seeker' } = req.body;
+    console.log('file');
     console.log(req.file);
-    if (registerType == "recruiter") {
+    if (registerType == 'recruiter') {
       // order the requested data according to database
       orderedData = Extractdata.EmployerSignUp({
         ...req.body,
         file: req.file?.path,
       });
       // Perform Validations
-      if (VALID_MODE == "true") {
+      if (VALID_MODE == 'true') {
         console.log(orderedData.orderedData);
         // perform validations
         var { error } = JoiValidation.signupRecruiter(orderedData.orderedData);
@@ -45,7 +45,7 @@ const registercontroller = async (req, res, next) => {
       // order the requested data according to database
       orderedData = Extractdata.SeekerSignUp({ ...req.body });
       // Perform Validations
-      if (VALID_MODE == "true") {
+      if (VALID_MODE == 'true') {
         // perform validations
         var { error } = JoiValidation.signupSeeker(orderedData.orderedData);
       } else {
@@ -78,17 +78,20 @@ const registercontroller = async (req, res, next) => {
           position: position,
         })
           .then((response) => {
-            console.log("user created");
-            if (registerType == "recruiter") {
+            console.log('user created');
+            if (registerType == 'recruiter') {
               // insertion for employer start
               // Company.createUser(orderedData.orderedData)
               response.createCompany({
                 ...orderedData.orderedData,
                 UserId: response.id,
               });
+              sequelize.query(
+                `UPDATE users SET userTypeId = 1 WHERE id='${response.id}'`
+              );
               // insertion for employer end
             } else {
-              if (registerType == "seeker") {
+              if (registerType == 'seeker') {
                 const {
                   job_title,
                   email,
@@ -131,42 +134,45 @@ const registercontroller = async (req, res, next) => {
                     `insert INTO cv (email,cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${email}','${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`
                   )
                   .then((res) => {
-                    console.log("cv addde");
+                    console.log('cv addde');
                   })
                   .catch((error) => {
                     console.log(error);
                   });
+                sequelize.query(
+                  `UPDATE users SET userTypeId = 1 WHERE email='${email}'`
+                );
               }
             }
             console.log(response.id);
             const accesstoken = jwt_service.sign(
               { id: response.id },
-              "1y",
+              '1y',
               JWT_SECRET
             );
             const refresh_token = jwt_service.sign(
               { id: response.id },
-              "1y",
+              '1y',
               REFRESH_SECRET
             );
             RefreshToken.create({ token: refresh_token })
               .then((resp) => {
-                console.log("token created");
+                console.log('token created');
               })
               .catch((error) => {
-                return next(new Error("Problem occured in database"));
+                return next(new Error('Problem occured in database'));
               });
             res.json({
               accesstoken,
               refresh_token,
-              message: "Account Created successfully",
+              message: 'Account Created successfully',
             });
           })
           .catch((error) => {
             return next(error);
           });
       } else {
-        return next(CustomErrorHandler.alreadyExist("Email already Existss"));
+        return next(CustomErrorHandler.alreadyExist('Email already Existss'));
       }
     }
   } catch (error) {
@@ -175,7 +181,7 @@ const registercontroller = async (req, res, next) => {
 };
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, 'images');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -183,7 +189,7 @@ const storage = multer.diskStorage({
 });
 const imageUpload = multer({
   storage: storage,
-  limits: { fileSize: "1000000" },
+  limits: { fileSize: '1000000' },
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const mimeType = fileTypes.test(file.mimetype);
@@ -191,20 +197,20 @@ const imageUpload = multer({
     if (mimeType && extname) {
       return cb(null, true);
     }
-    cb("Give proper files formate to upload");
+    cb('Give proper files formate to upload');
   },
 }).fields([
   {
-    name: "image",
+    name: 'image',
     maxCount: 1,
   },
   {
-    name: "passport_photo",
+    name: 'passport_photo',
   },
 ]);
 const passportUpload = multer({
   storage: storage,
-  limits: { fileSize: "1000000" },
+  limits: { fileSize: '1000000' },
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const mimeType = fileTypes.test(file.mimetype);
@@ -212,9 +218,9 @@ const passportUpload = multer({
     if (mimeType && extname) {
       return cb(null, true);
     }
-    cb("Give proper files formate to upload");
+    cb('Give proper files formate to upload');
   },
-}).single("passport_photo");
+}).single('passport_photo');
 
 // SignIn Controller
 const signincontroller = async (req, res, next) => {
@@ -224,8 +230,8 @@ const signincontroller = async (req, res, next) => {
   if (
     email != undefined ||
     password != undefined ||
-    email != "" ||
-    password != ""
+    email != '' ||
+    password != ''
   ) {
     if (error) {
       next(error);
@@ -236,7 +242,7 @@ const signincontroller = async (req, res, next) => {
         // next(CustomErrorHandler.notExist("Account Not Found by This Email"));
         return res.json({
           code: 0,
-          message: "Account Not Found by This Email",
+          message: 'Account Not Found by This Email',
         });
       } else {
         bcrypt.compare(password, user.password, function (err, result) {
@@ -244,23 +250,23 @@ const signincontroller = async (req, res, next) => {
             // correct Credentials
             const accesstoken = jwt_service.sign(
               { id: user.id, userType: user.userTypeId },
-              "1y",
+              '1y',
               JWT_SECRET
             );
             const refresh_token = jwt_service.sign(
               { id: user.id, userType: user.userTypeId },
-              "1y",
+              '1y',
               REFRESH_SECRET
             );
             RefreshToken.create({ token: refresh_token })
-              .then((res) => { })
+              .then((res) => {})
               .catch((error) => {
-                return next(new Error("Problem occured in database"));
+                return next(new Error('Problem occured in database'));
               });
             res.json({
               error: 0,
               code: 1,
-              message: "Access token assigned!",
+              message: 'Access token assigned!',
               accesstoken,
               refresh_token,
             });
@@ -272,11 +278,11 @@ const signincontroller = async (req, res, next) => {
       }
     }
   } else {
-    res.json({ error: 1, message: "All fields are required" });
+    res.json({ error: 1, message: 'All fields are required' });
   }
 };
 const ProfileController = async (req, res, next) => {
-  console.log("me profile");
+  console.log('me profile');
   console.log(req.user.id);
   const [employer_record, metadata] =
     await sequelize.query(`select u.id,u.first_name,u.last_name,positions.position_title as position,u.email,countries.name as country,cities.name as city,c.business_mobile_number,c.company_name,c.company_logo,c.business_webpage,
@@ -322,7 +328,7 @@ const ResetPassword = async (req, res, next) => {
             return next(err);
           }
           return next(
-            CustomErrorHandler.unAuthorized("old Password not matched")
+            CustomErrorHandler.unAuthorized('old Password not matched')
           );
         } else if (result) {
           const hash = await decryptPassword(req_new_password);
@@ -331,7 +337,7 @@ const ResetPassword = async (req, res, next) => {
             `update users set password = '${hash}' where id= ${user_id} `
           );
 
-          res.json({ message: "password updated" });
+          res.json({ message: 'password updated' });
         }
       }
     );
@@ -347,7 +353,7 @@ const ResetPassword = async (req, res, next) => {
 };
 const UpdateProfile = async (req, res, next) => {
   // get user id
-  console.log("reb body");
+  console.log('reb body');
   console.log(req.body);
 
   try {
@@ -374,7 +380,7 @@ const UpdateProfile = async (req, res, next) => {
     const company_profile_record = sequelize.query(
       `update companies set country=${country}, city=${city},business_mobile_number='${contact_number}',business_address='${address}' where userId=${user_id}`
     );
-    res.json({ message: "Updated successfull" });
+    res.json({ message: 'Updated successfull' });
   } catch (error) {
     next(error);
   }
