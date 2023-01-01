@@ -91,12 +91,12 @@ app.use('/general', GeneralRouter);
 
 app.use(errorhandler);
 
-app
-  .listen(3002, () => console.log(`OGS server started on port !`))
-  .on('error', function (err) {
-    console.log('server start error');
-    console.log(err);
-  });
+// app
+//   .listen(3002, () => console.log(`OGS server started on port !`))
+//   .on('error', function (err) {
+//     console.log('server start error');
+//     console.log(err);
+//   });
 https.createServer(options, app).listen(3002, function (err) {
   console.log('server start error');
   console.log(err);
