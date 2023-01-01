@@ -9,8 +9,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import Jobs from './models/Job.js';
 import JobSkill from './models/JobSkill.js';
-const https = require('https');
-const fs = require('fs');
+import https from 'https';
+import fs from 'fs';
 
 var options = {
   key: fs.readFileSync('/var/www/html/private.key'),
