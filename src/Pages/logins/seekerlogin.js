@@ -1,18 +1,18 @@
-import Styles from './login.module.css';
-import bggside from '../../Assets/Images/sign-in-right.png';
-import InputField from '../../Components/inputfield/inputfield';
-import React, { useState } from 'react';
-import Redalert from '../../Components/redalert/redalert';
-import Greenalert from '../../Components/greenalert/greenalert';
-import axios from 'axios';
+import Styles from "./login.module.css";
+import bggside from "../../Assets/Images/sign-in-right.png";
+import InputField from "../../Components/inputfield/inputfield";
+import React, { useState } from "react";
+import Redalert from "../../Components/redalert/redalert";
+import Greenalert from "../../Components/greenalert/greenalert";
+import axios from "axios";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const SeekerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [loginResponse, setLoginResponse] = useState();
   const [erroralert, Seterroralert] = useState(null);
-  console.log('dsd', loginResponse);
+  console.log("dsd", loginResponse);
 
   const navigate = useNavigate();
   return (
@@ -33,11 +33,11 @@ const SeekerLogin = () => {
               <div className={`pt-5 ${Styles.from}`}>
                 <div className="my-3">
                   {erroralert == null ? (
-                    ''
+                    ""
                   ) : erroralert ? (
-                    <Redalert message={'Please check your email or password'} />
+                    <Redalert message={"Please check your email or password"} />
                   ) : (
-                    <Greenalert message={'Login successfully'} />
+                    <Greenalert message={"Login successfully"} />
                   )}
                   <div className="d-flex justify-content-between">
                     <p className="ogsfonts16">Email</p>
@@ -80,15 +80,15 @@ const SeekerLogin = () => {
                           Seterroralert(true);
                         } else {
                           localStorage.setItem(
-                            'accessToken',
+                            "accessToken",
                             response.data.accesstoken
                           );
                           if (
-                            localStorage.getItem('accessToken') == 'undefined'
+                            localStorage.getItem("accessToken") == "undefined"
                           ) {
                             Seterroralert(true);
                           } else {
-                            navigate('/jobssearch');
+                            navigate("/jobssearch");
                             Seterroralert(false);
                           }
 
@@ -104,7 +104,7 @@ const SeekerLogin = () => {
           </div>
 
           <div className={`col-md-6 p-0  ${Styles.auth_img} `}>
-            <img style={{ width: '100%', height: '100%' }} src={bggside} />
+            <img style={{ width: "100%", height: "100%" }} src={bggside} />
           </div>
         </div>
       </div>

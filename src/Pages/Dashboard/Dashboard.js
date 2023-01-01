@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import Styles from './Dashboard.module.css';
-import proimg from '../../Assets/Images/Rectangle 1143.png';
-import Chart from 'react-apexcharts';
-import userslogo from '../../Assets/Images/users 02.svg';
-import Active from '../../Components/Active/Active';
-import axios from 'axios';
-import mobilelogo from '../../Assets/Images/mobilelogo.jpg';
-import { useEffect } from 'react';
-import jwtCheck from '../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import Styles from "./Dashboard.module.css";
+import proimg from "../../Assets/Images/Rectangle 1143.png";
+import Chart from "react-apexcharts";
+import userslogo from "../../Assets/Images/users 02.svg";
+import Active from "../../Components/Active/Active";
+import axios from "axios";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
+import { useEffect } from "react";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ parentToChild }) => {
   const [data, setData] = useState();
@@ -20,15 +20,15 @@ const Dashboard = ({ parentToChild }) => {
 
   console.log(data);
   const navigate = useNavigate();
-  if (jwtCheck(1) === false) {
-    navigate('/employerlogin');
+  if (jwtCheck(2) === false) {
+    navigate("/employerlogin");
   }
   useEffect(() => {
     // GET USER DATA
     axios
-      .get('https://3.110.201.21:3002/users/me', {
+      .get("https://3.110.201.21:3002/users/me", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const Dashboard = ({ parentToChild }) => {
     axios
       .get(`https://3.110.201.21:3002/jobs/myjobs`, {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -50,11 +50,11 @@ const Dashboard = ({ parentToChild }) => {
 
   const [options, setoptions] = useState({
     fill: {
-      colors: ['#532efe'],
+      colors: ["#532efe"],
     },
 
     chart: {
-      id: 'basic-bar',
+      id: "basic-bar",
 
       offsetX: 5,
     },
@@ -65,13 +65,13 @@ const Dashboard = ({ parentToChild }) => {
   });
   const [series, setSeries] = useState([
     {
-      name: 'series-1',
+      name: "series-1",
       data: [30, 40, 30, 49, 60, 70],
     },
   ]);
 
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     setData(d);
   };
@@ -80,7 +80,7 @@ const Dashboard = ({ parentToChild }) => {
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <div className="container-md">
@@ -103,7 +103,7 @@ const Dashboard = ({ parentToChild }) => {
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>
-                      {jobsLoading ? '-' : jobs.length}
+                      {jobsLoading ? "-" : jobs.length}
                     </h1>
                   </div>
                 </div>
@@ -122,10 +122,10 @@ const Dashboard = ({ parentToChild }) => {
                 <div
                   className={`d-flex justify-content-between align-items-center`}
                 >
-                  {' '}
+                  {" "}
                   <h1 className="ogsfonts24">Post Jobs</h1>
                 </div>
-                <div>{jobsLoading ? 'Loading...' : <Active jobs={jobs} />}</div>
+                <div>{jobsLoading ? "Loading..." : <Active jobs={jobs} />}</div>
               </div>
             </div>
             <div className="col-md-3">
@@ -135,14 +135,14 @@ const Dashboard = ({ parentToChild }) => {
                 <img className={`${Styles.profimg}`} src={proimg} />
                 <h1 className="ogsfonts24 cblack">
                   {userDataLoading
-                    ? 'Loading...'
-                    : userData.first_name + ' ' + userData.last_name}
+                    ? "Loading..."
+                    : userData.first_name + " " + userData.last_name}
                 </h1>
                 <p className="ogsfonts16 cblack">
-                  {userDataLoading ? 'Loading...' : userData.position}
+                  {userDataLoading ? "Loading..." : userData.position}
                 </p>
                 <p className="ogsfonts14 cblack">
-                  {userDataLoading ? 'Loading...' : userData.email}{' '}
+                  {userDataLoading ? "Loading..." : userData.email}{" "}
                 </p>
                 {/* <p className="ogsfonts14">
                   {userDataLoading
