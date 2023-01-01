@@ -87,7 +87,7 @@ const registercontroller = async (req, res, next) => {
                 UserId: response.id,
               });
               sequelize.query(
-                `UPDATE users SET userTypeId = 1 WHERE id='${response.id}'`
+                `UPDATE users SET userTypeId = 2 WHERE id='${response.id}'`
               );
               // insertion for employer end
             } else {
