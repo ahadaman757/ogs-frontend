@@ -55,7 +55,7 @@ const Cv = ({ applicant, job_id }) => {
 
   return (
     <>
-      {applicant.first_name == 'undefined' ? (
+      {applicant.length < 1 ? (
         'Not found!'
       ) : (
         <>
