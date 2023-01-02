@@ -88,7 +88,7 @@ const Cv = ({ applicant, job_id }) => {
             <img
               style={{ width: '124px', height: '140px' }}
               className="img-fluid"
-              src={`https://3.110.201.21:3002/${applicant.cv_image.replace(
+              src={`https://3.110.201.21:3002/${applicant?.cv_image?.replace(
                 'images',
                 'images/'
               )}`}
