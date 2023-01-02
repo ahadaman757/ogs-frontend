@@ -2,8 +2,14 @@ import Styles from "./cvsearch.module.css";
 import { useState } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
 import InputField from "../../Components/inputfield/inputfield";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 const Cvsearch = () => {
   const [data, Setdata] = useState("");
+  const navigate = useNavigate();
+  if (jwtCheck(2) === false) {
+    navigate("/employerlogin");
+  }
   const display = (d) => {
     console.log("value");
     console.log(d);

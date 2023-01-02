@@ -10,7 +10,7 @@ const Setting = () => {
   const [currntstac, setcurrntstac] = useState("Company");
   const [data, Setdata] = useState("");
   const navigate = useNavigate();
-  if (jwtCheck(1) === false) {
+  if (jwtCheck(2) === false) {
     navigate("/employerlogin");
   }
   const display = (d) => {

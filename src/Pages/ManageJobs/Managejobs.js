@@ -1,28 +1,28 @@
-import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import { useState, useEffect } from 'react';
-import Styles from './Managejobs.module.css';
-import Searchicon from '../../Assets/Images/search.png';
-import proimg from '../../Assets/Images/Rectangle 1143.png';
-import Jobcard from '../../Components/jobcard/Jobcard';
-import Active from '../../Components/Active/Active';
-import Deactivated from '../../Components/Deactived/Deactived';
-import Draft from '../../Components/Draft/Draft';
-import jwtCheck from '../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import { useState, useEffect } from "react";
+import Styles from "./Managejobs.module.css";
+import Searchicon from "../../Assets/Images/search.png";
+import proimg from "../../Assets/Images/Rectangle 1143.png";
+import Jobcard from "../../Components/jobcard/Jobcard";
+import Active from "../../Components/Active/Active";
+import Deactivated from "../../Components/Deactived/Deactived";
+import Draft from "../../Components/Draft/Draft";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Managejobs = () => {
   const [data, Setdata] = useState(false);
-  const [currntstac, setcurrntstac] = useState('');
+  const [currntstac, setcurrntstac] = useState("");
 
   const [mobileActive, setMobileActive] = useState(false);
   const navigate = useNavigate();
-  if (jwtCheck(1) === false) {
-    navigate('/employerlogin');
+  if (jwtCheck(2) === false) {
+    navigate("/employerlogin");
   }
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (window.innerWidth <= 450) {
         setMobileActive(true);
       } else {
@@ -37,7 +37,7 @@ const Managejobs = () => {
   const [userDataLoading, setUserDataLoading] = useState();
 
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     Setdata(d);
   };
@@ -45,9 +45,9 @@ const Managejobs = () => {
   useEffect(() => {
     // GET USER DATA
     axios
-      .get('https://3.110.201.21:3002/users/me', {
+      .get("https://3.110.201.21:3002/users/me", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -58,7 +58,7 @@ const Managejobs = () => {
     axios
       .get(`https://3.110.201.21:3002/jobs/myjobs`, {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -71,7 +71,7 @@ const Managejobs = () => {
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <div>
@@ -80,9 +80,9 @@ const Managejobs = () => {
               <div className="col-md-9">
                 <div className={` p-3 ${Styles.Managejobschild1}`}>
                   <h1 className={`ogsfonts25`}>
-                    Manage Jobs -{' '}
+                    Manage Jobs -{" "}
                     {userData?.company == null
-                      ? 'Undefined'
+                      ? "Undefined"
                       : userData.company_name}
                   </h1>
                   <p>to find talent</p>
@@ -139,24 +139,24 @@ const Managejobs = () => {
                 </div>
                 <div className={`d-flex flex-wrap p-3  my-3 ${Styles.tabsadd}`}>
                   <div className={`mx-5 p-2 ogsfonts16  ${Styles.tablinks}`}>
-                    <a onClick={() => setcurrntstac('active')}>Active</a>
+                    <a onClick={() => setcurrntstac("active")}>Active</a>
                   </div>
 
                   <div className={`mx-5 p-2 ogsfonts16  ${Styles.tablinks}`}>
-                    <a onClick={() => setcurrntstac('deactive')}>Deavtivated</a>
+                    <a onClick={() => setcurrntstac("deactive")}>Deavtivated</a>
                   </div>
                 </div>
                 <div>
                   {jobsLoading ? (
-                    'Loading...'
+                    "Loading..."
                   ) : jobs.length > 0 ? (
-                    currntstac == 'active' ? (
+                    currntstac == "active" ? (
                       <Active jobs={jobs} />
                     ) : (
                       <Deactivated jobs={jobs} />
                     )
                   ) : (
-                    'No posted jobs'
+                    "No posted jobs"
                   )}
                 </div>
               </div>
