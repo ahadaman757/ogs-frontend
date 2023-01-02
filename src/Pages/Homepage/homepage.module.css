@@ -207,6 +207,8 @@
 .coursecardimg {
   width: 315px;
   height: 290px;
+  background-position: center;
+  background-size: cover;
 }
 .coursecardbbttn {
   border: none;

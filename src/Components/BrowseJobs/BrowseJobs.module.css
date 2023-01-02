@@ -70,3 +70,10 @@
   border-radius: 10px;
   width: 100%;
 }
+.coursecardimg {
+  width: 315px;
+  height: 290px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
