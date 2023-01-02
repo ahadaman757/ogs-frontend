@@ -914,7 +914,7 @@ const Newapplicant = () => {
                     return <Cv job_id={state.id} applicant={applicant} />;
                   })
                 : "loading"} */}
-              {appicantsList && applicantsList.length > 0
+              {appicantsList && appicantsList.length > 0
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
                   })
