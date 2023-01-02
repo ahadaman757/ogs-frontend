@@ -233,7 +233,7 @@ function BasicDocument({ cv_data }) {
               <View style={styles.profile_image_container}>
                 <Image
                   style={styles.profile_img}
-                  src={`https://3.110.201.21:3002/${cv_data.cv_image.replace(
+                  src={`https://3.110.201.21:3002/${cv_data?.cv_image?.replace(
                     'images',
                     'images/'
                   )}`}
@@ -544,7 +544,7 @@ function BasicDocument({ cv_data }) {
                   </View>
                 </View>
                 <Image
-                  src={`https://3.110.201.21:3002/${cv_data.passport_photo.replace(
+                  src={`https://3.110.201.21:3002/${cv_data?.passport_photo?.replace(
                     'images',
                     'images/'
                   )}`}
