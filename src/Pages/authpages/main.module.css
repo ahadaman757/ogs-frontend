@@ -1,127 +1,130 @@
 .auth_page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .auth_page__model {
-    flex-grow: 1;
-    background-color: #ffffff;
-    border-radius: unset;
-    /* flex-direction: column; */
+  flex-grow: 1;
+  background-color: #ffffff;
+  border-radius: unset;
+  /* flex-direction: column; */
 }
 
 .auth_img {
-    z-index: 1000000;
-    background-position-x: right;
-    background-position-y: top;
-    background-size: cover;
-    background-image: url('../../Assets/Images/sign-in-right.png');
+  z-index: 1000000;
+  background-position-x: right;
+  background-position-y: top;
+  background-size: cover;
+  background-image: url("../../Assets/Images/sign-in-right.png");
 }
 
 .form-heading {
-    font-size: 40px;
-    color: #000000
+  font-size: 40px;
+  color: #000000;
 }
 
 .form_heading_1 {
-    color: #343434;
-    font-size: 24px;
+  color: #343434;
+  font-size: 24px;
 }
 
 .form_heading_2 {
-    color: #343434;
-    font-size: 20px;
+  color: #343434;
+  font-size: 20px;
 }
 
 .form_description {
-    font-size: 14px;
-    color: #8B8B8B;
-    font-weight: 500;
+  font-size: 14px;
+  color: #8b8b8b;
+  font-weight: 500;
 }
 
 .form_input {
-    padding: 10px 15px 10px 5px;
-    width: 100%;
-    background: #FFFFFF;
-    border: 1px solid #BBBBBB;
-    border-radius: 3px;
-    margin-bottom: .5rem;
+  padding: 10px 15px 10px 5px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
 }
 
 .form_input__lable {
-    margin-bottom: .8rem;
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    color: #000000;
+  margin-bottom: 0.8rem;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
 }
 
 .next_button {
-    border: none;
+  border: none;
 }
 
 .upload_btn_wrapper {
-    height: 300px;
-    box-shadow: 0px 0px 4px 8px rgba(243, 240, 240, 0.37);
+  height: 300px;
+  box-shadow: 0px 0px 4px 8px rgba(243, 240, 240, 0.37);
 
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    width: 80%;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 80%;
 }
 
 .btn-upload {
-    height: 300px;
-    border: 2px solid gray;
-    color: gray;
-    background-color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
+  height: 300px;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.upload-btn-wrapper input[type=file] {
-    font-size: 100px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 
 .file_upload_icon {
-    width: 80px;
+  width: 80px;
 }
 
 .file_upload_hide {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .datalist::after {
-    visibility: visible;
-    content: "hello";
-    display: block;
+  visibility: visible;
+  content: "hello";
+  display: block;
 }
 
 .form_heading_bg {
-    padding: 10px 10px 10px 5px;
-    color: #343434;
-    font-size: 20px;
-    background-color: rgba(162, 162, 230, 0.466);
+  padding: 10px 10px 10px 5px;
+  color: #343434;
+  font-size: 20px;
+  background-color: rgba(162, 162, 230, 0.466);
 }
 
 .profile_photo {
-    max-width: 200px;
-    max-height: 200px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
-.inline_form_lable {}
+.inline_form_lable {
+}
+.sobtn {
+  background: #00a4e5;
+  border-radius: 3px;
+}

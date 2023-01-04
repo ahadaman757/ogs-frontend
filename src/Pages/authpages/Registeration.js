@@ -139,7 +139,7 @@ const LoginInformation = ({
             />
           </div>
           <button
-            className="unset_button w-100 text-white py-2 form_action_button  submit"
+            className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
             type="submit"
           >
             Continue
@@ -205,7 +205,7 @@ const Businessinformation = ({
             />
           </div>
           <button
-            className="unset_button w-100 text-white py-2 form_action_button  submit"
+            className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
             type="submit"
           >
             Continue
@@ -315,7 +315,7 @@ const AddressDetails = ({
           />
         </div>
         <button
-          className="unset_button w-100 text-white py-2 form_action_button  submit"
+          className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
           type="submit"
         >
           Register
@@ -410,7 +410,7 @@ function Register() {
   ];
   return (
     <div
-      className={`${styles.auth_page}    container-fluid p-0 py-3 py-sm-5 bg-primary`}
+      className={`${styles.auth_page}    container-fluid p-0  py-sm-5 bg-primary`}
     >
       <div className="container-md">
         <div className={` ${styles.auth_page__model} row `}>
@@ -450,7 +450,9 @@ function Register() {
                       />
                     </div>
                     {formStep == 4 ? (
-                      <button className="primary-bg form_action_button text-white unset_button ogsfonts15 py-2">
+                      <button
+                        className={`primary-bg form_action_button text-white unset_button ogsfonts15 py-2 $`}
+                      >
                         {" "}
                         Register
                       </button>
