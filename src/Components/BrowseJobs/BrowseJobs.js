@@ -24,7 +24,11 @@ const BrowseJobs = () => {
         <h1 className="ogsfonts25">Courses</h1>
         <div className="d-flex justify-content-evenly flex-wrap">
           {jobsLoading ? (
-            <span>Jobs Loading</span>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
           ) : dataCourses.length == 0 ? (
             <p>No Courses Found</p>
           ) : (

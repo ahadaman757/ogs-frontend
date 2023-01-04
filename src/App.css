@@ -311,6 +311,20 @@ button {
   .sidebarmarginmax {
     margin-left: 0px !important;
   }
+  ol {
+    padding: 0px;
+    /* margin-left: 10px !important; */
+  }
+  .go2791332690 {
+    width: 110px;
+  }
+  .go2791332690 span {
+    padding: 0px !important;
+    margin-right: 30px;
+  }
+  .go2791332690:before {
+    left: 26% !important;
+  }
 }
 .srolll {
   overflow: scroll !important;

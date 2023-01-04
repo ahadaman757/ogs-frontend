@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import styles from './main.module.css';
-import MultiStep from 'react-multistep';
+import styles from "./main.module.css";
+import MultiStep from "react-multistep";
 
 import {
   LoginInformationValidation,
   BusinessInformationValidation,
   AddressInformationValidation,
-} from '../../formsValidations/Registeration';
-import { List, TextInput } from '../Forms/InputFields';
-import { useFormik } from 'formik';
-import axios from 'axios';
+} from "../../formsValidations/Registeration";
+import { List, TextInput } from "../Forms/InputFields";
+import { useFormik } from "formik";
+import axios from "axios";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
 
 const UploadImageSide = ({ setLogoData, title, formik, id }) => {
   const [photoSelected, setphotoSelected] = useState();
@@ -31,7 +32,7 @@ const UploadImageSide = ({ setLogoData, title, formik, id }) => {
             {photoSelected == null ? (
               <img
                 className={`img-fluid ${styles.file_upload_icon} `}
-                src={require('../../Assets/Images/file upload.png')}
+                src={require("../../Assets/Images/file upload.png")}
                 alt=""
               />
             ) : (
@@ -244,7 +245,7 @@ const AddressDetails = ({
   }, []);
   useEffect(() => {
     axios
-      .post('https://3.110.201.21:3002/get_city_by_country_id', {
+      .post("https://3.110.201.21:3002/get_city_by_country_id", {
         country_id: AddressinformationFormik.values.country || 1,
       })
       .then((res) => {
@@ -333,7 +334,7 @@ function Register() {
   const [employerRegsiterOptions, setemployerRegsiterOptions] = useState();
   useEffect(() => {
     axios
-      .get('https://3.110.201.21:3002/employer_register_options')
+      .get("https://3.110.201.21:3002/employer_register_options")
       .then((res) => {
         setemployerRegsiterOptions(res.data);
       })
@@ -343,21 +344,21 @@ function Register() {
   }, []);
   const [LogoData, setLogoData] = useState();
   const [formData, setformData] = useState({
-    position: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    repeat_password: '',
-    businessName: '',
-    businessType: '',
-    businessWebpage: '',
-    mobileNumber: '',
-    address: '',
-    country: '',
-    employerName: '',
-    employerNumber: '',
-    employerEmail: '',
+    position: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    repeat_password: "",
+    businessName: "",
+    businessType: "",
+    businessWebpage: "",
+    mobileNumber: "",
+    address: "",
+    country: "",
+    employerName: "",
+    employerNumber: "",
+    employerEmail: "",
   });
   const [formStep, setformStep] = useState(1);
 
@@ -366,7 +367,7 @@ function Register() {
   };
   const steps = [
     {
-      name: 'StepOne',
+      name: "StepOne",
       component: (
         <div>
           <LoginInformation
@@ -379,7 +380,7 @@ function Register() {
       ),
     },
     {
-      name: 'StepTwo',
+      name: "StepTwo",
       component: (
         <div>
           <Businessinformation
@@ -392,7 +393,7 @@ function Register() {
       ),
     },
     {
-      name: 'StepThree',
+      name: "StepThree",
       component: (
         <div>
           <AddressDetails
@@ -409,33 +410,40 @@ function Register() {
   ];
   return (
     <div
-      className={`${styles.auth_page} py-5   container-fluid px-5 primary-bg`}
+      className={`${styles.auth_page}    container-fluid p-0 py-3 py-sm-5 bg-primary`}
     >
-      <div className="container">
+      <div className="container-md">
         <div className={` ${styles.auth_page__model} row `}>
           <div
             className={`${
-              formStep == 4 ? ' col-md-12' : 'col-md-6'
+              formStep == 4 ? " col-md-12" : "col-md-6"
             }  d-flex justify-content-center align-items-center py-md-4 py-2 px-md-5 px-2`}
-            style={{ overflow: 'hidden' }}
+            style={{ overflow: "hidden" }}
           >
             <div className="container-fluid">
-              <h1>Logo</h1>
-              <h3 className={`${styles.form_heading_1}`}>User Registeration</h3>
-              <p className={`${styles.form_description}`}>
-                Registration with OGS (Pvt) Ltd is 100% free <br />
-                Please fill up this form to register free at OGS
-              </p>
+              <div className="d-flex justify-content-center">
+                <img src={mobilelogo} />{" "}
+              </div>
+              <div className="text-center my-4">
+                <h3 className={`${styles.form_heading_1}`}>
+                  User Registeration
+                </h3>
+                <p className={`${styles.form_description}`}>
+                  Registration with OGS (Pvt) Ltd is 100% free <br />
+                  Please fill up this form to register free at OGS
+                </p>
+              </div>
+
               <div className="row gy-3">
                 {
                   <>
                     <div
                       className={` form_step ${
-                        formStep != 4 ? 'slide_button' : 'disable_slide_button'
+                        formStep != 4 ? "slide_button" : "disable_slide_button"
                       } `}
                     >
                       <MultiStep
-                        prevStyle={{ backgroundColor: 'red' }}
+                        prevStyle={{ backgroundColor: "red" }}
                         activeStep={0}
                         showNavigation={true}
                         steps={steps}
@@ -443,7 +451,7 @@ function Register() {
                     </div>
                     {formStep == 4 ? (
                       <button className="primary-bg form_action_button text-white unset_button ogsfonts15 py-2">
-                        {' '}
+                        {" "}
                         Register
                       </button>
                     ) : null}
