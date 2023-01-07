@@ -290,7 +290,7 @@ const AddressDetails = ({
             label="City"
           />
         </div>
-        <h3 className={`${styles.form_heading_2}`}>
+        <h3 className={`my-3 ${styles.form_heading_2}`}>
           CEO/Head/GM/HR/Admin For conformation
         </h3>
         <div className="col-12">

@@ -95,8 +95,8 @@ const Dashboard = ({ parentToChild }) => {
                   <p className="ogsfonts14">My Default Company</p>
                 </div>
               </div>
-              <div className={`d-flex flex-wrap justify-content-between`}>
-                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
+              <div className={`d-flex flex-wrap `}>
+                <div className={` p-3 my-2 mx-1  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Posted Jobs</h1>
                     <p className={`ogsfonts12`}>No. of jobs you posted</p>
@@ -107,7 +107,7 @@ const Dashboard = ({ parentToChild }) => {
                     </h1>
                   </div>
                 </div>
-                <div className={` p-3 my-2  ${Styles.postjobslimit}`}>
+                <div className={` p-3 my-2 mx-1 ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Reviewed</h1>
                     <p className={`ogsfonts12`}>CVs you have reviewed</p>

@@ -1,30 +1,31 @@
-import Styles from './postajob.module.css';
-import { useState, useEffect } from 'react';
-import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import { TextInput, List, FileUpload } from '../Forms/InputFields';
-import TagInput from '../Forms/TagInput';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { UploadImageSide } from '../authpages/Registeration';
+import Styles from "./postajob.module.css";
+import { useState, useEffect } from "react";
+import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import { TextInput, List, FileUpload } from "../Forms/InputFields";
+import TagInput from "../Forms/TagInput";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { UploadImageSide } from "../authpages/Registeration";
+import PhoneInput from "react-phone-number-input";
 const SignUpCv = () => {
-  const [cvResponse, setcvResponse] = useState('');
+  const [cvResponse, setcvResponse] = useState("");
   const [FormikError, setFormikError] = useState(null);
   const [ProfileImage, setProfileImage] = useState(null);
-  const [cvError, setcvError] = useState('');
+  const [cvError, setcvError] = useState("");
   const [JobTitles, setJobTitles] = useState([]);
-  const [data, Setdata] = useState('');
+  const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();
-  const [Description, setDescription] = useState('');
-  const [dropDownOptions, setdropDownOptions] = useState('');
+  const [Description, setDescription] = useState("");
+  const [dropDownOptions, setdropDownOptions] = useState("");
   console.log(ProfileImage);
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get('https://3.110.201.21:3002/jobs/jobsoptions').then((res) => {
+    axios.get("https://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -34,90 +35,90 @@ const SignUpCv = () => {
   console.log(dropDownOptions);
   const CvFormIk = useFormik({
     initialValues: {
-      passport_photo: '',
-      image: '',
-      first_name: '',
-      last_name: '',
-      email: '',
-      password: '',
-      re_type_password: '',
+      passport_photo: "",
+      image: "",
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      re_type_password: "",
       // cv Info
-      interested_in: '',
-      industry: '',
-      job_title: '',
-      f_name: '',
-      gender: '',
-      dob: '',
-      domicile: '',
-      postal_code: '',
-      mobile_number: '',
-      work_number: '',
-      home_number: '',
-      address: '',
-      country: '',
-      city: '',
-      id_card_no: '',
-      passport_number: '',
-      valid_upto: '',
-      passport_issue_date: '',
-      education_level: '',
-      degree_title: '',
-      institution: '',
-      max_experience: '',
-      career_level: '',
-      nationality: '',
-      religion: '',
-      marital_status: '',
-      current_salary: '',
-      expected_salary: '',
-      skin_color: '',
-      weight: '',
-      height: '',
-      min_experience: '',
+      interested_in: "",
+      industry: "",
+      job_title: "",
+      f_name: "",
+      gender: "",
+      dob: "",
+      domicile: "",
+      postal_code: "",
+      mobile_number: "",
+      work_number: "",
+      home_number: "",
+      address: "",
+      country: "",
+      city: "",
+      id_card_no: "",
+      passport_number: "",
+      valid_upto: "",
+      passport_issue_date: "",
+      education_level: "",
+      degree_title: "",
+      institution: "",
+      max_experience: "",
+      career_level: "",
+      nationality: "",
+      religion: "",
+      marital_status: "",
+      current_salary: "",
+      expected_salary: "",
+      skin_color: "",
+      weight: "",
+      height: "",
+      min_experience: "",
     },
     validationSchema: Yup.object({
-      passport_photo: Yup.mixed().required('You need to provide a file'),
-      image: Yup.mixed().required('You need to provide a file'),
+      passport_photo: Yup.mixed().required("You need to provide a file"),
+      image: Yup.mixed().required("You need to provide a file"),
 
-      first_name: Yup.string('invalid type').required('First Name is Required'),
-      last_name: Yup.string('invalid type').required('Required'),
-      email: Yup.string('invalid type').required('Required'),
-      password: Yup.string().required('Password is Required'),
+      first_name: Yup.string("invalid type").required("First Name is Required"),
+      last_name: Yup.string("invalid type").required("Required"),
+      email: Yup.string("invalid type").required("Required"),
+      password: Yup.string().required("Password is Required"),
       re_type_password: Yup.string().oneOf(
-        [Yup.ref('password'), null],
-        'Passwords must match'
+        [Yup.ref("password"), null],
+        "Passwords must match"
       ),
-      interested_in: Yup.string('invalid type').required('Required'),
-      industry: Yup.number('invalid type').required('Required'),
-      job_title: Yup.number('invalid type').required('Required'),
-      f_name: Yup.string('invalid type').required('Required'),
-      gender: Yup.string('invalid type').required('Required'),
-      dob: Yup.string('invalid type').required('Required'),
-      domicile: Yup.string('invalid type').required('Required'),
-      postal_code: Yup.string('invalid type').required('Required'),
-      mobile_number: Yup.string('invalid type').required('Required'),
-      work_number: Yup.string('invalid type').required('Required'),
-      home_number: Yup.string('invalid type').required('Required'),
-      address: Yup.string('invalid type').required('Required'),
-      country: Yup.string('invalid type').required('Required'),
-      city: Yup.string('invalid type').required('Required'),
-      id_card_no: Yup.string('invalid type').required('Required'),
-      passport_number: Yup.string('invalid type').required('Required'),
-      valid_upto: Yup.string('invalid type').required('Required'),
-      education_level: Yup.string('invalid type').required('Required'),
-      degree_title: Yup.string('invalid type').required('Required'),
-      institution: Yup.string('invalid type').required('Required'),
-      max_experience: Yup.string('invalid type').required('Required'),
-      career_level: Yup.string('invalid type').required('Required'),
-      nationality: Yup.string('invalid type').required('Required'),
-      religion: Yup.string('invalid type').required('Required'),
-      marital_status: Yup.string('invalid type').required('Required'),
-      current_salary: Yup.string('invalid type').required('Required'),
-      expected_salary: Yup.string('invalid type').required('Required'),
-      skin_color: Yup.string('invalid type').required('Required'),
-      weight: Yup.string('invalid type').required('Required'),
-      height: Yup.string('invalid type').required('Required'),
-      min_experience: Yup.string('invalid type').required('Required'),
+      interested_in: Yup.string("invalid type").required("Required"),
+      industry: Yup.number("invalid type").required("Required"),
+      job_title: Yup.number("invalid type").required("Required"),
+      f_name: Yup.string("invalid type").required("Required"),
+      gender: Yup.string("invalid type").required("Required"),
+      dob: Yup.string("invalid type").required("Required"),
+      domicile: Yup.string("invalid type").required("Required"),
+      postal_code: Yup.string("invalid type").required("Required"),
+      mobile_number: Yup.string("invalid type").required("Required"),
+      work_number: Yup.string("invalid type").required("Required"),
+      home_number: Yup.string("invalid type").required("Required"),
+      address: Yup.string("invalid type").required("Required"),
+      country: Yup.string("invalid type").required("Required"),
+      city: Yup.string("invalid type").required("Required"),
+      id_card_no: Yup.string("invalid type").required("Required"),
+      passport_number: Yup.string("invalid type").required("Required"),
+      valid_upto: Yup.string("invalid type").required("Required"),
+      education_level: Yup.string("invalid type").required("Required"),
+      degree_title: Yup.string("invalid type").required("Required"),
+      institution: Yup.string("invalid type").required("Required"),
+      max_experience: Yup.string("invalid type").required("Required"),
+      career_level: Yup.string("invalid type").required("Required"),
+      nationality: Yup.string("invalid type").required("Required"),
+      religion: Yup.string("invalid type").required("Required"),
+      marital_status: Yup.string("invalid type").required("Required"),
+      current_salary: Yup.string("invalid type").required("Required"),
+      expected_salary: Yup.string("invalid type").required("Required"),
+      skin_color: Yup.string("invalid type").required("Required"),
+      weight: Yup.string("invalid type").required("Required"),
+      height: Yup.string("invalid type").required("Required"),
+      min_experience: Yup.string("invalid type").required("Required"),
     }),
     onSubmit: (values) => {
       const fullFormData = { ...values };
@@ -126,14 +127,14 @@ const SignUpCv = () => {
         formdata.append(key, fullFormData[key]);
       }
       axios
-        .post('https://3.110.201.21:3002/users', formdata, {
+        .post("https://3.110.201.21:3002/users", formdata, {
           headers: {
-            'Content-Type': 'multipart/form-data',
-            'Access-Control-Allow-Origin': '*',
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
           },
         })
         .then((res) => {
-          setcvResponse('Account Created');
+          setcvResponse("Account Created");
         })
         .catch((error) => {
           console.log(error);
@@ -142,8 +143,8 @@ const SignUpCv = () => {
         })
         .finally(() => {
           setTimeout(() => {
-            setcvResponse('');
-            setcvError('');
+            setcvResponse("");
+            setcvError("");
           }, 5000);
         });
     },
@@ -151,7 +152,7 @@ const SignUpCv = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post('https://3.110.201.21:3002/get_city_by_country_id', {
+      .post("https://3.110.201.21:3002/get_city_by_country_id", {
         country_id: CvFormIk.values.country || 1,
       })
       .then((res) => {
@@ -164,7 +165,7 @@ const SignUpCv = () => {
   }, [CvFormIk.values.country]);
   useEffect(() => {
     axios
-      .post('https://3.110.201.21:3002/get_job_titles_by_industry_id', {
+      .post("https://3.110.201.21:3002/get_job_titles_by_industry_id", {
         industry_id: CvFormIk.values.industry || 1,
       })
       .then((res) => {
@@ -516,7 +517,7 @@ const SignUpCv = () => {
               <hr />
               <div className="d-flex justify-content-end">
                 <button type="submit" className={`mx-2 ${Styles.btnPost}`}>
-                  Register{' '}
+                  Register{" "}
                 </button>
               </div>
             </div>

@@ -18,6 +18,8 @@ import notifilogo from "../../Assets/Images/notification 01.svg";
 import userlogo from "../../Assets/Images/user-circle.svg";
 import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
 import desktologo from "../../Assets/Images/desktoplogo.jpg";
+import logout from "../../Assets/Images/logout.svg";
+import logoutw from "../../Assets/Images/logoutwhite.svg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +31,7 @@ const Seekersidebar = (props) => {
   const [icon4, seticon4] = useState(dashbordiconb4);
   const [icon5, seticon5] = useState(dashbordiconb5);
   const [icon6, seticon6] = useState(dashbordiconw6);
+  const [icon7, seticon7] = useState(logout);
 
   const navigate = useNavigate();
 
@@ -159,6 +162,27 @@ const Seekersidebar = (props) => {
             </span>
 
             {displayside ? "" : "Create Cv"}
+          </a>
+          <a
+            className={`btn btn-primary ogsfonts16  p-3   ${styles.sidedasbtn}`}
+            role="button"
+            aria-expanded="false"
+            onMouseEnter={() => {
+              seticon7(logoutw);
+            }}
+            onMouseLeave={() => {
+              seticon7(logout);
+            }}
+            onClick={() => {
+              localStorage.setItem("accessToken", "");
+              navigate("/");
+            }}
+          >
+            <span>
+              <img className={`me-2 ${styles.dashbordimg}`} src={icon7} />
+            </span>
+
+            {displayside ? "" : "Logout"}
           </a>
         </div>
       </div>
