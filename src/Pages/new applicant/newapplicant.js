@@ -1,54 +1,54 @@
-import Styles from './newapplicant.module.css';
-import { useState, useEffect } from 'react';
-import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import filltericon from '../../Assets/Images/filter.svg';
-import usericon from '../../Assets/Images/New folder (3)/user.svg';
-import smileicon from '../../Assets/Images/New folder (3)/smile-rectangle.svg';
-import useraddicon from '../../Assets/Images/New folder (3)/user-add.svg';
-import invoiceicon from '../../Assets/Images/New folder (3)/invoice.svg';
-import userremoveicon from '../../Assets/Images/New folder (3)/user-remove 01.svg';
-import erroricon from '../../Assets/Images/New folder (3)/warning-error.svg';
-import usericonb from '../../Assets/Images/New folder (4)/user.svg';
-import smileiconb from '../../Assets/Images/New folder (4)/smile-rectangle.svg';
-import useraddiconb from '../../Assets/Images/New folder (4)/user-add.svg';
-import invoiceiconb from '../../Assets/Images/New folder (4)/invoice.svg';
-import userremoveiconb from '../../Assets/Images/New folder (4)/user-remove 2.svg';
-import erroriconb from '../../Assets/Images/New folder (4)/warning-error.svg';
-import Searchicon from '../../Assets/Images/search.png';
-import selecticon from '../../Assets/Images/check mark-rectangle.svg';
-import diskicon from '../../Assets/Images/disk.svg';
-import piechart from '../../Assets/Images/chart-pie 01.svg';
-import Cv from '../../Components/cv view/cv';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { List, TextInput } from '../Forms/InputFields';
-import { useFormik } from 'formik';
-import { BasicDocument } from '../../Components/pdfDownload';
-import jwtCheck from '../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
+import Styles from "./newapplicant.module.css";
+import { useState, useEffect } from "react";
+import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import filltericon from "../../Assets/Images/filter.svg";
+import usericon from "../../Assets/Images/New folder (3)/user.svg";
+import smileicon from "../../Assets/Images/New folder (3)/smile-rectangle.svg";
+import useraddicon from "../../Assets/Images/New folder (3)/user-add.svg";
+import invoiceicon from "../../Assets/Images/New folder (3)/invoice.svg";
+import userremoveicon from "../../Assets/Images/New folder (3)/user-remove 01.svg";
+import erroricon from "../../Assets/Images/New folder (3)/warning-error.svg";
+import usericonb from "../../Assets/Images/New folder (4)/user.svg";
+import smileiconb from "../../Assets/Images/New folder (4)/smile-rectangle.svg";
+import useraddiconb from "../../Assets/Images/New folder (4)/user-add.svg";
+import invoiceiconb from "../../Assets/Images/New folder (4)/invoice.svg";
+import userremoveiconb from "../../Assets/Images/New folder (4)/user-remove 2.svg";
+import erroriconb from "../../Assets/Images/New folder (4)/warning-error.svg";
+import Searchicon from "../../Assets/Images/search.png";
+import selecticon from "../../Assets/Images/check mark-rectangle.svg";
+import diskicon from "../../Assets/Images/disk.svg";
+import piechart from "../../Assets/Images/chart-pie 01.svg";
+import Cv from "../../Components/cv view/cv";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { List, TextInput } from "../Forms/InputFields";
+import { useFormik } from "formik";
+import { BasicDocument } from "../../Components/pdfDownload";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 const Newapplicant = () => {
   const { state } = useLocation();
   const [cities, setcities] = useState();
-  const [dropDownOptions, setdropDownOptions] = useState('');
+  const [dropDownOptions, setdropDownOptions] = useState("");
   const [applyFilters, setapplyFilters] = useState(false);
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
-    navigate('/employerlogin');
+    navigate("/employerlogin");
   }
   const filtersFormik = useFormik({
     initialValues: {
-      start_date: '',
-      end_date: '',
-      country: '',
-      city: '',
-      education_level: '',
-      max_experience: '',
-      min_age: '',
-      max_age: '',
-      gender: '',
-      marital_status: '',
-      current_salary: '',
-      expected_salary: '',
+      start_date: "",
+      end_date: "",
+      country: "",
+      city: "",
+      education_level: "",
+      max_experience: "",
+      min_age: "",
+      max_age: "",
+      gender: "",
+      marital_status: "",
+      current_salary: "",
+      expected_salary: "",
     },
     onSubmit: (values) => {
       console.log(values);
@@ -56,7 +56,7 @@ const Newapplicant = () => {
   });
   useEffect(() => {
     axios
-      .post('https://3.110.201.21:3002/get_city_by_country_id', {
+      .post("https://3.110.201.21:3002/get_city_by_country_id", {
         country_id: filtersFormik.values.country || 1,
       })
       .then((res) => {
@@ -74,25 +74,25 @@ const Newapplicant = () => {
     axios
       .post(
         `https://3.110.201.21:3002/jobs/jobapplicants?${
-          (v.start_date ? 'start_date=' + v.start_date : '') +
-          '&' +
-          (v.end_date ? 'end_date=' + v.end_date : '') +
-          '&' +
-          (v.country ? 'country=' + v.country : '') +
-          '&' +
-          (v.city ? 'city=' + v.city : '') +
-          '&' +
-          (v.max_experience ? 'max_experience=' + v.max_experience : '') +
-          '&' +
-          (v.min_age ? 'min_age=' + v.min_age : '') +
-          '&' +
-          (v.max_age ? 'max_age=' + v.max_age : '') +
-          '&' +
-          (v.gender ? 'gender=' + v.gender : '') +
-          '&' +
-          (v.marital_status ? 'marital_status=' + v.marital_status : '') +
-          '&' +
-          (v.education_level ? 'education_level=' + v.education_level : '')
+          (v.start_date ? "start_date=" + v.start_date : "") +
+          "&" +
+          (v.end_date ? "end_date=" + v.end_date : "") +
+          "&" +
+          (v.country ? "country=" + v.country : "") +
+          "&" +
+          (v.city ? "city=" + v.city : "") +
+          "&" +
+          (v.max_experience ? "max_experience=" + v.max_experience : "") +
+          "&" +
+          (v.min_age ? "min_age=" + v.min_age : "") +
+          "&" +
+          (v.max_age ? "max_age=" + v.max_age : "") +
+          "&" +
+          (v.gender ? "gender=" + v.gender : "") +
+          "&" +
+          (v.marital_status ? "marital_status=" + v.marital_status : "") +
+          "&" +
+          (v.education_level ? "education_level=" + v.education_level : "")
         }`,
         { job_id: state.id }
       )
@@ -104,7 +104,7 @@ const Newapplicant = () => {
       });
   };
   const getjoboptions = () => {
-    axios.get('https://3.110.201.21:3002/jobs/jobsoptions').then((res) => {
+    axios.get("https://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -112,7 +112,7 @@ const Newapplicant = () => {
     getAllApplicants();
     getjoboptions();
   }, [applyFilters]);
-  const [data, Setdata] = useState('');
+  const [data, Setdata] = useState("");
   const [icon1, seticon] = useState(usericon);
   const [icon2, seticon2] = useState(smileicon);
   const [icon3, seticon3] = useState(useraddicon);
@@ -120,7 +120,7 @@ const Newapplicant = () => {
   const [icon5, seticon5] = useState(userremoveicon);
   const [icon6, seticon6] = useState(erroricon);
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     Setdata(d);
   };
@@ -128,9 +128,9 @@ const Newapplicant = () => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        style={{ marginLeft: data ? '0px' : '200px' }}
+        style={{ marginLeft: data ? "0px" : "200px" }}
         className={`pt-5 ${Styles.newapplicantmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <div className="container">
@@ -138,12 +138,12 @@ const Newapplicant = () => {
             <div className={`col-md-9`}>
               <div className={` p-4 my-3 ${Styles.head_container}`}>
                 <div className="d-flex">
-                  {' '}
+                  {" "}
                   <h1 className="ogsfonts24 me-2">
-                    1269898 / Receptionist - Rawalpindi{' '}
-                  </h1>{' '}
+                    1269898 / Receptionist - Rawalpindi{" "}
+                  </h1>{" "}
                   <button className={`${Styles.fillterbtn}`}>
-                    {' '}
+                    {" "}
                     <span>
                       <img src={filltericon} />
                     </span>
@@ -162,7 +162,7 @@ const Newapplicant = () => {
                     Edit
                   </button> */}
                   <button className={`p-2 ${Styles.btnUploads}`}>
-                    {' '}
+                    {" "}
                     Deactivate Job
                   </button>
                 </div>
@@ -258,7 +258,7 @@ const Newapplicant = () => {
                     aria-labelledby="panelsStayOpen-headingTwo"
                   >
                     <div className="accordion-body accordion234">
-                      {' '}
+                      {" "}
                       <button
                         className={` px-3 py-2 ${Styles.btnUpload}`}
                         onClick={() => setapplyFilters(!applyFilters)}
@@ -909,20 +909,20 @@ const Newapplicant = () => {
                 </div>
               </div>
 
-              {/* {appicantsList
+              {appicantsList
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
                   })
-                : "loading"} */}
-              {appicantsList && appicantsList.length > 0
+                : "loading"}
+              {/* {appicantsList && appicantsList.length > 0
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
                   })
-                : 'No candidates found'}
+                : 'No candidates found'} */}
             </div>
             <div className={`col-md-3 `}>
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>
-                {' '}
+                {" "}
                 <h1 className="ogsfonts18">Applicant Filters</h1>
                 <button
                   className={` px-3 py-2 ${Styles.btnUpload}`}
