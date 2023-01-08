@@ -30,14 +30,10 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
   const { email } = req.body;
   const handlebarOptions = {
     viewEngine: {
-      partialsDir: path.resolve(
-        './AdminController/controllers/AdminControllers/template'
-      ),
+      partialsDir: path.resolve('./controllers/AdminControllers/template'),
       defaultLayout: false,
     },
-    viewPath: path.resolve(
-      './AdminController/controllers/AdminControllers/template'
-    ),
+    viewPath: path.resolve('./controllers/AdminControllers/template'),
   };
   transporter.use('compile', hbs(handlebarOptions));
 
