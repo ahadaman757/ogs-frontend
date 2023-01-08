@@ -36,6 +36,7 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
     viewPath: path.resolve('./controllers/AdminControllers/template'),
   };
   transporter.use('compile', hbs(handlebarOptions));
+  console.log('Email Request Body: -> ', req.body);
   console.log('Sending email to ' + email);
   const mailOptions = {
     from: 'Welcome To OGS Man Power <ceo@ogsmanpower.com>',
