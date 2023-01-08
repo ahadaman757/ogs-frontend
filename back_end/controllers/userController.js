@@ -16,7 +16,6 @@ import sequelize from '../config/db.js';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
-import path from 'path';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -31,10 +30,14 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
   const { email } = req.body;
   const handlebarOptions = {
     viewEngine: {
-      partialsDir: path.resolve('./controllers/AdminControllers/template'),
+      partialsDir: path.resolve(
+        './AdminController/controllers/AdminControllers/template'
+      ),
       defaultLayout: false,
     },
-    viewPath: path.resolve('./controllers/AdminControllers/template'),
+    viewPath: path.resolve(
+      './AdminController/controllers/AdminControllers/template'
+    ),
   };
   transporter.use('compile', hbs(handlebarOptions));
 
