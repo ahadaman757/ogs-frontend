@@ -15,6 +15,9 @@ import jwt_service from '../services/JwtService.js';
 import sequelize from '../config/db.js';
 import bodyParser from 'body-parser';
 // const User = require('../models/Users')
+const sendEmployerRegistrationEmail = async (req, res, next) => {
+  console.log('Send email to employer after register triggered!');
+};
 const registercontroller = async (req, res, next) => {
   console.log('regsiter controller');
   // console.log(req.files.image[0].path);
@@ -400,4 +403,5 @@ export {
   UpdateProfile,
   passportUpload,
   SeekerProfileController,
+  sendEmployerRegistrationEmail,
 };
