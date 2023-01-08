@@ -21,7 +21,7 @@ userRouter.post('/signin', signincontroller);
 userRouter.get('/me', auth, ProfileController);
 userRouter.get('/seeker_me', auth, SeekerProfileController);
 userRouter.get('/my_cvs', auth, getSeekerCvs);
-userRouter.get(
+userRouter.post(
   '/sendEmployerRegistrationEmail',
   auth,
   sendEmployerRegistrationEmail

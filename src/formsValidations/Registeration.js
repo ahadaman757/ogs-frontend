@@ -114,8 +114,11 @@ const AddressInformationValidation = (
             localStorage.setItem('accessToken', res.data.accesstoken);
             localStorage.setItem('refreshToken', res.data.refresh_token);
             axios
-              .get(
+              .post(
                 `https://3.110.201.21:3002/users/sendEmployerRegistrationEmail`,
+                {
+                  email: employerEmail,
+                },
                 {
                   headers: {
                     accessToken: localStorage.getItem('accessToken'),
