@@ -117,7 +117,7 @@ const AddressInformationValidation = (
               .post(
                 `https://3.110.201.21:3002/users/sendEmployerRegistrationEmail`,
                 {
-                  data: 'sdasd',
+                  email: formData.employerEmail,
                 },
                 {
                   headers: {
