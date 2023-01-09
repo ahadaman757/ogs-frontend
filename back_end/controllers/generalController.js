@@ -114,7 +114,7 @@ const GetJobDetailsById = async (req, res, next) => {
    left outer JOIN maxagerequirements minAge on j.min_age_id=minAge.id
    left outer JOIN maxexperiences maxExperience on j.max_experience_id=maxExperience.id
    left outer JOIN maxexperiences minExperience on j.min_experience_id=minExperience.id
-    where id = ${req.body.id}
+    where j.id = ${req.body.id}
     `);
     console.log(meta);
     res.json(company_jobs_record);
