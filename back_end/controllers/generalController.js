@@ -92,7 +92,7 @@ const getCourses = async (req, res, next) => {
 };
 const GetJobDetailsById = async (req, res, next) => {
   console.log('id');
-  console.log(req.user.id);
+  console.log(req.body.id);
   try {
     // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
     const [company_jobs_record, meta] =
