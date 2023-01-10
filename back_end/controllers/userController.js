@@ -28,6 +28,7 @@ const transporter = nodemailer.createTransport({
 const findAccountByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
+    console.log(email);
     await sequelize.query(
       `SELECT * FROM users WHERE email = '${email}'`,
       function (results, err) {
