@@ -8,6 +8,7 @@ import {
   getCompanies,
   homePageJobsIN,
   getCourses,
+  GetJobDetailsById,
 } from '../controllers/generalController.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
@@ -18,6 +19,7 @@ GeneralRouter.get('/getAboutUs', getAboutUs);
 GeneralRouter.get('/getCompanies', getCompanies);
 GeneralRouter.get('/homePageJobsIN', homePageJobsIN);
 GeneralRouter.get('/getCourses', getCourses);
+GeneralRouter.post('/GetJobDetailsById', GetJobDetailsById);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;

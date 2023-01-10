@@ -124,7 +124,7 @@ const Newapplicant = () => {
     console.log(d);
     Setdata(d);
   };
-  console.log(appicantsList, "232323223");
+
   return (
     <div className="asdesaser">
       <DashboardNavbar side={display} />
@@ -809,7 +809,7 @@ const Newapplicant = () => {
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
                   })
-                : "No candidates found"} */}
+                : 'No candidates found'} */}
             </div>
             <div className={`col-md-3 `}>
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>

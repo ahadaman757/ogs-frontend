@@ -113,6 +113,19 @@ const AddressInformationValidation = (
             setRegisterResponse(res.data.message);
             localStorage.setItem('accessToken', res.data.accesstoken);
             localStorage.setItem('refreshToken', res.data.refresh_token);
+            axios
+              .post(
+                `https://3.110.201.21:3002/users/sendEmployerRegistrationEmail`,
+                {
+                  email: formData.employerEmail,
+                },
+                {
+                  headers: {
+                    accessToken: localStorage.getItem('accessToken'),
+                  },
+                }
+              )
+              .then((response) => console.log(response));
             navigate('/dashboard');
           })
           .catch((error) => {

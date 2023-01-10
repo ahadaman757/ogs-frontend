@@ -14,7 +14,48 @@ import { decryptPassword } from '../services/Main.js';
 import jwt_service from '../services/JwtService.js';
 import sequelize from '../config/db.js';
 import bodyParser from 'body-parser';
+import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ahadaman@jataq.com',
+    pass: 'vhdcqlmzsdwooykz',
+  },
+});
+
 // const User = require('../models/Users')
+const sendEmployerRegistrationEmail = async (req, res, next) => {
+  const { email } = req.body;
+  const handlebarOptions = {
+    viewEngine: {
+      partialsDir: path.resolve('./controllers/AdminControllers/template'),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve('./controllers/AdminControllers/template'),
+  };
+  transporter.use('compile', hbs(handlebarOptions));
+  console.log('Email Request Body: -> ', req.body);
+  console.log('Sending email to ' + email);
+  const mailOptions = {
+    from: 'Welcome To OGS Man Power <ceo@ogsmanpower.com>',
+    to: 'ahadaman757@gmail.com',
+    subject: 'New contact form',
+    template: 'email',
+    context: {
+      para: `Welcome To OGS Man Power`,
+    },
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      res.json('done');
+    }
+  });
+};
 const registercontroller = async (req, res, next) => {
   console.log('regsiter controller');
   // console.log(req.files.image[0].path);
@@ -400,4 +441,5 @@ export {
   UpdateProfile,
   passportUpload,
   SeekerProfileController,
+  sendEmployerRegistrationEmail,
 };

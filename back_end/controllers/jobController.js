@@ -226,7 +226,6 @@ const getApplicantsForJobById = async (req, res, next) => {
     left outer JOIN marital_status  on cv.marital_status=marital_status.id
     JOIN users u on cv.user_id=u.id
     where job_id =${job_id}
-    AND jc.created_at BETWEEN '${start_date}' AND '${end_date}'
     AND (timestampdiff(YEAR,cv.dob,NOW()) BETWEEN ${min_age} AND ${max_age})
     AND  ( (${country} is null) OR cv.country=${country})
     AND  ((${city} is null) OR cv.city=${city})
@@ -235,9 +234,34 @@ const getApplicantsForJobById = async (req, res, next) => {
     AND  ((${marital_status} is null) OR cv.marital_status=${marital_status})
     AND  ((${max_experience} is null) OR cv.max_experience=${max_experience})
 `);
+
+    console.log(`select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,cv.mobile_number, educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,cv.dob,NOW()) as age,jc.is_shortlisted,cv.skin_color,cv.height,cv.weight,current_Salary.max_salary  as current_salary, expected_Salary.max_salary as expected_salary,religion.religion,cv.dob as Dob,cv.domicile,cv.address, jc.is_rejected, positions.position_title,u.email,marital_status.status,cv.passport_number,cv.valid_upto,cv.country as country_id,cv.passport_photo from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on cv.gender=genders.id
+JOIN countries on cv.country=countries.id
+JOIN cities on cv.city=cities.id
+JOIN educationqualifications on education_level=educationqualifications.id
+JOIN careerlevels on career_level=careerlevels.id
+JOIN business_types on industry=business_types.id
+JOIN maxexperiences on cv.max_experience=maxexperiences.id
+JOIN positions on cv.position=positions.position_id
+JOIN maxsalaries current_Salary on cv.current_salary=current_Salary.id
+JOIN maxsalaries expected_Salary on cv.expected_salary=expected_Salary.id
+left outer JOIN religion  on cv.religion=religion.id
+left outer JOIN marital_status  on cv.marital_status=marital_status.id
+JOIN users u on cv.user_id=u.id
+where job_id =${job_id}
+AND (timestampdiff(YEAR,cv.dob,NOW()) BETWEEN ${min_age} AND ${max_age})
+AND  ( (${country} is null) OR cv.country=${country})
+AND  ((${city} is null) OR cv.city=${city})
+AND  ((${education_level} is null) OR education_level=${education_level})
+AND  ((${gender} is null) OR cv.gender=${gender})
+AND  ((${marital_status} is null) OR cv.marital_status=${marital_status})
+AND  ((${max_experience} is null) OR cv.max_experience=${max_experience})
+`);
     console.log('Applications ', job_id);
+    console.log('job id ', job_id);
     const applicants_cv_record = applicants_record;
-    res.json(applicants_cv_record);
+    console.log(applicants_cv_record);
+    res.json(applicants_cv_record[0]);
   } catch (error) {
     return next(error);
   }
