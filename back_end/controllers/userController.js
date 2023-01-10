@@ -25,6 +25,34 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const sendResetLink = (email) => {
+  const handlebarOptions = {
+    viewEngine: {
+      partialsDir: path.resolve('./controllers/AdminControllers/template'),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve('./controllers/AdminControllers/template'),
+  };
+  transporter.use('compile', hbs(handlebarOptions));
+  let encoded = window.btoa(email);
+  const mailOptions = {
+    from: 'OGS Man Power <ceo@ogsmanpower.com>',
+    to: `${email}`,
+    subject: 'Reset your password!',
+    template: 'reset',
+    context: {
+      para: `${encoded}`,
+    },
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+};
+
 const findAccountByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
@@ -34,7 +62,12 @@ const findAccountByEmail = async (req, res, next) => {
     );
     if (findUser[0].length > 0) {
       console.log('Found!', findUser);
-      res.json({ code: 1, message: `Please check your email ${email}` });
+      const resetLink = sendResetLink(email);
+      if (sendResetLink === true) {
+        res.json({ code: 1, message: `Please check your email ${email}` });
+      } else {
+        res.json({ code: 0, message: 'An error occured while sending link' });
+      }
     } else {
       console.log('Not found!', findUser);
       res.json({ code: 0, message: `No account found by email ${email}` });
