@@ -63,7 +63,7 @@ const findAccountByEmail = async (req, res, next) => {
     if (findUser[0].length > 0) {
       console.log('Found!', findUser);
       const resetLink = sendResetLink(email);
-      if (sendResetLink === true) {
+      if (resetLink === true) {
         res.json({ code: 1, message: `Please check your email ${email}` });
       } else {
         res.json({ code: 0, message: 'An error occured while sending link' });
