@@ -480,4 +480,5 @@ export {
   passportUpload,
   SeekerProfileController,
   sendEmployerRegistrationEmail,
+  findAccountByEmail,
 };
