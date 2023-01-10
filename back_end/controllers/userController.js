@@ -58,10 +58,11 @@ const resetPass = async (req, res, next) => {
   try {
     const { id, password } = req.body;
     const email = Buffer.from(id, 'base64').toString();
+    const decryptedPass = await decryptPassword(password);
     const changePassword = await sequelize.query(
       `UPDATE users SET password = "${decryptedPass}" WHERE email = "${email}"`
     );
-    const decryptedPass = await decryptPassword(password);
+
     console.log('Email decrypted ', email);
     console.log('Password ', password);
     console.log('Password MD5 ', decryptedPass);
