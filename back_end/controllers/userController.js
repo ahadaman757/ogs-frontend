@@ -25,6 +25,26 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const findAccountByEmail = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    await sequelize.query(
+      'SELECT * FROM users WHERE email = ?',
+      [email],
+      function (results, err) {
+        if (err) res.json({ code: 0, message: 'An Error Occured' });
+        if (results[0].length > 0) {
+          res.json({ code: 1, message: `Please check your email ${email}` });
+        } else {
+          res.json({ code: 0, message: `No account found by email ${email}` });
+        }
+      }
+    );
+  } catch (err) {
+    res.json({ code: 0, message: 'An error occured ' + err });
+  }
+};
+
 // const User = require('../models/Users')
 const sendEmployerRegistrationEmail = async (req, res, next) => {
   const { email, firstName } = req.body;
