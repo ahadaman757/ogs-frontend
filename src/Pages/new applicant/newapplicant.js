@@ -26,6 +26,8 @@ import { useFormik } from "formik";
 import { BasicDocument } from "../../Components/pdfDownload";
 import jwtCheck from "../../system/jwtChecker";
 import { useNavigate } from "react-router-dom";
+import removeicon from "../../Assets/Images/remove.svg";
+import gasco from "../../Assets/Images/gasco.png";
 const Newapplicant = () => {
   const { state } = useLocation();
   const [cities, setcities] = useState();
@@ -73,7 +75,7 @@ const Newapplicant = () => {
         id: state.id,
       })
       .then((response) => {
-        setjobdes(response.data[0].job_description);
+        setjobdes(response.data[0]);
       });
   }, []);
   console.log(jobdes, "ssddddsadds");
@@ -147,26 +149,32 @@ const Newapplicant = () => {
         <div className="container">
           <div className="mt-5 row">
             <div className={`col-md-9`}>
-              <div className={` p-4 my-3 ${Styles.head_container}`}>
-                <div className="d-flex">
+              <div
+                className={` d-flex align-items-center justify-content-between p-4 my-3 ${Styles.head_container}`}
+              >
+                <div>
                   {" "}
-                  <h1 className="ogsfonts24 me-2">
-                    1269898 / Receptionist - Rawalpindi{" "}
-                  </h1>{" "}
-                  <button className={`${Styles.fillterbtn}`}>
-                    {" "}
-                    <span>
-                      <img src={filltericon} />
-                    </span>
-                  </button>
-                </div>
-                <div className="d-flex">
-                  <h1 className="ogsfonts18  me-3">Featured Jobs</h1>
                   <div className="d-flex">
-                    <p className={`me-2 pe-2 ${Styles.viewsix}`}>96 Views</p>
-                    <p>36 Applied</p>
+                    {" "}
+                    <h1 className="ogsfonts24 me-2">
+                      {jobdes.id} / {jobdes.job_title} - {jobdes.country}{" "}
+                    </h1>{" "}
+                    <button className={`${Styles.fillterbtn}`}>
+                      {" "}
+                      <span>
+                        <img src={filltericon} />
+                      </span>
+                    </button>
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <h1 className="ogsfonts18  me-3">Featured Jobs</h1>
+                    <div className="d-flex">
+                      <p className={`me-2 pe-2 ${Styles.viewsix}`}>96 Views</p>
+                      <p>36 Applied</p>
+                    </div>
                   </div>
                 </div>
+
                 <div className="d-flex flex-wrap justify-content-md-end">
                   {/* <button className={`me-3 p-2 ${Styles.btnUpload}`}>
                     {" "}
@@ -224,7 +232,7 @@ const Newapplicant = () => {
                     id="panelsStayOpen-headingTwo1"
                   >
                     <button
-                      className="accordion-button collapsed"
+                      className="accordion-button collapsed ogsfonts24"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseTwo1"
@@ -240,7 +248,156 @@ const Newapplicant = () => {
                     aria-labelledby="panelsStayOpen-headingTwo1"
                   >
                     <div className="accordion-body accordion234 px-3">
-                      <p>{jobdes}</p>
+                      <p>
+                        {" "}
+                        <div
+                          className={`container p-md-4 ${Styles.Jobpopchild}`}
+                        >
+                          <div
+                            className={`d-flex  flex-md-row flex-column-reverse   justify-content-between`}
+                          >
+                            <div>
+                              <div className="d-flex">
+                                <h1 className="ogsfonts18 m-0 my-3">
+                                  OGS (PVt) Limited
+                                </h1>
+                              </div>
+                              <h1 className="ogsfonts18 m-0 my-3">
+                                PKR. {jobdes.min_salary} - {jobdes.max_salary}
+                                /Month
+                              </h1>
+                              <p className="ogsfonts16 color404040 my-4">
+                                <span>
+                                  <img />
+                                </span>
+                                Posted {jobdes.posted_at}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="my-4">
+                            <h1 className="ogsfonts32">Job Description</h1>
+                            <p className="ogsfonts16 color404040">
+                              {jobdes.job_description}
+                            </p>
+                          </div>
+
+                          <div className="my-5">
+                            <h1 className="ogsfonts32">Job Details</h1>
+                          </div>
+                          <div>
+                            <table
+                              style={{ width: "100%" }}
+                              className={`${Styles.table}`}
+                            >
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Industry:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.industry}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Functional Area:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  Secretarial, Clerical & Front Office{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Total Positions:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 "> </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  {" "}
+                                  Job Type:
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.job_type_title}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  {" "}
+                                  Job Shift:
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.job_shift}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Job Location:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.city}, {jobdes.country}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">Gender: </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.gender_title}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Minimum Education{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.qualification}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  {" "}
+                                  Career Level:
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.career_title}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Maximum Experience:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.max_experience}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2  ">
+                                  Apply Before:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.last_date_apply}{" "}
+                                </th>
+                              </tr>
+                              <tr className="my-3">
+                                <th className="ogsfonts18 py-2 ">
+                                  Posting Date:{" "}
+                                </th>
+                                <th className="ogsfonts18 py-2 ">
+                                  {" "}
+                                  {jobdes.posted_at}{" "}
+                                </th>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </p>
                     </div>
                   </div>
                 </div>
