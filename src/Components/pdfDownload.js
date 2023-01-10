@@ -251,7 +251,7 @@ function BasicDocument({ cv_data }) {
                     {cv_data.first_name + ' ' + cv_data.last_name}
                   </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    أحمد خان
+                    {cv_data.first_name + ' ' + cv_data.last_name}
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -265,7 +265,7 @@ function BasicDocument({ cv_data }) {
                     {cv_data.position_title}
                   </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    مطور ويب
+                    {cv_data.position_title}
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -279,7 +279,7 @@ function BasicDocument({ cv_data }) {
                     {cv_data.max_experience}
                   </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    12 سنة
+                    {cv_data.max_experience.split('years')[0]} سنة
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -293,7 +293,7 @@ function BasicDocument({ cv_data }) {
                     {cv_data.expected_salary}
                   </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    2000 ريال
+                    {cv_data.expected_salary} ريال
                   </Text>
                 </View>
               </View>
