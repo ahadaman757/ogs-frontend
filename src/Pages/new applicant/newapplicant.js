@@ -30,6 +30,7 @@ const Newapplicant = () => {
   const { state } = useLocation();
   const [cities, setcities] = useState();
   const [dropDownOptions, setdropDownOptions] = useState("");
+  const [jobdes, setjobdes] = useState("");
   const [applyFilters, setapplyFilters] = useState(false);
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
@@ -66,6 +67,16 @@ const Newapplicant = () => {
         console.log(error);
       });
   }, [filtersFormik.values.country]);
+  useEffect(() => {
+    axios
+      .post(`https://3.110.201.21:3002/general/GetJobDetailsById`, {
+        id: state.id,
+      })
+      .then((response) => {
+        setjobdes(response.data[0].job_description);
+      });
+  }, []);
+  console.log(jobdes, "ssddddsadds");
   console.log(state);
   // get all applicants
   const [appicantsList, setappicantsList] = useState();
@@ -97,7 +108,7 @@ const Newapplicant = () => {
         { job_id: state.id }
       )
       .then((res) => {
-        setappicantsList(res.data[0]);
+        setappicantsList(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -124,7 +135,6 @@ const Newapplicant = () => {
     console.log(d);
     Setdata(d);
   };
-
   return (
     <div className="asdesaser">
       <DashboardNavbar side={display} />
@@ -214,7 +224,7 @@ const Newapplicant = () => {
                     id="panelsStayOpen-headingTwo1"
                   >
                     <button
-                      className="accordion-button collapsed accordion-button2323"
+                      className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#panelsStayOpen-collapseTwo1"
@@ -229,7 +239,9 @@ const Newapplicant = () => {
                     className="accordion-collapse collapse"
                     aria-labelledby="panelsStayOpen-headingTwo1"
                   >
-                    <div className="accordion-body accordion234"></div>
+                    <div className="accordion-body accordion234 px-3">
+                      <p>{jobdes}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -243,20 +255,20 @@ const Newapplicant = () => {
                     id="panelsStayOpen-headingTwo"
                   >
                     <button
-                      className="accordion-button collapsed accordion-button2323"
+                      className="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
-                      data-bs-target="#panelsStayOpen-collapseTwow"
+                      data-bs-target="#panelsStayOpen-collapseTwo"
                       aria-expanded="false"
-                      aria-controls="panelsStayOpen-collapseTwow"
+                      aria-controls="panelsStayOpen-collapseTwo"
                     >
                       Applicant Filters
                     </button>
                   </h2>
                   <div
-                    id="panelsStayOpen-collapseTwow"
-                    className="accordion-collapse collapse p-2"
-                    aria-labelledby="panelsStayOpen-headingTwow"
+                    id="panelsStayOpen-collapseTwo"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo"
                   >
                     <div className="accordion-body accordion234">
                       {" "}
@@ -277,7 +289,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingTwo"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseTwo"
@@ -317,7 +329,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingThree"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseThree"
@@ -347,7 +359,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingFour"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseFour"
@@ -452,14 +464,124 @@ const Newapplicant = () => {
                             </div>
                           </div>
                         </div>
-
+                        {/* <div className="accordion-item accordion234">
+                    <h2
+                      className="accordion-header"
+                      id="panelsStayOpen-headingFive"
+                    >
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFive"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseFive"
+                      >
+                        Company
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseFive"
+                      className="accordion-collapse collapse"
+                      aria-labelledby="panelsStayOpen-headingFive"
+                    >
+                      <div className={`accordion-body accordion234 `}>
+                        <div className={`p-3 ${Styles.jobtradio}`}>
+                          <div className="form-check">
+                            <input
+                              className={`form-check-input ${Styles.radioer}`}
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              className="form-check-label ogsfonts14"
+                              for="flexCheckDefault"
+                            >
+                              Front Desk
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className={`form-check-input ${Styles.radioer}`}
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              className="form-check-label ogsfonts14"
+                              for="flexCheckDefault"
+                            >
+                              Manager
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className={`form-check-input ${Styles.radioer}`}
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              className="form-check-label ogsfonts14"
+                              for="flexCheckDefault"
+                            >
+                              Front Desk Manager
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className={`form-check-input ${Styles.radioer}`}
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              className="form-check-label ogsfonts14"
+                              for="flexCheckDefault"
+                            >
+                              CSR
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className={`form-check-input ${Styles.radioer}`}
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              className="form-check-label ogsfonts14"
+                              for="flexCheckDefault"
+                            >
+                              Media
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input
+                              className={`form-check-input ${Styles.radioer}`}
+                              type="checkbox"
+                              value=""
+                              id="flexCheckDefault"
+                            />
+                            <label
+                              className="form-check-label ogsfonts14"
+                              for="flexCheckDefault"
+                            >
+                              Security
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
                         <div className="accordion-item accordion234">
                           <h2
                             className="accordion-header"
                             id="panelsStayOpen-headingSix"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseSix"
@@ -471,7 +593,7 @@ const Newapplicant = () => {
                           </h2>
                           <div
                             id="panelsStayOpen-collapseSix"
-                            className="accordion-collapse collapse accordion234"
+                            className="accordion-collapse collapse"
                             aria-labelledby="panelsStayOpen-headingSix"
                           >
                             <List
@@ -487,7 +609,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingSeven"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseSeven"
@@ -499,7 +621,7 @@ const Newapplicant = () => {
                           </h2>
                           <div
                             id="panelsStayOpen-collapseSeven"
-                            className="accordion-collapse collapse accordion234"
+                            className="accordion-collapse collapse"
                             aria-labelledby="panelsStayOpen-headingSeven"
                           >
                             <List
@@ -515,7 +637,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingEight"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseEight"
@@ -545,7 +667,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingNine"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseNine"
@@ -575,7 +697,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingTen"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseTen"
@@ -605,7 +727,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingEleven"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseEleven"
@@ -635,7 +757,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingAge"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapseAge"
@@ -772,7 +894,7 @@ const Newapplicant = () => {
                             id="panelsStayOpen-headingfourteen"
                           >
                             <button
-                              className="accordion-button collapsed accordion-button2323"
+                              className="accordion-button collapsed"
                               type="button"
                               data-bs-toggle="collapse"
                               data-bs-target="#panelsStayOpen-collapsefourteen"
@@ -829,7 +951,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingTwo"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseTwo"
@@ -869,7 +991,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingThree"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseThree"
@@ -899,7 +1021,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingFour"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseFour"
@@ -1121,7 +1243,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingSix"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseSix"
@@ -1133,7 +1255,7 @@ const Newapplicant = () => {
                     </h2>
                     <div
                       id="panelsStayOpen-collapseSix"
-                      className="accordion-collapse collapse accordion234"
+                      className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingSix"
                     >
                       <List
@@ -1149,7 +1271,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingSeven"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseSeven"
@@ -1161,7 +1283,7 @@ const Newapplicant = () => {
                     </h2>
                     <div
                       id="panelsStayOpen-collapseSeven"
-                      className="accordion-collapse collapse accordion234"
+                      className="accordion-collapse collapse"
                       aria-labelledby="panelsStayOpen-headingSeven"
                     >
                       <List
@@ -1177,7 +1299,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingEight"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseEight"
@@ -1207,7 +1329,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingNine"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseNine"
@@ -1237,7 +1359,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingTen"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseTen"
@@ -1267,7 +1389,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingEleven"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseEleven"
@@ -1297,7 +1419,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingAge"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseAge"
@@ -1434,7 +1556,7 @@ const Newapplicant = () => {
                       id="panelsStayOpen-headingfourteen"
                     >
                       <button
-                        className="accordion-button collapsed accordion-button2323"
+                        className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapsefourteen"
