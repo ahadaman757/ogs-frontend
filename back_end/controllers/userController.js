@@ -29,19 +29,16 @@ const findAccountByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
     console.log(email);
-    await sequelize.query(
-      `SELECT * FROM users WHERE email = '${email}'`,
-      function (results, err) {
-        if (err) res.json({ code: 0, message: 'An Error Occured' });
-        if (results[0].length > 0) {
-          console.log('Found!', results);
-          res.json({ code: 1, message: `Please check your email ${email}` });
-        } else {
-          console.log('Not found!', results);
-          res.json({ code: 0, message: `No account found by email ${email}` });
-        }
-      }
+    const findUser = await sequelize.query(
+      `SELECT * FROM users WHERE email = '${email}'`
     );
+    if (findUser[0].length > 0) {
+      console.log('Found!', results);
+      res.json({ code: 1, message: `Please check your email ${email}` });
+    } else {
+      console.log('Not found!', results);
+      res.json({ code: 0, message: `No account found by email ${email}` });
+    }
   } catch (err) {
     res.json({ code: 0, message: 'An error occured ' + err });
   }
