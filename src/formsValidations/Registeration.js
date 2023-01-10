@@ -34,6 +34,7 @@ const LoginInformationValidation = (setformdata, formData) => {
         console.log(name[2]);
         name[2].click();
         setformdata(values);
+        localStorage.setItem('email', email);
       });
     },
   };
