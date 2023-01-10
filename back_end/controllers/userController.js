@@ -34,7 +34,7 @@ const sendResetLink = (email) => {
     viewPath: path.resolve('./controllers/AdminControllers/template'),
   };
   transporter.use('compile', hbs(handlebarOptions));
-  let encoded = window.btoa(email);
+  let encoded = Buffer.from(email).toString('base64');
   const mailOptions = {
     from: 'OGS Man Power <ceo@ogsmanpower.com>',
     to: `${email}`,
