@@ -16,6 +16,7 @@ import sequelize from '../config/db.js';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
+import md5 from 'md5';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -51,6 +52,23 @@ const sendResetLink = (email) => {
       return true;
     }
   });
+};
+
+const resetPass = async (req, res, next) => {
+  try {
+    const { id, password } = req.body;
+    const email = Buffer.from(id, 'base64').toString();
+    const changePassword = await sequelize.query(
+      `UPDATE users SET password = "${md5(password)}" WHERE email = "${email}"`
+    );
+    if (changePassword) {
+      res.json({ code: 1, message: 'Password has been changed!' });
+    } else {
+      res.json({ code: 0, message: 'Unable to update password' });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: 'An error occured ' + err });
+  }
 };
 
 const findAccountByEmail = async (req, res, next) => {
@@ -513,4 +531,5 @@ export {
   SeekerProfileController,
   sendEmployerRegistrationEmail,
   findAccountByEmail,
+  resetPass,
 };
