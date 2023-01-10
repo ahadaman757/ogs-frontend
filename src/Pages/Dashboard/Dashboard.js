@@ -47,6 +47,7 @@ const Dashboard = ({ parentToChild }) => {
         setJobsLoading(false);
       });
   }, []);
+  console.log(userData, "userData");
 
   const [options, setoptions] = useState({
     fill: {
@@ -75,6 +76,7 @@ const Dashboard = ({ parentToChild }) => {
     console.log(d);
     setData(d);
   };
+
   return (
     <div className="asdesaser">
       <DashboardNavbar side={display} />

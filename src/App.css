@@ -368,3 +368,6 @@ button {
   margin: 5px 0px;
   /* background-color: #209b20; */
 }
+.df {
+  flex-direction: column;
+}

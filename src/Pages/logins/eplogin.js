@@ -7,6 +7,7 @@ import Redalert from "../../Components/redalert/redalert";
 import Greenalert from "../../Components/greenalert/greenalert";
 
 import { useNavigate } from "react-router-dom";
+
 const EmployerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
@@ -102,6 +103,13 @@ const EmployerLogin = () => {
                 >
                   Continue
                 </button>
+                <a
+                  onClick={() => {
+                    navigate("/frogetpass");
+                  }}
+                >
+                  froget password
+                </a>
               </div>
             </div>
           </div>

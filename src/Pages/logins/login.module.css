@@ -18,6 +18,12 @@
   .auth_img {
     display: none;
   }
+  .Frogetpassin {
+    border: none !important;
+  }
+  .Frogetpassins {
+    border: none !important;
+  }
 }
 .InputField {
   background: #ffffff;
@@ -28,4 +34,44 @@
 }
 .InputFieldRe {
   color: #8b8b8b;
+}
+.Frogetpassin {
+  background: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-radius: 3px;
+  width: 466px;
+  height: 410px;
+  flex-direction: column;
+}
+.Frogetpassmain {
+  min-height: 100vh;
+}
+.linksendbbtn {
+  border: none;
+  color: white;
+  background: #01aff3;
+  border-radius: 3px;
+}
+.fontcol {
+  color: #8b8b8b;
+}
+.fogetinput {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  height: 45px;
+}
+.back {
+  color: #01aff3;
+}
+.fogetinput::placeholder {
+  color: #cdcdcd;
+}
+.Frogetpassins {
+  background: #ffffff;
+  border: 1px solid #c6c6c6;
+  border-radius: 3px;
+  width: 466px;
+  height: 487px;
+  flex-direction: column;
 }
