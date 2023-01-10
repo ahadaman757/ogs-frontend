@@ -44,7 +44,7 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
     subject: 'Welcome To OGS Man Power!',
     template: 'email',
     context: {
-      para: `Welcome To OGS Man Power`,
+      para: `We welcome you on board!`,
       fName: firstName,
     },
   };
@@ -53,6 +53,23 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
     if (error) {
       console.log(error);
     } else {
+      const mailOptions = {
+        from: 'OGS Man Power <ceo@ogsmanpower.com>',
+        to: `ceo@ogsmanpower.com`,
+        subject: 'A new employer joined!',
+        template: 'email',
+        context: {
+          para: `We welcome you on board! ${email}`,
+          fName: firstName,
+        },
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          res.json('message sent to owner');
+        }
+      });
       res.json('done');
     }
   });
