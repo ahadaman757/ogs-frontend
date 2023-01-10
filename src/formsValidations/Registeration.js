@@ -35,6 +35,7 @@ const LoginInformationValidation = (setformdata, formData) => {
         name[2].click();
         setformdata(values);
         localStorage.setItem('email', values.email);
+        localStorage.setItem('first_name', values.first_name);
       });
     },
   };
@@ -119,6 +120,7 @@ const AddressInformationValidation = (
                 `https://3.110.201.21:3002/users/sendEmployerRegistrationEmail`,
                 {
                   email: localStorage.getItem('email'),
+                  firstName: localStorage.getItem('first_name'),
                 },
                 {
                   headers: {
@@ -127,8 +129,9 @@ const AddressInformationValidation = (
                 }
               )
               .then((response) => {
-                navigate('/dashboard');
+                console.log(response);
               });
+            navigate('/dashboard');
           })
           .catch((error) => {
             setRegisterError(error.response.data);

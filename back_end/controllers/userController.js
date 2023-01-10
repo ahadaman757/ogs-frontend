@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
 
 // const User = require('../models/Users')
 const sendEmployerRegistrationEmail = async (req, res, next) => {
-  const { email } = req.body;
+  const { email, firstName } = req.body;
   const handlebarOptions = {
     viewEngine: {
       partialsDir: path.resolve('./controllers/AdminControllers/template'),
@@ -39,12 +39,13 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
   console.log('Email Request Body: -> ', req.body);
   console.log('Sending email to ' + email);
   const mailOptions = {
-    from: 'Welcome To OGS Man Power <ceo@ogsmanpower.com>',
+    from: 'OGS Man Power <ceo@ogsmanpower.com>',
     to: `${email}`,
-    subject: 'New contact form',
+    subject: 'Welcome To OGS Man Power!',
     template: 'email',
     context: {
       para: `Welcome To OGS Man Power`,
+      fName: firstName,
     },
   };
 
