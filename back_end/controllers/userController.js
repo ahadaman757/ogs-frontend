@@ -29,8 +29,7 @@ const findAccountByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
     await sequelize.query(
-      'SELECT * FROM users WHERE email = ?',
-      [email],
+      `SELECT * FROM users WHERE email = '${email}'`,
       function (results, err) {
         if (err) res.json({ code: 0, message: 'An Error Occured' });
         if (results[0].length > 0) {
