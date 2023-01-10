@@ -104,11 +104,12 @@ const EmployerLogin = () => {
                   Continue
                 </button>
                 <a
+                  className={` py-3 hov ogsfonts16`}
                   onClick={() => {
                     navigate("/frogetpass");
                   }}
                 >
-                  froget password
+                  Forget Password?
                 </a>
               </div>
             </div>

@@ -150,7 +150,7 @@ const Newapplicant = () => {
           <div className="mt-5 row">
             <div className={`col-md-9`}>
               <div
-                className={` d-flex align-items-center justify-content-between p-4 my-3 ${Styles.head_container}`}
+                className={` d-flex flex-wrap align-items-center justify-content-between p-4 my-3 ${Styles.head_container}`}
               >
                 <div>
                   {" "}

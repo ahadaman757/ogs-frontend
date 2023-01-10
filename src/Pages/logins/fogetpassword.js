@@ -22,7 +22,10 @@ const Frogetpass = () => {
                 className={`mt-2 ps-4 ${Styles.fogetinput}`}
               />
               <div className="mt-3 d-flex justify-content-between align-items-center mt-4">
-                <a className={`ogsfonts16 ${Styles.back}`}> Back to login </a>
+                <a className={`ogsfonts16 hov ${Styles.back}`}>
+                  {" "}
+                  Back to login{" "}
+                </a>
                 <button
                   className={`py-3 ogsfonts16 px-5 ${Styles.linksendbbtn}`}
                 >

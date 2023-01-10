@@ -371,3 +371,6 @@ button {
 .df {
   flex-direction: column;
 }
+.hov:hover {
+  cursor: pointer;
+}
