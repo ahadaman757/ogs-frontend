@@ -40,7 +40,7 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
   console.log('Sending email to ' + email);
   const mailOptions = {
     from: 'Welcome To OGS Man Power <ceo@ogsmanpower.com>',
-    to: 'ahadaman757@gmail.com',
+    to: `${email}`,
     subject: 'New contact form',
     template: 'email',
     context: {
