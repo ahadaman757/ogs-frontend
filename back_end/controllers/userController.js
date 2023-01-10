@@ -61,6 +61,10 @@ const resetPass = async (req, res, next) => {
     const changePassword = await sequelize.query(
       `UPDATE users SET password = "${md5(password)}" WHERE email = "${email}"`
     );
+    console.log('Email decrypted ', email);
+    console.log('Password ', password);
+    console.log('Password MD5 ', md5(password));
+    console.log('Return ', changePassword);
     if (changePassword) {
       res.json({ code: 1, message: 'Password has been changed!' });
     } else {
