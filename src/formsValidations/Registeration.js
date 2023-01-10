@@ -117,7 +117,7 @@ const AddressInformationValidation = (
               .post(
                 `https://3.110.201.21:3002/users/sendEmployerRegistrationEmail`,
                 {
-                  email: formData.employerEmail,
+                  email: localStorage.getItem('email'),
                 },
                 {
                   headers: {
@@ -125,8 +125,9 @@ const AddressInformationValidation = (
                   },
                 }
               )
-              .then((response) => console.log(response));
-            navigate('/dashboard');
+              .then((response) => {
+                navigate('/dashboard');
+              });
           })
           .catch((error) => {
             setRegisterError(error.response.data);
