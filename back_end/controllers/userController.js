@@ -16,6 +16,7 @@ import sequelize from '../config/db.js';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
+import md5 from 'md5';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -25,9 +26,84 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const sendResetLink = (email) => {
+  const handlebarOptions = {
+    viewEngine: {
+      partialsDir: path.resolve('./controllers/AdminControllers/template'),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve('./controllers/AdminControllers/template'),
+  };
+  transporter.use('compile', hbs(handlebarOptions));
+  let encoded = Buffer.from(email).toString('base64');
+  const mailOptions = {
+    from: 'OGS Man Power <ceo@ogsmanpower.com>',
+    to: `${email}`,
+    subject: 'Reset your password!',
+    template: 'reset',
+    context: {
+      para: `${encoded}`,
+    },
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+};
+
+const resetPass = async (req, res, next) => {
+  try {
+    const { id, password } = req.body;
+    const email = Buffer.from(id, 'base64').toString();
+    const decryptedPass = await decryptPassword(password);
+    const changePassword = await sequelize.query(
+      `UPDATE users SET password = "${decryptedPass}" WHERE email = "${email}"`
+    );
+
+    console.log('Email decrypted ', email);
+    console.log('Password ', password);
+    console.log('Password MD5 ', decryptedPass);
+    console.log('Return ', changePassword);
+    if (changePassword) {
+      res.json({ code: 1, message: 'Password has been changed!' });
+    } else {
+      res.json({ code: 0, message: 'Unable to update password' });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: 'An error occured ' + err });
+  }
+};
+
+const findAccountByEmail = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    console.log(email);
+    const findUser = await sequelize.query(
+      `SELECT * FROM users WHERE email = '${email}'`
+    );
+    if (findUser[0].length > 0) {
+      console.log('Found!', findUser);
+      const resetLink = sendResetLink(email);
+      if (resetLink === true) {
+        res.json({ code: 1, message: `Please check your email ${email}` });
+      } else {
+        res.json({ code: 0, message: 'An error occured while sending link' });
+      }
+    } else {
+      console.log('Not found!', findUser);
+      res.json({ code: 0, message: `No account found by email ${email}` });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: 'An error occured ' + err });
+  }
+};
+
 // const User = require('../models/Users')
 const sendEmployerRegistrationEmail = async (req, res, next) => {
-  const { email } = req.body;
+  const { email, firstName } = req.body;
   const handlebarOptions = {
     viewEngine: {
       partialsDir: path.resolve('./controllers/AdminControllers/template'),
@@ -39,12 +115,13 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
   console.log('Email Request Body: -> ', req.body);
   console.log('Sending email to ' + email);
   const mailOptions = {
-    from: 'Welcome To OGS Man Power <ceo@ogsmanpower.com>',
-    to: 'ahadaman757@gmail.com',
-    subject: 'New contact form',
+    from: 'OGS Man Power <ceo@ogsmanpower.com>',
+    to: `${email}`,
+    subject: 'Welcome To OGS Man Power!',
     template: 'email',
     context: {
-      para: `Welcome To OGS Man Power`,
+      para: `We welcome you on board!`,
+      fName: firstName,
     },
   };
 
@@ -52,6 +129,23 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
     if (error) {
       console.log(error);
     } else {
+      const mailOptions = {
+        from: 'OGS Man Power <ceo@ogsmanpower.com>',
+        to: `ceo@ogsmanpower.com`,
+        subject: 'A new employer joined!',
+        template: 'email',
+        context: {
+          para: `We welcome you on board! ${email}`,
+          fName: firstName,
+        },
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          res.json('message sent to owner');
+        }
+      });
       res.json('done');
     }
   });
@@ -442,4 +536,6 @@ export {
   passportUpload,
   SeekerProfileController,
   sendEmployerRegistrationEmail,
+  findAccountByEmail,
+  resetPass,
 };

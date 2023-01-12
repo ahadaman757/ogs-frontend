@@ -11,6 +11,8 @@ import {
   UpdateProfile,
   passportUpload,
   SeekerProfileController,
+  findAccountByEmail,
+  resetPass,
 } from '../controllers/userController.js';
 import { getSeekerCvs, CreateCv } from '../controllers/CvContoller.js';
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -28,6 +30,8 @@ userRouter.post(
 );
 userRouter.post('/resetpassword', auth, ResetPassword);
 userRouter.post('/employer_update_profile', auth, imageUpload, UpdateProfile);
+userRouter.post('/findAccountByEmail', findAccountByEmail);
+userRouter.post('/resetPass', resetPass);
 
 // userRouter.get('/me', auth, usermecontroller)
 

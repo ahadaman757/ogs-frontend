@@ -34,6 +34,8 @@ const LoginInformationValidation = (setformdata, formData) => {
         console.log(name[2]);
         name[2].click();
         setformdata(values);
+        localStorage.setItem('email', values.email);
+        localStorage.setItem('first_name', values.first_name);
       });
     },
   };
@@ -117,7 +119,8 @@ const AddressInformationValidation = (
               .post(
                 `https://3.110.201.21:3002/users/sendEmployerRegistrationEmail`,
                 {
-                  email: formData.employerEmail,
+                  email: localStorage.getItem('email'),
+                  firstName: localStorage.getItem('first_name'),
                 },
                 {
                   headers: {
@@ -125,7 +128,9 @@ const AddressInformationValidation = (
                   },
                 }
               )
-              .then((response) => console.log(response));
+              .then((response) => {
+                console.log(response);
+              });
             navigate('/dashboard');
           })
           .catch((error) => {

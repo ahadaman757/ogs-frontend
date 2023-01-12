@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./main.module.css";
-import logo from "../../Assets/Images/mobilelogo.jpg";
 import MultiStep from "react-multistep";
 
 import {
@@ -121,6 +120,7 @@ const LoginInformation = ({
               id="email"
               formik={logininformationFormik}
               label="Email"
+              onChange={(e) => localStorage.setItem("email", e.target.values)}
             />
           </div>
           <div className="col-md-6">
