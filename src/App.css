@@ -307,6 +307,12 @@ button {
 .sidebarmarginmax {
   margin-left: 200px !important;
 }
+.go2441762052 {
+  display: none !important;
+}
+.go2791332690 {
+  width: 100%;
+}
 @media only screen and (max-width: 720px) {
   .sidebarmarginmax {
     margin-left: 0px !important;
@@ -315,8 +321,11 @@ button {
     padding: 0px;
     /* margin-left: 10px !important; */
   }
+  .go2441762052 {
+    display: flex !important;
+  }
   .go2791332690 {
-    width: 110px;
+    width: 100%;
   }
   .go2791332690 span {
     padding: 0px !important;
@@ -373,4 +382,7 @@ button {
 }
 .hov:hover {
   cursor: pointer;
+}
+.themco {
+  background: #01aff3;
 }

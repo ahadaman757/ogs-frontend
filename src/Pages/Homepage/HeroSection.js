@@ -35,6 +35,28 @@ export const HeroSection = () => {
               <li>
                 <a
                   onClick={() => {
+                    navigate("/instituteLogin");
+                  }}
+                  class="dropdown-item"
+                  href="#"
+                >
+                  Institute Login
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    navigate("/agentLogin");
+                  }}
+                  class="dropdown-item"
+                  href="#"
+                >
+                  Agent login
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
                     navigate("/seekerlogin");
                   }}
                   class="dropdown-item"
@@ -65,6 +87,28 @@ export const HeroSection = () => {
                   href="#"
                 >
                   Register as Employer
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    navigate("/agentregister");
+                  }}
+                  class="dropdown-item"
+                  href="#"
+                >
+                  Register as Agent
+                </a>
+              </li>
+              <li>
+                <a
+                  onClick={() => {
+                    navigate("/instituteregister");
+                  }}
+                  class="dropdown-item"
+                  href="#"
+                >
+                  Register as Anstitute
                 </a>
               </li>
               <li>

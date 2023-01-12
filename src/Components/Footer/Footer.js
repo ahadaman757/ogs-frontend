@@ -5,131 +5,160 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className={` ${Styles.Footermain}`}>
-      <div className={`container py-3 ${Styles.Footermain}`}>
-        <div className="row">
-          <div className="col-md-6">
-            <h1 className="footerfontcolor ogsfonts24">About Us</h1>
-            <p className="footerfontcolor ogsfonts16 ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis.
-            </p>
+    <div class=" m-0">
+      <footer
+        class="text-center text-lg-start text-white"
+        style={{ backgroundColor: "#1c2331" }}
+      >
+        <section
+          class="d-flex justify-content-between p-4"
+          style={{ backgroundColor: "#01aff3" }}
+        >
+          <div class="me-5">
+            <span>Get connected with us on social networks:</span>
           </div>
-          <div className="col-md-6">
-            <h1 className="footerfontcolor ogsfonts24">Browse Jobs</h1>{" "}
-            <div id="accordionPanelsStayOpenExample" className={`accordion  `}>
-              <div className={` accordion-item my-3 accordion234  `}>
-                {" "}
-                <h2
-                  className={`accordion-header `}
-                  id="panelsStayOpen-headingTwo"
-                >
-                  <button
-                    className={`accordion-button collapsed ${Styles.acodin} `}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapseTwo"
-                  >
-                    By Country
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapseTwo"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingTwo"
-                >
-                  <div className="accordion-body accordion234"> dsdfw</div>{" "}
-                </div>
-              </div>
-              <div className={` accordion-item my-3 accordion234  `}>
-                {" "}
-                <h2
-                  className={`accordion-header `}
-                  id="panelsStayOpen-headingthree"
-                >
-                  <button
-                    className={`accordion-button collapsed ${Styles.acodin} `}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapsethree"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapsethree"
-                  >
-                    By City
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapsethree"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingthree"
-                >
-                  <div className="accordion-body accordion234"> dsdfw</div>{" "}
-                </div>
-              </div>
-              <div className={` accordion-item my-3 accordion234  `}>
-                {" "}
-                <h2
-                  className={`accordion-header `}
-                  id="panelsStayOpen-headingFour"
-                >
-                  <button
-                    className={`accordion-button collapsed ${Styles.acodin} `}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseFour"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapseFour"
-                  >
-                    By Jobs Title Category
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapseFour"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingFour"
-                >
-                  <div className="accordion-body accordion234"> dsdfw</div>{" "}
-                </div>
-              </div>
-              <div className={` accordion-item my-3 accordion234  `}>
-                {" "}
-                <h2
-                  className={`accordion-header `}
-                  id="panelsStayOpen-headingFour"
-                >
-                  <button
-                    className={`accordion-button collapsed ${Styles.acodin} `}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapsefive"
-                    aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapsefive"
-                  >
-                    By Industry
-                  </button>
-                </h2>
-                <div
-                  id="panelsStayOpen-collapsefive"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="panelsStayOpen-headingfive"
-                >
-                  <div className="accordion-body accordion234"> dsdfw</div>{" "}
-                </div>
-              </div>
-            </div>{" "}
-          </div>
-        </div>
 
-        <div>
-          <a>Faq</a>
-          <a>Privacy</a>
-          <a>Downloads</a>
-          <a>Gallery</a>
-          <a>Contact Us</a>
+          <div>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </section>
+
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <h6 class="text-uppercase fw-bold">OGS Man Power</h6>
+                <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "131px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  Here you can use rows and columns to organize your footer
+                  content. Lorem ipsum dolor sit amet, consectetur adipisicing
+                  elit.
+                </p>
+              </div>
+
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="text-uppercase fw-bold">Products</h6>
+                <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "85px",
+
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  <a href="#!" class="text-white">
+                    MDBootstrap
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" class="text-white">
+                    MDWordPress
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" class="text-white">
+                    BrandFlow
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" class="text-white">
+                    Bootstrap Angular
+                  </a>
+                </p>
+              </div>
+
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="text-uppercase fw-bold">Useful links</h6>
+                <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "107px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  <a href="#!" class="text-white">
+                    Your Account
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" class="text-white">
+                    Become an Affiliate
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" class="text-white">
+                    Shipping Rates
+                  </a>
+                </p>
+                <p>
+                  <a href="#!" class="text-white">
+                    Help
+                  </a>
+                </p>
+              </div>
+
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{
+                    width: "74px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <p>
+                  <i class="fas fa-home mr-3"></i> New York, NY 10012, US
+                </p>
+                <p>
+                  <i class="fas fa-envelope mr-3"></i> info@example.com
+                </p>
+                <p>
+                  <i class="fas fa-phone mr-3"></i> + 01 234 567 88
+                </p>
+                <p>
+                  <i class="fas fa-print mr-3"></i> + 01 234 567 89
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div
+          class="text-center p-3"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+        >
+          Copyright © 2022 JATAQ | All Rights Reserved
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

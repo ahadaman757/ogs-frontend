@@ -331,7 +331,7 @@ const AddressDetails = ({
     </>
   );
 };
-function Register() {
+function Agentregister() {
   const [employerRegsiterOptions, setemployerRegsiterOptions] = useState();
   useEffect(() => {
     axios
@@ -476,5 +476,5 @@ function Register() {
 }
 
 // export default Test
-export default Register;
+export default Agentregister;
 export { UploadImageSide };

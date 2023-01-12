@@ -56,6 +56,28 @@ const Navbar = () => {
                   <li>
                     <a
                       onClick={() => {
+                        navigate("/instituteLogin");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Institute Login
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/agentLogin");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Agent login
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
                         navigate("/seekerlogin");
                       }}
                       class="dropdown-item ogsfonts18"
@@ -84,6 +106,29 @@ const Navbar = () => {
                       href="#"
                     >
                       Register as Employer
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/agentregister");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Register as Agent
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      onClick={() => {
+                        navigate("/instituteregister");
+                      }}
+                      class="dropdown-item ogsfonts18"
+                      href="#"
+                    >
+                      Register as Institute
                     </a>
                   </li>
                   <li>

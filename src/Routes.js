@@ -62,6 +62,11 @@ import PrivacyPolicy from "./Pages/privacypolicy/PrivacyPolicy";
 import GeneralSettings from "./Pages/adminpanel/generalsettings/GeneralSettings";
 import Frogetpass from "./Pages/logins/fogetpassword";
 import Frogetlink from "./Pages/logins/fogetlink";
+import InstituteLogin from "./Pages/logins/Institute";
+import AgentLogin from "./Pages/logins/agent";
+import Agentregister from "./Pages/authpages/agent";
+import Instituteregister from "./Pages/authpages/Institute";
+
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
   if (token === null || token == "") {
@@ -315,10 +320,27 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/frogetlink",
+    path: "/frogetlink/:id",
     element: <Frogetlink />,
   },
+  {
+    path: "/agentLogin",
+    element: <AgentLogin />,
+  },
+  {
+    path: "/instituteLogin",
+    element: <InstituteLogin />,
+  },
+  {
+    path: "/agentregister",
+    element: <Agentregister />,
+  },
+  {
+    path: "/instituteregister",
+    element: <Instituteregister />,
+  },
 ]);
+
 function Routes() {
   return <RouterProvider router={router} />;
 }

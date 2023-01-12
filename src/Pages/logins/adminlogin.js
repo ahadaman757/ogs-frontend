@@ -1,19 +1,22 @@
-import Styles from './login.module.css';
-import bggside from '../../Assets/Images/sign-in-right.png';
-import InputField from '../../Components/inputfield/inputfield';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import jwt from 'jwt-decode';
-import jwtDecode from 'jwt-decode';
-import jwtCheck from '../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
-import Redalert from '../../Components/redalert/redalert';
-import Greenalert from '../../Components/greenalert/greenalert';
-
+import Styles from "./login.module.css";
+import bggside from "../../Assets/Images/sign-in-right.png";
+import InputField from "../../Components/inputfield/inputfield";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import jwt from "jwt-decode";
+import jwtDecode from "jwt-decode";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
+import Redalert from "../../Components/redalert/redalert";
+import Greenalert from "../../Components/greenalert/greenalert";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 const AdminLogin = () => {
   const [email, setEmail] = useState();
   const [erroralert, Seterroralert] = useState(null);
   const [password, setPassword] = useState();
+  const [logov, setlogov] = useState(eye);
+  const [passwordType, setPasswordType] = useState("password");
 
   const navigate = useNavigate();
 
@@ -25,11 +28,11 @@ const AdminLogin = () => {
   };
   const checkAuth = jwtCheck();
   if (checkAuth === true) {
-    navigate('/managealljobs');
+    navigate("/managealljobs");
   }
   useEffect(() => {
     if (checkAuth === true) {
-      navigate('/managealljobs');
+      navigate("/managealljobs");
     }
   }, []);
   const signInHandler = () => {
@@ -40,12 +43,21 @@ const AdminLogin = () => {
       })
       .then((response) => {
         if (response.data.error == 1) {
-          alert('Login Error!');
+          alert("Login Error!");
         } else {
-          localStorage.setItem('accessToken', response.data.accesstoken);
-          navigate('/managealljobs');
+          localStorage.setItem("accessToken", response.data.accesstoken);
+          navigate("/managealljobs");
         }
       });
+  };
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setlogov(eyedes);
+      return;
+    }
+    setPasswordType("password");
+    setlogov(eye);
   };
 
   return (
@@ -61,14 +73,47 @@ const AdminLogin = () => {
               <p className={`${Styles.form_description}`}></p>
               <div className={`pt-5 ${Styles.from}`}>
                 {erroralert == null ? (
-                  ''
+                  ""
                 ) : erroralert ? (
-                  <Redalert message={'Please check your email or password'} />
+                  <Redalert message={"Please check your email or password"} />
                 ) : (
-                  <Greenalert message={'Login successfully'} />
+                  <Greenalert message={"Login successfully"} />
                 )}
-                <InputField title={'Email'} onChange={emailHandler} />
-                <InputField title={'Password'} onChange={passwordHandler} />
+                <InputField title={"Email"} onChange={emailHandler} />
+                {/* <InputField title={'Password'} onChange={passwordHandler} /> */}
+                <div className="my-3">
+                  <div className="d-flex justify-content-between">
+                    <p className="ogsfonts16">Password</p>
+                    <p className={`ogsfonts16 ${Styles.InputFieldRe}`}></p>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input
+                      className={`form-control p-2 ${Styles.InputField2}`}
+                      placeholder="Password"
+                      aria-label="Recipient's username"
+                      aria-describedby="button-addon2"
+                      onChange={passwordHandler}
+                      type={passwordType}
+                    />
+                    <button
+                      className={`p-2 ${Styles.passinput}`}
+                      type="button"
+                      id="button-addon2"
+                      onClick={togglePassword}
+                    >
+                      <span>
+                        <img src={logov} />
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* <input
+                    className={`p-2 ${Styles.InputField}`}
+                    onChange={(e) => setUserPassword(e.target.value)}
+                    type={passwordType}
+                    required
+                  /> */}
+                </div>
                 <button
                   className="unset_button w-100 text-white py-2 form_action_button  submit"
                   type="submit"

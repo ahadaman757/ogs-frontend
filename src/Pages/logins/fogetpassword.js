@@ -1,6 +1,9 @@
 import Styles from "./login.module.css";
 import logo from "../../Assets/Images/mobilelogo.jpg";
+import { useState } from "react";
+import axios from "axios";
 const Frogetpass = () => {
+  const [userEmail, setUserEmail] = useState("");
   return (
     <>
       <div className={`${Styles.Frogetpassmain}`}>
@@ -20,6 +23,10 @@ const Frogetpass = () => {
               <input
                 placeholder="Enter your valid email address"
                 className={`mt-2 ps-4 ${Styles.fogetinput}`}
+                onChange={(e) => {
+                  setUserEmail(e.target.value);
+                  console.log(userEmail);
+                }}
               />
               <div className="mt-3 d-flex justify-content-between align-items-center mt-4">
                 <a className={`ogsfonts16 hov ${Styles.back}`}>
@@ -28,6 +35,18 @@ const Frogetpass = () => {
                 </a>
                 <button
                   className={`py-3 ogsfonts16 px-5 ${Styles.linksendbbtn}`}
+                  onClick={() => {
+                    axios
+                      .post(
+                        `https://3.110.201.21:3002/users/findAccountByEmail`,
+                        {
+                          email: userEmail,
+                        }
+                      )
+                      .then((response) => {
+                        console.log(response);
+                      });
+                  }}
                 >
                   Send Link
                 </button>

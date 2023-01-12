@@ -10,7 +10,7 @@ import eye from "../../Assets/Images/eye.svg";
 import eyedes from "../../Assets/Images/eye-disable.svg";
 import { useNavigate } from "react-router-dom";
 
-const EmployerLogin = () => {
+const InstituteLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [loginResponse, setLoginResponse] = useState();
@@ -39,7 +39,7 @@ const EmployerLogin = () => {
                 <img src={logo} />
               </div>
               <h1>OGS Man Power</h1>
-              <h3 className={`${Styles.form_heading_1}`}>Employer Login</h3>
+              <h3 className={`${Styles.form_heading_1}`}>Institute Login</h3>
               <p className={`${Styles.form_description}`}>
                 Registration with OGS (Pvt) Ltd is 100% free <br />
                 Please fill up this form to login at OGS Man Power
@@ -161,4 +161,4 @@ const EmployerLogin = () => {
     </div>
   );
 };
-export default EmployerLogin;
+export default InstituteLogin;

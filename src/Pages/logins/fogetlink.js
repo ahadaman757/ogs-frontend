@@ -1,6 +1,13 @@
 import Styles from "./login.module.css";
 import logo from "../../Assets/Images/mobilelogo.jpg";
+import { useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 const Frogetlink = () => {
+  const [userPassword, setuserPassword] = useState("");
+  const [userrePassword, setuserrePassword] = useState("");
+  const { id } = useParams();
+  console.log(id, "id");
   return (
     <>
       <div className={`${Styles.Frogetpassmain}`}>
@@ -23,19 +30,42 @@ const Frogetlink = () => {
                   type="password"
                   placeholder="Enter your New Password"
                   className={`mt-2 ps-4 ${Styles.fogetinput}`}
+                  onChange={(e) => {
+                    setuserrePassword(e.target.value);
+                  }}
                 />
               </div>
               <div className="d-flex df">
                 <label className={`mt-4 ogsfonts16`}>Confirm Password</label>
+
                 <input
                   type="password"
                   placeholder="Enter your Confirm Password"
                   className={`mt-2 ps-4 ${Styles.fogetinput}`}
+                  onChange={(e) => {
+                    setuserPassword(e.target.value);
+                  }}
                 />
               </div>
               <div className="mt-3 d-flex justify-content-end align-items-center mt-4">
                 <button
                   className={`py-3 ogsfonts16 px-5 ${Styles.linksendbbtn}`}
+                  onClick={() => {
+                    if (userrePassword == userPassword) {
+                      axios
+                        .post(
+                          `https://3.110.201.21:3002/users/resetPass
+`,
+                          {
+                            id: id,
+                            password: userPassword,
+                          }
+                        )
+                        .then((response) => {
+                          console.log(response);
+                        });
+                    }
+                  }}
                 >
                   Save Password
                 </button>

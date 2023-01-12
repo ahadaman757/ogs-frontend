@@ -1,5 +1,6 @@
 .auth_page {
   min-height: 100vh;
+  background: #01aff3;
 }
 .auth_page__model {
   background: white;
@@ -74,4 +75,14 @@
   width: 466px;
   height: 487px;
   flex-direction: column;
+}
+.passinput {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-left: none;
+}
+.InputField2 {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-right: none;
 }
