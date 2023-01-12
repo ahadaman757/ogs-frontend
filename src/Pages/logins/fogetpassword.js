@@ -2,12 +2,15 @@ import Styles from "./login.module.css";
 import logo from "../../Assets/Images/mobilelogo.jpg";
 import { useState } from "react";
 import axios from "axios";
+import Redalert from "../../Components/redalert/redalert";
+import Greenalert from "../../Components/greenalert/greenalert";
 const Frogetpass = () => {
   const [userEmail, setUserEmail] = useState("");
+  const [erroralert, Seterroralert] = useState(null);
   return (
     <>
       <div className={`${Styles.Frogetpassmain}`}>
-        <div className="d-flex align-items-md-center mt-md-5 pt-md-5 df">
+        <div className="d-flex align-items-md-center mt-md-4 pt-md-5 df">
           <div className="d-flex p-2 ">
             <img src={logo} />
           </div>
@@ -19,6 +22,7 @@ const Frogetpass = () => {
               <p className={`ogsfonts16 mt-3 ${Styles.fontcol}`}>
                 Fill in your email address to reset your password
               </p>
+
               <label className={`mt-4 ogsfonts16`}>Email Address</label>
               <input
                 placeholder="Enter your valid email address"
@@ -28,7 +32,7 @@ const Frogetpass = () => {
                   console.log(userEmail);
                 }}
               />
-              <div className="mt-3 d-flex justify-content-between align-items-center mt-4">
+              <div className="mt-3 pb-2 d-flex justify-content-between align-items-center mt-4">
                 <a className={`ogsfonts16 hov ${Styles.back}`}>
                   {" "}
                   Back to login{" "}
@@ -44,6 +48,14 @@ const Frogetpass = () => {
                         }
                       )
                       .then((response) => {
+                        if (
+                          response.data.message ===
+                          "No account found by email as"
+                        ) {
+                          Seterroralert(false);
+                        } else {
+                          Seterroralert(true);
+                        }
                         console.log(response);
                       });
                   }}
@@ -51,6 +63,13 @@ const Frogetpass = () => {
                   Send Link
                 </button>
               </div>
+              {erroralert == null ? (
+                ""
+              ) : erroralert ? (
+                <Redalert message={"Email not found"} />
+              ) : (
+                <Greenalert message={"Please check your email"} />
+              )}
             </div>
           </div>
         </div>
