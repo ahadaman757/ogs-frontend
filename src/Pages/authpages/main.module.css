@@ -128,3 +128,13 @@
   background: #00a4e5;
   border-radius: 3px;
 }
+.passinput {
+  background: #ffffff;
+  border: 1px solid #bbbbbb !important;
+  border-left: none;
+}
+.InputField2 {
+  background: #ffffff;
+  border: 1px solid #bbbbbb;
+  border-right: none;
+}

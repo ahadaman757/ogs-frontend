@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import styles from '../authpages/main.module.css';
+import { useState } from "react";
+import styles from "../authpages/main.module.css";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 
 const List = (props) => {
   const { id, label, list_id, formik, options, onChangeValue } = props;
+
   const initialvalue = formik.values[id]; //17
   return (
     <div>
@@ -33,7 +36,7 @@ const List = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {' '}
+                {" "}
                 {lable}
               </option>
             );
@@ -86,7 +89,7 @@ const ListUpdate = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {' '}
+                {" "}
                 {lable}
               </option>
             );
@@ -99,7 +102,7 @@ const ListUpdate = (props) => {
   );
 };
 const TextInput = (props) => {
-  const { id, label, formik, type = 'text', onChangeValue } = props;
+  const { id, label, formik, type = "text", onChangeValue } = props;
 
   return (
     <>
@@ -116,6 +119,47 @@ const TextInput = (props) => {
         id={id}
         aria-label={label}
       />
+      {formik.touched[id] && formik.errors[id] ? (
+        <div className="text__note">{formik.errors[id]}</div>
+      ) : null}
+    </>
+  );
+};
+const PassInput = (props) => {
+  const { id, label, formik, onChangeValue } = props;
+
+  return (
+    <>
+      <div className="my-3">
+        <div className="d-flex justify-content-between">
+          <p className="ogsfonts16">{label}</p>
+          <p className={`ogsfonts16 ${styles.InputFieldRe}`}></p>
+        </div>
+        <div class="input-group d-flex mb-3">
+          <input
+            value={formik.values[id]}
+            className={`form-control p-2 ${styles.InputField2}`}
+            name={id}
+            id={id}
+            aria-label={label}
+            placeholder="Password"
+            aria-describedby="button-addon2"
+            type={props.passwordType}
+            onChange={(e) => onChangeValue(e)}
+            {...formik.getFieldProps(`'${id}'`)}
+          />
+          <a
+            className={`p-2 ${styles.passinput}`}
+            type="button"
+            id="button-addon2"
+            onClick={props.togglePassword}
+          >
+            <span>
+              <img src={props.logov} />
+            </span>
+          </a>
+        </div>
+      </div>
       {formik.touched[id] && formik.errors[id] ? (
         <div className="text__note">{formik.errors[id]}</div>
       ) : null}
@@ -191,4 +235,4 @@ const FileUpload2 = ({ title, name, id, label, setFileData, formik }) => {
 
 //     )
 // }
-export { List, TextInput, FileUpload, ListUpdate, FileUpload2 };
+export { PassInput, List, TextInput, FileUpload, ListUpdate, FileUpload2 };

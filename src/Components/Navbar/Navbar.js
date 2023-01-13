@@ -20,8 +20,8 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item mx-xxl-4">
-                <Link className=" ogsfonts16Nav" to="/ogscourses">
-                  OGS Courses
+                <Link className=" ogsfonts16Nav" to="/privacy">
+                  privacy
                 </Link>
               </li>
               <li className="nav-item mx-xxl-4">
@@ -143,7 +143,12 @@ const Navbar = () => {
                     </a>
                   </li>
                 </ul>
-                <button className="postbtn px-3 py-2 ogsfonts18">
+                <button
+                  onClick={() => {
+                    navigate("/register");
+                  }}
+                  className="postbtn px-3 py-2 ogsfonts18"
+                >
                   Post a Job
                 </button>
               </li>

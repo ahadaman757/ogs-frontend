@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./main.module.css";
 import MultiStep from "react-multistep";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 
 import {
   LoginInformationValidation,
   BusinessInformationValidation,
   AddressInformationValidation,
 } from "../../formsValidations/Registeration";
-import { List, TextInput } from "../Forms/InputFields";
+import { List, TextInput, PassInput } from "../Forms/InputFields";
 import { useFormik } from "formik";
 import axios from "axios";
 import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
@@ -66,6 +68,18 @@ const LoginInformation = ({
 }) => {
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
+  const [logov, setlogov] = useState(eye);
+  const [passwordType, setPasswordType] = useState("password");
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setlogov(eyedes);
+      return;
+    }
+    setPasswordType("password");
+    setlogov(eye);
+  };
+
   useEffect(() => {
     setpostions(employerRegsiterOptions?.positions);
   }, [employerRegsiterOptions]);
@@ -124,19 +138,46 @@ const LoginInformation = ({
             />
           </div>
           <div className="col-md-6">
-            <TextInput
-              type="password"
-              id="password"
-              formik={logininformationFormik}
-              label="Password"
-            />
+            <div className="my-3">
+              <div className="d-flex justify-content-between">
+                <p className="ogsfonts16">Password</p>
+                <p className={`ogsfonts16 ${styles.InputFieldRe}`}></p>
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  className={`form-control p-2 ${styles.InputField2}`}
+                  placeholder="Password"
+                  aria-label="Recipient's username"
+                  aria-describedby="button-addon2"
+                  type={passwordType}
+                  onChange={(e) => logininformationFormik(e.target.value)}
+                />
+                <a
+                  className={`p-2 ${styles.passinput}`}
+                  type="button"
+                  id="button-addon2"
+                  onClick={togglePassword}
+                >
+                  <span>
+                    <img src={logov} />
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
           <div className="col-md-6">
-            <TextInput
-              type="password"
+            {/* <PassInput
               id="repeat_password"
               formik={logininformationFormik}
               label="Repeat Password"
+            /> */}
+            <PassInput
+              id="repeat_password"
+              formik={logininformationFormik}
+              label="Repeat Password"
+              togglePassword={togglePassword}
+              logov={logov}
+              passwordType={passwordType}
             />
           </div>
           <button
@@ -427,10 +468,10 @@ function Register() {
               </div>
               <div className="text-center my-4">
                 <h3 className={`${styles.form_heading_1}`}>
-                  User Registeration
+                  Employer Registeration
                 </h3>
                 <p className={`${styles.form_description}`}>
-                  Registration with OGS (Pvt) Ltd is 100% free <br />
+                  Registration with OGS Man Power is 100% free <br />
                   Please fill up this form to register free at OGS
                 </p>
               </div>

@@ -43,7 +43,7 @@ const SeekerLogin = () => {
               <h3 className={`${Styles.form_heading_1}`}>Seeker Login</h3>
 
               <p className={`${Styles.form_description}`}>
-                Registration with OGS (Pvt) Ltd is 100% free <br />
+                Registration with OGS Man Power is 100% free <br />
                 Please fill up this form to register free at OGS
               </p>
               <div className={`pt-5 ${Styles.from}`}>

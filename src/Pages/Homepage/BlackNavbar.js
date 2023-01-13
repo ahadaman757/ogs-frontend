@@ -62,20 +62,21 @@ const BlackNavbar = () => {
         </div>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+            <li className="nav-item mx-xxl-4">
+              <Link to="/" className=" ogsfonts16Nav">
                 Home
-              </a>
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Features
-              </a>
+
+            <li className="nav-item mx-xxl-4">
+              <Link className=" ogsfonts16Nav" to="/privacy">
+                privacy
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Pricing
-              </a>
+            <li className="nav-item mx-xxl-4">
+              <Link to="/aboutus" className=" ogsfonts16Nav">
+                About Us
+              </Link>
             </li>
           </ul>
         </div>

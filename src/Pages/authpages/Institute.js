@@ -427,10 +427,10 @@ function Instituteregister() {
               </div>
               <div className="text-center my-4">
                 <h3 className={`${styles.form_heading_1}`}>
-                  User Registeration
+                  Institute Registeration
                 </h3>
                 <p className={`${styles.form_description}`}>
-                  Registration with OGS (Pvt) Ltd is 100% free <br />
+                  Registration with OGS Man Power is 100% free <br />
                   Please fill up this form to register free at OGS
                 </p>
               </div>

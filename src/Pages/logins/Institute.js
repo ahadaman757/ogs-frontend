@@ -41,7 +41,7 @@ const InstituteLogin = () => {
               <h1>OGS Man Power</h1>
               <h3 className={`${Styles.form_heading_1}`}>Institute Login</h3>
               <p className={`${Styles.form_description}`}>
-                Registration with OGS (Pvt) Ltd is 100% free <br />
+                Registration with OGS Man Power is 100% free <br />
                 Please fill up this form to login at OGS Man Power
               </p>
               <div className={`pt-5 ${Styles.from}`}>

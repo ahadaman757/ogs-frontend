@@ -125,7 +125,12 @@ export const HeroSection = () => {
             </ul>
           </div>
 
-          <button className={`ogsfonts18 ${styles.herobtn1}`}>
+          <button
+            onClick={() => {
+              navigate("/register");
+            }}
+            className={`ogsfonts18 ${styles.herobtn1}`}
+          >
             Post a job
           </button>
         </div>

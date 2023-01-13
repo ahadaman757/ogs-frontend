@@ -3,9 +3,12 @@ import logo from "../../Assets/Images/mobilelogo.jpg";
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Redalert from "../../Components/redalert/redalert";
+import Greenalert from "../../Components/greenalert/greenalert";
 const Frogetlink = () => {
   const [userPassword, setuserPassword] = useState("");
   const [userrePassword, setuserrePassword] = useState("");
+  const [erroralert, Seterroralert] = useState(null);
   const { id } = useParams();
   console.log(id, "id");
   return (
@@ -62,13 +65,32 @@ const Frogetlink = () => {
                           }
                         )
                         .then((response) => {
+                          if (
+                            response.data.message ===
+                            "No account found by email as"
+                          ) {
+                            Seterroralert(false);
+                          } else {
+                            Seterroralert(true);
+                          }
                           console.log(response);
                         });
+                    } else {
+                      Seterroralert(true);
                     }
                   }}
                 >
                   Save Password
                 </button>
+              </div>
+              <div className="mt-2">
+                {erroralert == null ? (
+                  ""
+                ) : erroralert ? (
+                  <Redalert message={"Password dose not match"} />
+                ) : (
+                  <Greenalert message={"Please login again"} />
+                )}
               </div>
             </div>
           </div>
