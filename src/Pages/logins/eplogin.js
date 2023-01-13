@@ -14,12 +14,11 @@ const EmployerLogin = () => {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [loginResponse, setLoginResponse] = useState();
-
+  const navigate = useNavigate();
   const [erroralert, Seterroralert] = useState(null);
   const [logov, setlogov] = useState(eye);
   const [passwordType, setPasswordType] = useState("password");
 
-  const navigate = useNavigate();
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");

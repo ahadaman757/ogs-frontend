@@ -1,13 +1,15 @@
 import Styles from "./postajob.module.css";
 import { useState, useEffect } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
-import { TextInput, List, FileUpload } from "../Forms/InputFields";
+import { TextInput, List, FileUpload, PassInput } from "../Forms/InputFields";
 import TagInput from "../Forms/TagInput";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { UploadImageSide } from "../authpages/Registeration";
 import PhoneInput from "react-phone-number-input";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 const SignUpCv = () => {
   const [cvResponse, setcvResponse] = useState("");
   const [FormikError, setFormikError] = useState(null);
@@ -18,6 +20,28 @@ const SignUpCv = () => {
   const [skills, setSkills] = useState();
   const [Description, setDescription] = useState("");
   const [dropDownOptions, setdropDownOptions] = useState("");
+  const [logov, setlogov] = useState(eye);
+  const [logov2, setlogov2] = useState(eye);
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordType2, setPasswordType2] = useState("password");
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setlogov(eyedes);
+      return;
+    }
+    setPasswordType("password");
+    setlogov(eye);
+  };
+  const togglePassword2 = () => {
+    if (passwordType2 === "password") {
+      setPasswordType2("text");
+      setlogov2(eyedes);
+      return;
+    }
+    setPasswordType2("password");
+    setlogov2(eye);
+  };
   console.log(ProfileImage);
   const display = (d) => {
     console.log("value");
@@ -206,17 +230,23 @@ const SignUpCv = () => {
                       formik={CvFormIk}
                     />
                     <TextInput id="email" label="Email" formik={CvFormIk} />
-                    <TextInput
+                    <PassInput
                       type="password"
                       id="password"
                       label="Password"
                       formik={CvFormIk}
+                      togglePassword={togglePassword}
+                      logov={logov}
+                      passwordType={passwordType}
                     />
-                    <TextInput
+                    <PassInput
                       type="password"
                       id="repeat_password"
                       label="Repeat Password"
                       formik={CvFormIk}
+                      togglePassword={togglePassword2}
+                      logov={logov2}
+                      passwordType={passwordType2}
                     />
                   </div>
                 </div>

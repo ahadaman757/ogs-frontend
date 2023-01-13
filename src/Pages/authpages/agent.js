@@ -3,13 +3,15 @@ import React, { useEffect, useState } from "react";
 import styles from "./main.module.css";
 import logo from "../../Assets/Images/mobilelogo.jpg";
 import MultiStep from "react-multistep";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 
 import {
   LoginInformationValidation,
   BusinessInformationValidation,
   AddressInformationValidation,
 } from "../../formsValidations/Registeration";
-import { List, TextInput } from "../Forms/InputFields";
+import { List, TextInput, PassInput } from "../Forms/InputFields";
 import { useFormik } from "formik";
 import axios from "axios";
 import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
@@ -67,6 +69,28 @@ const LoginInformation = ({
 }) => {
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
+  const [logov, setlogov] = useState(eye);
+  const [logov2, setlogov2] = useState(eye);
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordType2, setPasswordType2] = useState("password");
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setlogov(eyedes);
+      return;
+    }
+    setPasswordType("password");
+    setlogov(eye);
+  };
+  const togglePassword2 = () => {
+    if (passwordType2 === "password") {
+      setPasswordType2("text");
+      setlogov2(eyedes);
+      return;
+    }
+    setPasswordType2("password");
+    setlogov2(eye);
+  };
   useEffect(() => {
     setpostions(employerRegsiterOptions?.positions);
   }, [employerRegsiterOptions]);
@@ -124,19 +148,30 @@ const LoginInformation = ({
             />
           </div>
           <div className="col-md-6">
-            <TextInput
+            <PassInput
               type="password"
               id="password"
               formik={logininformationFormik}
               label="Password"
+              togglePassword={togglePassword}
+              logov={logov}
+              passwordType={passwordType}
             />
           </div>
           <div className="col-md-6">
-            <TextInput
+            {/* <PassInput
+              id="repeat_password"
+              formik={logininformationFormik}
+              label="Repeat Password"
+            /> */}
+            <PassInput
               type="password"
               id="repeat_password"
               formik={logininformationFormik}
               label="Repeat Password"
+              togglePassword={togglePassword2}
+              logov={logov2}
+              passwordType={passwordType2}
             />
           </div>
           <button

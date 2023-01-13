@@ -140,22 +140,26 @@ const PassInput = (props) => {
     <>
       <div className="my-3">
         <div className="d-flex justify-content-between">
-          <p className="ogsfonts16">{label}</p>
-          <p className={`ogsfonts16 ${styles.InputFieldRe}`}></p>
+          <label
+            htmlFor={id}
+            className={`ogsfonts16 ${styles.form_input__lable}`}
+          >
+            {label}
+          </label>
         </div>
         <div class="input-group d-flex mb-3">
           <input
+            onChange={(e) => onChangeValue(e)}
+            {...formik.getFieldProps(`'${id}'`)}
+            type={passwordType}
             value={formik.values[id]}
             className={`form-control p-2 ${styles.InputField2}`}
             name={id}
             id={id}
             aria-label={label}
-            placeholder="Password"
             aria-describedby="button-addon2"
-            type={passwordType}
-            onChange={(e) => onChangeValue(e)}
-            {...formik.getFieldProps(`'${id}'`)}
           />
+
           <a
             className={`p-2 ${styles.passinput}`}
             type="button"

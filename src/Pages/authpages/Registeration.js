@@ -149,32 +149,15 @@ const LoginInformation = ({
             />
           </div>
           <div className="col-md-6">
-            <div className="my-3">
-              <div className="d-flex justify-content-between">
-                <p className="ogsfonts16">Password</p>
-                <p className={`ogsfonts16 ${styles.InputFieldRe}`}></p>
-              </div>
-              <div class="input-group mb-3">
-                <input
-                  className={`form-control p-2 ${styles.InputField2}`}
-                  placeholder="Password"
-                  aria-label="Recipient's username"
-                  aria-describedby="button-addon2"
-                  type={passwordType}
-                  onChange={(e) => logininformationFormik(e.target.value)}
-                />
-                <a
-                  className={`p-2 ${styles.passinput}`}
-                  type="button"
-                  id="button-addon2"
-                  onClick={togglePassword}
-                >
-                  <span>
-                    <img src={logov} />
-                  </span>
-                </a>
-              </div>
-            </div>
+            <PassInput
+              type="password"
+              id="password"
+              formik={logininformationFormik}
+              label="Password"
+              togglePassword={togglePassword}
+              logov={logov}
+              passwordType={passwordType}
+            />
           </div>
           <div className="col-md-6">
             {/* <PassInput
