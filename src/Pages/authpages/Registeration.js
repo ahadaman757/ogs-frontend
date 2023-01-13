@@ -69,7 +69,9 @@ const LoginInformation = ({
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
   const [logov, setlogov] = useState(eye);
+  const [logov2, setlogov2] = useState(eye);
   const [passwordType, setPasswordType] = useState("password");
+  const [passwordType2, setPasswordType2] = useState("password");
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -78,6 +80,15 @@ const LoginInformation = ({
     }
     setPasswordType("password");
     setlogov(eye);
+  };
+  const togglePassword2 = () => {
+    if (passwordType2 === "password") {
+      setPasswordType2("text");
+      setlogov2(eyedes);
+      return;
+    }
+    setPasswordType2("password");
+    setlogov2(eye);
   };
 
   useEffect(() => {
@@ -172,12 +183,13 @@ const LoginInformation = ({
               label="Repeat Password"
             /> */}
             <PassInput
+              type="password"
               id="repeat_password"
               formik={logininformationFormik}
               label="Repeat Password"
-              togglePassword={togglePassword}
-              logov={logov}
-              passwordType={passwordType}
+              togglePassword={togglePassword2}
+              logov={logov2}
+              passwordType={passwordType2}
             />
           </div>
           <button

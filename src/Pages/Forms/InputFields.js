@@ -126,7 +126,15 @@ const TextInput = (props) => {
   );
 };
 const PassInput = (props) => {
-  const { id, label, formik, onChangeValue } = props;
+  const {
+    id,
+    label,
+    formik,
+    logov,
+    togglePassword,
+    passwordType,
+    onChangeValue,
+  } = props;
 
   return (
     <>
@@ -144,7 +152,7 @@ const PassInput = (props) => {
             aria-label={label}
             placeholder="Password"
             aria-describedby="button-addon2"
-            type={props.passwordType}
+            type={passwordType}
             onChange={(e) => onChangeValue(e)}
             {...formik.getFieldProps(`'${id}'`)}
           />
@@ -152,10 +160,10 @@ const PassInput = (props) => {
             className={`p-2 ${styles.passinput}`}
             type="button"
             id="button-addon2"
-            onClick={props.togglePassword}
+            onClick={togglePassword}
           >
             <span>
-              <img src={props.logov} />
+              <img src={logov} />
             </span>
           </a>
         </div>
