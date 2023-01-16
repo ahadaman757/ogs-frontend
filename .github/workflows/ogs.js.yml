@@ -20,9 +20,4 @@ jobs:
           npm i --force
           cd back_end
           npm i --force
-          pm2 stop 0
-          pm2 start 0
           cd ..
-          pm2 stop 2
-          pm2 start 2
-          pm2 save
