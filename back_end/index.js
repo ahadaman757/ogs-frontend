@@ -13,8 +13,8 @@ import https from 'https';
 import fs from 'fs';
 
 var options = {
-  key: fs.readFileSync('/var/www/html/private.key'),
-  cert: fs.readFileSync('/var/www/html/mycert.pem'),
+  key: fs.readFileSync('/home/centos/Andreas-Server/private.key'),
+  cert: fs.readFileSync('/home/centos/Andreas-Server/cert.pem'),
 };
 
 // var html_to_pdf = require('html-pdf-node');
@@ -97,7 +97,7 @@ app.use(errorhandler);
 //     console.log('server start error');
 //     console.log(err);
 //   });
-https.createServer(options, app).listen(3002, function (err) {
-  console.log('server start error');
+https.createServer(options, app).listen(3003, function (err) {
+  console.log('Server Started');
   console.log(err);
 });
