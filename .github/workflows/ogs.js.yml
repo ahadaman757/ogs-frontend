@@ -18,6 +18,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: |
           npm i --force
+          pm2 stop 3
+          pm2 stop 6
           cd back_end
           npm i --force
+          pm2 start 3
+          pm2 start 6
           cd ..
