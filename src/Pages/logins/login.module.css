@@ -86,3 +86,6 @@
   border: 1px solid #bbbbbb;
   border-right: none;
 }
+.InputField2:focus {
+  outline: none !important;
+}

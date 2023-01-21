@@ -59,7 +59,7 @@ const Newapplicant = () => {
   });
   useEffect(() => {
     axios
-      .post("https://3.110.201.21:3002/get_city_by_country_id", {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: filtersFormik.values.country || 1,
       })
       .then((res) => {
@@ -71,7 +71,7 @@ const Newapplicant = () => {
   }, [filtersFormik.values.country]);
   useEffect(() => {
     axios
-      .post(`https://3.110.201.21:3002/general/GetJobDetailsById`, {
+      .post(`https://3.14.27.53:3003/general/GetJobDetailsById`, {
         id: state.id,
       })
       .then((response) => {
@@ -86,7 +86,7 @@ const Newapplicant = () => {
     const v = filtersFormik.values;
     axios
       .post(
-        `https://3.110.201.21:3002/jobs/jobapplicants?${
+        `https://3.14.27.53:3003/jobs/jobapplicants?${
           (v.start_date ? "start_date=" + v.start_date : "") +
           "&" +
           (v.end_date ? "end_date=" + v.end_date : "") +
@@ -117,7 +117,7 @@ const Newapplicant = () => {
       });
   };
   const getjoboptions = () => {
-    axios.get("https://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
+    axios.get("https://3.14.27.53:3003/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -186,7 +186,7 @@ const Newapplicant = () => {
                   </button>
                 </div>
               </div>
-              <div className={`p-4 ${Styles.iocon}`}>
+              {/* <div className={`p-4 ${Styles.iocon}`}>
                 <div
                   className="d-flex flex-wrap justify-content-evenly
                  align-items-center"
@@ -221,7 +221,7 @@ const Newapplicant = () => {
                     <p className="py-1 ogsfonts16 m-0">0</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div
                 id="accordionPanelsStayOpenExample"
                 className={`p-2 my-3 accordion ${Styles.siderightbarm4}`}

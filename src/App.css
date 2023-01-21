@@ -384,3 +384,9 @@ button {
 .themco {
   background: #01aff3;
 }
+input:focus {
+  outline: none;
+}
+#password-field:focus {
+  outline:#343434;
+}

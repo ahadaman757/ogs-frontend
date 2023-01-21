@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { map } from 'jquery';
-import Tick from '../../Assets/Images/tick.svg';
-import removered from '../../Assets/Images/removered.svg';
-import Styles from './table.module.css';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { map } from "jquery";
+import Tick from "../../Assets/Images/tick.svg";
+import removered from "../../Assets/Images/removered.svg";
+import Styles from "./table.module.css";
+import axios from "axios";
 
 const ManageCategoriesTable = (props) => {
   const [catEditing, setCatEditing] = useState(0);
@@ -15,28 +15,28 @@ const ManageCategoriesTable = (props) => {
   useEffect(() => {
     axios
       .post(
-        `https://3.110.201.21:3002/admin/manageCategories`,
+        `https://3.14.27.53:3003/admin/manageCategories`,
         {
-          action: 'getcatbyid',
+          action: "getcatbyid",
           jobId: catEditing,
         },
         {
           headers: {
-            accessToken: localStorage.getItem('accessToken'),
+            accessToken: localStorage.getItem("accessToken"),
           },
         }
       )
       .then((response) => setCatName(response.data.code[0].name));
     axios
       .post(
-        `https://3.110.201.21:3002/admin/manageCategories`,
+        `https://3.14.27.53:3003/admin/manageCategories`,
         {
-          action: 'getsubcategories',
+          action: "getsubcategories",
           jobId: catEditing,
         },
         {
           headers: {
-            accessToken: localStorage.getItem('accessToken'),
+            accessToken: localStorage.getItem("accessToken"),
           },
         }
       )
@@ -46,7 +46,7 @@ const ManageCategoriesTable = (props) => {
       });
   }, [catEditing]);
   return (
-    <div className="container py-4" style={{ overflowX: 'auto' }}>
+    <div className="container py-4" style={{ overflowX: "auto" }}>
       <table className="table srolll">
         <thead>
           <tr>
@@ -63,34 +63,34 @@ const ManageCategoriesTable = (props) => {
               <td className="ogsfonts14">{item.id}</td>
               <td className="ogsfonts14">{item.name}</td>
               <td className="ogsfonts14">
-                {' '}
+                {" "}
                 <button
                   className={` ogsfonts16`}
                   data-bs-toggle="modal"
                   data-bs-target="#EditCategory"
-                  style={{ background: 'none', color: 'black', border: 'none' }}
+                  style={{ background: "none", color: "black", border: "none" }}
                   onClick={() => setCatEditing(item.id)}
                 >
                   Edit
                 </button>
               </td>
               <td className="ogsfonts14">
-                {' '}
+                {" "}
                 <button
                   className={` ogsfonts16`}
                   data-bs-toggle="modal"
                   data-bs-target="#AddSubCategory"
-                  style={{ background: 'none', color: 'black', border: 'none' }}
+                  style={{ background: "none", color: "black", border: "none" }}
                   onClick={() => setCatEditing(item.id)}
                 >
                   Add
-                </button>{' '}
+                </button>{" "}
                 /
                 <button
                   className={` ogsfonts16`}
                   data-bs-toggle="modal"
                   data-bs-target="#removeSubCategory"
-                  style={{ background: 'none', color: 'black', border: 'none' }}
+                  style={{ background: "none", color: "black", border: "none" }}
                   onClick={() => setCatEditing(item.id)}
                 >
                   Remove
@@ -102,14 +102,14 @@ const ManageCategoriesTable = (props) => {
                   onClick={() => {
                     axios
                       .post(
-                        `https://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.14.27.53:3003/admin/manageCategories`,
                         {
-                          action: 'delete',
+                          action: "delete",
                           jobId: item.id,
                         },
                         {
                           headers: {
-                            accessToken: localStorage.getItem('accessToken'),
+                            accessToken: localStorage.getItem("accessToken"),
                           },
                         }
                       )
@@ -156,26 +156,26 @@ const ManageCategoriesTable = (props) => {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   onClick={() => {
                     axios
                       .post(
-                        `https://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.14.27.53:3003/admin/manageCategories`,
                         {
-                          action: 'updatecatname',
+                          action: "updatecatname",
                           jobId: catEditing,
                           newName: catName,
                         },
                         {
                           headers: {
-                            accessToken: localStorage.getItem('accessToken'),
+                            accessToken: localStorage.getItem("accessToken"),
                           },
                         }
                       )
                       .then((response) => {
                         if (response.data.code == 1) {
                           alert(
-                            'Category Name Updated... Refresh to see changes'
+                            "Category Name Updated... Refresh to see changes"
                           );
                         }
                       });
@@ -220,28 +220,28 @@ const ManageCategoriesTable = (props) => {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   onClick={() => {
                     axios
                       .post(
-                        `https://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.14.27.53:3003/admin/manageCategories`,
                         {
-                          action: 'addSubCategory',
+                          action: "addSubCategory",
                           jobId: catEditing,
                           catName: subCategoryName,
                         },
                         {
                           headers: {
-                            accessToken: localStorage.getItem('accessToken'),
+                            accessToken: localStorage.getItem("accessToken"),
                           },
                         }
                       )
                       .then((response) => {
                         if (response.data.code == 1) {
                           alert(
-                            'Sub Category Added ... Refresh to see changes'
+                            "Sub Category Added ... Refresh to see changes"
                           );
-                          setSubCategoryName('');
+                          setSubCategoryName("");
                         }
                       });
                   }}
@@ -296,28 +296,28 @@ const ManageCategoriesTable = (props) => {
                 <button
                   type="button"
                   class="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   onClick={() => {
                     axios
                       .post(
-                        `https://3.110.201.21:3002/admin/manageCategories`,
+                        `https://3.14.27.53:3003/admin/manageCategories`,
                         {
-                          action: 'addSubCategory',
+                          action: "addSubCategory",
                           jobId: catEditing,
                           catName: subCategoryName,
                         },
                         {
                           headers: {
-                            accessToken: localStorage.getItem('accessToken'),
+                            accessToken: localStorage.getItem("accessToken"),
                           },
                         }
                       )
                       .then((response) => {
                         if (response.data.code == 1) {
                           alert(
-                            'Sub Category Added ... Refresh to see changes'
+                            "Sub Category Added ... Refresh to see changes"
                           );
-                          setSubCategoryName('');
+                          setSubCategoryName("");
                         }
                       });
                   }}

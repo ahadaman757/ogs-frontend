@@ -276,7 +276,7 @@ const AddressDetails = ({
   }, []);
   useEffect(() => {
     axios
-      .post("https://3.110.201.21:3002/get_city_by_country_id", {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: AddressinformationFormik.values.country || 1,
       })
       .then((res) => {
@@ -365,7 +365,7 @@ function Instituteregister() {
   const [employerRegsiterOptions, setemployerRegsiterOptions] = useState();
   useEffect(() => {
     axios
-      .get("https://3.110.201.21:3002/employer_register_options")
+      .get("https://3.14.27.53:3003/employer_register_options")
       .then((res) => {
         setemployerRegsiterOptions(res.data);
       })

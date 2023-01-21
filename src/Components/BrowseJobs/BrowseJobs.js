@@ -10,7 +10,7 @@ const BrowseJobs = () => {
   useEffect(() => {
     setjobsLoading(true);
     axios
-      .get("https://3.110.201.21:3002/general/getCourses")
+      .get("https://3.14.27.53:3003/general/getCourses")
       .then((res) => {
         setdataCourses(res.data.getAllCourses[0]);
         setjobsLoading(false);
@@ -50,13 +50,13 @@ const BrowseJobs = () => {
                       className={` ${Styles.coursecardimg}`}
                       style={{
                         backgroundImage: `url(${
-                          `https://3.110.201.21:3002/public/` + item.thumbnail
+                          `https://3.14.27.53:3003/public/` + item.thumbnail
                         })`,
                       }}
                     ></div>
                     {/* <img
                       className={` ${Styles.coursecardimg}`}
-                      src={`https://3.110.201.21:3002/public/` + item.thumbnail}
+                      src={`https://3.14.27.53:3003/public/` + item.thumbnail}
                     /> */}
                     <div className="d-flex justify-content-between align-items-center my-2">
                       <p className="m-0 ogsfonts14">Posted On: 12-12-2022</p>{" "}

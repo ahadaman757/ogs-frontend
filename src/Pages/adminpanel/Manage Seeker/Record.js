@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Tick from '../../../Assets/Images/tick.svg';
-import removered from '../../../Assets/Images/removered.svg';
-import Styles from '../../../Components/table/table.module.css';
-import { BasicDocument } from '../../../Components/pdfDownload.js';
-import { PDFDownloadLink, Image } from '@react-pdf/renderer';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Tick from "../../../Assets/Images/tick.svg";
+import removered from "../../../Assets/Images/removered.svg";
+import Styles from "../../../Components/table/table.module.css";
+import { BasicDocument } from "../../../Components/pdfDownload.js";
+import { PDFDownloadLink, Image } from "@react-pdf/renderer";
+import axios from "axios";
 
 function Record({ seeker, index, deletedId }) {
   const [cv_data, setcv_data] = useState(null);
@@ -12,9 +12,9 @@ function Record({ seeker, index, deletedId }) {
   // Delete A User
   const Deleteuser = (id) => {
     axios
-      .delete('https://3.110.201.21:3002/admin/users', {
+      .delete("https://3.14.27.53:3003/admin/users", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
         data: {
           user_id: id,
@@ -23,7 +23,7 @@ function Record({ seeker, index, deletedId }) {
       .then((res) => {
         deletedId(id);
         setdeleted(true);
-        console.log('user deleted');
+        console.log("user deleted");
       })
       .catch((error) => {
         console.log(error);
@@ -31,9 +31,9 @@ function Record({ seeker, index, deletedId }) {
   };
   useEffect(() => {
     axios
-      .get(`https://3.110.201.21:3002/getcvforuser/${seeker.id}`, {
+      .get(`https://3.14.27.53:3003/getcvforuser/${seeker.id}`, {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -53,7 +53,7 @@ function Record({ seeker, index, deletedId }) {
       <td className="ogsfonts14">{seeker.id}</td>
       <td className="ogsfonts14">{seeker.job_title} </td>
       <td className="ogsfonts14">
-        {seeker.first_name + ' ' + seeker.last_name}
+        {seeker.first_name + " " + seeker.last_name}
       </td>
       <td className="ogsfonts14">{seeker.address}</td>
       <td className="ogsfonts14">{seeker.contact_number}</td>
@@ -66,12 +66,12 @@ function Record({ seeker, index, deletedId }) {
           >
             {({ loading, error }) => {
               console.log(error);
-              return loading ? 'Loading document...' : 'Download now!';
+              return loading ? "Loading document..." : "Download now!";
             }}
           </PDFDownloadLink>
         ) : (
-          'No Cv'
-        )}{' '}
+          "No Cv"
+        )}{" "}
       </td>
       <td className="ogsfonts14">
         <button className={`${Styles.btn}`}>

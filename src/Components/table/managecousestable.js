@@ -1,14 +1,14 @@
-import { map } from 'jquery';
-import Tick from '../../Assets/Images/tick.svg';
-import removered from '../../Assets/Images/removered.svg';
-import Styles from './table.module.css';
-import axios from 'axios';
-import { useState } from 'react';
+import { map } from "jquery";
+import Tick from "../../Assets/Images/tick.svg";
+import removered from "../../Assets/Images/removered.svg";
+import Styles from "./table.module.css";
+import axios from "axios";
+import { useState } from "react";
 
 const Table = (props) => {
   const [update, setupdate] = useState(false);
   return (
-    <div className="container py-4" style={{ overflowX: 'auto' }}>
+    <div className="container py-4" style={{ overflowX: "auto" }}>
       <table className="table srolll">
         <thead>
           <tr>
@@ -33,7 +33,7 @@ const Table = (props) => {
                 <td className="ogsfonts14">{item.institute_name}</td>
                 <td className="ogsfonts14">
                   <a
-                    href={`https://3.110.201.21:3002/public/` + item.thumbnail}
+                    href={`https://3.14.27.53:3003/public/` + item.thumbnail}
                     target="_blank"
                   >
                     See image
@@ -45,13 +45,13 @@ const Table = (props) => {
                     onClick={() => {
                       axios
                         .post(
-                          'https://3.110.201.21:3002/admin/deleteCourse',
+                          "https://3.14.27.53:3003/admin/deleteCourse",
                           {
                             id: item.id,
                           },
                           {
                             headers: {
-                              accessToken: localStorage.getItem('accessToken'),
+                              accessToken: localStorage.getItem("accessToken"),
                             },
                           }
                         )

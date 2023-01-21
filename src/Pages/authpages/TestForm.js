@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import $, { data } from 'jquery';
-import axios from 'axios';
-import API from '../../config';
+import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import $, { data } from "jquery";
+import axios from "axios";
+import API from "../../config";
 function TestForm() {
   const [logo, setlogo] = useState();
   const handleLogoUpload = (e) => {
@@ -12,26 +12,26 @@ function TestForm() {
 
   const formik = useFormik({
     initialValues: {
-      imageFile: '',
-      email: '',
-      firstName: '',
+      imageFile: "",
+      email: "",
+      firstName: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().required('Required'),
+      email: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
       const formdata = new FormData();
-      formdata.append('image', logo);
+      formdata.append("image", logo);
       for (var key in values) {
         formdata.append(key, values[key]);
       }
       console.log(logo);
       console.log(formdata);
       axios
-        .post(`https://3.110.201.21:3002/users`, formdata, {
+        .post(`https://3.14.27.53:3003/users`, formdata, {
           headers: {
-            'Content-Type': 'multipart/form-data',
-            'Access-Control-Allow-Origin': '*',
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
           },
         })
         .then((res) => {
@@ -58,11 +58,11 @@ function TestForm() {
             </div>
             <div>
               Email
-              <input type="text" {...formik.getFieldProps('email')} />
+              <input type="text" {...formik.getFieldProps("email")} />
             </div>
             <div>
               firstname
-              <input type="text" {...formik.getFieldProps('firstName')} />
+              <input type="text" {...formik.getFieldProps("firstName")} />
             </div>
             <button type="submit">Submit</button>
           </form>

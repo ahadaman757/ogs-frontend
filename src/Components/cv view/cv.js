@@ -24,7 +24,7 @@ const Cv = ({ applicant, job_id }) => {
   console.log(applicant.is_shortlisted);
   const updateCvView = (currentStatus) => {
     axios
-      .post("https://3.110.201.21:3002/jobs/job_applicants_status_update", {
+      .post("https://3.14.27.53:3003/jobs/job_applicants_status_update", {
         status: !shortlisted,
         column: "is_shortlisted",
         cv_id: applicant.cv_id,
@@ -39,7 +39,7 @@ const Cv = ({ applicant, job_id }) => {
   };
   const rejectCv = (currentStatus) => {
     axios
-      .post("https://3.110.201.21:3002/jobs/job_applicants_status_update", {
+      .post("https://3.14.27.53:3003/jobs/job_applicants_status_update", {
         status: !rejected,
         cv_id: applicant.cv_id,
         job_id: job_id,
@@ -90,7 +90,7 @@ const Cv = ({ applicant, job_id }) => {
             <img
               style={{ width: "124px", height: "140px" }}
               className="img-fluid"
-              src={`https://3.110.201.21:3002/${applicant?.cv_image?.replace(
+              src={`https://3.14.27.53:3003/${applicant?.cv_image?.replace(
                 "images",
                 "images/"
               )}`}
@@ -204,7 +204,7 @@ const Cv = ({ applicant, job_id }) => {
               <img
                 style={{ width: "124px", height: "140px" }}
                 className="img-fluid"
-                src={`https://3.110.201.21:3002/${applicant?.cv_image?.replace(
+                src={`https://3.14.27.53:3003/${applicant?.cv_image?.replace(
                   "images",
                   "images/"
                 )}`}

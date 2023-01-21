@@ -8,22 +8,22 @@ import {
   PDFDownloadLink,
   Image,
   Font,
-} from '@react-pdf/renderer';
-import { useLocation } from 'react-router-dom';
+} from "@react-pdf/renderer";
+import { useLocation } from "react-router-dom";
 
-import font from '../Assets/Noto_Sans_Arabic/NotoSansArabic-VariableFont_wdth,wght.ttf';
+import font from "../Assets/Noto_Sans_Arabic/NotoSansArabic-VariableFont_wdth,wght.ttf";
 // Create styles
 const styles = StyleSheet.create({
   arabic: {
     fontSize: 10,
-    fontFamily: 'Noto',
+    fontFamily: "Noto",
     lineHeight: 2,
   },
   page: {
-    backgroundColor: '#ffff',
-    color: 'black',
-    display: 'flex',
-    flexDirection: 'column',
+    backgroundColor: "#ffff",
+    color: "black",
+    display: "flex",
+    flexDirection: "column",
     width: window.innerWidth, //the pdf viewer will take up all of the width and height
     height: window.innerHeight,
   },
@@ -38,15 +38,15 @@ const styles = StyleSheet.create({
   image: {
     width: 500,
     height: 500,
-    display: 'flex',
+    display: "flex",
   },
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: "flex",
+    justifyContent: "space-between",
   },
   header_right_side: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   main_padding: {
     paddingLeft: 10,
@@ -56,43 +56,43 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   colored_title: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: '#fec750',
-    border: '1px solid #8B8B8B',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    backgroundColor: "#fec750",
+    border: "1px solid #8B8B8B",
   },
   h1: {
     fontSize: 18,
   },
   profile: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   profile_info_right: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     flexGrow: 1,
   },
   profile_left_container: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     gap: 10,
   },
   profile_image_container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   info_title: {
     fontWeight: 700,
     fontSize: 10,
-    color: '#000000',
+    color: "#000000",
     // border: "1px solid green"
   },
   info_value: {
-    color: '#B50202',
+    color: "#B50202",
     // color: "red",
     // fontWeight: 700,
     fontSize: 9,
@@ -103,65 +103,65 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   info_grid: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     // flexGrow: 1,
     gap: 10,
   },
   left_column: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     flexGrow: 1,
     flexBasis: 0,
     paddingRight: 10,
     // border: "1px solid blue"
   },
   right_column: {
-    display: 'flex',
+    display: "flex",
     flexBasis: 0,
 
     flexGrow: 1,
-    flexDirection: 'column',
+    flexDirection: "column",
     // border: "1px solid blue"
   },
   row: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   section_heading: {
     paddingTop: 5,
     paddingBottom: 5,
-    flexDirection: 'row',
-    display: 'flex',
-    justifyContent: 'center',
-    border: '1px solid black',
+    flexDirection: "row",
+    display: "flex",
+    justifyContent: "center",
+    border: "1px solid black",
     paddingLeft: 5,
     paddingRight: 5,
   },
   col_1: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     flexBasis: 0,
     flexGrow: 1,
     // border: "1px solid green"
   },
   col_2: {
-    alignItems: 'center',
+    alignItems: "center",
     flexBasis: 0,
     flexGrow: 1.2,
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     // border: "1px solid green",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   col_3: {
     flexBasis: 0,
     flexGrow: 1,
-    border: '1px solid green',
-    display: 'flex',
-    flexDirection: 'row-reverse',
+    border: "1px solid green",
+    display: "flex",
+    flexDirection: "row-reverse",
   },
   section_heading_text: {
     fontSize: 10,
@@ -169,10 +169,10 @@ const styles = StyleSheet.create({
   },
   right_col: {
     flexGrow: 1,
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   logo_img: {
     width: 50,
@@ -184,14 +184,14 @@ const styles = StyleSheet.create({
   },
   profile_image_container: {
     paddingRight: 10,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 // Create Document Component
 Font.register({
-  family: 'Noto',
+  family: "Noto",
   src: font,
 });
 function BasicDocument({ cv_data }) {
@@ -200,20 +200,20 @@ function BasicDocument({ cv_data }) {
       {/* <PDFViewer style={styles.viewer}> */}
       <Document>
         {/*render a single page*/}
-        <Page size={'A4'} style={styles.page}>
+        <Page size={"A4"} style={styles.page}>
           {/* header_start */}
           <View
             style={{
               ...styles.header,
               ...styles.main_padding,
-              flexDirection: 'row',
-              alignItems: 'center',
+              flexDirection: "row",
+              alignItems: "center",
             }}
           >
             <View>
               <Image
                 style={styles.logo_img}
-                src={require('../Assets/Images/image 1.png')}
+                src={require("../Assets/Images/image 1.png")}
               />
             </View>
             <View style={styles.header_right_side}>
@@ -233,9 +233,9 @@ function BasicDocument({ cv_data }) {
               <View style={styles.profile_image_container}>
                 <Image
                   style={styles.profile_img}
-                  src={`https://3.110.201.21:3002/${cv_data?.cv_image?.replace(
-                    'images',
-                    'images/'
+                  src={`https://3.14.27.53:3003/${cv_data?.cv_image?.replace(
+                    "images",
+                    "images/"
                   )}`}
                 />
               </View>
@@ -248,10 +248,10 @@ function BasicDocument({ cv_data }) {
                 </View>
                 <View style={styles.right_col}>
                   <Text style={styles.info_value}>
-                    {cv_data.first_name + ' ' + cv_data.last_name}
+                    {cv_data.first_name + " " + cv_data.last_name}
                   </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    {cv_data.first_name + ' ' + cv_data.last_name}
+                    {cv_data.first_name + " " + cv_data.last_name}
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -279,7 +279,7 @@ function BasicDocument({ cv_data }) {
                     {cv_data.max_experience}
                   </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    {cv_data.max_experience.split('years')[0]} سنة
+                    {cv_data.max_experience.split("years")[0]} سنة
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -431,8 +431,8 @@ function BasicDocument({ cv_data }) {
                 <View
                   style={{
                     ...styles.section_heading,
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
                   <Text style={styles.section_heading_text}>LANGUAGE</Text>
@@ -463,8 +463,8 @@ function BasicDocument({ cv_data }) {
                 <View
                   style={{
                     ...styles.section_heading,
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
                   <Text style={styles.section_heading_text}>
@@ -544,9 +544,9 @@ function BasicDocument({ cv_data }) {
                   </View>
                 </View>
                 <Image
-                  src={`https://3.110.201.21:3002/${cv_data?.passport_photo?.replace(
-                    'images',
-                    'images/'
+                  src={`https://3.14.27.53:3003/${cv_data?.passport_photo?.replace(
+                    "images",
+                    "images/"
                   )}`}
                 />
               </View>
@@ -565,7 +565,7 @@ const App = () => {
       <PDFDownloadLink document={<BasicDocument />} fileName="somename.pdf">
         {({ loading, error }) => {
           console.log(error);
-          return loading ? 'Loading document...' : 'Download now!';
+          return loading ? "Loading document..." : "Download now!";
         }}
       </PDFDownloadLink>
     </>

@@ -1,18 +1,18 @@
-import Styles from '../../post a job/postajob.module.css';
-import styles from './Manageyoucvs.module.css';
-import { useState, useEffect } from 'react';
-import DashboardNavbar from '../../../Components/DashboardNavbar/DashboardNavbar';
+import Styles from "../../post a job/postajob.module.css";
+import styles from "./Manageyoucvs.module.css";
+import { useState, useEffect } from "react";
+import DashboardNavbar from "../../../Components/DashboardNavbar/DashboardNavbar";
 import {
   TextInput,
   List,
   FileUpload,
   ListUpdate,
-} from '../../../Pages/Forms/InputFields';
-import TagInput from '../../../Pages/Forms/InputFields';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+} from "../../../Pages/Forms/InputFields";
+import TagInput from "../../../Pages/Forms/InputFields";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 const EditCv = () => {
   const { state } = useLocation();
   const { cv_data } = state;
@@ -25,17 +25,17 @@ const EditCv = () => {
     cv_image: cv_data?.cv_image,
     passport_photo: cv_data?.passport_photo,
   });
-  const [data, Setdata] = useState('');
+  const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();
-  const [Description, setDescription] = useState('');
-  const [dropDownOptions, setdropDownOptions] = useState('');
+  const [Description, setDescription] = useState("");
+  const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get('https://3.110.201.21:3002/jobs/jobsoptions').then((res) => {
+    axios.get("https://3.14.27.53:3003/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -45,7 +45,7 @@ const EditCv = () => {
   console.log(dropDownOptions);
   const CvFormIk = useFormik({
     initialValues: {
-      email: '',
+      email: "",
       first_name: cv_data.first_name,
       last_name: cv_data.last_name,
       interested_in: cv_data.job_type_id,
@@ -60,7 +60,7 @@ const EditCv = () => {
       home_number: cv_data.home_number,
       address: cv_data.address,
       country: cv_data.country_id,
-      city: '',
+      city: "",
       id_card_no: cv_data.id_card_no,
       passport_number: cv_data.passport_number,
       valid_upto: cv_data.valid_upto,
@@ -124,21 +124,21 @@ const EditCv = () => {
         passport_photo_pre: cv_data.passport_photo,
       };
       const formdata = new FormData();
-      formdata.append('image', ProfileFile);
-      formdata.append('passport_photo', PassportFile);
+      formdata.append("image", ProfileFile);
+      formdata.append("passport_photo", PassportFile);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
       axios
-        .post('https://3.110.201.21:3002/update_cv', formdata, {
+        .post("https://3.14.27.53:3003/update_cv", formdata, {
           headers: {
-            accesstoken: localStorage.getItem('accessToken'),
-            'Content-Type': 'multipart/form-data',
-            'Access-Control-Allow-Origin': '*',
+            accesstoken: localStorage.getItem("accessToken"),
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
           },
         })
         .then((res) => {
-          alert('cv updated');
+          alert("cv updated");
         })
         .catch((error) => {
           console.log(error);
@@ -149,7 +149,7 @@ const EditCv = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post('https://3.110.201.21:3002/get_city_by_country_id', {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: CvFormIk.values.country || 1,
       })
       .then((res) => {
@@ -165,7 +165,7 @@ const EditCv = () => {
       <DashboardNavbar side={display} />
       <div
         className={`pt-5 ${Styles.Postajobmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <form onSubmit={CvFormIk.handleSubmit} className="mt-5">
@@ -232,9 +232,9 @@ const EditCv = () => {
                   {!CvImage && (
                     <img
                       className={`border-round ${styles.cv_update_img} `}
-                      src={`https://3.110.201.21:3002/${cv_data.cv_image.replace(
-                        'images',
-                        'images/'
+                      src={`https://3.14.27.53:3003/${cv_data.cv_image.replace(
+                        "images",
+                        "images/"
                       )}`}
                     />
                   )}
@@ -256,9 +256,9 @@ const EditCv = () => {
                   {!CvPassportImage && (
                     <img
                       className={`border-round ${styles.cv_update_img} `}
-                      src={`https://3.110.201.21:3002/${cv_data.passport_photo.replace(
-                        'images',
-                        'images/'
+                      src={`https://3.14.27.53:3003/${cv_data.passport_photo.replace(
+                        "images",
+                        "images/"
                       )}`}
                     />
                   )}
@@ -497,7 +497,7 @@ const EditCv = () => {
               <hr />
               <div className="d-flex justify-content-end">
                 <button type="submit" className={`mx-2 ${Styles.btnPost}`}>
-                  Create cv{' '}
+                  Create cv{" "}
                 </button>
               </div>
             </div>

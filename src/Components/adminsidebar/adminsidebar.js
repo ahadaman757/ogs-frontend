@@ -65,10 +65,7 @@ const Adminsidebar = (props) => {
             <img src={toggle} />
           </span>
         </button>
-        <h2>
-          <b>{displayside ? "" : "OGS"}</b>
-          {displayside ? "" : "Power"}
-        </h2>
+
         <div
           className={`d-flex flex-column align-items-start ${
             displayside ? " align-items-center" : " align-items-start"

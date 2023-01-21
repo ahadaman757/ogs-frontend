@@ -1,11 +1,11 @@
-import Styles from './jobcard.module.css';
-import viewicon from '../../Assets/Images/eye.png';
-import React, { useState, useEffect } from 'react';
-import shareicon from '../../Assets/Images/share.png';
-import deleticon from '../../Assets/Images/Trash.png';
-import { useNavigate } from 'react-router-dom';
-import { FacebookShareButton, TwitterShareButton } from 'react-share';
-import axios from 'axios';
+import Styles from "./jobcard.module.css";
+import viewicon from "../../Assets/Images/eye.png";
+import React, { useState, useEffect } from "react";
+import shareicon from "../../Assets/Images/share.png";
+import deleticon from "../../Assets/Images/Trash.png";
+import { useNavigate } from "react-router-dom";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import axios from "axios";
 
 const Jobcard = ({ job_data }) => {
   const [Applied, setApplied] = useState(false);
@@ -14,13 +14,13 @@ const Jobcard = ({ job_data }) => {
     const job_id = job_data.id;
     axios
       .post(
-        'https://3.110.201.21:3002/jobs/checkjobapply',
+        "https://3.14.27.53:3003/jobs/checkjobapply",
         {
           job_id: job_id,
         },
         {
           headers: {
-            accesstoken: localStorage.getItem('accessToken'),
+            accesstoken: localStorage.getItem("accessToken"),
           },
         }
       )
@@ -40,7 +40,7 @@ const Jobcard = ({ job_data }) => {
 
   const navigate = useNavigate();
   const navigateToJobDetails = () => {
-    navigate('/jobpopseeker', { state: { job_data: job_data, AppliedCvs } });
+    navigate("/jobpopseeker", { state: { job_data: job_data, AppliedCvs } });
   };
   return (
     <div className={`p-3 my-2 ${Styles.Jobcardmain}`}>
@@ -58,7 +58,7 @@ const Jobcard = ({ job_data }) => {
       >
         <div className={`d-flex`}>
           <h1 className="ogsfontstx m-0">
-            {' '}
+            {" "}
             {job_data.job_title} - {job_data.country} , {job_data.city}
           </h1>
           <button className={`mx-2 ${Styles.filaneyebtn}`}>
@@ -71,7 +71,7 @@ const Jobcard = ({ job_data }) => {
 
       <div className="d-flex">
         <p>
-          Offered salary: {job_data.min_salary} - {job_data.max_salary}{' '}
+          Offered salary: {job_data.min_salary} - {job_data.max_salary}{" "}
         </p>
       </div>
 
@@ -83,7 +83,7 @@ const Jobcard = ({ job_data }) => {
       <div className="d-flex flex-wrap justify-content-between align-items-center">
         <div className="d-flex flex-wrap">
           <p className="my-0  ogsfonts14">
-            Expiry Date: {job_data.last_date_apply}{' '}
+            Expiry Date: {job_data.last_date_apply}{" "}
           </p>
         </div>
       </div>

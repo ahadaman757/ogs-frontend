@@ -115,7 +115,7 @@ const Frogetlink = () => {
                     if (userrePassword == userPassword) {
                       axios
                         .post(
-                          `https://3.110.201.21:3002/users/resetPass
+                          `https://3.14.27.53:3003/users/resetPass
 `,
                           {
                             id: id,

@@ -1,11 +1,11 @@
-import Styles from './mypersonalinfo.module.css';
-import InputField from '../inputfield/inputfield';
-import React, { useEffect, useState } from 'react';
-import { TextInput, List } from '../../Pages/Forms/InputFields';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import { UploadImageSide } from '../../Pages/authpages/Registeration';
+import Styles from "./mypersonalinfo.module.css";
+import InputField from "../inputfield/inputfield";
+import React, { useEffect, useState } from "react";
+import { TextInput, List } from "../../Pages/Forms/InputFields";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { UploadImageSide } from "../../Pages/authpages/Registeration";
 
 const Personalinfo = ({}) => {
   const [LogoData, setLogoData] = useState();
@@ -18,9 +18,9 @@ const Personalinfo = ({}) => {
   console.log(userData);
   useEffect(() => {
     axios
-      .get('https://3.110.201.21:3002/users/me', {
+      .get("https://3.14.27.53:3003/users/me", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const Personalinfo = ({}) => {
         console.log(error);
       });
     axios
-      .get('https://3.110.201.21:3002/employer_register_options')
+      .get("https://3.14.27.53:3003/employer_register_options")
       .then((res) => {
         setemployerRegsiterOptions(res.data);
       })
@@ -49,45 +49,45 @@ const Personalinfo = ({}) => {
   }, []);
   const ResetProfileFormik = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
-      position: '',
-      country: '',
-      city: '',
-      contact_number: '',
-      address: '',
+      first_name: "",
+      last_name: "",
+      position: "",
+      country: "",
+      city: "",
+      contact_number: "",
+      address: "",
     },
 
     validationSchema: Yup.object({
-      first_name: Yup.string().required('Required'),
-      last_name: Yup.string().required('Required'),
-      position: Yup.string().required('Required'),
-      country: Yup.string().required('Required'),
-      city: Yup.string().required('city is Required'),
-      contact_number: Yup.string().required('Required'),
-      address: Yup.string().required('Required'),
+      first_name: Yup.string().required("Required"),
+      last_name: Yup.string().required("Required"),
+      position: Yup.string().required("Required"),
+      country: Yup.string().required("Required"),
+      city: Yup.string().required("city is Required"),
+      contact_number: Yup.string().required("Required"),
+      address: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log('submitted');
+      console.log("submitted");
       const fullFormData = values;
       const formdata = new FormData();
-      formdata.append('image', LogoData);
+      formdata.append("image", LogoData);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
-      console.log('accesstoken');
-      const accesstoken = localStorage.getItem('accessToken');
-      console.log('accesstoken');
+      console.log("accesstoken");
+      const accesstoken = localStorage.getItem("accessToken");
+      console.log("accesstoken");
       console.log(accesstoken);
       axios
         .post(
-          'https://3.110.201.21:3002/users/employer_update_profile',
+          "https://3.14.27.53:3003/users/employer_update_profile",
           formdata,
           {
             headers: {
-              accesstoken: localStorage.getItem('accessToken'),
-              'Content-Type': 'multipart/form-data',
-              'Access-Control-Allow-Origin': '*',
+              accesstoken: localStorage.getItem("accessToken"),
+              "Content-Type": "multipart/form-data",
+              "Access-Control-Allow-Origin": "*",
             },
           }
         )
@@ -102,7 +102,7 @@ const Personalinfo = ({}) => {
   const [cities, setcities] = useState();
   useEffect(() => {
     axios
-      .post('https://3.110.201.21:3002/get_city_by_country_id', {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: ResetProfileFormik.values.country || 1,
       })
       .then((res) => {

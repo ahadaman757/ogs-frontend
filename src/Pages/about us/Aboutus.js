@@ -1,23 +1,23 @@
-import Navbar from '../../Components/Navbar/Navbar';
-import TNavbar from '../Homepage/Navbar';
-import aboutimg from '../../Assets/Images/Rectangle 1100.png';
-import teammam from '../../Assets/Images/Ellipse 1200.png';
-import teammam2 from '../../Assets/Images/Ellipse 1201.png';
-import teammam3 from '../../Assets/Images/Ellipse 1202.png';
-import teammam4 from '../../Assets/Images/Ellipse 1203.png';
-import Newsletter from '../../Components/Newsletter/Newsletter';
-import Footer from '../../Components/Footer/Footer';
-import BlackNavbar from '../Homepage/BlackNavbar';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import './aboutus.css';
-import { Markup } from 'interweave';
+import Navbar from "../../Components/Navbar/Navbar";
+import TNavbar from "../Homepage/Navbar";
+import aboutimg from "../../Assets/Images/Rectangle 1100.png";
+import teammam from "../../Assets/Images/Ellipse 1200.png";
+import teammam2 from "../../Assets/Images/Ellipse 1201.png";
+import teammam3 from "../../Assets/Images/Ellipse 1202.png";
+import teammam4 from "../../Assets/Images/Ellipse 1203.png";
+import Newsletter from "../../Components/Newsletter/Newsletter";
+import Footer from "../../Components/Footer/Footer";
+import BlackNavbar from "../Homepage/BlackNavbar";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import "./aboutus.css";
+import { Markup } from "interweave";
 const AboutUs = () => {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState();
 
   useEffect(() => {
-    axios.get('https://3.110.201.21:3002/general/getAboutUs').then((res) => {
+    axios.get("https://3.14.27.53:3003/general/getAboutUs").then((res) => {
       setContent(res.data.content[0][0].content);
       setLoading(false);
     });
@@ -33,7 +33,7 @@ const AboutUs = () => {
           <h1 className="px-5 col-md-11 my-5">ABOUT US</h1>
           <div className="ogsfonts18 col-md-11 my-5 aboutusp2 px-5">
             {loading ? (
-              'Loading... Please wait...'
+              "Loading... Please wait..."
             ) : (
               <div className="container">
                 <Markup content={content} />

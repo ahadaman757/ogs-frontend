@@ -43,7 +43,7 @@ const BrowseOver = () => {
   useEffect(() => {
     setjobsLoading(true);
     axios
-      .get("https://3.110.201.21:3002/jobs/view_all_jobs")
+      .get("https://3.14.27.53:3003/jobs/view_all_jobs")
       .then((res) => {
         console.log(res.data);
         setAllJobs(res.data);

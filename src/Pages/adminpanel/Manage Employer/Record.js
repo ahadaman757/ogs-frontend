@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Tick from '../../../Assets/Images/tick.svg';
-import removered from '../../../Assets/Images/removered.svg';
-import Styles from '../../../Components/table/table.module.css';
-import { BasicDocument } from '../../../Components/pdfDownload.js';
-import { PDFDownloadLink, Image } from '@react-pdf/renderer';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Tick from "../../../Assets/Images/tick.svg";
+import removered from "../../../Assets/Images/removered.svg";
+import Styles from "../../../Components/table/table.module.css";
+import { BasicDocument } from "../../../Components/pdfDownload.js";
+import { PDFDownloadLink, Image } from "@react-pdf/renderer";
+import axios from "axios";
 
 function Record({ employer, index, deletedId }) {
   const [employerjobs, setemployerjobs] = useState([]);
@@ -12,9 +12,9 @@ function Record({ employer, index, deletedId }) {
   // Delete A User
   const Deleteuser = (id) => {
     axios
-      .delete('https://3.110.201.21:3002/admin/users', {
+      .delete("https://3.14.27.53:3003/admin/users", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
         data: {
           user_id: id,
@@ -23,7 +23,7 @@ function Record({ employer, index, deletedId }) {
       .then((res) => {
         deletedId(id);
         setdeleted(true);
-        console.log('user deleted');
+        console.log("user deleted");
       })
       .catch((error) => {
         console.log(error);
@@ -31,9 +31,9 @@ function Record({ employer, index, deletedId }) {
   };
   useEffect(() => {
     axios
-      .get(`https://3.110.201.21:3002/admin/jobs/${employer.id}`, {
+      .get(`https://3.14.27.53:3003/admin/jobs/${employer.id}`, {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -48,7 +48,7 @@ function Record({ employer, index, deletedId }) {
   }, []);
 
   // useEffect(() => {
-  //     axios.get(`https://3.110.201.21:3002/getcvforuser/${seeker.id}`, {
+  //     axios.get(`https://3.14.27.53:3003/getcvforuser/${seeker.id}`, {
   //         headers: {
   //             accesstoken: localStorage.getItem("accessToken")
   //         }
@@ -80,7 +80,7 @@ function Record({ employer, index, deletedId }) {
       <td className="ogsfonts14">{employer.company_city}</td>
       <td className="ogsfonts14">{employer.company_country}</td>
       <td className="ogsfonts14">{employer.contact_no}</td>
-      <td className="ogsfonts14">{employerjobs.length + ' jobs posted'}</td>
+      <td className="ogsfonts14">{employerjobs.length + " jobs posted"}</td>
       {/* <td className="ogsfonts14">6</td> */}
 
       <td className="ogsfonts14">

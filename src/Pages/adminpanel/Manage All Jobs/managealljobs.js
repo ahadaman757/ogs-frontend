@@ -1,36 +1,36 @@
-import Styles from './managealljobs.module.css';
-import { useEffect, useState } from 'react';
-import Adminsidebar from '../../../Components/adminsidebar/adminsidebar';
-import InputField from '../../../Components/inputfield/inputfield';
-import Table from '../../../Components/table/table';
-import ManageJobsTable from '../../../Components/table/ManageJobsTable';
-import jwtCheck from '../../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import Styles from "./managealljobs.module.css";
+import { useEffect, useState } from "react";
+import Adminsidebar from "../../../Components/adminsidebar/adminsidebar";
+import InputField from "../../../Components/inputfield/inputfield";
+import Table from "../../../Components/table/table";
+import ManageJobsTable from "../../../Components/table/ManageJobsTable";
+import jwtCheck from "../../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const columns = [
   {
     id: 1,
-    title: 'Sr No.',
+    title: "Sr No.",
   },
   {
     id: 2,
-    title: 'Created By',
+    title: "Created By",
   },
   {
     id: 3,
-    title: 'Job Title',
+    title: "Job Title",
   },
   {
     id: 4,
-    title: 'Posted Date (dd-mm-yyyy)',
+    title: "Posted Date (dd-mm-yyyy)",
   },
   {
     id: 5,
-    title: 'Approved Status',
+    title: "Approved Status",
   },
   {
     id: 6,
-    title: 'Actions',
+    title: "Actions",
   },
 ];
 const Managealljobs = () => {
@@ -43,12 +43,12 @@ const Managealljobs = () => {
   };
   useEffect(() => {
     if (jwtCheck(3) === false) {
-      navigate('/employerlogin');
+      navigate("/employerlogin");
     }
     axios
-      .get(`https://3.110.201.21:3002/jobs/admingetjobs`, {
+      .get(`https://3.14.27.53:3003/jobs/admingetjobs`, {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((response) => {
@@ -65,7 +65,7 @@ const Managealljobs = () => {
       <Adminsidebar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? 'adminsider' : 'sidebarmarginmax'
+          data ? "adminsider" : "sidebarmarginmax"
         }`}
       >
         <div className="container">
@@ -81,7 +81,7 @@ const Managealljobs = () => {
               </p>
 
               {loading ? (
-                'Loading Please Wait...'
+                "Loading Please Wait..."
               ) : (
                 <ManageJobsTable
                   columns={columns}

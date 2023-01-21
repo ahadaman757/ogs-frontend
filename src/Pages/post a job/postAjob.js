@@ -30,7 +30,7 @@ const Postajob = () => {
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get("https://3.110.201.21:3002/jobs/jobsoptions").then((res) => {
+    axios.get("https://3.14.27.53:3003/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -91,7 +91,7 @@ const Postajob = () => {
       // let result = [33, 34, "New Skill"]
       const DataToBESend = { ...values, skill_id: skills };
       axios
-        .post("https://3.110.201.21:3002/jobs", DataToBESend, {
+        .post("https://3.14.27.53:3003/jobs", DataToBESend, {
           headers: {
             "Content-Type": "application/json",
             accesstoken: localStorage.getItem("accessToken"),
@@ -110,7 +110,7 @@ const Postajob = () => {
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
-      .post("https://3.110.201.21:3002/get_city_by_country_id", {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: jobPostFormIk.values.country || 1,
       })
       .then((res) => {

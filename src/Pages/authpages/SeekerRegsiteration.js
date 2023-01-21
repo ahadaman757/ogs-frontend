@@ -27,7 +27,7 @@ const SeekerRegister = () => {
     }),
     onSubmit: (values) => {
       axios
-        .post("https://3.110.201.21:3002/users", values)
+        .post("https://3.14.27.53:3003/users", values)
         .then((res) => {
           console.log(res);
           setsignupResponse(res.data.message);

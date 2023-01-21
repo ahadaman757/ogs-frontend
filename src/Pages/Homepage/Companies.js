@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import styles from './homepage.module.css';
-import Carousel from 'react-elastic-carousel';
-import ClovineLogo from '../../Assets/Images/clovine.png';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import styles from "./homepage.module.css";
+import Carousel from "react-elastic-carousel";
+import ClovineLogo from "../../Assets/Images/clovine.png";
+import axios from "axios";
 export const Companies = () => {
   const [tableloading, settableLoading] = useState(true);
   const [tabledata, settabledata] = useState();
   useEffect(() => {
     axios
-      .get('https://3.110.201.21:3002/general/getCompanies')
+      .get("https://3.14.27.53:3003/general/getCompanies")
       .then((res) => {
         settabledata(res.data.getCompanies[1]);
         settableLoading(false);
@@ -21,38 +21,38 @@ export const Companies = () => {
   const companies = [
     {
       id: 1,
-      company_name: 'Clovine',
-      description: 'Head of Department',
+      company_name: "Clovine",
+      description: "Head of Department",
       logo: ClovineLogo,
     },
     {
       id: 2,
-      company_name: 'Clovine',
-      description: 'Head of Department',
+      company_name: "Clovine",
+      description: "Head of Department",
       logo: ClovineLogo,
     },
     {
       id: 3,
-      company_name: 'Clovine',
-      description: 'Head of Department',
+      company_name: "Clovine",
+      description: "Head of Department",
       logo: ClovineLogo,
     },
     {
       id: 4,
-      company_name: 'Clovine',
-      description: 'Head of Department',
+      company_name: "Clovine",
+      description: "Head of Department",
       logo: ClovineLogo,
     },
     {
       id: 5,
-      company_name: 'Clovine',
-      description: 'Head of Department',
+      company_name: "Clovine",
+      description: "Head of Department",
       logo: ClovineLogo,
     },
     {
       id: 6,
-      company_name: 'Clovine',
-      description: 'Head of Department',
+      company_name: "Clovine",
+      description: "Head of Department",
       logo: ClovineLogo,
     },
   ];
@@ -73,14 +73,14 @@ export const Companies = () => {
         </div>
         <br />
         {tableloading ? (
-          'loading'
+          "loading"
         ) : (
           <Carousel itemsToShow={5} breakPoints={breakpoints}>
             {tabledata.map((item) => (
               <div key={item.id} className={`${styles.companies__sliderItem}`}>
                 <img
-                  style={{ width: '100px', height: '100px' }}
-                  src={'https://3.110.201.21:3002/' + item.company_logo}
+                  style={{ width: "100px", height: "100px" }}
+                  src={"https://3.14.27.53:3003/" + item.company_logo}
                 />
                 <h6>{item.company_name}</h6>
                 <span>{item.business_webpage}</span>

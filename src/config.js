@@ -1,4 +1,4 @@
 const API = {
-  URL: 'https://3.110.201.21:3002',
+  URL: "https://3.14.27.53:3003",
 };
 export default API;
