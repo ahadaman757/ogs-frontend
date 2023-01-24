@@ -39,9 +39,6 @@ const Footer = () => {
             <a href="" class="text-white me-4">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a href="" class="text-white me-4">
-              <i class="fab fa-github"></i>
-            </a>
           </div>
         </section>
 

@@ -54,7 +54,6 @@ const Managejobs = () => {
       .then((res) => {
         setUserData(res.data);
         setUserDataLoading(false);
-        console.log(userData);
       });
     axios
       .get(`https://3.14.27.53:3003/jobs/myjobs`, {

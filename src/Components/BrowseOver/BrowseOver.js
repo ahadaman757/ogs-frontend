@@ -45,7 +45,6 @@ const BrowseOver = () => {
     axios
       .get("https://3.14.27.53:3003/jobs/view_all_jobs")
       .then((res) => {
-        console.log(res.data);
         setAllJobs(res.data);
         setjobsLoading(false);
       })

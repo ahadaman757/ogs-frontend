@@ -13,15 +13,13 @@ import axios from "axios";
 import { BasicDocument } from "../pdfDownload";
 import { PDFDownloadLink, Image } from "@react-pdf/renderer";
 const Cv = ({ applicant, job_id }) => {
-  console.log(applicant);
   const cv = {
     contact_number: "03458914711",
   };
   const [shortlisted, setShortlisted] = useState(applicant.is_shortlisted);
   const [rejected, setRejected] = useState(applicant.is_rejected);
   const [download, setdownload] = useState(false);
-  console.log(applicant.cv_id);
-  console.log(applicant.is_shortlisted);
+
   const updateCvView = (currentStatus) => {
     axios
       .post("https://3.14.27.53:3003/jobs/job_applicants_status_update", {
@@ -134,16 +132,6 @@ const Cv = ({ applicant, job_id }) => {
               {" "}
               <p className="me-3 ogsfonts16">Industry:</p>
               <p className="ogsfonts14">{applicant.business_type_name}</p>
-            </div>
-            <div className="d-flex align-items-center">
-              <p className="me-3 ogsfonts16">Skills:</p>
-              <div className="d-flex flex-wrap">
-                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-                <p className={`p-2 me-3 ${Styles.skills}`}>Skills</p>
-              </div>
             </div>
           </div>
         </div>

@@ -78,8 +78,7 @@ const Newapplicant = () => {
         setjobdes(response.data[0]);
       });
   }, []);
-  console.log(jobdes, "ssddddsadds");
-  console.log(state);
+
   // get all applicants
   const [appicantsList, setappicantsList] = useState();
   const getAllApplicants = () => {
@@ -133,8 +132,6 @@ const Newapplicant = () => {
   const [icon5, seticon5] = useState(userremoveicon);
   const [icon6, seticon6] = useState(erroricon);
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     Setdata(d);
   };
   return (
@@ -168,10 +165,10 @@ const Newapplicant = () => {
                   </div>
                   <div className="d-flex align-items-center">
                     <h1 className="ogsfonts18  me-3">Featured Jobs</h1>
-                    <div className="d-flex">
+                    {/* <div className="d-flex">
                       <p className={`me-2 pe-2 ${Styles.viewsix}`}>96 Views</p>
                       <p>36 Applied</p>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 

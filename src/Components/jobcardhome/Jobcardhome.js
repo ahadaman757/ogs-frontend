@@ -50,12 +50,7 @@ const Jobcardhome = ({ job_data }) => {
         </div>
         <p className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}></p>
       </div>
-      <div
-        className={`d-flex justify-content-between align-items-center `}
-        onClick={() => {
-          return navigateToJobDetails(AppliedCvs);
-        }}
-      >
+      <div className={`d-flex justify-content-between align-items-center `}>
         <div className={`d-flex`}>
           <h1 className={` m-0 ${Styles.ogsfont14}`}>
             {" "}

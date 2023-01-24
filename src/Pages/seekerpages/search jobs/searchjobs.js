@@ -55,8 +55,6 @@ const JobsSearch = () => {
   }
   const [data, Setdata] = useState("");
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     Setdata(d);
   };
   useEffect(() => {
@@ -64,7 +62,6 @@ const JobsSearch = () => {
     axios
       .get("https://3.14.27.53:3003/jobs/view_all_jobs")
       .then((res) => {
-        console.log(res.data);
         setAllJobs(res.data);
         setjobsLoading(false);
       })

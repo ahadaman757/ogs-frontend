@@ -11,10 +11,7 @@ const Jobpopseeker = () => {
   const [skills, setskills] = useState();
   const [UserCvs, setUserCvs] = useState([]);
   const [data, Setdata] = useState("");
-  console.log("applied cvs");
-  console.log(AppliedCvs);
-  console.log("having");
-  console.log(UserCvs);
+
   const ApplyJob = (cv_id) => {
     axios
       .post(

@@ -17,7 +17,7 @@ const Postajob = () => {
   const [data, Setdata] = useState("");
   const [skills, setSkills] = useState();
   const [Description, setDescription] = useState("");
-  console.log(skills);
+
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
     navigate("/employerlogin");
@@ -84,8 +84,7 @@ const Postajob = () => {
     }),
     onSubmit: (values) => {
       values.job_description = Description;
-      console.log(values);
-      console.log(skills);
+
       alert("submitted");
       let result = skills.map((a) => a.id);
       // let result = [33, 34, "New Skill"]
@@ -97,9 +96,7 @@ const Postajob = () => {
             accesstoken: localStorage.getItem("accessToken"),
           },
         })
-        .then((res) => {
-          console.log(res);
-        })
+        .then((res) => {})
         .catch((error) => {
           console.log("error occured");
           console.log(error);
@@ -115,8 +112,6 @@ const Postajob = () => {
       })
       .then((res) => {
         console.log("cites response");
-        console.log(res);
-        setcities(res.data);
       })
       .catch((error) => {
         console.log(error);

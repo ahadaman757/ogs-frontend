@@ -30,14 +30,10 @@ const EditCv = () => {
   const [Description, setDescription] = useState("");
   const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     Setdata(d);
   };
   const getjoboptions = () => {
-    axios.get("https://3.14.27.53:3003/jobs/jobsoptions").then((res) => {
-      setdropDownOptions(res.data);
-    });
+    axios.get("https://3.14.27.53:3003/jobs/jobsoptions").then((res) => {});
   };
   useEffect(() => {
     getjoboptions();
@@ -152,10 +148,7 @@ const EditCv = () => {
       .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: CvFormIk.values.country || 1,
       })
-      .then((res) => {
-        console.log(res);
-        setcities(res.data);
-      })
+      .then((res) => {})
       .catch((error) => {
         console.log(error);
       });

@@ -15,8 +15,6 @@ const Manageyoucvs = () => {
     navigate("/seekerlogin");
   }
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     Setdata(d);
   };
   useEffect(() => {
@@ -27,7 +25,6 @@ const Manageyoucvs = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUserCvs(res.data);
       });
   }, []);

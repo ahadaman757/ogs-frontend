@@ -35,7 +35,6 @@ const Seekersidebar = (props) => {
 
   const navigate = useNavigate();
 
-  console.log(displayside);
   const handeler = (props) => {
     setdisplay(!displayside);
   };
@@ -118,28 +117,6 @@ const Seekersidebar = (props) => {
             {displayside ? "" : "My Jobs"}
           </a>
 
-          <a
-            className={`btn btn-primary ogsfonts16   py-3  ${styles.sidedasbtn}`}
-            data-bs-toggle="collapse"
-            href="#collapseExample4"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample4"
-            onMouseEnter={() => {
-              seticon5(dashbordiconw5);
-            }}
-            onMouseLeave={() => {
-              seticon5(dashbordiconb5);
-            }}
-            onClick={() => {
-              navigate("/jobalert");
-            }}
-          >
-            <span>
-              <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
-            </span>
-            {displayside ? "" : " Job Alerts"}
-          </a>
           <a
             className={`btn btn-primary ogsfonts16  py-3   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"

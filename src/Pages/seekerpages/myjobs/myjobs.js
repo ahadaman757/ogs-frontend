@@ -11,8 +11,6 @@ const Myjobs = () => {
     navigate("/seekerlogin");
   }
   const display = (d) => {
-    console.log("value");
-    console.log(d);
     Setdata(d);
   };
   return (

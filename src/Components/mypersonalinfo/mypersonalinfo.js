@@ -24,8 +24,6 @@ const Personalinfo = ({}) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
-        setUserData(res.data);
         const data = res.data;
         ResetProfileFormik.values.first_name = data.first_name;
         ResetProfileFormik.values.last_name = data.last_name;
@@ -75,9 +73,9 @@ const Personalinfo = ({}) => {
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
-      console.log("accesstoken");
+
       const accesstoken = localStorage.getItem("accessToken");
-      console.log("accesstoken");
+
       console.log(accesstoken);
       axios
         .post(
@@ -91,9 +89,7 @@ const Personalinfo = ({}) => {
             },
           }
         )
-        .then((res) => {
-          console.log(res);
-        })
+        .then((res) => {})
         .catch((error) => {
           console.log(error);
         });
@@ -106,7 +102,6 @@ const Personalinfo = ({}) => {
         country_id: ResetProfileFormik.values.country || 1,
       })
       .then((res) => {
-        console.log(res);
         setcities(res.data);
       })
       .catch((error) => {
