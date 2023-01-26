@@ -240,6 +240,12 @@ const Businessinformation = ({
               formik={BusinessinformationFormik}
               label="Mobile Number"
             />
+            <UploadImageSide
+              setLogoData={setLogoData}
+              id="image"
+              formik={BusinessinformationFormik}
+              title="Logo Upload"
+            />
           </div>
           <button
             className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
@@ -505,7 +511,6 @@ function Register() {
             <UploadImageSide
               setLogoData={setLogoData}
               id="image"
-              formik={BusinessinformationFormik}
               title="Logo Upload"
             />
           ) : formStep == 4 ? null : (
