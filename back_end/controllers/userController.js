@@ -159,12 +159,12 @@ const registercontroller = async (req, res, next) => {
     const body = req.body;
     const { registerType = 'seeker' } = req.body;
     console.log('file');
-    console.log(req.files);
+    console.log(req.files?.path);
     if (registerType == 'recruiter') {
       // order the requested data according to database
       orderedData = Extractdata.EmployerSignUp({
         ...req.body,
-        file: req.file?.path,
+        file: req.files,
       });
       console.log(orderedData);
       // Perform Validations
