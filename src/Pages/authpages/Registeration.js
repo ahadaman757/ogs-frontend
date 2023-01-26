@@ -241,7 +241,6 @@ const Businessinformation = ({
               label="Mobile Number"
             />
             <UploadImageSide
-              setLogoData={setLogoData}
               id="image"
               formik={BusinessinformationFormik}
               title="Logo Upload"
@@ -508,11 +507,7 @@ function Register() {
           </div>
 
           {formStep == 2 ? (
-            <UploadImageSide
-              setLogoData={setLogoData}
-              id="image"
-              title="Logo Upload"
-            />
+            <UploadImageSide setLogoData={setLogoData} title="Logo Upload" />
           ) : formStep == 4 ? null : (
             <div className={`col-md-6 bg-secondary ${styles.auth_img} `}></div>
           )}
