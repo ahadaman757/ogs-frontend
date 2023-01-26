@@ -159,7 +159,7 @@ const registercontroller = async (req, res, next) => {
     const body = req.body;
     const { registerType = 'seeker' } = req.body;
     console.log('file');
-    console.log(req.file);
+    console.log(req.files);
     if (registerType == 'recruiter') {
       // order the requested data according to database
       orderedData = Extractdata.EmployerSignUp({
