@@ -86,7 +86,7 @@ const findAccountByEmail = async (req, res, next) => {
     );
     if (findUser[0].length > 0) {
       console.log('Found!', findUser);
-      const resetLink = sendResetLink(email);
+      const resetLink = await sendResetLink(email);
       if (resetLink === true) {
         res.json({ code: 1, message: `Please check your email ${email}` });
       } else {
@@ -166,6 +166,7 @@ const registercontroller = async (req, res, next) => {
         ...req.body,
         file: req.file?.path,
       });
+      console.log(orderedData);
       // Perform Validations
       if (VALID_MODE == 'true') {
         console.log(orderedData.orderedData);
