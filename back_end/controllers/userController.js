@@ -164,7 +164,7 @@ const registercontroller = async (req, res, next) => {
       // order the requested data according to database
       orderedData = Extractdata.EmployerSignUp({
         ...req.body,
-        file: req.files,
+        file: req.files?.image[0]?.path,
       });
       console.log(orderedData);
       // Perform Validations
