@@ -10,7 +10,12 @@ import {
   BusinessInformationValidation,
   AddressInformationValidation,
 } from '../../formsValidations/Registeration';
-import { List, TextInput, PassInput } from '../Forms/InputFields';
+import {
+  List,
+  TextInput,
+  PassInput,
+  SecondTextInput,
+} from '../Forms/InputFields';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import mobilelogo from '../../Assets/Images/mobilelogo.jpg';
