@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = (toSend, handle, handleName, title, text) => {
+const sendEmail = async (toSend, handle, handleName, title, text) => {
   if (handle === true && handleName != '') {
     const handlebarOptions = {
       viewEngine: {
