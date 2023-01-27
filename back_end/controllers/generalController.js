@@ -132,26 +132,31 @@ const verifyEmail = async (req, res, next) => {
     if (checkEmail[0].length > 0) {
       res.json({ code: 0, message: 'User with that email already exists' });
     } else {
-      let response = await sendEmail(
+      let response = sendEmail(
         userEmail,
         false,
         '',
         'Verify your email',
         `Your verification code is: ${token}`
       );
-      if (response) {
-        res.json({
-          code: 1,
-          message: 'Email has been sent',
-          fromMailer: response,
-        });
-      } else {
-        res.json({
-          code: 0,
-          message: "Email wasn't sent",
-          fromMailer: response,
-        });
-      }
+      // if (response) {
+      //   res.json({
+      //     code: 1,
+      //     message: 'Email has been sent',
+      //     fromMailer: response,
+      //   });
+      // } else {
+      //   res.json({
+      //     code: 0,
+      //     message: "Email wasn't sent",
+      //     fromMailer: response,
+      //   });
+      // }
+      res.json({
+        code: 0,
+        message: "Email wasn't sent",
+        fromMailer: response,
+      });
     }
   } catch (err) {
     res.json({ code: 0, message: err });

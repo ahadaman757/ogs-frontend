@@ -159,7 +159,6 @@ const LoginInformation = ({
           </div>
 
           <div className="col-12">
-            {message}
             <TextInput
               type="email"
               id="email"
@@ -167,6 +166,8 @@ const LoginInformation = ({
               label="Email"
             />
           </div>
+          {message}
+          <br />
           <div className="col-12">
             <div className="row">
               <div className="col-md-6">
@@ -197,6 +198,7 @@ const LoginInformation = ({
                             token: generatedCode,
                           })
                           .then((response) => {
+                            console.log(response);
                             if (response.data.code == 1) {
                               setMessage('Please check your email');
                               codeSent(true);
