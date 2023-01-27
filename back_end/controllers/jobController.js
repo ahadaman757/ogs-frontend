@@ -45,13 +45,6 @@ const JobPostController = async (req, res, next) => {
                 JobId: response.id,
                 SkillId: res.id,
               });
-              sendEmail(
-                'ahadaman@jataq.com',
-                false,
-                'Ahad Aman',
-                'Job Pending For Approval',
-                'Your job is pending approval'
-              );
             })
             .catch((error) => {
               console.log(error.message);
@@ -60,6 +53,16 @@ const JobPostController = async (req, res, next) => {
           // Skill Not Found
         }
       });
+      console.log(
+        'Send email to employer ',
+        sendEmail(
+          'ahadaman@jataq.com',
+          false,
+          'Ahad Aman',
+          'Job Pending For Approval',
+          'Your job is pending approval'
+        )
+      );
       return res.json({ message: 'added' });
     })
     .catch((error) => {
