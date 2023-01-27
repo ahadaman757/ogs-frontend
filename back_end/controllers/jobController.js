@@ -45,12 +45,13 @@ const JobPostController = async (req, res, next) => {
                 JobId: response.id,
                 SkillId: res.id,
               });
-              sendEmail('ahadaman@jataq.com', false, 'Ahad Aman', [
-                {
-                  title: 'Job Pending For Approval',
-                  text: 'Your job is pending approval',
-                },
-              ]);
+              sendEmail(
+                'ahadaman@jataq.com',
+                false,
+                'Ahad Aman',
+                'Job Pending For Approval',
+                'Your job is pending approval'
+              );
             })
             .catch((error) => {
               console.log(error.message);
