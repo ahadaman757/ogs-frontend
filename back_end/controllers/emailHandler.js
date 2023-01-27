@@ -38,7 +38,7 @@ const sendEmail = (toSend, handle, handleName, name, title, text) => {
   } else {
     const mailOptions = {
       from: 'OGS Man Power <ceo@ogsmanpower.com>',
-      to: `${email}`,
+      to: `${toSend}`,
       subject: `${title}`,
       text: `${text}`,
     };
