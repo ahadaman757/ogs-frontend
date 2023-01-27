@@ -173,6 +173,7 @@ const LoginInformation = ({
               <div className="col-md-6">
                 {codeSent ? (
                   <button
+                    type="button"
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                   >
                     Verify
@@ -182,17 +183,19 @@ const LoginInformation = ({
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                     type="button"
                     onClick={() => {
-                      localStorage.setItem(
-                        'uMail',
-                        logininformationFormik.values.email
-                      );
-                      let generatedCode = generateCode(6, '1234567890');
-                      axios
-                        .post(`https://3.14.27.53:3003/general/verifyEmail`, {
-                          userEmail: localStorage.getItem('uMail'),
-                          token: generatedCode,
-                        })
-                        .then((response) => console.log(response));
+                      setTimeout(() => {
+                        localStorage.setItem(
+                          'uMail',
+                          logininformationFormik.values.email
+                        );
+                        let generatedCode = generateCode(6, '1234567890');
+                        axios
+                          .post(`https://3.14.27.53:3003/general/verifyEmail`, {
+                            userEmail: localStorage.getItem('uMail'),
+                            token: generatedCode,
+                          })
+                          .then((response) => console.log(response));
+                      }, 2000);
                     }}
                   >
                     Get Code
