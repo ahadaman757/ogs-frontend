@@ -136,7 +136,13 @@ const Postajob = () => {
         <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
             {thankYou ? (
-              <h1>Job has been posted! Waiting for approval</h1>
+              <center>
+                <h1>Job has been posted!</h1>
+                <p>
+                  Your job is pending approval, people can see you job post once
+                  it is approved.
+                </p>
+              </center>
             ) : (
               <div className="p-3">
                 <h1 className="py-3 ogsfonts24">Post a Job</h1>

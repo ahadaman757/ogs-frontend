@@ -68,6 +68,8 @@ const LoginInformation = ({
 }) => {
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
+  const [isVerified, setIsVerified] = useState(false);
+  const [codeSent, setCodeSent] = useState(false);
   const [logov, setlogov] = useState(eye);
   const [logov2, setlogov2] = useState(eye);
   const [passwordType, setPasswordType] = useState('password');
@@ -148,6 +150,16 @@ const LoginInformation = ({
               onChange={(e) => localStorage.setItem('email', e.target.values)}
             />
           </div>
+          <div className="col-12">
+            <div className="row">
+              <div className="col-md-6">
+                <input placeholder="Enter Verification Code" />
+              </div>
+              <div className="col-md-6">
+                {codeSent ? <button>Verify</button> : <button>Get Code</button>}
+              </div>
+            </div>
+          </div>
           <div className="col-md-6">
             <PassInput
               type="password"
@@ -175,12 +187,20 @@ const LoginInformation = ({
               passwordType={passwordType2}
             />
           </div>
-          <button
-            className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-            type="submit"
-          >
-            Continue
-          </button>
+          {isVerified ? (
+            <button
+              className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+              type="submit"
+            >
+              Continue
+            </button>
+          ) : (
+            <button
+              className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+            >
+              Verify Email To Continue
+            </button>
+          )}
         </form>
       </div>
     </>
