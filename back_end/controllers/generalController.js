@@ -129,7 +129,7 @@ const verifyEmail = async (req, res, next) => {
     const checkEmail = await sequelize.query(
       `SELECT * FROM users WHERE email = '${userEmail}'`
     );
-    if (checkEmail.length > 0) {
+    if (checkEmail[0].length > 0) {
       res.json({ code: 0, message: 'User with that email already exists' });
     } else {
       let response = sendEmail(
