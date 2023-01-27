@@ -13,6 +13,7 @@ import RefreshToken from '../models/refreshToken.js';
 import { decryptPassword } from '../services/Main.js';
 import jwt_service from '../services/JwtService.js';
 import sequelize from '../config/db.js';
+import sendEmail from './emailHandler.js';
 import bodyParser from 'body-parser';
 // const User = require('../models/Users')
 import { application } from 'express';
@@ -122,6 +123,25 @@ const GetJobDetailsById = async (req, res, next) => {
     next(error);
   }
 };
+const verifyEmail = (req, res, next) => {
+  try {
+    const { userEmail, token } = req.body;
+    let response = sendEmail(
+      userEmail,
+      false,
+      '',
+      'Verify your email',
+      `Your verification code is: ${token}`
+    );
+    if (response === true) {
+      res.json({ code: 1, message: 'Email has been sent' });
+    } else {
+      res.json({ code: 0, message: "Email wasn't sent" });
+    }
+  } catch (err) {
+    res.json({ code: 0, message: err });
+  }
+};
 export {
   homePageJobsPK,
   getPrivacyPolicy,
@@ -130,4 +150,5 @@ export {
   homePageJobsIN,
   getCourses,
   GetJobDetailsById,
+  verifyEmail,
 };

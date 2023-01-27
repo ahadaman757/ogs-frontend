@@ -66,10 +66,21 @@ const LoginInformation = ({
   formData,
   employerRegsiterOptions,
 }) => {
+  function generateCode(length, characters) {
+    var result = '';
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return result;
+  }
+
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
   const [isVerified, setIsVerified] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
+  const [codeGenerated, setCodeGenerated] = useState();
   const [logov, setlogov] = useState(eye);
   const [logov2, setlogov2] = useState(eye);
   const [passwordType, setPasswordType] = useState('password');
@@ -156,7 +167,28 @@ const LoginInformation = ({
                 <input placeholder="Enter Verification Code" />
               </div>
               <div className="col-md-6">
-                {codeSent ? <button>Verify</button> : <button>Get Code</button>}
+                {codeSent ? (
+                  <button
+                    className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                  >
+                    Verify
+                  </button>
+                ) : (
+                  <button
+                    className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                    onClick={() => {
+                      let generatedCode = generateCode(6, '1234567890');
+                      axios
+                        .post(`https://3.14.27.53:3002/general/verifyEmail`, {
+                          userEmail: localStorage.getItem('email'),
+                          token: generatedCode,
+                        })
+                        .then((response) => console.log(response));
+                    }}
+                  >
+                    Get Code
+                  </button>
+                )}
               </div>
             </div>
           </div>
