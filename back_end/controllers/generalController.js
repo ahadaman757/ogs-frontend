@@ -123,20 +123,27 @@ const GetJobDetailsById = async (req, res, next) => {
     next(error);
   }
 };
-const verifyEmail = (req, res, next) => {
+const verifyEmail = async (req, res, next) => {
   try {
     const { userEmail, token } = req.body;
-    let response = sendEmail(
-      userEmail,
-      false,
-      '',
-      'Verify your email',
-      `Your verification code is: ${token}`
+    const checkEmail = await sequelize.query(
+      `SELECT * FROM users WHERE email = '${userEmail}'`
     );
-    if (response === true) {
-      res.json({ code: 1, message: 'Email has been sent' });
+    if (checkEmail.length > 0) {
+      res.json({ code: 0, message: 'User with that email already exists' });
     } else {
-      res.json({ code: 0, message: "Email wasn't sent" });
+      let response = sendEmail(
+        userEmail,
+        false,
+        '',
+        'Verify your email',
+        `Your verification code is: ${token}`
+      );
+      if (response === true) {
+        res.json({ code: 1, message: 'Email has been sent' });
+      } else {
+        res.json({ code: 0, message: "Email wasn't sent" });
+      }
     }
   } catch (err) {
     res.json({ code: 0, message: err });

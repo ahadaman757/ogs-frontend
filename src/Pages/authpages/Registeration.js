@@ -90,6 +90,7 @@ const LoginInformation = ({
   const [logov2, setlogov2] = useState(eye);
   const [passwordType, setPasswordType] = useState('password');
   const [passwordType2, setPasswordType2] = useState('password');
+  const [message, setMessage] = useState();
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -158,6 +159,7 @@ const LoginInformation = ({
           </div>
 
           <div className="col-12">
+            {message}
             <TextInput
               type="email"
               id="email"
@@ -194,7 +196,14 @@ const LoginInformation = ({
                             userEmail: localStorage.getItem('uMail'),
                             token: generatedCode,
                           })
-                          .then((response) => console.log(response));
+                          .then((response) => {
+                            if (response.data.code == 1) {
+                              setMessage('Please check your email');
+                              codeSent(true);
+                            } else {
+                              setMessage(response.data.message);
+                            }
+                          });
                       }, 2000);
                     }}
                   >
@@ -241,6 +250,7 @@ const LoginInformation = ({
           ) : (
             <button
               className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+              type="button"
             >
               Verify Email To Continue
             </button>
