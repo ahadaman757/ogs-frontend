@@ -12,12 +12,14 @@ import styles from '../authpages/main.module.css';
 import axios from 'axios';
 import jwtCheck from '../../system/jwtChecker';
 import { useNavigate } from 'react-router-dom';
+import Link from 'link-react';
 
 const Postajob = () => {
   const [data, Setdata] = useState('');
   const [skills, setSkills] = useState();
   const [Description, setDescription] = useState('');
-
+  const [jobAdded, setJobAdded] = useState(false);
+  const [thankYou, setThankYou] = useState(false);
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
     navigate('/employerlogin');
@@ -85,7 +87,7 @@ const Postajob = () => {
     onSubmit: (values) => {
       values.job_description = Description;
 
-      alert('submitted');
+      setJobAdded(true);
       let result = skills.map((a) => a.id);
       // let result = [33, 34, "New Skill"]
       const DataToBESend = { ...values, skill_id: skills };
@@ -96,7 +98,14 @@ const Postajob = () => {
             accesstoken: localStorage.getItem('accessToken'),
           },
         })
-        .then((res) => {})
+        .then((res) => {
+          setJobAdded(false);
+          if (res.data.code == 1) {
+            setThankYou(true);
+          } else {
+            alert('An error occured');
+          }
+        })
         .catch((error) => {
           console.log('error occured');
           console.log(error);
@@ -111,7 +120,6 @@ const Postajob = () => {
         country_id: jobPostFormIk.values.country || 1,
       })
       .then((res) => {
-        console.log('cites response');
         setcities(res.data);
       })
       .catch((error) => {
@@ -126,269 +134,272 @@ const Postajob = () => {
           data ? 'sidebarmarginmin' : 'sidebarmarginmax'
         }`}
       >
-        <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
-          <div className={`container ${Styles.Postajobchild}`}>
-            <div className="p-3">
-              <h1 className="py-3 ogsfonts24">Post a Job</h1>
-              <h1 className="ogsfonts18">Job Detail</h1>
-              <p className="ogsfonts16 py-2">
-                Asterisk (*) indicates required field
-              </p>
-              <div className="row">
-                <div className="col-md-6 pe-5">
-                  <div>
-                    <TextInput
-                      id="job_title"
-                      label="Enter Job title"
-                      formik={jobPostFormIk}
-                    />
-                    <label className={`${styles.form_input__lable}`}>
-                      Enter Skills
-                    </label>
-                    <div className={`${Styles.taginputContainer} py-2`}>
-                      <TagInput setSkills={setSkills} />
+        {thankYou ? (
+          <ThankYou />
+        ) : (
+          <form onSubmit={jobPostFormIk.handleSubmit} className="mt-5">
+            <div className={`container ${Styles.Postajobchild}`}>
+              <div className="p-3">
+                <h1 className="py-3 ogsfonts24">Post a Job</h1>
+                <h1 className="ogsfonts18">Job Detail</h1>
+                <p className="ogsfonts16 py-2">
+                  Asterisk (*) indicates required field
+                </p>
+                <div className="row">
+                  <div className="col-md-6 pe-5">
+                    <div>
+                      <TextInput
+                        id="job_title"
+                        label="Enter Job title"
+                        formik={jobPostFormIk}
+                      />
+                      <label className={`${styles.form_input__lable}`}>
+                        Enter Skills
+                      </label>
+                      <div className={`${Styles.taginputContainer} py-2`}>
+                        <TagInput setSkills={setSkills} />
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <List
+                            options={dropDownOptions.country}
+                            id="country"
+                            list_id="countries"
+                            label="Select Country"
+                            formik={jobPostFormIk}
+                          />
+                        </div>
+                        <div className="col-md-6">
+                          <List
+                            options={cities}
+                            id="city"
+                            label="Select city"
+                            formik={jobPostFormIk}
+                          />
+                        </div>
+                      </div>
+                      {/* <List id='area' label="Select area" formik={jobPostFormIk} /> */}
+                      <List
+                        options={dropDownOptions.career_level}
+                        id="career_level"
+                        list_id="career_levels"
+                        label="Required Career Level*"
+                        formik={jobPostFormIk}
+                      />
                     </div>
-                    <div className="row">
-                      <div className="col-md-6">
+                    <div className={`d-flex align-items-start ${Styles.SRm}`}>
+                      <div className={`pe-5 ${Styles.SRm2}`}>
                         <List
-                          options={dropDownOptions.country}
-                          id="country"
-                          list_id="countries"
-                          label="Select Country"
+                          options={dropDownOptions.max_salary}
+                          list_id="start_salaries"
+                          id="min_salary"
+                          label="start salary"
                           formik={jobPostFormIk}
                         />
                       </div>
-                      <div className="col-md-6">
+                      <div className={` ${Styles.SRm2}`}>
+                        {' '}
                         <List
-                          options={cities}
-                          id="city"
-                          label="Select city"
+                          options={dropDownOptions.max_salary}
+                          list_id="end_salaries"
+                          id="max_salary"
+                          label="end salary"
                           formik={jobPostFormIk}
                         />
                       </div>
                     </div>
-                    {/* <List id='area' label="Select area" formik={jobPostFormIk} /> */}
-                    <List
-                      options={dropDownOptions.career_level}
-                      id="career_level"
-                      list_id="career_levels"
-                      label="Required Career Level*"
-                      formik={jobPostFormIk}
-                    />
-                  </div>
-                  <div className={`d-flex align-items-start ${Styles.SRm}`}>
-                    <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List
-                        options={dropDownOptions.max_salary}
-                        list_id="start_salaries"
-                        id="min_salary"
-                        label="start salary"
-                        formik={jobPostFormIk}
-                      />
-                    </div>
-                    <div className={` ${Styles.SRm2}`}>
+                    <div>
                       {' '}
                       <List
-                        options={dropDownOptions.max_salary}
-                        list_id="end_salaries"
-                        id="max_salary"
-                        label="end salary"
+                        options={dropDownOptions.functional_area}
+                        list_id="functional_areas"
+                        id="functional_area"
+                        label="Functional Area"
                         formik={jobPostFormIk}
                       />
-                    </div>
-                  </div>
-                  <div>
-                    {' '}
-                    <List
-                      options={dropDownOptions.functional_area}
-                      list_id="functional_areas"
-                      id="functional_area"
-                      label="Functional Area"
-                      formik={jobPostFormIk}
-                    />
-                    <List
-                      options={dropDownOptions.gender}
-                      list_id="genders"
-                      id="gender_title"
-                      label="Gender"
-                      formik={jobPostFormIk}
-                    />
-                  </div>
-                  <div>
-                    {' '}
-                    <h1 className="ogsfonts16 my-3">Additional Conditions</h1>
-                    <div className="form-check">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Receive resumes of applicants to this job through your
-                        email
-                      </label>
-                    </div>
-                    <div className="form-check ">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Deactivate this job after the Apply By Date
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div>
-                    <TextEditer setDescription={setDescription} />
-                  </div>
-                  <div
-                    className={`d-flex flex-wrap align-items-start ${Styles.SRm}`}
-                  >
-                    <div className={`pe-5 ${Styles.SRm2}`}>
                       <List
-                        options={dropDownOptions.job_type}
-                        list_id="job_types"
-                        id="job_type_title"
-                        label="Job Type"
+                        options={dropDownOptions.gender}
+                        list_id="genders"
+                        id="gender_title"
+                        label="Gender"
                         formik={jobPostFormIk}
                       />
                     </div>
-                    <div className={` ${Styles.SRm2}`}>
+                    <div>
                       {' '}
-                      <List
-                        options={dropDownOptions.job_shift}
-                        list_id="job_shifts"
-                        id="job_shift"
-                        label="Job Shift"
-                        formik={jobPostFormIk}
-                      />
+                      <h1 className="ogsfonts16 my-3">Additional Conditions</h1>
+                      <div className="form-check">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Receive resumes of applicants to this job through your
+                          email
+                        </label>
+                      </div>
+                      <div className="form-check ">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Deactivate this job after the Apply By Date
+                        </label>
+                      </div>
                     </div>
                   </div>
-                  <h1 className="ogsfonts16 my-3">Publish This Post</h1>
-                  <div className={` my-3 d-flex`}>
-                    <div className="form-check">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        immediately
-                      </label>
+                  <div className="col-md-6">
+                    <div>
+                      <TextEditer setDescription={setDescription} />
                     </div>
-                    <div className="form-check mx-5">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Future Date
-                      </label>
+                    <div
+                      className={`d-flex flex-wrap align-items-start ${Styles.SRm}`}
+                    >
+                      <div className={`pe-5 ${Styles.SRm2}`}>
+                        <List
+                          options={dropDownOptions.job_type}
+                          list_id="job_types"
+                          id="job_type_title"
+                          label="Job Type"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
+                      <div className={` ${Styles.SRm2}`}>
+                        {' '}
+                        <List
+                          options={dropDownOptions.job_shift}
+                          list_id="job_shifts"
+                          id="job_shift"
+                          label="Job Shift"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <TextInput
-                      id="valid_upto"
-                      type="date"
-                      formik={jobPostFormIk}
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <div className={`row`}>
-                <div className={`col-md-6`}>
-                  <div className={`d-flex align-items-end ${Styles.SRm}`}>
-                    <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List
-                        options={dropDownOptions.required_qualification}
-                        list_id="qualifications"
-                        id="required_qualification"
-                        label="Qualification"
-                        formik={jobPostFormIk}
-                      />
+                    <h1 className="ogsfonts16 my-3">Publish This Post</h1>
+                    <div className={` my-3 d-flex`}>
+                      <div className="form-check">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          immediately
+                        </label>
+                      </div>
+                      <div className="form-check mx-5">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Future Date
+                        </label>
+                      </div>
                     </div>
-                  </div>
-                  <div className={`pe-5 ${Styles.SRm2}`}>
-                    <TextInput
-                      id="degree_title"
-                      label="Specific Degree Title"
-                      formik={jobPostFormIk}
-                    />
-                  </div>
-                  <div className={`d-flex align-items-end ${Styles.SRm}`}>
-                    <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List
-                        options={dropDownOptions.max_experience}
-                        list_id="min_experiences"
-                        id="min_experience"
-                        label="Min Experience"
-                        formik={jobPostFormIk}
-                      />
-                    </div>
-                    <div className={` ${Styles.SRm2}`}>
-                      {' '}
-                      <List
-                        options={dropDownOptions.max_experience}
-                        list_id="max_experiences"
-                        id="max_experience"
-                        label="Max Experience"
-                        formik={jobPostFormIk}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <TextInput
-                      id="experience_info"
-                      label="More Info About Experience"
-                      formik={jobPostFormIk}
-                    />
-                  </div>
-                  <div className={`d-flex align-items-end ${Styles.SRm}`}>
-                    <div className={`pe-5 ${Styles.SRm2}`}>
-                      <List
-                        options={dropDownOptions.max_age}
-                        list_id="min_ages"
-                        id="min_age"
-                        label="Min Age Requirement"
-                        formik={jobPostFormIk}
-                      />
-                    </div>
-                    <div className={` ${Styles.SRm2}`}>
-                      {' '}
-                      <List
-                        options={dropDownOptions.max_age}
-                        list_id="max_ages"
-                        id="max_age"
-                        label="Max Age Requirement"
+                    <div>
+                      <TextInput
+                        id="valid_upto"
+                        type="date"
                         formik={jobPostFormIk}
                       />
                     </div>
                   </div>
                 </div>
-              </div>
-              <hr />
-              {/* <div className={`row`}>
+                <hr />
+                <div className={`row`}>
+                  <div className={`col-md-6`}>
+                    <div className={`d-flex align-items-end ${Styles.SRm}`}>
+                      <div className={`pe-5 ${Styles.SRm2}`}>
+                        <List
+                          options={dropDownOptions.required_qualification}
+                          list_id="qualifications"
+                          id="required_qualification"
+                          label="Qualification"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
+                    </div>
+                    <div className={`pe-5 ${Styles.SRm2}`}>
+                      <TextInput
+                        id="degree_title"
+                        label="Specific Degree Title"
+                        formik={jobPostFormIk}
+                      />
+                    </div>
+                    <div className={`d-flex align-items-end ${Styles.SRm}`}>
+                      <div className={`pe-5 ${Styles.SRm2}`}>
+                        <List
+                          options={dropDownOptions.max_experience}
+                          list_id="min_experiences"
+                          id="min_experience"
+                          label="Min Experience"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
+                      <div className={` ${Styles.SRm2}`}>
+                        {' '}
+                        <List
+                          options={dropDownOptions.max_experience}
+                          list_id="max_experiences"
+                          id="max_experience"
+                          label="Max Experience"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <TextInput
+                        id="experience_info"
+                        label="More Info About Experience"
+                        formik={jobPostFormIk}
+                      />
+                    </div>
+                    <div className={`d-flex align-items-end ${Styles.SRm}`}>
+                      <div className={`pe-5 ${Styles.SRm2}`}>
+                        <List
+                          options={dropDownOptions.max_age}
+                          list_id="min_ages"
+                          id="min_age"
+                          label="Min Age Requirement"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
+                      <div className={` ${Styles.SRm2}`}>
+                        {' '}
+                        <List
+                          options={dropDownOptions.max_age}
+                          list_id="max_ages"
+                          id="max_age"
+                          label="Max Age Requirement"
+                          formik={jobPostFormIk}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                {/* <div className={`row`}>
                 <div className={`col-6`}>
                   <h1 className="ogsfonts18">Workplace Environment</h1>
                   <div>
@@ -397,8 +408,8 @@ const Postajob = () => {
                   </div>
                 </div>
               </div> */}
-              {/* <hr /> */}
-              {/* <div className={`row`}>
+                {/* <hr /> */}
+                {/* <div className={`row`}>
                 <div className={`col-6`}>
                   <h1 className="ogsfonts18">Workplace Environment</h1>
                   <p className="ogsfonts14">
@@ -414,128 +425,148 @@ const Postajob = () => {
                   </div>
                 </div>
               </div> */}
-              <hr />
-              <div className={`row`}>
-                <div className={`col-md-6`}>
-                  <h1 className="ogsfonts18">Refine Your Applicant Pool</h1>
-                  <p>
-                    Pre-filter Applicants Limit applications based on the
-                    following filters -select all that apply.
-                  </p>
-                  <div className="d-flex flex-wrap">
-                    <div className="form-check">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        gender_title
-                      </label>
+                <hr />
+                <div className={`row`}>
+                  <div className={`col-md-6`}>
+                    <h1 className="ogsfonts18">Refine Your Applicant Pool</h1>
+                    <p>
+                      Pre-filter Applicants Limit applications based on the
+                      following filters -select all that apply.
+                    </p>
+                    <div className="d-flex flex-wrap">
+                      <div className="form-check">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          gender_title
+                        </label>
+                      </div>
+                      <div className="form-check me-3">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Experience
+                        </label>
+                      </div>
+                      <div className="form-check me-3">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Degree Level
+                        </label>
+                      </div>
+                      <div className="form-check me-3">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Age
+                        </label>
+                      </div>
+                      <div className="form-check me-3">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          City
+                        </label>
+                      </div>
                     </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Experience
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Degree Level
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Age
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        City
-                      </label>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="form-check my-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Screen your applicants further with custom questions
-                      </label>
-                    </div>
-                    <div className="form-check  my-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Attach A Test
-                      </label>
+                    <div>
+                      <div className="form-check my-3">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Screen your applicants further with custom questions
+                        </label>
+                      </div>
+                      <div className="form-check  my-3">
+                        <input
+                          className={`form-check-input ${Styles.radioer}`}
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                        />
+                        <label
+                          className="form-check-label ogsfonts14"
+                          for="flexCheckDefault"
+                        >
+                          Attach A Test
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="d-flex flex-wrap justify-content-end">
-                <button type="submit" className={`mx-2 mt-3 ${Styles.btnPost}`}>
-                  Post Job{' '}
-                </button>
+                <div className="d-flex flex-wrap justify-content-end">
+                  <button
+                    type="submit"
+                    disabled={jobAdded}
+                    className={`mx-2 mt-3 ${Styles.btnPost}`}
+                  >
+                    {jobAdded ? 'Posting... Please wait' : 'Post'}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </div>
+  );
+};
+
+const ThankYou = () => {
+  return (
+    <>
+      <center>
+        <h1>Thank you!</h1>
+        <p>
+          Your job has been posted and currently pending approval. We'll update
+          you as soon as it is approved.
+        </p>
+        <Link to="/dashboard">Go Back</Link>
+      </center>
+    </>
   );
 };
 

@@ -63,7 +63,7 @@ const JobPostController = async (req, res, next) => {
           'Your job is pending approval'
         )
       );
-      return res.json({ message: 'added' });
+      return res.json({ code: 1, message: 'added' });
     })
     .catch((error) => {
       console.log('55555555555');
