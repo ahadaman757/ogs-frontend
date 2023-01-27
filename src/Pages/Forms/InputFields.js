@@ -274,4 +274,12 @@ const FileUpload2 = ({ title, name, id, label, setFileData, formik }) => {
 
 //     )
 // }
-export { PassInput, List, TextInput, FileUpload, ListUpdate, FileUpload2 };
+export {
+  PassInput,
+  List,
+  TextInput,
+  FileUpload,
+  ListUpdate,
+  FileUpload2,
+  SecondTextInput,
+};
