@@ -201,7 +201,7 @@ const LoginInformation = ({
                             console.log(response);
                             if (response.data.code == 1) {
                               setMessage('Please check your email');
-                              codeSent(true);
+                              setCodeSent(true);
                             } else {
                               setMessage(response.data.message);
                             }
