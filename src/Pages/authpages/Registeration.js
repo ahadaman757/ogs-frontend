@@ -158,12 +158,11 @@ const LoginInformation = ({
           </div>
 
           <div className="col-12">
-            <SecondTextInput
+            <TextInput
               type="email"
               id="email"
               formik={logininformationFormik}
               label="Email"
-              onChange={(e) => localStorage.setItem('email', e.target.values)}
             />
           </div>
           <div className="col-12">
@@ -181,7 +180,12 @@ const LoginInformation = ({
                 ) : (
                   <button
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                    type="button"
                     onClick={() => {
+                      localStorage.setItem(
+                        'uMail',
+                        logininformationFormik.values.email
+                      );
                       let generatedCode = generateCode(6, '1234567890');
                       axios
                         .post(`https://3.14.27.53:3003/general/verifyEmail`, {
