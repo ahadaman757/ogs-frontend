@@ -152,11 +152,12 @@ const verifyEmail = async (req, res, next) => {
       //     fromMailer: response,
       //   });
       // }
-      res.json({
-        code: 0,
-        message: "Email wasn't sent",
-        fromMailer: response,
-      });
+      // res.json({
+      //   code: 0,
+      //   message: "Email wasn't sent",
+      //   fromMailer: response,
+      // });
+      console.log('EMAIL RESPONSE', response);
     }
   } catch (err) {
     res.json({ code: 0, message: err });
