@@ -6,6 +6,7 @@ import Skill from '../models/Skills.js';
 import JobOptions from '../models/Categories/JobPostOptions.js';
 import sequelize from '../config/db.js';
 import JobPostOptions from '../models/Categories/JobPostOptions.js';
+import sendEmail from './emailHandler.js';
 const JobPostController = async (req, res, next) => {
   // get request body for job post
   const body = req.body;
@@ -44,6 +45,12 @@ const JobPostController = async (req, res, next) => {
                 JobId: response.id,
                 SkillId: res.id,
               });
+              sendEmail('ahadaman@jataq.com', false, 'Ahad Aman', [
+                {
+                  title: 'Job Pending For Approval',
+                  text: 'Your job is pending approval',
+                },
+              ]);
             })
             .catch((error) => {
               console.log(error.message);
