@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = (toSend, handle, handleName, title, text) => {
+const sendEmail = async (toSend, handle, handleName, title, text) => {
   if (handle === true && handleName != '') {
     const handlebarOptions = {
       viewEngine: {
@@ -36,19 +36,18 @@ const sendEmail = (toSend, handle, handleName, title, text) => {
       }
     });
   } else {
-    const mailOptions = {
-      from: 'OGS Man Power <ceo@ogsmanpower.com>',
-      to: `${toSend}`,
-      subject: `${title}`,
-      text: `${text}`,
-    };
-    return transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        return false;
-      } else {
-        return true;
-      }
-    });
+    try {
+      const mailOptions = {
+        from: 'OGS Man Power <ceo@ogsmanpower.com>',
+        to: `${toSend}`,
+        subject: `${title}`,
+        text: `${text}`,
+      };
+      const info = await transporter.sendMail(mailOptions);
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 };
 
