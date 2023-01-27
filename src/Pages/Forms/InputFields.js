@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styles from "../authpages/main.module.css";
-import eye from "../../Assets/Images/eye.svg";
-import eyedes from "../../Assets/Images/eye-disable.svg";
+import { useState } from 'react';
+import styles from '../authpages/main.module.css';
+import eye from '../../Assets/Images/eye.svg';
+import eyedes from '../../Assets/Images/eye-disable.svg';
 
 const List = (props) => {
   const { id, label, list_id, formik, options, onChangeValue } = props;
@@ -36,7 +36,7 @@ const List = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {" "}
+                {' '}
                 {lable}
               </option>
             );
@@ -89,7 +89,7 @@ const ListUpdate = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {" "}
+                {' '}
                 {lable}
               </option>
             );
@@ -102,7 +102,7 @@ const ListUpdate = (props) => {
   );
 };
 const TextInput = (props) => {
-  const { id, label, formik, type = "text", onChangeValue } = props;
+  const { id, label, formik, type = 'text', onChangeValue } = props;
 
   return (
     <>
@@ -111,6 +111,33 @@ const TextInput = (props) => {
       </label>
       <input
         onChange={(e) => onChangeValue(e)}
+        {...formik.getFieldProps(`'${id}'`)}
+        type={type}
+        value={formik.values[id]}
+        className={`${styles.form_input}`}
+        name={id}
+        id={id}
+        aria-label={label}
+      />
+      {formik.touched[id] && formik.errors[id] ? (
+        <div className="text__note">{formik.errors[id]}</div>
+      ) : null}
+    </>
+  );
+};
+const SecondTextInput = (props) => {
+  const { id, label, formik, type = 'text', onChangeValue } = props;
+
+  return (
+    <>
+      <label htmlFor={id} className={`${styles.form_input__lable}`}>
+        {label}
+      </label>
+      <input
+        onChange={(e) => {
+          onChangeValue(e);
+          localStorage.setItem('uMail', e.target.value);
+        }}
         {...formik.getFieldProps(`'${id}'`)}
         type={type}
         value={formik.values[id]}

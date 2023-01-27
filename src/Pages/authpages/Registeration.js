@@ -153,7 +153,7 @@ const LoginInformation = ({
           </div>
 
           <div className="col-12">
-            <TextInput
+            <SecondTextInput
               type="email"
               id="email"
               formik={logininformationFormik}
@@ -179,8 +179,8 @@ const LoginInformation = ({
                     onClick={() => {
                       let generatedCode = generateCode(6, '1234567890');
                       axios
-                        .post(`https://3.14.27.53:3002/general/verifyEmail`, {
-                          userEmail: localStorage.getItem('email'),
+                        .post(`https://3.14.27.53:3003/general/verifyEmail`, {
+                          userEmail: localStorage.getItem('uMail'),
                           token: generatedCode,
                         })
                         .then((response) => console.log(response));
@@ -343,7 +343,6 @@ const AddressDetails = ({
         country_id: AddressinformationFormik.values.country || 1,
       })
       .then((res) => {
-        console.log(res);
         setcities(res.data);
       })
       .catch((error) => {
