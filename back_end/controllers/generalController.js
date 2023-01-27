@@ -139,25 +139,19 @@ const verifyEmail = async (req, res, next) => {
         'Verify your email',
         `Your verification code is: ${token}`
       );
-      // if (response) {
-      //   res.json({
-      //     code: 1,
-      //     message: 'Email has been sent',
-      //     fromMailer: response,
-      //   });
-      // } else {
-      //   res.json({
-      //     code: 0,
-      //     message: "Email wasn't sent",
-      //     fromMailer: response,
-      //   });
-      // }
-      // res.json({
-      //   code: 0,
-      //   message: "Email wasn't sent",
-      //   fromMailer: response,
-      // });
-      console.log('EMAIL RESPONSE', response);
+      if (response) {
+        res.json({
+          code: 1,
+          message: 'Email has been sent',
+          fromMailer: response,
+        });
+      } else {
+        res.json({
+          code: 0,
+          message: "Email wasn't sent",
+          fromMailer: response,
+        });
+      }
     }
   } catch (err) {
     res.json({ code: 0, message: err });

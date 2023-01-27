@@ -42,7 +42,7 @@ const sendEmail = (toSend, handle, handleName, title, text) => {
       subject: `${title}`,
       text: `${text}`,
     };
-    transporter.sendMail(mailOptions, function (error, info) {
+    return transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         return false;
       } else {
