@@ -221,39 +221,6 @@ const Postajob = () => {
                       formik={jobPostFormIk}
                     />
                   </div>
-                  <div>
-                    {' '}
-                    <h1 className="ogsfonts16 my-3">Additional Conditions</h1>
-                    <div className="form-check">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Receive resumes of applicants to this job through your
-                        email
-                      </label>
-                    </div>
-                    <div className="form-check ">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Deactivate this job after the Apply By Date
-                      </label>
-                    </div>
-                  </div>
                 </div>
                 <div className="col-md-6">
                   <div>
@@ -283,37 +250,9 @@ const Postajob = () => {
                     </div>
                   </div>
                   <h1 className="ogsfonts16 my-3">Publish This Post</h1>
-                  <div className={` my-3 d-flex`}>
-                    <div className="form-check">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        immediately
-                      </label>
-                    </div>
-                    <div className="form-check mx-5">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Future Date
-                      </label>
-                    </div>
-                  </div>
+                  <div className={` my-3 d-flex`}></div>
                   <div>
+                    <label>Valid Upto:</label>
                     <TextInput
                       id="valid_upto"
                       type="date"
@@ -422,117 +361,6 @@ const Postajob = () => {
                 </div>
               </div> */}
               <hr />
-              <div className={`row`}>
-                <div className={`col-md-6`}>
-                  <h1 className="ogsfonts18">Refine Your Applicant Pool</h1>
-                  <p>
-                    Pre-filter Applicants Limit applications based on the
-                    following filters -select all that apply.
-                  </p>
-                  <div className="d-flex flex-wrap">
-                    <div className="form-check">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        gender_title
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Experience
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Degree Level
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Age
-                      </label>
-                    </div>
-                    <div className="form-check me-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        City
-                      </label>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="form-check my-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Screen your applicants further with custom questions
-                      </label>
-                    </div>
-                    <div className="form-check  my-3">
-                      <input
-                        className={`form-check-input ${Styles.radioer}`}
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label ogsfonts14"
-                        for="flexCheckDefault"
-                      >
-                        Attach A Test
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className="d-flex flex-wrap justify-content-end">
                 <button
                   type="submit"
