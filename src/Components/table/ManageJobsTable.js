@@ -12,7 +12,7 @@ const ManageJobsTable = (props) => {
   const changeApproveStatus = (current_status, id) => {
     axios
       .put(
-        'https://3.110.201.21:3002/admin/update_job_column',
+        'https://3.110.201.21:3003/admin/update_job_column',
         {
           status: current_status,
           column: 'is_approved',
@@ -34,7 +34,7 @@ const ManageJobsTable = (props) => {
   const navigate = useNavigate();
   const deleteJob = (e) => {
     axios
-      .post('https://3.110.201.21:3002/jobs/admindeletejob', {
+      .post('https://3.110.201.21:3003/jobs/admindeletejob', {
         jobId: e,
         headers: {
           accesstoken: localStorage.getItem('accessToken'),
