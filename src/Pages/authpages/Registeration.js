@@ -169,7 +169,7 @@ const LoginInformation = ({
           </div>
           {message}
           <br />
-          {/* <div className="col-12">
+          <div className="col-12">
             <div className="row">
               <div className="col-md-6">
                 <input
@@ -232,7 +232,7 @@ const LoginInformation = ({
                 )}
               </div>
             </div>
-          </div> */}
+          </div>
           <div className="col-md-6">
             <PassInput
               type="password"
@@ -260,12 +260,20 @@ const LoginInformation = ({
               passwordType={passwordType2}
             />
           </div>
-          <button
-            className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-            type="submit"
-          >
-            Continue
-          </button>
+          {isVerified ? (
+            <span
+              className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+            >
+              Continue
+            </span>
+          ) : (
+            <span
+              className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+              type="button"
+            >
+              Verify Email To Continue
+            </span>
+          )}
         </form>
       </div>
     </>
