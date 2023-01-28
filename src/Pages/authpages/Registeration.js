@@ -184,7 +184,7 @@ const LoginInformation = ({
               </div>
               <div className="col-md-6">
                 {codeSent ? (
-                  <button
+                  <span
                     type="button"
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                     onClick={() => {
@@ -197,9 +197,9 @@ const LoginInformation = ({
                     }}
                   >
                     Verify
-                  </button>
+                  </span>
                 ) : (
-                  <button
+                  <span
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                     type="button"
                     onClick={() => {
@@ -228,7 +228,7 @@ const LoginInformation = ({
                     }}
                   >
                     Get Code
-                  </button>
+                  </span>
                 )}
               </div>
             </div>
