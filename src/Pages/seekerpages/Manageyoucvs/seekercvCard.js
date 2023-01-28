@@ -34,15 +34,15 @@ function SeekercvCard({ cv_data }) {
               backgroundSize: 'cover',
             }}
           ></div>
-          <div className="col-md-4 col-12">
-            <div>
-              <b>Name: {cv_data.first_name + ' ' + cv_data.last_name}</b>
-              <br />
-              <b>Mobile Number: {cv_data.mobile_number}</b>
-              <br />
-              <b>Email Address: {cv_data.email}</b>
-              <br />
-            </div>
+        </div>
+        <div className="col-md-4 col-12">
+          <div>
+            <b>Name: {cv_data.first_name + ' ' + cv_data.last_name}</b>
+            <br />
+            <b>Mobile Number: {cv_data.mobile_number}</b>
+            <br />
+            <b>Email Address: {cv_data.email}</b>
+            <br />
           </div>
         </div>
       </div>
