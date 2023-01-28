@@ -36,7 +36,12 @@ const Jobcard = (props) => {
   let month = date.getMonth();
   let year = date.getFullYear();
   return (
-    <div className={`p-3 my-2 ${Styles.Jobcardmain}`}>
+    <div
+      className={`p-3 my-2 ${Styles.Jobcardmain}`}
+      onClick={() =>
+        navigate('/newapplicant', { state: { id: props.data.id } })
+      }
+    >
       <div className=" d-flex align-items-center">
         <div className="d-flex">
           <p className="m-1 ogsfonts14"> Posted date</p>
@@ -78,7 +83,7 @@ const Jobcard = (props) => {
       <div
         className={`d-flex flex-wrap justify-content-evenly my-4 ${Styles.jobcardinfo}`}
       >
-        <div
+        {/* <div
           key={props.data.id}
           onClick={() =>
             navigate('/newapplicant', { state: { id: props.data.id } })
@@ -90,7 +95,7 @@ const Jobcard = (props) => {
             </p>
           </div>
           <p className="ogsfonts14 text-center">Applied</p>
-        </div>
+        </div> */}
         <div>
           <div className={`${Styles.jobcarddetails}`}>
             {' '}
