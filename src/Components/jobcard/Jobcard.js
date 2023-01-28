@@ -42,7 +42,15 @@ const Jobcard = (props) => {
           <p className="m-1 ogsfonts14"> Posted date</p>
           <p className="ogsfonts14 m-1">{props.data.posted_at}</p>
         </div>
-        <p className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}>
+        <p
+          className={` mx-2 ogsfonts14 m-0 ${Styles.Jobcardheading}`}
+          style={{
+            backgroundColor: `${
+              props.staus == 'Pending Approval' ? 'red' : 'green'
+            }`,
+            color: 'white !important',
+          }}
+        >
           {props.staus}
         </p>
       </div>
