@@ -88,7 +88,11 @@ const ManageJobsTable = (props) => {
                   {item.is_approved ? (
                     <button className={`${Styles.btn}`}>
                       <span>
-                        <img src={removered} title="Deactivate" />
+                        <img
+                          src={removered}
+                          title="Deactivate"
+                          onClick={() => changeApproveStatus(0, item.id)}
+                        />
                       </span>
                     </button>
                   ) : (
@@ -98,22 +102,7 @@ const ManageJobsTable = (props) => {
                           src={Tick}
                           title="Approve"
                           onClick={() => {
-                            axios
-                              .post(
-                                `https://3.14.27.53:3003/admin/update_job_column`,
-                                {
-                                  status: 1,
-                                  job_id: item.id,
-                                  column: 'is_approved',
-                                },
-                                {
-                                  headers: {
-                                    accessToken:
-                                      localStorage.getItem('accessToken'),
-                                  },
-                                }
-                              )
-                              .then((response) => console.log(response));
+                            changeApproveStatus(1, item.id);
                           }}
                         />
                       </span>
