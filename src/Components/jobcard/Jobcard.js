@@ -49,6 +49,7 @@ const Jobcard = (props) => {
               props.staus == 'Pending Approval' ? 'red' : 'green'
             }`,
             color: 'white !important',
+            padding: '5px',
           }}
         >
           {props.staus}
@@ -105,15 +106,15 @@ const Jobcard = (props) => {
           <p className="ogsfonts14 text-center">shortlisted</p>
         </div>
       </div>
-      <div className="d-flex flex-wrap m-0 ">
+      {/* <div className="d-flex flex-wrap m-0 ">
         <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>
         <p className="ogsfonts14">Average salary based on similar jobs</p>
-      </div>
+      </div> */}
       <div className="d-flex flex-wrap justify-content-between align-items-center">
-        <div className="d-flex flex-wrap">
+        {/* <div className="d-flex flex-wrap">
           <p className="my-0 ogsfonts14">63 Similar jobs</p>
           <p className="my-0 mx-sm-3 ogsfonts14">96 Total visits</p>
-        </div>
+        </div> */}
         <div className="d-flex">
           <div>
             <p className="my-0 mx-sm-3 ogsfonts14">
