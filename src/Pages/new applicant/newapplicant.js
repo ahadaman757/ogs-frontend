@@ -206,7 +206,7 @@ const Newapplicant = () => {
                     disabled={deleting}
                   >
                     {' '}
-                    {deleting ? 'Deleting Please Wait...' : 'Delete Job'}
+                    {deleting ? 'Deleting...' : 'Delete Job'}
                   </button>
                 </div>
               </div>

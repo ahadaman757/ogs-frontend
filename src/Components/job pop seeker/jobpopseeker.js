@@ -1,16 +1,16 @@
-import Styles from "./jobpopseeker.module.css";
-import { useState, useEffect } from "react";
-import Seekersidebar from "../seekersidebar/seekersidebar";
-import removeicon from "../../Assets/Images/remove.svg";
-import gasco from "../../Assets/Images/gasco.png";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
+import Styles from './jobpopseeker.module.css';
+import { useState, useEffect } from 'react';
+import Seekersidebar from '../seekersidebar/seekersidebar';
+import removeicon from '../../Assets/Images/remove.svg';
+import gasco from '../../Assets/Images/gasco.png';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 const Jobpopseeker = () => {
   const { state } = useLocation();
   const { job_data, AppliedCvs } = state;
   const [skills, setskills] = useState();
   const [UserCvs, setUserCvs] = useState([]);
-  const [data, Setdata] = useState("");
+  const [data, Setdata] = useState('');
 
   const ApplyJob = (cv_id) => {
     axios
@@ -22,7 +22,7 @@ const Jobpopseeker = () => {
         },
         {
           headers: {
-            accesstoken: localStorage.getItem("accessToken"),
+            accesstoken: localStorage.getItem('accessToken'),
           },
         }
       )
@@ -35,7 +35,7 @@ const Jobpopseeker = () => {
   };
 
   const display = (d) => {
-    console.log("value");
+    console.log('value');
     console.log(d);
     Setdata(d);
   };
@@ -52,13 +52,13 @@ const Jobpopseeker = () => {
   }, []);
   useEffect(() => {
     axios
-      .get("https://3.14.27.53:3003/users/my_cvs", {
+      .get('https://3.14.27.53:3003/users/my_cvs', {
         headers: {
-          accesstoken: localStorage.getItem("accessToken"),
+          accesstoken: localStorage.getItem('accessToken'),
         },
       })
       .then((res) => {
-        console.log("cv_data", res.data);
+        console.log('cv_data', res.data);
         const filteredArray = res.data.map((cv) => {
           const isApplied = res.data.filter((applied_cv) => {
             return applied_cv.cv_id == cv.cv_id;
@@ -73,19 +73,21 @@ const Jobpopseeker = () => {
         // setUserCvs(res);
       });
   }, []);
-  console.log(UserCvs, "344344");
+  console.log(UserCvs, '344344');
   return (
     <div>
       <Seekersidebar side={display} />
       <div
         className={`pt-4 px-1 ${Styles.jobpopmain} ${
-          data ? "sidebarmarginmin" : "sidebarmarginmax"
+          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
         }`}
       >
         <div className={`container mt-5 p-4 ${Styles.Jobpopchild}`}>
           <div className={`d-flex  flex-md-row flex-column-reverse   `}>
             <div className="pe-5">
-              <img src={gasco} />
+              <img
+                src={`https://3.14.27.53:3003/images/${job_data.company_logo}`}
+              />
             </div>
             <div>
               <h1 className="ogsfonts32">{job_data.job_title}</h1>
@@ -99,9 +101,9 @@ const Jobpopseeker = () => {
                 </p>
               </div>
               <h1 className="ogsfonts18 my-3">
-                {" "}
-                {job_data.min_salary ? job_data.min_salary + "-" : null}{" "}
-                {job_data.max_salary}{" "}
+                {' '}
+                {job_data.min_salary ? job_data.min_salary + '-' : null}{' '}
+                {job_data.max_salary}{' '}
               </h1>
               <p className="ogsfonts16 color404040 my-4">
                 <span>
@@ -114,7 +116,9 @@ const Jobpopseeker = () => {
           <div className="my-4">
             <h1 className="ogsfonts32">Job Description</h1>
             <p className="ogsfonts16 color404040">
-              {job_data.description ? job_data.description : "No Desscription"}
+              {job_data.job_description
+                ? job_data.job_description
+                : 'No Desscription'}
             </p>
           </div>
           <div>
@@ -130,7 +134,7 @@ const Jobpopseeker = () => {
                       </h2>
                     );
                   })
-                : "No Skills"}
+                : 'No Skills'}
             </div>
           </div>
           <div className="my-5">
@@ -161,7 +165,7 @@ const Jobpopseeker = () => {
                 <h1 className="ogsfonts18 my-3">{job_data.job_type}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.job_shift}</h1>
                 <h1 className="ogsfonts18 my-3">
-                  {job_data.country} , {job_data.city}{" "}
+                  {job_data.country} , {job_data.city}{' '}
                 </h1>
                 <h1 className="ogsfonts18 my-3">{job_data.gender_title}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.qualification}</h1>
@@ -212,9 +216,9 @@ const Jobpopseeker = () => {
                               <div className="col-9">
                                 <p className="ogsfonts18">
                                   {cv.first_name +
-                                    " " +
+                                    ' ' +
                                     cv.last_name +
-                                    ":" +
+                                    ':' +
                                     cv.cv_id}
                                 </p>
                                 <p className="ogsfonts14 m-0">
