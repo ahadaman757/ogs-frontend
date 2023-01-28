@@ -103,7 +103,7 @@ const Dashboard = ({ parentToChild }) => {
                     {userDataLoading ? '-' : userData.company_name}
                   </h1>
                   <p className="ogsfonts14">
-                    {userDataLoading ? '-' : userData.company_name}
+                    {userDataLoading ? '-' : userData.business}
                   </p>
                 </div>
               </div>
