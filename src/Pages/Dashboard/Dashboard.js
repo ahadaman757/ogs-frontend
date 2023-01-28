@@ -90,13 +90,21 @@ const Dashboard = ({ parentToChild }) => {
             <div className="col-lg-9">
               <div className={`p-3 d-flex ${Styles.companyconn}`}>
                 <div className="me-4">
-                  <img
-                    src={`https://3.14.27.53:3003/${userData.company_logo}`}
-                  />
+                  {!userDataLoading ? (
+                    <img
+                      src={`https://3.14.27.53:3003/${userData.company_logo}`}
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
                 <div>
-                  <h1 className="ogsfonts18">{userData.company_name}</h1>
-                  <p className="ogsfonts14">{userData.company_name}</p>
+                  <h1 className="ogsfonts18">
+                    {userDataLoading ? '-' : userData.company_name}
+                  </h1>
+                  <p className="ogsfonts14">
+                    {userDataLoading ? '-' : userData.company_name}
+                  </p>
                 </div>
               </div>
               <div className={`d-flex flex-wrap `}>
