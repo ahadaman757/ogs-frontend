@@ -12,7 +12,7 @@ const ManageJobsTable = (props) => {
   const changeApproveStatus = (current_status, id) => {
     axios
       .put(
-        'https://3.110.201.21:3003/admin/update_job_column',
+        'https://3.14.27.53:3003/admin/update_job_column',
         {
           status: current_status,
           column: 'is_approved',
