@@ -23,6 +23,29 @@ function SeekercvCard({ cv_data }) {
         </div>
         <div className="d-flex justify-content-between align-items-center"></div>
       </div>
+      <div className="row">
+        <div className="col-md-4 col-12">
+          <div
+            style={{
+              width: '200px',
+              height: '200px',
+              backgroundImage: `url(https://3.14.27.53:3003/${cv_data.cv_image})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+            }}
+          ></div>
+          <div className="col-md-4 col-12">
+            <div>
+              <b>Name: {cv_data.first_name + ' ' + cv_data.last_name}</b>
+              <br />
+              <b>Mobile Number: {cv_data.mobile_number}</b>
+              <br />
+              <b>Email Address: {cv_data.email}</b>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="d-flex flex-wrap justify-content-between my-3">
         <div className="d-flex ">
           {/* <img className="me-2" src={invoice} /> */}
@@ -48,29 +71,6 @@ function SeekercvCard({ cv_data }) {
               </PDFDownloadLink>
             </span>
           </button>
-        </div>
-        <div className="row">
-          <div className="col-md-4 col-12">
-            <div
-              style={{
-                width: '200px',
-                height: '200px',
-                backgroundImage: `url(https://3.14.27.53:3003/${cv_data.cv_image})`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-              }}
-            ></div>
-            <div className="col-md-4 col-12">
-              <div>
-                <b>Name: {cv_data.first_name + ' ' + cv_data.last_name}</b>
-                <br />
-                <b>Mobile Number: {cv_data.mobile_number}</b>
-                <br />
-                <b>Email Address: {cv_data.email}</b>
-                <br />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
