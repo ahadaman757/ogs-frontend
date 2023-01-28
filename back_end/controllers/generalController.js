@@ -137,7 +137,7 @@ const verifyEmail = async (req, res, next) => {
         false,
         '',
         'Verify your email',
-        `Your verification code is: ${token}`
+        `Thank you for your interest in registering at OGS Man Power!\n Your verification code is: ${token}`
       );
       if (response) {
         res.json({

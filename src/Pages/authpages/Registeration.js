@@ -274,7 +274,7 @@ const LoginInformation = ({
               className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
               style={{ textAlign: 'center' }}
             >
-              Continue
+              Verify Email To Continue
             </span>
           )}
         </form>
