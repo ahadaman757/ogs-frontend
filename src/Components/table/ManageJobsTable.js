@@ -72,14 +72,14 @@ const ManageJobsTable = (props) => {
                   {item.first_name + ' ' + item.last_name}
                 </td>
                 <td className="ogsfonts14">{item.job_title}</td>
-
+                {/* 
                 <td className="ogsfonts14">
                   {new Date(item?.createdAt).getDay() +
                     '/' +
                     new Date(item?.createdAt).getMonth() +
                     '/' +
                     new Date(item?.createdAt).getFullYear()}
-                </td>
+                </td> */}
                 <td onClick={() => changeApproveStatus(item.id)}>
                   {item.is_approved ? 'Approved' : 'Pending Approval'}
                 </td>
