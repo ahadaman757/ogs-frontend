@@ -263,7 +263,6 @@ const LoginInformation = ({
           {isVerified ? (
             <button
               className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-              type="submit"
             >
               Continue
             </button>
