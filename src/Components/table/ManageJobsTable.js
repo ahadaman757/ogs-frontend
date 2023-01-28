@@ -108,7 +108,7 @@ const ManageJobsTable = (props) => {
                     <button className={`${Styles.btn}`}>
                       <span>
                         <img
-                          src={tick}
+                          src={Tick}
                           title="Approve"
                           style={{ width: '13px' }}
                         />
