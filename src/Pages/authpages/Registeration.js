@@ -91,6 +91,7 @@ const LoginInformation = ({
   const [passwordType, setPasswordType] = useState('password');
   const [passwordType2, setPasswordType2] = useState('password');
   const [message, setMessage] = useState();
+  const [code, setCode] = useState();
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -171,13 +172,29 @@ const LoginInformation = ({
           <div className="col-12">
             <div className="row">
               <div className="col-md-6">
-                <input placeholder="Enter Verification Code" />
+                <input
+                  placeholder="Enter Verification Code"
+                  style={{
+                    padding: '6px 9px',
+                    width: '100%',
+                    border: '1px solid lightgray',
+                  }}
+                  onChange={(e) => setCode(e.target.value)}
+                />
               </div>
               <div className="col-md-6">
                 {codeSent ? (
                   <button
                     type="button"
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                    onClick={() => {
+                      if (code == codeGenerated) {
+                        setIsVerified(true);
+                        setMessage('You have verified your email.');
+                      } else {
+                        setMessage('Incorrect Code');
+                      }
+                    }}
                   >
                     Verify
                   </button>
@@ -192,6 +209,7 @@ const LoginInformation = ({
                           logininformationFormik.values.email
                         );
                         let generatedCode = generateCode(6, '1234567890');
+                        setCodeGenerated(generatedCode);
                         axios
                           .post(`https://3.14.27.53:3003/general/verifyEmail`, {
                             userEmail: localStorage.getItem('uMail'),
