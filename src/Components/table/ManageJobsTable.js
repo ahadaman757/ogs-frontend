@@ -14,7 +14,7 @@ const ManageJobsTable = (props) => {
       .put(
         'https://3.110.201.21:3002/admin/update_job_column',
         {
-          status: !current_status,
+          status: current_status,
           column: 'is_approved',
           job_id: id,
         },
@@ -80,7 +80,7 @@ const ManageJobsTable = (props) => {
                     '/' +
                     new Date(item?.createdAt).getFullYear()}
                 </td> */}
-                <td onClick={() => changeApproveStatus(item.id)}>
+                <td onClick={() => changeApproveStatus(1, item.id)}>
                   {item.is_approved ? 'Approved' : 'Pending Approval'}
                 </td>
                 {/* <td className="ogsfonts14">{item.Address}</td> */}
