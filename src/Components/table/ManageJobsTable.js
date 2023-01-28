@@ -81,9 +81,9 @@ const ManageJobsTable = (props) => {
                     new Date(item?.createdAt).getFullYear()}
                 </td>
                 <td onClick={() => changeApproveStatus(item.id)}>
-                  {item.is_approved ? 'true' : 'False'}
+                  {item.is_approved ? 'Approved' : 'Pending Approval'}
                 </td>
-                <td className="ogsfonts14">{item.Address}</td>
+                {/* <td className="ogsfonts14">{item.Address}</td> */}
                 <td className="ogsfonts14">
                   <button className={`${Styles.btn}`}>
                     <span>
