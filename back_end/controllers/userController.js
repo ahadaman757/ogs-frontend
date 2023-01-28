@@ -527,6 +527,18 @@ const UpdateProfile = async (req, res, next) => {
 
   // const [reset_password, user_password_meta] = sequelize.query(`update password * from users where id = ${user_id}`)
 };
+
+const deleteJob = async (req, res, next) => {
+  try {
+    const { jobId } = req.body;
+    const deleteJ = await sequelize.query(
+      ` DELETE FROM job WHERE id = '${jobId}'`
+    );
+    res.json({ code: 1, message: 'Deleted' });
+  } catch (err) {
+    res.json({ code: 0, message: err });
+  }
+};
 export {
   registercontroller,
   imageUpload,
