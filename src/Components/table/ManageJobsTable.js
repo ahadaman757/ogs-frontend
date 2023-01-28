@@ -96,7 +96,7 @@ const ManageJobsTable = (props) => {
                   <button className={`${Styles.btn}`}>
                     <span>
                       <img
-                        src={removered}
+                        src="https://cdn-icons-png.flaticon.com/512/484/484611.png"
                         title="Delete Job"
                         onClick={() => {
                           deleteJob(item.id);

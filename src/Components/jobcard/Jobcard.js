@@ -83,7 +83,7 @@ const Jobcard = (props) => {
       <div
         className={`d-flex flex-wrap justify-content-evenly my-4 ${Styles.jobcardinfo}`}
       >
-        {/* <div
+        <div
           key={props.data.id}
           onClick={() =>
             navigate('/newapplicant', { state: { id: props.data.id } })
@@ -95,8 +95,8 @@ const Jobcard = (props) => {
             </p>
           </div>
           <p className="ogsfonts14 text-center">Applied</p>
-        </div> */}
-        <div>
+        </div>
+        {/* <div>
           <div className={`${Styles.jobcarddetails}`}>
             {' '}
             <p className="ogsfonts24 text-center p-4">18</p>
@@ -109,7 +109,7 @@ const Jobcard = (props) => {
             <p className="ogsfonts24 text-center p-4">18</p>
           </div>
           <p className="ogsfonts14 text-center">shortlisted</p>
-        </div>
+        </div> */}
       </div>
       {/* <div className="d-flex flex-wrap m-0 ">
         <h1 className="ogsfonts18 mx-1">PKR 27K - 46K </h1>
