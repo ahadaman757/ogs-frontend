@@ -100,7 +100,7 @@ const ManageJobsTable = (props) => {
                           onClick={() => {
                             axios
                               .post(
-                                `https://3.14.27.53:3002/admin/update_job_column`,
+                                `https://3.14.27.53:3003/admin/update_job_column`,
                                 {
                                   status: 1,
                                   job_id: item.id,
