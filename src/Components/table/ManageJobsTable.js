@@ -94,7 +94,28 @@ const ManageJobsTable = (props) => {
                   ) : (
                     <button className={`${Styles.btn}`}>
                       <span>
-                        <img src={Tick} title="Approve" />
+                        <img
+                          src={Tick}
+                          title="Approve"
+                          onClick={() => {
+                            axios
+                              .post(
+                                `https://3.14.27.53:3002/admin/update_job_column`,
+                                {
+                                  status: 1,
+                                  job_id: item.id,
+                                  column: 'is_approved',
+                                },
+                                {
+                                  headers: {
+                                    accessToken:
+                                      localStorage.getItem('accessToken'),
+                                  },
+                                }
+                              )
+                              .then((response) => console.log(response));
+                          }}
+                        />
                       </span>
                     </button>
                   )}
