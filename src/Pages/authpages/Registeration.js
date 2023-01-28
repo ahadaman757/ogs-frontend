@@ -169,7 +169,7 @@ const LoginInformation = ({
           </div>
           {message}
           <br />
-          <div className="col-12">
+          {/* <div className="col-12">
             <div className="row">
               <div className="col-md-6">
                 <input
@@ -232,7 +232,7 @@ const LoginInformation = ({
                 )}
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="col-md-6">
             <PassInput
               type="password"
