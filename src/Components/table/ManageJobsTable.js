@@ -85,6 +85,19 @@ const ManageJobsTable = (props) => {
                 </td>
                 {/* <td className="ogsfonts14">{item.Address}</td> */}
                 <td className="ogsfonts14">
+                  {item.is_approved ? (
+                    <button className={`${Styles.btn}`}>
+                      <span>
+                        <img src={removered} title="Deactivate" />
+                      </span>
+                    </button>
+                  ) : (
+                    <button className={`${Styles.btn}`}>
+                      <span>
+                        <img src={Tick} title="Approve" />
+                      </span>
+                    </button>
+                  )}
                   <button className={`${Styles.btn}`}>
                     <span>
                       <img
@@ -94,27 +107,7 @@ const ManageJobsTable = (props) => {
                       />
                     </span>
                   </button>
-                  {item.is_approved ? (
-                    <button className={`${Styles.btn}`}>
-                      <span>
-                        <img
-                          src={removered}
-                          title="Deactivate"
-                          style={{ width: '13px' }}
-                        />
-                      </span>
-                    </button>
-                  ) : (
-                    <button className={`${Styles.btn}`}>
-                      <span>
-                        <img
-                          src={Tick}
-                          title="Approve"
-                          style={{ width: '13px' }}
-                        />
-                      </span>
-                    </button>
-                  )}
+
                   <button className={`${Styles.btn}`}>
                     <span>
                       <img
