@@ -88,11 +88,33 @@ const ManageJobsTable = (props) => {
                   <button className={`${Styles.btn}`}>
                     <span>
                       <img
-                        src={Tick}
+                        src="https://cdn-icons-png.flaticon.com/512/481/481874.png"
                         onClick={() => navigate(`/admineditjob/${item.id}`)}
+                        style={{ width: '13px' }}
                       />
                     </span>
                   </button>
+                  {item.is_approved ? (
+                    <button className={`${Styles.btn}`}>
+                      <span>
+                        <img
+                          src={removered}
+                          title="Deactivate"
+                          style={{ width: '13px' }}
+                        />
+                      </span>
+                    </button>
+                  ) : (
+                    <button className={`${Styles.btn}`}>
+                      <span>
+                        <img
+                          src={tick}
+                          title="Approve"
+                          style={{ width: '13px' }}
+                        />
+                      </span>
+                    </button>
+                  )}
                   <button className={`${Styles.btn}`}>
                     <span>
                       <img
