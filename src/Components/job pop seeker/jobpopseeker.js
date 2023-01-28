@@ -92,7 +92,7 @@ const Jobpopseeker = () => {
             <div>
               <h1 className="ogsfonts32">{job_data.job_title}</h1>
               <div className="d-flex">
-                <h1 className="ogsfonts18 my-3">OGS (PVt) Limited</h1>
+                <h1 className="ogsfonts18 my-3">{job_data.company_name}</h1>
                 <p className=" mx-2 ogsfonts16 color404040 my-3">
                   <span>
                     <img />
