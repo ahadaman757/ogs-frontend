@@ -187,6 +187,7 @@ const LoginInformation = ({
                   <span
                     type="button"
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                    style={{ textAlign: 'center' }}
                     onClick={() => {
                       if (code == codeGenerated) {
                         setIsVerified(true);
@@ -202,6 +203,7 @@ const LoginInformation = ({
                   <span
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                     type="button"
+                    style={{ textAlign: 'center' }}
                     onClick={() => {
                       setTimeout(() => {
                         localStorage.setItem(
@@ -260,12 +262,21 @@ const LoginInformation = ({
               passwordType={passwordType2}
             />
           </div>
-          <button
-            className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-            type="submit"
-          >
-            Continue
-          </button>
+          {isVerified ? (
+            <button
+              className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+              type="submit"
+            >
+              Continue
+            </button>
+          ) : (
+            <span
+              className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+              style={{ textAlign: 'center' }}
+            >
+              Continue
+            </span>
+          )}
         </form>
       </div>
     </>
