@@ -551,4 +551,5 @@ export {
   sendEmployerRegistrationEmail,
   findAccountByEmail,
   resetPass,
+  deleteJob,
 };

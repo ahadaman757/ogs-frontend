@@ -13,6 +13,7 @@ import {
   SeekerProfileController,
   findAccountByEmail,
   resetPass,
+  deleteJob,
 } from '../controllers/userController.js';
 import { getSeekerCvs, CreateCv } from '../controllers/CvContoller.js';
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -32,7 +33,7 @@ userRouter.post('/resetpassword', auth, ResetPassword);
 userRouter.post('/employer_update_profile', auth, imageUpload, UpdateProfile);
 userRouter.post('/findAccountByEmail', findAccountByEmail);
 userRouter.post('/resetPass', resetPass);
-
+userRouter.post('/deleteJob', auth, deleteJob);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default userRouter;
