@@ -41,6 +41,7 @@ const Jobcard = (props) => {
       onClick={() =>
         navigate('/newapplicant', { state: { id: props.data.id } })
       }
+      style={{ cursor: 'pointer' }}
     >
       <div className=" d-flex align-items-center">
         <div className="d-flex">

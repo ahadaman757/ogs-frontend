@@ -98,6 +98,7 @@ const ManageJobsTable = (props) => {
                       <img
                         src="https://cdn-icons-png.flaticon.com/512/484/484611.png"
                         title="Delete Job"
+                        style={{ width: '13px' }}
                         onClick={() => {
                           deleteJob(item.id);
                         }}
