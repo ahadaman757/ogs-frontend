@@ -58,6 +58,7 @@ const CreateCv = () => {
       institution: '',
       max_experience: '',
       career_level: '',
+      position: 0,
       nationality: '',
       religion: '',
       marital_status: '',
@@ -184,7 +185,15 @@ const CreateCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-6" style={{ display: 'none' }}>
+                  <List
+                    label="Position"
+                    id="position"
+                    options={dropDownOptions.position}
+                    formik={CvFormIk}
+                  />
+                </div>
+                <div className="col-md-6">
                   <List
                     label="Gender"
                     id="gender"
