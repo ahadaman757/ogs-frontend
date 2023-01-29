@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
-import styles from "./DashboardNavbar.module.css";
-import dashbordicon from "./../../Assets/Images/menu-home.png";
-import dashbordicon1 from "./../../Assets/Images/menu-home.svg";
-import dashbordiconb2 from "./../../Assets/Images/briefcase.png";
-import dashbordiconw2 from "./../../Assets/Images/briefcase 01.png";
-import dashbordiconb3 from "./../../Assets/Images/archive.svg";
-import dashbordiconw3 from "./../../Assets/Images/archive.png";
-import dashbordiconb4 from "./../../Assets/Images/folder.png";
-import dashbordiconw4 from "./../../Assets/Images/folderw.png";
-import dashbordiconb5 from "./../../Assets/Images/filter.png";
-import dashbordiconw5 from "./../../Assets/Images/filter 01.png";
-import dashbordiconw6 from "./../../Assets/Images/open book.svg";
-import dashbordiconb6 from "./../../Assets/Images/open bookw.png";
-import toggle from "./../../Assets/Images/indent-decrease.png";
-import logout from "../../Assets/Images/logout.svg";
-import logoutw from "../../Assets/Images/logoutwhite.svg";
-import Searchicon from "../../Assets/Images/search 03.svg";
-import notifilogo from "../../Assets/Images/notification 01.svg";
-import userlogo from "../../Assets/Images/user-circle.svg";
-import Posticon from "../../Assets/Images/postajob.svg";
-import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
-import desktologo from "../../Assets/Images/desktoplogo.jpg";
+import { useState, useEffect } from 'react';
+import styles from './DashboardNavbar.module.css';
+import dashbordicon from './../../Assets/Images/menu-home.png';
+import dashbordicon1 from './../../Assets/Images/menu-home.svg';
+import dashbordiconb2 from './../../Assets/Images/briefcase.png';
+import dashbordiconw2 from './../../Assets/Images/briefcase 01.png';
+import dashbordiconb3 from './../../Assets/Images/archive.svg';
+import dashbordiconw3 from './../../Assets/Images/archive.png';
+import dashbordiconb4 from './../../Assets/Images/folder.png';
+import dashbordiconw4 from './../../Assets/Images/folderw.png';
+import dashbordiconb5 from './../../Assets/Images/filter.png';
+import dashbordiconw5 from './../../Assets/Images/filter 01.png';
+import dashbordiconw6 from './../../Assets/Images/open book.svg';
+import dashbordiconb6 from './../../Assets/Images/open bookw.png';
+import toggle from './../../Assets/Images/indent-decrease.png';
+import logout from '../../Assets/Images/logout.svg';
+import logoutw from '../../Assets/Images/logoutwhite.svg';
+import Searchicon from '../../Assets/Images/search 03.svg';
+import notifilogo from '../../Assets/Images/notification 01.svg';
+import userlogo from '../../Assets/Images/user-circle.svg';
+import Posticon from '../../Assets/Images/postajob.svg';
+import mobilelogo from '../../Assets/Images/mobilelogo.jpg';
+import desktologo from '../../Assets/Images/desktoplogo.jpg';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const DashboardNavbar = (props) => {
   const [displayside, setdisplay] = useState(true);
@@ -36,7 +36,7 @@ const DashboardNavbar = (props) => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       if (window.innerWidth <= 450) {
         setMobileActive(true);
       } else {
@@ -55,7 +55,7 @@ const DashboardNavbar = (props) => {
       <div
         className={` d-flex justify-content-between align-items-center ${styles.navbar}`}
         style={{
-          width: displayside ? "100%" : "100%",
+          width: displayside ? '100%' : '100%',
         }}
       >
         <div className="d-flex py-1">
@@ -76,7 +76,7 @@ const DashboardNavbar = (props) => {
         <div className="mx-5 d-flex ogsfonts14 align-items-center ">
           <button
             onClick={() => {
-              navigate("/postajob");
+              navigate('/postajob');
             }}
             className={`px-2 ${styles.navbarnotibtn}`}
           >
@@ -84,7 +84,7 @@ const DashboardNavbar = (props) => {
           </button>
           <button className={`px-1 ${styles.navbarprofbtn}`}>
             <span>
-              <img style={{ width: "43px" }} src={userlogo} />
+              <img style={{ width: '43px' }} src={userlogo} />
             </span>
           </button>
           <div className="dropdown">
@@ -118,13 +118,13 @@ const DashboardNavbar = (props) => {
       <div
         // style={{ width: displayside ? "5%" : "200px" }}
         className={`d-flex align-item-center ${styles.sidebar} ${
-          displayside ? " sidebarwidthminn" : " sidebarwidthmax"
+          displayside ? ' sidebarwidthminn' : ' sidebarwidthmax'
         }`}
       >
         <div
           className={`d-flex flex-column 
-          ${displayside ? " align-items-center" : " "}
-             ${displayside ? " px-0" : "px-2 "}`}
+          ${displayside ? ' align-items-center' : ' '}
+             ${displayside ? ' px-0' : 'px-2 '}`}
         >
           <a
             className={`btn btn-primary  p-3 ogsfonts16   ${styles.sidedasbtn}`}
@@ -140,15 +140,15 @@ const DashboardNavbar = (props) => {
               seticon(dashbordicon);
             }}
             onClick={() => {
-              navigate("/dashboard");
+              navigate('/dashboard');
             }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon1} />
             </span>
-            {displayside ? "" : "Dashboard"}
+            {displayside ? '' : 'Dashboard'}
           </a>
-          <a
+          {/* <a
             className={`btn btn-primary ogsfonts16   p-3  ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample1"
@@ -162,14 +162,14 @@ const DashboardNavbar = (props) => {
               seticon2(dashbordiconb2);
             }}
             onClick={() => {
-              navigate("/managejobs");
+              navigate('/managejobs');
             }}
           >
             <span>
               <img className={` me-2 ${styles.dashbordimg}`} src={icon2} />
             </span>
-            {displayside ? "" : "Manage Jobs"}
-          </a>
+            {displayside ? '' : 'Manage Jobs'}
+          </a> */}
 
           <a
             className={`btn btn-primary ogsfonts16   p-3  ${styles.sidedasbtn}`}
@@ -185,16 +185,16 @@ const DashboardNavbar = (props) => {
               seticon5(dashbordiconb5);
             }}
             onClick={() => {
-              navigate("/setting");
+              navigate('/setting');
             }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon5} />
             </span>
-            {displayside ? "" : " Setting"}
+            {displayside ? '' : ' Setting'}
           </a>
 
-          <a
+          {/* <a
             className={`btn btn-primary ogsfonts16  p-3   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
             href="#collapseExample5"
@@ -216,7 +216,7 @@ const DashboardNavbar = (props) => {
             </span>
 
             {displayside ? "" : "CV Search"}
-          </a>
+          </a> */}
           <a
             className={`btn btn-primary ogsfonts16  p-3   ${styles.sidedasbtn}`}
             data-bs-toggle="collapse"
@@ -231,15 +231,15 @@ const DashboardNavbar = (props) => {
               seticon3(logout);
             }}
             onClick={() => {
-              localStorage.setItem("accessToken", "");
-              navigate("/");
+              localStorage.setItem('accessToken', '');
+              navigate('/');
             }}
           >
             <span>
               <img className={`me-2 ${styles.dashbordimg}`} src={icon3} />
             </span>
 
-            {displayside ? "" : "Logout"}
+            {displayside ? '' : 'Logout'}
           </a>
         </div>
       </div>

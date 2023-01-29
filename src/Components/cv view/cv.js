@@ -113,14 +113,6 @@ const Cv = ({ applicant, job_id }) => {
             </div>
             <div className="d-flex flex-wrap">
               {' '}
-              <p className="me-3 ogsfonts16">Experience:</p>
-              <p className="ogsfonts14">
-                Content analyst at S&P Global Market Intelligence (Aug 2016 -
-                Dec 2018)
-              </p>
-            </div>
-            <div className="d-flex flex-wrap">
-              {' '}
               <p className="me-3 ogsfonts16">Education:</p>
               <p className="ogsfonts14">{`${applicant.qualification}`}</p>
             </div>
