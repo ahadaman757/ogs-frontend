@@ -56,37 +56,21 @@ function SeekercvCard({ cv_data }) {
             <b>Skin Color: {cv_data.skin_color}</b>
             <br />
             <b>Weight: {cv_data.weight + ' KG'}</b>
+
             <br />
+            <PDFDownloadLink
+              document={<BasicDocument cv_data={cv_data} />}
+              fileName="somename.pdf"
+            >
+              {({ loading, error }) => {
+                console.log(error);
+                return loading ? 'Loading document...' : 'Download now!';
+              }}
+            </PDFDownloadLink>
           </div>
         </div>
       </div>
-      <div className="d-flex flex-wrap justify-content-between my-3">
-        <div className="d-flex ">
-          {/* <img className="me-2" src={invoice} /> */}
-          {/* <p className="ogsfonts16 m-1">Make Defualt</p> */}
-          <p className="bold">CV no: {cv_data.cv_id}</p>
-        </div>
-        <div>
-          <button className={`me-3 ${Styles.ctebtn}`}>
-            <span>
-              <img src={trash} />
-            </span>
-          </button>
-          <button className={`${Styles.ctebtn}`}>
-            <span>
-              <PDFDownloadLink
-                document={<BasicDocument cv_data={cv_data} />}
-                fileName="somename.pdf"
-              >
-                {({ loading, error }) => {
-                  console.log(error);
-                  return loading ? 'Loading document...' : 'Download now!';
-                }}
-              </PDFDownloadLink>
-            </span>
-          </button>
-        </div>
-      </div>
+      <div className="d-flex flex-wrap justify-content-between my-3"></div>
     </div>
   );
 }
