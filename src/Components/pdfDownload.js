@@ -282,9 +282,11 @@ function BasicDocument({ cv_data }) {
                   </Text>
                 </View>
                 <View style={styles.right_col}>
-                  <Text style={styles.info_value}>{cv_data.job_title}</Text>
+                  <Text style={styles.info_value}>
+                    {cv_data.position_title}
+                  </Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    {cv_data.job_title}
+                    {cv_data.position_title}
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -397,10 +399,8 @@ function BasicDocument({ cv_data }) {
                     <Text style={styles.info_title}>Marital Status</Text>
                   </View>
                   <View style={styles.col_2}>
-                    <Text style={styles.info_value}>
-                      {cv_data.marital_status}
-                    </Text>
-                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                    <Text style={styles.info_value}>{cv_data.status}</Text>
+                    <Text s style={{ ...styles.info_title, ...styles.arabic }}>
                       الحالة الزوجية
                     </Text>
                   </View>
@@ -450,6 +450,18 @@ function BasicDocument({ cv_data }) {
                       التعليم
                     </Text>
                   </View>
+                </View>
+                <View
+                  style={{
+                    ...styles.section_heading,
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={styles.section_heading_text}>LANGUAGE</Text>
+                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                    لغة
+                  </Text>
                 </View>
                 <View style={styles.row}>
                   <Text style={styles.info_title}>Language</Text>
