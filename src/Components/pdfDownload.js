@@ -261,11 +261,9 @@ function BasicDocument({ cv_data }) {
                   </Text>
                 </View>
                 <View style={styles.right_col}>
-                  <Text style={styles.info_value}>
-                    {cv_data.position_title}
-                  </Text>
+                  <Text style={styles.info_value}>{cv_data.job_title}</Text>
                   <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    {cv_data.position_title}
+                    {cv_data.job_title}
                   </Text>
                 </View>
                 <View style={styles.right_col}>
@@ -427,66 +425,6 @@ function BasicDocument({ cv_data }) {
                       التعليم
                     </Text>
                   </View>
-                </View>
-                <View
-                  style={{
-                    ...styles.section_heading,
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={styles.section_heading_text}>LANGUAGE</Text>
-                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    لغة
-                  </Text>
-                </View>
-                <View style={styles.row}>
-                  <Text style={styles.info_title}>Language</Text>
-                  <Text style={styles.info_title}>Weak</Text>
-                  <Text style={styles.info_title}>Average</Text>
-                  <Text style={styles.info_title}>Good</Text>
-                </View>
-                <View style={styles.row}>
-                  <Text style={styles.info_title}>Arabic</Text>
-                  <Text style={styles.info_title}>No</Text>
-
-                  <Text style={styles.info_title}>No</Text>
-                  <Text style={styles.info_title}>Yes</Text>
-                </View>
-                <View style={styles.row}>
-                  <Text style={styles.info_title}>Engish</Text>
-                  <Text style={styles.info_title}>No</Text>
-
-                  <Text style={styles.info_title}>Yes</Text>
-                  <Text style={styles.info_title}>No</Text>
-                </View>
-                <View
-                  style={{
-                    ...styles.section_heading,
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={styles.section_heading_text}>
-                    Experience Overseas
-                  </Text>
-                  <Text
-                    style={{ ...styles.section_heading_text, ...styles.arabic }}
-                  >
-                    تجربة في الخارج
-                  </Text>
-                </View>
-                <View style={styles.row}>
-                  <Text style={styles.info_title}>Country</Text>
-                  <Text style={styles.info_title}>Period</Text>
-
-                  <Text style={styles.info_title}>Occupation</Text>
-                </View>
-                <View style={styles.row}>
-                  <Text style={styles.info_value}>Saudi Arabia</Text>
-                  <Text style={styles.info_value}>1-4 years</Text>
-
-                  <Text style={styles.info_value}>Driver</Text>
                 </View>
               </View>
               <View style={styles.right_column}>

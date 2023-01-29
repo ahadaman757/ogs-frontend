@@ -263,7 +263,7 @@ const Newapplicant = () => {
                       aria-expanded="false"
                       aria-controls="panelsStayOpen-collapseTwo1"
                     >
-                      job Detail
+                      Job Detail
                     </button>
                   </h2>
                   <div
@@ -281,11 +281,7 @@ const Newapplicant = () => {
                             className={`d-flex  flex-md-row flex-column-reverse   justify-content-between`}
                           >
                             <div>
-                              <div className="d-flex">
-                                <h1 className="ogsfonts18 m-0 my-3">
-                                  OGS (PVt) Limited
-                                </h1>
-                              </div>
+                              <div className="d-flex"></div>
                               <h1 className="ogsfonts18 m-0 my-3">
                                 PKR. {jobdes.min_salary} - {jobdes.max_salary}
                                 /Month
