@@ -185,7 +185,7 @@ const CreateCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
-                <div className="col-md-6" style={{ display: 'none' }}>
+                <div className="col-md-6">
                   <List
                     label="Position"
                     id="position"
