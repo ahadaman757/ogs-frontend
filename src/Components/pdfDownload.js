@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   logo_img: {
-    width: 50,
+    width: 250,
     height: 50,
   },
   profile_img: {
