@@ -8,7 +8,7 @@
 /back_end/.env
 # testing
 /coverage
-
+/back_end/images
 # production
 /build
 

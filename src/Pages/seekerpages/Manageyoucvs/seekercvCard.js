@@ -43,6 +43,20 @@ function SeekercvCard({ cv_data }) {
             <br />
             <b>Email Address: {cv_data.email}</b>
             <br />
+            <b>Passport Number: {cv_data.passport_number}</b>
+            <br />
+          </div>
+        </div>
+        <div className="col-md-4 col-12">
+          <div>
+            <b>Degree Title: {cv_data.degree_title}</b>
+            <br />
+            <b>Institution: {cv_data.institution}</b>
+            <br />
+            <b>Skin Color: {cv_data.skin_color}</b>
+            <br />
+            <b>Weight: {cv_data.weight + ' KG'}</b>
+            <br />
           </div>
         </div>
       </div>
