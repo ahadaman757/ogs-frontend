@@ -94,14 +94,14 @@ const UpdateCv = async (req, res, next) => {
       cv_image_path = cv_image;
       console.log('CV Image Path => ' + cv_image_path);
     } else {
-      fs.unlink('images/' + cv_image.replace('images', ''), (err) => {
-        if (err) {
-          console.log('error');
-          console.log(err);
-          next(err);
-        }
-        console.log('Delete File successfully.');
-      });
+      // fs.unlink('images/' + cv_image.replace('images', ''), (err) => {
+      //   if (err) {
+      //     console.log('error');
+      //     console.log(err);
+      //     next(err);
+      //   }
+      //   console.log('Delete File successfully.');
+      // });
       cv_image_path = req.files.image[0].path;
       console.log(' IN ELSE CV Image Path => ' + cv_image_path);
     }
@@ -109,16 +109,17 @@ const UpdateCv = async (req, res, next) => {
       console.log(req.files);
       passport_image_path = passport_photo_pre;
     } else {
-      fs.unlink('images/' + cv_image.replace('images', ''), (err) => {
-        if (err) {
-          console.log('error');
-          console.log(err);
-          next(err);
-        }
+      // fs.unlink('images/' + cv_image.replace('images', ''), (err) => {
+      //   if (err) {
+      //     console.log('error');
+      //     console.log(err);
+      //     next(err);
+      //   }
 
-        console.log('Delete File successfully.');
-      });
+      //   console.log('Delete File successfully.');
+      // });
       passport_image_path = req.files.passport_photo[0].path;
+      console.log('Passport ', passport_image_path);
     }
     const {
       job_title,
