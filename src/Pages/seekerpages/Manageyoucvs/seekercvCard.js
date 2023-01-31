@@ -67,6 +67,7 @@ function SeekercvCard({ cv_data }) {
                 return loading ? 'Loading document...' : 'Download now!';
               }}
             </PDFDownloadLink>
+            <button onClick={() => navigateEditCv()}>Edit CV</button>
           </div>
         </div>
       </div>
