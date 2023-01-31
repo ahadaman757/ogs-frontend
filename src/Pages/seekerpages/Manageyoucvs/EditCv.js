@@ -124,8 +124,8 @@ const EditCv = () => {
         passport_photo_pre: cv_data.passport_photo,
       };
       const formdata = new FormData();
-      formdata.append('image', ProfileFile);
-      formdata.append('passport_photo', PassportFile);
+      // formdata.append('image', ProfileFile);
+      // formdata.append('passport_photo', PassportFile);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
