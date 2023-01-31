@@ -100,7 +100,6 @@ const UpdateCv = async (req, res, next) => {
           console.log(err);
           next(err);
         }
-
         console.log('Delete File successfully.');
       });
       cv_image_path = req.files.image[0].path;
