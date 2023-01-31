@@ -45,10 +45,12 @@ const EditCv = () => {
     initialValues: {
       email: '',
       first_name: cv_data.first_name,
+      image: '',
       last_name: cv_data.last_name,
       interested_in: cv_data.job_type_id,
       industry: cv_data.industry_id,
       job_title: cv_data.job_title,
+      passport_photo: '',
       gender: cv_data.gender_id,
       dob: cv_data.dob,
       domicile: cv_data.domicile,
@@ -261,7 +263,7 @@ const EditCv = () => {
                   )}
                   <FileUpload
                     setImage={setCvPassportImage}
-                    id="passport_id"
+                    id="passport_photo"
                     name="passport_photo"
                     setFileData={setPassportFile}
                     label="Passport Photo"
