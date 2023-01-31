@@ -270,7 +270,7 @@ const EditCv = () => {
                   )}
                   <FileUpload
                     setImage={setCvPassportImage}
-                    id="passport_id"
+                    id="passport_photo"
                     name="passport_photo"
                     label="Passport Photo"
                     formik={CvFormIk}
