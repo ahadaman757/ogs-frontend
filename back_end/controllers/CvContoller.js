@@ -89,6 +89,7 @@ const UpdateCv = async (req, res, next) => {
     // check both images if its is undefined or not
     let cv_image_path = '';
     let passport_image_path = '';
+    console.log('Files => ', req.files);
     if (req.files?.image == null) {
       cv_image_path = cv_image;
       console.log('CV Image Path => ' + cv_image_path);
