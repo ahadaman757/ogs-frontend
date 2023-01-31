@@ -43,6 +43,8 @@ const EditCv = () => {
   console.log(dropDownOptions);
   const CvFormIk = useFormik({
     initialValues: {
+      passport_photo: '',
+      image: '',
       email: '',
       first_name: cv_data.first_name,
       last_name: cv_data.last_name,
@@ -235,11 +237,18 @@ const EditCv = () => {
                       )}`}
                     />
                   )}
-                  <FileUpload
+                  {/* <FileUpload
                     setImage={setCvImage}
                     id="image"
                     name="image"
                     setFileData={setProfileFile}
+                    label="Profile Photo"
+                  /> */}
+                  <FileUpload
+                    setImage={setCvImage}
+                    formik={CvFormIk}
+                    id="passport_photo"
+                    name="passport_photo"
                     label="Profile Photo"
                   />
                 </div>
@@ -263,8 +272,8 @@ const EditCv = () => {
                     setImage={setCvPassportImage}
                     id="passport_id"
                     name="passport_photo"
-                    setFileData={setPassportFile}
                     label="Passport Photo"
+                    formik={CvFormIk}
                   />
                 </div>
               </div>
