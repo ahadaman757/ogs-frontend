@@ -247,8 +247,8 @@ const EditCv = () => {
                   <FileUpload
                     setImage={setCvImage}
                     formik={CvFormIk}
-                    id="passport_photo"
-                    name="passport_photo"
+                    id="image"
+                    name="image"
                     label="Profile Photo"
                   />
                 </div>
