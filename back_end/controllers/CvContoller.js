@@ -86,12 +86,12 @@ const UpdateCv = async (req, res, next) => {
     const userID = req.user.id;
     const { cv_id, cv_image, passport_photo_pre } = req.body;
     const { body } = req;
-    console.log(cv_image, passport_photo_pre);
     // check both images if its is undefined or not
     let cv_image_path = '';
     let passport_image_path = '';
     if (req.files?.image == null) {
       cv_image_path = cv_image;
+      console.log('CV Image Path => ' + cv_image_path);
     } else {
       fs.unlink('images/' + cv_image.replace('images', ''), (err) => {
         if (err) {
@@ -103,6 +103,7 @@ const UpdateCv = async (req, res, next) => {
         console.log('Delete File successfully.');
       });
       cv_image_path = req.files.image[0].path;
+      console.log(' IN ELSE CV Image Path => ' + cv_image_path);
     }
     if (req.files?.passport_photo == null) {
       console.log(req.files);
