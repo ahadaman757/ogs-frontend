@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import { TextInput, List } from "../../Forms/InputFields";
 import TextEditer from "../../../Components/textediter/textediter";
 import styles from "../../post a job/postajob.module.css";
+import DashboardNavbar from "../../../Components/DashboardNavbar/DashboardNavbar";
 const EmployerEditJob = () => {
   const [data, setData] = useState();
   const [jobData, setJobData] = useState([]);
