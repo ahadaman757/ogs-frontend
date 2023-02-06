@@ -276,14 +276,8 @@ const SignUpCv = () => {
                   />
                 </div>
                   {
-                    notAvailable === false ?                 <div className="col-md-6">
-                    <TextInput
-                      id="job_title"
-                      label="Job Title"
-                      formik={CvFormIk}
-                    />
-                    <a href="#" onClick={() => setNotAvailable(true)}>Can't find what you're looking for? Click here!</a>
-                  </div> :                 <div className="col-md-6">
+                    notAvailable === false ?                 
+                    <div className="col-md-6">
                   <List
                   options={JobTitles}
                     id="job_title"
@@ -291,6 +285,14 @@ const SignUpCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
+ :                                     <div className="col-md-6">
+ <TextInput
+   id="job_title"
+   label="Job Title"
+   formik={CvFormIk}
+ />
+ <a href="#" onClick={() => setNotAvailable(true)}>Can't find what you're looking for? Click here!</a>
+</div>
                   }
 
                 {/* <div className="col-md-6">
