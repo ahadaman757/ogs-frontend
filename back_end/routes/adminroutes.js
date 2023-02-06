@@ -50,6 +50,7 @@ AdminRouter.delete('/users', AdminAuth, Deleteuser);
 // jobs
 
 AdminRouter.put('/jobs', AdminAuth, UpdateJob);
+AdminRouter.put('/employerjobs', auth, UpdateJob);
 AdminRouter.put('/update_job_column', AdminAuth, UpdateJobColumn);
 AdminRouter.get('/jobs/:id', AdminAuth, EmployerJobs);
 
