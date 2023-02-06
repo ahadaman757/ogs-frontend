@@ -22,7 +22,7 @@ const EmployerEditJob = () => {
   };
   useEffect(() => {
     if (jwtCheck(2) === false) {
-      navigate("/adminlogin");
+      navigate("/employerlogin");
     }
 
     axios
@@ -141,7 +141,7 @@ const EditJobForm = ({ params }) => {
   useEffect(() => {
     axios
       .post(
-        `https://3.14.27.53:3003/jobs/admingetjobdetail`,
+        `https://3.14.27.53:3003/jobs/getjobdetail`,
         {
           jobId: params.jobId,
         },
