@@ -166,7 +166,7 @@ const Dashboard = ({ parentToChild }) => {
                   {userDataLoading ? 'Loading...' : userData.email}{' '}
                 </p>
                 <p className="ogsfonts14 cblack"> Job Posted | 
-                  {jobsLoading ? '-' : jobs.length}{' '}
+                   {jobsLoading ? '-' : jobs.length}{' '}
                 </p>
                 
                 {/* <p className="ogsfonts14">

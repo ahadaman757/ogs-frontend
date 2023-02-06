@@ -213,7 +213,7 @@ const Newapplicant = () => {
                       <img
                         src="https://cdn-icons-png.flaticon.com/512/481/481874.png"
                         onClick={() => navigate(`/employereditjob/${jobdes.id}`)}
-                        style={{ width: '13px' }}
+                        className={`p-2 ${Styles.btnUploads}`}
                       />
                     </span>
                   </button>
