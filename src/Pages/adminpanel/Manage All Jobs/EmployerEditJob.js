@@ -120,7 +120,7 @@ const EditJobForm = ({ params }) => {
     onSubmit: (values) => {
       axios
         .put(
-          "https://3.14.27.53:3003/admin/employerjobs",
+          "https://3.14.27.53:3003/jobs/employerjobs",
           {
             values,
           },

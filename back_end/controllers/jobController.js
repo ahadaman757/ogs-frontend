@@ -439,6 +439,42 @@ const ManageJobs = async (req, res, next) => {
     next(error);
   }
 };
+const UpdateJob = async (req, res, next) => {
+  try {
+    console.log(req.body.values);
+    const {
+      job_id,
+      job_title,
+      experience_info,
+      supervisor_gender_title,
+      co_worker_percentage,
+      valid_upto,
+      country,
+      city,
+      career_level,
+      min_salary,
+      max_salary,
+      functional_area,
+      gender_title,
+      job_shift,
+      job_type_title,
+      required_qualification,
+      degree_title,
+      min_experience,
+      max_experience,
+      min_age,
+      max_age,
+    } = req.body.values;
+    const update_job_record = await sequelize.query(
+      `UPDATE job SET job_title='${job_title}',experience_info='${experience_info}',supervisor_gender_title='${supervisor_gender_title}',co_worker_percentage='${co_worker_percentage}',valid_upto='${valid_upto}',country_id=${country},city_id=${city},career_level_id=${career_level},min_salary_id=${min_salary},max_salary_id=${max_salary},functional_area_id=${functional_area},gender_title_id=${gender_title},job_shift_id=${job_shift},job_type_id=${job_type_title},required_qualification_id=${required_qualification},degree_title='${degree_title}',min_experience_id=${min_experience},max_experience_id=${max_experience},min_age_id=${min_age},max_age_id=${max_age} WHERE id =${job_id}`
+    );
+    res.json({
+      message: 'updated',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export {
   JobPostController,
   JobMyCompaniesController,
@@ -454,4 +490,5 @@ export {
   AdminDeleteJob,
   AdminGetJobDetails,
   getSaudiJobs,
+  UpdateJob
 };
