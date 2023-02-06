@@ -284,6 +284,7 @@ const SignUpCv = () => {
                     label="Job Title"
                     formik={CvFormIk}
                   />
+                   <a href="#" onClick={() => setNotAvailable(true)}>Can't find what you're looking for? Click here!</a>
                 </div>
  :                                     <div className="col-md-6">
  <TextInput
@@ -291,7 +292,7 @@ const SignUpCv = () => {
    label="Job Title"
    formik={CvFormIk}
  />
- <a href="#" onClick={() => setNotAvailable(true)}>Can't find what you're looking for? Click here!</a>
+
 </div>
                   }
 
