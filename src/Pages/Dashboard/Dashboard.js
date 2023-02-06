@@ -144,7 +144,10 @@ const Dashboard = ({ parentToChild }) => {
               <div
                 className={`d-flex p-4 text-center flex-column justify-content-center align-items-center ${Styles.profcard}`}
               >
-                <img className={`${Styles.profimg}`} src={`https://3.14.27.53:3003/${userData.company_logo}`} />
+                {
+                  !userDataLoading ? <img className={`${Styles.profimg}`} src={`https://3.14.27.53:3003/${userData.company_logo}`} /> : ''
+                }
+                
                 <h1 className="ogsfonts24 cblack">
                   {userDataLoading
                     ? 'Loading...'
