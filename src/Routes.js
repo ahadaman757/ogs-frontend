@@ -66,6 +66,7 @@ import InstituteLogin from "./Pages/logins/Institute";
 import AgentLogin from "./Pages/logins/agent";
 import Agentregister from "./Pages/authpages/agent";
 import Instituteregister from "./Pages/authpages/Institute";
+import EmployerEditJob from "./Pages/adminpanel/Manage All Jobs/EmployerEditJob";
 
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
@@ -234,7 +235,7 @@ const router = createBrowserRouter([
   },
     {
     path: "employereditjob/:jobId",
-    element: <EditJob />,
+    element: <EmployerEditJob />,
   },
   {
     path: "managerestricted",
