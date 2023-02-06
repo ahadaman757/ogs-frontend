@@ -119,7 +119,7 @@ const Jobcard = (props) => {
             </p>
           </div>
           <FacebookShareButton
-            url={'https://3.110.201.21:3000/managejobs'}
+            url={'https://3.14.27.53:3002'}
             className={`mx-2 Demo__some-network__share-button ${Styles.csdbtn}`}
           >
             <span className="mx-2">
