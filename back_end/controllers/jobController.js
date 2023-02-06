@@ -56,11 +56,11 @@ const JobPostController = async (req, res, next) => {
       console.log(
         'Send email to employer ',
         sendEmail(
-          'ahadaman@jataq.com',
+          'ceo@ogsmanpower.com',
           false,
           'Ahad Aman',
           'Job Pending For Approval',
-          'Your job is pending approval'
+          'A job has been posted and waiting for your approval.'
         )
       );
       return res.json({ code: 1, message: 'added' });
