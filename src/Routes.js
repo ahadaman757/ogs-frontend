@@ -232,6 +232,10 @@ const router = createBrowserRouter([
     path: "admineditjob/:jobId",
     element: <EditJob />,
   },
+    {
+    path: "employereditjob/:jobId",
+    element: <EditJob />,
+  },
   {
     path: "managerestricted",
     element: <Managerestricted />,

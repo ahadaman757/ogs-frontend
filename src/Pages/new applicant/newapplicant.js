@@ -208,6 +208,15 @@ const Newapplicant = () => {
                     {' '}
                     {deleting ? 'Deleting...' : 'Delete Job'}
                   </button>
+                                    <button className={`${Styles.btn}`}>
+                    <span>
+                      <img
+                        src="https://cdn-icons-png.flaticon.com/512/481/481874.png"
+                        onClick={() => navigate(`/admineditjob/${item.id}`)}
+                        style={{ width: '13px' }}
+                      />
+                    </span>
+                  </button>
                 </div>
               </div>
               {/* <div className={`p-4 ${Styles.iocon}`}>
