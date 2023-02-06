@@ -24,6 +24,7 @@ const SignUpCv = () => {
   const [logov2, setlogov2] = useState(eye);
   const [passwordType, setPasswordType] = useState('password');
   const [passwordType2, setPasswordType2] = useState('password');
+  const [notAvailable, setNotAvailable] = useState(false);
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -274,13 +275,22 @@ const SignUpCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
-                <div className="col-md-6">
-                  <TextInput
+                  {
+                    notAvailable === false ?                 <div className="col-md-6">
+                    <TextInput
+                      id="job_title"
+                      label="Job Title"
+                      formik={CvFormIk}
+                    />
+                  </div> :                 <div className="col-md-6">
+                  <List
+                  options={JobTitles}
                     id="job_title"
                     label="Job Title"
                     formik={CvFormIk}
                   />
                 </div>
+                  }
 
                 {/* <div className="col-md-6">
                   <TextInput
