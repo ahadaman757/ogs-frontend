@@ -88,7 +88,7 @@ const Dashboard = ({ parentToChild }) => {
         <div className="container-md">
           <div className="row py-4 px-md-4 mt-5">
             <div className="col-lg-9">
-              <div className={`p-3 d-flex ${Styles.companyconn}`}>
+              {/* <div className={`p-3 d-flex ${Styles.companyconn}`}>
                 <div className="me-4">
                   {!userDataLoading ? (
                     <img
@@ -106,8 +106,8 @@ const Dashboard = ({ parentToChild }) => {
                     {userDataLoading ? '-' : userData.business}
                   </p>
                 </div>
-              </div>
-              <div className={`d-flex flex-wrap `}>
+              </div> */}
+              {/* <div className={`d-flex flex-wrap `}>
                 <div className={` p-3 my-2 mx-1  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Posted Jobs</h1>
@@ -128,7 +128,7 @@ const Dashboard = ({ parentToChild }) => {
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <div
@@ -144,18 +144,28 @@ const Dashboard = ({ parentToChild }) => {
               <div
                 className={`d-flex p-4 text-center flex-column justify-content-center align-items-center ${Styles.profcard}`}
               >
-                <img className={`${Styles.profimg}`} src={proimg} />
+                <img className={`${Styles.profimg}`} src={`https://3.14.27.53:3003/${userData.company_logo}`} />
                 <h1 className="ogsfonts24 cblack">
                   {userDataLoading
                     ? 'Loading...'
                     : userData.first_name + ' ' + userData.last_name}
                 </h1>
                 <p className="ogsfonts16 cblack">
+                  {userDataLoading ? 'Loading...' : userData.company_name}
+                </p>
+                <p className="ogsfonts16 cblack">
+                  {userDataLoading ? 'Loading...' : userData.business}
+                </p>
+                <p className="ogsfonts16 cblack">
                   {userDataLoading ? 'Loading...' : userData.position}
                 </p>
                 <p className="ogsfonts14 cblack">
                   {userDataLoading ? 'Loading...' : userData.email}{' '}
                 </p>
+                <p className="ogsfonts14 cblack"> Job Posted | 
+                  {jobsLoading ? '-' : jobs.length}{' '}
+                </p>
+                
                 {/* <p className="ogsfonts14">
                   {userDataLoading
                     ? "Loading..."

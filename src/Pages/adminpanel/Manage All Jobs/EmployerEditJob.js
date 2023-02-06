@@ -131,7 +131,7 @@ const EditJobForm = ({ params }) => {
           }
         )
         .then((res) => {
-          console.log();
+          alert(res.data.message);
         })
         .catch((error) => {
           console.log(error);
@@ -187,7 +187,6 @@ const EditJobForm = ({ params }) => {
       setdropDownOptions(res.data);
     });
   };
-  console.log(EditJobFormIk);
   useEffect(() => {
     getjoboptions();
   }, []);
