@@ -322,6 +322,7 @@ const registercontroller = async (req, res, next) => {
 const uploadAdditionalFiles = async (req, res, next) => {
   try {
     console.log(req.files);
+    console.log(req.files?.corona_certificate[0]?.path);
   } catch (er)  {
     res.json({code: 0, message: er})
   }

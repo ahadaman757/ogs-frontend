@@ -61,7 +61,7 @@ const SignUpCv = () => {
     axios.get(`https://3.14.27.53:3003/general/getAdditionalFiles`).then(res => {
       if(res.data.code == 1) {
         console.log("files", res.data.files);
-        localStorage.setItem("additionalFiles", res.data.files.length);
+        localStorage.setItem("additionalFiles", res.data.files[0].length);
         setAdditionalFiles(res.data.files[0]);
         setAdditionalLoading(false);
       }
