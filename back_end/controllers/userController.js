@@ -229,6 +229,8 @@ const registercontroller = async (req, res, next) => {
             } else {
               if (registerType == 'seeker') {
                 const {
+                  additionalFiles,
+                  additionalFilesName,
                   job_title,
                   email,
                   dob,
@@ -270,7 +272,7 @@ const registercontroller = async (req, res, next) => {
                     `insert INTO cv (email,cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${email}','${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`
                   )
                   .then((res) => {
-                    console.log('cv addde');
+                    console.log(res)
                   })
                   .catch((error) => {
                     console.log(error);
@@ -342,10 +344,7 @@ const imageUpload = multer({
   },
   {
     name: 'passport_photo',
-  },
-  {
-    name: 'corona_certificate',
-  },
+  }
 ]);
 const passportUpload = multer({
   storage: storage,

@@ -164,7 +164,12 @@ const SignUpCv = () => {
     onSubmit: (values) => {
       const fullFormData = { ...values };
       const formdata = new FormData();
+      const add = [];
+      for(let i = 0; i < additionalFiles.length; i++) {
+        add.push(i == 0 ? additionalFiles[i].column_name : additionalFiles[i].column_name + "|");
+      }
       formdata.append("additionalFiles", localStorage.getItem("additionalFiles"));
+      formdata.append("additionalFilesName", add);
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
