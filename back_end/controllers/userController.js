@@ -323,7 +323,7 @@ const uploadAdditionalFiles = async (req, res, next) => {
   try {
     const {additionalFiles, additionalFilesName, userId } = req.body;
     for (let i = 0; i < additionalFiles; i++) {
-      const updateUser = await sequelize.query(`UPDATE cv SET ${req.files[i].fieldname}=${req.files[i].path} WHERE user_id = '${userId}'`);
+      const updateUser = await sequelize.query(`UPDATE cv SET ${req.files[i].fieldname}='${req.files[i].path}' WHERE user_id = '${userId}'`);
     } 
     res.json({code: 1, message: 'done'})
   } catch (er)  {
