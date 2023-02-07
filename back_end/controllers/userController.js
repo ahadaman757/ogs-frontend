@@ -321,8 +321,12 @@ const registercontroller = async (req, res, next) => {
 
 const uploadAdditionalFiles = async (req, res, next) => {
   try {
-    console.log(req.files);
-    console.log(req.files?.corona_certificate[0]?.path);
+    const {additionalFiles, additionalFilesName, userId } = req.body;
+    for (let i = 0; i < additionalFiles; i++) {
+      // const updateUser = await sequelize.query(`UPDATE cv SET ${req.files[i]}`);
+      console.log(req.files[i].fieldname);
+    } 
+    res.json({code: 1, message: 'done'})
   } catch (er)  {
     res.json({code: 0, message: er})
   }
