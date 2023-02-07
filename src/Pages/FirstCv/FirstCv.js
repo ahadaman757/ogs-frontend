@@ -26,6 +26,7 @@ const SignUpCv = () => {
   const [passwordType2, setPasswordType2] = useState('password');
   const [notAvailable, setNotAvailable] = useState(false);
   const [additionalFiles, setAdditionalFiles] = useState([]);
+  const [additionalLoading, setAdditionalLoading] = useState(true);
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -60,7 +61,9 @@ const SignUpCv = () => {
     axios.get(`https://3.14.27.53:3003/general/getAdditionalFiles`).then(res => {
       if(res.data.code == 1) {
         console.log("files", res.data.files);
+        localStorage.setItem("additionalFiles", res.data.files.length);
         setAdditionalFiles(res.data.files[0]);
+        setAdditionalLoading(false);
       }
     })
   }, []);
@@ -161,6 +164,7 @@ const SignUpCv = () => {
     onSubmit: (values) => {
       const fullFormData = { ...values };
       const formdata = new FormData();
+      formdata.append("additionalFiles", localStorage.getItem("additionalFiles"));
       for (var key in fullFormData) {
         formdata.append(key, fullFormData[key]);
       }
@@ -186,7 +190,7 @@ const SignUpCv = () => {
           }, 5000);
         });
     },
-  });
+  }) 
   const [cities, setcities] = useState([]);
   useEffect(() => {
     axios
