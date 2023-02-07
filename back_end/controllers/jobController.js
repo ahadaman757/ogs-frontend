@@ -344,6 +344,43 @@ const ViewAllJobs = async (req, res, next) => {
   }
 };
 
+
+const getJobByTitle = async (req, res, next) => {
+  console.log('view all jobs');
+  const { title } = req.body;
+  try {
+    const [company_jobs_record, meta] =
+      await sequelize.query(`select j.id,j.job_title,j.posted_by_id, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry, users.id as user_id, users.companyId as companyId,companies.company_name, companies.company_logo,
+      genders.gender_title,jobshifts.job_shift,educationqualifications.qualification,j.degree_title,maxAge.max_age as max_age,minAge.max_age as min_age,maxExperience.max_experience as max_experience,minExperience.max_experience as max_experience,DATE(j.valid_upto) as last_date_apply,j.experience_info ,j.job_description, DATE(j.createdAt) AS posted_at,jobtypes.job_type_title as job_type
+      from job j 
+      left outer JOIN users on j.posted_by_id = users.id
+      left outer JOIN companies on companies.id = users.companyId
+     left outer JOIN countries on j.country_id=countries.id
+     left outer JOIN  cities on j.city_id=cities.id
+     left outer JOIN careerlevels on career_level_id=careerlevels.id
+     left outer JOIN  maxsalaries minSalary on	min_salary_id =minSalary.id
+     left outer JOIN  maxsalaries maxSalary on	max_salary_id =maxSalary.id
+     left outer JOIN business_types on functional_area_id = business_types.id
+     left outer JOIN genders on gender_title_id  = genders.id
+     left outer JOIN jobshifts on j.job_shift_id  = jobshifts.id
+     left outer JOIN jobtypes on j.job_type_id  = jobtypes.id
+     left outer JOIN educationqualifications on j.required_qualification_id=educationqualifications.id
+     left outer JOIN maxagerequirements maxAge on j.max_age_id=maxAge.id
+     left outer JOIN maxagerequirements minAge on j.min_age_id=minAge.id
+     left outer JOIN maxexperiences maxExperience on j.max_experience_id=maxExperience.id
+     left outer JOIN maxexperiences minExperience on j.min_experience_id=minExperience.id
+     WHERE j.job_title REGEXP :title
+    `, {
+      replacements: { title: sequelize.literal(`'${title}'`) },
+      type: sequelize.QueryTypes.SELECT
+    });
+    console.log(meta);
+    res.json(company_jobs_record);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const JobApply = async (req, res, next) => {
   try {
     const { job_id, cv_id } = req.body;
@@ -490,5 +527,6 @@ export {
   AdminDeleteJob,
   AdminGetJobDetails,
   getSaudiJobs,
-  UpdateJob
+  UpdateJob,
+  getJobByTitle
 };

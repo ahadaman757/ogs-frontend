@@ -14,7 +14,8 @@ import { useFormik } from "formik";
 const BrowseOver = () => {
   const [JobData, setJobData] = useState("");
   const [inJobData, setinJobData] = useState([]);
-
+  const [searchByTitle, setSearchByTitle] = useState(false);
+  const [title, setTitle] = useState('');
   const { state } = useLocation();
   const [AllJobs, setAllJobs] = useState([]);
   const [jobsLoading, setjobsLoading] = useState(false);

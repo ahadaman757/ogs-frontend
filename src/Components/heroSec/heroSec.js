@@ -1,7 +1,19 @@
+import React, { useState } from "react";
 import "./hero.css";
+import axios from "axios";
 import Hri from "../../Assets/Images/Vector 177.png";
 import Styles from "./hero.module.css";
-const HeroSec = () => {
+const HeroSec = (props) => {
+  const [title, setTitle] = useState('');
+
+  function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
   return (
     <div className="">
       <div className=" heroSec py-5 d-flex align-items-center justify-content-center">
@@ -29,9 +41,10 @@ const HeroSec = () => {
                     </svg>
                   </div>
                   <input
-                    placeholder="Enter Job Title, Skills, Company or CV "
+                    placeholder="Enter Job Title "
                     className={`p-2 ${Styles.inputixont}`}
                     type="text"
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
               </div>
@@ -63,8 +76,19 @@ const HeroSec = () => {
             </div>
             <div className="col-md-2 my-2 d-flex align-items-center">
               <div className="input-group align-items-center  ">
-                <button className={` me-2 ${Styles.btnsearchtxt}`}>
-                  Search by CV
+                <button className={` me-2 ${Styles.btnsearchtxt}`}
+                  onClick={() => {
+                    let titleToSearch = escapeHtml(title);
+                    if(title != "") {
+                      axios.get(`https://3.14.27.53:3003/jobs/getJobByTitle`, {
+                        title: titleToSearch
+                      }).then(res => console.log(res))
+                    } else {
+                      alert("Please enter a title");
+                    }
+                  }}
+                >
+                  Search by Title
                 </button>
               </div>
             </div>

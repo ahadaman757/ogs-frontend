@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import About from "../../Components/About/About";
 import BrowseJobs from "../../Components/BrowseJobs/BrowseJobs";
@@ -13,11 +13,15 @@ import Navbar from "../../Components/Navbar/Navbar";
 import styles from "./homepage.module.css";
 
 const Desktop = () => {
+  const [title, setTitle] = useState('');
+  const titleHandler = (e) => {
+    setTitle(e);
+  }
   return (
     <div className={`${styles.desktopsize}`}>
       <Navbar />
-      <HeroSec />
-      <BrowseOver />
+      <HeroSec titleHandler={titleHandler} />
+      <BrowseOver  />
 
       <BrowseJobs />
 
