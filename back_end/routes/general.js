@@ -10,7 +10,8 @@ import {
   getCourses,
   GetJobDetailsById,
   verifyEmail,
-  getCountries
+  getCountries,
+  getAdditionalFiles
 } from '../controllers/generalController.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
