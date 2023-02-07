@@ -304,6 +304,7 @@ const registercontroller = async (req, res, next) => {
               accesstoken,
               refresh_token,
               message: 'Account Created successfully',
+              userId: response.id
             });
           })
           .catch((error) => {
@@ -317,6 +318,15 @@ const registercontroller = async (req, res, next) => {
     res.json({ error: error.message });
   }
 };
+
+const uploadAdditionalFiles = async (req, res, next) => {
+  try {
+    console.log(req.files);
+  } catch (er)  {
+    res.json({code: 0, message: er})
+  }
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'images');
@@ -325,6 +335,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
+
 const imageUpload = multer({
   storage: storage,
   limits: { fileSize: '1000000' },
@@ -554,4 +565,5 @@ export {
   findAccountByEmail,
   resetPass,
   deleteJob,
+  uploadAdditionalFiles
 };

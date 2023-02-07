@@ -164,14 +164,23 @@ const SignUpCv = () => {
     onSubmit: (values) => {
       const fullFormData = { ...values };
       const formdata = new FormData();
+      const additionalFormData = new FormData();
       const add = [];
+      const tempAdd = [];
       for(let i = 0; i < additionalFiles.length; i++) {
         add.push(i == 0 ? additionalFiles[i].column_name : additionalFiles[i].column_name + "|");
+        tempAdd.push(additionalFiles[i].column_name);
       }
       formdata.append("additionalFiles", localStorage.getItem("additionalFiles"));
       formdata.append("additionalFilesName", add);
+      additionalFormData.append("additionalFiles", localStorage.getItem("additionalFiles"));
+      additionalFormData.append("additionalFilesName", add);
       for (var key in fullFormData) {
-        formdata.append(key, fullFormData[key]);
+        if(tempAdd.includes(key) !== true) {
+          formdata.append(key, fullFormData[key]);
+        } else {
+          additionalFormData.append(key, fullFormData[key])
+        }
       }
       axios
         .post('https://3.14.27.53:3003/users', formdata, {
@@ -182,6 +191,7 @@ const SignUpCv = () => {
         })
         .then((res) => {
           setcvResponse('Account Created');
+          additionalFormData.append("userId", res.data.userId);
         })
         .catch((error) => {
           console.log(error);
@@ -189,7 +199,16 @@ const SignUpCv = () => {
           // setcvError("error occured while creating CV")
         })
         .finally(() => {
-          setTimeout(() => {
+          
+            axios.post(`https://3.14.27.53:3003/users/uploadAdditionalFiles`, additionalFormData, {
+            headers: {
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*',
+          },
+            }).then((res) => {
+              console.log(res.data);
+            })
+            setTimeout(() => {
             setcvResponse('');
             setcvError('');
           }, 5000);
