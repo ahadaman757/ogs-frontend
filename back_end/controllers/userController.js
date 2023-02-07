@@ -335,18 +335,7 @@ const imageUpload = multer({
     }
     cb('Give proper files formate to upload');
   },
-}).fields([
-  {
-    name: 'image',
-    maxCount: 1,
-  },
-  {
-    name: 'passport_photo',
-  },
-  {
-    name: 'corona_certificate',
-  },
-]);
+}).any();
 const passportUpload = multer({
   storage: storage,
   limits: { fileSize: '1000000' },
