@@ -6,7 +6,7 @@ import Styles from "./hero.module.css";
 import { useEffect } from "react";
 const HeroSec = (props) => {
   const [title, setTitle] = useState('');
-  const [dropDownOptions, setdropDownOptions] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [countryLoading, setCountryLoading] = useState(true);
   function escapeHtml(unsafe) {
   return unsafe
@@ -18,7 +18,14 @@ const HeroSec = (props) => {
 }
 
 useEffect(() => {
-  axios.get(`https://3.14.27.53:3002/general/getCountries`).then((res) => console.log("countries", res.data.countries));
+
+  axios.get(`https://3.14.27.53:3003/general/getCountries`).then((res) => {
+    
+    setCountries(res.data.countries[0]);
+    setCountryLoading(false);
+
+    console.log(res.data.countries[0]);
+  });
 }, [])
   return (
     <div className="">
@@ -72,18 +79,14 @@ useEffect(() => {
                       <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                     </svg>
                   </div>
-                  <input
-                    placeholder="All Countries"
-                    className={`p-2 ${Styles.inputixont}`}
-                    type="text"
-                  />
-                  <select>
-                    {
-                      setCountryLoading ? '' : 
-                      dropDownOptions.country.map((j) => {
-                        <option></option>
-                      })
-                    }
+                  <select style={{ marginRight: '10px', width: '172px', borderLeft: 'none' }} onChange={(e) =>  props.countryHandler(e.target.value)}>
+                  {
+                    countries.map((c) => {
+                      return (
+                        <option value={c.country_id}>{ c.country_name }</option>
+                      )
+                    })
+                  }
                   </select>
                 </div>
               </div>

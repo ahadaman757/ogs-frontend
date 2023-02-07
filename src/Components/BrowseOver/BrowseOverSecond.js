@@ -61,7 +61,7 @@ const BrowseOverSecond = (props) => {
       <div>
         <div className="container">
         {
-            props.showCustomSearch ? <ShowCustomJob search={props.userSearchTitle} showCustomHandler={props.showCustomHandler} /> :  (
+            props.showCustomSearch ? <ShowCustomJob selectedCountry={props.selectedCountry} search={props.userSearchTitle} showCustomHandler={props.showCustomHandler} /> :  (
                 <>
                 <div className="row my-5   d-flex justify-content-center">
             <h1 className="col-12 ogsfonts2">Gulf Countries</h1>

@@ -17,6 +17,7 @@ const Desktop = () => {
   const [userSearchTitle, setUserSearchTitle] = useState('');
   const [jobTitleLoading, setJobTitleLoading] = useState(false);
   const [titleJob, setTitleJob] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(0);
   const [showCustomSearch, setShowCustomSearch] = useState(false);
 
   const jobTitleLoadingHandler = () => {
@@ -31,11 +32,15 @@ const Desktop = () => {
     setShowCustomSearch(e);
   }
 
+  const countryHandler = (e) => {
+    setSelectedCountry(e);
+  }
+
   return (
     <div className={`${styles.desktopsize}`}>
       <Navbar />
-      <HeroSec userSearchTitleHandler={userSearchTitleHandler} showCustomHandler={showCustomHandler} />
-      <BrowseOverSecond showCustomSearch={showCustomSearch} userSearchTitle={userSearchTitle} showCustomHandler={showCustomHandler}  />
+      <HeroSec userSearchTitleHandler={userSearchTitleHandler} showCustomHandler={showCustomHandler} countryHandler={countryHandler} />
+      <BrowseOverSecond showCustomSearch={showCustomSearch} userSearchTitle={userSearchTitle} showCustomHandler={showCustomHandler} selectedCountry={ selectedCountry } />
 
       <BrowseJobs />
 

@@ -15,7 +15,21 @@ const ShowCustomJob = (props) => {
     const [jobTitleLoading, setJobTitleLoading] = useState(false);
      const [titleJob, setTitleJob] = useState([]);
     useEffect(() => {
-        setJobTitleLoading(true);
+        if(props.selectedCountry == 0) {
+                    setJobTitleLoading(true);
+        axios.post(`https://3.14.27.53:3003/jobs/getJobByCountry`, {
+                        countryId: props.selectedCountry
+                      }).then(res => {
+                        if(res.data.code == 1) {
+                          setTitleJob (res.data.jobs);
+                          console.log(res.data)
+                        } else {
+                          alert("No jobs found");
+                        }
+                      })
+        setJobTitleLoading(false);
+        } else {
+                    setJobTitleLoading(true);
         axios.post(`https://3.14.27.53:3003/jobs/getJobByTitle`, {
                         title: props.search
                       }).then(res => {
@@ -27,6 +41,7 @@ const ShowCustomJob = (props) => {
                         }
                       })
         setJobTitleLoading(false);
+        }
 
     },[props.search])
     return (
