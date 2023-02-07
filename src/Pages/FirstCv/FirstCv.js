@@ -1,7 +1,7 @@
 import Styles from './postajob.module.css';
 import { useState, useEffect } from 'react';
 import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import { TextInput, List, FileUpload, PassInput } from '../Forms/InputFields';
+import { TextInput, List, FileUpload, PassInput, ListSecond } from '../Forms/InputFields';
 import TagInput from '../Forms/TagInput';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -278,7 +278,7 @@ const SignUpCv = () => {
                   {
                     notAvailable === false ?                 
                     <div className="col-md-6">
-                  <List
+                  <ListSecond
                   options={JobTitles}
                     id="job_title"
                     label="Job Title"

@@ -48,6 +48,51 @@ const List = (props) => {
     </div>
   );
 };
+const ListSecond = (props) => {
+  const { id, label, list_id, formik, options, onChangeValue } = props;
+
+  const initialvalue = formik.values[id]; //17
+  return (
+    <div>
+      <label htmlFor={id} className={`${styles.form_input__lable}`}>
+        {label}
+      </label>
+      <br />
+
+      <select
+        onChange={(e) => onChangeValue(e)}
+        value={formik.values[id]}
+        {...formik.getFieldProps(`'${id}'`)}
+        className={`${styles.form_input}`}
+        name={id}
+        id={list_id}
+      >
+        <option value="" disabled selected hidden>
+          select one
+        </option>
+        {options &&
+          options.map((option, index) => {
+            const keys = Object.keys(option);
+            const value = option[keys[1]];
+            const lable = option[keys[1]];
+            return (
+              <option
+                id={option.id}
+                selected={value == initialvalue ? true : false}
+                value={value}
+              >
+                {' '}
+                {lable}
+              </option>
+            );
+          })}
+      </select>
+      {formik.touched[id] && formik.errors[id] ? (
+        <div className="text__note">{formik.errors[id]}</div>
+      ) : null}
+    </div>
+  );
+};
 const ListUpdate = (props) => {
   const { id, label, list_id, formik, options, onChangeValue } = props;
   console.log(id);
@@ -282,4 +327,5 @@ export {
   ListUpdate,
   FileUpload2,
   SecondTextInput,
+  ListSecond
 };
