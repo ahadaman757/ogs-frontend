@@ -369,11 +369,8 @@ const getJobByTitle = async (req, res, next) => {
      left outer JOIN maxagerequirements minAge on j.min_age_id=minAge.id
      left outer JOIN maxexperiences maxExperience on j.max_experience_id=maxExperience.id
      left outer JOIN maxexperiences minExperience on j.min_experience_id=minExperience.id
-     WHERE j.job_title REGEXP :title
-    `, {
-      replacements: { title: sequelize.literal(`'${title}'`) },
-      type: sequelize.QueryTypes.SELECT
-    });
+     WHERE j.job_title REGEXP '${title}'
+    `);
     console.log(meta);
     res.json(company_jobs_record);
   } catch (error) {
