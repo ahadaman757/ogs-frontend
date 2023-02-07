@@ -179,16 +179,14 @@ const Footer = () => {
                   }}
                 />
                 <p>
-                  <i class="fas fa-home mr-3"></i> New York, NY 10012, US
+                  <i class="fas fa-home mr-3"></i> Noor plaza chandni chowk ,
+                  Rawalpindi , Pakistan
                 </p>
                 <p>
-                  <i class="fas fa-envelope mr-3"></i> info@example.com
+                  <i class="fas fa-envelope mr-3"></i> ceoogs@gmail.com
                 </p>
                 <p>
-                  <i class="fas fa-phone mr-3"></i> + 01 234 567 88
-                </p>
-                <p>
-                  <i class="fas fa-print mr-3"></i> + 01 234 567 89
+                  <i class="fas fa-phone mr-3"></i> + (051)4906572
                 </p>
               </div>
             </div>
@@ -200,7 +198,7 @@ const Footer = () => {
           // style="background-color: rgba(0, 0, 0, 0.2)"
           style={{ backgroundColor: "#eceff1" }}
         >
-          Copyright © 2022 JATAQ | All Rights Reserved
+          Copyright © 2022 OGS MAN POWER | All Rights Reserved
         </div>
       </footer>
     </div>
