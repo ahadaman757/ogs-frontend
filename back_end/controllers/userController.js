@@ -336,6 +336,19 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
+const additionalUpload = multer({
+  storage: storage,
+  limits: { fileSize: '1000000' },
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const mimeType = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+    if (mimeType && extname) {
+      return cb(null, true);
+    }
+    cb('Give proper files formate to upload');
+  },
+}).any();
 
 const imageUpload = multer({
   storage: storage,
@@ -566,5 +579,6 @@ export {
   findAccountByEmail,
   resetPass,
   deleteJob,
-  uploadAdditionalFiles
+  uploadAdditionalFiles,
+  additionalUpload
 };
