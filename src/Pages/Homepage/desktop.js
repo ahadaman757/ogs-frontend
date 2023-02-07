@@ -14,16 +14,17 @@ import styles from "./homepage.module.css";
 import BrowseOverSecond from "../../Components/BrowseOver/BrowseOverSecond";
 
 const Desktop = () => {
+  const [userSearchTitle, setUserSearchTitle] = useState('');
   const [jobTitleLoading, setJobTitleLoading] = useState(false);
-  const [titleJob, setTitleJob] = useState();
+  const [titleJob, setTitleJob] = useState([]);
   const [showCustomSearch, setShowCustomSearch] = useState(false);
 
   const jobTitleLoadingHandler = () => {
     setJobTitleLoading(!jobTitleLoading);
   }
 
-  const getTitleJobData = (e) => {
-    console.log(e);
+  const userSearchTitleHandler = (e) => {
+    setUserSearchTitle(e);
   }
 
   const showCustomHandler = (e) => {
@@ -33,8 +34,8 @@ const Desktop = () => {
   return (
     <div className={`${styles.desktopsize}`}>
       <Navbar />
-      <HeroSec jobTitleLoadingHandler={jobTitleLoadingHandler} getTitleJobData={getTitleJobData} showCustomHandler={showCustomHandler} />
-      <BrowseOverSecond showCustomSearch={showCustomSearch}  />
+      <HeroSec userSearchTitleHandler={userSearchTitleHandler} showCustomHandler={showCustomHandler} />
+      <BrowseOverSecond showCustomSearch={showCustomSearch} userSearchTitle={userSearchTitle} showCustomHandler={showCustomHandler}  />
 
       <BrowseJobs />
 

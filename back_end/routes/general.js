@@ -10,6 +10,7 @@ import {
   getCourses,
   GetJobDetailsById,
   verifyEmail,
+  getCountries
 } from '../controllers/generalController.js';
 // const usermecontroller = require('../controllers/usermecontroller')
 
@@ -22,6 +23,7 @@ GeneralRouter.get('/homePageJobsIN', homePageJobsIN);
 GeneralRouter.get('/getCourses', getCourses);
 GeneralRouter.post('/GetJobDetailsById', GetJobDetailsById);
 GeneralRouter.post('/verifyEmail', verifyEmail);
+GeneralRouter.get('/getCountries', getCountries);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;

@@ -6,6 +6,8 @@ import Ibm from "../../Assets/Images/Vector (4).png";
 import Combo from "../../Assets/Images/combo shape.png";
 import { useEffect, useState } from "react";
 
+import ShowCustomJob from "./showCustomJob";
+
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Jobcardhome from "./../jobcardhome/Jobcardhome";
@@ -59,7 +61,7 @@ const BrowseOverSecond = (props) => {
       <div>
         <div className="container">
         {
-            props.showCustomSearch ? '' :  (
+            props.showCustomSearch ? <ShowCustomJob search={props.userSearchTitle} showCustomHandler={props.showCustomHandler} /> :  (
                 <>
                 <div className="row my-5   d-flex justify-content-center">
             <h1 className="col-12 ogsfonts2">Gulf Countries</h1>

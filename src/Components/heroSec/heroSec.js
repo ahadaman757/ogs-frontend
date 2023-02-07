@@ -3,8 +3,11 @@ import "./hero.css";
 import axios from "axios";
 import Hri from "../../Assets/Images/Vector 177.png";
 import Styles from "./hero.module.css";
+import { useEffect } from "react";
 const HeroSec = (props) => {
   const [title, setTitle] = useState('');
+  const [dropDownOptions, setdropDownOptions] = useState([]);
+  const [countryLoading, setCountryLoading] = useState(true);
   function escapeHtml(unsafe) {
   return unsafe
     .replace(/&/g, "&amp;")
@@ -13,6 +16,10 @@ const HeroSec = (props) => {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+
+useEffect(() => {
+  axios.get(`https://3.14.27.53:3002/general/getCountries`).then((res) => console.log("countries", res.data.countries));
+}, [])
   return (
     <div className="">
       <div className=" heroSec py-5 d-flex align-items-center justify-content-center">
@@ -70,6 +77,14 @@ const HeroSec = (props) => {
                     className={`p-2 ${Styles.inputixont}`}
                     type="text"
                   />
+                  <select>
+                    {
+                      setCountryLoading ? '' : 
+                      dropDownOptions.country.map((j) => {
+                        <option></option>
+                      })
+                    }
+                  </select>
                 </div>
               </div>
             </div>
@@ -78,22 +93,13 @@ const HeroSec = (props) => {
                 <button className={` me-2 ${Styles.btnsearchtxt}`}
                   onClick={() => {
                     let titleToSearch = escapeHtml(title);
-                    props.showCustomHandler(true);
                     if(title != "") {
-                      props.jobTitleLoadingHandler();
-                      axios.post(`https://3.14.27.53:3003/jobs/getJobByTitle`, {
-                        title: titleToSearch
-                      }).then(res => {
-                        if(res.data.code == 1) {
-                          props.getTitleJobData(res.data.jobs);
-                        } else {
-                          alert("No jobs found");
-                        }
-                        props.jobTitleLoadingHandler();
-                      })
+                      props.userSearchTitleHandler(titleToSearch);
+                      props.showCustomHandler(true);
                     } else {
                       alert("Please enter a title");
                     }
+
                   }}
                 >
                   Search by Title

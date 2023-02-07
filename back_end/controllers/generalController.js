@@ -123,6 +123,14 @@ const GetJobDetailsById = async (req, res, next) => {
     next(error);
   }
 };
+const getCountries = async(req, res, next) => {
+  try {
+    const countries = await sequelize.query(`SELECT id as country_id, name as country_name from countries`);
+    res.json({code: 1, countries: countries});
+  } catch (err) {
+    res.json({code: 0, message: 'An error occured'})
+  }
+}
 const verifyEmail = async (req, res, next) => {
   try {
     const { userEmail, token } = req.body;
@@ -167,4 +175,5 @@ export {
   getCourses,
   GetJobDetailsById,
   verifyEmail,
+  getCountries
 };
