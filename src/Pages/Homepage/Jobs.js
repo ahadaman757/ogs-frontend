@@ -4,7 +4,8 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Jobcardhome from "../../Components/jobcardhome/Jobcardhome";
 import { useFormik } from "formik";
-export const Jobs = () => {
+import ShowCustomJob from "../../Components/BrowseOver/showCustomJob";
+export const Jobs = (props) => {
   const [JobData, setJobData] = useState("");
   const [inJobData, setinJobData] = useState([]);
 
@@ -56,7 +57,8 @@ export const Jobs = () => {
         <br />
         <br />
         <div className={`${styles.pakistanJobs__container}`}>
-          <div className="my-3">
+        {
+          props.showCustomSearch ? <ShowCustomJob selectedCountry={props.selectedCountry} search={props.userSearchTitle} showCustomHandler={props.showCustomHandler} />  : <>          <div className="my-3">
             <h2>Gulf countries</h2>
             {jobsLoading ? (
               <span>Jobs Loading</span>
@@ -104,7 +106,8 @@ export const Jobs = () => {
                 );
               })
             )}
-          </div>
+          </div></>
+        }
         </div>
       </div>
     </div>

@@ -111,8 +111,13 @@ useEffect(() => {
             </div>
             <div className="col-md-2 my-2 d-flex align-items-center">
               <div className="input-group align-items-center  ">
-                <button className={` me-2 ${Styles.btnsearchtxt}`}>
-                  Search by CV
+                <button className={` me-2 ${Styles.btnsearchtxt}`}
+                  onClick={() => {
+                      props.showCustomHandler(true);
+
+                  }}
+                >
+                  Search by Country
                 </button>
               </div>
             </div>

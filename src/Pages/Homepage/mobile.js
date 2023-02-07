@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Navbar from "./Navbar";
 import About from "../../Components/About/About";
 import BrowseJobs from "../../Components/BrowseJobs/BrowseJobs";
@@ -15,13 +15,34 @@ import Companies from "./Companies";
 import Jobs from "./Jobs";
 import Courses from "./Courses";
 const Mobile = () => {
+  const [userSearchTitle, setUserSearchTitle] = useState('');
+  const [jobTitleLoading, setJobTitleLoading] = useState(false);
+  const [titleJob, setTitleJob] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState(0);
+  const [showCustomSearch, setShowCustomSearch] = useState(false);
+
+  const jobTitleLoadingHandler = () => {
+    setJobTitleLoading(!jobTitleLoading);
+  }
+
+  const userSearchTitleHandler = (e) => {
+    setUserSearchTitle(e);
+  }
+
+  const showCustomHandler = (e) => {
+    setShowCustomSearch(e);
+  }
+
+  const countryHandler = (e) => {
+    setSelectedCountry(e);
+  }
   return (
     <div className={`${styles.mobilesize}`}>
       <BlackNavbar />
 
-      <HeroSection />
+      <HeroSection userSearchTitleHandler={userSearchTitleHandler} showCustomHandler={showCustomHandler} countryHandler={countryHandler} />
 
-      <Jobs />
+      <Jobs showCustomSearch={showCustomSearch} userSearchTitle={userSearchTitle} showCustomHandler={showCustomHandler} selectedCountry={ selectedCountry } />
 
       <Courses />
       <Footer />

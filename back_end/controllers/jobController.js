@@ -564,5 +564,6 @@ export {
   AdminGetJobDetails,
   getSaudiJobs,
   UpdateJob,
-  getJobByTitle
+  getJobByTitle,
+  getJobByCountry
 };
