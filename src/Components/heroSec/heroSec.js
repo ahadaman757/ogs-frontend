@@ -80,7 +80,7 @@ const HeroSec = (props) => {
                   onClick={() => {
                     let titleToSearch = escapeHtml(title);
                     if(title != "") {
-                      axios.get(`https://3.14.27.53:3003/jobs/getJobByTitle`, {
+                      axios.post(`https://3.14.27.53:3003/jobs/getJobByTitle`, {
                         title: titleToSearch
                       }).then(res => console.log(res))
                     } else {

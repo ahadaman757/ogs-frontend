@@ -32,7 +32,7 @@ jobRouter.get('/view_all_jobs', ViewAllJobs);
 jobRouter.get('/getSaudiJobs', getSaudiJobs);
 jobRouter.post('/jobapply', auth, JobApply);
 jobRouter.post('/checkjobapply', auth, CheckJobApply);
-jobRouter.get('/getJobByTitle', getJobByTitle);
+jobRouter.post('/getJobByTitle', getJobByTitle);
 jobRouter.put('/employerjobs', auth, UpdateJob);
 // jobRouter.post("/jobapply", JobApply);
 // jobRouter.post("/:id", JobByIdController);
