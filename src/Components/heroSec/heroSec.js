@@ -5,7 +5,6 @@ import Hri from "../../Assets/Images/Vector 177.png";
 import Styles from "./hero.module.css";
 const HeroSec = (props) => {
   const [title, setTitle] = useState('');
-
   function escapeHtml(unsafe) {
   return unsafe
     .replace(/&/g, "&amp;")
@@ -79,10 +78,19 @@ const HeroSec = (props) => {
                 <button className={` me-2 ${Styles.btnsearchtxt}`}
                   onClick={() => {
                     let titleToSearch = escapeHtml(title);
+                    props.showCustomHandler(true);
                     if(title != "") {
+                      props.jobTitleLoadingHandler();
                       axios.post(`https://3.14.27.53:3003/jobs/getJobByTitle`, {
                         title: titleToSearch
-                      }).then(res => console.log(res))
+                      }).then(res => {
+                        if(res.data.code == 1) {
+                          props.getTitleJobData(res.data.jobs);
+                        } else {
+                          alert("No jobs found");
+                        }
+                        props.jobTitleLoadingHandler();
+                      })
                     } else {
                       alert("Please enter a title");
                     }

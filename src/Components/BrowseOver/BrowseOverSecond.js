@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 import Jobcardhome from "./../jobcardhome/Jobcardhome";
 import { useFormik } from "formik";
 
-const BrowseOver = (props) => {
+const BrowseOverSecond = (props) => {
   const [JobData, setJobData] = useState("");
   const [inJobData, setinJobData] = useState([]);
   const [searchByTitle, setSearchByTitle] = useState(false);
@@ -58,7 +58,10 @@ const BrowseOver = (props) => {
     <div style={{ backgroundColor: "#f5f5f5" }} className={` py-5 `}>
       <div>
         <div className="container">
-          <div className="row my-5   d-flex justify-content-center">
+        {
+            props.showCustomSearch ? '' :  (
+                <>
+                <div className="row my-5   d-flex justify-content-center">
             <h1 className="col-12 ogsfonts2">Gulf Countries</h1>
             <hr />
           </div>
@@ -123,9 +126,13 @@ const BrowseOver = (props) => {
               )}
             </div>
           </div>
+                </>
+            )
+        }
+
         </div>
       </div>
     </div>
   );
 };
-export default BrowseOver;
+export default BrowseOverSecond;

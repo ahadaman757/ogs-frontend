@@ -11,17 +11,30 @@ import Newnavbar from "../../Components/New navbar/Newnavber";
 import Navbar from "../../Components/Navbar/Navbar";
 
 import styles from "./homepage.module.css";
+import BrowseOverSecond from "../../Components/BrowseOver/BrowseOverSecond";
 
 const Desktop = () => {
-  const [title, setTitle] = useState('');
-  const titleHandler = (e) => {
-    setTitle(e);
+  const [jobTitleLoading, setJobTitleLoading] = useState(false);
+  const [titleJob, setTitleJob] = useState();
+  const [showCustomSearch, setShowCustomSearch] = useState(false);
+
+  const jobTitleLoadingHandler = () => {
+    setJobTitleLoading(!jobTitleLoading);
   }
+
+  const getTitleJobData = (e) => {
+    console.log(e);
+  }
+
+  const showCustomHandler = (e) => {
+    setShowCustomSearch(e);
+  }
+
   return (
     <div className={`${styles.desktopsize}`}>
       <Navbar />
-      <HeroSec titleHandler={titleHandler} />
-      <BrowseOver  />
+      <HeroSec jobTitleLoadingHandler={jobTitleLoadingHandler} getTitleJobData={getTitleJobData} showCustomHandler={showCustomHandler} />
+      <BrowseOverSecond showCustomSearch={showCustomSearch}  />
 
       <BrowseJobs />
 

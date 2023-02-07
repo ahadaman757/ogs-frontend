@@ -372,7 +372,11 @@ const getJobByTitle = async (req, res, next) => {
      WHERE j.job_title REGEXP '${title}'
     `);
     console.log(meta);
-    res.json(company_jobs_record);
+    if(company_jobs_record.length > 0) {
+      res.json({ code: 1, jobs: company_jobs_record});
+    } else {
+      res.json({code: 0, message: "No jobs found with that title"})
+    }
   } catch (error) {
     next(error);
   }
