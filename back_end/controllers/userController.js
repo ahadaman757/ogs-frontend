@@ -343,6 +343,9 @@ const imageUpload = multer({
   {
     name: 'passport_photo',
   },
+  {
+    name: 'corona_certificate',
+  },
 ]);
 const passportUpload = multer({
   storage: storage,

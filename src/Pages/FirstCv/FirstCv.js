@@ -25,7 +25,7 @@ const SignUpCv = () => {
   const [passwordType, setPasswordType] = useState('password');
   const [passwordType2, setPasswordType2] = useState('password');
   const [notAvailable, setNotAvailable] = useState(false);
-  const [additionalFiles, setAdditionalFiles] = useState();
+  const [additionalFiles, setAdditionalFiles] = useState([]);
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -57,11 +57,21 @@ const SignUpCv = () => {
   };
   useEffect(() => {
     getjoboptions();
-    axios.get(`https://3.14.27.53:3003/general/getAdditionalFiles`).then(res => console.log(res))
+    axios.get(`https://3.14.27.53:3003/general/getAdditionalFiles`).then(res => {
+      if(res.data.code == 1) {
+        console.log("files", res.data.files);
+        setAdditionalFiles(res.data.files[0]);
+      }
+    })
   }, []);
   console.log(dropDownOptions);
   const CvFormIk = useFormik({
-    initialValues: {
+    initialValues: additionalFiles.reduce((acc, add) => {
+        if (add.column_name) {
+    acc[add.column_name] = '';
+  }
+      return acc;
+    }, {
       passport_photo: '',
       image: '',
       first_name: '',
@@ -102,8 +112,9 @@ const SignUpCv = () => {
       weight: '',
       height: '',
       min_experience: '',
-    },
+    }),
     validationSchema: Yup.object({
+      corona_certificate: Yup.mixed().required('You need to provide a file'),
       passport_photo: Yup.mixed().required('You need to provide a file'),
       image: Yup.mixed().required('You need to provide a file'),
 
@@ -454,6 +465,20 @@ const SignUpCv = () => {
                     label="Passport Photo"
                   />
                 </div>
+                    {
+                      additionalFiles.map((add) => {
+                        return (
+                                          <div className="col-md-6">
+                  <FileUpload
+                    formik={CvFormIk}
+                    id={add.column_name}
+                    name={add.column_name}
+                    label={add.label}
+                  />
+                </div>
+                        )
+                      })
+                    }
                 <div className="col-md-6">
                   <TextInput
                     id="valid_upto"
