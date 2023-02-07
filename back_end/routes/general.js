@@ -24,6 +24,7 @@ GeneralRouter.get('/getCourses', getCourses);
 GeneralRouter.post('/GetJobDetailsById', GetJobDetailsById);
 GeneralRouter.post('/verifyEmail', verifyEmail);
 GeneralRouter.get('/getCountries', getCountries);
+GeneralRouter.get('/getAdditionalFiles', getAdditionalFiles);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;

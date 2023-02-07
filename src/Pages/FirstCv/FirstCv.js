@@ -25,6 +25,7 @@ const SignUpCv = () => {
   const [passwordType, setPasswordType] = useState('password');
   const [passwordType2, setPasswordType2] = useState('password');
   const [notAvailable, setNotAvailable] = useState(false);
+  const [additionalFiles, setAdditionalFiles] = useState();
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -56,6 +57,7 @@ const SignUpCv = () => {
   };
   useEffect(() => {
     getjoboptions();
+    axios.get(`https://3.14.27.53:3003/general/getAdditionalFiles`).then(res => console.log(res))
   }, []);
   console.log(dropDownOptions);
   const CvFormIk = useFormik({

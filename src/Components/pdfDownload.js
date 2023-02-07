@@ -12,11 +12,7 @@ import {
 import { useLocation } from 'react-router-dom';
 
 import font from '../Assets/Noto_Sans_Arabic/NotoSansArabic-VariableFont_wdth,wght.ttf';
-const getAge = (dobs) => {
-  const dob = new Date(dobs);
-  const today = new Date();
-  return today.getFullYear() - dob.getFullYear();
-}
+
 // Create styles
 const styles = StyleSheet.create({
   arabic: {
@@ -200,6 +196,7 @@ Font.register({
   src: font,
 });
 function BasicDocument({ cv_data }) {
+
   return (
     <>
       {/* <PDFViewer style={styles.viewer}> */}
@@ -357,7 +354,7 @@ function BasicDocument({ cv_data }) {
                     <Text style={styles.info_title}>AGE</Text>
                   </View>
                   <View style={styles.col_2}>
-                    <Text style={styles.info_value}>{getAge(cv_data.dob)}</Text>
+                    <Text style={styles.info_value}>{cv_data.age}</Text>
                     <Text style={{ ...styles.info_title, ...styles.arabic }}>
                       سن
                     </Text>
@@ -379,7 +376,7 @@ function BasicDocument({ cv_data }) {
                     <Text style={styles.info_title}>Marital Status</Text>
                   </View>
                   <View style={styles.col_2}>
-                    <Text style={styles.info_value}>{cv_data.status}</Text>
+                    <Text style={styles.info_value}>{cv_data.marital_status}</Text>
                     <Text s style={{ ...styles.info_title, ...styles.arabic }}>
                       الحالة الزوجية
                     </Text>

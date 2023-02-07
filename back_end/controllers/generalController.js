@@ -166,6 +166,15 @@ const verifyEmail = async (req, res, next) => {
     res.json({ code: 0, message: err });
   }
 };
+
+const getAdditionalFiles = async (req, res, next) => {
+  try {
+    const files = await sequelize.query("SELECT * FROM additional WHERE display > 0");
+    res.json({code: 1, files: files});
+  } catch (err) {
+    res.json({code: 0, message: err})
+  }
+}
 export {
   homePageJobsPK,
   getPrivacyPolicy,
@@ -175,5 +184,6 @@ export {
   getCourses,
   GetJobDetailsById,
   verifyEmail,
-  getCountries
+  getCountries,
+  getAdditionalFiles
 };

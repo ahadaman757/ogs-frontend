@@ -56,10 +56,10 @@ function SeekercvCard({ cv_data }) {
             <b>Skin Color: {cv_data.skin_color}</b>
             <br />
             <b>Weight: {cv_data.weight + ' KG'}</b>
-
+            <br />
             <br />
             <PDFDownloadLink
-              document={<BasicDocument cv_data={cv_data} />}
+              document={<BasicDocument cv_data={cv_data}/>}
               fileName="somename.pdf"
             >
               {({ loading, error }) => {
@@ -67,7 +67,9 @@ function SeekercvCard({ cv_data }) {
                 return loading ? 'Loading document...' : 'Download now!';
               }}
             </PDFDownloadLink>
-            <button onClick={() => navigateEditCv()}>Edit CV</button>
+            <br />
+            <br />
+            <span onClick={() => navigateEditCv()} style={{ color: 'white !important', border: '1px solid grey', padding: '5px 20px', cursor: 'pointer'}}>Edit CV</span>
           </div>
         </div>
       </div>
