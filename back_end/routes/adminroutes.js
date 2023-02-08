@@ -41,7 +41,8 @@ import {
   ManageCategory,
   getAdditionalOptions,
   additionalChangeStatus,
-  deleteAdditional
+  deleteAdditional,
+  addAdditionalFiles
 } from '../controllers/AdminControllers/Categories.js';
 
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -95,7 +96,8 @@ AdminRouter.post('/manageCategories', AdminAuth, ManageCategory);
 // Get Additional File Options
 AdminRouter.post('/getAdditionalOptions', AdminAuth, getAdditionalOptions);
 AdminRouter.post('/additionalChangeStatus', AdminAuth, additionalChangeStatus);
-AdminRouter.post('/deleteAdditional', AdminAuth, deleteAdditional)
+AdminRouter.post('/deleteAdditional', AdminAuth, deleteAdditional);
+AdminRouter.post('/addAdditionalFiles', AdminAuth, addAdditionalFiles);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default AdminRouter;

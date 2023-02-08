@@ -119,6 +119,16 @@ const deleteAdditional = async (req, res, next) => {
   }
 }
 
+const addAdditionalFiles = async (req, res, next) => {
+  try {
+    const { label, column_name } = req.body;
+    const addNewAdditional = await sequelize.query(`INSERT INTO additional (label, column_name, display) VALUES ('${label}', '${column_name}', '1')`);
+    res.json({code: 1, message: "Updated!"})
+  } catch (error) {
+    res.json({code: 0, message: error})
+  }
+}
+
 const ManageCategory = async (req, res, next) => {
   const { action, jobId } = req.body;
   let code;
@@ -149,4 +159,4 @@ const ManageCategory = async (req, res, next) => {
   }
 };
 
-export { getCategories, ManageCategory, getAdditionalOptions,additionalChangeStatus,deleteAdditional };
+export { getCategories, ManageCategory, getAdditionalOptions,additionalChangeStatus,deleteAdditional, addAdditionalFiles };

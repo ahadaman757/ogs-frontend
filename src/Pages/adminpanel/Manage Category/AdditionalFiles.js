@@ -72,7 +72,31 @@ const AdditionalFiles = () => {
             <div className={`p-4 my-5 ${Styles.maincontainer}`}>
               <h1 className="ogsfonts20">Category Management Section</h1>
               <p className="ogsfonts16">Manage Category</p>
-
+              <button style={{ color: 'white', backgroundColor: '#3498db', border: 'none', padding: '10px 30px' }} onClick={() => {
+                let label = prompt("Enter name (example: Corona Certificate)");
+                let column_name = label.toLowerCase().replaceAll(/\s/g,'');
+                alert("Please wait...");
+                axios
+                      .post(
+                        `https://3.14.27.53:3003/admin/addAdditionalFiles`,
+                        {
+                            label: label,
+                            column_name: column_name
+                        },
+                        {
+                          headers: {
+                            accessToken: localStorage.getItem("accessToken"),
+                          },
+                        }
+                      )
+                      .then((response) => {
+                        if (response.data.code == 1) {
+                            handleTableLoading()
+                        } else {
+                            alert(response.data.message);
+                        }
+                      });
+              }}>Add</button>
               {loading ? (
                 "Loading... Please wait..."
               ) : (
