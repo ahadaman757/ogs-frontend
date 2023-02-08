@@ -24,7 +24,7 @@ const ManageAdditionalFilesTable = (props) => {
         if (res.data.code == 1) {
             alert("Status updated!");
         } else {
-            alert("An error occured!");
+            console.log(res.data.message);
         }
     })
   }
@@ -82,16 +82,16 @@ const ManageAdditionalFilesTable = (props) => {
                 {
                     item.display == 1 ?                 <button
                   className={` ogsfonts16`}
-                  data-bs-toggle="modal"
-                  data-bs-target="#AddSubCategory"
+                //   data-bs-toggle="modal"
+                //   data-bs-target="#AddSubCategory"
                   style={{ background: "none", color: "black", border: "none" }}
                   onClick={() => changeStatus(item.id, 0)}
                 >
                   Hide
                 </button> :                 <button
                   className={` ogsfonts16`}
-                  data-bs-toggle="modal"
-                  data-bs-target="#AddSubCategory"
+                //   data-bs-toggle="modal"
+                //   data-bs-target="#AddSubCategory"
                   style={{ background: "none", color: "black", border: "none" }}
                   onClick={() => changeStatus(item.id)}
                 >
