@@ -114,6 +114,12 @@ const Adminsidebar = (props) => {
                     About Us
                   </Link>
                 </li>
+                <li className="d-flex  my-2 align-items-center asdesas">
+                  <div className={` me-3 ${styles.dot}`}></div>
+                  <Link to="/additionalfiles" className="tere ogsfonts14">
+                    Additional Files
+                  </Link>
+                </li>
                 {/* <li className="d-flex  my-2 align-items-center asdesas">
                   <div className={` me-3 ${styles.dot}`}></div>
                   <Link to="/faqs" className="tere ogsfonts14">

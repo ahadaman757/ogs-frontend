@@ -33,11 +33,13 @@ import {
   getCourses,
   updateCourse,
   uploadLogo,
+  
 } from '../controllers/AdminControllers/OgsCoursesComtroller.js';
 
 import {
   getCategories,
   ManageCategory,
+  getAdditionalOptions
 } from '../controllers/AdminControllers/Categories.js';
 
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -87,6 +89,9 @@ AdminRouter.post('/uploadLogo', AdminAuth, uploadLogo);
 
 AdminRouter.post('/getCategories', AdminAuth, getCategories);
 AdminRouter.post('/manageCategories', AdminAuth, ManageCategory);
+
+// Get Additional File Options
+AdminRouter.post('/getAdditionalOptions', AdminAuth, getAdditionalOptions);
 
 // userRouter.get('/me', auth, usermecontroller)
 

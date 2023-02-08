@@ -18,6 +18,20 @@ const getCategories = async (req, res, next) => {
   res.json({ page, pageOfItems });
 };
 
+const getAdditionalOptions = async (req, res, next) => {
+  const { page } = req.body;
+  const mainCategories = await sequelize.query('SELECT * FROM additional');
+  const pageSize = 15;
+  const pager = paginate(mainCategories[0].length, page, pageSize);
+
+  const pageOfItems = mainCategories[0].slice(
+    pager.startIndex,
+    pager.endIndex + 15
+  );
+
+  res.json({ page, pageOfItems });
+};
+
 const deleteJob = async (id) => {
   if (id !== '') {
     try {
@@ -113,4 +127,4 @@ const ManageCategory = async (req, res, next) => {
   }
 };
 
-export { getCategories, ManageCategory };
+export { getCategories, ManageCategory, getAdditionalOptions };

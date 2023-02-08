@@ -191,6 +191,7 @@ const SignUpCv = () => {
         })
         .then((res) => {
           setcvResponse('Account Created');
+          alert("Please wait...")
           additionalFormData.append("userId", res.data.userId);
         })
         .catch((error) => {
@@ -206,11 +207,11 @@ const SignUpCv = () => {
             'Access-Control-Allow-Origin': '*',
           },
             }).then((res) => {
-              console.log(res.data);
-            })
-            setTimeout(() => {
             setcvResponse('');
             setcvError('');
+            })
+            setTimeout(() => {
+
           }, 5000);
         });
     },

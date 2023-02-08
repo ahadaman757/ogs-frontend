@@ -67,6 +67,7 @@ import AgentLogin from "./Pages/logins/agent";
 import Agentregister from "./Pages/authpages/agent";
 import Instituteregister from "./Pages/authpages/Institute";
 import EmployerEditJob from "./Pages/adminpanel/Manage All Jobs/EmployerEditJob";
+import AdditionalFiles from "./Pages/adminpanel/Manage Category/AdditionalFiles";
 
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
@@ -297,6 +298,10 @@ const router = createBrowserRouter([
   {
     path: "jobssearch",
     element: <JobsSearch />,
+  },
+    {
+    path: "additionalfiles",
+    element: <AdditionalFiles />,
   },
   {
     path: "jobpopseeker",
