@@ -15,51 +15,6 @@ const BlackNavbar = () => {
           {" "}
           <img style={{ width: "133px" }} src={Logo} />
         </div>
-        <div>
-          <div class="btn-group">
-            {" "}
-            <button
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              className={`p-2 me-3 ogsfonts16 ${styles.btnmenu1}`}
-            >
-              <span className="me-1">
-                <img src={flag} />
-              </span>
-              ENG
-              <span className="ms-1">
-                <img src={arrow} />
-              </span>
-            </button>
-            <ul class="dropdown-menu">
-              <li>
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <button
-            className={`${styles.btnmenu}`}
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span>
-              {" "}
-              <img src={menuicon} />
-            </span>
-          </button>
-        </div>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li className="nav-item mx-xxl-4">

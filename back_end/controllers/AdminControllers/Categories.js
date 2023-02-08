@@ -108,6 +108,17 @@ const additionalChangeStatus = async (req, res, next) => {
   }
 }
 
+const deleteAdditional = async (req, res, next) => {
+  try {
+    const { id, column_name } = req.body;
+    const deleteColumnFromCv = await sequelize.query(`ALTER TABLE cv DROP COLUMN ${column_name}`);
+    const deleteFromAdditional = await sequelize.query(`DELETE FROM additional WHERE column_name='${column_name}'`);
+    res.json({code: 1, message: "Updated!"})
+  } catch (error) {
+    res.json({code: 0, message: error})
+  }
+}
+
 const ManageCategory = async (req, res, next) => {
   const { action, jobId } = req.body;
   let code;
@@ -138,4 +149,4 @@ const ManageCategory = async (req, res, next) => {
   }
 };
 
-export { getCategories, ManageCategory, getAdditionalOptions,additionalChangeStatus };
+export { getCategories, ManageCategory, getAdditionalOptions,additionalChangeStatus,deleteAdditional };

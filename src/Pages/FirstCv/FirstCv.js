@@ -117,7 +117,6 @@ const SignUpCv = () => {
       min_experience: '',
     }),
     validationSchema: Yup.object({
-      corona_certificate: Yup.mixed().required('You need to provide a file'),
       passport_photo: Yup.mixed().required('You need to provide a file'),
       image: Yup.mixed().required('You need to provide a file'),
 

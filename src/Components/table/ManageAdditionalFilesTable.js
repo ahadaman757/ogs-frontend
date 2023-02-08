@@ -24,7 +24,7 @@ const ManageAdditionalFilesTable = (props) => {
         if (res.data.code == 1) {
             alert("Status updated!");
         } else {
-            console.log(res.data.message);
+            alert("An error occured!");
         }
     })
   }
@@ -93,7 +93,7 @@ const ManageAdditionalFilesTable = (props) => {
                 //   data-bs-toggle="modal"
                 //   data-bs-target="#AddSubCategory"
                   style={{ background: "none", color: "black", border: "none" }}
-                  onClick={() => changeStatus(item.id)}
+                  onClick={() => changeStatus(item.id, 1)}
                 >
                   Show
                 </button>
@@ -105,10 +105,10 @@ const ManageAdditionalFilesTable = (props) => {
                   onClick={() => {
                     axios
                       .post(
-                        `https://3.14.27.53:3003/admin/manageCategories`,
+                        `https://3.14.27.53:3003/admin/deleteAdditional`,
                         {
-                          action: "delete",
-                          jobId: item.id,
+                            id: item.id,
+                            column_name: item.column_name
                         },
                         {
                           headers: {
