@@ -34,10 +34,6 @@ const Setting = () => {
             <div
               className={`col-md-2 py-4 px-3 mb-3   d-flex flex-column  ${Styles.settingsider}`}
             >
-              <a className="my-3 " onClick={() => setcurrntstac("Company")}>
-                Auto Emails
-              </a>
-
               <a
                 className="my-3"
                 onClick={() => setcurrntstac("Accountsetting")}
@@ -54,7 +50,7 @@ const Setting = () => {
               ) : currntstac == "Accountsetting" ? (
                 <Accountsetting />
               ) : (
-                <Company />
+                <Accountsetting />
               )}
             </div>
           </div>

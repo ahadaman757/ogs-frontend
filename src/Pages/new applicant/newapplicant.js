@@ -1,57 +1,57 @@
-import Styles from './newapplicant.module.css';
-import { useState, useEffect } from 'react';
-import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import filltericon from '../../Assets/Images/filter.svg';
-import usericon from '../../Assets/Images/New folder (3)/user.svg';
-import smileicon from '../../Assets/Images/New folder (3)/smile-rectangle.svg';
-import useraddicon from '../../Assets/Images/New folder (3)/user-add.svg';
-import invoiceicon from '../../Assets/Images/New folder (3)/invoice.svg';
-import userremoveicon from '../../Assets/Images/New folder (3)/user-remove 01.svg';
-import erroricon from '../../Assets/Images/New folder (3)/warning-error.svg';
-import usericonb from '../../Assets/Images/New folder (4)/user.svg';
-import smileiconb from '../../Assets/Images/New folder (4)/smile-rectangle.svg';
-import useraddiconb from '../../Assets/Images/New folder (4)/user-add.svg';
-import invoiceiconb from '../../Assets/Images/New folder (4)/invoice.svg';
-import userremoveiconb from '../../Assets/Images/New folder (4)/user-remove 2.svg';
-import erroriconb from '../../Assets/Images/New folder (4)/warning-error.svg';
-import Searchicon from '../../Assets/Images/search.png';
-import selecticon from '../../Assets/Images/check mark-rectangle.svg';
-import diskicon from '../../Assets/Images/disk.svg';
-import piechart from '../../Assets/Images/chart-pie 01.svg';
-import Cv from '../../Components/cv view/cv';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { List, TextInput } from '../Forms/InputFields';
-import { useFormik } from 'formik';
-import { BasicDocument } from '../../Components/pdfDownload';
-import jwtCheck from '../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
-import removeicon from '../../Assets/Images/remove.svg';
-import gasco from '../../Assets/Images/gasco.png';
+import Styles from "./newapplicant.module.css";
+import { useState, useEffect } from "react";
+import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import filltericon from "../../Assets/Images/filter.svg";
+import usericon from "../../Assets/Images/New folder (3)/user.svg";
+import smileicon from "../../Assets/Images/New folder (3)/smile-rectangle.svg";
+import useraddicon from "../../Assets/Images/New folder (3)/user-add.svg";
+import invoiceicon from "../../Assets/Images/New folder (3)/invoice.svg";
+import userremoveicon from "../../Assets/Images/New folder (3)/user-remove 01.svg";
+import erroricon from "../../Assets/Images/New folder (3)/warning-error.svg";
+import usericonb from "../../Assets/Images/New folder (4)/user.svg";
+import smileiconb from "../../Assets/Images/New folder (4)/smile-rectangle.svg";
+import useraddiconb from "../../Assets/Images/New folder (4)/user-add.svg";
+import invoiceiconb from "../../Assets/Images/New folder (4)/invoice.svg";
+import userremoveiconb from "../../Assets/Images/New folder (4)/user-remove 2.svg";
+import erroriconb from "../../Assets/Images/New folder (4)/warning-error.svg";
+import Searchicon from "../../Assets/Images/search.png";
+import selecticon from "../../Assets/Images/check mark-rectangle.svg";
+import diskicon from "../../Assets/Images/disk.svg";
+import piechart from "../../Assets/Images/chart-pie 01.svg";
+import Cv from "../../Components/cv view/cv";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { List, TextInput } from "../Forms/InputFields";
+import { useFormik } from "formik";
+import { BasicDocument } from "../../Components/pdfDownload";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
+import removeicon from "../../Assets/Images/remove.svg";
+import gasco from "../../Assets/Images/gasco.png";
 const Newapplicant = () => {
   const { state } = useLocation();
   const [cities, setcities] = useState();
-  const [dropDownOptions, setdropDownOptions] = useState('');
-  const [jobdes, setjobdes] = useState('');
+  const [dropDownOptions, setdropDownOptions] = useState("");
+  const [jobdes, setjobdes] = useState("");
   const [applyFilters, setapplyFilters] = useState(false);
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
-    navigate('/employerlogin');
+    navigate("/employerlogin");
   }
   const filtersFormik = useFormik({
     initialValues: {
-      start_date: '',
-      end_date: '',
-      country: '',
-      city: '',
-      education_level: '',
-      max_experience: '',
-      min_age: '',
-      max_age: '',
-      gender: '',
-      marital_status: '',
-      current_salary: '',
-      expected_salary: '',
+      start_date: "",
+      end_date: "",
+      country: "",
+      city: "",
+      education_level: "",
+      max_experience: "",
+      min_age: "",
+      max_age: "",
+      gender: "",
+      marital_status: "",
+      current_salary: "",
+      expected_salary: "",
     },
     onSubmit: (values) => {
       console.log(values);
@@ -59,7 +59,7 @@ const Newapplicant = () => {
   });
   useEffect(() => {
     axios
-      .post('https://3.14.27.53:3003/get_city_by_country_id', {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: filtersFormik.values.country || 1,
       })
       .then((res) => {
@@ -86,25 +86,25 @@ const Newapplicant = () => {
     axios
       .post(
         `https://3.14.27.53:3003/jobs/jobapplicants?${
-          (v.start_date ? 'start_date=' + v.start_date : '') +
-          '&' +
-          (v.end_date ? 'end_date=' + v.end_date : '') +
-          '&' +
-          (v.country ? 'country=' + v.country : '') +
-          '&' +
-          (v.city ? 'city=' + v.city : '') +
-          '&' +
-          (v.max_experience ? 'max_experience=' + v.max_experience : '') +
-          '&' +
-          (v.min_age ? 'min_age=' + v.min_age : '') +
-          '&' +
-          (v.max_age ? 'max_age=' + v.max_age : '') +
-          '&' +
-          (v.gender ? 'gender=' + v.gender : '') +
-          '&' +
-          (v.marital_status ? 'marital_status=' + v.marital_status : '') +
-          '&' +
-          (v.education_level ? 'education_level=' + v.education_level : '')
+          (v.start_date ? "start_date=" + v.start_date : "") +
+          "&" +
+          (v.end_date ? "end_date=" + v.end_date : "") +
+          "&" +
+          (v.country ? "country=" + v.country : "") +
+          "&" +
+          (v.city ? "city=" + v.city : "") +
+          "&" +
+          (v.max_experience ? "max_experience=" + v.max_experience : "") +
+          "&" +
+          (v.min_age ? "min_age=" + v.min_age : "") +
+          "&" +
+          (v.max_age ? "max_age=" + v.max_age : "") +
+          "&" +
+          (v.gender ? "gender=" + v.gender : "") +
+          "&" +
+          (v.marital_status ? "marital_status=" + v.marital_status : "") +
+          "&" +
+          (v.education_level ? "education_level=" + v.education_level : "")
         }`,
         { job_id: state.id }
       )
@@ -116,7 +116,7 @@ const Newapplicant = () => {
       });
   };
   const getjoboptions = () => {
-    axios.get('https://3.14.27.53:3003/jobs/jobsoptions').then((res) => {
+    axios.get("https://3.14.27.53:3003/jobs/jobsoptions").then((res) => {
       setdropDownOptions(res.data);
     });
   };
@@ -124,7 +124,7 @@ const Newapplicant = () => {
     getAllApplicants();
     getjoboptions();
   }, [applyFilters]);
-  const [data, Setdata] = useState('');
+  const [data, Setdata] = useState("");
   const [icon1, seticon] = useState(usericon);
   const [icon2, seticon2] = useState(smileicon);
   const [icon3, seticon3] = useState(useraddicon);
@@ -139,9 +139,9 @@ const Newapplicant = () => {
     <div className="asdesaser">
       <DashboardNavbar side={display} />
       <div
-        style={{ marginLeft: data ? '0px' : '200px' }}
+        style={{ marginLeft: data ? "0px" : "200px" }}
         className={`pt-5 ${Styles.newapplicantmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <div className="container">
@@ -151,15 +151,16 @@ const Newapplicant = () => {
                 className={` d-flex flex-wrap align-items-center justify-content-between p-4 my-3 ${Styles.head_container}`}
               >
                 <div>
-                  {' '}
+                  {" "}
                   <div className="d-flex">
-                    {' '}
+                    {" "}
                     <h1 className="ogsfonts24 me-2">
-                      {jobdes.id} / {jobdes.job_title} - {jobdes.country}{' '}
-                    </h1>{' '}
+                      {jobdes.id} / {jobdes.job_title} - {jobdes.country}{" "}
+                    </h1>{" "}
                     <button className={`${Styles.fillterbtn}`}>
-                      {' '}
+                      {" "}
                       <span>
+                        {" "}
                         <img src={filltericon} />
                       </span>
                     </button>
@@ -178,7 +179,7 @@ const Newapplicant = () => {
                     Edit
                   </button> */}
                   <button
-                    className={`p-2 ${Styles.btnUploads}`}
+                    className={`p-2 me-1 ogsfonts16 ${Styles.btnUploads}`}
                     onClick={() => {
                       setDeleting(true);
                       axios
@@ -189,14 +190,14 @@ const Newapplicant = () => {
                           },
                           {
                             headers: {
-                              accesstoken: localStorage.getItem('accessToken'),
+                              accesstoken: localStorage.getItem("accessToken"),
                             },
                           }
                         )
                         .then((res) => {
                           if (res.data.code == 1) {
                             setDeleting(false);
-                            navigate('/dashboard');
+                            navigate("/dashboard");
                           } else {
                             alert(res.data.message);
                             setDeleting(false);
@@ -205,17 +206,21 @@ const Newapplicant = () => {
                     }}
                     disabled={deleting}
                   >
-                    {' '}
-                    {deleting ? 'Deleting...' : 'Delete Job'}
+                    {" "}
+                    {deleting ? "Deleting..." : "Delete Job"}
                   </button>
-                                    <button className={`${Styles.btn}`}>
+                  <button className={`ogsfonts16 ${Styles.editbtn}`}>
                     <span>
                       <img
+                        className="me-1"
                         src="https://cdn-icons-png.flaticon.com/512/481/481874.png"
-                        onClick={() => navigate(`/employereditjob/${jobdes.id}`)}
-                        style={{ width: '35px', height: '35px' }}
+                        onClick={() =>
+                          navigate(`/employereditjob/${jobdes.id}`)
+                        }
+                        style={{ width: "15px", height: "15px" }}
                       />
                     </span>
+                    Edit
                   </button>
                 </div>
               </div>
@@ -282,7 +287,7 @@ const Newapplicant = () => {
                   >
                     <div className="accordion-body accordion234 px-3">
                       <p>
-                        {' '}
+                        {" "}
                         <div
                           className={`container p-md-4 ${Styles.Jobpopchild}`}
                         >
@@ -315,112 +320,112 @@ const Newapplicant = () => {
                           </div>
                           <div>
                             <table
-                              style={{ width: '100%' }}
+                              style={{ width: "100%" }}
                               className={`${Styles.table}`}
                             >
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Industry:{' '}
+                                  Industry:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.industry}{' '}
+                                  {" "}
+                                  {jobdes.industry}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Functional Area:{' '}
+                                  Functional Area:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  Secretarial, Clerical & Front Office{' '}
+                                  Secretarial, Clerical & Front Office{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Total Positions:{' '}
+                                  Total Positions:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 "> </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  {' '}
+                                  {" "}
                                   Job Type:
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.job_type_title}{' '}
+                                  {" "}
+                                  {jobdes.job_type_title}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  {' '}
+                                  {" "}
                                   Job Shift:
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.job_shift}{' '}
+                                  {" "}
+                                  {jobdes.job_shift}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Job Location:{' '}
+                                  Job Location:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.city}, {jobdes.country}{' '}
+                                  {" "}
+                                  {jobdes.city}, {jobdes.country}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">Gender: </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
+                                  {" "}
                                   {jobdes.gender_title}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Minimum Education{' '}
+                                  Minimum Education{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.qualification}{' '}
+                                  {" "}
+                                  {jobdes.qualification}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  {' '}
+                                  {" "}
                                   Career Level:
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.career_title}{' '}
+                                  {" "}
+                                  {jobdes.career_title}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Maximum Experience:{' '}
+                                  Maximum Experience:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.max_experience}{' '}
+                                  {" "}
+                                  {jobdes.max_experience}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2  ">
-                                  Apply Before:{' '}
+                                  Apply Before:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.last_date_apply}{' '}
+                                  {" "}
+                                  {jobdes.last_date_apply}{" "}
                                 </th>
                               </tr>
                               <tr className="my-3">
                                 <th className="ogsfonts18 py-2 ">
-                                  Posting Date:{' '}
+                                  Posting Date:{" "}
                                 </th>
                                 <th className="ogsfonts18 py-2 ">
-                                  {' '}
-                                  {jobdes.posted_at}{' '}
+                                  {" "}
+                                  {jobdes.posted_at}{" "}
                                 </th>
                               </tr>
                             </table>
@@ -457,7 +462,7 @@ const Newapplicant = () => {
                     aria-labelledby="panelsStayOpen-headingTwo"
                   >
                     <div className="accordion-body accordion234">
-                      {' '}
+                      {" "}
                       <button
                         className={` px-3 py-2 ${Styles.btnUpload}`}
                         onClick={() => setapplyFilters(!applyFilters)}
@@ -1112,7 +1117,7 @@ const Newapplicant = () => {
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
                   })
-                : 'loading'}
+                : "loading"}
               {/* {appicantsList && appicantsList.length > 0
                 ? appicantsList.map((applicant) => {
                     return <Cv job_id={state.id} applicant={applicant} />;
@@ -1121,7 +1126,7 @@ const Newapplicant = () => {
             </div>
             <div className={`col-md-3 `}>
               <div className={`p-4 my-3 ${Styles.siderightbar}`}>
-                {' '}
+                {" "}
                 <h1 className="ogsfonts18">Applicant Filters</h1>
                 <button
                   className={` px-3 py-2 ${Styles.btnUpload}`}

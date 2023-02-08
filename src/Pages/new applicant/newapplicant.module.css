@@ -191,6 +191,14 @@
   border: 1px solid #bbbbbb;
   border-radius: 3px;
 }
+.editbtn {
+  border: none;
+  background: #d7d7d7;
+  border: 1px solid #00a4e5;
+  border-radius: 5px;
+  width: 100px;
+  height: 48px;
+}
 @media only screen and (max-width: 768px) {
   .siderightbarm {
     display: block;

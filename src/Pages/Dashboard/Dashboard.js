@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import DashboardNavbar from '../../Components/DashboardNavbar/DashboardNavbar';
-import Styles from './Dashboard.module.css';
-import proimg from '../../Assets/Images/Rectangle 1143.png';
-import Chart from 'react-apexcharts';
-import userslogo from '../../Assets/Images/users 02.svg';
-import Active from '../../Components/Active/Active';
-import axios from 'axios';
-import mobilelogo from '../../Assets/Images/mobilelogo.jpg';
-import { useEffect } from 'react';
-import jwtCheck from '../../system/jwtChecker';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import DashboardNavbar from "../../Components/DashboardNavbar/DashboardNavbar";
+import Styles from "./Dashboard.module.css";
+import proimg from "../../Assets/Images/Rectangle 1143.png";
+import Chart from "react-apexcharts";
+import userslogo from "../../Assets/Images/users 02.svg";
+import Active from "../../Components/Active/Active";
+import axios from "axios";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
+import { useEffect } from "react";
+import jwtCheck from "../../system/jwtChecker";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ parentToChild }) => {
   const [data, setData] = useState();
@@ -21,14 +21,14 @@ const Dashboard = ({ parentToChild }) => {
   console.log(data);
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
-    navigate('/employerlogin');
+    navigate("/employerlogin");
   }
   useEffect(() => {
     // GET USER DATA
     axios
-      .get('https://3.14.27.53:3003/users/me', {
+      .get("https://3.14.27.53:3003/users/me", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const Dashboard = ({ parentToChild }) => {
     axios
       .get(`https://3.14.27.53:3003/jobs/myjobs`, {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
@@ -47,15 +47,15 @@ const Dashboard = ({ parentToChild }) => {
         setJobsLoading(false);
       });
   }, []);
-  console.log(userData, 'userData');
+  console.log(userData, "userData");
 
   const [options, setoptions] = useState({
     fill: {
-      colors: ['#532efe'],
+      colors: ["#532efe"],
     },
 
     chart: {
-      id: 'basic-bar',
+      id: "basic-bar",
 
       offsetX: 5,
     },
@@ -66,13 +66,13 @@ const Dashboard = ({ parentToChild }) => {
   });
   const [series, setSeries] = useState([
     {
-      name: 'series-1',
+      name: "series-1",
       data: [30, 40, 30, 49, 60, 70],
     },
   ]);
 
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     setData(d);
   };
@@ -82,7 +82,7 @@ const Dashboard = ({ parentToChild }) => {
       <DashboardNavbar side={display} />
       <div
         className={`${Styles.Managejobsmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <div className="container-md">
@@ -107,7 +107,7 @@ const Dashboard = ({ parentToChild }) => {
                   </p>
                 </div>
               </div> */}
-              {/* <div className={`d-flex flex-wrap `}>
+              <div className={`d-flex justify-content-between flex-wrap `}>
                 <div className={` p-3 my-2 mx-1  ${Styles.postjobslimit}`}>
                   <div className={``}>
                     <h1 className={`ogsfonts18`}>Posted Jobs</h1>
@@ -115,7 +115,7 @@ const Dashboard = ({ parentToChild }) => {
                   </div>
                   <div className={`d-flex justify-content-end`}>
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>
-                      {jobsLoading ? '-' : jobs.length}
+                      {jobsLoading ? "-" : jobs.length}
                     </h1>
                   </div>
                 </div>
@@ -128,47 +128,71 @@ const Dashboard = ({ parentToChild }) => {
                     <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
                   </div>
                 </div>
-              </div> */}
+                <div className={` p-3 my-2 mx-1 ${Styles.postjobslimit}`}>
+                  <div className={``}>
+                    <h1 className={`ogsfonts18`}>Reviewed</h1>
+                    <p className={`ogsfonts12`}>CVs you have reviewed</p>
+                  </div>
+                  <div className={`d-flex justify-content-end`}>
+                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
+                  </div>
+                </div>
+                <div className={` p-3 my-2 mx-1 ${Styles.postjobslimit}`}>
+                  <div className={``}>
+                    <h1 className={`ogsfonts18`}>Reviewed</h1>
+                    <p className={`ogsfonts12`}>CVs you have reviewed</p>
+                  </div>
+                  <div className={`d-flex justify-content-end`}>
+                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
+                  </div>
+                </div>
+              </div>
 
               <div>
                 <div
                   className={`d-flex justify-content-between align-items-center`}
                 >
-                  {' '}
+                  {" "}
                   <h1 className="ogsfonts24">Post Jobs</h1>
                 </div>
-                <div>{jobsLoading ? 'Loading...' : <Active jobs={jobs} />}</div>
+                <div>{jobsLoading ? "Loading..." : <Active jobs={jobs} />}</div>
               </div>
             </div>
             <div className="col-md-3">
               <div
                 className={`d-flex p-4 text-center flex-column justify-content-center align-items-center ${Styles.profcard}`}
               >
-                {
-                  !userDataLoading ? <img className={`${Styles.profimg}`} src={`https://3.14.27.53:3003/${userData.company_logo}`} /> : ''
-                }
-                
+                {!userDataLoading ? (
+                  <img
+                    className={`${Styles.profimg}`}
+                    src={`https://3.14.27.53:3003/${userData.company_logo}`}
+                  />
+                ) : (
+                  ""
+                )}
+
                 <h1 className="ogsfonts24 cblack">
                   {userDataLoading
-                    ? 'Loading...'
-                    : userData.first_name + ' ' + userData.last_name}
+                    ? "Loading..."
+                    : userData.first_name + " " + userData.last_name}
                 </h1>
                 <p className="ogsfonts16 cblack">
-                  {userDataLoading ? 'Loading...' : userData.company_name}
+                  {userDataLoading ? "Loading..." : userData.company_name}
                 </p>
                 <p className="ogsfonts16 cblack">
-                  {userDataLoading ? 'Loading...' : userData.business}
+                  {userDataLoading ? "Loading..." : userData.business}
                 </p>
                 <p className="ogsfonts16 cblack">
-                  {userDataLoading ? 'Loading...' : userData.position}
+                  {userDataLoading ? "Loading..." : userData.position}
                 </p>
                 <p className="ogsfonts14 cblack">
-                  {userDataLoading ? 'Loading...' : userData.email}{' '}
+                  {userDataLoading ? "Loading..." : userData.email}{" "}
                 </p>
-                <p className="ogsfonts14 cblack"> Job Posted | 
-                   {jobsLoading ? '-' : jobs.length}{' '}
+                <p className="ogsfonts14 cblack">
+                  {" "}
+                  Job Posted |{jobsLoading ? "-" : jobs.length}{" "}
                 </p>
-                
+
                 {/* <p className="ogsfonts14">
                   {userDataLoading
                     ? "Loading..."
