@@ -101,7 +101,7 @@ const getSubCategories = async (id) => {
 const additionalChangeStatus = async (req, res, next) => {
   try {
     const { id, status } = req.body;
-    const updateStatus = await sequelize.query(`UPDATE additonal SET display=${status} WHERE id='${id}'`);
+    const updateStatus = await sequelize.query(`UPDATE additional SET display=${status} WHERE id='${id}'`);
     res.json({code: 1, message: "Updated!"})
   } catch (error) {
     res.json({code: 0, message: error})
