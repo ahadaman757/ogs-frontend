@@ -39,7 +39,8 @@ import {
 import {
   getCategories,
   ManageCategory,
-  getAdditionalOptions
+  getAdditionalOptions,
+  additionalChangeStatus
 } from '../controllers/AdminControllers/Categories.js';
 
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -92,6 +93,7 @@ AdminRouter.post('/manageCategories', AdminAuth, ManageCategory);
 
 // Get Additional File Options
 AdminRouter.post('/getAdditionalOptions', AdminAuth, getAdditionalOptions);
+AdminRouter.post('/additionalChangeStatus', AdminAuth, additionalChangeStatus);
 
 // userRouter.get('/me', auth, usermecontroller)
 

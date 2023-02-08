@@ -39,7 +39,7 @@ const AdditionalFiles = () => {
     if (page !== pager.currentPage) {
       axios
         .post(
-          `https://3.14.27.53:3003/admin/getCategories`,
+          `https://3.14.27.53:3003/admin/getAdditionalOptions`,
           { page: page },
           {
             headers: {
@@ -48,6 +48,7 @@ const AdditionalFiles = () => {
           }
         )
         .then((res) => {
+          console.log("respones", res)
           setCategories(res.data.pageOfItems);
           setLoading(false);
         });

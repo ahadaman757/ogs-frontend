@@ -12,6 +12,22 @@ const ManageAdditionalFilesTable = (props) => {
   const [subCategoryName, setSubCategoryName] = useState();
   const [subCategories, setSubCategories] = useState();
   const [subCategoryLoading, setSubCategoryLoading] = useState(true);
+  const changeStatus = (id, status) => {
+    axios.post(`https://3.14.27.53:3003/admin/additionalChangeStatus`, {
+        id: id,
+        status: status
+    }, {
+                  headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+    }).then(res => {
+        if (res.data.code == 1) {
+            alert("Status updated!");
+        } else {
+            alert("An error occured!");
+        }
+    })
+  }
   useEffect(() => {
     axios
       .post(
@@ -51,9 +67,8 @@ const ManageAdditionalFilesTable = (props) => {
         <thead>
           <tr>
             <th className="ogsfonts14">Sr No.</th>
-            <th className="ogsfonts14">Category Name</th>
-            <th className="ogsfonts14">Edit Name</th>
-            <th className="ogsfonts14">Add / Remove Sub Categories</th>
+            <th className="ogsfonts14">Additional Filename</th>
+            <th className="ogsfonts14">Visibility</th>
             <th className="ogsfonts14">Delete Category</th>
           </tr>
         </thead>
@@ -61,40 +76,28 @@ const ManageAdditionalFilesTable = (props) => {
           {props.items.map((item) => (
             <tr key={item.id}>
               <td className="ogsfonts14">{item.id}</td>
-              <td className="ogsfonts14">{item.name}</td>
+              <td className="ogsfonts14">{item.label}</td>
               <td className="ogsfonts14">
                 {" "}
-                <button
-                  className={` ogsfonts16`}
-                  data-bs-toggle="modal"
-                  data-bs-target="#EditCategory"
-                  style={{ background: "none", color: "black", border: "none" }}
-                  onClick={() => setCatEditing(item.id)}
-                >
-                  Edit
-                </button>
-              </td>
-              <td className="ogsfonts14">
-                {" "}
-                <button
+                {
+                    item.display == 1 ?                 <button
                   className={` ogsfonts16`}
                   data-bs-toggle="modal"
                   data-bs-target="#AddSubCategory"
                   style={{ background: "none", color: "black", border: "none" }}
-                  onClick={() => setCatEditing(item.id)}
+                  onClick={() => changeStatus(item.id, 0)}
                 >
-                  Add
-                </button>{" "}
-                /
-                <button
+                  Hide
+                </button> :                 <button
                   className={` ogsfonts16`}
                   data-bs-toggle="modal"
-                  data-bs-target="#removeSubCategory"
+                  data-bs-target="#AddSubCategory"
                   style={{ background: "none", color: "black", border: "none" }}
-                  onClick={() => setCatEditing(item.id)}
+                  onClick={() => changeStatus(item.id)}
                 >
-                  Remove
+                  Show
                 </button>
+                }
               </td>
               <td className="ogsfonts14">
                 <button

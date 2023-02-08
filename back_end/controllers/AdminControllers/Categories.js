@@ -97,6 +97,17 @@ const getSubCategories = async (id) => {
     }
   }
 };
+
+const additionalChangeStatus = async (req, res, next) => {
+  try {
+    const { id, status } = req.body;
+    const updateStatus = await sequelize.query(`UPDATE additonal SET display='${status}' WHERE id='${id}'`);
+    res.json({code: 1, message: "Updated!"})
+  } catch (error) {
+    res.json({code: 0, message: error})
+  }
+}
+
 const ManageCategory = async (req, res, next) => {
   const { action, jobId } = req.body;
   let code;
@@ -127,4 +138,4 @@ const ManageCategory = async (req, res, next) => {
   }
 };
 
-export { getCategories, ManageCategory, getAdditionalOptions };
+export { getCategories, ManageCategory, getAdditionalOptions,additionalChangeStatus };
