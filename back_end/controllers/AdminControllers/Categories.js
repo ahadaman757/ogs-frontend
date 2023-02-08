@@ -123,6 +123,8 @@ const addAdditionalFiles = async (req, res, next) => {
   try {
     const { label, column_name } = req.body;
     const addNewAdditional = await sequelize.query(`INSERT INTO additional (label, column_name, display) VALUES ('${label}', '${column_name}', '1')`);
+    const addColumn = await sequelize.query(`ALTER TABLE cv
+ADD ${column_name} varchar(500)`);
     res.json({code: 1, message: "Updated!"})
   } catch (error) {
     res.json({code: 0, message: error})
