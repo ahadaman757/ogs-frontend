@@ -18,7 +18,8 @@ import {
   getSaudiJobs,
   UpdateJob,
   getJobByTitle,
-  getJobByCountry
+  getJobByCountry,
+  getEmployerData
 } from '../controllers/jobController.js';
 // /main route =/jobs
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -42,6 +43,7 @@ jobRouter.get('/admingetjobs', AdminAuth, AdminGetAllJobsController);
 jobRouter.post('/admindeletejob', AdminAuth, AdminDeleteJob);
 jobRouter.post('/admingetjobdetail', AdminAuth, AdminGetJobDetails);
 jobRouter.post('/getjobdetail', auth, AdminGetJobDetails);
+jobRouter.get('/getEmployerData', auth, getEmployerData);
 // jobRouter.get('/me', auth, usermecontroller)
 
 export default jobRouter;

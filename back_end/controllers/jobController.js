@@ -106,6 +106,18 @@ const JobMyCompaniesController = async (req, res, next) => {
   }
 };
 
+const getEmployerData = async (req, res, next) => {
+  try {
+
+    const cvPosted = await sequelize.query(`SELECT COUNT(*) as cv_recieved
+FROM job
+WHERE posted_by_id = ${req.user.id}`);
+
+res.json({code: 1, message: cvPosted});
+
+  } catch (err) { res.json({code: 0, message: err}) }
+}
+
 const getJobsCount = (req, res, next) => {
   sequelize
     .query(`SELECT * FROM jobs WHERE [] = ?`, [req.user.id])
@@ -565,5 +577,6 @@ export {
   getSaudiJobs,
   UpdateJob,
   getJobByTitle,
-  getJobByCountry
+  getJobByCountry,
+  getEmployerData
 };
