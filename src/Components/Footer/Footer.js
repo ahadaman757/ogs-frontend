@@ -214,6 +214,7 @@ const Footer = () => {
                   }}
                 />
                 <select class="form-select" aria-label="Default select example">
+                  <option>By Country</option>
                   {countries.map((c) => {
                     return (
                       <option value={c.country_id}>{c.country_name}</option>
