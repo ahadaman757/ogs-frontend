@@ -4,9 +4,22 @@ import Instagram from "../../Assets/Images/instagram.png";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Images/mobilelogo.jpg";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import axios from "axios";
 
 const Footer = () => {
+  const [countries, setCountries] = useState([]);
+  const [countryLoading, setCountryLoading] = useState(true);
   const navigate = useNavigate();
+  useEffect(() => {
+    axios.get(`https://3.14.27.53:3003/general/getCountries`).then((res) => {
+      setCountries(res.data.countries[0]);
+      setCountryLoading(false);
+
+      console.log(res.data.countries[0]);
+    });
+  }, []);
   return (
     <div class="m-0">
       <footer
@@ -45,7 +58,7 @@ const Footer = () => {
         <section class="bg-white">
           <div class="container text-center text-md-start mt-5">
             <div class="row mt-3">
-              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <div class="col-md-3 col-lg-4 col-xl-2 mx-auto mb-4">
                 <img src={logo} />
                 <h6 class="text-uppercase fw-bold"> OGS Man Power</h6>
                 {/* <hr
@@ -167,7 +180,7 @@ const Footer = () => {
                 </p>
               </div>
 
-              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <div class="col-md-4 col-lg-3 col-xl-2 mx-auto mb-md-0 mb-4">
                 <h6 class="text-uppercase fw-bold">Contact</h6>
                 <hr
                   class="mb-4 mt-0 d-inline-block mx-auto"
@@ -188,6 +201,25 @@ const Footer = () => {
                 <p>
                   <i class="fas fa-phone mr-3"></i> + (051)4906572
                 </p>
+              </div>
+              <div class="col-md-4 col-lg-3 col-xl-2 mx-auto mb-md-0 mb-4">
+                <h6 class="text-uppercase fw-bold">Browse Jobs</h6>
+                <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  // style="width: 60px; background-color: #7c4dff; height: 2px"
+                  style={{
+                    width: "108px",
+                    backgroundColor: "#7c4dff",
+                    height: "2px",
+                  }}
+                />
+                <select class="form-select" aria-label="Default select example">
+                  {countries.map((c) => {
+                    return (
+                      <option value={c.country_id}>{c.country_name}</option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>
