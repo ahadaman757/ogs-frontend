@@ -170,6 +170,33 @@ const TextInput = (props) => {
     </>
   );
 };
+const WhatsAppInput = (props) => {
+  const { id, label, formik, type = 'text', onChangeValue } = props;
+
+  return (
+    <>
+      <label htmlFor={id} className={`${styles.form_input__lable}`}>
+        {label}
+      </label>
+      <input
+        onChange={(e) => {
+          onChangeValue(e);
+localStorage.setItem('phone', e.target.value);
+        }}
+        {...formik.getFieldProps(`'${id}'`)}
+        type={type}
+        value={formik.values[id]}
+        className={`${styles.form_input}`}
+        name={id}
+        id={id}
+        aria-label={label}
+      />
+      {formik.touched[id] && formik.errors[id] ? (
+        <div className="text__note">{formik.errors[id]}</div>
+      ) : null}
+    </>
+  );
+};
 const SecondTextInput = (props) => {
   const { id, label, formik, type = 'text', onChangeValue } = props;
 
@@ -327,5 +354,6 @@ export {
   ListUpdate,
   FileUpload2,
   SecondTextInput,
-  ListSecond
+  ListSecond,
+  WhatsAppInput
 };

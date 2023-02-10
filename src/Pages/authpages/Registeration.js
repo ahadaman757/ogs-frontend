@@ -15,6 +15,7 @@ import {
   TextInput,
   PassInput,
   SecondTextInput,
+  WhatsAppInput,
 } from '../Forms/InputFields';
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -92,6 +93,7 @@ const LoginInformation = ({
   const [passwordType2, setPasswordType2] = useState('password');
   const [message, setMessage] = useState();
   const [code, setCode] = useState();
+  
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -288,6 +290,20 @@ const Businessinformation = ({
   formData,
   employerRegsiterOptions,
 }) => {
+    function generateCode(length, characters) {
+    var result = '';
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return result;
+  }
+  const [codeGenerated, setCodeGenerated] = useState();
+  const [code, setCode] = useState();
+  const [message, setMessage] = useState();
+  const [isVerified, setIsVerified] = useState(true);
+  const [codeSent, setCodeSent] = useState(false);
   const BusinessinformationFormik = useFormik(
     BusinessInformationValidation(setformData, formData)
   );
@@ -330,12 +346,76 @@ const Businessinformation = ({
             />
           </div>
           <div className="col-12">
-            <TextInput
+            <WhatsAppInput
               type="phone"
               id="mobileNumber"
               formik={BusinessinformationFormik}
               label="Mobile Number"
             />
+            <div className="row">
+              <div className="col-md-6">
+                <input
+                  placeholder="Enter Verification Code"
+                  style={{
+                    padding: '6px 9px',
+                    width: '100%',
+                    border: '1px solid lightgray',
+                  }}
+                  onChange={(e) => setCode(e.target.value)}
+                />
+              </div>
+              <div className="col-md-6">
+                {codeSent ? (
+                  <span
+                    type="button"
+                    className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                    style={{ textAlign: 'center' }}
+                    onClick={() => {
+                      if (code == codeGenerated) {
+                        setIsVerified(true);
+                        setMessage('You have verified your email.');
+                      } else {
+                        setMessage('Incorrect Code');
+                      }
+                    }}
+                  >
+                    Verify
+                  </span>
+                ) : (
+                  <span
+                    className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
+                    type="button"
+                    style={{ textAlign: 'center' }}
+                    onClick={() => {
+                      setTimeout(() => {
+                        localStorage.setItem(
+                          'phone',
+                          BusinessinformationFormik.values.mobileNumber
+                        );
+                        let generatedCode = generateCode(6, '1234567890');
+                        setCodeGenerated(generatedCode);
+                        axios
+                          .post(`https://3.14.27.53:3003/general/verifyPhone`, {
+                            number: localStorage.getItem('phone'),
+                            token: generatedCode,
+                          })
+                          .then((response) => {
+                            console.log(response);
+                            if (response.data.code == 1) {
+                              setMessage('Please check your Number');
+                              setCodeSent(true);
+                            } else {
+                              setMessage(response.data.message);
+                            }
+                          });
+                      }, 2000);
+                    }}
+                  >
+                    Get Code
+                  </span>
+                )}
+              </div>
+            </div>
             <UploadImageSide
               id="image"
               formik={BusinessinformationFormik}

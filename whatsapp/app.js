@@ -9,11 +9,18 @@ const { phoneNumberFormatter } = require('./helpers/formatter');
 const fileUpload = require('express-fileupload');
 const axios = require('axios');
 const mime = require('mime-types');
+const https = require('https');
+
+var options = {
+  key: fs.readFileSync('/home/centos/Andreas-Server/private.key'),
+  cert: fs.readFileSync('/home/centos/Andreas-Server/cert.pem'),
+};
+
 
 const port = process.env.PORT || 3004;
 
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(options, app);
 const io = socketIO(server);
 
 app.use(express.json());
