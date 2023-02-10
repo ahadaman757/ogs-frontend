@@ -176,7 +176,7 @@ const getAdditionalFiles = async (req, res, next) => {
   }
 }
 
-const whatsAppCode = async = (req, res, next) => {
+const whatsAppCode = async (req, res, next) => {
   try {
     axios.post(`http://localhost:3004/send-message`, {
       number: req.body.number,
