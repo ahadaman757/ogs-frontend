@@ -161,6 +161,7 @@ const verifyEmail = async (req, res, next) => {
         });
       }
       console.log('RESPONSE ', response);
+      console.log('error ', error);
     }
   } catch (err) {
     res.json({ code: 0, message: err });
