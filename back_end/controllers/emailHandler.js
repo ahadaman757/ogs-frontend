@@ -4,7 +4,7 @@ import hbs from 'nodemailer-express-handlebars';
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'ahadaman@jataq.com',
+    user: 'ahadaman757@gmail.com',
     pass: 'otjmvcscnzbenkah',
   },
 });
