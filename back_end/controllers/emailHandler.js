@@ -31,9 +31,9 @@ const sendEmail = async (toSend, handle, handleName, title, text) => {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log("error from send mail " , error);
-        return false;
+        return { error: error, response: false };
       } else {
-        return true;
+        return { error: 'NO error', response: true };
       }
     });
   } else {
@@ -45,9 +45,9 @@ const sendEmail = async (toSend, handle, handleName, title, text) => {
         text: `${text}`,
       };
       const info = await transporter.sendMail(mailOptions);
-      return true;
+      return { error: "No error", response: true };
     } catch (error) {
-      return false;
+      return { error: error, response: false };
     }
   }
 };

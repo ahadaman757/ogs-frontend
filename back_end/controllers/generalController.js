@@ -140,7 +140,7 @@ const verifyEmail = async (req, res, next) => {
     if (checkEmail[0].length > 0) {
       res.json({ code: 0, message: 'User with that email already exists' });
     } else {
-      let response = await sendEmail(
+      let {error, response} = await sendEmail(
         userEmail,
         false,
         '',
