@@ -17,6 +17,7 @@ import sendEmail from './emailHandler.js';
 import bodyParser from 'body-parser';
 // const User = require('../models/Users')
 import { application, response } from 'express';
+import axios from 'axios';
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

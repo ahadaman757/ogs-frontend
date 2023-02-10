@@ -351,6 +351,7 @@ const Businessinformation = ({
               id="mobileNumber"
               formik={BusinessinformationFormik}
               label="Mobile Number"
+              
             />
             <div className="row">
               <div className="col-md-6">
