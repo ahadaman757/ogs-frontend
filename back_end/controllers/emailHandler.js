@@ -30,6 +30,7 @@ const sendEmail = async (toSend, handle, handleName, title, text) => {
     };
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
+        console.log("error from send mail " , error);
         return false;
       } else {
         return true;

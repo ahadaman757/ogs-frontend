@@ -16,7 +16,7 @@ import sequelize from '../config/db.js';
 import sendEmail from './emailHandler.js';
 import bodyParser from 'body-parser';
 // const User = require('../models/Users')
-import { application } from 'express';
+import { application, response } from 'express';
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -175,6 +175,18 @@ const getAdditionalFiles = async (req, res, next) => {
     res.json({code: 0, message: err})
   }
 }
+
+const whatsAppCode = async = (req, res, next) => {
+  try {
+    axios.post(`http://localhost:3004/send-message`, {
+      number: req.body.number,
+      message: `Your verification code is: ${req.body.token}`
+    }).then(response => console.log(response))
+    res.json({code: 1, files: files});
+  } catch (err) {
+    res.json({code: 0, message: err})
+  }
+}
 export {
   homePageJobsPK,
   getPrivacyPolicy,
@@ -185,5 +197,6 @@ export {
   GetJobDetailsById,
   verifyEmail,
   getCountries,
-  getAdditionalFiles
+  getAdditionalFiles,
+  whatsAppCode
 };

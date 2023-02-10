@@ -83,7 +83,7 @@ const LoginInformation = ({
 
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const [codeSent, setCodeSent] = useState(false);
   const [codeGenerated, setCodeGenerated] = useState();
   const [logov, setlogov] = useState(eye);
