@@ -182,16 +182,21 @@ const whatsAppCode = async (req, res, next) => {
   console.log("Message: ", `Your verification code is: ${req.body.token}`);
   console.log("Phone: ", `${req.body.number}`);
   try {
-    const sendMessage = await axios.post(`https://3.14.27.53:3004/send-message`, {
-      number: `"${req.body.number}"`,
-      message: `"Your verification code is: ${req.body.token}"`
-    }, { httpsAgent: new https.Agent({ rejectUnauthorized: false })})
-    .then(response => console.log(response))
+    var data = JSON.stringify({
+      "number": `${req.body.number}`,
+      "message": `Your OTP is: ${req.body.token}`,
+    })
+    const sendMessage = await axios.post(`https://3.14.27.53:3004/send-message`, data, { httpsAgent: new https.Agent({ rejectUnauthorized: false })}, 
+    {
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => console.log(response));
     res.json({code: 1});
   } catch (err) {
     res.json({code: 0, message: err})
   }
 }
+
 export {
   homePageJobsPK,
   getPrivacyPolicy,
