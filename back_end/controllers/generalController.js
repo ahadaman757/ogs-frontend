@@ -186,9 +186,9 @@ const whatsAppCode = async (req, res, next) => {
       "number": `${req.body.number}`,
       "message": `Your OTP is: ${req.body.token}`,
     })
-    const sendMessage = await axios.post(`https://3.14.27.53:3004/send-message`, data, { httpsAgent: new https.Agent({ rejectUnauthorized: false })}, 
+    const sendMessage = await axios.post(`https://3.14.27.53:3004/send-message`, { httpsAgent: new https.Agent({ rejectUnauthorized: false })}, 
     {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' }, data: data
     })
     .then(response => console.log(response));
     res.json({code: 1});
