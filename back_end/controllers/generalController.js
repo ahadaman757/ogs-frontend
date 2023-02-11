@@ -179,6 +179,8 @@ const getAdditionalFiles = async (req, res, next) => {
 }
 
 const whatsAppCode = async (req, res, next) => {
+  console.log("Message: ", `Your verification code is: ${req.body.token}`);
+  console.log("Phone: ", `${req.body.number}`);
   try {
     axios.post(`https://3.14.27.53:3004/send-message`, {
       number: req.body.number,
