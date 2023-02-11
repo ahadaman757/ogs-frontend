@@ -185,8 +185,9 @@ const whatsAppCode = async (req, res, next) => {
     axios.post(`https://3.14.27.53:3004/send-message`, {
       number: req.body.number,
       message: `Your verification code is: ${req.body.token}`
-    }).then(response => console.log(response))
-    res.json({code: 1, files: files});
+    }, { httpsAgent: new https.Agent({ rejectUnauthorized: false })})
+    .then(response => console.log(response))
+    res.json({code: 1});
   } catch (err) {
     res.json({code: 0, message: err})
   }
