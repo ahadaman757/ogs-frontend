@@ -10,6 +10,8 @@ import { UploadImageSide } from '../authpages/Registeration';
 import PhoneInput from 'react-phone-number-input';
 import eye from '../../Assets/Images/eye.svg';
 import eyedes from '../../Assets/Images/eye-disable.svg';
+import 'react-phone-number-input/style.css'
+// import PhoneInput from 'react-phone-number-input';
 const SignUpCv = () => {
   const [cvResponse, setcvResponse] = useState('');
   const [FormikError, setFormikError] = useState(null);
@@ -27,6 +29,10 @@ const SignUpCv = () => {
   const [notAvailable, setNotAvailable] = useState(false);
   const [additionalFiles, setAdditionalFiles] = useState([]);
   const [additionalLoading, setAdditionalLoading] = useState(true);
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [phoneVerified, setPhoneVerified] = useState(false);
+  
+  
   const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
@@ -432,7 +438,7 @@ const SignUpCv = () => {
                   <TextInput
                     id="mobile_number"
                     type="phone"
-                    label="Phone Number"
+                    label="Phone Number (With country code)"
                     formik={CvFormIk}
                   />
                 </div>

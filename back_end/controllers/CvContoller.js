@@ -146,7 +146,6 @@ const UpdateCv = async (req, res, next) => {
       gender,
       interested_in,
       career_level,
-      position,
       nationality,
       religion,
       marital_status,
@@ -157,7 +156,7 @@ const UpdateCv = async (req, res, next) => {
       height,
       passport_issue_date,
     } = body;
-    const query = `UPDATE cv SET interested_in=${interested_in},industry=${industry},job_title='${job_title}',first_name='${first_name}',last_name='${last_name}',gender=${gender},dob='${dob}',cv_image='${cv_image_path}',passport_photo='${passport_image_path}',domicile='${domicile}',postal_code=${postal_code},mobile_number=${mobile_number},work_number=${work_number},home_number=${home_number},address='${address}',country=${country},city=${city},id_card_no='${id_card_no}',passport_number=${passport_number},valid_upto='${valid_upto}',passport_issue_date='${passport_issue_date}',education_level=${education_level},career_level=${career_level},degree_title='${degree_title}',institution='${institution}',min_experience=${min_experience},max_experience=${max_experience},current_salary=${current_salary},expected_salary=${expected_salary},position=${position},nationality=${nationality},religion=${religion},marital_status=${marital_status},skin_color='${skin_color}',weight=${weight},height=${height} WHERE cv_id =${cv_id}`;
+    const query = `UPDATE cv SET interested_in=${interested_in},industry=${industry},job_title='${job_title}',first_name='${first_name}',last_name='${last_name}',gender=${gender},dob='${dob}',cv_image='${cv_image_path}',passport_photo='${passport_image_path}',domicile='${domicile}',postal_code=${postal_code},mobile_number=${mobile_number},work_number=${work_number},home_number=${home_number},address='${address}',country=${country},city=${city},id_card_no='${id_card_no}',passport_number=${passport_number},valid_upto='${valid_upto}',passport_issue_date='${passport_issue_date}',education_level=${education_level},career_level=${career_level},degree_title='${degree_title}',institution='${institution}',min_experience=${min_experience},max_experience=${max_experience},current_salary=${current_salary},expected_salary=${expected_salary},nationality=${nationality},religion=${religion},marital_status=${marital_status},skin_color='${skin_color}',weight=${weight},height=${height} WHERE cv_id =${cv_id}`;
     const update_cv = await sequelize.query(query);
     res.json({ message: 'cv updated' });
   } catch (error) {

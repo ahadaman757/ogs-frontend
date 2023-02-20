@@ -70,7 +70,7 @@ const EditCv = () => {
       institution: cv_data.institution,
       max_experience: cv_data.max_experience_id,
       career_level: cv_data.career_level_id,
-      position: cv_data.position_id,
+      // position: cv_data.position_id,
       nationality: cv_data.nationality_id,
       religion: cv_data.religion_id,
       marital_status: cv_data.marital_status_id,
@@ -170,7 +170,7 @@ const EditCv = () => {
         <form onSubmit={CvFormIk.handleSubmit} className="mt-5">
           <div className={`container ${Styles.Postajobchild}`}>
             <div className="p-3">
-              <h1 className="py-3 ogsfonts24">Create Cv</h1>
+              <h1 className="py-3 ogsfonts24">Edit CV </h1>
               <h3 className={`${Styles.formSectionHeading}`}>
                 Personal Information
               </h3>
@@ -282,17 +282,17 @@ const EditCv = () => {
                 <h3 className={`${Styles.formSectionHeading}`}>
                   Personal Information
                 </h3>
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <TextInput label="Full Name" id="f_name" formik={CvFormIk} />
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <List
                     label="Position"
                     id="position"
                     options={dropDownOptions.position}
                     formik={CvFormIk}
                   />
-                </div>
+                </div> */}
                 <div className="col-md-6">
                   <List
                     label="Gender"

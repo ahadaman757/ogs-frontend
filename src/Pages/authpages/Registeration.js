@@ -84,7 +84,7 @@ const LoginInformation = ({
 
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
-  const [isVerified, setIsVerified] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
   const [codeGenerated, setCodeGenerated] = useState();
   const [logov, setlogov] = useState(eye);
@@ -302,7 +302,7 @@ const Businessinformation = ({
   const [codeGenerated, setCodeGenerated] = useState();
   const [code, setCode] = useState();
   const [message, setMessage] = useState();
-  const [isVerified, setIsVerified] = useState(true);
+  const [isVerified, setIsVerified] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
   const BusinessinformationFormik = useFormik(
     BusinessInformationValidation(setformData, formData)
@@ -395,14 +395,17 @@ const Businessinformation = ({
                         );
                         let generatedCode = generateCode(6, '1234567890');
                         setCodeGenerated(generatedCode);
+                        let data = JSON.stringify({
+                          "number": localStorage.getItem('phone'),
+                          "message": `Your OTP is ${generatedCode}`
+                        })
                         axios
-                          .post(`https://3.14.27.53:3003/general/verifyPhone`, {
-                            number: localStorage.getItem('phone'),
-                            token: generatedCode,
+                          .post(`https://3.14.27.53:3004/send-message`, data, {
+                            headers: { 'Content-Type': 'application/json' },
                           })
                           .then((response) => {
                             console.log(response);
-                            if (response.data.code == 1) {
+                            if (response.data.status === true) {
                               setMessage('Please check your Number');
                               setCodeSent(true);
                             } else {
