@@ -1,13 +1,13 @@
-import { JoiValidation } from '../validators/JoiValidation.js';
-import Extractdata from '../services/extractData.js';
-import Job from '../models/Job.js';
-import JobSkill from '../models/JobSkill.js';
-import Skill from '../models/Skills.js';
-import JobOptions from '../models/Categories/JobPostOptions.js';
-import sequelize from '../config/db.js';
-import JobPostOptions from '../models/Categories/JobPostOptions.js';
-import path from 'path';
-import fs from 'fs';
+import { JoiValidation } from "../validators/JoiValidation.js";
+import Extractdata from "../services/extractData.js";
+import Job from "../models/Job.js";
+import JobSkill from "../models/JobSkill.js";
+import Skill from "../models/Skills.js";
+import JobOptions from "../models/Categories/JobPostOptions.js";
+import sequelize from "../config/db.js";
+import JobPostOptions from "../models/Categories/JobPostOptions.js";
+import path from "path";
+import fs from "fs";
 
 const getSeekerCvs = async (req, res, next) => {
   const [seeker_cvs_record, meta] =
@@ -29,6 +29,20 @@ const getSeekerCvs = async (req, res, next) => {
    WHERE user_id=${req.user.id}`);
   res.json(seeker_cvs_record);
 };
+
+const makeid = (length) => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+};
+
 const CreateCv = async (req, res, next) => {
   try {
     const userID = req.user.id;
@@ -74,25 +88,29 @@ const CreateCv = async (req, res, next) => {
     const insert_cv = await sequelize.query(
       `insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${userID})`
     );
+    // const insert_code = await sequelize.query(
+    //     `insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${userID})`
+    // );
     console.log(insert_cv);
-    res.json({ message: 'cv added' });
+    console.log(insert_cv[0]);
+    res.json({ message: "cv added" });
   } catch (error) {
     next(error);
   }
 };
 const UpdateCv = async (req, res, next) => {
   try {
-    console.log('cv ');
+    console.log("cv ");
     const userID = req.user.id;
     const { cv_id, cv_image, passport_photo_pre } = req.body;
     const { body } = req;
     // check both images if its is undefined or not
-    let cv_image_path = '';
-    let passport_image_path = '';
-    console.log('Files => ', req.files);
+    let cv_image_path = "";
+    let passport_image_path = "";
+    console.log("Files => ", req.files);
     if (req.files?.image == null) {
       cv_image_path = cv_image;
-      console.log('CV Image Path => ' + cv_image_path);
+      console.log("CV Image Path => " + cv_image_path);
     } else {
       // fs.unlink('images/' + cv_image.replace('images', ''), (err) => {
       //   if (err) {
@@ -103,7 +121,7 @@ const UpdateCv = async (req, res, next) => {
       //   console.log('Delete File successfully.');
       // });
       cv_image_path = req.files.image[0].path;
-      console.log(' IN ELSE CV Image Path => ' + cv_image_path);
+      console.log(" IN ELSE CV Image Path => " + cv_image_path);
     }
     if (req.files?.passport_photo == null) {
       console.log(req.files);
@@ -119,7 +137,7 @@ const UpdateCv = async (req, res, next) => {
       //   console.log('Delete File successfully.');
       // });
       passport_image_path = req.files.passport_photo[0].path;
-      console.log('Passport ', passport_image_path);
+      console.log("Passport ", passport_image_path);
     }
     const {
       job_title,
@@ -158,7 +176,7 @@ const UpdateCv = async (req, res, next) => {
     } = body;
     const query = `UPDATE cv SET interested_in=${interested_in},industry=${industry},job_title='${job_title}',first_name='${first_name}',last_name='${last_name}',gender=${gender},dob='${dob}',cv_image='${cv_image_path}',passport_photo='${passport_image_path}',domicile='${domicile}',postal_code=${postal_code},mobile_number=${mobile_number},work_number=${work_number},home_number=${home_number},address='${address}',country=${country},city=${city},id_card_no='${id_card_no}',passport_number=${passport_number},valid_upto='${valid_upto}',passport_issue_date='${passport_issue_date}',education_level=${education_level},career_level=${career_level},degree_title='${degree_title}',institution='${institution}',min_experience=${min_experience},max_experience=${max_experience},current_salary=${current_salary},expected_salary=${expected_salary},nationality=${nationality},religion=${religion},marital_status=${marital_status},skin_color='${skin_color}',weight=${weight},height=${height} WHERE cv_id =${cv_id}`;
     const update_cv = await sequelize.query(query);
-    res.json({ message: 'cv updated' });
+    res.json({ message: "cv updated" });
   } catch (error) {
     next(error);
   }
