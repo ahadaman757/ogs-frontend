@@ -37,7 +37,7 @@ const SignUpCv = () => {
   const [additionalFiles, setAdditionalFiles] = useState([]);
   const [additionalLoading, setAdditionalLoading] = useState(true);
   const [emailVerified, setEmailVerified] = useState(false);
-  const [phoneVerified, setPhoneVerified] = useState(false);
+  const [phoneVerified, setPhoneVerified] = useState(true);
   const [codeSent, setCodeSent] = useState(false);
   const [codeGenerated, setCodeGenerated] = useState();
   const [code, setCode] = useState();
@@ -716,7 +716,7 @@ const SignUpCv = () => {
                     formik={CvFormIk}
                   />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <List
                     id="expected_salary"
                     label="Expected Salary"
