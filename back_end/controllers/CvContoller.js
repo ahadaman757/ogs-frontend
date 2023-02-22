@@ -30,19 +30,6 @@ const getSeekerCvs = async (req, res, next) => {
   res.json(seeker_cvs_record);
 };
 
-const makeid = (length) => {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-  return result;
-};
-
 const CreateCv = async (req, res, next) => {
   try {
     const userID = req.user.id;
@@ -89,12 +76,12 @@ const CreateCv = async (req, res, next) => {
       `insert INTO cv (cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,position,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${position},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${userID})`
     );
 
-    let code = makeid(10);
-    const insert_code = await sequelize.query(
-      `INSERT INTO code_generated (cv_id, code) VALUES ('${insert_cv[0]}', '${code}')`
-    );
-    console.log(insert_cv);
-    console.log(insert_code);
+    // let code = makeid(10);
+    // const insert_code = await sequelize.query(
+    //   `INSERT INTO code_generated (cv_id, code) VALUES ('${insert_cv[0]}', '${code}')`
+    // );
+    // console.log(insert_cv);
+    // console.log(insert_code);
     res.json({ message: "cv added" });
   } catch (error) {
     next(error);

@@ -1,46 +1,46 @@
-import CustomErrorHandler from '../services/CustomErrorHandler.js';
-import { JoiValidation } from '../validators/JoiValidation.js';
-import { VALID_MODE } from '../config/index.js';
-import User from '../models/User.js';
-import Extractdata from '../services/extractData.js';
-import errorHandler from '../middlewares/errorHandler.js';
-import multer from 'multer';
-import path from 'path';
-import Company from '../models/CompanyProfile/Company.js';
-import bcrypt from 'bcrypt';
-import { REFRESH_SECRET, JWT_SECRET } from '../config/index.js';
-import RefreshToken from '../models/refreshToken.js';
-import { decryptPassword } from '../services/Main.js';
-import jwt_service from '../services/JwtService.js';
-import sequelize from '../config/db.js';
-import bodyParser from 'body-parser';
-import nodemailer from 'nodemailer';
-import hbs from 'nodemailer-express-handlebars';
-import md5 from 'md5';
+import CustomErrorHandler from "../services/CustomErrorHandler.js";
+import { JoiValidation } from "../validators/JoiValidation.js";
+import { VALID_MODE } from "../config/index.js";
+import User from "../models/User.js";
+import Extractdata from "../services/extractData.js";
+import errorHandler from "../middlewares/errorHandler.js";
+import multer from "multer";
+import path from "path";
+import Company from "../models/CompanyProfile/Company.js";
+import bcrypt from "bcrypt";
+import { REFRESH_SECRET, JWT_SECRET } from "../config/index.js";
+import RefreshToken from "../models/refreshToken.js";
+import { decryptPassword } from "../services/Main.js";
+import jwt_service from "../services/JwtService.js";
+import sequelize from "../config/db.js";
+import bodyParser from "body-parser";
+import nodemailer from "nodemailer";
+import hbs from "nodemailer-express-handlebars";
+import md5 from "md5";
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'ahadaman@jataq.com',
-    pass: 'vhdcqlmzsdwooykz',
+    user: "ahadaman@jataq.com",
+    pass: "vhdcqlmzsdwooykz",
   },
 });
 
 const sendResetLink = (email) => {
   const handlebarOptions = {
     viewEngine: {
-      partialsDir: path.resolve('./controllers/AdminControllers/template'),
+      partialsDir: path.resolve("./controllers/AdminControllers/template"),
       defaultLayout: false,
     },
-    viewPath: path.resolve('./controllers/AdminControllers/template'),
+    viewPath: path.resolve("./controllers/AdminControllers/template"),
   };
-  transporter.use('compile', hbs(handlebarOptions));
-  let encoded = Buffer.from(email).toString('base64');
+  transporter.use("compile", hbs(handlebarOptions));
+  let encoded = Buffer.from(email).toString("base64");
   const mailOptions = {
-    from: 'OGS Man Power <ceo@ogsmanpower.com>',
+    from: "OGS Man Power <ceo@ogsmanpower.com>",
     to: `${email}`,
-    subject: 'Reset your password!',
-    template: 'reset',
+    subject: "Reset your password!",
+    template: "reset",
     context: {
       para: `${encoded}`,
     },
@@ -57,23 +57,23 @@ const sendResetLink = (email) => {
 const resetPass = async (req, res, next) => {
   try {
     const { id, password } = req.body;
-    const email = Buffer.from(id, 'base64').toString();
+    const email = Buffer.from(id, "base64").toString();
     const decryptedPass = await decryptPassword(password);
     const changePassword = await sequelize.query(
       `UPDATE users SET password = "${decryptedPass}" WHERE email = "${email}"`
     );
 
-    console.log('Email decrypted ', email);
-    console.log('Password ', password);
-    console.log('Password MD5 ', decryptedPass);
-    console.log('Return ', changePassword);
+    console.log("Email decrypted ", email);
+    console.log("Password ", password);
+    console.log("Password MD5 ", decryptedPass);
+    console.log("Return ", changePassword);
     if (changePassword) {
-      res.json({ code: 1, message: 'Password has been changed!' });
+      res.json({ code: 1, message: "Password has been changed!" });
     } else {
-      res.json({ code: 0, message: 'Unable to update password' });
+      res.json({ code: 0, message: "Unable to update password" });
     }
   } catch (err) {
-    res.json({ code: 0, message: 'An error occured ' + err });
+    res.json({ code: 0, message: "An error occured " + err });
   }
 };
 
@@ -85,19 +85,19 @@ const findAccountByEmail = async (req, res, next) => {
       `SELECT * FROM users WHERE email = '${email}'`
     );
     if (findUser[0].length > 0) {
-      console.log('Found!', findUser);
+      console.log("Found!", findUser);
       const resetLink = await sendResetLink(email);
       if (resetLink === true) {
         res.json({ code: 1, message: `Please check your email ${email}` });
       } else {
-        res.json({ code: 0, message: 'An error occured while sending link' });
+        res.json({ code: 0, message: "An error occured while sending link" });
       }
     } else {
-      console.log('Not found!', findUser);
+      console.log("Not found!", findUser);
       res.json({ code: 0, message: `No account found by email ${email}` });
     }
   } catch (err) {
-    res.json({ code: 0, message: 'An error occured ' + err });
+    res.json({ code: 0, message: "An error occured " + err });
   }
 };
 
@@ -106,19 +106,19 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
   const { email, firstName } = req.body;
   const handlebarOptions = {
     viewEngine: {
-      partialsDir: path.resolve('./controllers/AdminControllers/template'),
+      partialsDir: path.resolve("./controllers/AdminControllers/template"),
       defaultLayout: false,
     },
-    viewPath: path.resolve('./controllers/AdminControllers/template'),
+    viewPath: path.resolve("./controllers/AdminControllers/template"),
   };
-  transporter.use('compile', hbs(handlebarOptions));
-  console.log('Email Request Body: -> ', req.body);
-  console.log('Sending email to ' + email);
+  transporter.use("compile", hbs(handlebarOptions));
+  console.log("Email Request Body: -> ", req.body);
+  console.log("Sending email to " + email);
   const mailOptions = {
-    from: 'OGS Man Power <ceo@ogsmanpower.com>',
+    from: "OGS Man Power <ceo@ogsmanpower.com>",
     to: `${email}`,
-    subject: 'Welcome To OGS Man Power!',
-    template: 'email',
+    subject: "Welcome To OGS Man Power!",
+    template: "email",
     context: {
       para: `We welcome you on board!`,
       fName: firstName,
@@ -130,10 +130,10 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
       console.log(error);
     } else {
       const mailOptions = {
-        from: 'OGS Man Power <ceo@ogsmanpower.com>',
+        from: "OGS Man Power <ceo@ogsmanpower.com>",
         to: `ceo@ogsmanpower.com`,
-        subject: 'A new employer joined!',
-        template: 'email',
+        subject: "A new employer joined!",
+        template: "email",
         context: {
           para: `We welcome you on board! ${email}`,
           fName: firstName,
@@ -143,24 +143,37 @@ const sendEmployerRegistrationEmail = async (req, res, next) => {
         if (error) {
           console.log(error);
         } else {
-          res.json('message sent to owner');
+          res.json("message sent to owner");
         }
       });
-      res.json('done');
+      res.json("done");
     }
   });
 };
+
+const makeid = (length) => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+};
 const registercontroller = async (req, res, next) => {
-  console.log('regsiter controller');
+  console.log("regsiter controller");
   // console.log(req.files.image[0].path);
   // extract error from validation schema
   try {
     let orderedData;
     const body = req.body;
-    const { registerType = 'seeker' } = req.body;
-    console.log('file');
+    const { registerType = "seeker" } = req.body;
+    console.log("file");
     console.log(req.files?.path);
-    if (registerType == 'recruiter') {
+    if (registerType == "recruiter") {
       // order the requested data according to database
       orderedData = Extractdata.EmployerSignUp({
         ...req.body,
@@ -168,7 +181,7 @@ const registercontroller = async (req, res, next) => {
       });
       console.log(orderedData);
       // Perform Validations
-      if (VALID_MODE == 'true') {
+      if (VALID_MODE == "true") {
         console.log(orderedData.orderedData);
         // perform validations
         var { error } = JoiValidation.signupRecruiter(orderedData.orderedData);
@@ -181,7 +194,7 @@ const registercontroller = async (req, res, next) => {
       // order the requested data according to database
       orderedData = Extractdata.SeekerSignUp({ ...req.body });
       // Perform Validations
-      if (VALID_MODE == 'true') {
+      if (VALID_MODE == "true") {
         // perform validations
         var { error } = JoiValidation.signupSeeker(orderedData.orderedData);
       } else {
@@ -214,8 +227,8 @@ const registercontroller = async (req, res, next) => {
           position: position,
         })
           .then((response) => {
-            console.log('user created');
-            if (registerType == 'recruiter') {
+            console.log("user created");
+            if (registerType == "recruiter") {
               // insertion for employer start
               // Company.createUser(orderedData.orderedData)
               response.createCompany({
@@ -227,7 +240,7 @@ const registercontroller = async (req, res, next) => {
               );
               // insertion for employer end
             } else {
-              if (registerType == 'seeker') {
+              if (registerType == "seeker") {
                 const {
                   additionalFiles,
                   additionalFilesName,
@@ -271,8 +284,14 @@ const registercontroller = async (req, res, next) => {
                   .query(
                     `insert INTO cv (email,cv_image,job_title,career_level,dob,domicile,postal_code,mobile_number,work_number,home_number,address,country,city,id_card_no,passport_number,passport_photo,valid_upto,passport_issue_date,degree_title,institution,first_name,last_name,max_experience,min_experience,industry,education_level,gender,interested_in,nationality,religion,marital_status,current_salary,expected_salary,skin_color,weight,height,user_id) VALUES('${email}','${req.files?.image[0]?.path}', '${job_title}', ${career_level}, '${dob}','${domicile}',${postal_code},${mobile_number},${work_number},${home_number},'${address}',${country},${city},'${id_card_no}','${passport_number}','${req.files?.passport_photo[0]?.path}','${valid_upto}','${passport_issue_date}','${degree_title}','${institution}','${first_name}','${last_name}',${max_experience},${min_experience},${industry},${education_level},${gender},${interested_in},${nationality},${religion},${marital_status},${current_salary},${expected_salary},'${skin_color}',${weight}, ${height},${response.id})`
                   )
-                  .then((res) => {
-                    console.log(res)
+                  .then(async (res) => {
+                    console.log(res);
+                    let code = makeid(10);
+                    const insert_code = await sequelize.query(
+                      `INSERT INTO code_generated (cv_id, code) VALUES ('${res[0]}', '${code}')`
+                    );
+                    console.log(res[0]);
+                    console.log(insert_code);
                   })
                   .catch((error) => {
                     console.log(error);
@@ -285,33 +304,33 @@ const registercontroller = async (req, res, next) => {
             console.log(response.id);
             const accesstoken = jwt_service.sign(
               { id: response.id },
-              '1y',
+              "1y",
               JWT_SECRET
             );
             const refresh_token = jwt_service.sign(
               { id: response.id },
-              '1y',
+              "1y",
               REFRESH_SECRET
             );
             RefreshToken.create({ token: refresh_token })
               .then((resp) => {
-                console.log('token created');
+                console.log("token created");
               })
               .catch((error) => {
-                return next(new Error('Problem occured in database'));
+                return next(new Error("Problem occured in database"));
               });
             res.json({
               accesstoken,
               refresh_token,
-              message: 'Account Created successfully',
-              userId: response.id
+              message: "Account Created successfully",
+              userId: response.id,
             });
           })
           .catch((error) => {
             return next(error);
           });
       } else {
-        return next(CustomErrorHandler.alreadyExist('Email already Existss'));
+        return next(CustomErrorHandler.alreadyExist("Email already Existss"));
       }
     }
   } catch (error) {
@@ -321,19 +340,21 @@ const registercontroller = async (req, res, next) => {
 
 const uploadAdditionalFiles = async (req, res, next) => {
   try {
-    const {additionalFiles, additionalFilesName, userId } = req.body;
+    const { additionalFiles, additionalFilesName, userId } = req.body;
     for (let i = 0; i < additionalFiles; i++) {
-      const updateUser = await sequelize.query(`UPDATE cv SET ${req.files[i].fieldname}='${req.files[i].path}' WHERE user_id = '${userId}'`);
-    } 
-    res.json({code: 1, message: 'done'})
-  } catch (er)  {
-    res.json({code: 0, message: er})
+      const updateUser = await sequelize.query(
+        `UPDATE cv SET ${req.files[i].fieldname}='${req.files[i].path}' WHERE user_id = '${userId}'`
+      );
+    }
+    res.json({ code: 1, message: "done" });
+  } catch (er) {
+    res.json({ code: 0, message: er });
   }
-}
+};
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'images');
+    cb(null, "images");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -341,7 +362,7 @@ const storage = multer.diskStorage({
 });
 const additionalUpload = multer({
   storage: storage,
-  limits: { fileSize: '1000000' },
+  limits: { fileSize: "1000000" },
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const mimeType = fileTypes.test(file.mimetype);
@@ -349,13 +370,13 @@ const additionalUpload = multer({
     if (mimeType && extname) {
       return cb(null, true);
     }
-    cb('Give proper files formate to upload');
+    cb("Give proper files formate to upload");
   },
 }).any();
 
 const imageUpload = multer({
   storage: storage,
-  limits: { fileSize: '1000000' },
+  limits: { fileSize: "1000000" },
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const mimeType = fileTypes.test(file.mimetype);
@@ -363,20 +384,20 @@ const imageUpload = multer({
     if (mimeType && extname) {
       return cb(null, true);
     }
-    cb('Give proper files formate to upload');
+    cb("Give proper files formate to upload");
   },
 }).fields([
   {
-    name: 'image',
+    name: "image",
     maxCount: 1,
   },
   {
-    name: 'passport_photo',
-  }
+    name: "passport_photo",
+  },
 ]);
 const passportUpload = multer({
   storage: storage,
-  limits: { fileSize: '1000000' },
+  limits: { fileSize: "1000000" },
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const mimeType = fileTypes.test(file.mimetype);
@@ -384,9 +405,9 @@ const passportUpload = multer({
     if (mimeType && extname) {
       return cb(null, true);
     }
-    cb('Give proper files formate to upload');
+    cb("Give proper files formate to upload");
   },
-}).single('passport_photo');
+}).single("passport_photo");
 
 // SignIn Controller
 const signincontroller = async (req, res, next) => {
@@ -396,8 +417,8 @@ const signincontroller = async (req, res, next) => {
   if (
     email != undefined ||
     password != undefined ||
-    email != '' ||
-    password != ''
+    email != "" ||
+    password != ""
   ) {
     if (error) {
       next(error);
@@ -408,7 +429,7 @@ const signincontroller = async (req, res, next) => {
         // next(CustomErrorHandler.notExist("Account Not Found by This Email"));
         return res.json({
           code: 0,
-          message: 'Account Not Found by This Email',
+          message: "Account Not Found by This Email",
         });
       } else {
         bcrypt.compare(password, user.password, function (err, result) {
@@ -416,23 +437,23 @@ const signincontroller = async (req, res, next) => {
             // correct Credentials
             const accesstoken = jwt_service.sign(
               { id: user.id, userType: user.userTypeId },
-              '1y',
+              "1y",
               JWT_SECRET
             );
             const refresh_token = jwt_service.sign(
               { id: user.id, userType: user.userTypeId },
-              '1y',
+              "1y",
               REFRESH_SECRET
             );
             RefreshToken.create({ token: refresh_token })
               .then((res) => {})
               .catch((error) => {
-                return next(new Error('Problem occured in database'));
+                return next(new Error("Problem occured in database"));
               });
             res.json({
               error: 0,
               code: 1,
-              message: 'Access token assigned!',
+              message: "Access token assigned!",
               accesstoken,
               refresh_token,
             });
@@ -444,11 +465,11 @@ const signincontroller = async (req, res, next) => {
       }
     }
   } else {
-    res.json({ error: 1, message: 'All fields are required' });
+    res.json({ error: 1, message: "All fields are required" });
   }
 };
 const ProfileController = async (req, res, next) => {
-  console.log('me profile');
+  console.log("me profile");
   console.log(req.user.id);
   const [employer_record, metadata] =
     await sequelize.query(`select u.id,u.first_name,u.last_name,positions.position_title as position,u.email,countries.name as country,cities.name as city,c.business_mobile_number,c.company_name,c.company_logo,c.business_webpage,
@@ -494,7 +515,7 @@ const ResetPassword = async (req, res, next) => {
             return next(err);
           }
           return next(
-            CustomErrorHandler.unAuthorized('old Password not matched')
+            CustomErrorHandler.unAuthorized("old Password not matched")
           );
         } else if (result) {
           const hash = await decryptPassword(req_new_password);
@@ -503,7 +524,7 @@ const ResetPassword = async (req, res, next) => {
             `update users set password = '${hash}' where id= ${user_id} `
           );
 
-          res.json({ message: 'password updated' });
+          res.json({ message: "password updated" });
         }
       }
     );
@@ -519,7 +540,7 @@ const ResetPassword = async (req, res, next) => {
 };
 const UpdateProfile = async (req, res, next) => {
   // get user id
-  console.log('reb body');
+  console.log("reb body");
   console.log(req.body);
 
   try {
@@ -546,7 +567,7 @@ const UpdateProfile = async (req, res, next) => {
     const company_profile_record = sequelize.query(
       `update companies set country=${country}, city=${city},business_mobile_number='${contact_number}',business_address='${address}' where userId=${user_id}`
     );
-    res.json({ message: 'Updated successfull' });
+    res.json({ message: "Updated successfull" });
   } catch (error) {
     next(error);
   }
@@ -564,7 +585,7 @@ const deleteJob = async (req, res, next) => {
     const deleteJ = await sequelize.query(
       ` DELETE FROM job WHERE id = '${jobId}'`
     );
-    res.json({ code: 1, message: 'Deleted' });
+    res.json({ code: 1, message: "Deleted" });
   } catch (err) {
     res.json({ code: 0, message: err });
   }
@@ -583,5 +604,5 @@ export {
   resetPass,
   deleteJob,
   uploadAdditionalFiles,
-  additionalUpload
+  additionalUpload,
 };
