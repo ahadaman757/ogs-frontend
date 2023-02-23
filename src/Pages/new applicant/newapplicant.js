@@ -174,7 +174,7 @@ const Newapplicant = () => {
                 </div>
 
                 <div className="d-flex flex-wrap justify-content-md-end">
-                  {/* <button className={`me-3 p-2 ${Styles.btnUpload}`}>
+                  {/* <button className={`me-3 p-2 ${Styles.bt  nUpload}`}>
                     {" "}
                     Edit
                   </button> */}

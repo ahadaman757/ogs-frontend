@@ -1,12 +1,12 @@
-import { JoiValidation } from '../validators/JoiValidation.js';
-import Extractdata from '../services/extractData.js';
-import Job from '../models/Job.js';
-import JobSkill from '../models/JobSkill.js';
-import Skill from '../models/Skills.js';
-import JobOptions from '../models/Categories/JobPostOptions.js';
-import sequelize from '../config/db.js';
-import JobPostOptions from '../models/Categories/JobPostOptions.js';
-import sendEmail from './emailHandler.js';
+import { JoiValidation } from "../validators/JoiValidation.js";
+import Extractdata from "../services/extractData.js";
+import Job from "../models/Job.js";
+import JobSkill from "../models/JobSkill.js";
+import Skill from "../models/Skills.js";
+import JobOptions from "../models/Categories/JobPostOptions.js";
+import sequelize from "../config/db.js";
+import JobPostOptions from "../models/Categories/JobPostOptions.js";
+import sendEmail from "./emailHandler.js";
 const JobPostController = async (req, res, next) => {
   // get request body for job post
   const body = req.body;
@@ -54,19 +54,19 @@ const JobPostController = async (req, res, next) => {
         }
       });
       console.log(
-        'Send email to employer ',
+        "Send email to employer ",
         sendEmail(
-          'ceo@ogsmanpower.com',
+          "ceo@ogsmanpower.com",
           false,
-          'Ahad Aman',
-          'Job Pending For Approval',
-          'A job has been posted and waiting for your approval.'
+          "Ahad Aman",
+          "Job Pending For Approval",
+          "A job has been posted and waiting for your approval."
         )
       );
-      return res.json({ code: 1, message: 'added' });
+      return res.json({ code: 1, message: "added" });
     })
     .catch((error) => {
-      console.log('55555555555');
+      console.log("55555555555");
       console.log(error);
       return next(error);
     });
@@ -74,7 +74,7 @@ const JobPostController = async (req, res, next) => {
 // /Temporary Job Controller end
 
 const JobMyCompaniesController = async (req, res, next) => {
-  console.log('id');
+  console.log("id");
   console.log(req.user.id);
   try {
     // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
@@ -108,15 +108,15 @@ const JobMyCompaniesController = async (req, res, next) => {
 
 const getEmployerData = async (req, res, next) => {
   try {
-
     const cvPosted = await sequelize.query(`SELECT COUNT(*) as cv_recieved
 FROM job
 WHERE posted_by_id = ${req.user.id}`);
 
-res.json({code: 1, message: cvPosted});
-
-  } catch (err) { res.json({code: 0, message: err}) }
-}
+    res.json({ code: 1, message: cvPosted });
+  } catch (err) {
+    res.json({ code: 0, message: err });
+  }
+};
 
 const getJobsCount = (req, res, next) => {
   sequelize
@@ -129,20 +129,20 @@ const getJobsCount = (req, res, next) => {
 const GetJobOption = async (req, res, next) => {
   try {
     const [results, metadata] = await sequelize.query(
-      'select * from countries'
+      "select * from countries"
     );
-    const [cities, meta] = await sequelize.query('select * from cities');
+    const [cities, meta] = await sequelize.query("select * from cities");
     const [position, metapos] = await sequelize.query(
-      'select * from positions'
+      "select * from positions"
     );
     const [nationality, metanat] = await sequelize.query(
-      'select num_code,nationality from nationality'
+      "select num_code,nationality from nationality"
     );
     const [religion, metareligion] = await sequelize.query(
-      'select * from religion'
+      "select * from religion"
     );
     const [marital_status, metamarital_status] = await sequelize.query(
-      'select * from marital_status'
+      "select * from marital_status"
     );
     const country = results;
     const city = cities;
@@ -150,7 +150,7 @@ const GetJobOption = async (req, res, next) => {
     const degree = await JobOptions.Degree.findAll();
 
     const [functional_area, metafunctional] = await sequelize.query(
-      'select * from category'
+      "select * from category"
     );
     const gender = await JobOptions.Gender.findAll();
     const job_type = await JobOptions.JobType.findAll();
@@ -203,22 +203,22 @@ const JobByIdController = async (req, res, next) => {
   JOIN  minagerequirements on job.min_age_id=minagerequirements.id
   JOIN  maxagerequirements on job.max_age_id=maxagerequirements.id`);
 
-  console.log('JobByIdController');
+  console.log("JobByIdController");
   res.json(job_records[0]);
 };
 const getApplicantsForJobById = async (req, res, next) => {
-  console.log('requesting');
+  console.log("requesting");
   const { body } = req;
   const { job_id } = body;
-  console.log('query strings');
+  console.log("query strings");
   console.log(req.query);
   // search for cv in job_applicants_cv table for a given job id
   try {
     const [d_start_date, meta] = await sequelize.query(
-      'select MIN(created_at) as start_date from job_applicants_cv'
+      "select MIN(created_at) as start_date from job_applicants_cv"
     );
     const [d_end_date, meta_end] = await sequelize.query(
-      'select MAX(created_at) end_date from job_applicants_cv'
+      "select MAX(created_at) end_date from job_applicants_cv"
     );
     const {
       start_date = d_start_date[0].start_date,
@@ -235,7 +235,7 @@ const getApplicantsForJobById = async (req, res, next) => {
     console.log(start_date, end_date);
     console.log(req.query);
     const applicants_record =
-      await sequelize.query(`select cv.cv_id ,cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,cv.mobile_number, educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,cv.dob,NOW()) as age,jc.is_shortlisted,cv.skin_color,cv.height,cv.weight,current_Salary.max_salary  as current_salary, expected_Salary.max_salary as expected_salary,religion.religion,cv.dob as Dob,cv.domicile,cv.address, jc.is_rejected, positions.position_title,u.email,marital_status.status,cv.passport_number,cv.valid_upto,cv.country as country_id,cv.passport_photo from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on cv.gender=genders.id
+      await sequelize.query(`select cv.cv_id ,cv.code, cv.cv_image,cv.first_name,cv.last_name,genders.gender_title,countries.name as country,cities.name as city,DATE_FORMAT(jc.created_at, "%M %d %Y")  as applied_at,cv.mobile_number, educationqualifications.qualification,careerlevels.career_title,business_types.business_type_name,maxexperiences.max_experience,timestampdiff(YEAR,cv.dob,NOW()) as age,jc.is_shortlisted,cv.skin_color,cv.height,cv.weight,current_Salary.max_salary  as current_salary, expected_Salary.max_salary as expected_salary,religion.religion,cv.dob as Dob,cv.domicile,cv.address, jc.is_rejected, positions.position_title,u.email,marital_status.status,cv.passport_number,cv.valid_upto,cv.country as country_id,cv.passport_photo from job_applicants_cv jc JOIN cv USING(cv_id) JOIN genders on cv.gender=genders.id
     JOIN countries on cv.country=countries.id
     JOIN cities on cv.city=cities.id
     JOIN educationqualifications on education_level=educationqualifications.id
@@ -280,8 +280,8 @@ AND  ((${gender} is null) OR cv.gender=${gender})
 AND  ((${marital_status} is null) OR cv.marital_status=${marital_status})
 AND  ((${max_experience} is null) OR cv.max_experience=${max_experience})
 `);
-    console.log('Applications ', job_id);
-    console.log('job id ', job_id);
+    console.log("Applications ", job_id);
+    console.log("job id ", job_id);
     const applicants_cv_record = applicants_record;
     console.log(applicants_cv_record);
     res.json(applicants_cv_record[0]);
@@ -296,7 +296,7 @@ const JobApplicantStatusUpdate = async (req, res, next) => {
     const [update_status, meta] = await sequelize.query(
       `UPDATE job_applicants_cv SET ${column}=${status} WHERE cv_id=${cv_id} AND job_id=${job_id} `
     );
-    res.json({ message: 'updated' });
+    res.json({ message: "updated" });
   } catch (error) {
     next(error);
   }
@@ -305,7 +305,7 @@ const JobApplicantStatusUpdate = async (req, res, next) => {
 const AdminGetAllJobsController = async (req, res, next) => {
   try {
     const allJobs = await sequelize.query(
-      'SELECT job.*, users.first_name, users.last_name FROM job INNER JOIN users ON job.posted_by_id=users.id'
+      "SELECT job.*, users.first_name, users.last_name FROM job INNER JOIN users ON job.posted_by_id=users.id"
     );
     res.json(allJobs);
   } catch (error) {
@@ -326,7 +326,7 @@ const AdminDeleteJob = async (req, res, next) => {
 };
 
 const ViewAllJobs = async (req, res, next) => {
-  console.log('view all jobs');
+  console.log("view all jobs");
   try {
     const [company_jobs_record, meta] =
       await sequelize.query(`select j.id,j.job_title,j.posted_by_id, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry, users.id as user_id, users.companyId as companyId,companies.company_name, companies.company_logo,
@@ -356,9 +356,8 @@ const ViewAllJobs = async (req, res, next) => {
   }
 };
 
-
 const getJobByTitle = async (req, res, next) => {
-  console.log('view all jobs');
+  console.log("view all jobs");
   const { title } = req.body;
   try {
     const [company_jobs_record, meta] =
@@ -384,17 +383,17 @@ const getJobByTitle = async (req, res, next) => {
      WHERE j.job_title REGEXP '${title}'
     `);
     console.log(meta);
-    if(company_jobs_record.length > 0) {
-      res.json({ code: 1, jobs: company_jobs_record});
+    if (company_jobs_record.length > 0) {
+      res.json({ code: 1, jobs: company_jobs_record });
     } else {
-      res.json({code: 0, message: "No jobs found with that title"})
+      res.json({ code: 0, message: "No jobs found with that title" });
     }
   } catch (error) {
     next(error);
   }
 };
 const getJobByCountry = async (req, res, next) => {
-  console.log('view all jobs');
+  console.log("view all jobs");
   const { countryId } = req.body;
   try {
     const [company_jobs_record, meta] =
@@ -420,10 +419,10 @@ const getJobByCountry = async (req, res, next) => {
      WHERE j.country_id REGEXP '${countryId}'
     `);
     console.log(meta);
-    if(company_jobs_record.length > 0) {
-      res.json({ code: 1, jobs: company_jobs_record});
+    if (company_jobs_record.length > 0) {
+      res.json({ code: 1, jobs: company_jobs_record });
     } else {
-      res.json({code: 0, message: "No jobs found with that title"})
+      res.json({ code: 0, message: "No jobs found with that title" });
     }
   } catch (error) {
     next(error);
@@ -441,7 +440,7 @@ const JobApply = async (req, res, next) => {
       `INSERT INTO job_applicants_cv( job_id,cv_id,applicant_id) VALUES (${job_id},${cv_id},${id})`
     );
     res.json({
-      message: 'Applied to job',
+      message: "Applied to job",
     });
   } catch (error) {
     next(error);
@@ -486,7 +485,7 @@ const AdminGetJobDetails = async (req, res, next) => {
 };
 
 const getSaudiJobs = async (req, res, next) => {
-  console.log('view all jobs');
+  console.log("view all jobs");
   try {
     const [company_jobs_record, meta] =
       await sequelize.query(`select j.id,j.job_title, countries.name as country,cities.name as city,careerlevels.career_title, minSalary.max_salary as min_salary,maxSalary.max_salary as max_salary,business_types.business_type_name as industry,
@@ -518,7 +517,7 @@ const getSaudiJobs = async (req, res, next) => {
 const ManageJobs = async (req, res, next) => {
   try {
     res.json({
-      message: 'request received',
+      message: "request received",
     });
   } catch (error) {
     next(error);
@@ -554,7 +553,7 @@ const UpdateJob = async (req, res, next) => {
       `UPDATE job SET job_title='${job_title}',experience_info='${experience_info}',supervisor_gender_title='${supervisor_gender_title}',co_worker_percentage='${co_worker_percentage}',valid_upto='${valid_upto}',country_id=${country},city_id=${city},career_level_id=${career_level},min_salary_id=${min_salary},max_salary_id=${max_salary},functional_area_id=${functional_area},gender_title_id=${gender_title},job_shift_id=${job_shift},job_type_id=${job_type_title},required_qualification_id=${required_qualification},degree_title='${degree_title}',min_experience_id=${min_experience},max_experience_id=${max_experience},min_age_id=${min_age},max_age_id=${max_age} WHERE id =${job_id}`
     );
     res.json({
-      message: 'updated',
+      message: "updated",
     });
   } catch (error) {
     next(error);
@@ -578,5 +577,5 @@ export {
   UpdateJob,
   getJobByTitle,
   getJobByCountry,
-  getEmployerData
+  getEmployerData,
 };
