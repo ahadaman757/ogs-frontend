@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ShareLink from "react-facebook-share-link";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon } from "react-share";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function kFormatter(num) {
@@ -32,6 +32,8 @@ const monthNames = [
 ];
 const Jobcard = (props) => {
   const navigate = useNavigate();
+  const [boxesDataLoading, setBoxesDataLoading] = useState(true);
+  const [applicants, setApplicants] = useState(0);
   console.log(props);
   let date = new Date(props.data?.createdAt);
   let day = date.getDate();
@@ -51,7 +53,10 @@ const Jobcard = (props) => {
           },
         }
       )
-      .then((response) => console.log(response));
+      .then((response) => {
+        setApplicants(response.data.applicants.length);
+        setBoxesDataLoading(false);
+      });
   }, []);
 
   return (
@@ -101,7 +106,9 @@ const Jobcard = (props) => {
           }
         >
           <div className={`${Styles.jobcarddetailsl}`}>
-            <p className="ogsfonts24 text-center p-4">{props.data.id}</p>
+            <p className="ogsfonts24 text-center p-4">
+              {!boxesDataLoading ? applicants : ""}
+            </p>
           </div>
           <p className="ogsfonts14 text-center">Applied</p>
         </div>
