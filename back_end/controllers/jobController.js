@@ -566,10 +566,10 @@ const getBoxesDetails = async (req, res, next) => {
       `SELECT * FROM job_applicants_cv WHERE job_id = '${jobId}'`
     );
     const shortlisted = await sequelize.query(
-      `SELECT * FROM job_applicants_cv WHERE job_id = '${jobId}' AND shortlisted = '1'`
+      `SELECT * FROM job_applicants_cv WHERE job_id = '${jobId}' AND 	is_shortlisted = '1'`
     );
     const rejected = await sequelize.query(
-      `SELECT * FROM job_applicants_cv WHERE job_id = '${jobId}' AND rejected = '1'`
+      `SELECT * FROM job_applicants_cv WHERE job_id = '${jobId}' AND 	is_rejected = '1'`
     );
     res.json({
       code: 1,
