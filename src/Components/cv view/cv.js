@@ -98,8 +98,9 @@ const Cv = ({ applicant, job_id }) => {
                 onClick={() => {
                   axios
                     .post(
-                      ``,
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
                       {
+                        action: "shorlist",
                         cvId: applicant.cv_id,
                       },
                       {

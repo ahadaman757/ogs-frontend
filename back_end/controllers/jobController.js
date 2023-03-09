@@ -589,11 +589,16 @@ const changeCVState = async (req, res, next) => {
           `UPDATE job_applicants_cv SET is_shortlisted = '1' WHERE cv_id = '${cvId}'`
         );
         res.json({ code: 1, message: "Updated" });
+        break;
       case "reject":
         const changeStateReject = await sequelize.query(
           `UPDATE job_applicants_cv SET is_rejected = '1' WHERE cv_id = '${cvId}'`
         );
         res.json({ code: 1, message: "Updated" });
+        break;
+      default:
+        res.json({ code: 0, message: "Unknown action" });
+        break;
     }
   } catch (error) {
     res.json({ code: 0, message: error });
