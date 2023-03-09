@@ -94,6 +94,29 @@ const Cv = ({ applicant, job_id }) => {
                 Preview CV
               </button>
               <button
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      ``,
+                      {
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => console.log(response));
+                }}
+              >
+                <span>
+                  <img className="me-1" src={eyeicon} />
+                </span>
+                Shortlist
+              </button>
+              <button
                 onClick={() => setdownload(true)}
                 className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
               >

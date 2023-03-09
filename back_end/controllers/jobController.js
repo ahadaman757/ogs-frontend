@@ -579,6 +579,27 @@ const getBoxesDetails = async (req, res, next) => {
     });
   } catch (error) {}
 };
+
+const changeCVState = async (req, res, next) => {
+  const { action, cvId } = req.body;
+  try {
+    switch (action) {
+      case "shortlist":
+        const changeState = await sequelize.query(
+          `UPDATE job_applicants_cv SET is_shortlisted = '1' WHERE cv_id = '${cvId}'`
+        );
+        res.json({ code: 1, message: "Updated" });
+      case "reject":
+        const changeStateReject = await sequelize.query(
+          `UPDATE job_applicants_cv SET is_rejected = '1' WHERE cv_id = '${cvId}'`
+        );
+        res.json({ code: 1, message: "Updated" });
+    }
+  } catch (error) {
+    res.json({ code: 0, message: error });
+  }
+};
+
 export {
   JobPostController,
   JobMyCompaniesController,

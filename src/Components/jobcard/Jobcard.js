@@ -34,6 +34,8 @@ const Jobcard = (props) => {
   const navigate = useNavigate();
   const [boxesDataLoading, setBoxesDataLoading] = useState(true);
   const [applicants, setApplicants] = useState(0);
+  const [shortlisted, setShortlisted] = useState(0);
+  const [rejected, setRejected] = useState(0);
   console.log(props);
   let date = new Date(props.data?.createdAt);
   let day = date.getDate();
@@ -54,7 +56,10 @@ const Jobcard = (props) => {
         }
       )
       .then((response) => {
-        setApplicants(response.data.applicants.length);
+        setApplicants(response.data.applicants[0].length);
+        setRejected(response.data.rejected[0].length);
+        setShortlisted(response.data.shortlisted[0].length);
+        console.log("BOXES DATA!", response);
         setBoxesDataLoading(false);
       });
   }, []);
@@ -120,10 +125,10 @@ const Jobcard = (props) => {
         >
           <div className={`${Styles.jobcarddetailsl}`}>
             <p className="ogsfonts24 text-center p-4">
-              {props.data.applicants}
+              {!boxesDataLoading ? rejected : ""}
             </p>
           </div>
-          <p className="ogsfonts14 text-center">Applied</p>
+          <p className="ogsfonts14 text-center">Rejected</p>
         </div>
         <div
           key={props.data.id}
@@ -133,10 +138,10 @@ const Jobcard = (props) => {
         >
           <div className={`${Styles.jobcarddetailsl}`}>
             <p className="ogsfonts24 text-center p-4">
-              {props.data.applicants}
+              {!boxesDataLoading ? shortlisted : ""}
             </p>
           </div>
-          <p className="ogsfonts14 text-center">Applied</p>
+          <p className="ogsfonts14 text-center">Shortlisted</p>
         </div>
         {/* <div>
           <div className={`${Styles.jobcarddetails}`}>
