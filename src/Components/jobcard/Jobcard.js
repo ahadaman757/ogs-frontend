@@ -1,32 +1,34 @@
-import Styles from './jobcard.module.css';
-import viewicon from '../../Assets/Images/eye.png';
-import filtericon from '../../Assets/Images/Vector 309.png';
-import copyicon from '../../Assets/Images/files.png';
-import shareicon from '../../Assets/Images/share.png';
-import deleticon from '../../Assets/Images/Trash.png';
-import { useNavigate } from 'react-router-dom';
-import ShareLink from 'react-facebook-share-link';
-import { FacebookShareButton, TwitterShareButton } from 'react-share';
-import { FacebookIcon, TwitterIcon } from 'react-share';
+import Styles from "./jobcard.module.css";
+import viewicon from "../../Assets/Images/eye.png";
+import filtericon from "../../Assets/Images/Vector 309.png";
+import copyicon from "../../Assets/Images/files.png";
+import shareicon from "../../Assets/Images/share.png";
+import deleticon from "../../Assets/Images/Trash.png";
+import { useNavigate } from "react-router-dom";
+import ShareLink from "react-facebook-share-link";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon } from "react-share";
+import { useEffect } from "react";
+import axios from "axios";
 
 function kFormatter(num) {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + 'k'
+    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
     : Math.sign(num) * Math.abs(num);
 }
 const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 const Jobcard = (props) => {
   const navigate = useNavigate();
@@ -35,13 +37,30 @@ const Jobcard = (props) => {
   let day = date.getDate();
   let month = date.getMonth();
   let year = date.getFullYear();
+  // GET BOXES DETAILS
+  useEffect(() => {
+    axios
+      .post(
+        `https://3.14.27.53:3003/jobs/getBoxesDetails`,
+        {
+          jobId: props.data.id,
+        },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
+      .then((response) => console.log(response));
+  }, []);
+
   return (
     <div
       className={`p-3 my-2 ${Styles.Jobcardmain}`}
       onClick={() =>
-        navigate('/newapplicant', { state: { id: props.data.id } })
+        navigate("/newapplicant", { state: { id: props.data.id } })
       }
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
       <div className=" d-flex align-items-center">
         <div className="d-flex">
@@ -55,7 +74,7 @@ const Jobcard = (props) => {
       <div className={`d-flex justify-content-between align-items-center`}>
         <div className={`d-flex`}>
           <h1 className="ogsfonts24 m-0">
-            {props.data.id} / {props.data.job_title} - {props.data.city},{' '}
+            {props.data.id} / {props.data.job_title} - {props.data.city},{" "}
             {props.data.country}
           </h1>
           <button className={`mx-2 ${Styles.filaneyebtn}`}>
@@ -68,7 +87,7 @@ const Jobcard = (props) => {
 
       <div className="d-flex">
         <p>
-          Offered salary: {kFormatter(props.data.min_salary)} -{' '}
+          Offered salary: {kFormatter(props.data.min_salary)} -{" "}
           {kFormatter(props.data.max_salary)}
         </p>
       </div>
@@ -78,7 +97,31 @@ const Jobcard = (props) => {
         <div
           key={props.data.id}
           onClick={() =>
-            navigate('/newapplicant', { state: { id: props.data.id } })
+            navigate("/newapplicant", { state: { id: props.data.id } })
+          }
+        >
+          <div className={`${Styles.jobcarddetailsl}`}>
+            <p className="ogsfonts24 text-center p-4">{props.data.id}</p>
+          </div>
+          <p className="ogsfonts14 text-center">Applied</p>
+        </div>
+        <div
+          key={props.data.id}
+          onClick={() =>
+            navigate("/newapplicant", { state: { id: props.data.id } })
+          }
+        >
+          <div className={`${Styles.jobcarddetailsl}`}>
+            <p className="ogsfonts24 text-center p-4">
+              {props.data.applicants}
+            </p>
+          </div>
+          <p className="ogsfonts14 text-center">Applied</p>
+        </div>
+        <div
+          key={props.data.id}
+          onClick={() =>
+            navigate("/newapplicant", { state: { id: props.data.id } })
           }
         >
           <div className={`${Styles.jobcarddetailsl}`}>
@@ -119,7 +162,7 @@ const Jobcard = (props) => {
             </p>
           </div>
           <FacebookShareButton
-            url={'https://3.14.27.53:3002'}
+            url={"https://3.14.27.53:3002"}
             className={`mx-2 Demo__some-network__share-button ${Styles.csdbtn}`}
           >
             <span className="mx-2">

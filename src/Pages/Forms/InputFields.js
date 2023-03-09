@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import styles from '../authpages/main.module.css';
-import eye from '../../Assets/Images/eye.svg';
-import eyedes from '../../Assets/Images/eye-disable.svg';
+import { useState } from "react";
+import styles from "../authpages/main.module.css";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 
 const List = (props) => {
   const { id, label, list_id, formik, options, onChangeValue } = props;
@@ -23,7 +23,7 @@ const List = (props) => {
         id={list_id}
       >
         <option value="" disabled selected hidden>
-          select one
+          Select One
         </option>
         {options &&
           options.map((option, index) => {
@@ -36,7 +36,7 @@ const List = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {' '}
+                {" "}
                 {lable}
               </option>
             );
@@ -68,7 +68,7 @@ const ListSecond = (props) => {
         id={list_id}
       >
         <option value="" disabled selected hidden>
-          select one
+          Select One
         </option>
         {options &&
           options.map((option, index) => {
@@ -81,7 +81,7 @@ const ListSecond = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {' '}
+                {" "}
                 {lable}
               </option>
             );
@@ -134,7 +134,7 @@ const ListUpdate = (props) => {
                 selected={value == initialvalue ? true : false}
                 value={value}
               >
-                {' '}
+                {" "}
                 {lable}
               </option>
             );
@@ -147,7 +147,7 @@ const ListUpdate = (props) => {
   );
 };
 const TextInput = (props) => {
-  const { id, label, formik, type = 'text', onChangeValue } = props;
+  const { id, label, formik, type = "text", onChangeValue } = props;
 
   return (
     <>
@@ -171,7 +171,7 @@ const TextInput = (props) => {
   );
 };
 const WhatsAppInput = (props) => {
-  const { id, label, formik, type = 'text', onChangeValue } = props;
+  const { id, label, formik, type = "text", onChangeValue } = props;
 
   return (
     <>
@@ -181,7 +181,7 @@ const WhatsAppInput = (props) => {
       <input
         onChange={(e) => {
           onChangeValue(e);
-localStorage.setItem('phone', e.target.value);
+          localStorage.setItem("phone", e.target.value);
         }}
         {...formik.getFieldProps(`'${id}'`)}
         type={type}
@@ -198,7 +198,7 @@ localStorage.setItem('phone', e.target.value);
   );
 };
 const SecondTextInput = (props) => {
-  const { id, label, formik, type = 'text', onChangeValue } = props;
+  const { id, label, formik, type = "text", onChangeValue } = props;
 
   return (
     <>
@@ -208,7 +208,7 @@ const SecondTextInput = (props) => {
       <input
         onChange={(e) => {
           onChangeValue(e);
-          localStorage.setItem('uMail', e.target.value);
+          localStorage.setItem("uMail", e.target.value);
         }}
         {...formik.getFieldProps(`'${id}'`)}
         type={type}
@@ -355,5 +355,5 @@ export {
   FileUpload2,
   SecondTextInput,
   ListSecond,
-  WhatsAppInput
+  WhatsAppInput,
 };

@@ -68,6 +68,7 @@ import Agentregister from "./Pages/authpages/agent";
 import Instituteregister from "./Pages/authpages/Institute";
 import EmployerEditJob from "./Pages/adminpanel/Manage All Jobs/EmployerEditJob";
 import AdditionalFiles from "./Pages/adminpanel/Manage Category/AdditionalFiles";
+import DownloadCVPage from "./Components/cv view/DownloadCVPage";
 
 const getContextValue = () => {
   let token = localStorage.getItem("accessToken");
@@ -234,7 +235,7 @@ const router = createBrowserRouter([
     path: "admineditjob/:jobId",
     element: <EditJob />,
   },
-    {
+  {
     path: "employereditjob/:jobId",
     element: <EmployerEditJob />,
   },
@@ -299,7 +300,7 @@ const router = createBrowserRouter([
     path: "jobssearch",
     element: <JobsSearch />,
   },
-    {
+  {
     path: "additionalfiles",
     element: <AdditionalFiles />,
   },
@@ -310,6 +311,10 @@ const router = createBrowserRouter([
   {
     path: "createcv",
     element: <CreateCv />,
+  },
+  {
+    path: "downloadthiscv",
+    element: <DownloadCVPage />,
   },
   {
     path: "editcv",

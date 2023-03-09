@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import styles from './main.module.css';
-import MultiStep from 'react-multistep';
-import eye from '../../Assets/Images/eye.svg';
-import eyedes from '../../Assets/Images/eye-disable.svg';
+import styles from "./main.module.css";
+import MultiStep from "react-multistep";
+import eye from "../../Assets/Images/eye.svg";
+import eyedes from "../../Assets/Images/eye-disable.svg";
 
 import {
   LoginInformationValidation,
   BusinessInformationValidation,
   AddressInformationValidation,
-} from '../../formsValidations/Registeration';
+} from "../../formsValidations/Registeration";
 import {
   List,
   TextInput,
   PassInput,
   SecondTextInput,
   WhatsAppInput,
-} from '../Forms/InputFields';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import mobilelogo from '../../Assets/Images/mobilelogo.jpg';
+} from "../Forms/InputFields";
+import { useFormik } from "formik";
+import axios from "axios";
+import mobilelogo from "../../Assets/Images/mobilelogo.jpg";
 
 const UploadImageSide = ({ setLogoData, title, formik, id }) => {
   const [photoSelected, setphotoSelected] = useState();
@@ -40,7 +40,7 @@ const UploadImageSide = ({ setLogoData, title, formik, id }) => {
             {photoSelected == null ? (
               <img
                 className={`img-fluid ${styles.file_upload_icon} `}
-                src={require('../../Assets/Images/file upload.png')}
+                src={require("../../Assets/Images/file upload.png")}
                 alt=""
               />
             ) : (
@@ -73,7 +73,7 @@ const LoginInformation = ({
   employerRegsiterOptions,
 }) => {
   function generateCode(length, characters) {
-    var result = '';
+    var result = "";
     for (var i = 0; i < length; i++) {
       result += characters.charAt(
         Math.floor(Math.random() * characters.length)
@@ -84,32 +84,32 @@ const LoginInformation = ({
 
   const [positions, setpostions] = useState();
   const [loginInfo, setloginInfo] = useState(null);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const [codeSent, setCodeSent] = useState(false);
   const [codeGenerated, setCodeGenerated] = useState();
   const [logov, setlogov] = useState(eye);
   const [logov2, setlogov2] = useState(eye);
-  const [passwordType, setPasswordType] = useState('password');
-  const [passwordType2, setPasswordType2] = useState('password');
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordType2, setPasswordType2] = useState("password");
   const [message, setMessage] = useState();
   const [code, setCode] = useState();
-  
+
   const togglePassword = () => {
-    if (passwordType === 'password') {
-      setPasswordType('text');
+    if (passwordType === "password") {
+      setPasswordType("text");
       setlogov(eyedes);
       return;
     }
-    setPasswordType('password');
+    setPasswordType("password");
     setlogov(eye);
   };
   const togglePassword2 = () => {
-    if (passwordType2 === 'password') {
-      setPasswordType2('text');
+    if (passwordType2 === "password") {
+      setPasswordType2("text");
       setlogov2(eyedes);
       return;
     }
-    setPasswordType2('password');
+    setPasswordType2("password");
     setlogov2(eye);
   };
 
@@ -166,7 +166,7 @@ const LoginInformation = ({
               type="email"
               id="email"
               formik={logininformationFormik}
-              label="Email"
+              label="Email Address"
             />
           </div>
           {message}
@@ -177,9 +177,9 @@ const LoginInformation = ({
                 <input
                   placeholder="Enter Verification Code"
                   style={{
-                    padding: '6px 9px',
-                    width: '100%',
-                    border: '1px solid lightgray',
+                    padding: "6px 9px",
+                    width: "100%",
+                    border: "1px solid lightgray",
                   }}
                   onChange={(e) => setCode(e.target.value)}
                 />
@@ -189,13 +189,13 @@ const LoginInformation = ({
                   <span
                     type="button"
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-                    style={{ textAlign: 'center' }}
+                    style={{ textAlign: "center" }}
                     onClick={() => {
                       if (code == codeGenerated) {
                         setIsVerified(true);
-                        setMessage('You have verified your email.');
+                        setMessage("You have verified your email.");
                       } else {
-                        setMessage('Incorrect Code');
+                        setMessage("Incorrect Code");
                       }
                     }}
                   >
@@ -205,24 +205,24 @@ const LoginInformation = ({
                   <span
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                     type="button"
-                    style={{ textAlign: 'center' }}
+                    style={{ textAlign: "center" }}
                     onClick={() => {
                       setTimeout(() => {
                         localStorage.setItem(
-                          'uMail',
+                          "uMail",
                           logininformationFormik.values.email
                         );
-                        let generatedCode = generateCode(6, '1234567890');
+                        let generatedCode = generateCode(6, "1234567890");
                         setCodeGenerated(generatedCode);
                         axios
                           .post(`https://3.14.27.53:3003/general/verifyEmail`, {
-                            userEmail: localStorage.getItem('uMail'),
+                            userEmail: localStorage.getItem("uMail"),
                             token: generatedCode,
                           })
                           .then((response) => {
                             console.log(response);
                             if (response.data.code == 1) {
-                              setMessage('Please check your email');
+                              setMessage("Please check your email");
                               setCodeSent(true);
                             } else {
                               setMessage(response.data.message);
@@ -274,7 +274,7 @@ const LoginInformation = ({
           ) : (
             <span
               className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: "center" }}
             >
               Verify Email To Continue
             </span>
@@ -290,8 +290,8 @@ const Businessinformation = ({
   formData,
   employerRegsiterOptions,
 }) => {
-    function generateCode(length, characters) {
-    var result = '';
+  function generateCode(length, characters) {
+    var result = "";
     for (var i = 0; i < length; i++) {
       result += characters.charAt(
         Math.floor(Math.random() * characters.length)
@@ -351,16 +351,15 @@ const Businessinformation = ({
               id="mobileNumber"
               formik={BusinessinformationFormik}
               label="Mobile Number"
-
             />
             <div className="row">
               <div className="col-md-6">
                 <input
                   placeholder="Enter Verification Code"
                   style={{
-                    padding: '6px 9px',
-                    width: '100%',
-                    border: '1px solid lightgray',
+                    padding: "6px 9px",
+                    width: "100%",
+                    border: "1px solid lightgray",
                   }}
                   onChange={(e) => setCode(e.target.value)}
                 />
@@ -370,13 +369,13 @@ const Businessinformation = ({
                   <span
                     type="button"
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
-                    style={{ textAlign: 'center' }}
+                    style={{ textAlign: "center" }}
                     onClick={() => {
                       if (code == codeGenerated) {
                         setIsVerified(true);
-                        setMessage('You have verified your email.');
+                        setMessage("You have verified your email.");
                       } else {
-                        setMessage('Incorrect Code');
+                        setMessage("Incorrect Code");
                       }
                     }}
                   >
@@ -386,27 +385,27 @@ const Businessinformation = ({
                   <span
                     className={`unset_button w-100 text-white py-2 form_action_button  submit ${styles.sobtn}`}
                     type="button"
-                    style={{ textAlign: 'center' }}
+                    style={{ textAlign: "center" }}
                     onClick={() => {
                       setTimeout(() => {
                         localStorage.setItem(
-                          'phone',
+                          "phone",
                           BusinessinformationFormik.values.mobileNumber
                         );
-                        let generatedCode = generateCode(6, '1234567890');
+                        let generatedCode = generateCode(6, "1234567890");
                         setCodeGenerated(generatedCode);
                         let data = JSON.stringify({
-                          "number": localStorage.getItem('phone'),
-                          "message": `Your OTP is ${generatedCode}`
-                        })
+                          number: localStorage.getItem("phone"),
+                          message: `Your OTP is ${generatedCode}`,
+                        });
                         axios
                           .post(`https://3.14.27.53:3004/send-message`, data, {
-                            headers: { 'Content-Type': 'application/json' },
+                            headers: { "Content-Type": "application/json" },
                           })
                           .then((response) => {
                             console.log(response);
                             if (response.data.status === true) {
-                              setMessage('Please check your Number');
+                              setMessage("Please check your Number");
                               setCodeSent(true);
                             } else {
                               setMessage(response.data.message);
@@ -467,7 +466,7 @@ const AddressDetails = ({
   }, []);
   useEffect(() => {
     axios
-      .post('https://3.14.27.53:3003/get_city_by_country_id', {
+      .post("https://3.14.27.53:3003/get_city_by_country_id", {
         country_id: AddressinformationFormik.values.country || 1,
       })
       .then((res) => {
@@ -532,7 +531,7 @@ const AddressDetails = ({
           <TextInput
             id="employerEmail"
             formik={AddressinformationFormik}
-            label="Email"
+            label="Email Address"
           />
         </div>
         <button
@@ -555,7 +554,7 @@ function Register() {
   const [employerRegsiterOptions, setemployerRegsiterOptions] = useState();
   useEffect(() => {
     axios
-      .get('https://3.14.27.53:3003/employer_register_options')
+      .get("https://3.14.27.53:3003/employer_register_options")
       .then((res) => {
         setemployerRegsiterOptions(res.data);
       })
@@ -565,22 +564,22 @@ function Register() {
   }, []);
   const [LogoData, setLogoData] = useState();
   const [formData, setformData] = useState({
-    position: '',
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    repeat_password: '',
-    businessName: '',
-    businessType: '',
-    businessWebpage: '',
-    image: '',
-    mobileNumber: '',
-    address: '',
-    country: '',
-    employerName: '',
-    employerNumber: '',
-    employerEmail: '',
+    position: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    repeat_password: "",
+    businessName: "",
+    businessType: "",
+    businessWebpage: "",
+    image: "",
+    mobileNumber: "",
+    address: "",
+    country: "",
+    employerName: "",
+    employerNumber: "",
+    employerEmail: "",
   });
   const [formStep, setformStep] = useState(1);
 
@@ -589,7 +588,7 @@ function Register() {
   };
   const steps = [
     {
-      name: 'StepOne',
+      name: "StepOne",
       component: (
         <div>
           <LoginInformation
@@ -602,7 +601,7 @@ function Register() {
       ),
     },
     {
-      name: 'StepTwo',
+      name: "StepTwo",
       component: (
         <div>
           <Businessinformation
@@ -615,7 +614,7 @@ function Register() {
       ),
     },
     {
-      name: 'StepThree',
+      name: "StepThree",
       component: (
         <div>
           <AddressDetails
@@ -638,13 +637,13 @@ function Register() {
         <div className={` ${styles.auth_page__model} row `}>
           <div
             className={`${
-              formStep == 4 ? ' col-md-12' : 'col-md-6'
+              formStep == 4 ? " col-md-12" : "col-md-6"
             }  d-flex justify-content-center align-items-center py-md-4 py-2 px-md-5 px-2`}
-            style={{ overflow: 'hidden' }}
+            style={{ overflow: "hidden" }}
           >
             <div className="container-fluid">
               <div className="d-flex justify-content-center">
-                <img src={mobilelogo} />{' '}
+                <img src={mobilelogo} />{" "}
               </div>
               <div className="text-center my-4">
                 <h3 className={`${styles.form_heading_1}`}>
@@ -661,11 +660,11 @@ function Register() {
                   <>
                     <div
                       className={` form_step ${
-                        formStep != 4 ? 'slide_button' : 'disable_slide_button'
+                        formStep != 4 ? "slide_button" : "disable_slide_button"
                       } `}
                     >
                       <MultiStep
-                        prevStyle={{ backgroundColor: 'red' }}
+                        prevStyle={{ backgroundColor: "red" }}
                         activeStep={0}
                         showNavigation={true}
                         steps={steps}
@@ -675,7 +674,7 @@ function Register() {
                       <button
                         className={`primary-bg form_action_button text-white unset_button ogsfonts15 py-2 $`}
                       >
-                        {' '}
+                        {" "}
                         Register
                       </button>
                     ) : null}

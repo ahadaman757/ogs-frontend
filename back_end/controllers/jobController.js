@@ -559,6 +559,15 @@ const UpdateJob = async (req, res, next) => {
     next(error);
   }
 };
+const getBoxesDetails = async (req, res, next) => {
+  try {
+    const { jobId } = req.body;
+    const applicants = await sequelize.query(
+      `SELECT * FROM job_applicants_cv WHERE job_id = '${jobId}'`
+    );
+    res.json({ code: 1, applicants: applicants });
+  } catch (error) {}
+};
 export {
   JobPostController,
   JobMyCompaniesController,
@@ -578,4 +587,5 @@ export {
   getJobByTitle,
   getJobByCountry,
   getEmployerData,
+  getBoxesDetails,
 };
