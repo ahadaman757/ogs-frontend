@@ -620,4 +620,5 @@ export {
   getJobByCountry,
   getEmployerData,
   getBoxesDetails,
+  changeCVState,
 };
