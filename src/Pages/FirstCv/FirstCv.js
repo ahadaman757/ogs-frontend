@@ -220,6 +220,7 @@ const SignUpCv = () => {
           additionalFormData.append(key, fullFormData[key]);
         }
       }
+      formdata.append("cv_style", localStorage.getItem("cv_style"));
       axios
         .post("https://3.14.27.53:3003/users", formdata, {
           headers: {
@@ -293,7 +294,16 @@ const SignUpCv = () => {
           <div className={`container ${Styles.Postajobchild}`}>
             <div className="p-3">
               <h1 className="py-3 ogsfonts24">Create Cv</h1>
-              <h1 className="ogsfonts18">User Regsiteration</h1>
+              <h1>CV Style</h1>
+              <select
+                onClick={(e) =>
+                  localStorage.setItem("cv_style", e.target.value)
+                }
+              >
+                <option value={1}>Style 1</option>
+                <option value={2}>Style 2</option>
+              </select>
+              <h1 className="ogsfonts18">User Registration</h1>
               <h3 className={`${Styles.formSectionHeading}`}>
                 Personal Information
               </h3>

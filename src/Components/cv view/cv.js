@@ -60,39 +60,8 @@ const Cv = ({ applicant, job_id }) => {
       {" "}
       <div className={` p-4 my-4 ${Styles.Cvmainds}`}>
         <div className="d-flex  justify-content-between">
-          {applicant.code !== "none" && unlockCV === false ? (
-            <>
-              CV Private contact OGS to access the CVs
-              <button
-                style={{
-                  color: "white",
-                  border: "none",
-                  backgroundColor: "#3498db",
-                  padding: "10px 20px",
-                }}
-                onClick={() => {
-                  let addedCode = prompt(
-                    `Enter the code for this CV\n\nIf you don't have the code, contact OGS Man Power and ask them to provide you the code of CV ${applicant.cv_id}`
-                  );
-                  if (addedCode == applicant.code) {
-                    setUnlockCV(true);
-                  } else {
-                    alert("Incorrect Code");
-                  }
-                }}
-              >
-                Unlock CV
-              </button>
-            </>
-          ) : (
-            <>
-              <p className="m-0 my-2 ogsfonts14 ">Viewed</p>
-              <button className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}>
-                <span>
-                  <img className="me-1" src={eyeicon} />
-                </span>
-                Preview CV
-              </button>
+          <>
+            {applicant.is_rejected == "1" ? (
               <button
                 className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
                 onClick={() => {
@@ -100,7 +69,7 @@ const Cv = ({ applicant, job_id }) => {
                     .post(
                       `https://3.14.27.53:3003/jobs/changeCVState`,
                       {
-                        action: "shorlist",
+                        action: "shortlist",
                         cvId: applicant.cv_id,
                       },
                       {
@@ -115,28 +84,110 @@ const Cv = ({ applicant, job_id }) => {
                 <span>
                   <img className="me-1" src={eyeicon} />
                 </span>
-                Shortlist
+                Un-Reject
               </button>
+            ) : (
               <button
-                onClick={() => setdownload(true)}
-                className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "reject",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => alert(response.data.message));
+                }}
               >
                 <span>
-                  <img className="me-1" src={downicon} />
+                  <img className="me-1" src={eyeicon} />
                 </span>
-                <PDFDownloadLink
-                  className="my-2"
-                  document={<BasicDocument cv_data={applicant} />}
-                  fileName="somename.pdf"
-                >
-                  {({ loading, error }) => {
-                    console.log(error);
-                    return loading ? "Loading document..." : "Download now!";
-                  }}
-                </PDFDownloadLink>
+                Reject
               </button>
-            </>
-          )}
+            )}
+            <button className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}>
+              <span>
+                <img className="me-1" src={eyeicon} />
+              </span>
+              Preview CV
+            </button>
+            {applicant.is_shortlisted == "1" ? (
+              <button
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "shortlist",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => console.log(response));
+                }}
+              >
+                <span>
+                  <img className="me-1" src={eyeicon} />
+                </span>
+                Un-shortlist
+              </button>
+            ) : (
+              <button
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "shortlist",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => alert(response.data.message));
+                }}
+              >
+                <span>
+                  <img className="me-1" src={eyeicon} />
+                </span>
+                Shortlist
+              </button>
+            )}
+            <button
+              onClick={() => setdownload(true)}
+              className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
+            >
+              <span>
+                <img className="me-1" src={downicon} />
+              </span>
+              <PDFDownloadLink
+                className="my-2"
+                document={<BasicDocument cv_data={applicant} />}
+                fileName="somename.pdf"
+              >
+                {({ loading, error }) => {
+                  console.log(error);
+                  return loading ? "Loading document..." : "Download now!";
+                }}
+              </PDFDownloadLink>
+            </button>
+          </>
         </div>
         <hr />
         <div className="row">
@@ -209,40 +260,134 @@ const Cv = ({ applicant, job_id }) => {
       </div>
       <div className={` p-4 my-4 ${Styles.Cvmainmb}`}>
         <div className="d-flex  justify-content-between">
-          {applicant.code !== "none" ? (
-            <>
-              CV is Private contact OGS to access the CV. <input />{" "}
-              <button>Unlock</button>
-            </>
-          ) : (
-            <>
-              <p className="m-0 my-2 ogsfonts14 ">Viewedd</p>
-              <button className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}>
+          <>
+            {applicant.is_rejected == "1" ? (
+              <button
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "shortlist",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => console.log(response));
+                }}
+              >
                 <span>
                   <img className="me-1" src={eyeicon} />
                 </span>
-                Preview CVs
+                Un-Reject
               </button>
+            ) : (
               <button
-                onClick={() => setdownload(true)}
-                className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "reject",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => alert(response.data.message));
+                }}
               >
                 <span>
-                  <img className="me-1" src={downicon} />
+                  <img className="me-1" src={eyeicon} />
                 </span>
-                <PDFDownloadLink
-                  className="my-2"
-                  document={<BasicDocument cv_data={applicant} />}
-                  fileName="somename.pdf"
-                >
-                  {({ loading, error }) => {
-                    console.log(error);
-                    return loading ? "Loading document..." : "Download now!";
-                  }}
-                </PDFDownloadLink>
+                Reject
               </button>
-            </>
-          )}
+            )}
+            <button className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}>
+              <span>
+                <img className="me-1" src={eyeicon} />
+              </span>
+              Preview CVs
+            </button>
+            {applicant.is_shortlisted == "1" ? (
+              <button
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "shortlist",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => console.log(response));
+                }}
+              >
+                <span>
+                  <img className="me-1" src={eyeicon} />
+                </span>
+                Un-shortlist
+              </button>
+            ) : (
+              <button
+                className={` my-2 ogsfonts14 ${Styles.cvheadicon}`}
+                onClick={() => {
+                  axios
+                    .post(
+                      `https://3.14.27.53:3003/jobs/changeCVState`,
+                      {
+                        action: "shortlist",
+                        cvId: applicant.cv_id,
+                      },
+                      {
+                        headers: {
+                          accessToken: localStorage.getItem("accessToken"),
+                        },
+                      }
+                    )
+                    .then((response) => alert(response.data.message));
+                }}
+              >
+                <span>
+                  <img className="me-1" src={eyeicon} />
+                </span>
+                Shortlist
+              </button>
+            )}
+            <button
+              onClick={() => setdownload(true)}
+              className={`my-2 ogsfonts14 ${Styles.cvheadicon}`}
+            >
+              <span>
+                <img className="me-1" src={downicon} />
+              </span>
+              <PDFDownloadLink
+                className="my-2"
+                document={<BasicDocument cv_data={applicant} />}
+                fileName="somename.pdf"
+              >
+                {({ loading, error }) => {
+                  console.log(error);
+                  return loading ? "Loading document..." : "Download now!";
+                }}
+              </PDFDownloadLink>
+            </button>
+          </>
         </div>
         <hr />
         <div className="">
