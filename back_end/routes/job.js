@@ -49,7 +49,7 @@ jobRouter.post("/getjobdetail", auth, AdminGetJobDetails);
 jobRouter.get("/getEmployerData", auth, getEmployerData);
 jobRouter.post("/getBoxesDetails", auth, getBoxesDetails);
 jobRouter.post("/changeCVState", auth, changeCVState);
-jobRouter.post("/getJobByIndustry", auth, getJobByIndustry);
+jobRouter.post("/getJobByIndustry", getJobByIndustry);
 // jobRouter.get('/me', auth, usermecontroller)
 
 export default jobRouter;

@@ -40,10 +40,12 @@ const Mobile = () => {
 
   const industryHandler = (e) => {
     setShowIndustryJobs(e);
+    // alert(e);
   };
 
   const showIndustryAllow = (e) => {
     setShowIndustry(e);
+    // alert(e);
   };
 
   return (
@@ -63,8 +65,9 @@ const Mobile = () => {
         userSearchTitle={userSearchTitle}
         showCustomHandler={showCustomHandler}
         selectedCountry={selectedCountry}
-        industryHandler={industryHandler}
-        showIndustryAllow={showIndustryAllow}
+        industryHandler={showIndustry}
+        // showIndustryAllow={showIndustryAllow}
+        showIndustryJobs={showIndustryJobs}
       />
 
       <Courses />

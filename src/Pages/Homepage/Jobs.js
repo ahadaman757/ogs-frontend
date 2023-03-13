@@ -57,10 +57,10 @@ export const Jobs = (props) => {
         <br />
         <br />
         <div className={`${styles.pakistanJobs__container}`}>
-          {props.showCustomSearch ? (
+          {props.showCustomSearch || props.industryHandler ? (
             <ShowCustomJob
-              industryShow={props.showIndustryAllow}
-              industryHandler={props.industryHandler}
+              industryShow={props.showIndustryJobs}
+              industryHandler={props.showIndustryJobs}
               selectedCountry={props.selectedCountry}
               search={props.userSearchTitle}
               showCustomHandler={props.showCustomHandler}
