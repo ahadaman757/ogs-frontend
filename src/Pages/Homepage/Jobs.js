@@ -57,57 +57,68 @@ export const Jobs = (props) => {
         <br />
         <br />
         <div className={`${styles.pakistanJobs__container}`}>
-        {
-          props.showCustomSearch ? <ShowCustomJob selectedCountry={props.selectedCountry} search={props.userSearchTitle} showCustomHandler={props.showCustomHandler} />  : <>          <div className="my-3">
-            <h2>Gulf countries</h2>
-            {jobsLoading ? (
-              <span>Jobs Loading</span>
-            ) : AllJobs.length == 0 ? (
-              <p>No Jobs Found</p>
-            ) : (
-              AllJobs.filter((job_data) => {
-                if (
-                  job_data.country.toLowerCase() == "bahrain" ||
-                  job_data.country.toLowerCase() == "kuwait" ||
-                  job_data.country.toLowerCase() == "oman" ||
-                  job_data.country.toLowerCase() == "qatar" ||
-                  job_data.country.toLowerCase() == "saudi arabia" ||
-                  job_data.country.toLowerCase() == "united arab emirates"
-                ) {
-                  return job_data;
-                }
-              }).map((job_data) => {
-                return (
-                  <div className="my-2">
-                    {" "}
-                    <Jobcardhome job_data={job_data} />
-                  </div>
-                );
-              })
-            )}
-          </div>
-          <div>
-            <h2>Pakistan Jobs</h2>
-            {jobsLoading ? (
-              <span>Jobs Loading</span>
-            ) : AllJobs.length == 0 ? (
-              <p>No Jobs Found</p>
-            ) : (
-              AllJobs.filter((job_data) => {
-                if (job_data.country.toLowerCase() == "pakistan") {
-                  return job_data;
-                }
-              }).map((job_data) => {
-                return (
-                  <div className="my-2">
-                    {" "}
-                    <Jobcardhome job_data={job_data} />
-                  </div>
-                );
-              })
-            )}
-          </div></>
-        }
+          {props.showCustomSearch ? (
+            <ShowCustomJob
+              industryShow={props.showIndustryAllow}
+              industryHandler={props.industryHandler}
+              selectedCountry={props.selectedCountry}
+              search={props.userSearchTitle}
+              showCustomHandler={props.showCustomHandler}
+            />
+          ) : (
+            <>
+              {" "}
+              <div className="my-3">
+                <h2>Gulf countries</h2>
+                {jobsLoading ? (
+                  <span>Jobs Loading</span>
+                ) : AllJobs.length == 0 ? (
+                  <p>No Jobs Found</p>
+                ) : (
+                  AllJobs.filter((job_data) => {
+                    if (
+                      job_data.country.toLowerCase() == "bahrain" ||
+                      job_data.country.toLowerCase() == "kuwait" ||
+                      job_data.country.toLowerCase() == "oman" ||
+                      job_data.country.toLowerCase() == "qatar" ||
+                      job_data.country.toLowerCase() == "saudi arabia" ||
+                      job_data.country.toLowerCase() == "united arab emirates"
+                    ) {
+                      return job_data;
+                    }
+                  }).map((job_data) => {
+                    return (
+                      <div className="my-2">
+                        {" "}
+                        <Jobcardhome job_data={job_data} />
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+              <div>
+                <h2>Pakistan Jobs</h2>
+                {jobsLoading ? (
+                  <span>Jobs Loading</span>
+                ) : AllJobs.length == 0 ? (
+                  <p>No Jobs Found</p>
+                ) : (
+                  AllJobs.filter((job_data) => {
+                    if (job_data.country.toLowerCase() == "pakistan") {
+                      return job_data;
+                    }
+                  }).map((job_data) => {
+                    return (
+                      <div className="my-2">
+                        {" "}
+                        <Jobcardhome job_data={job_data} />
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

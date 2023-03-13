@@ -216,9 +216,9 @@ export const HeroSection = (props) => {
             <select
               className={`p-2 ${styles.inputixont}`}
               style={{ borderLeft: "none" }}
-              onChange={(e) => props.countryHandler(e.target.value)}
+              onChange={(e) => props.industryHandler(e.target.value)}
             >
-              {countries.map((c) => {
+              {industries.map((c) => {
                 return <option value={c.country_id}>{c.country_name}</option>;
               })}
             </select>
@@ -248,6 +248,14 @@ export const HeroSection = (props) => {
               Search By Country
             </button>
           </div>
+          <button
+            className={` ${styles.btnsearchtxt}`}
+            onClick={() => {
+              props.showIndustryAllow(true);
+            }}
+          >
+            Search By Industry
+          </button>
         </div>
       </div>
     </div>
