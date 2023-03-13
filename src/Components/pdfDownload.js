@@ -179,9 +179,18 @@ const styles = StyleSheet.create({
     width: 150,
     height: 50,
   },
+  logo_img_new: {
+    width: 150,
+    height: 150,
+  },
   profile_img: {
     width: 100,
     height: 100,
+  },
+  profile_img_new: {
+    width: 120,
+    height: 140,
+    marginTop: 10,
   },
   profile_image_container: {
     paddingRight: 10,
@@ -501,6 +510,280 @@ function BasicDocument({ cv_data }) {
     </>
   );
 }
+function NewDocument({ cv_data }) {
+  return (
+    <>
+      {/* <PDFViewer style={styles.viewer}> */}
+      <Document>
+        {/*render a single page*/}
+        <Page size={"A4"} style={styles.page}>
+          {/* header_start */}
+          {/* yellow div end */}
+          <View style={styles.cv_content}>
+            <View style={{ ...styles.profile }}>
+              <View style={styles.profile_image_container}>
+                <Image
+                  style={styles.profile_img_new}
+                  src={`https://3.14.27.53:3003/${cv_data?.cv_image?.replace(
+                    "images",
+                    "images/"
+                  )}`}
+                />
+              </View>
+              <View style={styles.profile_info_right}>
+                <View style={styles.right_col}>
+                  <Text style={{ fontSize: 20, marginTop: 10 }}>
+                    {cv_data.first_name + " " + cv_data.last_name}
+                  </Text>
+                </View>
+                {/* <View style={styles.right_col}>
+                  <Text style={{ ...styles.text }}>{cv_data.email}</Text>
+                  <Text style={{ ...styles.text }}>
+                    {cv_data.mobile_number}
+                  </Text>
+                </View> */}
+                <View style={styles.right_col}>
+                  <Text style={styles.info_title}>
+                    Email Address : {cv_data.email}
+                  </Text>
+                </View>
+                <View style={styles.right_col}>
+                  <Text style={styles.info_title}>
+                    Phone Number: {cv_data.mobile_number}
+                  </Text>
+                </View>
+                <View style={styles.right_col}>
+                  <Text style={styles.info_title}>Total Work Experience</Text>
+                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                    خبرة عمل كاملة
+                  </Text>
+                </View>
+                <View style={styles.right_col}>
+                  <Text style={styles.info_value}>
+                    {cv_data.max_experience}
+                  </Text>
+                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                    {cv_data.max_experience.split("years")[0]} سنة
+                  </Text>
+                </View>
+                <View style={styles.right_col}>
+                  <Text style={styles.info_title}>Expected salary</Text>
+                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                    الراتب المتوقع
+                  </Text>
+                </View>
+                <View style={styles.right_col}>
+                  <Text style={styles.info_value}>
+                    {cv_data.expected_salary}
+                  </Text>
+                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                    {cv_data.expected_salary} ريال
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.info_grid}>
+              <View style={styles.left_column}>
+                <View style={styles.section_heading}>
+                  <Text style={styles.section_heading_text}>
+                    Application Details
+                  </Text>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>NATIONALITY</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.country}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      جنسية
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>RELIGION</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.religion}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      دين
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>DATE OF BIRTH</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.dob}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      تاريخ الولادة
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>BIRTH PLACE</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.domicile}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      مكان الولادة
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>AGE</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.age}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      سن
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>ADDRESS</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.address}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      تبوك
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>Marital Status</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>
+                      {cv_data.marital_status}
+                    </Text>
+                    <Text s style={{ ...styles.info_title, ...styles.arabic }}>
+                      الحالة الزوجية
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>WEIGHT</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.weight}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      وزن
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>HEIGHT</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.height}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      الراتب المتوقع
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>SKIN COLOR</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.skin_color}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      لون البشرة
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>EDUCATION</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>
+                      {cv_data.qualification}
+                    </Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      التعليم
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.right_column}>
+                <View style={styles.section_heading}>
+                  <Text style={styles.section_heading_text}>
+                    Passport Details
+                  </Text>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>PASSPORT NO</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>
+                      {cv_data.passport_number}
+                    </Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      رقم جواز السفر
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>DATE OF ISSUE</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>
+                      {cv_data.passport_issue_date}
+                    </Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      تاريخ المسألة
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>DATE OF EXPIRY</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>{cv_data.valid_upto}</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      تاريخ الانتهاء
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <View style={styles.col_1}>
+                    <Text style={styles.info_title}>ERC/ECNR</Text>
+                  </View>
+                  <View style={styles.col_2}>
+                    <Text style={styles.info_value}>ECNR</Text>
+                    <Text style={{ ...styles.info_title, ...styles.arabic }}>
+                      الراتب المتوقع
+                    </Text>
+                  </View>
+                </View>
+                <Image
+                  src={`https://3.14.27.53:3003/${cv_data?.passport_photo?.replace(
+                    "images",
+                    "images/"
+                  )}`}
+                />
+              </View>
+            </View>
+          </View>
+        </Page>
+      </Document>
+      {/* </PDFViewer> */}
+    </>
+  );
+}
 const App = () => {
   return (
     <>
@@ -514,5 +797,5 @@ const App = () => {
     </>
   );
 };
-export { BasicDocument };
+export { BasicDocument, NewDocument };
 export default App;

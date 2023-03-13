@@ -1,19 +1,19 @@
-import React from 'react';
-import Styles from './Manageyoucvs.module.css';
+import React from "react";
+import Styles from "./Manageyoucvs.module.css";
 
-import calender from '../../../Assets/Images/New folder (3)/calendar 01.svg';
-import trash from '../../../Assets/Images/New folder (3)/trash 3.svg';
-import { useNavigate } from 'react-router-dom';
-import check from '../../../Assets/Images/New folder (3)/check mark-rectangle.svg';
-import Inputfield from '../../../Components/inputfield/inputfield';
-import InputSelect from '../../../Components/inputselect/inputfselect';
-import { BasicDocument } from '../../../Components/pdfDownload.js';
-import { PDFDownloadLink, Image } from '@react-pdf/renderer';
+import calender from "../../../Assets/Images/New folder (3)/calendar 01.svg";
+import trash from "../../../Assets/Images/New folder (3)/trash 3.svg";
+import { useNavigate } from "react-router-dom";
+import check from "../../../Assets/Images/New folder (3)/check mark-rectangle.svg";
+import Inputfield from "../../../Components/inputfield/inputfield";
+import InputSelect from "../../../Components/inputselect/inputfselect";
+import { BasicDocument, NewDocument } from "../../../Components/pdfDownload.js";
+import { PDFDownloadLink, Image } from "@react-pdf/renderer";
 
 function SeekercvCard({ cv_data }) {
   const navigate = useNavigate();
   function navigateEditCv() {
-    navigate('/editcv', { state: { cv_data: cv_data } });
+    navigate("/editcv", { state: { cv_data: cv_data } });
   }
   return (
     <div className={`p-3 my-3 ${Styles.jacon}`}>
@@ -27,17 +27,17 @@ function SeekercvCard({ cv_data }) {
         <div className="col-md-4 col-12">
           <div
             style={{
-              width: '200px',
-              height: '200px',
+              width: "200px",
+              height: "200px",
               backgroundImage: `url(https://3.14.27.53:3003/${cv_data.cv_image})`,
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
+              backgroundPosition: "center",
+              backgroundSize: "cover",
             }}
           ></div>
         </div>
         <div className="col-md-4 col-12">
           <div>
-            <b>Name: {cv_data.first_name + ' ' + cv_data.last_name}</b>
+            <b>Name: {cv_data.first_name + " " + cv_data.last_name}</b>
             <br />
             <b>Mobile Number: {cv_data.mobile_number}</b>
             <br />
@@ -55,21 +55,31 @@ function SeekercvCard({ cv_data }) {
             <br />
             <b>Skin Color: {cv_data.skin_color}</b>
             <br />
-            <b>Weight: {cv_data.weight + ' KG'}</b>
+            <b>Weight: {cv_data.weight + " KG"}</b>
             <br />
             <br />
             <PDFDownloadLink
-              document={<BasicDocument cv_data={cv_data}/>}
+              document={<BasicDocument cv_data={cv_data} />}
               fileName="somename.pdf"
             >
               {({ loading, error }) => {
                 console.log(error);
-                return loading ? 'Loading document...' : 'Download now!';
+                return loading ? "Loading document..." : "Download now!";
               }}
             </PDFDownloadLink>
             <br />
             <br />
-            <span onClick={() => navigateEditCv()} style={{ color: 'white !important', border: '1px solid grey', padding: '5px 20px', cursor: 'pointer'}}>Edit CV</span>
+            <span
+              onClick={() => navigateEditCv()}
+              style={{
+                color: "white !important",
+                border: "1px solid grey",
+                padding: "5px 20px",
+                cursor: "pointer",
+              }}
+            >
+              Edit CV
+            </span>
           </div>
         </div>
       </div>

@@ -4,7 +4,8 @@ import styles from "./main.module.css";
 import MultiStep from "react-multistep";
 import eye from "../../Assets/Images/eye.svg";
 import eyedes from "../../Assets/Images/eye-disable.svg";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import {
   LoginInformationValidation,
   BusinessInformationValidation,

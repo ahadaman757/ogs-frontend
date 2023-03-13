@@ -1,27 +1,27 @@
-import CustomErrorHandler from '../services/CustomErrorHandler.js';
-import { JoiValidation } from '../validators/JoiValidation.js';
-import { VALID_MODE } from '../config/index.js';
-import User from '../models/User.js';
-import Extractdata from '../services/extractData.js';
-import errorHandler from '../middlewares/errorHandler.js';
-import multer from 'multer';
-import path from 'path';
-import Company from '../models/CompanyProfile/Company.js';
-import bcrypt from 'bcrypt';
-import { REFRESH_SECRET, JWT_SECRET } from '../config/index.js';
-import RefreshToken from '../models/refreshToken.js';
-import { decryptPassword } from '../services/Main.js';
-import jwt_service from '../services/JwtService.js';
-import sequelize from '../config/db.js';
-import sendEmail from './emailHandler.js';
-import bodyParser from 'body-parser';
+import CustomErrorHandler from "../services/CustomErrorHandler.js";
+import { JoiValidation } from "../validators/JoiValidation.js";
+import { VALID_MODE } from "../config/index.js";
+import User from "../models/User.js";
+import Extractdata from "../services/extractData.js";
+import errorHandler from "../middlewares/errorHandler.js";
+import multer from "multer";
+import path from "path";
+import Company from "../models/CompanyProfile/Company.js";
+import bcrypt from "bcrypt";
+import { REFRESH_SECRET, JWT_SECRET } from "../config/index.js";
+import RefreshToken from "../models/refreshToken.js";
+import { decryptPassword } from "../services/Main.js";
+import jwt_service from "../services/JwtService.js";
+import sequelize from "../config/db.js";
+import sendEmail from "./emailHandler.js";
+import bodyParser from "body-parser";
 // const User = require('../models/Users')
-import { application, response } from 'express';
-import axios from 'axios';
+import { application, response } from "express";
+import axios from "axios";
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public');
+    cb(null, "public");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -33,7 +33,7 @@ var upload = multer({ storage: storage }).any();
 const homePageJobsPK = async (req, res, next) => {
   try {
     const jobs = await sequelize.query(
-      'SELECT * FROM job WHERE job.country_id = 167'
+      "SELECT * FROM job WHERE job.country_id = 167"
     );
     res.json({ response: jobs });
   } catch (error) {
@@ -42,7 +42,7 @@ const homePageJobsPK = async (req, res, next) => {
 };
 const homePageJobsIN = async (req, res, next) => {
   try {
-    const jobs = await sequelize.query('SELECT * FROM job ORDER BY id DESC');
+    const jobs = await sequelize.query("SELECT * FROM job ORDER BY id DESC");
     res.json({ response: jobs });
   } catch (error) {
     next(error);
@@ -56,7 +56,7 @@ const getPrivacyPolicy = async (req, res, next) => {
     res.json({ code: 1, content: getData });
   } catch (error) {
     console.log(error);
-    res.json({ code: 0, message: 'Error getting privacy policy' });
+    res.json({ code: 0, message: "Error getting privacy policy" });
   }
 };
 const getAboutUs = async (req, res, next) => {
@@ -67,14 +67,14 @@ const getAboutUs = async (req, res, next) => {
     res.json({ code: 1, content: getData });
   } catch (error) {
     console.log(error);
-    res.json({ code: 0, message: 'Error getting About Us' });
+    res.json({ code: 0, message: "Error getting About Us" });
   }
 };
 
 const getCompanies = async (req, res, next) => {
   try {
     const getCompanies = await sequelize.query(
-      'SELECT company_name, company_logo, business_webpage FROM companies'
+      "SELECT company_name, company_logo, business_webpage FROM companies"
     );
     res.json({ code: 1, getCompanies });
   } catch (e) {
@@ -85,7 +85,7 @@ const getCompanies = async (req, res, next) => {
 const getCourses = async (req, res, next) => {
   try {
     const getAllCourses = await sequelize.query(
-      'SELECT * FROM ogs_courses ORDER BY id DESC'
+      "SELECT * FROM ogs_courses ORDER BY id DESC"
     );
     res.json({ code: 1, getAllCourses });
   } catch (err) {
@@ -93,7 +93,7 @@ const getCourses = async (req, res, next) => {
   }
 };
 const GetJobDetailsById = async (req, res, next) => {
-  console.log('id');
+  console.log("id");
   console.log(req.body.id);
   try {
     // const applpied_count=await sequelize.query(`SELECT COUNT(*) FROM job_applicants_cv WHERE job_id=${REQ.}`)
@@ -124,14 +124,16 @@ const GetJobDetailsById = async (req, res, next) => {
     next(error);
   }
 };
-const getCountries = async(req, res, next) => {
+const getCountries = async (req, res, next) => {
   try {
-    const countries = await sequelize.query(`SELECT id as country_id, name as country_name from countries`);
-    res.json({code: 1, countries: countries});
+    const countries = await sequelize.query(
+      `SELECT id as country_id, name as country_name from countries`
+    );
+    res.json({ code: 1, countries: countries });
   } catch (err) {
-    res.json({code: 0, message: 'An error occured'})
+    res.json({ code: 0, message: "An error occured" });
   }
-}
+};
 const verifyEmail = async (req, res, next) => {
   try {
     const { userEmail, token } = req.body;
@@ -139,19 +141,19 @@ const verifyEmail = async (req, res, next) => {
       `SELECT * FROM users WHERE email = '${userEmail}'`
     );
     if (checkEmail[0].length > 0) {
-      res.json({ code: 0, message: 'User with that email already exists' });
+      res.json({ code: 0, message: "User with that email already exists" });
     } else {
-      let {error, response} = await sendEmail(
+      let { error, response } = await sendEmail(
         userEmail,
         false,
-        '',
-        'Verify your email',
+        "",
+        "Verify your email",
         `Thank you for your interest in registering at OGS Man Power!\n Your verification code is: ${token}`
       );
       if (response) {
         res.json({
           code: 1,
-          message: 'Email has been sent',
+          message: "Email has been sent",
           fromMailer: response,
         });
       } else {
@@ -161,8 +163,8 @@ const verifyEmail = async (req, res, next) => {
           fromMailer: response,
         });
       }
-      console.log('RESPONSE ', response);
-      console.log('error ', error);
+      console.log("RESPONSE ", response);
+      console.log("error ", error);
     }
   } catch (err) {
     res.json({ code: 0, message: err });
@@ -171,32 +173,49 @@ const verifyEmail = async (req, res, next) => {
 
 const getAdditionalFiles = async (req, res, next) => {
   try {
-    const files = await sequelize.query("SELECT * FROM additional WHERE display > 0");
-    res.json({code: 1, files: files});
+    const files = await sequelize.query(
+      "SELECT * FROM additional WHERE display > 0"
+    );
+    res.json({ code: 1, files: files });
   } catch (err) {
-    res.json({code: 0, message: err})
+    res.json({ code: 0, message: err });
   }
-}
+};
 
 const whatsAppCode = async (req, res, next) => {
   console.log("Message: ", `Your verification code is: ${req.body.token}`);
   console.log("Phone: ", `${req.body.number}`);
   try {
     var data = JSON.stringify({
-      "number": `${req.body.number}`,
-      "message": `Your OTP is: ${req.body.token}`,
-    })
-    const sendMessage = await axios.post(`https://3.14.27.53:3004/send-message`, { httpsAgent: new https.Agent({ rejectUnauthorized: false })}, 
-    {
-      headers: { 'Content-Type': 'application/json' }, data: data
-    })
-    .then(response => console.log(response));
-    res.json({code: 1});
+      number: `${req.body.number}`,
+      message: `Your OTP is: ${req.body.token}`,
+    });
+    const sendMessage = await axios
+      .post(
+        `https://3.14.27.53:3004/send-message`,
+        { httpsAgent: new https.Agent({ rejectUnauthorized: false }) },
+        {
+          headers: { "Content-Type": "application/json" },
+          data: data,
+        }
+      )
+      .then((response) => console.log(response));
+    res.json({ code: 1 });
   } catch (err) {
-    res.json({code: 0, message: err})
+    res.json({ code: 0, message: err });
   }
-}
+};
 
+const getIndustries = async (req, res, next) => {
+  try {
+    const industries = await sequelize.query(
+      `SELECT id as country_id, name as country_name from category`
+    );
+    res.json({ code: 1, industries: industries });
+  } catch (err) {
+    res.json({ code: 0, message: "An error occured" });
+  }
+};
 export {
   homePageJobsPK,
   getPrivacyPolicy,
@@ -208,5 +227,6 @@ export {
   verifyEmail,
   getCountries,
   getAdditionalFiles,
-  whatsAppCode
+  whatsAppCode,
+  getIndustries,
 };

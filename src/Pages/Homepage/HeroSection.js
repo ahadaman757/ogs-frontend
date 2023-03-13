@@ -6,27 +6,33 @@ import axios from "axios";
 
 export const HeroSection = (props) => {
   const [options, setOptions] = useState(1);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [countries, setCountries] = useState([]);
+  const [industries, setIndustries] = useState([]);
   const [countryLoading, setCountryLoading] = useState(true);
   function escapeHtml(unsafe) {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-useEffect(() => {
-  axios.get(`https://3.14.27.53:3003/general/getCountries`).then((res) => {
-    
-    setCountries(res.data.countries[0]);
-    setCountryLoading(false);
+  useEffect(() => {
+    axios.get(`https://3.14.27.53:3003/general/getCountries`).then((res) => {
+      setCountries(res.data.countries[0]);
+      setCountryLoading(false);
 
-    console.log(res.data.countries[0]);
-  });
-}, [])
+      console.log(res.data.countries[0]);
+    });
+    axios.get(`https://3.14.27.53:3003/general/getIndustries`).then((res) => {
+      setIndustries(res.data.industries[0]);
+      setCountryLoading(false);
+
+      console.log(res.data.industries[0]);
+    });
+  }, []);
   const navigate = useNavigate();
   return (
     <div className={`${styles.heroSection__container}`}>
@@ -198,35 +204,49 @@ useEffect(() => {
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
               </svg>
             </div>
-            <select className={`p-2 ${styles.inputixont}`} style={{borderLeft: 'none' }} onChange={(e) =>  props.countryHandler(e.target.value)}>
-                  {
-                    countries.map((c) => {
-                      return (
-                        <option value={c.country_id}>{ c.country_name }</option>
-                      )
-                    })
-                  }
-                  </select>
+            <select
+              className={`p-2 ${styles.inputixont}`}
+              style={{ borderLeft: "none" }}
+              onChange={(e) => props.countryHandler(e.target.value)}
+            >
+              {countries.map((c) => {
+                return <option value={c.country_id}>{c.country_name}</option>;
+              })}
+            </select>
+            <select
+              className={`p-2 ${styles.inputixont}`}
+              style={{ borderLeft: "none" }}
+              onChange={(e) => props.countryHandler(e.target.value)}
+            >
+              {countries.map((c) => {
+                return <option value={c.country_id}>{c.country_name}</option>;
+              })}
+            </select>
           </div>
           <div className="d-flex my-2">
-            <button className={` me-3 ${styles.btnsearchtxt}`}                                 
-            onClick={() => {
-                    let titleToSearch = escapeHtml(title);
-                    if(title != "") {
-                      props.userSearchTitleHandler(titleToSearch);
-                      props.showCustomHandler(true);
-                    } else {
-                      alert("Please enter a title");
-                    }
-
-                  }}>
-              Search by title
+            <button
+              className={` me-3 ${styles.btnsearchtxt}`}
+              onClick={() => {
+                let titleToSearch = escapeHtml(title);
+                if (title != "") {
+                  props.userSearchTitleHandler(titleToSearch);
+                  props.showCustomHandler(true);
+                } else {
+                  alert("Please enter a title");
+                }
+              }}
+            >
+              Search by Title
             </button>
 
-            <button className={` ${styles.btnsearchtxt}`}                   onClick={() => {
-                      props.showCustomHandler(true);
-
-                  }}>Search By Country</button>
+            <button
+              className={` ${styles.btnsearchtxt}`}
+              onClick={() => {
+                props.showCustomHandler(true);
+              }}
+            >
+              Search By Country
+            </button>
           </div>
         </div>
       </div>
