@@ -15,6 +15,9 @@ const Jobpopseeker = () => {
   const [additionalLoading, setAdditionalLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedLabel, setSelectedLabel] = useState("");
+  const [additionalNumber, setAdditionalNumber] = useState(0);
+  const [additionalSubmitted, setAdditionalSubmitted] = useState(0);
+  const [selectedCv, setSelectedCv] = useState(0);
   useEffect(() => {
     axios
       .post(`https://3.14.27.53:3003/general/getJobAdditional`, {
@@ -26,6 +29,7 @@ const Jobpopseeker = () => {
         );
         setAdditionalLoading(false);
         console.log("Additional", res);
+        setAdditionalNumber(res.data.questions[0].length);
       });
   }, []);
 
@@ -76,6 +80,7 @@ const Jobpopseeker = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("jID", job_data.id);
+    formData.append("cv_id", selectedCv);
     formData.append("linked_id", 0);
     axios
       .post(
@@ -87,7 +92,11 @@ const Jobpopseeker = () => {
           },
         }
       )
-      .then((res) => console.log("KKKKKKKKKKK", res));
+      .then((res) =>
+        res.data.code == 1
+          ? setAdditionalSubmitted(additionalSubmitted + 1)
+          : alert("File not uploaded")
+      );
   };
   useEffect(() => {
     axios
@@ -287,7 +296,10 @@ const Jobpopseeker = () => {
                           // </div>
                           // );
                         })}
-                      <select style={{ width: "100%", border: "none" }}>
+                      <select
+                        style={{ width: "100%", border: "none" }}
+                        onChange={(e) => setSelectedCv(e.target.value)}
+                      >
                         <option value={0}>Select CV</option>
                         {UserCvs?.length &&
                           UserCvs.map((cv) => {
@@ -332,12 +344,35 @@ const Jobpopseeker = () => {
                             </div>
                           );
                         })}
+                      <div className="col-3">
+                        {additionalSubmitted == additionalNumber ? (
+                          <button
+                            onClick={() => ApplyJob(selectedCv)}
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            className={`px-4  me-3 w-100 unset-btn text-white ${Styles.btnsve}`}
+                          >
+                            Apply
+                          </button>
+                        ) : (
+                          <button
+                            // onClick={() => ApplyJob(cv.cv_id)}
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            className={`px-4 py- w-100 me-3 ${Styles.btnsve}`}
+                          >
+                            Upload All Files To Apply
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <button className={`px-4 py-3 ${Styles.btnapp}`}>Save</button>
+            {/* <button className={`px-4 py-3 ${Styles.btnapp}`}>Save</button> */}
           </div>
         </div>
       </div>
