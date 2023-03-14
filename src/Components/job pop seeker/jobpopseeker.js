@@ -14,7 +14,7 @@ const Jobpopseeker = () => {
   const [additionalQuestions, setAdditionalQuestions] = useState();
   const [additionalLoading, setAdditionalLoading] = useState(true);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedLabel, setSelectedLabe] = useState("");
+  const [selectedLabel, setSelectedLabel] = useState("");
   useEffect(() => {
     axios
       .post(`https://3.14.27.53:3003/general/getJobAdditional`, {
@@ -67,18 +67,26 @@ const Jobpopseeker = () => {
         console.log(error);
       });
   }, []);
-
-  const handleUpload = () => {
+  useEffect(() => {
+    if (selectedFile) {
+      handleUpload(selectedFile[0]);
+    }
+  }, [selectedFile]);
+  const handleUpload = (file) => {
     const formData = new FormData();
-    formData.append("file", selectedFile[0]);
-    formData.append("jobID", job_data.id);
+    formData.append("file", file);
+    formData.append("jID", job_data.id);
     formData.append("linked_id", 0);
     axios
-      .post("https://3.14.27.53:3003/users/my_cvs", formData, {
-        headers: {
-          accesstoken: localStorage.getItem("accessToken"),
-        },
-      })
+      .post(
+        "https://3.14.27.53:3003/users/seekerUploadAdditionalFiles",
+        formData,
+        {
+          headers: {
+            accesstoken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
       .then((res) => console.log("KKKKKKKKKKK", res));
   };
   useEffect(() => {
@@ -314,7 +322,11 @@ const Jobpopseeker = () => {
                                 type="file"
                                 onChange={(e) => {
                                   setSelectedFile(e.target.files);
-                                  handleUpload();
+                                  // handleUpload();
+                                  console.log(
+                                    "SELECTED FILES!!!",
+                                    selectedFile
+                                  );
                                 }}
                               />
                             </div>

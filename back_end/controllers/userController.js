@@ -350,8 +350,11 @@ const uploadAdditionalFiles = async (req, res, next) => {
 const seekerUploadAdditionalFiles = async (req, res, next) => {
   try {
     const { linked_id, jID } = req.body;
+    console.log("LINKED => ", linked_id);
+    console.log("jID => ", jID);
+    console.log("Files => ", req.files);
     const uploadAdditional = await sequelize.query(
-      `INSERT INTO seeker_additional_upload (file_name, linked_id, job_id) VALUES ('${req.files[i].path}', ${linked_id}, ${jID})`
+      `INSERT INTO seeker_additional_upload (file_name, linked_id, job_id) VALUES ('${req.files[0].path}', ${linked_id}, ${jID})`
     );
 
     res.json({ code: 1, message: "done" });
