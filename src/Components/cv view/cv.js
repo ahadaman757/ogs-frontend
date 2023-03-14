@@ -63,8 +63,8 @@ const Cv = ({ applicant, job_id }) => {
         job_id: job_id,
       })
       .then((res) => {
-        console.log("ADDITIONALLLL ", res);
-        // setAdditionalFiles(res.data.fi);
+        // console.log("ADDITIONALLLL ", res);
+        setAdditionalFiles(res.data.message[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -220,7 +220,7 @@ const Cv = ({ applicant, job_id }) => {
           <div className="col-md-9">
             <div className="d-flex flex-wrap">
               <p className="me-3 ogsfonts20">
-                {applicant.code == "none"
+                {applicant.code != "none"
                   ? applicant.first_name + " " + applicant.last_name
                   : "Name hidden"}
               </p>
@@ -253,14 +253,30 @@ const Cv = ({ applicant, job_id }) => {
           </div>
         </div>
         <hr />
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Launch demo modsal
-        </button>
+        {additionalFiles.map((f) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <a
+                target={"_blank"}
+                href={`https://3.14.27.53:3003/${f.file_name}`}
+              >
+                <img
+                  src={`https://3.14.27.53:3003/${f.file_name}`}
+                  width="200"
+                  height="200"
+                />
+              </a>
+              <br />
+            </div>
+          );
+        })}
 
         <hr />
         <div className="d-flex flex-wrap justify-content-between">

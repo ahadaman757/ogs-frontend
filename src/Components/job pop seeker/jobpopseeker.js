@@ -133,9 +133,7 @@ const Jobpopseeker = () => {
         <div className={`container mt-5 p-4 ${Styles.Jobpopchild}`}>
           <div className={`d-flex  flex-md-row flex-column-reverse   `}>
             <div className="pe-5">
-              <img
-                src={`https://3.14.27.53:3003/images/${job_data.company_logo}`}
-              />
+              <img src={`https://3.14.27.53:3003/${job_data.company_logo}`} />
             </div>
             <div>
               <h1 className="ogsfonts32">{job_data.job_title}</h1>

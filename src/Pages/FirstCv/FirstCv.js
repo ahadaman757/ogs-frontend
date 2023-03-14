@@ -18,6 +18,8 @@ import PhoneInput from "react-phone-number-input";
 import eye from "../../Assets/Images/eye.svg";
 import eyedes from "../../Assets/Images/eye-disable.svg";
 import "react-phone-number-input/style.css";
+import cvStyleTwo from "../../Assets/Images/cv_style2.png";
+import cvStyle from "../../Assets/Images/cv_style.png";
 // import PhoneInput from 'react-phone-number-input';
 const SignUpCv = () => {
   const [cvResponse, setcvResponse] = useState("");
@@ -41,6 +43,7 @@ const SignUpCv = () => {
   const [codeSent, setCodeSent] = useState(false);
   const [codeGenerated, setCodeGenerated] = useState();
   const [code, setCode] = useState();
+  const [cvStyleSelected, setCVStyleSelected] = useState(1);
 
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -295,14 +298,25 @@ const SignUpCv = () => {
             <div className="p-3">
               <h1 className="py-3 ogsfonts24">Create Cv</h1>
               <h1>CV Style</h1>
-              <select
-                onClick={(e) =>
-                  localStorage.setItem("cv_style", e.target.value)
-                }
-              >
-                <option value={1}>Style 1</option>
-                <option value={2}>Style 2</option>
-              </select>
+              <center>
+                <img
+                  style={{ border: "1px solid grey" }}
+                  src={cvStyleSelected == 2 ? cvStyleTwo : cvStyle}
+                />
+              </center>
+              <br />
+              <center>
+                <select
+                  onClick={(e) => {
+                    localStorage.setItem("cv_style", e.target.value);
+                    setCVStyleSelected(e.target.value);
+                  }}
+                  style={{ padding: "10px" }}
+                >
+                  <option value={1}>Style 1</option>
+                  <option value={2}>Style 2</option>
+                </select>
+              </center>
               <h1 className="ogsfonts18">User Registration</h1>
               <h3 className={`${Styles.formSectionHeading}`}>
                 Personal Information

@@ -251,9 +251,7 @@ function BasicDocument({ cv_data }) {
           </View>
           {/* header_end */}
           <View style={styles.colored_title}>
-            <Text style={{ ...styles.h1 }}>
-              Application Form {cv_data.code}
-            </Text>
+            <Text style={{ ...styles.h1 }}>Application Form</Text>
           </View>
           {/* yellow div end */}
           <View style={styles.cv_content}>

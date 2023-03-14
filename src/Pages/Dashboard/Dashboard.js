@@ -24,11 +24,13 @@ const Dashboard = ({ parentToChild }) => {
     navigate("/employerlogin");
   }
   useEffect(() => {
-    axios.get("https://3.14.27.53:3003/jobs/getEmployerData", {
+    axios
+      .get("https://3.14.27.53:3003/jobs/getEmployerData", {
         headers: {
           accesstoken: localStorage.getItem("accessToken"),
         },
-      }).then(res => console.log("EMPLOYER DATA -> ", res.data))
+      })
+      .then((res) => console.log("EMPLOYER DATA -> ", res.data));
     // GET USER DATA
     axios
       .get("https://3.14.27.53:3003/users/me", {
@@ -126,29 +128,20 @@ const Dashboard = ({ parentToChild }) => {
                 </div>
                 <div className={` p-3 my-2 mx-1 ${Styles.postjobslimit}`}>
                   <div className={``}>
-                    <h1 className={`ogsfonts18`}>CV Recieved</h1>
+                    <h1 className={`ogsfonts18`}>Shortlisted</h1>
                     <p className={`ogsfonts12`}>CVs you have reviewed</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
-                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>{ cvRecieved }</h1>
+                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>0</h1>
                   </div>
                 </div>
                 <div className={` p-3 my-2 mx-1 ${Styles.postjobslimit}`}>
                   <div className={``}>
-                    <h1 className={`ogsfonts18`}>Reviewed</h1>
+                    <h1 className={`ogsfonts18`}>Rejected</h1>
                     <p className={`ogsfonts12`}>CVs you have reviewed</p>
                   </div>
                   <div className={`d-flex justify-content-end`}>
-                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
-                  </div>
-                </div>
-                <div className={` p-3 my-2 mx-1 ${Styles.postjobslimit}`}>
-                  <div className={``}>
-                    <h1 className={`ogsfonts18`}>Reviewed</h1>
-                    <p className={`ogsfonts12`}>CVs you have reviewed</p>
-                  </div>
-                  <div className={`d-flex justify-content-end`}>
-                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>85</h1>
+                    <h1 className={`ogsfonts38  ${Styles.jobsstac}`}>0</h1>
                   </div>
                 </div>
               </div>
