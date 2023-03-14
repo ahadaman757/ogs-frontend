@@ -6,7 +6,7 @@ import InputField from "../../Components/inputfield/inputfield";
 import TagInput from "../Forms/TagInput";
 import InputSelect from "../../Components/inputselect/inputfselect";
 import TextEditer from "../../Components/textediter/textediter";
-import { Formik, useFormik } from "formik";
+import { Formik, setIn, useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "../authpages/main.module.css";
 import axios from "axios";
@@ -20,10 +20,15 @@ const Postajob = () => {
   const [jobAdded, setJobAdded] = useState(false);
   const [thankYou, setThankYou] = useState(false);
   const [additionalFiles, setAdditionalFiles] = useState([]);
+  const [inputs, setInputs] = useState([]);
   const navigate = useNavigate();
   if (jwtCheck(2) === false) {
     navigate("/employerlogin");
   }
+
+  const addInput = () => {
+    setInputs([...inputs], "");
+  };
 
   const [dropDownOptions, setdropDownOptions] = useState("");
   const display = (d) => {
@@ -42,6 +47,7 @@ const Postajob = () => {
 
   const jobPostFormIk = useFormik({
     initialValues: {
+      additional_files: "",
       job_title: "",
       job_description: "",
       country: "",
@@ -388,6 +394,27 @@ const Postajob = () => {
                 </div>
               </div> */}
                 <hr />
+                <h2>Additional Files</h2>
+                <TextInput
+                  id="additional_files"
+                  label="Ask for additional files, for example: Corona Certificate | Degree Picture  | Course Certificate"
+                  formik={jobPostFormIk}
+                />
+                {/* <button type="button" onClick={addInput}>
+                  Add Input
+                </button>
+                {inputs.map((value, index) => (
+                  <input
+                    key={index}
+                    value={value}
+                    onChange={(e) => {
+                      const newInputs = [...inputs];
+                      newInputs[index] = e.target.value;
+                      setInputs(newInputs);
+                      console.log(inputs);
+                    }}
+                  />
+                ))} */}
                 <div className="d-flex flex-wrap justify-content-end">
                   <button
                     type="submit"

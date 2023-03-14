@@ -14,8 +14,9 @@ const JobPostController = async (req, res, next) => {
   // perform validations
   // const { error } = JoiValidation.JobPostValidation(body)
   const OrderedData = Extractdata.JobPost(body);
-  console.log(OrderedData.orderedData);
-  console.log(req.user.id);
+  // console.log(OrderedData.orderedData);
+  // console.log(req.user.id);
+  console.log("POST A JOB!!! ", body);
   // insert data in job table
   Job.create({
     ...OrderedData.orderedData,

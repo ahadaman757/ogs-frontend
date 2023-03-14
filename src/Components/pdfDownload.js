@@ -109,6 +109,14 @@ const styles = StyleSheet.create({
     // flexGrow: 1,
     gap: 10,
   },
+  info_grid2: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "130px",
+    // flexGrow: 1,
+    gap: 10,
+    width: "400px",
+  },
   left_column: {
     display: "flex",
     flexDirection: "column",
@@ -121,6 +129,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexBasis: 0,
 
+    flexGrow: 1,
+    flexDirection: "column",
+    // border: "1px solid blue"
+  },
+  right_column2: {
+    display: "flex",
+    flexBasis: 0,
+    width: 200,
     flexGrow: 1,
     flexDirection: "column",
     // border: "1px solid blue"
@@ -554,35 +570,23 @@ function NewDocument({ cv_data }) {
                 </View>
                 <View style={styles.right_col}>
                   <Text style={styles.info_title}>Total Work Experience</Text>
-                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    خبرة عمل كاملة
-                  </Text>
                 </View>
                 <View style={styles.right_col}>
                   <Text style={styles.info_value}>
                     {cv_data.max_experience}
                   </Text>
-                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    {cv_data.max_experience.split("years")[0]} سنة
-                  </Text>
                 </View>
                 <View style={styles.right_col}>
                   <Text style={styles.info_title}>Expected salary</Text>
-                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    الراتب المتوقع
-                  </Text>
                 </View>
                 <View style={styles.right_col}>
                   <Text style={styles.info_value}>
                     {cv_data.expected_salary}
                   </Text>
-                  <Text style={{ ...styles.info_title, ...styles.arabic }}>
-                    {cv_data.expected_salary} ريال
-                  </Text>
                 </View>
               </View>
             </View>
-            <View style={styles.info_grid}>
+            <View style={styles.info_grid2}>
               <View style={styles.left_column}>
                 <View style={styles.section_heading}>
                   <Text style={styles.section_heading_text}>

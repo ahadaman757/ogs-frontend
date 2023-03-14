@@ -59,8 +59,14 @@ function SeekercvCard({ cv_data }) {
             <br />
             <br />
             <PDFDownloadLink
-              document={<BasicDocument cv_data={cv_data} />}
-              fileName="somename.pdf"
+              document={
+                cv_data.cv_style == "0" ? (
+                  <BasicDocument cv_data={cv_data} />
+                ) : (
+                  <NewDocument cv_data={cv_data} />
+                )
+              }
+              fileName={`${cv_data.first_name}_OGS.pdf`}
             >
               {({ loading, error }) => {
                 console.log(error);
