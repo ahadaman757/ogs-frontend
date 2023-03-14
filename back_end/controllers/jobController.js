@@ -33,8 +33,11 @@ const JobPostController = async (req, res, next) => {
         .map((str) => str.toLowerCase()); // convert to lowercase
       console.log(result); // output: ["corona", "ahad", "aman"]
       let labels = old_body.additional_files.split("|");
-      for (let i = 0; i < result; i++) {
+      for (let i = 0; i < result.length; i++) {
         await sequelize.query(
+          `INSERT INTO employer_additional (label, identifier, job_id) VALUES ('${labels[i]}', '${result[i]}', ${response.id})`
+        );
+        console.log(
           `INSERT INTO employer_additional (label, identifier, job_id) VALUES ('${labels[i]}', '${result[i]}', ${response.id})`
         );
       }
