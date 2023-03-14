@@ -14,6 +14,7 @@ import {
   getAdditionalFiles,
   whatsAppCode,
   getIndustries,
+  getJobAdditional,
 } from "../controllers/generalController.js";
 // const usermecontroller = require('../controllers/usermecontroller')
 
@@ -30,6 +31,7 @@ GeneralRouter.get("/getCountries", getCountries);
 GeneralRouter.get("/getIndustries", getIndustries);
 GeneralRouter.get("/getAdditionalFiles", getAdditionalFiles);
 GeneralRouter.post("/verifyPhone", whatsAppCode);
+GeneralRouter.post("/getJobAdditional", getJobAdditional);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default GeneralRouter;

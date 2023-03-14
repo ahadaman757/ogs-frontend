@@ -1,16 +1,24 @@
-import Styles from './jobpopseeker.module.css';
-import { useState, useEffect } from 'react';
-import Seekersidebar from '../seekersidebar/seekersidebar';
-import removeicon from '../../Assets/Images/remove.svg';
-import gasco from '../../Assets/Images/gasco.png';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import Styles from "./jobpopseeker.module.css";
+import { useState, useEffect } from "react";
+import Seekersidebar from "../seekersidebar/seekersidebar";
+import removeicon from "../../Assets/Images/remove.svg";
+import gasco from "../../Assets/Images/gasco.png";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 const Jobpopseeker = () => {
   const { state } = useLocation();
   const { job_data, AppliedCvs } = state;
   const [skills, setskills] = useState();
   const [UserCvs, setUserCvs] = useState([]);
-  const [data, Setdata] = useState('');
+  const [data, Setdata] = useState("");
+
+  useEffect(() => {
+    axios
+      .post(`https://3.14.27.53:3003/general/getJobAdditional`, {
+        job_id: job_data.id,
+      })
+      .then((res) => console.log("Additional HERE!!! => ", res.data));
+  }, []);
 
   const ApplyJob = (cv_id) => {
     axios
@@ -22,7 +30,7 @@ const Jobpopseeker = () => {
         },
         {
           headers: {
-            accesstoken: localStorage.getItem('accessToken'),
+            accesstoken: localStorage.getItem("accessToken"),
           },
         }
       )
@@ -35,7 +43,7 @@ const Jobpopseeker = () => {
   };
 
   const display = (d) => {
-    console.log('value');
+    console.log("value");
     console.log(d);
     Setdata(d);
   };
@@ -52,13 +60,13 @@ const Jobpopseeker = () => {
   }, []);
   useEffect(() => {
     axios
-      .get('https://3.14.27.53:3003/users/my_cvs', {
+      .get("https://3.14.27.53:3003/users/my_cvs", {
         headers: {
-          accesstoken: localStorage.getItem('accessToken'),
+          accesstoken: localStorage.getItem("accessToken"),
         },
       })
       .then((res) => {
-        console.log('cv_data', res.data);
+        console.log("cv_data", res.data);
         const filteredArray = res.data.map((cv) => {
           const isApplied = res.data.filter((applied_cv) => {
             return applied_cv.cv_id == cv.cv_id;
@@ -73,13 +81,13 @@ const Jobpopseeker = () => {
         // setUserCvs(res);
       });
   }, []);
-  console.log(UserCvs, '344344');
+  console.log(UserCvs, "344344");
   return (
     <div>
       <Seekersidebar side={display} />
       <div
         className={`pt-4 px-1 ${Styles.jobpopmain} ${
-          data ? 'sidebarmarginmin' : 'sidebarmarginmax'
+          data ? "sidebarmarginmin" : "sidebarmarginmax"
         }`}
       >
         <div className={`container mt-5 p-4 ${Styles.Jobpopchild}`}>
@@ -101,9 +109,9 @@ const Jobpopseeker = () => {
                 </p>
               </div>
               <h1 className="ogsfonts18 my-3">
-                {' '}
-                {job_data.min_salary ? job_data.min_salary + '-' : null}{' '}
-                {job_data.max_salary}{' '}
+                {" "}
+                {job_data.min_salary ? job_data.min_salary + "-" : null}{" "}
+                {job_data.max_salary}{" "}
               </h1>
               <p className="ogsfonts16 color404040 my-4">
                 <span>
@@ -118,7 +126,7 @@ const Jobpopseeker = () => {
             <p className="ogsfonts16 color404040">
               {job_data.job_description
                 ? job_data.job_description
-                : 'No Desscription'}
+                : "No Desscription"}
             </p>
           </div>
           <div>
@@ -134,7 +142,7 @@ const Jobpopseeker = () => {
                       </h2>
                     );
                   })
-                : 'No Skills'}
+                : "No Skills"}
             </div>
           </div>
           <div className="my-5">
@@ -165,7 +173,7 @@ const Jobpopseeker = () => {
                 <h1 className="ogsfonts18 my-3">{job_data.job_type}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.job_shift}</h1>
                 <h1 className="ogsfonts18 my-3">
-                  {job_data.country} , {job_data.city}{' '}
+                  {job_data.country} , {job_data.city}{" "}
                 </h1>
                 <h1 className="ogsfonts18 my-3">{job_data.gender_title}</h1>
                 <h1 className="ogsfonts18 my-3">{job_data.qualification}</h1>
@@ -211,49 +219,54 @@ const Jobpopseeker = () => {
                       {UserCvs?.length &&
                         UserCvs.map((cv) => {
                           console.log(cv);
-                          return (
-                            <div className="d-flex align-items-center py-2 row">
-                              <div className="col-9">
-                                <p className="ogsfonts18">
-                                  {cv.first_name +
-                                    ' ' +
-                                    cv.last_name +
-                                    ':' +
-                                    cv.cv_id}
-                                </p>
-                                <p className="ogsfonts14 m-0">
-                                  {cv.position_title}
-                                </p>
-                                {/* <p className="ogsfonts14 m-0">034-164-21256</p>
-                              <p className="ogsfonts14 m-0">Rawalpindi</p> */}
-                              </div>
-                              <div className="col-3">
-                                {cv.is_applied ? (
-                                  <button
-                                    onClick={() => ApplyJob(cv.cv_id)}
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                    className={`px-4  me-3 w-100 unset-btn text-white ${Styles.btnsve}`}
-                                  >
-                                    Apply
-                                  </button>
-                                ) : (
-                                  <button
-                                    onClick={() => ApplyJob(cv.cv_id)}
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                    className={`px-4 py- w-100 me-3 ${Styles.btnsve}`}
-                                  >
-                                    Apply
-                                  </button>
-                                )}
-                              </div>
-                              <hr />
-                            </div>
-                          );
+                          // return (
+                          // <div className="d-flex align-items-center py-2 row">
+                          //   <div className="col-9">
+                          //     <p className="ogsfonts18">
+                          //       {cv.first_name + " " + cv.last_name}
+                          //     </p>
+                          //     <p className="ogsfonts14 m-0">{cv.job_title}</p>
+                          //     {/* <p className="ogsfonts14 m-0">034-164-21256</p>
+                          //   <p className="ogsfonts14 m-0">Rawalpindi</p> */}
+                          //   </div>
+                          //   <div className="col-3">
+                          //     {cv.is_applied ? (
+                          //       <button
+                          //         onClick={() => ApplyJob(cv.cv_id)}
+                          //         type="button"
+                          //         data-bs-toggle="modal"
+                          //         data-bs-target="#exampleModal"
+                          //         className={`px-4  me-3 w-100 unset-btn text-white ${Styles.btnsve}`}
+                          //       >
+                          //         Apply
+                          //       </button>
+                          //     ) : (
+                          //       <button
+                          //         onClick={() => ApplyJob(cv.cv_id)}
+                          //         type="button"
+                          //         data-bs-toggle="modal"
+                          //         data-bs-target="#exampleModal"
+                          //         className={`px-4 py- w-100 me-3 ${Styles.btnsve}`}
+                          //       >
+                          //         Apply
+                          //       </button>
+                          //     )}
+                          //   </div>
+                          //   <hr />
+                          // </div>
+                          // );
                         })}
+                      <select style={{ width: "100%", border: "none" }}>
+                        <option value={0}>Select CV</option>
+                        {UserCvs?.length &&
+                          UserCvs.map((cv) => {
+                            return (
+                              <option value={cv.cv_id}>
+                                {cv.first_name + " " + cv.last_name}
+                              </option>
+                            );
+                          })}
+                      </select>
                     </div>
                   </div>
                 </div>

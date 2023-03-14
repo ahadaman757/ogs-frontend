@@ -216,6 +216,18 @@ const getIndustries = async (req, res, next) => {
     res.json({ code: 0, message: "An error occured" });
   }
 };
+
+const getJobAdditional = async (req, res, next) => {
+  try {
+    const { job_id } = req.body;
+    const questions = await sequelize.query(
+      `SELECT * FROM employer_additional WHERE job_id = ${job_id}`
+    );
+    res.json({ code: 1, questions: questions });
+  } catch (err) {
+    res.json({ code: 0, message: "An error occured" });
+  }
+};
 export {
   homePageJobsPK,
   getPrivacyPolicy,
@@ -229,4 +241,5 @@ export {
   getAdditionalFiles,
   whatsAppCode,
   getIndustries,
+  getJobAdditional,
 };
