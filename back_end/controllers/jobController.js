@@ -9,7 +9,7 @@ import JobPostOptions from "../models/Categories/JobPostOptions.js";
 import sendEmail from "./emailHandler.js";
 const JobPostController = async (req, res, next) => {
   // get request body for job post
-  const old_body = req.body;
+  const old_body = { ...req.body };
   delete req.body.additional_files;
   const body = req.body;
   const { degree_level_id, skill_id } = body;
@@ -25,7 +25,19 @@ const JobPostController = async (req, res, next) => {
     ...OrderedData.orderedData,
     posted_by_id: req.user.id,
   })
-    .then((response) => {
+    .then(async (response) => {
+      let result = old_body.additional_files
+        .split("|") // split by '|'
+        .map((str) => str.trim()) // remove trailing spaces
+        .map((str) => str.replace(/\s+/g, "_")) // replace spaces with '_'
+        .map((str) => str.toLowerCase()); // convert to lowercase
+      console.log(result); // output: ["corona", "ahad", "aman"]
+      let labels = old_body.additional_files.split("|");
+      for (let i = 0; i < result; i++) {
+        await sequelize.query(
+          `INSERT INTO employer_additional (label, identifier, job_id) VALUES ('${labels[i]}', '${result[i]}', ${response.id})`
+        );
+      }
       const skillListStringify = JSON.stringify(skill_id);
       const skillsParsed = JSON.parse(skillListStringify);
       skillsParsed.map(async (skill) => {
