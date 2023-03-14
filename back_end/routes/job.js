@@ -23,6 +23,7 @@ import {
   getBoxesDetails,
   changeCVState,
   getJobByIndustry,
+  getAdditionalData,
 } from "../controllers/jobController.js";
 // /main route =/jobs
 // const usermecontroller = require('../controllers/usermecontroller')
@@ -50,6 +51,7 @@ jobRouter.get("/getEmployerData", auth, getEmployerData);
 jobRouter.post("/getBoxesDetails", auth, getBoxesDetails);
 jobRouter.post("/changeCVState", auth, changeCVState);
 jobRouter.post("/getJobByIndustry", getJobByIndustry);
+jobRouter.post("/getAdditionalData", getAdditionalData);
 // jobRouter.get('/me', auth, usermecontroller)
 
 export default jobRouter;

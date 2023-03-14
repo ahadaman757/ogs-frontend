@@ -661,6 +661,18 @@ const getJobByIndustry = async (req, res, next) => {
   }
 };
 
+const getAdditionalData = async (req, res, next) => {
+  try {
+    const { cv_id, job_id } = req.body;
+    const additional = await sequelize.query(
+      `SELECT * FROM seeker_additional_upload WHERE cv_id = ${cv_id} AND job_id = ${job_id}`
+    );
+    res.json({ code: 1, message: additional });
+  } catch (err) {
+    res.json({ code: 0, message: err });
+  }
+};
+
 export {
   JobPostController,
   JobMyCompaniesController,
@@ -683,4 +695,5 @@ export {
   getBoxesDetails,
   changeCVState,
   getJobByIndustry,
+  getAdditionalData,
 };

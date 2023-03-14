@@ -13,6 +13,7 @@ import axios from "axios";
 import { BasicDocument } from "../pdfDownload";
 import { PDFDownloadLink, Image } from "@react-pdf/renderer";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const Cv = ({ applicant, job_id }) => {
   const navigate = useNavigate();
   const cv = {
@@ -22,7 +23,7 @@ const Cv = ({ applicant, job_id }) => {
   const [rejected, setRejected] = useState(applicant.is_rejected);
   const [download, setdownload] = useState(false);
   const [unlockCV, setUnlockCV] = useState(false);
-
+  const [additionalFiles, setAdditionalFiles] = useState([]);
   console.log("CV..", applicant.code);
   const updateCvView = (currentStatus) => {
     axios
@@ -54,6 +55,21 @@ const Cv = ({ applicant, job_id }) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    axios
+      .post("https://3.14.27.53:3003/jobs/getAdditionalData", {
+        cv_id: applicant.cv_id,
+        job_id: job_id,
+      })
+      .then((res) => {
+        console.log("ADDITIONALLLL ", res);
+        // setAdditionalFiles(res.data.fi);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
@@ -237,6 +253,16 @@ const Cv = ({ applicant, job_id }) => {
           </div>
         </div>
         <hr />
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Launch demo modsal
+        </button>
+
+        <hr />
         <div className="d-flex flex-wrap justify-content-between">
           <div>
             <p className="text-center ogsfonts14">Years of Experience</p>
@@ -418,7 +444,6 @@ const Cv = ({ applicant, job_id }) => {
               </div>
             </div>
           </div>
-
           <div className="">
             <div className="row">
               <div className="col-6">
