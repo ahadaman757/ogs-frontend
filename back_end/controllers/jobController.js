@@ -9,6 +9,8 @@ import JobPostOptions from "../models/Categories/JobPostOptions.js";
 import sendEmail from "./emailHandler.js";
 const JobPostController = async (req, res, next) => {
   // get request body for job post
+  const old_body = req.body;
+  delete req.body.additional_files;
   const body = req.body;
   const { degree_level_id, skill_id } = body;
   // perform validations
@@ -17,6 +19,7 @@ const JobPostController = async (req, res, next) => {
   // console.log(OrderedData.orderedData);
   // console.log(req.user.id);
   console.log("POST A JOB!!! ", body);
+  console.log("POST A JOB!!! ", old_body);
   // insert data in job table
   Job.create({
     ...OrderedData.orderedData,
