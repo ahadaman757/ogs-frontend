@@ -1,6 +1,6 @@
-import express from 'express';
+import express from "express";
 const userRouter = express.Router();
-import auth from '../middlewares/auth/auth.js';
+import auth from "../middlewares/auth/auth.js";
 import {
   sendEmployerRegistrationEmail,
   registercontroller,
@@ -15,28 +15,38 @@ import {
   resetPass,
   deleteJob,
   uploadAdditionalFiles,
-  additionalUpload
-} from '../controllers/userController.js';
-import { getSeekerCvs, CreateCv } from '../controllers/CvContoller.js';
+  additionalUpload,
+  seekerUploadAdditionalFiles,
+} from "../controllers/userController.js";
+import { getSeekerCvs, CreateCv } from "../controllers/CvContoller.js";
 // const usermecontroller = require('../controllers/usermecontroller')
 
 // Register/Add Users to DataBase\
-userRouter.post('/', imageUpload, registercontroller);
-userRouter.post('/signin', signincontroller);
-userRouter.get('/me', auth, ProfileController);
-userRouter.get('/seeker_me', auth, SeekerProfileController);
-userRouter.get('/my_cvs', auth, getSeekerCvs);
+userRouter.post("/", imageUpload, registercontroller);
+userRouter.post("/signin", signincontroller);
+userRouter.get("/me", auth, ProfileController);
+userRouter.get("/seeker_me", auth, SeekerProfileController);
+userRouter.get("/my_cvs", auth, getSeekerCvs);
 userRouter.post(
-  '/sendEmployerRegistrationEmail',
+  "/sendEmployerRegistrationEmail",
   auth,
   sendEmployerRegistrationEmail
 );
-userRouter.post('/resetpassword', auth, ResetPassword);
-userRouter.post('/employer_update_profile', auth, imageUpload, UpdateProfile);
-userRouter.post('/findAccountByEmail', findAccountByEmail);
-userRouter.post('/resetPass', resetPass);
-userRouter.post('/deleteJob', auth, deleteJob);
-userRouter.post('/uploadAdditionalFiles',additionalUpload, uploadAdditionalFiles);
+userRouter.post("/resetpassword", auth, ResetPassword);
+userRouter.post("/employer_update_profile", auth, imageUpload, UpdateProfile);
+userRouter.post("/findAccountByEmail", findAccountByEmail);
+userRouter.post("/resetPass", resetPass);
+userRouter.post("/deleteJob", auth, deleteJob);
+userRouter.post(
+  "/uploadAdditionalFiles",
+  additionalUpload,
+  uploadAdditionalFiles
+);
+userRouter.post(
+  "/seekerUploadAdditionalFiles",
+  additionalUpload,
+  seekerUploadAdditionalFiles
+);
 // userRouter.get('/me', auth, usermecontroller)
 
 export default userRouter;

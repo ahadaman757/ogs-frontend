@@ -11,13 +11,22 @@ const Jobpopseeker = () => {
   const [skills, setskills] = useState();
   const [UserCvs, setUserCvs] = useState([]);
   const [data, Setdata] = useState("");
-
+  const [additionalQuestions, setAdditionalQuestions] = useState();
+  const [additionalLoading, setAdditionalLoading] = useState(true);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedLabel, setSelectedLabe] = useState("");
   useEffect(() => {
     axios
       .post(`https://3.14.27.53:3003/general/getJobAdditional`, {
         job_id: job_data.id,
       })
-      .then((res) => console.log("Additional HERE!!! => ", res.data));
+      .then((res) => {
+        setAdditionalQuestions(
+          JSON.parse(JSON.stringify(res.data.questions[0]))
+        );
+        setAdditionalLoading(false);
+        console.log("Additional", res);
+      });
   }, []);
 
   const ApplyJob = (cv_id) => {
@@ -58,6 +67,20 @@ const Jobpopseeker = () => {
         console.log(error);
       });
   }, []);
+
+  const handleUpload = () => {
+    const formData = new FormData();
+    formData.append("file", selectedFile[0]);
+    formData.append("jobID", job_data.id);
+    formData.append("linked_id", 0);
+    axios
+      .post("https://3.14.27.53:3003/users/my_cvs", formData, {
+        headers: {
+          accesstoken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((res) => console.log("KKKKKKKKKKK", res));
+  };
   useEffect(() => {
     axios
       .get("https://3.14.27.53:3003/users/my_cvs", {
@@ -267,6 +290,36 @@ const Jobpopseeker = () => {
                             );
                           })}
                       </select>
+                    </div>
+                    <div>
+                      {!additionalLoading &&
+                        additionalQuestions.map((q) => {
+                          console.log(q);
+                          return (
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                marginTop: "20px",
+                                marginBottom: "20px",
+                                padding: "15px",
+                              }}
+                              className={`${Styles.modalapply}`}
+                            >
+                              <label>{q.label}</label>
+                              <br />
+                              <input
+                                type="file"
+                                onChange={(e) => {
+                                  setSelectedFile(e.target.files);
+                                  handleUpload();
+                                }}
+                              />
+                            </div>
+                          );
+                        })}
                     </div>
                   </div>
                 </div>
